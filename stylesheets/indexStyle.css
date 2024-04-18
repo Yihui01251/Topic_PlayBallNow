@@ -1,0 +1,35 @@
+@charset "UTF-8";
+body{
+    background-color: rgb(232, 240, 245);
+
+    margin: 20%;
+}
+.post{
+    width: 300px;
+    height: 600px;
+    border-color: black;
+    border-style: double;
+    margin-left: auto;
+    margin-right: auto;
+    float: left;
+    
+}
+.ball{
+    width: 300px;
+    height: 600px;
+    border-color: black;
+    border-style: double;
+    margin-left: auto;
+    margin-right: auto;
+    float: left;
+}
+.login{
+    width: 300px;
+    height: 600px;
+    border-color: black;
+    border-style: double;
+    margin-left: auto;
+    margin-right: auto;
+    float: left;
+
+}
