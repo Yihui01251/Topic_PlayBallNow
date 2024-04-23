@@ -21,13 +21,16 @@
       const App = () => {
         return (
           <>
-
-          <header id="topBar">
+            <header id="topBar">
               <nav id="top-nav">
                 <ul id="menu">
                   <li>
                     <a href="./index.html">
-                      <img className="icon" src="./images/magnifier.png" alt="" />
+                      <img
+                        className="icon"
+                        src="./images/magnifier.png"
+                        alt=""
+                      />
                       探索
                     </a>
                   </li>
@@ -56,7 +59,7 @@
               <section className="search">
                 <div id="search-Type">
                   <button id="btn-typeVb">
-                    <img src="./images/vball.png" alt=""/>
+                    <img src="./images/vball.png" alt="" />
                   </button>
                   <button id="btn-typeBm">
                     <img src="./images/bball.png" alt="羽球" />
@@ -66,119 +69,140 @@
                   <div></div>
                   <div className="dropMenu">
                     <ul>
-                      <input className = "dpMenu-item"
+                      <input
+                        className="dpMenu-item"
                         type="date"
                         name="日期"
                         id="date"
                         title="打球日"
                         required
                       />
-                      <select name="類型" id="type" className = "dpMenu-item">
-                        <option value="default">類型</option>
+                      <select name="類型" id="type" className="dpMenu-item">
+                        <option value="default"><p>類型</p></option>
                       </select>
-                      <select name="程度" id="degree" className = "dpMenu-item">
+                      <select name="程度" id="degree" className="dpMenu-item">
                         <option value="default">程度</option>
                       </select>
-                      <select name="時間" id="time" className = "dpMenu-item">
+                      <select name="時間" id="time" className="dpMenu-item">
                         <option value="default">時間</option>
                       </select>
-                      <select name="縣市" id="city" className = "dpMenu-item">
+                      <select name="縣市" id="city" className="dpMenu-item">
                         <option value="default">縣市</option>
                       </select>
-                      <select name="費用" id="cost" className = "dpMenu-item">
+                      <select name="費用" id="cost" className="dpMenu-item">
                         <option value="default">費用</option>
                       </select>
                     </ul>
-                    
                   </div>
                   <div>
-                      <button className="btn-changeType">切換</button>
-                      <button className="btn-send">送出</button>
-                    </div>
+                    <button className="btn-changeType">切換</button>
+                    <button className="btn-send"><p>送出</p></button>
+                  </div>
                 </div>
               </section>
 
-              <section className = "containers">
-                <header className = "title-postArea">
-                 
-                  <h2>本日臨打貼文</h2>
-                  <div><a href="#">更多>></a></div>
-                  </header>
-                <ul className = "tags">
-                  <button id ="tags-degree">中下</button>
-                  <button>12-18</button>
-                  <button>200+</button>
-                  <button>側燈</button>
-                  </ul>
+              <section className="containers">
+                <header className="title-postArea">                
+                  <h2><div></div>本日臨打貼文</h2>
+                  <div className= "more">
+                    <a href="#"><p>更多>></p></a>
+                  </div>
+                </header>
+                <ul className="tags">
+                  <button id="tags-degree"><p>中下</p></button>
+                  <button id="tags-time"><p>12-18</p></button>
+                  <button id="tags-cost"><p>200+</p></button>
+                  <button id="tags-eqip"><p>側燈</p></button>
+                </ul>
                 <div className="post">
                   <div className="content">
-                      <div className = "bg"></div>
-                      <div className = "text">
+                    <div className="bg">
+                      <div className="text">
                         <header>
-                        <small>06/27(三) </small>
-                        <h3>18:00</h3>
+                          <small>06/27(三) </small>
+                          <h3>18:00</h3>
                         </header>
-                      <small>台北市 中山區</small>
-                      <h2>中山運動中心</h2>
-                      <div className = "tag-content">
-                        <div><small>女網混排</small></div>
-                        <small>程度不拘</small>
+                        <div className="subtext">
+                          <small>台北市</small>
+                          <small>中山區</small>
                         </div>
-                        <button id="signUp">報名</button>
-                        </div>
-                      
-                      </div>
-                      <div className="content">
-                      <div className = "bg"></div>
-                      <img className ="vb-border" src="./images/catframe.png" alt=""/>
-                      <div className = "text">
+                        <h2 value = "中山運動中心">中山運動中心</h2>
+                        <div className="tag-content">                          
+                          <small>女網混排</small>                          
+                          <small>程度不拘</small>
+                        </div>                       
+                          <button id="apply"><h3>報名</h3></button>                          
+                      </div>                     
+                    </div>
+                  </div>
+                  
+                  <div className="content">
+                    <div className="bg">
+                      <div className="text">
                         <header>
-                        <small>06/27(三) </small>
-                        <h3>18:00</h3>
+                          <small>06/27(三) </small>
+                          <h3>18:00</h3>
                         </header>
-                      <small>台北市 中山區</small>
-                      <h2>中山運動中心</h2>
-                      <div className = "tag-content">
-                        <div><small>女網混排</small></div>
-                        <small>程度不拘</small>
+                        <div className="subtext">
+                          <small>台北市</small>
+                          <small>中山區</small>
                         </div>
-                        <button id="signUp">報名</button>
-                        </div>
-                      
-                      </div>
-                      </div>
-                </section>
+                        <h2 value = "中山運動中心">中山運動中心</h2>
+                        <div className="tag-content">                          
+                          <small>女網混排</small>                          
+                          <small>程度不拘</small>
+                        </div>                       
+                          <button id="apply"><h3>報名</h3></button>                          
+                      </div>                     
+                    </div>
+                  </div>
 
-
-                <section className = "containers">
-                <header className = "title-postArea">
-                  <figure><img src="" alt=""/></figure>
-                  <h2>本日臨打貼文</h2>
-                  <div><a href=" ">更多</a></div>
-                  </header>
-                <ul className = "tags">
-                  <li id = "tags-degree">中下</li>
-                  <li id = "tags-time">12-18</li>
-                  <li>200+</li>
-                  <li>側燈</li>
-                  </ul>
-                <div className = "Containers">
-                  <div className="post">
-                    <div className="content">
-                      
-                      <header>
-                        <small>06/27(三) </small>
-                        <h3>18:00</h3>
+                  <div className="content">
+                    <div className="bg">
+                      <div className="text">
+                        <header>
+                          <small>06/27(三) </small>
+                          <h3>18:00</h3>
                         </header>
-                      <small>台北市 中山區</small>
-                      <h2>中山運動中心</h2>
-                      <div className = "tag-content">
-                        <div><small>女網混排</small></div>
-                        <small>程度不拘</small>
+                        <div className="subtext">
+                          <small>台北市</small>
+                          <small>中山區</small>
                         </div>
-                        <button id="signUp">報名</button>
-                      </div></div></div>
-                </section>
+                        <h2 value = "中山運動中心">中山運動中心</h2>
+                        <div className="tag-content">                          
+                          <small>女網混排</small>                          
+                          <small>程度不拘</small>
+                        </div>                       
+                          <button id="apply"><h3>報名</h3></button>                          
+                      </div>                     
+                    </div>
+                  </div>
+                  
+                  <div className="content">
+                    <div className="bg">
+                      <div className="text">
+                        <header>
+                          <small>06/27(三) </small>
+                          <h3>18:00</h3>
+                        </header>
+                        <div className="subtext">
+                          <small>台北市</small>
+                          <small>中山區</small>
+                        </div>
+                        <h2 value = "中山運動中心">中山運動中心</h2>
+                        <div className="tag-content">                          
+                          <small>女網混排</small>                          
+                          <small>程度不拘</small>
+                        </div>                       
+                          <button id="apply"><h3>報名</h3></button>                          
+                      </div>                     
+                    </div>
+                  </div>
+                  
+                </div>
+              </section>
+
+              
             </main>
             <footer>
               <figure></figure>
