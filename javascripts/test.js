@@ -20,11 +20,11 @@ document.addEventListener('DOMContentLoaded', () => {
             selectArea.style.display = "none";
         }
         let opArea = options[selectCity.value];
-        // console.log(`可選擇${area}`);
-
-        if(opArea){
-                      
+        console.log(`可選擇${opArea}`);
+        if(opArea){         
+                  
             opArea.forEach((option) => {
+                
                 var opElement = document.createElement("option");
                 opElement.textContent = option;
                 opElement.value = option;
