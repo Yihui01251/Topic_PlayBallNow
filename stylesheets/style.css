@@ -511,7 +511,7 @@ section{
     flex: 1 0 auto;
     width: 245px;
     height: 245px;
-    background-image: url('/images/catframe.png');
+    background-image: url('../images/catframe.png');
     background-size: cover; 
     background-repeat: no-repeat; 
     background-position: center;
@@ -630,12 +630,42 @@ section{
     background-color: #F1DB15;
 
 }
+footer{
+    height: 100px;
+    background-color :rgba(3, 9, 40, 0.6) ;
+    padding-bottom: 32px;
+
+
+}
+.footer-border{
+    width: auto;
+    height: 21px;
+    background-image: url("../images/logo2.png");
+    background-size:24px ; 
+    background-repeat: repeat; 
+    background-position: center;
+
+}
+
+footer div{
+    margin-top: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
 #logo{
-  width: 78px;
-  height: 74px;
-  background-color: black;
+
+  width: 35px;
+  height: 33px;
   margin-left: 10px;
-  flex: 1;
+  flex: 1 0 auto;
+}
+
+footer div p {
+    width: 237px;
+    margin-left: 10px;
+    text-align: center;
 }
 
 #selectArea{
