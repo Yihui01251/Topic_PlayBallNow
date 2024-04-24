@@ -18,6 +18,79 @@
   <body>
     <div id="root"></div>
     <script type="text/babel">
+      //資料
+      const postData =[
+        {
+          id : 1,
+          date :'06/26(三)',
+          time :'10:00',
+          city :'台北市',
+          area :'中山區',
+          arena:'中山運動中心',
+          tag1:'女網混排',
+          tag2:'程度不拘',
+
+        },
+        {
+          id : 2,
+          date :'06/26(三)',
+          time :'13:00',
+          city :'台北市',
+          area :'大同區',
+          arena:'大同運動中心',
+          tag1:'女網混排',
+          tag2:'程度不拘',
+        },
+        {
+          id : 3,
+          date :'06/26(三)',
+          time :'18:00',
+          city :'台北市',
+          area :'中正區',
+          arena:'中正運動中心',
+          tag1:'女網混排',
+          tag2:'程度不拘',
+        },
+        {
+          id : 4,
+          date :'06/26(三)',
+          time :'21:00',
+          city :'台北市',
+          area :'大安區',
+          arena:'大安運動中心',
+          tag1:'女網混排',
+          tag2:'程度不拘',
+        },
+      ]
+      
+      // 元件
+      const PostCard = (props)=>{
+        const {id,date,time,city,area,arena,tag1,tag2} = props;
+        return(<>
+        <div className="content">
+                    <div className="bg">
+                      <div className="text">
+                        <header>
+                          <small>{date}</small>
+                          <h3>{time}</h3>
+                        </header>
+                        <div className="subtext">
+                          <small>{city}</small>
+                          <small>{area}</small>
+                        </div>
+                        <h2 value ={`${arena}`}>{arena}</h2>
+                        <div className="tag-content">                          
+                          <small>{tag1}</small>                          
+                          <small>{tag2}</small>
+                        </div>                       
+                          <button id="apply"><h3>報名</h3></button>                          
+                      </div>                     
+                    </div>
+                    </div>
+          
+      </>);
+      }
+
       const App = () => {
         return (
           <>
@@ -114,95 +187,15 @@
                   <button id="tags-cost"><p>200+</p></button>
                   <button id="tags-eqip"><p>側燈</p></button>
                 </ul>
-                <div className="post">
-                  <div className="content">
-                    <div className="bg">
-                      <div className="text">
-                        <header>
-                          <small>06/27(三) </small>
-                          <h3>18:00</h3>
-                        </header>
-                        <div className="subtext">
-                          <small>台北市</small>
-                          <small>中山區</small>
-                        </div>
-                        <h2 value = "中山運動中心">中山運動中心</h2>
-                        <div className="tag-content">                          
-                          <small>女網混排</small>                          
-                          <small>程度不拘</small>
-                        </div>                       
-                          <button id="apply"><h3>報名</h3></button>                          
-                      </div>                     
-                    </div>
-                  </div>
-                  
-                  <div className="content">
-                    <div className="bg">
-                      <div className="text">
-                        <header>
-                          <small>06/27(三) </small>
-                          <h3>18:00</h3>
-                        </header>
-                        <div className="subtext">
-                          <small>台北市</small>
-                          <small>中山區</small>
-                        </div>
-                        <h2 value = "中山運動中心">中山運動中心</h2>
-                        <div className="tag-content">                          
-                          <small>女網混排</small>                          
-                          <small>程度不拘</small>
-                        </div>                       
-                          <button id="apply"><h3>報名</h3></button>                          
-                      </div>                     
-                    </div>
-                  </div>
-
-                  <div className="content">
-                    <div className="bg">
-                      <div className="text">
-                        <header>
-                          <small>06/27(三) </small>
-                          <h3>18:00</h3>
-                        </header>
-                        <div className="subtext">
-                          <small>台北市</small>
-                          <small>中山區</small>
-                        </div>
-                        <h2 value = "中山運動中心">中山運動中心</h2>
-                        <div className="tag-content">                          
-                          <small>女網混排</small>                          
-                          <small>程度不拘</small>
-                        </div>                       
-                          <button id="apply"><h3>報名</h3></button>                          
-                      </div>                     
-                    </div>
-                  </div>
-                  
-                  <div className="content">
-                    <div className="bg">
-                      <div className="text">
-                        <header>
-                          <small>06/27(三) </small>
-                          <h3>18:00</h3>
-                        </header>
-                        <div className="subtext">
-                          <small>台北市</small>
-                          <small>中山區</small>
-                        </div>
-                        <h2 value = "中山運動中心">中山運動中心</h2>
-                        <div className="tag-content">                          
-                          <small>女網混排</small>                          
-                          <small>程度不拘</small>
-                        </div>                       
-                          <button id="apply"><h3>報名</h3></button>                          
-                      </div>                     
-                    </div>
-                  </div>
-                  
+                <div className="post-block">
+                {
+                    postData.map((post_data)=>{
+                      return(<PostCard id = {post_data.id} date = {post_data.date} time = {post_data.time} city = {post_data.city} area = {post_data.area} arena = {post_data.arena} tag1 = {post_data.tag1} tag2 = {post_data.tag2} />)
+                    })
+                    
+                }
                 </div>
-              </section>
-
-              
+              </section>             
             </main>
             <footer>
               <figure className="footer-border"></figure>
