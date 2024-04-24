@@ -26,40 +26,103 @@
     
     <!-- 載入axios套件 -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <div id="root"></div>
-    <script type="text/babel">
+    <div id="root"></div>   
+    <script type="text/babel">  
       (async ()=>{
         //取得json資料
         const data = await axios.get("./postData.json");
-        const {today_postData, week_postData} = data.data;
-        console.log(today_postData);
-        console.log(week_postData);
+        const {vb_today_postData, vb_week_postData,bm_today_postData,bm_week_postData} = data.data;
+        console.log(vb_today_postData);
+        console.log(vb_week_postData);
+        console.log(bm_today_postData);
+        console.log(bm_week_postData);
 
+        
 
         const App = () => {
+          const { useState } = React;
+          const [mainColor,setMainColor] = useState('#14AAEB');
+          const [btnColor,setBtnColor] = useState('#F1DB15');
+          const [postBorder,setPostBorder] = useState('');
+          const [todayType,setTodayType] = useState('vb_today_postData');
+          const [weekType,setWeekType] = useState('vb_week_postData');
+
+          const changeType = (id)=>{
+            let color = '';
+            let btnColor ='';
+            const border = document.querySelector(".content");
+            let newBorder = '';
+
+            // 取消其他按鈕的選擇
+            const btnTypeVb = document.getElementById("btn-typeVb");
+            const btnTypeBm = document.getElementById("btn-typeBm");
+            
+             if(id == "btn-typeBm"){
+              color = '#6C9C07';
+              btnColor ='#FF8D24';
+              newBorder = 'url("../images/dogframe.png")';
+              setTodayType('bm_today_postData') ;
+              setWeekType('bm_week_postData') ;
+
+              btnTypeVb.classList.remove("selected");
+              btnTypeBm.classList.add("selected");
+               
+            }else if(id == "btn-typeVb"){
+              color = '#14AAEB';
+              btnColor ='#F1DB15';
+              newBorder = 'url("../images/catframe.png")';
+              setTodayType('vb_today_postData') ;
+              setWeekType('vb_week_postData') ;
+
+              btnTypeBm.classList.remove("selected");
+              btnTypeVb.classList.add("selected");
+            } 
+            setMainColor(color);
+            setBtnColor(btnColor);
+            document.documentElement.style.setProperty('--main-color', color);
+            document.documentElement.style.setProperty('--btn-color', btnColor);
+            border.style.backgroundImage = newBorder;
+        
+          };
+          
+          const getPosts = (type) => {
+                switch (type) {
+                    case 'vb_today_postData':
+                        return vb_today_postData;
+                    case 'bm_today_postData':
+                        return bm_today_postData;
+                    case 'vb_week_postData':
+                        return vb_week_postData;
+                    case 'bm_week_postData':
+                        return bm_week_postData;
+                    default:
+                        return [];
+                }
+            };
+         
           // 元件
         // 貼文元件
-        const PostCard = ({id,date,time,city,area,arena,tag1,tag2})=>{
-          console.log(id,date,time,city,area,arena,tag1,tag2);
+        const PostCard = ({id,postDate, postTime, postCity, postArea, postArena,primaryTag,secondaryTag})=>{
+         
           // const {key,date,time,city,area,arena,tag1,tag2} = props;
           return(<>
-          <div className="content" id = {id}>
+          <div className="content" id = {id} >
                       <div className="bg">
                         <div className="text">
                           <header>
-                            <small>{date}</small>
-                            <h3>{time}</h3>
+                            <small>{postDate}</small>
+                            <h3>{postTime}</h3>
                           </header>
                           <div className="subtext">
-                            <small>{city}</small>
-                            <small>{area}</small>
+                            <small>{postCity}</small>
+                            <small>{postArea}</small>
                           </div>
-                          <h2 value ={`${arena}`}>{arena}</h2>
+                          <h2 value ={`${postArena}`}>{postArena}</h2>
                           <div className="tag-content">                          
-                            <small>{tag1}</small>                          
-                            <small>{tag2}</small>
+                            <small>{primaryTag}</small>                          
+                            <small>{secondaryTag}</small>
                           </div>                       
-                            <button id="apply"><h3>報名</h3></button>                          
+                            <button id="apply" className = "CN-p">報名</button>                          
                         </div>                     
                       </div>
                       </div>
@@ -105,88 +168,90 @@
               <main className="index">
                 <section className="search">
                   <div id="search-Type">
-                    <button id="btn-typeVb">
-                      <img src="./images/vball.png" alt="" />
+                    <button id="btn-typeVb" onClick ={ ()=>changeType('btn-typeVb')}>
+                      <img src="./images/vball.png" alt="排球" />
                     </button>
-                    <button id="btn-typeBm">
+                    <button id="btn-typeBm" onClick = {()=>changeType('btn-typeBm')}>
                       <img src="./images/bball.png" alt="羽球" />
                     </button>
                   </div>
-                  <div id="search-Bar">
+                  <div id="search-Bar" style = {{backgroundColor:mainColor}} >
                     <div></div>
                     <div className="dropMenu">
                       <ul>
                         <input
-                          className="dpMenu-item"
+                          className="dpMenu-item CN-p"
                           type="date"
                           name="日期"
                           id="date"
                           title="打球日"
                           required
+                          style = {{color:mainColor}}
                         />
-                        <select name="類型" id="type" className="dpMenu-item">
-                          <option value="default"><p>類型</p></option>
+                        <select name="類型" id="type" className="dpMenu-item  CN-p">
+                          <option value="default">類型</option>
                         </select>
-                        <select name="程度" id="degree" className="dpMenu-item">
+                        <select name="程度" id="degree" className="dpMenu-item  CN-p">
                           <option value="default">程度</option>
                         </select>
-                        <select name="時間" id="time" className="dpMenu-item">
+                        <select name="時間" id="time" className="dpMenu-item  CN-p">
                           <option value="default">時間</option>
                         </select>
-                        <select name="縣市" id="city" className="dpMenu-item">
+                        <select name="縣市" id="city" className="dpMenu-item  CN-p">
                           <option value="default">縣市</option>
                         </select>
-                        <select name="費用" id="cost" className="dpMenu-item">
+                        <select name="費用" id="cost" className="dpMenu-item CN-p">
                           <option value="default">費用</option>
                         </select>
                       </ul>
                     </div>
                     <div>
-                      <button className="btn-changeType">切換</button>
-                      <button className="btn-send"><a href="#"><p>送出</p></a></button>
+                      <button className="btn-changeType">手機切換</button>
+                      <button className="btn-send"><span className = "CN-p">送出</span></button>
                     </div>
                   </div>
                 </section>
-  
+                {/* 本日臨打貼文 */}
                 <section className="containers">
                   <header className="title-postArea">                
                     <h2><div></div>本日臨打貼文</h2>
                     <div className= "more">
-                      <a href="#"><p>更多</p></a>
+                      <a href="#" className = "CN-p">更多</a>
                     </div>
                   </header>
                   <ul className="tags">
-                    <button id="tags-degree"><p>B-</p></button>
-                    <button id="tags-time"><p>12-18</p></button>
-                    <button id="tags-cost"><p>200+</p></button>
-                    <button id="tags-eqip"><p>側燈</p></button>
+                    <button className = "tags-degree CN-p">B-</button>
+                    <button  className = "tags-time CN-p">12-18</button>
+                    <button  className = "tags-cost CN-p">200+</button>
+                    <button  className = "tags-eqip CN-p">側燈</button>
                   </ul>
                   <div className="post-block">
                   {
-                      today_postData.map((post_data)=>{
-                        return(<PostCard key = {post_data.id} id = {post_data.id} date = {post_data.date} time = {post_data.time} city = {post_data.city} area = {post_data.area} arena = {post_data.arena} tag1 = {post_data.tag1} tag2 = {post_data.tag2} />)
+                    getPosts(todayType).map((post_data)=>{
+                        return(<PostCard key = {post_data.id} id = {post_data.id} postDate = {post_data.date} postTime = {post_data.time} postCity = {post_data.city} postArea = {post_data.area} postArena = {post_data.arena} primaryTag = {post_data.tag1} secondaryTag = {post_data.tag2} />)
                       })
                       
                   }
                   </div>
                 </section> 
+                {/* 本週臨打貼文 */}
                 <section className="containers">
                   <header className="title-postArea">                
                     <h2><div></div>本週臨打貼文</h2>
                     <div className= "more">
-                      <a href="#"><p>更多</p></a>
+                      <a href="#" className = "CN-p">更多</a>
                     </div>
                   </header>
                   <ul className="tags">
-                    <button id="tags-degree"><p>C</p></button>
-                    <button id="tags-time"><p>12-18</p></button>
-                    <button id="tags-cost"><p>150+</p></button>
-                    <button id="tags-eqip"><p>冷氣</p></button>
+                    <button  className = "tags-degree CN-p">C</button>
+                    <button  className = "tags-time CN-p">12-18</button>
+                    <button  className = "tags-cost CN-p">150+</button>
+                    <button  className = "tags-eqip CN-p">冷氣</button>
                   </ul>
                   <div className="post-block">
                   {
-                    week_postData.map((post_data)=>{
-                        return(<PostCard key = {post_data.id} id = {post_data.id} date = {post_data.date} time = {post_data.time} city = {post_data.city} area = {post_data.area} arena = {post_data.arena} tag1 = {post_data.tag1} tag2 = {post_data.tag2} />)
+                    getPosts(weekType).map((post_data)=>{
+                        return(<PostCard key = {post_data.id} id = {post_data.id} postDate = {post_data.date} postTime = {post_data.time} postCity = {post_data.city} postArea = {post_data.area} postArena = {post_data.arena} primaryTag = {post_data.tag1} secondaryTag = {post_data.tag2} />)
                       })
                       
                   }
