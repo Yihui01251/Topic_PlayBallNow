@@ -742,8 +742,7 @@ button#btn-typeVb.selected img {
 
 }
 
-.text header p,
-small {
+.text header p{
     text-shadow: 1px -1px 0 #000000,
         1px -1px 0 #000000,
         -1px 1px 0 #000000,
@@ -757,7 +756,7 @@ small {
 }
 
 /* 首頁main > section.containers > div.post > div.content > div.text > small*/
-.subtext small {
+.subtext p {
     margin-right: 10px;
 }
 
@@ -768,7 +767,7 @@ small {
 
 }
 
-/* 增加文字外框線 */
+/* 增加h3文字外框線 */
 .text h3::before {
     content: attr(value);
     position: absolute;
@@ -777,7 +776,7 @@ small {
 
 }
 
-/* 首頁main > section.containers > div.post > div.content > div.text > div.tag-content */
+/* 首頁main > section.containers > div.post > div.content > div.text > div.tag-style */
 .tag-style {
     flex: 1 1 auto;
 
@@ -788,7 +787,7 @@ small {
 
 }
 
-.tag-content small {
+.tag-style p {
     flex: 1 1 auto;
     padding: 4px 10px;
     height: fit-content;
@@ -801,7 +800,7 @@ small {
 
     text-shadow: 0 0;
 }
-
+/* 報名按鈕 */
 #apply {
     flex: 1 1 auto;
     width: fit-content;
@@ -870,8 +869,8 @@ footer div p {
 
 /* main.filter-postArea > div*/
 .filter-postArea div {
-    width: fit-content;
-    height: fit-content;
+    width: auto;
+    height: auto;
     gap: 6px;
     border-bottom: 3px solid rgba(0, 0, 0, 1);
 
@@ -883,8 +882,6 @@ footer div p {
     height: 96px;
     top: 136px;
     left: 798px;
-    gap: 0px;
-    opacity: 0;
 
     align-self: center;
 
@@ -898,10 +895,7 @@ footer div p {
 .fitter-info {
     width: 244px;
     height: 59px;
-    gap: 0px;
-    border-radius: 50px 0px 0px 0px;
-    border: 3.5px 0px 0px 0px;
-    opacity: 0;
+    border-radius: 50px;
 
     background: rgba(247, 246, 245, 1);
     border: 3.5px solid rgba(0, 0, 0, 1);
@@ -919,10 +913,7 @@ footer div p {
     width: 58px;
     height: 58px;
     top: 4px;
-    gap: 0px;
     border: 3px 0px 0px 0px;
-    opacity: 0;
-
     position: relative;
 }
 
@@ -933,11 +924,8 @@ footer div p {
     height: 48px;
     top: 12px;
     left: 5px;
-    gap: 0px;
-    opacity: 0;
 
     /* Image: filter; */
-    background: url("filter.png");
     background-size: cover;
 
 }
@@ -950,10 +938,7 @@ footer div p {
     top: -1px;
     left: 42px;
     padding: 4px 7px 4px 7px;
-    gap: 0px;
-    border-radius: 90px 0px 0px 0px;
-    border: 1.5px 0px 0px 0px;
-    opacity: 0;
+    border-radius: 90px;
     /* color */
     background: rgba(203, 27, 27, 1);
     /* border */
@@ -971,8 +956,7 @@ footer div p {
     height: 19px;
     top: 77px;
     left: 84px;
-    gap: 0px;
-    opacity: 0;
+    
 
 }
 
@@ -982,10 +966,7 @@ footer div p {
     height: 1px;
     top: 241.5px;
     left: 30px;
-    gap: 0px;
-    border: 2px 0px 0px 0px;
-    opacity: 0;
-
+    
     border: 2px solid rgba(0, 0, 0, 0.41);
 
 }
@@ -996,8 +977,11 @@ footer div p {
     height: 598px;
     top: 264px;
     left: 25px;
+    /*  */
+    display: grid;
+    grid-area: auto;
     gap: 10px;
-    opacity: 0;
+    
 
 
 }
@@ -1008,20 +992,19 @@ footer div p {
     display: grid;
     grid-auto-rows: auto ;
     gap: 30px;
-    opacity: 0;
+    
 
 }
 
 /* main.filter-postArea > section.filter-containers >div.filter-postBlock >div.filter-simplePostInfo */
 .filter-simplePostInfo {
-
-    display: flex;
-
+    width: auto;
+    height: auto;
     padding: 20px 0px 0px 0px;
+    display: grid;
     gap: 10px;
-    border-radius: 20px 0px 0px 0px;
-    border: 3.5px 0px 0px 0px;
-    opacity: 0;
+    border-radius: 20px;
+   
 
     background: rgba(247, 246, 245, 1);
     border: 3.5px solid rgba(0, 0, 0, 1);
@@ -1037,7 +1020,7 @@ footer div p {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 8px;
-    opacity: 0;
+    
 
     background: rgba(247, 246, 245, 1);
 }
@@ -1048,7 +1031,7 @@ footer div p {
         height: auto; /* 或者使用 height: auto; */
         gap: 0px;
         justify-content: space-between;
-        opacity: 0;  
+          
 
 }
 /* ...>div.filter-simplePostInfo > div.main-info > div.areaInfo */
@@ -1058,7 +1041,7 @@ footer div p {
     display: grid;
     grid-template-rows: repeat(3, 1fr);
     gap: 7px; /* 只有在 Flexbox 或 Grid 的容器中使用 gap */
-    opacity: 0; /* 透明度值範圍是 0 到 1 */
+    
 }
 
 /*  ...>div.filter-simplePostInfo > div.sub-info > div.solicitor-number */
@@ -1077,11 +1060,12 @@ footer div p {
 
 /* main.filter-postArea > section.filter-containers >div.filter-postBlock >div.filter-simplePostInfo > div.sub-info */
 .sub-info {
-    display: flex;
+    
     padding: 5px 0px 0px 0px;
+    display: grid;
+    grid-area: auto;
     gap: 5px;
-    border-radius: 5px 0px 0px 0px;
-    opacity: 0px;
+    border-radius: 5px;
     background: rgba(247, 246, 245, 1);
 
 }
@@ -1092,8 +1076,9 @@ footer div p {
 .div.filter-simplePostInfo div {
     width: 100%;
     height: fit-content;
+    display: grid;
+    grid-area: auto;
     gap: 10px;
-    opacity: 0px;
 
 }
 

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="./javascripts/vendor.js"></script>
+    <!-- <script src="./javascripts/vendor.js"></script> -->
     <script
       crossorigin
       src="https://unpkg.com/react@18/umd/react.development.js"
@@ -145,19 +145,19 @@
                   <div className="bg">
                     <div className="text">
                       <header>
-                        <small>{postDate}</small>
+                        <p className = "text-S">{postDate}</p>
                         <p className="text-L">{postTime}</p>
                       </header>
                       <div className="subtext">
-                        <small>{postCity}</small>
-                        <small>{postArea}</small>
+                        <p className = "text-S">{postCity}</p>
+                        <p className = "text-S">{postArea}</p>
                       </div>
                       <h3 className="CN-h3" value={`${postArena}`}>
                         {postArena}
                       </h3>
                       <div className="tag-style">
-                        <small>{primaryTag}</small>
-                        <small>{secondaryTag}</small>
+                        <p className = "text-S">{primaryTag}</p>
+                        <p className = "text-S">{secondaryTag}</p>
                       </div>
                       <button id="apply">報名</button>
                     </div>
