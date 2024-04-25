@@ -1,8 +1,16 @@
+@charset "UTF-8";
+
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
 */
-@charset "UTF-8";
+
+
+@import url('https://fonts.googleapis.com/css2?family=Alata&display=swap');
+@font-face {
+    font-family: "jf open 粉圓 2.0";
+    src: url(./jf-openhuninn-2.0.ttf);
+}
 
 html,
 body,
@@ -120,15 +128,12 @@ body {
     background-color: #dde2e5;
     font-family:
         /*西文*/
-        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Helvetica, Arial,
+        "Alata",-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Helvetica, Arial,
         /*中文*/
         "jf open 粉圓 2.0" ,"蘋方-繁", "PingFang TC", "黑體-繁", "Heiti TC", "微軟正黑體", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
     ;
 }
-@font-face {
-    font-family: "jf open 粉圓 2.0";
-    src: url(./jf-openhuninn-2.0.ttf);
-}
+
 h1{
     font-family: "jf open 粉圓 2.0";
     font-size: 24px;
