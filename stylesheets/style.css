@@ -5,7 +5,6 @@
    License: none (public domain)
 */
 
-
 @import url('https://fonts.googleapis.com/css2?family=Alata&display=swap');
 @font-face {
     font-family: "jf open 粉圓 2.0";
@@ -91,6 +90,7 @@ summary,
 time,
 mark,
 audio,
+button,
 video {
     margin: 0;
     padding: 0;
@@ -109,7 +109,7 @@ video {
 :root{
     --main-color : #14AAEB;
     --btn-color :#F1DB15;
-    --border: 
+    --border-image : url('../images/catframe.png'); 
 }
 img {
     display: block;
@@ -123,15 +123,17 @@ img {
     color: black;
 }
 
+
 body {
     width: 100%;
     background-color: #dde2e5;
+
     font-family:
         /*西文*/
         "Alata",-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Helvetica, Arial,
         /*中文*/
         "jf open 粉圓 2.0" ,"蘋方-繁", "PingFang TC", "黑體-繁", "Heiti TC", "微軟正黑體", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
-    ;
+
 }
 
 h1{
@@ -141,13 +143,22 @@ h1{
 }
 
 h2{
+    font-size: 20px;
+    font-style: normal;
+}
+.CN-h2{
     font-family: "jf open 粉圓 2.0";
     font-size: 20px;
     font-style: normal;
 }
 
 h3{
-    font-family: "jf open 粉圓 2.0";
+    
+    font-size: 18px;
+    font-style: normal;
+}
+
+.text-L{
     font-size: 18px;
     font-style: normal;
 }
@@ -281,25 +292,43 @@ section{
     align-self: center;
     
 }
-.selected {
-    width: 120px;
-    height: 120px;
-    border: 4px solid #000 ;
-    border-radius: 20px;
-    box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.3); 
-    margin-bottom: 30px;
-    position: relative;
-    /* 你可以根據需要添加其他樣式 */
-}
-/* main > section.search > div#search-Type > button */
+
 #btn-typeVb{
+    /* 樣式 */
+    width: 120px;
+    height: 48px;
+    border: 4px solid rgba(20, 170, 235, 0.9);
+    background-color: #d9d9d9;
+    box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.3); 
+    border-radius: 20px;
+    margin-bottom: 30px;
+
+    opacity: 0.5;
+    /* 子層 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#btn-typeVb img{
+    pointer-events: none;
+    width: 30%;
+       
+    /*object-fit: cover;  裁剪圖片，使其填滿元素 
+    object-position: center; /* 圖片位置 */
+    opacity: 0.7;
+}
+
+/* main > section.search > div#search-Type > button */
+#btn-typeVb:focus{
     width: 120px;
     height: 120px;
+    background-color: #ffffff;
     border: 4px solid #000 ;
     border-radius: 20px;
     box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.3); 
     margin-bottom: 30px;
-    position: relative;
+    opacity: 1;
     
     /* background-image: url(./images/vball.png); 背景圖片的路徑 
     background-size: cover;背景圖片的大小，cover 表示將圖片裁剪以填滿元素 
@@ -307,16 +336,13 @@ section{
     
 }
 
-
-#btn-typeVb span{
-    pointer-events: none;
-    position: absolute;
-}
-#btn-typeVb img{
+#btn-typeVb:focus img{
+    opacity: 1;
+    width:90%;
     pointer-events: none;
     object-fit: cover; /* 裁剪圖片，使其填滿元素 */
     object-position: center; /* 圖片位置 */
-    z-index: -1;
+   
 }
 /* main > section.search > div#search-Type > button */
 #btn-typeBm{
@@ -326,9 +352,7 @@ section{
     border: 4px solid #83B90F ;
     background-color: #d9d9d9;
     box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.3); 
-    border-radius: 20px;
-    /*object-fit: cover;  裁剪圖片，使其填滿元素 */
-    /*object-position: center;  圖片位置 */
+    border-radius: 20px; 
     opacity: 0.5;
     /* 子層 */
     display: flex;
@@ -339,27 +363,62 @@ section{
 #btn-typeBm img{
     pointer-events: none;
     width: 30%;
-       
+    opacity: 0.7;   
     /*object-fit: cover;  裁剪圖片，使其填滿元素 
     object-position: center; /* 圖片位置 */
-    opacity: 0.7;
+    
 }
 
-#btn-typeBm{
+#btn-typeBm:focus{
     /* 樣式 */
     width: 120px;
-    height: 48px;
-    border: 4px solid #83B90F ;
-    background-color: #d9d9d9;
-    box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.3); 
+    height: 120px;
+    background-color: #ffffff;
+    border: 4px solid #000 ;
     border-radius: 20px;
-    /*object-fit: cover;  裁剪圖片，使其填滿元素 */
-    /*object-position: center;  圖片位置 */
-    opacity: 0.5;
+    box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.3); 
+    margin-bottom: 30px;
+    opacity: 1;
+
     /* 子層 */
     display: flex;
     align-items: center;
     justify-content: center;
+    
+}
+#btn-typeBm:focus img{
+    opacity: 1;
+    width:90%;
+    pointer-events: none;
+    object-fit: cover; /* 裁剪圖片，使其填滿元素 */
+    object-position: center; /* 圖片位置 */
+   
+}
+
+button#btn-typeBm.selected,button#btn-typeVb.selected {
+    /* 樣式 */
+    width: 120px;
+    height: 120px;
+    background-color: #ffffff;
+    border: 4px solid #000 ;
+    border-radius: 20px;
+    box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.3); 
+    margin-bottom: 30px;
+    opacity: 1;
+
+    /* 子層 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button#btn-typeBm.selected img,button#btn-typeVb.selected img {
+    
+    opacity: 1;
+    width:90%;
+    pointer-events: none;
+    object-fit: cover; /* 裁剪圖片，使其填滿元素 */
+    object-position: center; /* 圖片位置 */
 }
 /* main > section.search > div#search-Bar */
 #search-Bar{
@@ -573,8 +632,8 @@ section{
     flex: 1 0 auto;
     width: 245px;
     height: 245px;
-    background-image: url('../images/catframe.png');
-    background-size: cover; 
+    background-image: var(--border-image);
+    background-size:cover; 
     background-repeat: no-repeat; 
     background-position: center;
     position: relative;
@@ -589,8 +648,8 @@ section{
     position: absolute;
     top: 1;
     left: 3;
-    width: 78%;  /* 背景寬度 */
-    height: 80%; /* 背景高度 */
+    width: 77%;  /* 背景寬度 */
+    height: 78%; /* 背景高度 */
     background-color: var(--main-color);/* 背景顏色 */
     z-index: -1; /* 將背景移到圖片下面 */
    
@@ -624,7 +683,7 @@ section{
     justify-content: space-between;
 
 }
-.text header h3,small {
+.text header p,small {
      text-shadow: 1px -1px 0 #000000,
      1px -1px 0 #000000,
      -1px 1px 0 #000000,
@@ -639,14 +698,14 @@ section{
 .subtext small{
     margin-right: 10px;
 }
-.text h2{
+.text h3{
     flex: auto;
     align-self: flex-start;
     position: relative;
     
 }
 /* 增加文字外框線 */
-.text h2::before{
+.text h3::before{
     content:attr(value);
     position: absolute;
     z-index: -1;
