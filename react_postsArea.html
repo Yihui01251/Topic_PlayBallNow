@@ -29,20 +29,20 @@
   </head>
 
   <body>
-    <small class="fileName">檔名：<code>index.html</code></small>
+    <small class="fileName">檔名：<code>react_postsArea.html</code></small>
     <!-- 載入axios套件 -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <div id="root"></div>
     <script type="text/babel">
       (async () => {
         //取得json資料
-        const data = await axios.get("./postData.json");
-        const {
-          vb_today_postData,
-          vb_week_postData,
-          bm_today_postData,
-          bm_week_postData,
-        } = data.data;
+        const data = await axios.get("./postData_test.json");
+        const { postData } = data.data;
+        console.log(postData);
+        const { vb_today_postData } = postData[0];
+        const { vb_week_postData } = postData[1];
+        const { bm_today_postData } = postData[2];
+        const { bm_week_postData } = postData[3];
         console.log(vb_today_postData);
         console.log(vb_week_postData);
         console.log(bm_today_postData);
@@ -75,12 +75,17 @@
             id,
             type,
             postDate,
-            postTime,
+            postStartTime,
+            postEndTime,
             postCity,
             postArea,
             postArena,
             primaryTag,
             secondaryTag,
+            reqCount,
+            role,
+            pos,
+            note,
           }) => {
             // const {key,date,time,city,area,arena,tag1,tag2} = props;
             return (
@@ -93,7 +98,7 @@
                   <div className="main-info">
                     <header>
                       <p className="text-L">
-                        {postDate} {postTime}
+                        {postDate} {postStartTime}~{postEndTime}
                       </p>
                       <div className="type-style">{type}</div>
                       <button className="collect">
@@ -107,32 +112,35 @@
                     </div>
                     <div className="tag-style">
                       <p className="text-S">{primaryTag}</p>
-                      <p className="text-S">{secondaryTag}</p>
+                      <p className="text-S">${secondaryTag}</p>
                     </div>
                   </div>
                   <div className="sub-info">
                     <div className="vacancyInfo">
                       <h4>缺額</h4>
                       <div>女</div>
-                      <p>01位</p>
+                      <p>{reqCount[0].count}位</p>
                       <div>男</div>
-                      <p>05位</p>
-                      <div>不限</div> <p>13位</p>
+                      <p>{reqCount[1].count}位</p>
+                      <div>不限</div> <p>{reqCount[2].count}位</p>
                     </div>
                     <div className="ballInfo">
-                      <h4>用球</h4>
-                      <p>RSL4</p>
+                      <h4>類型</h4>
+                      <p>{role}</p>
                     </div>
                     <div className="equipInfo">
-                      <h4>設備</h4>
-                      <p>冷氣 側燈 停車場</p>
+                      <h4>位置</h4>
+                      <p>{pos}</p>
                     </div>
                     <div className="noteInfo">
                       <h4>備註</h4>
-                      <p>不要放鴿子不要放鴿子不要放鴿子不要放鴿子不要放鴿子</p>
+                      <p>{note}</p>
                     </div>
                   </div>
-                  <div> <button id="apply">報名</button></div>
+                  <div>
+                    {" "}
+                    <button id="apply">報名</button>
+                  </div>
                 </div>
               </>
             );
@@ -219,19 +227,24 @@
                 {/* 貼文 */}
                 <section className="filter-containers">
                   <div className="filter-postBlock">
-                    {bm_today_postData.map((post_data) => {
+                    {vb_week_postData.map((post_data) => {
                       return (
                         <ApplyCard
                           key={post_data.id}
                           id={post_data.id}
                           type={post_data.type}
                           postDate={post_data.date}
-                          postTime={post_data.time}
+                          postStartTime={post_data.startTime}
+                          postEndTime={post_data.endTime}
                           postCity={post_data.city}
                           postArea={post_data.area}
                           postArena={post_data.arena}
-                          primaryTag={post_data.tag1}
-                          secondaryTag={post_data.tag2}
+                          primaryTag={post_data.tagDegree}
+                          secondaryTag={post_data.tagPrice}
+                          reqCount={post_data.reqCount}
+                          role={post_data.role}
+                          pos={post_data.pos}
+                          note={post_data.note}
                         />
                       );
                     })}

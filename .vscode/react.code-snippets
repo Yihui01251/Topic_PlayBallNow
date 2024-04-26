@@ -16,32 +16,27 @@
   "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.0/redux.min.js\"",
     "integrity=\"sha512-1/8Tj23BRrWnKZXeBruk6wTnsMJbi/lJsk9bsRgVwb6j5q39n0A00gFjbCTaDo5l5XrPVv4DZXftrJExhRF/Ug==\"",
     "crossorigin=\"anonymous\" referrerpolicy=\"no-referrer\"></script>",
+	"<style>",
+	".fileName {display: none;}",
+"  </style>",
 "</head>",
 
 "<body class=\"bg-lighter\">",
-  
-
-	"<main class=\"\">",
-	"<!-- 章節標題 -->",
-	"<div class=\"\">",
-	  "<h1 class=\"mt-0 text-muted\">標題</h1><small>檔名：<code>.html</code></small>",
-	"</div>",
+  "<small>檔名：<code>.html</code></small>",
 
 	"<!-- 根元素  -->",
 	"<div id=\"root\"></div>",
 	"<script type=\"text/babel\">",
 
-	  "document.addEventListener('DOMContentLoaded', () => {",
-		"const root = document.querySelector('#root');",
-		"const App = () => {",
-		  "return `<div></div>`;",
-		"};",
-		"ReactDOM.render('<App />', root);",
-	  "});",
+		"(async () => {",
+			"const App = () => {",
+		  	"return `<div></div>`;",
+			"};",
+			"ReactDOM.createRoot(document.getElementById(\"root\")).render(<App />);",
+	  "})();",
 
 	"</script>",
 	
-  "</main>",
 
 "<link rel=\"stylesheet\" href=\"./stylesheets/all.css\">",
 "<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css\">",
