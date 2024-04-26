@@ -31,7 +31,7 @@
     </style>
   </head>
 
-  <body >
+  <body>
     <h1>現在想打球</h1>
     <small class="fileName">檔名：<code>index.html</code></small>
     <!-- 載入axios套件 -->
@@ -40,13 +40,13 @@
     <script type="text/babel">
       (async () => {
         //取得json資料
-        const data = await axios.get("./postData.json");
-        const {
-          vb_today_postData,
-          vb_week_postData,
-          bm_today_postData,
-          bm_week_postData,
-        } = data.data;
+        const data = await axios.get("./postData_test.json");
+        const { postData } = data.data;
+        console.log(postData);
+        const { vb_today_postData} = postData[0];
+         const { vb_week_postData } = postData[1];
+        const { bm_today_postData } = postData[2];
+        const { bm_week_postData } = postData[3];
         console.log(vb_today_postData);
         console.log(vb_week_postData);
         console.log(bm_today_postData);
@@ -131,11 +131,15 @@
           };
 
           // 元件
+          const Card = ({name}) => {
+            //console.log(name);
+           };
           // 建立貼文元件
           const PostCard = ({
             id,
             postDate,
-            postTime,
+            postStartTime,
+            postEndTime,
             postCity,
             postArea,
             postArena,
@@ -153,19 +157,21 @@
                   <div className="bg">
                     <div className="text">
                       <header>
-                        <p className = "text-S">{postDate}</p>
-                        <p className="text-L">{postTime}</p>
+                        <p className="text-S">{postDate}</p>
+                        <p className="text-L">
+                          {postStartTime}~{postEndTime}
+                        </p>
                       </header>
                       <div className="subtext">
-                        <p className = "text-S">{postCity}</p>
-                        <p className = "text-S">{postArea}</p>
+                        <p className="text-S">{postCity}</p>
+                        <p className="text-S">{postArea}</p>
                       </div>
                       <h3 className="text-L" value={`${postArena}`}>
                         {postArena}
                       </h3>
                       <div className="tag-style">
-                        <p className = "text-S">{primaryTag}</p>
-                        <p className = "text-S">{secondaryTag}</p>
+                        <p className="text-S">{primaryTag}</p>
+                        <p className="text-S">${secondaryTag}</p>
                       </div>
                       <button id="apply">報名</button>
                     </div>
@@ -324,6 +330,15 @@
                 </section>
                 {/* 本日臨打貼文 */}
                 <section className="containers">
+                  {/*
+                  {postData.map((index) => {
+                    return (
+                      <>
+                        <div key={index}>
+                        <Card name={index} /></div>
+                      </>
+                    );
+                  })}*/}
                   <header className="title-postArea">
                     <h2>
                       <div></div>本日臨打貼文
@@ -347,13 +362,13 @@
                           key={post_data.id}
                           id={post_data.id}
                           postDate={post_data.date}
-                          postTime={post_data.time}
-                          
+                          postStartTime={post_data.startTime}
+                          postEndTime={post_data.endTime}
                           postCity={post_data.city}
                           postArea={post_data.area}
                           postArena={post_data.arena}
-                          primaryTag={post_data.tag1}
-                          secondaryTag={post_data.tag2}
+                          primaryTag={post_data.tagDegree}
+                          secondaryTag={post_data.tagPrice}
                         />
                       );
                     })}
@@ -384,12 +399,13 @@
                           key={post_data.id}
                           id={post_data.id}
                           postDate={post_data.date}
-                          postTime={post_data.time}
+                          postStartTime={post_data.startTime}
+                          postEndTime={post_data.endTime}
                           postCity={post_data.city}
                           postArea={post_data.area}
                           postArena={post_data.arena}
-                          primaryTag={post_data.tag1}
-                          secondaryTag={post_data.tag2}
+                          primaryTag={post_data.tagDegree}
+                          secondaryTag={post_data.tagPrice}
                         />
                       );
                     })}
