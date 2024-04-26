@@ -22,15 +22,14 @@
     <title>篩選區_現在想打球</title>
     <link rel="stylesheet" href="./stylesheets/style.css" />
     <style>
-      h1{display: none;}
-      .fileName{
-        display:none;
+      .fileName {
+        display: none;
       }
     </style>
   </head>
-  
+
   <body>
-    <h1>現在想打球</h1><small class="fileName">檔名：<code>index.html</code></small>
+    <small class="fileName">檔名：<code>index.html</code></small>
     <!-- 載入axios套件 -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <div id="root"></div>
@@ -51,27 +50,24 @@
 
         const App = () => {
           const { useState, useEffect, useRef } = React;
-        //   const [todayType, setTodayType] = useState("");
-        
+          //   const [todayType, setTodayType] = useState("");
 
           useEffect(() => {
             // 組件載入後，將焦點設置到 btn-typeVb 按鈕上
-            
           }, []);
 
-           // 更改資料類型
-        //    const getPosts = (type) => {
-        //     switch (type) {
-        //       case "vb_search_postData":
-        //         return vb_today_postData;
-        //       case "bm_search_postData":
-        //         return bm_today_postData;
-              
-        //       default:
-        //         return [];
-        //     }
-        //   };
-        
+          // 更改資料類型
+          //    const getPosts = (type) => {
+          //     switch (type) {
+          //       case "vb_search_postData":
+          //         return vb_today_postData;
+          //       case "bm_search_postData":
+          //         return bm_today_postData;
+
+          //       default:
+          //         return [];
+          //     }
+          //   };
 
           // 元件
           // 建立貼文元件
@@ -92,48 +88,51 @@
                 <div
                   className="filter-simplePostInfo"
                   id={id}
-                //   style={{ backgroundImage: postBorder }}
+                  //   style={{ backgroundImage: postBorder }}
                 >
-                    <div className="main-info">
-                      <header>
-                        <p>{postDate}</p>
-                        <p className="text-L">{postTime}</p>
-                        <div>{type}</div>
-                        <button className = "collect"><img src="" alt="收藏"/></button>
-                      </header>
-                      <div className="areaInfo">
-                        <h3>{postCity}</h3>
-                        <h3>{postArea}</h3>
-                        <h3>{postArena}</h3>
-                      </div>
-                      <div className="tag-style">
-                        <p className = "text-S">{primaryTag}</p>
-                        <p className = "text-S">{secondaryTag}</p>
-                      </div>
+                  <div className="main-info">
+                    <header>
+                      <p className="text-L">
+                        {postDate} {postTime}
+                      </p>
+                      <div className="type-style">{type}</div>
+                      <button className="collect">
+                        <img src="./images/heart.png" alt="收藏" />
+                      </button>
+                    </header>
+                    <div className="areaInfo">
+                      <h3>{postCity}</h3>
+                      <h3>{postArea}</h3>
+                      <h3>{postArena}</h3>
                     </div>
-                    <div className = "sub-info">
-                        <div className = "solicitor-number">
-                            <h4>徵求人數</h4>
-                            <div>女</div>
-                            <p>0位</p>
-                            <div>男</div>
-                            <p>0位</p>
-                            <div>不限</div>
-                            <p>3位</p>
-                        </div>
-                        <div className = "ball-type">
-                            <h4>用球</h4>
-                            <p>RSL4</p></div>
-                        <div className = "">
-                            <h4>球場介紹</h4>
-                            <p>可以洗澡，也有飲水機，冷氣超級冷，免費停車</p>
-                            </div>
-                        <div className = "">
-                            <h4>備註</h4>
-                            <p>不要放鴿子</p>
-                            </div>
-                    </div>         
-                    <button id="apply">報名</button>
+                    <div className="tag-style">
+                      <p className="text-S">{primaryTag}</p>
+                      <p className="text-S">{secondaryTag}</p>
+                    </div>
+                  </div>
+                  <div className="sub-info">
+                    <div className="vacancyInfo">
+                      <h4>缺額</h4>
+                      <div>女</div>
+                      <p>01位</p>
+                      <div>男</div>
+                      <p>05位</p>
+                      <div>不限</div> <p>13位</p>
+                    </div>
+                    <div className="ballInfo">
+                      <h4>用球</h4>
+                      <p>RSL4</p>
+                    </div>
+                    <div className="equipInfo">
+                      <h4>設備</h4>
+                      <p>冷氣 側燈 停車場</p>
+                    </div>
+                    <div className="noteInfo">
+                      <h4>備註</h4>
+                      <p>不要放鴿子不要放鴿子不要放鴿子不要放鴿子不要放鴿子</p>
+                    </div>
+                  </div>
+                  <div> <button id="apply">報名</button></div>
                 </div>
               </>
             );
@@ -174,28 +173,52 @@
                   </ul>
                 </nav>
               </header>
-              
+
               <main className="filter-postArea">
-                <div><h1 className="title-L">您篩選的貼文</h1></div>
-                <section className = "filter-box">
-                    <div className = "fitter-info">
-                        <a href="./index.html"><img src="" alt="上一頁"/></a>
-                        <p className = "title-M">6/24</p>
-                        <p className = "title-M">|</p>
-                        <p className = "title-M">上午</p>
-                        <p className = "text-M">新店區，與其他2個區域</p>
-                        </div>
-                    <div>
-                        <button id = "btn-filter" ><img src="./images/filter.png" alt=""/></button>
-                        <div className = "by-btn-filterNum"><p className = "text-M">3</p></div>
-                        </div>
-                    <div className = "filter-postQuantity"><p className = "text-M">共有11筆資料</p></div>
-                    </section>
-                <hr/>
+                <div className="filter-title">
+                  <div></div>
+                  <div className="hug-h1">
+                    <h1 className="title-L" value="您篩選的貼文">
+                      您篩選的貼文
+                    </h1>
+                  </div>
+                  <div>
+                    <div></div>
+                  </div>
+                </div>
+                <section className="filter-box">
+                  <div className="fitter-info">
+                    <div className="info-top">
+                      <a href="./index.html">
+                        <img src="./images/Arrow1.png" alt="上一頁" />
+                      </a>
+                      <p className="title-M">6/24</p>
+                      <p className="title-M dot">|</p>
+                      <p className="title-M">上午</p>
+                    </div>
+
+                    <div className="info-down">
+                      <p className="text-M">新店區，與其他2個區域</p>
+                    </div>
+                  </div>
+                  <div className="filter-btnBox">
+                    <button id="btn-filter">
+                      <img src="./images/filter.png" alt="" />
+                    </button>
+                    <div className="by-btn-filterNum">
+                      <p className="text-M">3</p>
+                    </div>
+                  </div>
+                  <div className="filter-postQuantity">
+                    <p className="text-M" value="共有11筆資料">
+                      共有11筆資料
+                    </p>
+                  </div>
+                </section>
+                <hr />
                 {/* 貼文 */}
                 <section className="filter-containers">
                   <div className="filter-postBlock">
-                    
                     {bm_today_postData.map((post_data) => {
                       return (
                         <ApplyCard
@@ -211,10 +234,9 @@
                           secondaryTag={post_data.tag2}
                         />
                       );
-                     })}
+                    })}
                   </div>
                 </section>
-                
               </main>
               <footer>
                 <figure className="footer-border"></figure>

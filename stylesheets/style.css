@@ -742,7 +742,7 @@ button#btn-typeVb.selected img {
 
 }
 
-.text header p{
+.text  p{
     text-shadow: 1px -1px 0 #000000,
         1px -1px 0 #000000,
         -1px 1px 0 #000000,
@@ -751,6 +751,7 @@ button#btn-typeVb.selected img {
 
 /* 首頁main > section.containers > div.post > div.content > div.text >div.subtext*/
 .subtext {
+    display: flex;
     flex: auto;
     align-self: flex-start;
 }
@@ -771,18 +772,22 @@ button#btn-typeVb.selected img {
 .text h3::before {
     content: attr(value);
     position: absolute;
-    z-index: -1;
     -webkit-text-stroke: 4px #000000;
+    z-index: -1;
 
 }
 
 /* 首頁main > section.containers > div.post > div.content > div.text > div.tag-style */
 .tag-style {
-    flex: 1 1 auto;
-
+    width: fit-content;
+    height: fit-content;
+    margin-right: 10px;
+    /* display: grid;
+    grid-template-columns: 76px 76px;
+    gap: 10px; */
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content:flex-start;
     align-items: center;
 
 }
@@ -867,22 +872,43 @@ footer div p {
     flex-direction: column;
 }
 
-/* main.filter-postArea > div*/
-.filter-postArea div {
+/* main.filter-postArea > div.filter-title*/
+.filter-postArea .filter-title{
     width: auto;
     height: auto;
-    gap: 6px;
-    border-bottom: 3px solid rgba(0, 0, 0, 1);
+    display: flex;
+  
 
+}
+.filter-postArea .filter-title div{
+    flex: 1;
+}
+.filter-postArea .filter-title .hug-h1{
+    flex: 4;
+    text-align: center;
+    
+}
+
+/* main.filter-postArea > div.filter-title >div.hug-h1 >h1 */
+.hug-h1 h1{   
+    position: relative;
+    color: white;
+    width: 144px;
+    border-bottom: 4px solid rgba(0, 0, 0, 1);
+    z-index: 0;
+}
+/* 增加文字外框線 */
+.hug-h1 h1::before{
+    position: absolute;
+    content: attr(value); 
+    -webkit-text-stroke: 4px #000000;
+    z-index: -1;
 }
 
 /* main.filter-postArea  > section.filter-box*/
 .filter-box {
-    width: 324px;
+    width: 350px;
     height: 96px;
-    top: 136px;
-    left: 798px;
-
     align-self: center;
 
     /* 子 */
@@ -891,7 +917,7 @@ footer div p {
     flex-wrap: wrap;
 }
 
-/* main.filter-postArea  > section.filter-box > div */
+/* main.filter-postArea  > section.filter-box > div.fitter-info */
 .fitter-info {
     width: 244px;
     height: 59px;
@@ -903,40 +929,72 @@ footer div p {
     box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 1);
     /* 子 */
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     overflow-wrap: normal;
 
 }
+/* ... > section.filter-box > div.fitter-info > div.info-top*/
+.fitter-info .info-top{
+    margin: 2px 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+/* ...> section.filter-box > div.fitter-info > div.info-top >a >img */
+.info-top img{
+    flex: 2;
+    width: 16px;
+    margin: 7px;
+    
+}
+/* ...> section.filter-box > div.fitter-info > div.info-top >p */
+.info-top p{    
+    width: 55px; 
+}
+/* ...> section.filter-box > div.fitter-info > div.info-top >p.dot */
+.info-top .dot{
+    width: 15px;
+}
+/* ...> section.filter-box > div.fitter-info > div.info-down */
+.fitter-info .info-down{
+    align-self: center;
+}
 
-/* main.filter-postArea  > section.filter-box > div.fitter-info > div > button */
+.filter-btnBox{
+    width: 70px;
+    padding-left: 10px;
+    position: relative;
+}
+/* ... >div.fitter-info >div.filter-btnBox >button.#btn-filter */
 #btn-filter {
     width: 58px;
     height: 58px;
     top: 4px;
-    border: 3px 0px 0px 0px;
+    border-radius: 90px;
+    border: 3px solid black;
+    box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 1);
     position: relative;
 }
 
-/* main.filter-postArea  > section.filter-box > div.fitter-info > div > button#btn-filter >img */
+/* ...> section.filter-box > div.fitter-info > div > button#btn-filter >img */
 #btn-filter img {
 
     width: 48px;
     height: 48px;
-    top: 12px;
-    left: 5px;
-
+    position: absolute;
+    top: 8px;
+    left: 2px;
+    
     /* Image: filter; */
     background-size: cover;
+    
 
 }
 
-/* main.filter-postArea  > section.filter-box > div.fitter-info > div > div.by-btn-filterNum */
+/* ...> section.filter-box > div.fitter-info > div > div.by-btn-filterNum */
 .by-btn-filterNum {
     /* layout */
-    width: fit-content;
-    height: fit-content;
-    top: -1px;
-    left: 42px;
+    height: auto;
     padding: 4px 7px 4px 7px;
     border-radius: 90px;
     /* color */
@@ -948,138 +1006,219 @@ footer div p {
     position: absolute;
     top: 0;
     right: 0;
+
+    /* 子 */
+    text-align: center;
+}
+/* ... > div.fitter-info > div > div.by-btn-filterNum >p */
+.by-btn-filterNum p {
+    color:white ;
+
+
 }
 
 /* main.filter-postArea  > section.filter-box > div.filter-postQuantity */
 .filter-postQuantity {
     width: 165px;
     height: 19px;
-    top: 77px;
-    left: 84px;
-    
+    margin-top: 30px;
 
+}
+.filter-postQuantity p {
+    position: relative;
+    z-index: 0;
+    color: white;
+}
+
+.filter-postQuantity p::before{
+    content: attr(value);
+    position: absolute;
+    z-index: -1;
+    -webkit-text-stroke: 4px #000000;
 }
 
 /* main.filter-postArea > hr */
 .filter-postArea hr {
     width: 1850px;
-    height: 1px;
-    top: 241.5px;
-    left: 30px;
-    
-    border: 2px solid rgba(0, 0, 0, 0.41);
+    height: 0px;
+    align-self: center;
+    /* border: 1px solid black; */
 
 }
 
 /* main.filter-postArea > section.filter-containers */
 .filter-containers {
-    width: 348px;
-    height: 598px;
-    top: 264px;
-    left: 25px;
-    /*  */
-    display: grid;
-    grid-area: auto;
-    gap: 10px;
-    
+    width: auto;
+    height: auto;
+    margin: 20px;
+    align-items: center;
 
 
 }
 
 /* main.filter-postArea > section.filter-containers >div.filter-postBlock */
 .filter-postBlock {
-    width: 100%;
+    width: 70%;
+    height: fit-content;
     display: grid;
-    grid-auto-rows: auto ;
+    grid-template-columns: repeat(3,1fr);
+    overflow-wrap: normal;
     gap: 30px;
     
 
 }
-
+/* 篩選貼文區貼文 */
 /* main.filter-postArea > section.filter-containers >div.filter-postBlock >div.filter-simplePostInfo */
 .filter-simplePostInfo {
-    width: auto;
-    height: auto;
-    padding: 20px 0px 0px 0px;
-    display: grid;
-    gap: 10px;
+    width: 348px;
+    height: fit-content;
+    padding: 20px;
     border-radius: 20px;
-   
-
-    background: rgba(247, 246, 245, 1);
+    background: rgba(247, 246, 245, 0.9);
     border: 3.5px solid rgba(0, 0, 0, 1);
     box-shadow: 0px 12px 0px 0px rgba(0, 0, 0, 1);
 
+    display: grid;
+    grid-template-rows: 1fr 1.2fr 0.25fr;
+    gap: 10px;
+    justify-content: flex-start;
+    align-items: flex-start;
 
 }
 
 /* main.filter-postArea > section.filter-containers >div.filter-postBlock >div.filter-simplePostInfo > div.main-info */
 .main-info {
-    width: auto;
-    height: auto;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-    
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
 
     background: rgba(247, 246, 245, 1);
 }
 
 /* ...>div.filter-simplePostInfo > div.main-info > header */
 .main-info header {
-        width: 258px;
-        height: auto; /* 或者使用 height: auto; */
-        gap: 0px;
+        width: auto;
+        height: fit-content; 
+        color: var(--main-color);
+        display: grid;
+        grid-template-columns: 4.9fr 1.1fr 0.7fr;
+        gap:  15px;
+        
         justify-content: space-between;
-          
+        align-items: center;
 
+}
+/* ...>div.filter-simplePostInfo > div.main-info > header> type-style */
+.type-style{
+    width: fit-content;
+    height: fit-content;
+    border-radius: 20px;
+    padding: 4px 10px;
+    background: var(--main-color);
+    color: white;
+    
 }
 /* ...>div.filter-simplePostInfo > div.main-info > div.areaInfo */
 .areaInfo{
     width: auto; 
     height: auto; 
+    color: var(--main-color);
     display: grid;
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: 55px 55px 110px;
     gap: 7px; /* 只有在 Flexbox 或 Grid 的容器中使用 gap */
     
+
 }
+/*  ...>div(filter-simplePostInfo > div(sub-info  > */
 
-/*  ...>div.filter-simplePostInfo > div.sub-info > div.solicitor-number */
-.solicitor-number{
-    width: auto;
-    height: 117px;
-    display: grid;
-    grid-template-rows:repeat(4,1fr);
-    gap:11px ;
-}
-/*  ...>div.filter-simplePostInfo > div.sub-info  > */
+/*  ...>div(filter-simplePostInfo > div(sub-info > */
 
-/*  ...>div.filter-simplePostInfo > div.sub-info > */
+/*  ...>div(filter-simplePostInfo > div(sub-info  > */
 
-/*  ...>div.filter-simplePostInfo > div.sub-info  > */
-
-/* main.filter-postArea > section.filter-containers >div.filter-postBlock >div.filter-simplePostInfo > div.sub-info */
+/*  ... >div(filter-postBlock >div(filter-simplePostInfo > div(sub-info */
 .sub-info {
-    
-    padding: 5px 0px 0px 0px;
-    display: grid;
-    grid-area: auto;
-    gap: 5px;
     border-radius: 5px;
     background: rgba(247, 246, 245, 1);
+    padding: 5px;
+    /* 子 */
+    display: grid;
+    grid-template-rows: 1fr 0.9fr 0.9fr 3cqw ;
+    gap: 5px;
+   
 
 }
-/*  ...>div.filter-simplePostInfo > div.sub-info */
+/*  ...>div(filter-simplePostInfo > div(sub-info > h4 */
+.sub-info h4{
+    color: #6D6D6D;
+    align-self: center;
+}
+/*  ...>div(filter-simplePostInfo > div(sub-info > div(solicitor-number */
+.vacancyInfo{
+    width: auto;
+    height: fit-content;
 
+    /* 子 */
+    display: grid;
+    grid-template-columns: 35px 25px 35px 25px 40px 45px 35px;
+    gap:6px;
+    justify-content: space-between;
+    align-items: center;
+}
 
-/* main.filter-postArea > section.filter-containers >div.filter-postBlock >div.filter-simplePostInfo > div*/
-.div.filter-simplePostInfo div {
-    width: 100%;
+/*  ...>div(filter-simplePostInfo > div(sub-info > h4 */
+.vacancyInfo div{
+    width: fit-content;
+    height: fit-content;
+    padding: 2px 5px;
+    border-radius: 50px;
+    background: #6D6D6D ;
+    align-self: center;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*  ...>div(filter-simplePostInfo > div(sub-info > div(ball-type */
+.ballInfo{
+    width: auto;
     height: fit-content;
     display: grid;
-    grid-area: auto;
-    gap: 10px;
+    grid-template-columns: 35px 1fr;
+    gap: 6px;
+    justify-content:center;
+    align-items: center;
+    
+    
+}
 
+/*  ...>div(filter-simplePostInfo > div(sub-info > div(ballInfo */
+.ballInfo h4 {
+    width: fit-content;
+    align-self: center;
+}
+/* ... >div(filter-simplePostInfo >div(sub-info>div(equipInfo*/
+.equipInfo{
+    width: auto;
+    height: fit-content;
+    display: grid;
+    grid-template-columns: 35px 1fr;
+    gap: 6px;
+}
+/* ... >div(filter-simplePostInfo>div(sub-info>div(noteInfo*/
+.noteInfo{
+    width: auto;
+    height: fit-content;
+    display: grid;
+    grid-template-columns: 35px 1fr;
+    gap: 6px;
+}
+.filter-simplePostInfo > div:last-child {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 /* RWD */
