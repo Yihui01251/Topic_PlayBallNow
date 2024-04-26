@@ -1089,7 +1089,7 @@ footer div p {
     box-shadow: 0px 12px 0px 0px rgba(0, 0, 0, 1);
 
     display: grid;
-    grid-template-rows: 1fr 1.2fr 0.25fr;
+    grid-template-rows: 0.25fr 1.2fr 0.25fr;
     gap: 10px;
     justify-content: flex-start;
     align-items: flex-start;
@@ -1100,7 +1100,7 @@ footer div p {
 .main-info {
     display: grid;
     grid-template-rows: 1fr 1fr 1fr;
-    gap: 10px;
+    gap: 5px;
     justify-content: space-between;
     align-items: center;
 }
