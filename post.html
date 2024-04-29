@@ -7,6 +7,26 @@
     <title>測試</title>
     <script src="./javascripts/test.js" ></script>
     <link rel="stylesheet" href="./stylesheets/style.css">
+    <style>
+      form{
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+        margin: 50px;
+      }
+      select{
+        margin: 0;
+        padding: 0;
+        float: left;
+
+      }
+      #selectArea{
+        display: none;
+      }
+      select option:checked #selectArea{
+        display: block;
+      }
+    </style>
   </head>
  
   <body>  
@@ -18,11 +38,13 @@
     <div>
       
       <form>
-        <label for="date">日期</label>
+        <!-- <label for="date">日期</label> -->
         <input type="date" value="date" id="TextName" >
+        <label for="startTime">時間
+        <input type="text" value="24小時制" name="startTime" id="startTime"> ~ <input type="text" value="24小時制" name="endTime" id="endTime"></label>
         <br><br>
         <!-- 縣市 -->
-                <label for="city">縣市</label>
+                <!-- <label for="city">縣市</label> -->
                 <select id="selectCity">
                     <option value="default">縣市地區 </option>
                     <option value="taipei">台北市</option>
@@ -34,7 +56,7 @@
                   <option value="default">地區</option>
               </select> 
               <br><br> 
-              <label for="程度">程度</label>
+              <!-- <label for="程度">程度</label> -->
               <select multiple id="selectDegree">
                 <option value="新手">新手</option>
                 <option value="初階" >初階</option>
