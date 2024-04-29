@@ -140,6 +140,12 @@ body {
         "jf open 粉圓 2.0";
     ;
 }
+.background-Bm{
+    background-image: url(../images/DogBg.jpg);
+}
+.background-Vb{
+    background-image: url(../images/CatBg.jpg);
+}
 
 h1 {
     font-size: 24px;
@@ -577,7 +583,7 @@ button#btn-typeVb.selected img {
 /* 首頁main > section:containers */
 .containers {
     width: 900px;
-    height: 330px;
+    height: fit-content;
     border: 3.5px solid black;
     border-bottom: 6px solid black;
     border-radius: 20px;

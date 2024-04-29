@@ -31,7 +31,7 @@
     </style>
   </head>
 
-  <body>
+  <body id="body">
     <h1>現在想打球</h1>
     <small class="fileName">檔名：<code>index.html</code></small>
     <!-- 載入axios套件 -->
@@ -80,17 +80,19 @@
             let newBorder = "";
 
             // 取消其他按鈕的選擇
-            // const btnTypeVb = document.getElementById("btn-typeVb");
-            // const btnTypeBm = document.getElementById("btn-typeBm");
-            // const bodyStyle = document.getElementsByClassName("body");
+            const btnTypeVb = document.getElementById("btn-typeVb");
+            const btnTypeBm = document.getElementById("btn-typeBm");
+            const bodyStyle = document.getElementById("body");
+            console.log(bodyStyle);
 
             if (id == "btn-typeBm") {
               // newBackground = 'url("../images/dogBg.jpg")';
               color = "#6C9C07";
               btnColor = "#FF8D24";
               newBorder = 'url("../images/dogframe3.png")';
-              // bodyStyle.classList.add("background-Bm");
-              // bodyStyle.classList.remove("background-Vb");
+              // 新增class改變背景
+              bodyStyle.classList.add("background-Bm");
+              bodyStyle.classList.remove("background-Vb");
               setSelectedButton("btn-typeBm");
               setTodayType("bm_today_postData");
               setWeekType("bm_week_postData");
@@ -99,8 +101,8 @@
               color = "#14AAEB";
               btnColor = "#F1DB15";
               newBorder = "url('../images/catframe.png')";
-              // bodyStyle.classList.remove("background-Bm");
-              // bodyStyle.classList.add("background-Vb");
+              bodyStyle.classList.remove("background-Bm");
+              bodyStyle.classList.add("background-Vb");
               setSelectedButton("btn-typeVb");
               setTodayType("vb_today_postData");
               setWeekType("vb_week_postData");
@@ -217,6 +219,7 @@
                 </nav>
               </header>
               <main className="index">
+                {/*篩選區 */}
                 <section className="search">
                   <div id="search-Type">
                     <button
