@@ -57,6 +57,7 @@
 
           // const [backgroundImage, setBackgroundImage] = useState("url('../images/CatBg.jpg')");
           const [mainColor, setMainColor] = useState("#14AAEB");
+          const [fontColor, setFontColor] = useState("#147CB6");
           const [btnColor, setBtnColor] = useState("#F1DB15");
           const [postBorder, setPostBorder] = useState(
             'url("../images/catframe.png")'
@@ -70,12 +71,13 @@
 
           useEffect(() => {
             // 組件載入後，將焦點設置到 btn-typeVb 按鈕上
-            btnTypeVbRef.current.focus();
+            //btnTypeVbRef.current.focus();
           }, []);
 
           const changeType = (id) => {
             // let newBackground = "";
-            let color = "";
+            let colorMain = "";
+            let colorFont = "";
             let btnColor = "";
             let newBorder = "";
 
@@ -86,8 +88,9 @@
             console.log(bodyStyle);
 
             if (id == "btn-typeBm") {
-              // newBackground = 'url("../images/dogBg.jpg")';
-              color = "#6C9C07";
+              
+              colorMain = "#83B90F";
+              colorFont = "#689607";
               btnColor = "#FF8D24";
               newBorder = 'url("../images/dogframe3.png")';
               // 新增class改變背景
@@ -97,8 +100,9 @@
               setTodayType("bm_today_postData");
               setWeekType("bm_week_postData");
             } else if (id == "btn-typeVb") {
-              // newBackground = 'url("../images/catBg.jpg")';
-              color = "#14AAEB";
+              
+              colorMain = "#14AAEB";
+              colorFont ="#147CB6";
               btnColor = "#F1DB15";
               newBorder = "url('../images/catframe.png')";
               bodyStyle.classList.remove("background-Bm");
@@ -107,14 +111,16 @@
               setTodayType("vb_today_postData");
               setWeekType("vb_week_postData");
             }
-            // setBackgroundImage(newBackground);
-            setMainColor(color);
+            
+            setMainColor(colorMain);
+            setFontColor(colorFont);
             setBtnColor(btnColor);
             setPostBorder(newBorder);
-            console.log(newBorder);
-            document.documentElement.style.setProperty("--main-color", color);
+            
+            document.documentElement.style.setProperty("--main-color", colorMain);
+            document.documentElement.style.setProperty("--font-color", colorFont);
             document.documentElement.style.setProperty("--btn-color", btnColor);
-            // border.style.backgroundImage = newBorder;
+            
           };
           // 更改資料類型
           const getPosts = (type) => {
@@ -326,7 +332,7 @@
                     <div>
                       <button className="btn-changeType">手機切換</button>
                       <button className="btn-send">
-                        <span className="CN-p">送出</span>
+                        送出
                       </button>
                     </div>
                   </div>

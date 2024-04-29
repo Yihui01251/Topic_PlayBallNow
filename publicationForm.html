@@ -1,34 +1,501 @@
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
-<html>
-<head>
-<title> </title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta charset="UTF-8">
-<script src="./javascripts/vendor.js"></script>
-<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.0/redux.min.js"
-integrity="sha512-1/8Tj23BRrWnKZXeBruk6wTnsMJbi/lJsk9bsRgVwb6j5q39n0A00gFjbCTaDo5l5XrPVv4DZXftrJExhRF/Ug=="
-crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<style>
-.fileName {display: none;}
-  </style>
-</head>
-<body class="bg-lighter">
-<small>檔名：<code>.html</code></small>
-<!-- 根元素  -->
-<div id="root"></div>
-<script type="text/babel">
-(async () => {
-const App = () => {
-return `<div></div>`;
-};
-ReactDOM.createRoot(document.getElementById("root")).render(<App />);
-})();
-</script>
-<link rel="stylesheet" href="./stylesheets/all.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-</body>
+  <html>
+    <head>
+      <title>發文表單</title>
+      <link rel="stylesheet" href="./stylesheets/style.css" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta charset="UTF-8" />
+      <!-- <script src="./javascripts/vendor.js"></script> -->
+      <script
+        crossorigin
+        src="https://unpkg.com/react@18/umd/react.development.js"
+      ></script>
+      <script
+        crossorigin
+        src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      ></script>
+      <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+      <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.0/redux.min.js"
+        integrity="sha512-1/8Tj23BRrWnKZXeBruk6wTnsMJbi/lJsk9bsRgVwb6j5q39n0A00gFjbCTaDo5l5XrPVv4DZXftrJExhRF/Ug=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+      ></script>
+      <style>
+        .fileName {
+          display: none;
+        }
+      </style>
+    </head>
+    <body id="body">
+      <small class="fileName">檔名：<code>publicationForm.html</code></small>
+      <!-- 根元素  -->
+      <div id="root"></div>
+      <script type="text/babel">
+        (async () => {
+          const App = () => {
+            const { useState, useEffect, useRef } = React;
+
+            const btnFormVbRef = useRef(null);
+            const btnFormBmRef = useRef(null);
+
+            useEffect(() => {
+              // 組件載入後，將焦點設置到 btn-typeVb 按鈕上
+              // btnFormBmRef.current.focus();
+            }, []);
+
+            const [mainColor, setMainColor] = useState("#14AAEB");
+            const [fontColor, setFontColor] = useState("#147CB6");
+            const [btnColor, setBtnColor] = useState("#F1DB15");
+            const [selectedButton, setSelectedButton] = useState("btn-formVB");
+
+            const changeType = (id) => {
+              // let newBackground = "";
+              let colorMain = "";
+              let colorFont = "";
+              let btnColor = "";
+              let newBorder = "";
+              let type = "";
+
+              // 取消其他按鈕的選擇
+              // const btnFormVb = document.getElementById("btn-formVB");
+              // const btnFormBm = document.getElementById("btn-formBM");
+              const bodyStyle = document.getElementById("body");
+
+              if (id == "btn-formBM") {
+                colorMain = "#6C9C07";
+                colorFont = "#689607";
+                btnColor = "#FF8D24";
+                type = "羽球";
+
+                // 新增class改變背景
+                bodyStyle.classList.add("background-Bm");
+                bodyStyle.classList.remove("background-Vb");
+                setSelectedButton("btn-formBM");
+              } else if (id == "btn-formVB") {
+                // newBackground = 'url("../images/catBg.jpg")';
+                colorMain = "#14AAEB";
+                colorFont = "#147CB6";
+                btnColor = "#F1DB15";
+                type = "排球";
+
+                bodyStyle.classList.remove("background-Bm");
+                bodyStyle.classList.add("background-Vb");
+                setSelectedButton("btn-formVB");
+              }
+              setMainColor(colorMain);
+              setFontColor(colorFont);
+              setBtnColor(btnColor);
+              setType(type);
+              document.documentElement.style.setProperty(
+                "--main-color",
+                colorMain
+              );
+              document.documentElement.style.setProperty(
+                "--font-color",
+                colorFont
+              );
+              document.documentElement.style.setProperty(
+                "--btn-color",
+                btnColor
+              );
+            };
+
+            const [postDate, setPostDate] = useState("4/24");
+            const [postStartTime, setPostStartTime] = useState("18:00");
+            const [postEndTime, setPostEndTime] = useState("20:00");
+
+            const [type, setType] = useState("排球");
+
+            const [postCity, setPostCity] = useState("台北市");
+            const [postArea, setPostArea] = useState("中正區");
+            const [postArena, setPostArena] = useState("大同運動中心");
+
+            const [postDegree, setPostDegree] = useState("程度不拘");
+            const [postCost, setPostCost] = useState("250");
+
+            const [postFemale, setPostFemale] = useState("1");
+            const [postMale, setPostMale] = useState("1");
+            const [postUnspecified, setPostUnspecified] = useState("3");
+
+            const [postRole, setPostRole] = useState("女網混排");
+            const [postPosition, setPostPosition] = useState("無要求");
+            const [postNote, setPostNote] = useState("請不要放鴿子");
+
+            const textChange = (e) => {
+              console.log("更改輸入");
+              //輸入框當前值
+              let newDate = parseInt(e.target.value);
+              setPostDate(newDate);
+              let newStartTime = parseInt(e.target.value);
+              setPostStartTime(newStartTime);
+              let newEndTime = parseInt(e.target.value);
+              setPostEndTime(newEndTime);
+
+              let newPostCity = parseInt(e.target.value);
+              setPostCity(newPostCity);
+              let newPostArea = parseInt(e.target.value);
+              setPostArea(newPostArea);
+              let newPostArena = parseInt(e.target.value);
+              setPostArena(newPostArena);
+
+              let newPostDegree = parseInt(e.target.value);
+              setPostDegree(newPostDegree);
+              let newPostCost = parseInt(e.target.value);
+              setPostDegree(newPostCost);
+
+              let newPostFemale = parseInt(e.target.value);
+              setPostFemale(newPostFemale);
+              let newPostMale = parseInt(e.target.value);
+              setPosPostMale(newPostMale);
+              let newPostUnspecified = parseInt(e.target.value);
+              setPostUnspecified(newPostUnspecified);
+
+              let newPostRole = parseInt(e.target.value);
+              setPostRole(newPostRole);
+              let newPostPosition = parseInt(e.target.value);
+              setPostPosition(newPostPosition);
+              let newPostNote = parseInt(e.target.value);
+              setPostNote(newPostNote);
+              // determinePrice(newCost);
+            };
+            return (
+              <>
+                <header id="topBar">
+                  <nav id="top-nav">
+                    <ul id="menu">
+                      <li>
+                        <a href="./index.html">
+                          <img
+                            className="icon"
+                            src="./images/magnifier.png"
+                            alt=""
+                          />
+                          探索
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <img
+                            className="icon"
+                            src="./images/post.png"
+                            alt=""
+                          />
+                          找人
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <img
+                            className="icon"
+                            src="./images/bell3.png"
+                            alt=""
+                          />
+                          行程
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <img className="icon" src="./images/cat.png" alt="" />
+                          個人
+                        </a>
+                      </li>
+                    </ul>
+                  </nav>
+                </header>
+
+                <main className="form-formArea">
+                  <div className="form-title">
+                    <div className="hug-h1">
+                      <h1 value="發文找人" className="title-L">
+                        發文找人
+                      </h1>
+                    </div>
+
+                    <button id="btn-postManage">
+                      貼文管理
+                      <figure>
+                        <img src="./images/Vector.png" alt="" />
+                      </figure>
+                    </button>
+                  </div>
+                  <section className="form-container">
+                    <div className="form-block">
+                      <div className="form-type">
+                        <button
+                          id="btn-formBM"
+                          ref={btnFormBmRef}
+                          className={
+                            selectedButton === "btn-formBM" ? "selected" : ""
+                          }
+                          onClick={() => changeType("btn-formBM")}
+                        >
+                          打羽球
+                        </button>
+
+                        <button
+                          id="btn-formVB"
+                          ref={btnFormVbRef}
+                          className={
+                            selectedButton === "btn-formVB" ? "selected" : ""
+                          }
+                          onClick={() => changeType("btn-formVB")}
+                        >
+                          打排球
+                        </button>
+                      </div>
+
+                      <div className="form-edit">
+                        <div className="sub-title">
+                          <h2>
+                            <div></div>必填資訊
+                          </h2>
+                        </div>
+                        <div className="form-options">
+                          <label for="edit-date">
+                            日期
+                            <input
+                              type="text"
+                              name="date"
+                              id="edit-date"
+                              placeholder="月  / 日"
+                              value={postDate}
+                              onChange={textChange}
+                            />
+                          </label>
+                          <label for="edit-startTime">
+                            時段
+                            <input
+                              type="text"
+                              id="edit-startTime"
+                              placeholder="24:00"
+                              value={postStartTime}
+                              onChange={textChange}
+                            />{" "}
+                            ~{" "}
+                            <input
+                              type="text"
+                              name="時段"
+                              id="edit-endTime"
+                              placeholder="24:00"
+                              value={postEndTime}
+                              onChange={textChange}
+                            />
+                          </label>
+                          <label for="edit-city">
+                            地區{" "}
+                            <select
+                              name="地區"
+                              id="edit-city"
+                              value={postCity}
+                              onChange={textChange}
+                            >
+                              <option value="default">縣市</option>
+                              <option value=""></option>
+                              <option value=""></option>
+                              <option value=""></option>
+                            </select>
+                            <select
+                              name="area"
+                              id="edit-area"
+                              value={postArea}
+                              onChange={textChange}
+                            >
+                              <option value="default">地區</option>
+                            </select>
+                          </label>
+                          <label for="edit-arena">
+                            球場
+                            <input
+                              type="text"
+                              id="edit-arena"
+                              placeholder="         請輸入名稱"
+                              value={postArena}
+                              onChange={textChange}
+                            />
+                          </label>
+                          <label for="edit-role">
+                            類型
+                            <select
+                              name="類型"
+                              id="edit-role"
+                              value={postRole}
+                              onChange={textChange}
+                            >
+                              <option value="default">類型</option>
+                            </select>
+                          </label>
+                          <label for="edit-cost">
+                            費用
+                            <input
+                              type="text"
+                              id="edit-cost"
+                              placeholder="         請輸入費用"
+                              value={postCost}
+                              onChange={textChange}
+                            />
+                          </label>
+                          <label for="edit-female">
+                            缺額
+                            <input
+                              type="text"
+                              id="edit-female"
+                              placeholder="女     位"
+                              value={postFemale}
+                              onChange={textChange}
+                            />
+                            <input
+                              type="text"
+                              id="edit-male"
+                              placeholder="男     位"
+                              value={postMale}
+                              onChange={textChange}
+                            />
+                            <input
+                              type="text"
+                              id="edit-unspecified"
+                              placeholder="不拘  位"
+                              value={postUnspecified}
+                              onChange={textChange}
+                            />
+                          </label>
+                          <label for="edit-gameType">
+                            程度
+                            <select
+                              name="程度"
+                              id="edit-gameType"
+                              value={postDegree}
+                              onChange={textChange}
+                            >
+                              <option value="default">程度</option>
+                            </select>
+                          </label>
+                        </div>
+                        <div className="sub-title">
+                          <h2>
+                            <div></div>選填資訊
+                          </h2>
+                        </div>
+                        <div className="form-subOptions">
+                          <label for="edit-totally">
+                            人數/面數
+                            <input
+                              type="text"
+                              id="edit-totally"
+                              placeholder="                      ex.21人/3面"
+                            />
+                          </label>
+                          <label for="edit-othersLevel">
+                            球友程度{" "}
+                            <input
+                              type="text"
+                              id="edit-othersLevel"
+                              placeholder="         請輸入內建球友程度"
+                            />
+                          </label>
+                          <label for="edit-siteIntro">
+                            球場介紹
+                            <input
+                              type="text"
+                              id="edit-siteIntro"
+                              placeholder="                       請介紹球場"
+                            />
+                          </label>
+                          <label for="edit-ps">
+                            備註
+                            <input
+                              type="text"
+                              id="edit-ps"
+                              placeholder="                       可輸入備註"
+                              value={postNote}
+                              onChange={textChange}
+                            />
+                          </label>
+                          <label for="edit-position">
+                            場上位置
+                            <select
+                              name=""
+                              id="edit-position"
+                              value={postPosition}
+                              onChange={textChange}
+                            >
+                              <option value="無要求">無要求</option>
+                              <option value="主攻手">主攻手</option>
+                            </select>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="form-review">
+                      <div className="sub-title">
+                        <h2>
+                          <div></div>預覽
+                        </h2>
+                      </div>
+                      <div className="filter-simplePostInfo">
+                        <div className="main-info">
+                          <header>
+                            <p className="text-L">
+                              {postDate} {postStartTime}~{postEndTime}
+                            </p>
+                            <div className="type-style">{type}</div>
+                            <button className="collect">
+                              <img src="./images/heart.png" alt="收藏" />
+                            </button>
+                          </header>
+                          <div className="areaInfo">
+                            <h3>{postCity}</h3>
+                            <h3>{postArea}</h3>
+                            <h3>{postArena}</h3>
+                          </div>
+                          <div className="tag-style">
+                            <p className="text-S">{postDegree}</p>
+                            <p className="text-S">${postCost}</p>
+                          </div>
+                        </div>
+                        <div className="sub-info">
+                          <div className="vacancyInfo">
+                            <h4>缺額</h4>
+                            <div>女</div>
+                            <p>{postFemale}位</p>
+                            <div>男</div>
+                            <p>{postMale}位</p>
+                            <div>不限</div> <p>{postUnspecified}位</p>
+                          </div>
+                          <div className="ballInfo">
+                            <h4>類型</h4>
+                            <p>{postRole}</p>
+                          </div>
+                          <div className="equipInfo">
+                            <h4>位置</h4>
+                            <p>{postPosition}</p>
+                          </div>
+                          <div className="noteInfo">
+                            <h4>備註</h4>
+                            <p>{postNote}</p>
+                          </div>
+                        </div>
+                        <div>
+                          {" "}
+                          <button id="apply">報名</button>
+                        </div>
+                      </div>
+                      <button className="btn-send">送出</button>
+                    </div>
+                  </section>
+                </main>
+              </>
+            );
+          };
+          ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+        })();
+      </script>
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
+      />
+    </body>
+  </html>
 </html>

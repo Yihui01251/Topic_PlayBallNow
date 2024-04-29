@@ -111,8 +111,12 @@ video {
 :root {
     --main-color: #14AAEB;
     --btn-color: #F1DB15;
+    --font-color:#147CB6;
     --border-image: url('../images/catframe.png');
     --background-image: url('../images/CatBg.jpg') ;
+}
+label{
+    font-size: 16px;
 }
 
 img {
@@ -135,10 +139,14 @@ body {
     background-size: cover; /* 確保背景圖片填滿整個容器 */
     background-attachment: fixed; /* 讓背景圖片固定不動 */
     background-position: center center; /* 讓背景圖片在容器中置中 */
-    position: relative;
+    /* position: relative; */
     font-family: "Alata", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Helvetica, Arial,
         "jf open 粉圓 2.0";
-    ;
+   
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; */
 }
 .background-Bm{
     background-image: url(../images/DogBg.jpg);
@@ -185,7 +193,6 @@ p {
 
 .text-M {
     font-size: 16px;
-    font-family: "jf open 粉圓 2.0";
     font-style: normal;
 }
 
@@ -195,11 +202,14 @@ small {
 }
 
 .text-S {
-    font-family: "jf open 粉圓 2.0";
     font-size: 12px;
     font-style: normal;
 }
 
+button{
+    font-size: 16px;
+    font-style: normal;
+}
 
 /* 移除有序和無序列表的預設樣式 */
 ul {
@@ -355,35 +365,6 @@ section {
     object-position: center; /* 圖片位置 */
     opacity: 0.7;
 }
-
-/* main > section.search > div#search-Type > button */
-#btn-typeVb:focus {
-    width: 120px;
-    height: 120px;
-    background-color: #ffffff;
-    border: 4px solid #000;
-    border-radius: 20px;
-    box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.3);
-    margin-bottom: 30px;
-    opacity: 1;
-
-    /* background-image: url(./images/vball.png); 背景圖片的路徑 
-    background-size: cover;背景圖片的大小，cover 表示將圖片裁剪以填滿元素 
-    background-repeat: no-repeat;背景圖片不重複 */
-
-}
-
-#btn-typeVb:focus img {
-    opacity: 1;
-    width: 90%;
-    pointer-events: none;
-    object-fit: cover;
-    /* 裁剪圖片，使其填滿元素 */
-    object-position: center;
-    /* 圖片位置 */
-
-}
-
 /* main > section.search > div#search-Type > button */
 #btn-typeBm {
     /* 樣式 */
@@ -409,34 +390,7 @@ section {
 
 }
 
-#btn-typeBm:focus {
-    /* 樣式 */
-    width: 120px;
-    height: 120px;
-    background-color: #ffffff;
-    border: 4px solid #000;
-    border-radius: 20px;
-    box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.3);
-    margin-bottom: 30px;
-    opacity: 1;
 
-    /* 子層 */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-}
-
-#btn-typeBm:focus img {
-    opacity: 1;
-    width: 90%;
-    pointer-events: none;
-    object-fit: cover;
-    /* 裁剪圖片，使其填滿元素 */
-    object-position: center;
-    /* 圖片位置 */
-
-}
 
 button#btn-typeBm.selected,
 button#btn-typeVb.selected {
@@ -569,9 +523,9 @@ button#btn-typeVb.selected img {
 }
 
 /* main > section.search > div#search-Bar > div > button.btn-send*/
-#search-Bar .btn-send {
-    max-height: 36px;
-    flex: 1 1 auto;
+.btn-send {
+    width: fit-content;
+    height: fit-content;
     border: 3px solid black;
     border-bottom: 5px solid black;
     border-radius: 50px;
@@ -582,7 +536,7 @@ button#btn-typeVb.selected img {
 /*  */
 /* 首頁main > section:containers */
 .containers {
-    width: 900px;
+    width: 80vh;
     height: fit-content;
     border: 3.5px solid black;
     border-bottom: 6px solid black;
@@ -610,16 +564,16 @@ button#btn-typeVb.selected img {
 }
 
 .title-postArea h2 {
-    color: var(--main-color);
+    color: var(--font-color);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.title-postArea h2 div {
+ h2 div {
     width: 5px;
     height: 20px;
-    background-color: var(--main-color);
+    background-color: var(--font-color);
     margin-right: 10px;
 }
 
@@ -838,6 +792,7 @@ button#btn-typeVb.selected img {
 
 footer {
     height: 100px;
+    width: auto;
     background-color: rgba(3, 9, 40, 0.6);
     padding-bottom: 32px;
 
@@ -884,32 +839,32 @@ footer div p {
 /* 貼文區 */
 /* main.filter-postArea */
 .filter-postArea {
+
     display: flex;
     flex-direction: column;
+    align-items: center;
+
+
 }
 
 /* main.filter-postArea > div.filter-title*/
 .filter-postArea .filter-title{
-    width: auto;
-    height: auto;
-    display: flex;
+    width: 700px;
+    height: fit-content;
+    align-self: center;
   
 
 }
-.filter-postArea .filter-title div{
-    flex: 1;
-}
 .filter-postArea .filter-title .hug-h1{
-    flex: 4;
     text-align: center;
     
 }
 
-/* main.filter-postArea > div.filter-title >div.hug-h1 >h1 */
-.hug-h1 h1{   
+/* 標題底線 */
+div.hug-h1 h1{   
     position: relative;
     color: white;
-    width: 144px;
+    width: fit-content;
     border-bottom: 4px solid rgba(0, 0, 0, 1);
     z-index: 0;
 }
@@ -1058,16 +1013,16 @@ footer div p {
     width: 1850px;
     height: 0px;
     align-self: center;
-    /* border: 1px solid black; */
+    border: 1px solid black;
 
 }
 
 /* main.filter-postArea > section.filter-containers */
 .filter-containers {
-    width: auto;
+    width: 108vh;
     height: auto;
     margin: 20px;
-    align-items: center;
+    
 
 
 }
@@ -1095,7 +1050,8 @@ footer div p {
     box-shadow: 0px 12px 0px 0px rgba(0, 0, 0, 1);
 
     display: grid;
-    grid-template-rows: 0.25fr 1.2fr 0.25fr;
+    grid-template-rows: 95px 127px 36px;
+    /* grid-template-rows: 0.25fr 1.2fr 0.25fr; */
     gap: 10px;
     justify-content: flex-start;
     align-items: flex-start;
@@ -1234,6 +1190,247 @@ footer div p {
     align-items: flex-end;
 }
 
+/* 貼文表單 */
+/* main(form-formArea */
+main.form-formArea{
+    margin-top: 50px;
+    /* 子 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+/* 發文表單標題 */
+main div.form-title{
+    /* layout */
+    width: 700px;
+    height: fit-content;
+    margin: 0 50px;
+    margin-bottom: 50px;
+
+    /* child */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+}
+.form-container{
+    width: 50vh;
+    display: grid;
+    grid-template-columns: 339px 378px;
+    gap: 10px;
+}
+/* 貼文管理按鈕 */
+main div button#btn-postManage{
+    /* layout */
+    width: fit-content;
+    height: fit-content;
+    border-radius: 50px;
+    border: 2px solid black;
+    padding: 9px 18px;
+    background-color: var(--btn-color);
+    box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 1);
+    /* child */
+    display: grid;
+    grid-template-columns: 64px 20px;
+    gap: 10px;
+}
+/* 切換表單按鈕區 */
+main div.form-type{
+    width: 365px;
+    height: fit-content;
+    align-self: flex-start;
+   
+
+    display: flex;
+    justify-content: space-between;
+}
+
+
+#btn-formBM{
+    width: fit-content;
+    height: fit-content;
+    border-radius: 50px;
+    border: 2px solid black;
+    box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 1);
+    padding: 5px 25px;
+    background-color: rgba(247, 246, 245, 0.9);
+    color:#689607 ;
+
+
+}
+#btn-formVB{
+    width: fit-content;
+    height: fit-content;
+    border-radius: 50px;
+    border: 2px solid black;
+    box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 1);
+    padding: 5px 25px;
+    background-color: rgba(247, 246, 245, 0.9);
+    color: #147CB6;
+}
+
+button#btn-formBM.selected,button#btn-formVB.selected {
+    width: fit-content;
+    height: fit-content;
+    border-radius: 50px;
+    padding: 5px 25px;
+    color: black;
+    background-color: var(--main-color);
+    border: 0px;
+    box-shadow: none;
+
+    position: relative;
+    
+}
+button#btn-formBM.selected::before,button#btn-formVB.selected::before{
+    content: '';
+    position: absolute;
+    top: 20px;
+    box-shadow: inset 0px 10px 0px black ;
+}
+
+main section.form-container{
+    width: fit-content;
+    height: fit-content;
+    padding: 0px 200px;
+
+    display: grid;
+    grid-template-columns: 339px 378px;
+    gap: 20px;
+
+}
+.form-block{
+    display: grid;
+    grid-template-rows: 30px 645px;
+    gap: 3px;
+
+}
+.form-edit{
+    width: 339px;
+    height: fit-content;
+    border-radius: 20px;
+    border: 1px solid black;
+    padding: 20px 15px;
+
+    display: grid;
+    grid-template-rows: 20px 330px 20px 197px;
+    gap: 15px;
+}
+.sub-title h2{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    /* padding: 20px 10px; */
+
+}
+.sub-title h2 div{
+    background-color: black;
+}
+
+.form-options{
+    width: 309px;
+    height: 317px;
+    border-bottom: 1px solid black;
+    margin-top: 10px;
+    padding-left: 20px;
+    /* child */
+    display: grid;
+    grid-template-rows: auto;
+}
+
+.form-options label {
+    width: 330px;
+    display: grid;
+    grid-template-columns:32px 1fr ;
+    gap: 10px;
+    
+}
+
+.form-options label input{
+    width: 100px;
+    height: 20px;
+    border-radius: 50px;
+    border: 2.5px solid black;
+    padding:  0px 15px;
+    align-items: center;
+}
+.form-options label:nth-child(2){
+    display: grid;
+    grid-template-columns: 32px 80px 5px 80px;
+}
+.form-options label:nth-child(2) input{
+    width: 50px;
+}
+.form-options label:nth-child(3){
+    display: grid;
+    grid-template-columns: 32px 100px 1fr;
+}
+.form-options label:nth-child(3) select,.form-options label:nth-child(5) select,.form-options label:nth-child(8) select{
+    width: 100px;
+    height: 25px;
+    padding-left: 10px;
+    border-radius: 50px;
+    border: 2.5px solid black;
+}
+.form-options label:nth-child(7){
+    display: grid;
+    grid-template-columns: 32px 75px 75px 70px;
+    gap: 10px;
+}
+.form-options label:nth-child(7) input{
+    width: 45px;
+    padding-left: 10px;
+}
+.form-subOptions{
+    width: 309px;
+    height: 197px;
+    margin-top: 10px;
+    padding-left: 20px;
+
+    display: grid;
+    grid-template-rows: auto;
+    
+}
+.form-subOptions label {
+    width: 330px;
+    display: grid;
+    grid-template-columns:75px 1fr ;
+    gap: 10px;
+    
+}
+.form-subOptions label input{
+    width: 150px;
+    height: 20px;
+    border-radius: 50px;
+    border: 2.5px solid black;
+    padding:  0px 15px;
+    align-items: center;
+}
+.form-subOptions label select {
+    width: 135px;
+    height: 25px;
+    padding-left: 10px;
+    border-radius: 50px;
+    border: 2.5px solid black;
+}
+.form-review{
+    width: 395px;
+    height: 610px;
+    border: 1px solid black;
+    border-radius: 20px;
+    margin-top: 35px ;
+    margin-left: 30px;
+    padding: 20px 15px;
+
+    display: grid;
+    grid-template-rows:28px 324px 40px ;
+    gap:100px
+}
+.form-review button.btn-send{
+ margin-left: 140px;
+}
 /* RWD */
 /* 桌機 */
 @media(max-with:820px) {}

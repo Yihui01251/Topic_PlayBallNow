@@ -52,9 +52,8 @@
           const { useState, useEffect, useRef } = React;
           //   const [todayType, setTodayType] = useState("");
 
-          useEffect(() => {
-            // 組件載入後，將焦點設置到 btn-typeVb 按鈕上
-          }, []);
+         
+
 
           // 更改資料類型
           //    const getPosts = (type) => {
@@ -92,8 +91,6 @@
               <>
                 <div
                   className="filter-simplePostInfo"
-                  id={id}
-                  //   style={{ backgroundImage: postBorder }}
                 >
                   <div className="main-info">
                     <header>
@@ -184,14 +181,10 @@
 
               <main className="filter-postArea">
                 <div className="filter-title">
-                  <div></div>
                   <div className="hug-h1">
-                    <h1 className="title-L" value="您篩選的貼文">
-                      您篩選的貼文
+                    <h1 className="title-L" value="篩選貼文">
+                      篩選貼文
                     </h1>
-                  </div>
-                  <div>
-                    <div></div>
                   </div>
                 </div>
                 <section className="filter-box">
