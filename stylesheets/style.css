@@ -1101,12 +1101,6 @@ div.hug-h1 h1{
     
 
 }
-/*  ...>div(filter-simplePostInfo > div(sub-info  > */
-
-/*  ...>div(filter-simplePostInfo > div(sub-info > */
-
-/*  ...>div(filter-simplePostInfo > div(sub-info  > */
-
 /*  ... >div(filter-postBlock >div(filter-simplePostInfo > div(sub-info */
 .sub-info {
     border-radius: 5px;
@@ -1122,6 +1116,12 @@ div.hug-h1 h1{
 .sub-info h4{
     color: #6D6D6D;
     align-self: center;
+}
+.sub-info div{
+    color: white;
+}
+.sub-info div p{
+    color: var(--font-color);
 }
 /*  ...>div(filter-simplePostInfo > div(sub-info > div(solicitor-number */
 .vacancyInfo{

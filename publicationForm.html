@@ -123,43 +123,97 @@
             const [postPosition, setPostPosition] = useState("無要求");
             const [postNote, setPostNote] = useState("請不要放鴿子");
 
-            const textChange = (e) => {
-              console.log("更改輸入");
+            const dateChange = (e) => {
               //輸入框當前值
               let newDate = parseInt(e.target.value);
               setPostDate(newDate);
+            };
+            const startTimeChange=(e)=>{
               let newStartTime = parseInt(e.target.value);
               setPostStartTime(newStartTime);
+            }
+            const EndTimeChange = (e)=>{
               let newEndTime = parseInt(e.target.value);
               setPostEndTime(newEndTime);
-
+            }
+            const cityChange = (e)=>{
               let newPostCity = parseInt(e.target.value);
               setPostCity(newPostCity);
+            }
+            const areaChange =(e)=>{
               let newPostArea = parseInt(e.target.value);
               setPostArea(newPostArea);
+            }
+            const arenaChange =(e)=>{
               let newPostArena = parseInt(e.target.value);
               setPostArena(newPostArena);
 
-              let newPostDegree = parseInt(e.target.value);
-              setPostDegree(newPostDegree);
+            }
+            const roleChange =(e)=>{
+              let newPostRole = parseInt(e.target.value);
+              setPostRole(newPostRole);
+            }
+            const costChange =(e)=>{
               let newPostCost = parseInt(e.target.value);
               setPostDegree(newPostCost);
 
+              // determinePrice(newCost);
+            }
+            const femaleChange =(e)=>{
               let newPostFemale = parseInt(e.target.value);
               setPostFemale(newPostFemale);
+            }
+            const maleChange =(e)=>{
               let newPostMale = parseInt(e.target.value);
               setPosPostMale(newPostMale);
+            }
+            const unspecifiedChange = (e)=>{
               let newPostUnspecified = parseInt(e.target.value);
               setPostUnspecified(newPostUnspecified);
-
-              let newPostRole = parseInt(e.target.value);
-              setPostRole(newPostRole);
-              let newPostPosition = parseInt(e.target.value);
-              setPostPosition(newPostPosition);
+            }
+            const degreeChange = (e)=>{
+              let newPostDegree = parseInt(e.target.value);
+              setPostDegree(newPostDegree);
+            }
+            const noteChange =(e)=>{
               let newPostNote = parseInt(e.target.value);
               setPostNote(newPostNote);
-              // determinePrice(newCost);
-            };
+            }
+
+            const positionChange =(e)=>{
+              let newPostPosition = parseInt(e.target.value);
+              setPostPosition(newPostPosition);
+              
+            }
+            const TextInput = ({ id, label, placeholder, value, onChange }) => {
+  return (
+    <label htmlFor={id}>
+      {label}
+      <input
+        type="text"
+        id={id}
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+      />
+    </label>
+  );
+};
+
+const SelectInput = ({ id, label, value, options, onChange }) => {
+  return (
+    <label htmlFor={id}>
+      {label}
+      <select id={id} value={value} onChange={onChange}>
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
+    </label>
+  );
+};
             return (
               <>
                 <header id="topBar">
@@ -261,7 +315,7 @@
                               id="edit-date"
                               placeholder="月  / 日"
                               value={postDate}
-                              onChange={textChange}
+                              onChange={dateChange}
                             />
                           </label>
                           <label for="edit-startTime">
@@ -271,7 +325,7 @@
                               id="edit-startTime"
                               placeholder="24:00"
                               value={postStartTime}
-                              onChange={textChange}
+                              onChange={startTimeChange}
                             />{" "}
                             ~{" "}
                             <input
@@ -280,27 +334,27 @@
                               id="edit-endTime"
                               placeholder="24:00"
                               value={postEndTime}
-                              onChange={textChange}
+                              onChange={EndTimeChange}
                             />
                           </label>
                           <label for="edit-city">
-                            地區{" "}
+                            地區
                             <select
                               name="地區"
                               id="edit-city"
                               value={postCity}
-                              onChange={textChange}
+                              onChange={cityChange}
                             >
                               <option value="default">縣市</option>
-                              <option value=""></option>
-                              <option value=""></option>
-                              <option value=""></option>
+                              <option value="台北市"></option>
+                              <option value="新北市"></option>
+                              <option value="其他"></option>
                             </select>
                             <select
                               name="area"
                               id="edit-area"
                               value={postArea}
-                              onChange={textChange}
+                              onChange={areaChange}
                             >
                               <option value="default">地區</option>
                             </select>
@@ -312,7 +366,7 @@
                               id="edit-arena"
                               placeholder="         請輸入名稱"
                               value={postArena}
-                              onChange={textChange}
+                              onChange={arenaChange}
                             />
                           </label>
                           <label for="edit-role">
@@ -321,7 +375,7 @@
                               name="類型"
                               id="edit-role"
                               value={postRole}
-                              onChange={textChange}
+                              onChange={roleChange}
                             >
                               <option value="default">類型</option>
                             </select>
@@ -333,7 +387,7 @@
                               id="edit-cost"
                               placeholder="         請輸入費用"
                               value={postCost}
-                              onChange={textChange}
+                              onChange={costChange}
                             />
                           </label>
                           <label for="edit-female">
@@ -343,21 +397,21 @@
                               id="edit-female"
                               placeholder="女     位"
                               value={postFemale}
-                              onChange={textChange}
+                              onChange={femaleChange}
                             />
                             <input
                               type="text"
                               id="edit-male"
                               placeholder="男     位"
                               value={postMale}
-                              onChange={textChange}
+                              onChange={maleChange}
                             />
                             <input
                               type="text"
                               id="edit-unspecified"
                               placeholder="不拘  位"
                               value={postUnspecified}
-                              onChange={textChange}
+                              onChange={unspecifiedChange}
                             />
                           </label>
                           <label for="edit-gameType">
@@ -366,7 +420,7 @@
                               name="程度"
                               id="edit-gameType"
                               value={postDegree}
-                              onChange={textChange}
+                              onChange={degreeChange}
                             >
                               <option value="default">程度</option>
                             </select>
@@ -409,7 +463,7 @@
                               id="edit-ps"
                               placeholder="                       可輸入備註"
                               value={postNote}
-                              onChange={textChange}
+                              onChange={noteChange}
                             />
                           </label>
                           <label for="edit-position">
@@ -418,7 +472,7 @@
                               name=""
                               id="edit-position"
                               value={postPosition}
-                              onChange={textChange}
+                              onChange={positionChange}
                             >
                               <option value="無要求">無要求</option>
                               <option value="主攻手">主攻手</option>
