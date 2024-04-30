@@ -143,45 +143,45 @@
             );
           };
           return (
-            <>
+            <div className = "body">
               <header id="topBar">
-                <nav id="top-nav">
-                  <ul id="menu">
-                    <li>
-                      <a href="./index.html">
-                        <img
-                          className="icon"
-                          src="./images/magnifier.png"
-                          alt=""
-                        />
-                        探索
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <img className="icon" src="./images/post.png" alt="" />
-                        找人
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <img className="icon" src="./images/bell3.png" alt="" />
-                        行程
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <img className="icon" src="./images/cat.png" alt="" />
-                        個人
-                      </a>
-                    </li>
-                  </ul>
-                </nav>
+              <nav id="top-nav">
+              <ul id="menu">
+              <li>
+              <a href="./index.html">
+              <img
+              className="icon"
+              src="./images/magnifier.png"
+              alt=""
+              />
+                  探索
+                </a>
+              </li>
+              <li>
+                <a href="./publicationForm.html">
+                  <img className="icon" src="./images/post.png" alt="" />
+                  找人
+                </a>
+              </li>
+              <li>
+                <a href="notice.html">
+                  <img className="icon" src="./images/bell3.png" alt="" />
+                  行程
+                </a>
+              </li>
+              <li>
+                <a href="personal.html">
+                  <img className="icon" src="./images/cat.png" alt="" />
+                  個人
+                </a>
+              </li>
+              </ul>
+              </nav>
               </header>
 
               <main className="filter-postArea">
                 <div className="filter-title">
-                  <div className="hug-h1">
+                  <div className="hugTitle">
                     <h1 className="title-L" value="篩選貼文">
                       篩選貼文
                     </h1>
@@ -220,6 +220,31 @@
                 {/* 貼文 */}
                 <section className="filter-containers">
                   <div className="filter-postBlock">
+                   {/* // {postData.map((group,index)=>{
+                    //   group.map((post_data)=>{
+                    //     return(<ApplyCard
+                    //       key={post_data.id}
+                    //       id={post_data.id}
+                    //       type={post_data.type}
+                    //       postDate={post_data.date}
+                    //       postStartTime={post_data.startTime}
+                    //       postEndTime={post_data.endTime}
+                    //       postCity={post_data.city}
+                    //       postArea={post_data.area}
+                    //       postArena={post_data.arena}
+                    //       primaryTag={post_data.tagDegree}
+                    //       secondaryTag={post_data.tagPrice}
+                    //       reqCount={post_data.reqCount}
+                    //       role={post_data.role}
+                    //       pos={post_data.pos}
+                    //       note={post_data.note}
+                    //     />
+
+                    //     )
+                    //   })
+                    // })*/}
+
+                    
                     {vb_week_postData.map((post_data) => {
                       return (
                         <ApplyCard
@@ -241,6 +266,7 @@
                         />
                       );
                     })}
+                    
                   </div>
                 </section>
               </main>
@@ -257,7 +283,7 @@
                   <p>Copyright© 2024 PlayBallNow. All Right Reserved. </p>
                 </div>
               </footer>
-            </>
+            </div>
           );
         };
         ReactDOM.createRoot(document.getElementById("root")).render(<App />);
