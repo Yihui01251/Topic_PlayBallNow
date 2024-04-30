@@ -2,7 +2,7 @@
 <html lang="zh-Hant-TW">
   <html>
     <head>
-      <title>發文表單</title>
+      <title>找人</title>
       <link rel="stylesheet" href="./stylesheets/style.css" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta charset="UTF-8" />
@@ -218,46 +218,38 @@ const SelectInput = ({ id, label, value, options, onChange }) => {
               <div className ="body">
                 
                 <header id="topBar">
-                  <nav id="top-nav">
-                    <ul id="menu">
-                      <li>
-                        <a href="./index.html">
-                          <img
-                            className="icon"
-                            src="./images/magnifier.png"
-                            alt=""
-                          />
-                          探索
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <img
-                            className="icon"
-                            src="./images/post.png"
-                            alt=""
-                          />
-                          找人
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <img
-                            className="icon"
-                            src="./images/bell3.png"
-                            alt=""
-                          />
-                          行程
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <img className="icon" src="./images/cat.png" alt="" />
-                          個人
-                        </a>
-                      </li>
-                    </ul>
-                  </nav>
+                <nav id="top-nav">
+                <ul id="menu">
+                <li>
+                <a href="./index.html">
+                <img
+                className="icon"
+                src="./images/magnifier.png"
+                alt=""
+                />
+                    探索
+                  </a>
+                </li>
+                <li>
+                  <a href="./publicationForm.html">
+                    <img className="icon" src="./images/post.png" alt="" />
+                    找人
+                  </a>
+                </li>
+                <li>
+                  <a href="notice.html">
+                    <img className="icon" src="./images/bell3.png" alt="" />
+                    行程
+                  </a>
+                </li>
+                <li>
+                  <a href="personal.html">
+                    <img className="icon" src="./images/cat.png" alt="" />
+                    個人
+                  </a>
+                </li>
+                </ul>
+                </nav>
                 </header>
 
                 <main className="form-formArea">
@@ -559,11 +551,6 @@ const SelectInput = ({ id, label, value, options, onChange }) => {
           ReactDOM.createRoot(document.getElementById("root")).render(<App />);
         })();
       </script>
-
-      <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
-      />
     </body>
   </html>
 </html>

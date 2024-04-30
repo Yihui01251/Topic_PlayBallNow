@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+  <head>
+    <title>個人</title>
+    <link rel="stylesheet" href="./stylesheets/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.0/redux.min.js"
+      integrity="sha512-1/8Tj23BRrWnKZXeBruk6wTnsMJbi/lJsk9bsRgVwb6j5q39n0A00gFjbCTaDo5l5XrPVv4DZXftrJExhRF/Ug=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <style>
+      .fileName {
+        display: none;
+      }
+    </style>
+  </head>
+  <body id="body">
+    <small class="fileName">檔名：<code>personal.html</code></small>
+    <!-- 根元素  -->
+    <div id="root"></div>
+    <script type="text/babel">
+      (async () => {
+        const App = () => {
+          return (
+            <div className="body">
+                <header id="topBar">
+                <nav id="top-nav">
+                <ul id="menu">
+                <li>
+                <a href="./index.html">
+                <img
+                className="icon"
+                src="./images/magnifier.png"
+                alt=""
+                />
+                    探索
+                  </a>
+                </li>
+                <li>
+                  <a href="./publicationForm.html">
+                    <img className="icon" src="./images/post.png" alt="" />
+                    找人
+                  </a>
+                </li>
+                <li>
+                  <a href="notice.html">
+                    <img className="icon" src="./images/bell3.png" alt="" />
+                    行程
+                  </a>
+                </li>
+                <li>
+                  <a href="personal.html">
+                    <img className="icon" src="./images/cat.png" alt="" />
+                    個人
+                  </a>
+                </li>
+                </ul>
+                </nav>
+                </header>
+                <main>
+                    <div className="form-title">
+                  <div className="hug-h1">
+                    <h1 className="title-L" value="個人檔案">
+                      個人檔案
+                    </h1>
+                  </div>
+                </div>
+                    </main>
+                <footer>
+                <figure className="footer-border"></figure>
+                <div>
+                  <figure>
+                    <img
+                      id="logo"
+                      src="./images/logo.png"
+                      alt="logo-PlayBallNow"
+                    />
+                  </figure>
+                  <p>Copyright© 2024 PlayBallNow. All Right Reserved. </p>
+                </div>
+              </footer>
+            </div>
+          );
+        };
+        ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+      })();
+    </script>
+  </body>
+</html>
