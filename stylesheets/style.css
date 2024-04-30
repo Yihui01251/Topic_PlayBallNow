@@ -100,61 +100,6 @@ video {
     font: inherit;
     vertical-align: baseline;
 }
-
-
-
-* {
-    margin: 0;
-    padding: 0;
-}
-
-:root {
-    --main-color: #14AAEB;
-    --btn-color: #F1DB15;
-    --font-color:#147CB6;
-    --border-image: url('../images/catframe.png');
-    --background-image: url('../images/CatBg.jpg') ;
-}
-label{
-    font-size: 16px;
-}
-
-img {
-    display: block;
-    width: 100%;
-}
-
-a {
-    display: block;
-    /* 拿掉超連結文字底線 */
-    text-decoration: none;
-    color: black;
-}
-
-
-body {
-    width: 100%;
-    background-image: var(--background-image);
-    background-repeat: no-repeat; /* 防止背景圖片重複 */
-    background-size: cover; /* 確保背景圖片填滿整個容器 */
-    background-attachment: fixed; /* 讓背景圖片固定不動 */
-    background-position: center center; /* 讓背景圖片在容器中置中 */
-    /* position: relative; */
-    font-family: "Alata", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Helvetica, Arial,
-        "jf open 粉圓 2.0";
-   
-    /* display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center; */
-}
-.background-Bm{
-    background-image: url(../images/DogBg.jpg);
-}
-.background-Vb{
-    background-image: url(../images/CatBg.jpg);
-}
-
 h1 {
     font-size: 24px;
     font-style: normal;
@@ -224,8 +169,63 @@ section {
     justify-content: center;
 
 }
+label{
+    font-size: 16px;
+}
 
-/* header */
+img {
+    display: block;
+    width: 100%;
+}
+
+a {
+    display: block;
+    /* 拿掉超連結文字底線 */
+    text-decoration: none;
+    color: black;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --main-color: #14AAEB;
+    --btn-color: #F1DB15;
+    --font-color:#147CB6;
+    --border-image: url('../images/catframe.png');
+    --background-image: url('../images/CatBg.jpg') ;
+}
+
+body {
+    width: 100%;
+    height: auto;
+    background-image: var(--background-image);
+    background-repeat: no-repeat; /* 防止背景圖片重複 */
+    background-size: cover; /* 確保背景圖片填滿整個容器 */
+    background-attachment: fixed; /* 讓背景圖片固定不動 */
+    background-position: center center; /* 讓背景圖片在容器中置中 */
+    font-family: "Alata", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Helvetica, Arial,
+        "jf open 粉圓 2.0";
+}
+.background-Bm{
+    background-image: url(../images/DogBg.jpg);
+}
+.background-Vb{
+    background-image: url(../images/CatBg.jpg);
+}
+
+.body{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: grid;
+    grid-template-rows: 100px 1fr 100px;
+    gap: 1px;
+}
+/*  */
+/* 導覽列 */
 #topBar {
     width: 100%;
     /* 控制子層 */
@@ -301,7 +301,58 @@ section {
     height: 32px;
     margin-right: 5px;
 }
+/*  */
+/* 頁尾 */
+footer {
+    height: 100px;
+    width: 100%;
+    background-color: rgba(3, 9, 40, 0.6);
+    background-size: cover;
+    padding-bottom: 10px;
+    position: absolute;
+    bottom: 0;
+}
 
+.footer-border {
+    width: auto;
+    height: 21px;
+    background-image: url("../images/logo2.png");
+    background-size: 24px;
+    background-repeat: repeat;
+    background-position: center;
+
+}
+
+footer div {
+    margin-top: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+footer div p {
+    color: white;
+}
+
+#logo {
+
+    width: 35px;
+    height: 33px;
+    margin-left: 10px;
+    flex: 1 0 auto;
+}
+
+#selectArea {
+    display: none;
+}
+
+
+footer div p {
+    width: 237px;
+    margin-left: 10px;
+    text-align: center;
+}
 /*  */
 /* 首頁main */
 .index {
@@ -309,6 +360,14 @@ section {
     display: flex;
     flex-direction: column;
     
+}
+
+.index-title{
+    width: 700px;
+    height: fit-content;
+    margin: 0 50px;
+    margin-bottom: 50px;
+    align-self: center;
 }
 
 /* 搜尋區 */
@@ -790,51 +849,7 @@ button#btn-typeVb.selected img {
 
 }
 
-footer {
-    height: 100px;
-    width: auto;
-    background-color: rgba(3, 9, 40, 0.6);
-    padding-bottom: 32px;
 
-
-}
-
-.footer-border {
-    width: auto;
-    height: 21px;
-    background-image: url("../images/logo2.png");
-    background-size: 24px;
-    background-repeat: repeat;
-    background-position: center;
-
-}
-
-footer div {
-    margin-top: 24px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-
-#logo {
-
-    width: 35px;
-    height: 33px;
-    margin-left: 10px;
-    flex: 1 0 auto;
-}
-
-#selectArea {
-    display: none;
-}
-
-
-footer div p {
-    width: 237px;
-    margin-left: 10px;
-    text-align: center;
-}
 
 /* 貼文區 */
 /* main.filter-postArea */
@@ -1193,7 +1208,9 @@ div.hug-h1 h1{
 /* 貼文表單 */
 /* main(form-formArea */
 main.form-formArea{
-    margin-top: 50px;
+    height: max-content;
+    margin-bottom: 116px;
+   
     /* 子 */
     display: flex;
     flex-direction: column;

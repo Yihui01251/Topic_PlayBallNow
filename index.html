@@ -22,9 +22,6 @@
     <title>現在想打球</title>
     <link rel="stylesheet" href="./stylesheets/style.css" />
     <style>
-      h1 {
-        display: none;
-      }
       .fileName {
         display: none;
       }
@@ -32,7 +29,6 @@
   </head>
 
   <body id="body">
-    <h1>現在想打球</h1>
     <small class="fileName">檔名：<code>index.html</code></small>
     <!-- 載入axios套件 -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -189,7 +185,7 @@
             );
           };
           return (
-            <>
+            <div className = "body">
               <header id="topBar">
                 <nav id="top-nav">
                   <ul id="menu">
@@ -225,6 +221,13 @@
                 </nav>
               </header>
               <main className="index">
+                <div className="index-title">
+                  <div className="hug-h1">
+                    <h1 className="title-L" value="現在想打球">
+                      現在想打球
+                    </h1>
+                  </div>
+                </div>
                 {/*篩選區 */}
                 <section className="search">
                   <div id="search-Type">
@@ -434,7 +437,7 @@
                   <p>Copyright© 2024 PlayBallNow. All Right Reserved. </p>
                 </div>
               </footer>
-            </>
+            </div>
           );
         };
         ReactDOM.createRoot(document.getElementById("root")).render(<App />);

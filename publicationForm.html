@@ -215,7 +215,8 @@ const SelectInput = ({ id, label, value, options, onChange }) => {
   );
 };
             return (
-              <>
+              <div className ="body">
+                
                 <header id="topBar">
                   <nav id="top-nav">
                     <ul id="menu">
@@ -539,7 +540,20 @@ const SelectInput = ({ id, label, value, options, onChange }) => {
                     </div>
                   </section>
                 </main>
-              </>
+                <footer>
+                <figure className="footer-border"></figure>
+                <div>
+                  <figure>
+                    <img
+                      id="logo"
+                      src="./images/logo.png"
+                      alt="logo-PlayBallNow"
+                    />
+                  </figure>
+                  <p>Copyright© 2024 PlayBallNow. All Right Reserved. </p>
+                </div>
+              </footer>
+              </div>
             );
           };
           ReactDOM.createRoot(document.getElementById("root")).render(<App />);
