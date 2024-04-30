@@ -232,27 +232,6 @@
             "pos": "攻擊",
             "note": "希望有基礎能力, 打起來比較順利."
         }
-        ,
-        {
-            "id": 5,
-            "type":"排球",
-            "date": "06/30(日)",
-            "startTime": "10:00",
-            "endTime": "15:00",
-            "city": "台北市",
-            "area": "中山區",
-            "arena": "中山運動中心",
-            "tagDegree": "A",
-            "tagPrice": "200",
-            "reqCount": [
-                { "gender": "female", "count": 0 },
-                { "gender": "male", "count": 0 },
-                { "gender": "unspecified", "count": 1 }
-              ],
-            "role":"男網",
-            "pos": ["攻擊"],
-            "note":"希望有基礎能力, 打起來比較順利."
-        }
     ]},
     {
       "bm_today_postData": [
