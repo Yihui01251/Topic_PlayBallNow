@@ -1,87 +1,224 @@
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
-<head>
-  <title>行程</title>
-  <link rel="stylesheet" href="./stylesheets/style.css" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta charset="UTF-8" />
-  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.0/redux.min.js"></script>
-  <style>
-    .fileName {
-      display: none;
-    }
-  </style>
-</head>
-<body id="body">
-  <small class="fileName">檔名：<code>.html</code></small>
-  <!-- 根元素  -->
-  <div id="root"></div>
-  <script type="text/babel">
-    (async () => {
-      const App = () => {
-        return (
-          <div className="body">
-            <header id="topBar">
-            <nav id="top-nav">
-            <ul id="menu">
-            <li>
-            <a href="./index.html">
-            <img
-            className="icon"
-            src="./images/magnifier.png"
-            alt=""
-            />
-                探索
-              </a>
-            </li>
-            <li>
-              <a href="./publicationForm.html">
-                <img className="icon" src="./images/post.png" alt="" />
-                找人
-              </a>
-            </li>
-            <li>
-              <a href="notice.html">
-                <img className="icon" src="./images/bell3.png" alt="" />
-                行程
-              </a>
-            </li>
-            <li>
-              <a href="personal.html">
-                <img className="icon" src="./images/cat.png" alt="" />
-                個人
-              </a>
-            </li>
-            </ul>
-            </nav>
-            </header>
-            <main className = "notice-itineraryArea">
+  <head>
+    <title>行程</title>
+    <link rel="stylesheet" href="./stylesheets/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.0/redux.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+      .fileName {
+        display: none;
+      }
+    </style>
+  </head>
+  <body id="body">
+    <small class="fileName">檔名：<code>notice.html</code></small>
+    <!-- 根元素  -->
+    <div id="root"></div>
+    <script type="text/babel">
+      (async () => {
+        //取得json資料
+        const data = await axios.get("./postData_test.json");
+        const { postData } = data.data;
+        console.log(postData);
+        const { vb_today_postData } = postData[0];
+        const { vb_week_postData } = postData[1];
+        const { bm_today_postData } = postData[2];
+        const { bm_week_postData } = postData[3];
+
+        const Notify = ({ day, startTime, type, arena }) => {
+          return (
+            <div className="notice-container">
+              <div className="notice-ballType">
+                <p style={{ fontSize: "30px" }}>排</p>
+              </div>
+              <div className="notice-info">
+                <div>
+                  {" "}
+                  <p>5/28</p>
+                  <p>{startTime}</p>
+                </div>
+                <p>{arena}</p>
+                <div>
+                  <p>未評價</p>
+                </div>
+              </div>
+            </div>
+          );
+        };
+        const App = () => {
+          const { useState, useEffect, useRef } = React;
+
+          const [selectedButton, setSelectedButton] = useState("btn-itinerary");
+          const [noticeType, setNoticeType] = useState("btn-itinerary");
+          const itineraryBtn = document.getElementById("btn-itinerary");
+          const pastRecordsBtn = document.getElementById("btn-pastRecords");
+
+          const changeNotifyType = (id) => {
+            let newType = "";
+            setSelectedButton(id);
+            setNoticeType(id);
+            if (id == "btn-itinerary") {
+              newType = "itinerary";
+              
+            } else if (id == "btn-pastRecords") {
+              newType = "pastRecords";
+              
+            }
+          };
+          return (
+            <div className="body">
+              <header id="topBar">
+                <nav id="top-nav">
+                  <ul id="menu">
+                    <li>
+                      <a href="./index.html">
+                        <img
+                          className="icon"
+                          src="./images/magnifier.png"
+                          alt=""
+                        />
+                        探索
+                      </a>
+                    </li>
+                    <li>
+                      <a href="./publicationForm.html">
+                        <img className="icon" src="./images/post.png" alt="" />
+                        找人
+                      </a>
+                    </li>
+                    <li>
+                      <a href="notice.html">
+                        <img className="icon" src="./images/bell3.png" alt="" />
+                        行程
+                      </a>
+                    </li>
+                    <li>
+                      <a href="personal.html">
+                        <img className="icon" src="./images/cat.png" alt="" />
+                        個人
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+              </header>
+              <main className="notice-Area">
                 <div className="form-title">
-                  <div className="hug-h1">
+                  <div className="hugTitle">
                     <h1 className="title-L" value="我的行程">
                       我的行程
                     </h1>
                   </div>
                 </div>
-                </main>
-            <footer>
-              <figure className="footer-border"></figure>
-              <div>
-                <figure>
-                  <img id="logo" src="./images/logo.png" alt="logo-PlayBallNow" />
-                </figure>
-                <p>Copyright© 2024 PlayBallNow. All Right Reserved. </p>
-              </div>
-            </footer>
-          </div>
-        );
-      };
-      ReactDOM.createRoot(document.getElementById("root")).render(<App />);
-    })();
-  </script>
-</body>
-</html>
+                <div className="notice-type">
+                  <button
+                    id="btn-itinerary"
+                    className={
+                      selectedButton === "btn-itinerary" ? "selected" : ""
+                    }
+                    onClick={() => changeNotifyType("btn-itinerary")}
+                  >
+                    未來行程
+                  </button>
 
+                  <button
+                    id="btn-pastRecords"
+                    className={
+                      selectedButton === "btn-pastRecords" ? "selected" : ""
+                    }
+                    onClick={() => changeNotifyType("btn-pastRecords")}
+                  >
+                    過去紀錄
+                  </button>
+                </div>
+                <div style={{ display: noticeType === "btn-itinerary" ? "block" : "none" }}>
+                    <div className="notice-itineraryTitle">
+                  <div className="hugTitle">
+                    <h2 className="text-L" value="預定行程">
+                      預定行程
+                    </h2>
+                  </div>
+                  <button className="btn-sponsor">
+                    <img src="./images/icon-sponsor.png" alt="" />
+                    主辦
+                  </button>
+                </div>
+                <section className="notice-itineraryArea" >
+                  {vb_week_postData.map((post_data) => {
+                    return (
+                      <Notify
+                        key={post_data.id}
+                        // type={post_data.type}
+                        // day ={post_data.date}
+                        startTime={post_data.startTime}
+                        arena={post_data.arena}
+                        //evaluate={post_data.}
+                      />
+                    );
+                  })}
+                </section>
+                <div className="notice-itineraryTitle">
+                  <div className="hugTitle">
+                    <h2 className="text-L" value="取消行程">
+                      取消行程
+                    </h2>
+                  </div>
+                </div>
+                <section className="notice-itineraryArea">
+                  {vb_today_postData.map((post_data) => {
+                    return (
+                      <Notify
+                        key={post_data.id}
+                        // type={post_data.type}
+                        // day ={post_data.date}
+                        startTime={post_data.startTime}
+                        arena={post_data.arena}
+                        //evaluate={post_data.}
+                      />
+                    );
+                  })}
+                </section>
+                    </div>
+                <div style={{ display: noticeType === "btn-pastRecords" ? "block" : "none" }}>
+                    <section className="notice-itineraryArea">
+                      {bm_today_postData.map((post_data) => {
+                        return (
+                          <Notify
+                            key={post_data.id}
+                            // type={post_data.type}
+                            // day ={post_data.date}
+                            startTime={post_data.startTime}
+                            arena={post_data.arena}
+                            //evaluate={post_data.}
+                          />
+                        );
+                      })}
+                    </section>
+                    </div>
+              </main>
+              <footer>
+                <figure className="footer-border"></figure>
+                <div>
+                  <figure>
+                    <img
+                      id="logo"
+                      src="./images/logo.png"
+                      alt="logo-PlayBallNow"
+                    />
+                  </figure>
+                  <p>Copyright© 2024 PlayBallNow. All Right Reserved. </p>
+                </div>
+              </footer>
+            </div>
+          );
+        };
+        ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+      })();
+    </script>
+  </body>
+</html>

@@ -51,16 +51,12 @@
             const [selectedButton, setSelectedButton] = useState("btn-formVB");
 
             const changeType = (id) => {
-              // let newBackground = "";
+
               let colorMain = "";
               let colorFont = "";
               let btnColor = "";
               let newBorder = "";
               let type = "";
-
-              // 取消其他按鈕的選擇
-              // const btnFormVb = document.getElementById("btn-formVB");
-              // const btnFormBm = document.getElementById("btn-formBM");
               const bodyStyle = document.getElementById("body");
 
               if (id == "btn-formBM") {
@@ -254,7 +250,7 @@ const SelectInput = ({ id, label, value, options, onChange }) => {
 
                 <main className="form-formArea">
                   <div className="form-title">
-                    <div className="hug-h1">
+                    <div className="hugTitle">
                       <h1 value="發文找人" className="title-L">
                         發文找人
                       </h1>
@@ -269,6 +265,7 @@ const SelectInput = ({ id, label, value, options, onChange }) => {
                   </div>
                   <section className="form-container">
                     <div className="form-block">
+                      
                       <div className="form-type">
                         <button
                           id="btn-formBM"
@@ -292,7 +289,7 @@ const SelectInput = ({ id, label, value, options, onChange }) => {
                           打排球
                         </button>
                       </div>
-
+                      
                       <div className="form-edit">
                         <div className="sub-title">
                           <h2>

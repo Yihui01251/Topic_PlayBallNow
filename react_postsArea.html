@@ -181,7 +181,7 @@
 
               <main className="filter-postArea">
                 <div className="filter-title">
-                  <div className="hug-h1">
+                  <div className="hugTitle">
                     <h1 className="title-L" value="篩選貼文">
                       篩選貼文
                     </h1>
@@ -220,6 +220,31 @@
                 {/* 貼文 */}
                 <section className="filter-containers">
                   <div className="filter-postBlock">
+                   {/* // {postData.map((group,index)=>{
+                    //   group.map((post_data)=>{
+                    //     return(<ApplyCard
+                    //       key={post_data.id}
+                    //       id={post_data.id}
+                    //       type={post_data.type}
+                    //       postDate={post_data.date}
+                    //       postStartTime={post_data.startTime}
+                    //       postEndTime={post_data.endTime}
+                    //       postCity={post_data.city}
+                    //       postArea={post_data.area}
+                    //       postArena={post_data.arena}
+                    //       primaryTag={post_data.tagDegree}
+                    //       secondaryTag={post_data.tagPrice}
+                    //       reqCount={post_data.reqCount}
+                    //       role={post_data.role}
+                    //       pos={post_data.pos}
+                    //       note={post_data.note}
+                    //     />
+
+                    //     )
+                    //   })
+                    // })*/}
+
+                    
                     {vb_week_postData.map((post_data) => {
                       return (
                         <ApplyCard
@@ -241,6 +266,7 @@
                         />
                       );
                     })}
+                    
                   </div>
                 </section>
               </main>
