@@ -1,66 +1,6 @@
 {
     "userData": [
-        {
-    "past_host_userData": [
-                {
-                    "id": "1",
-                    "state": "已評價",
-                    "typeAbbr": "羽",
-                    "dateAbbr": "05/01",
-                    "startTime": "10:00",
-                    "endTime": "11:00",
-                    "city": "台北市",
-                    "area": "大安區",
-                    "arena": "大安運動中心",
-                    "tagDegree": "新手友善",
-                    "tagPrice": "500",
-                    "like": "true"
-                },
-                {
-                    "id": "2",
-                    "state": "已評價",
-                    "typeAbbr": "排",
-                    "dateAbbr": "05/11",
-                    "startTime": "10:00",
-                    "endTime": "15:00",
-                    "city": "台北市",
-                    "area": "中正區",
-                    "arena": "中正運動中心",
-                    "tagDegree": "C~B",
-                    "tagPrice": "125",
-                    "like": "false"
-                },
-                {
-                    "id": "3",
-                    "state": "未評價",
-                    "typeAbbr": "羽",
-                    "dateAbbr": "05/15",
-                    "startTime": "19:00",
-                    "endTime": "21:00",
-                    "city": "台北市",
-                    "area": "大同區",
-                    "arena": "大同運動中心",
-                    "tagDegree": "中進階",
-                    "tagPrice": "110",
-                    "like": "true"
-                },
-                {
-                    "id": "4",
-                    "state": "未評價",
-                    "typeAbbr": "排",
-                    "dateAbbr": "05/24",
-                    "startTime": "10:00",
-                    "endTime": "15:00",
-                    "city": "新北市",
-                    "area": "新店區",
-                    "arena": "新店運動中心",
-                    "tagDegree": "A",
-                    "tagPrice": "100",
-                    "like": "false"
-                }
-            ]
-        },{
-        "past_appl_userData":[
+        {"past_appl_userData":[
             {
                 "id": "1",
                 "state": "已評價",
@@ -115,6 +55,166 @@
                 "arena": "淡水運動中心",
                 "tagDegree": "C~B",
                 "tagPrice": "150",
+                "like": "false"
+            }
+        ]
+        
+        },{"future_All_userData":[
+            {
+                "id": "1",
+                "state": "1/5",
+                "typeAbbr": "羽",
+                "dateAbbr": "06/26",
+                "startTime": "10:00",
+                "endTime": "11:00",
+                "city": "台北市",
+                "area": "大安區",
+                "arena": "大安運動中心",
+                "tagDegree": "新手友善",
+                "tagPrice": "500",
+                "like": "false"
+            },
+            {
+                "id": "2",
+                "state": "4/5",
+                "typeAbbr": "羽",
+                "dateAbbr": "06/26",
+                "startTime": "10:00",
+                "endTime": "15:00",
+                "city": "台北市",
+                "area": "中正區",
+                "arena": "中正運動中心",
+                "tagDegree": "初階",
+                "tagPrice": "125",
+                "like": "false"
+            },
+            {
+                "id": "3",
+                "state": "4/4",
+                "typeAbbr": "排",
+                "dateAbbr": "06/27",
+                "startTime": "18:00",
+                "endTime": "22:00",
+                "city": "台北市",
+                "area": "大同區",
+                "arena": "大同運動中心",
+                "tagDegree": "C~B",
+                "tagPrice": "250",
+                "like": "false"
+            },
+            {
+                "id": "4",
+                "state": "3/4",
+                "typeAbbr": "排",
+                "dateAbbr": "06/30",
+                "startTime": "10:00",
+                "endTime": "15:00",
+                "city": "台北市",
+                "area": "中山區",
+                "arena": "中山運動中心",
+                "tagDegree": "A",
+                "tagPrice": "200",
+                "like": "false"
+            },
+            {
+                "id": "5",
+                "state": "申請中",
+                "typeAbbr": "羽",
+                "dateAbbr": "06/24",
+                "startTime": "10:00",
+                "endTime": "11:00",
+                "city": "台北市",
+                "area": "大安區",
+                "arena": "大安運動中心",
+                "tagDegree": "新手友善",
+                "tagPrice": "500",
+                "like": "true"
+            },
+            {
+                "id": "6",
+                "state": "取消申請中",
+                "typeAbbr": "羽",
+                "dateAbbr": "06/27",
+                "startTime": "19:00",
+                "endTime": "21:00",
+                "city": "台北市",
+                "area": "大同區",
+                "arena": "大同運動中心",
+                "tagDegree": "中進階",
+                "tagPrice": "110",
+                "like": "true"
+            },
+            {
+                "id": "7",
+                "state": "候補中",
+                "typeAbbr": "羽",
+                "dateAbbr": "06/30",
+                "startTime": "10:00",
+                "endTime": "15:00",
+                "city": "台北市",
+                "area": "中山區",
+                "arena": "中山運動中心",
+                "tagDegree": "進階",
+                "tagPrice": "100",
+                "like": "false"
+            },
+            {
+                "id": "8",
+                "state": "報名成功",
+                "typeAbbr": "排",
+                "dateAbbr": "06/30",
+                "startTime": "10:00",
+                "endTime": "15:00",
+                "city": "台北市",
+                "area": "中山區",
+                "arena": "中山運動中心",
+                "tagDegree": "A",
+                "tagPrice": "200",
+                "like": "false"
+            }
+        ]
+
+        },{"future_cancel_userData":[
+            {
+                "id": "1",
+                "state": "已取消",
+                "typeAbbr": "羽",
+                "dateAbbr": "06/26",
+                "startTime": "10:00",
+                "endTime": "15:00",
+                "city": "台北市",
+                "area": "中正區",
+                "arena": "中正運動中心",
+                "tagDegree": "中上",
+                "tagPrice": "125",
+                "like": "false"
+            },
+            {
+                "id": "2",
+                "state": "已取消",
+                "typeAbbr": "排",
+                "dateAbbr": "06/26",
+                "startTime": "10:00",
+                "endTime": "15:00",
+                "city": "台北市",
+                "area": "中正區",
+                "arena": "中正運動中心",
+                "tagDegree": "中上",
+                "tagPrice": "125",
+                "like": "false"
+            },
+            {
+                "id": "3",
+                "state": "已取消",
+                "typeAbbr": "羽",
+                "dateAbbr": "06/26",
+                "startTime": "10:00",
+                "endTime": "15:00",
+                "city": "台北市",
+                "area": "中正區",
+                "arena": "中正運動中心",
+                "tagDegree": "中上",
+                "tagPrice": "125",
                 "like": "false"
             }
         ]},{
@@ -193,20 +293,6 @@
             },
             {
                 "id": "2",
-                "state": "已取消",
-                "typeAbbr": "羽",
-                "dateAbbr": "06/26",
-                "startTime": "10:00",
-                "endTime": "15:00",
-                "city": "台北市",
-                "area": "中正區",
-                "arena": "中正運動中心",
-                "tagDegree": "中上",
-                "tagPrice": "125",
-                "like": "false"
-            },
-            {
-                "id": "3",
                 "state": "取消申請中",
                 "typeAbbr": "羽",
                 "dateAbbr": "06/27",
@@ -220,7 +306,7 @@
                 "like": "true"
             },
             {
-                "id": "4",
+                "id": "3",
                 "state": "候補中",
                 "typeAbbr": "羽",
                 "dateAbbr": "06/30",
@@ -234,7 +320,7 @@
                 "like": "false"
             },
             {
-                "id": "5",
+                "id": "4",
                 "state": "報名成功",
                 "typeAbbr": "排",
                 "dateAbbr": "06/30",

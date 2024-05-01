@@ -23,29 +23,29 @@
     <script type="text/babel">
       (async () => {
         //取得json資料
-        const data = await axios.get("./postData_test.json");
-        const { postData } = data.data;
-        console.log(postData);
-        const { vb_today_postData } = postData[0];
-        const { vb_week_postData } = postData[1];
-        const { bm_today_postData } = postData[2];
-        const { bm_week_postData } = postData[3];
+        const data = await axios.get("./userData.json");
+        const { userData } = data.data;
+        console.log(userData);
+        const { past_appl_userData } = userData[0];
+        const { future_All_userData} = userData[1];
+        const { future_cancel_userData } = userData[2];
+        const { future_host_userData } = userData[3];
+        const { future_appl_userData } = userData[4];
 
-        const Notify = ({ day, startTime, type, arena }) => {
+        const Notify = ({ day, startTime, type, arena,state, }) => {
           return (
             <div className="notice-container">
               <div className="notice-ballType">
-                <p style={{ fontSize: "30px" }}>排</p>
+                <p style={{ fontSize: "30px" }}>{type}</p>
               </div>
               <div className="notice-info">
                 <div>
-                  {" "}
-                  <p>5/28</p>
+                  <p>{day}</p>
                   <p>{startTime}</p>
                 </div>
                 <p>{arena}</p>
                 <div>
-                  <p>未評價</p>
+                  <p>{state}</p>
                 </div>
               </div>
             </div>
@@ -149,15 +149,15 @@
                   </button>
                 </div>
                 <section className="notice-itineraryArea" >
-                  {vb_week_postData.map((post_data) => {
+                  {future_All_userData.map((post_data) => {
                     return (
                       <Notify
                         key={post_data.id}
-                        // type={post_data.type}
-                        // day ={post_data.date}
-                        startTime={post_data.startTime}
-                        arena={post_data.arena}
-                        //evaluate={post_data.}
+                        type={post_data.typeAbbr}
+                            day ={post_data.dateAbbr}
+                            startTime={post_data.startTime}
+                            arena={post_data.arena}
+                            state={post_data.state}
                       />
                     );
                   })}
@@ -170,15 +170,15 @@
                   </div>
                 </div>
                 <section className="notice-itineraryArea">
-                  {vb_today_postData.map((post_data) => {
+                  {future_cancel_userData.map((post_data) => {
                     return (
                       <Notify
                         key={post_data.id}
-                        // type={post_data.type}
-                        // day ={post_data.date}
-                        startTime={post_data.startTime}
-                        arena={post_data.arena}
-                        //evaluate={post_data.}
+                        type={post_data.typeAbbr}
+                            day ={post_data.dateAbbr}
+                            startTime={post_data.startTime}
+                            arena={post_data.arena}
+                            state={post_data.state}
                       />
                     );
                   })}
@@ -186,15 +186,15 @@
                     </div>
                 <div style={{ display: noticeType === "btn-pastRecords" ? "block" : "none" }}>
                     <section className="notice-itineraryArea">
-                      {bm_today_postData.map((post_data) => {
+                      {past_appl_userData.map((post_data) => {
                         return (
                           <Notify
                             key={post_data.id}
-                            // type={post_data.type}
-                            // day ={post_data.date}
+                            type={post_data.typeAbbr}
+                            day ={post_data.dateAbbr}
                             startTime={post_data.startTime}
                             arena={post_data.arena}
-                            //evaluate={post_data.}
+                            state={post_data.state}
                           />
                         );
                       })}
