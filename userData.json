@@ -62,7 +62,8 @@
         },{"future_All_userData":[
             {
                 "id": "1",
-                "state": "1/5",
+                "identity":"團主",
+                "state": "1/5位",
                 "typeAbbr": "羽",
                 "dateAbbr": "06/26",
                 "startTime": "10:00",
@@ -76,7 +77,8 @@
             },
             {
                 "id": "2",
-                "state": "4/5",
+                "identity":"團主",
+                "state": "4/5位",
                 "typeAbbr": "羽",
                 "dateAbbr": "06/26",
                 "startTime": "10:00",
@@ -90,7 +92,8 @@
             },
             {
                 "id": "3",
-                "state": "4/4",
+                "identity":"團主",
+                "state": "4/4位",
                 "typeAbbr": "排",
                 "dateAbbr": "06/27",
                 "startTime": "18:00",
@@ -104,7 +107,8 @@
             },
             {
                 "id": "4",
-                "state": "3/4",
+                "identity":"臨打",
+                "state": "報名失敗",
                 "typeAbbr": "排",
                 "dateAbbr": "06/30",
                 "startTime": "10:00",
@@ -118,6 +122,7 @@
             },
             {
                 "id": "5",
+                "identity":"臨打",
                 "state": "申請中",
                 "typeAbbr": "羽",
                 "dateAbbr": "06/24",
@@ -132,6 +137,7 @@
             },
             {
                 "id": "6",
+                "identity":"臨打",
                 "state": "取消申請中",
                 "typeAbbr": "羽",
                 "dateAbbr": "06/27",
@@ -146,6 +152,7 @@
             },
             {
                 "id": "7",
+                "identity":"臨打",
                 "state": "候補中",
                 "typeAbbr": "羽",
                 "dateAbbr": "06/30",
@@ -160,6 +167,7 @@
             },
             {
                 "id": "8",
+                "identity":"臨打",
                 "state": "報名成功",
                 "typeAbbr": "排",
                 "dateAbbr": "06/30",
@@ -332,7 +340,22 @@
                 "tagDegree": "A",
                 "tagPrice": "200",
                 "like": "false"
+            },
+            {
+                "id": "5",
+                "state": "報名失敗",
+                "typeAbbr": "羽",
+                "dateAbbr": "06/30",
+                "startTime": "10:00",
+                "endTime": "15:00",
+                "city": "台北市",
+                "area": "中山區",
+                "arena": "中山運動中心",
+                "tagDegree": "A",
+                "tagPrice": "200",
+                "like": "false"
             }
+
         ]}
     ]
 }

@@ -198,7 +198,7 @@ a {
     --background-image: url('../images/CatBg.jpg') ;
     /* 通知 */
     --border-type:solid;
-    --evaluate-color:#FF4F03;
+    --evaluate-color:#1A8D07;
 
 }
 
@@ -1569,7 +1569,7 @@ button#btn-itinerary.selected,button#btn-pastRecords.selected{
     width: 45px;
     height: 45px;
     border-radius:50px ;
-    background-color: var(--main-color);
+    background-color: var(--font-color);
     text-align: center;
     color: rgba(247, 246, 245, 0.9);
 
@@ -1580,7 +1580,7 @@ button#btn-itinerary.selected,button#btn-pastRecords.selected{
     height: fit-content;
 
     display: grid;
-    grid-template-columns: 103px 119px 80px;
+    grid-template-columns: 103px 119px 100px;
     gap: 20px;
     justify-content: center;
     align-items: center;
@@ -1591,6 +1591,7 @@ button#btn-itinerary.selected,button#btn-pastRecords.selected{
     width: 103px;
     display: grid;
     grid-template-columns: 50px 50px;
+    gap: 5px;
 }
 /* 評價狀態 */
 .notice-info > div:last-child{
@@ -1605,6 +1606,13 @@ button#btn-itinerary.selected,button#btn-pastRecords.selected{
 .notice-pastRecordsArea{
     display: none;
 }
+.custom-dashed-border {
+    border: none;
+    border-radius: 50px;
+    background-image: linear-gradient(to right, black 10px, transparent 0);
+    background-position: left top;
+    background-size: 10px 3px; /* 這裡的第一個值（10px）是虛線的長度，第二個值（2px）是虛線的寬度 */
+  }
 
 /* RWD */
 /* 桌機 */

@@ -27,15 +27,85 @@
         const { userData } = data.data;
         console.log(userData);
         const { past_appl_userData } = userData[0];
-        const { future_All_userData} = userData[1];
+        const { future_All_userData } = userData[1];
         const { future_cancel_userData } = userData[2];
         const { future_host_userData } = userData[3];
         const { future_appl_userData } = userData[4];
 
-        const Notify = ({ day, startTime, type, arena,state, }) => {
+        const { useState, useEffect, useRef } = React;
+        
+
+        const Notify = ({ day, startTime, type, arena, state,identity }) => {
+
+          const [typeStyle, setTypeStyle] = useState("");
+          const [typeFontStyle, setTypeFontStyle] = useState("");
+          const[stateStyle,setStateStyle]=useState("");
+          const[identityStyle,setIdentityStyle]=useState("");
+          useEffect(() => {
+            // 羽or排顏色
+            let typeStyle = "";
+            let typeFontStyle = "";
+            let stateColor ="";
+            if (type === "羽") {
+              typeStyle = "rgba(131, 185, 15, 0.9)";
+              typeFontStyle = "#689607";
+            } else if (type === "排") {
+              typeStyle = "#14AAEB";
+              typeFontStyle = "#147CB6";
+            }
+            setTypeFontStyle(typeFontStyle);
+            setTypeStyle(typeStyle);
+            document.documentElement.style.setProperty(
+              "--font-color",
+              typeFontStyle
+            );
+            document.documentElement.style.setProperty(
+              "--main-color",
+              typeStyle
+            );
+
+            // 狀態顏色
+            switch (state) {
+              case "報名成功":
+                  return setStateStyle("#1A8D07");
+              case "報名失敗":
+                return setStateStyle("#777777");
+              case "候補中":
+                return setStateStyle("#2D2AE6");
+              case "已取消":
+                return setStateStyle("#777777");
+              case "申請中":
+                return setStateStyle("#FF4F03");
+              case "未評價":
+                return setStateStyle("#FF4F03");
+              case "取消申請中":
+                return setStateStyle("#FF4F03");
+            
+              default:
+                break;
+            }
+            // 身分樣式
+            let borderStyle = "";
+            document.getElementsByClassName("notice-container");
+            if (identity === "團主") {
+              borderStyle = "3px dashed black";
+             
+            } else if (identity === "臨打") {
+              borderStyle = "3px solid black";
+            }
+            setIdentityStyle(borderStyle);
+            document.documentElement.style.setProperty(
+              "--border-type",borderStyle);
+
+          }, [type,state,identity]);
+
           return (
-            <div className="notice-container">
-              <div className="notice-ballType">
+            // <div className={"notice-container" +(identityStyle === "3px dashed black" ? "custom-dashed-border" :"")} style={{ color: typeFontStyle, border:identityStyle }}>
+              <div className={"notice-container"} style={{ color: typeFontStyle, border:identityStyle }}>
+              <div
+                className="notice-ballType"
+                style={{ backgroundColor: typeStyle }}
+              >
                 <p style={{ fontSize: "30px" }}>{type}</p>
               </div>
               <div className="notice-info">
@@ -44,15 +114,16 @@
                   <p>{startTime}</p>
                 </div>
                 <p>{arena}</p>
-                <div>
+                <div style={{ color: stateStyle ,border:"1px solid" ,stateStyle }}>
                   <p>{state}</p>
                 </div>
               </div>
             </div>
           );
         };
+
         const App = () => {
-          const { useState, useEffect, useRef } = React;
+          
 
           const [selectedButton, setSelectedButton] = useState("btn-itinerary");
           const [noticeType, setNoticeType] = useState("btn-itinerary");
@@ -65,12 +136,13 @@
             setNoticeType(id);
             if (id == "btn-itinerary") {
               newType = "itinerary";
-              
             } else if (id == "btn-pastRecords") {
               newType = "pastRecords";
-              
             }
           };
+
+          
+
           return (
             <div className="body">
               <header id="topBar">
@@ -136,70 +208,80 @@
                     過去紀錄
                   </button>
                 </div>
-                <div style={{ display: noticeType === "btn-itinerary" ? "block" : "none" }}>
-                    <div className="notice-itineraryTitle">
-                  <div className="hugTitle">
-                    <h2 className="text-L" value="預定行程">
-                      預定行程
-                    </h2>
-                  </div>
-                  <button className="btn-sponsor">
-                    <img src="./images/icon-sponsor.png" alt="" />
-                    主辦
-                  </button>
-                </div>
-                <section className="notice-itineraryArea" >
-                  {future_All_userData.map((post_data) => {
-                    return (
-                      <Notify
-                        key={post_data.id}
-                        type={post_data.typeAbbr}
-                            day ={post_data.dateAbbr}
-                            startTime={post_data.startTime}
-                            arena={post_data.arena}
-                            state={post_data.state}
-                      />
-                    );
-                  })}
-                </section>
-                <div className="notice-itineraryTitle">
-                  <div className="hugTitle">
-                    <h2 className="text-L" value="取消行程">
-                      取消行程
-                    </h2>
-                  </div>
-                </div>
-                <section className="notice-itineraryArea">
-                  {future_cancel_userData.map((post_data) => {
-                    return (
-                      <Notify
-                        key={post_data.id}
-                        type={post_data.typeAbbr}
-                            day ={post_data.dateAbbr}
-                            startTime={post_data.startTime}
-                            arena={post_data.arena}
-                            state={post_data.state}
-                      />
-                    );
-                  })}
-                </section>
+                <div
+                  style={{
+                    display: noticeType === "btn-itinerary" ? "block" : "none",
+                  }}
+                >
+                  <div className="notice-itineraryTitle">
+                    <div className="hugTitle">
+                      <h2 className="text-L" value="預定行程">
+                        預定行程
+                      </h2>
                     </div>
-                <div style={{ display: noticeType === "btn-pastRecords" ? "block" : "none" }}>
-                    <section className="notice-itineraryArea">
-                      {past_appl_userData.map((post_data) => {
-                        return (
-                          <Notify
-                            key={post_data.id}
-                            type={post_data.typeAbbr}
-                            day ={post_data.dateAbbr}
-                            startTime={post_data.startTime}
-                            arena={post_data.arena}
-                            state={post_data.state}
-                          />
-                        );
-                      })}
-                    </section>
+                    <button className="btn-sponsor">
+                      <img src="./images/icon-sponsor.png" alt="" />
+                      主辦
+                    </button>
+                  </div>
+                  <section className="notice-itineraryArea">
+                    {future_All_userData.map((post_data) => {
+                      return (
+                        <Notify
+                          key={post_data.id}
+                          type={post_data.typeAbbr}
+                          identity={post_data.identity}
+                          day={post_data.dateAbbr}
+                          startTime={post_data.startTime}
+                          arena={post_data.arena}
+                          state={post_data.state}
+                        />
+                      );
+                    })}
+                  </section>
+                  <div className="notice-itineraryTitle">
+                    <div className="hugTitle">
+                      <h2 className="text-L" value="取消行程">
+                        取消行程
+                      </h2>
                     </div>
+                  </div>
+                  <section className="notice-itineraryArea">
+                    {future_cancel_userData.map((post_data) => {
+                      return (
+                        <Notify
+                          key={post_data.id}
+                          type={post_data.typeAbbr}
+                          day={post_data.dateAbbr}
+                          startTime={post_data.startTime}
+                          arena={post_data.arena}
+                          state={post_data.state}
+                        />
+                      );
+                    })}
+                  </section>
+                </div>
+                <div
+                  style={{
+                    display:
+                      noticeType === "btn-pastRecords" ? "block" : "none",
+                  }}
+                >
+                  <section className="notice-itineraryArea">
+                    {past_appl_userData.map((post_data) => {
+                      return (
+                        <Notify
+                          key={post_data.id}
+                          type={post_data.typeAbbr}
+                          day={post_data.dateAbbr}
+                          startTime={post_data.startTime}
+                          arena={post_data.arena}
+                          state={post_data.state}
+                        />
+                      );
+                    })}
+                  </section>
+                </div>
               </main>
               <footer>
                 <figure className="footer-border"></figure>
