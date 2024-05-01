@@ -29,51 +29,115 @@
         const App = () => {
           return (
             <div className="body">
-                <header id="topBar">
+              <header id="topBar">
                 <nav id="top-nav">
-                <ul id="menu">
-                <li>
-                <a href="./index.html">
-                <img
-                className="icon"
-                src="./images/magnifier.png"
-                alt=""
-                />
-                    探索
-                  </a>
-                </li>
-                <li>
-                  <a href="./publicationForm.html">
-                    <img className="icon" src="./images/post.png" alt="" />
-                    找人
-                  </a>
-                </li>
-                <li>
-                  <a href="notice.html">
-                    <img className="icon" src="./images/bell3.png" alt="" />
-                    行程
-                  </a>
-                </li>
-                <li>
-                  <a href="personal.html">
-                    <img className="icon" src="./images/cat.png" alt="" />
-                    個人
-                  </a>
-                </li>
-                </ul>
+                  <ul id="menu">
+                    <li>
+                      <a href="./index.html">
+                        <img
+                          className="icon"
+                          src="./images/magnifier.png"
+                          alt=""
+                        />
+                        探索
+                      </a>
+                    </li>
+                    <li>
+                      <a href="./publicationForm.html">
+                        <img className="icon" src="./images/post.png" alt="" />
+                        找人
+                      </a>
+                    </li>
+                    <li>
+                      <a href="notice.html">
+                        <img className="icon" src="./images/bell3.png" alt="" />
+                        行程
+                      </a>
+                    </li>
+                    <li>
+                      <a href="personal.html">
+                        <img className="icon" src="./images/cat.png" alt="" />
+                        個人
+                      </a>
+                    </li>
+                  </ul>
                 </nav>
-                </header>
-                <main>
-                    <div className="form-title">
+              </header>
+              <main className="personal-Area">
+                <div className="form-title">
                   <div className="hugTitle">
                     <h1 className="title-L" value="個人檔案">
                       個人檔案
                     </h1>
                   </div>
-                  <button id = "btn-editFile">資料編輯<img src="../images/icon-editFile.png" alt="資料編輯的icon公事包"/></button>
-                </div>
-                    </main>
-                <footer>
+                  <button id="btn-editFile">
+                    資料編輯
+                    <img
+                      src="../images/icon-editFile.png"
+                      alt="資料編輯的icon公事包"
+                    />
+                  </button>
+                </div>{" "}
+                <section className="personalArea-infoContainer">
+                  <div className="infoContainer-biography">
+                    <div className="biography-bust">
+                      <figure>
+                        <img src="./images/vball.png" alt="排球頭像" />
+                      </figure>
+                      <button className="btn-logInLine">
+                        <img src="./images/icon-LINE.png" alt="" />
+                        Line登入
+                      </button>
+                      <div className ="records-sponsored">
+                      <div className ="sponsored-title">
+                        <div className ="hugSponsored-title"><div className ="titleLine"></div><h2>團主紀錄</h2></div>
+                        
+                        <div className = "sponsored-titleBtn">
+                          <button><img src="./images/btn-left.png" alt="前一個"/></button>
+                          <button><img src="./images/btn-right.png" alt="後一個"/></button>
+                          </div>
+                        </div>
+                      <div className ="prompt"><p>登入顯示</p></div>
+                      <div className ="sponsored-info">
+                        <div className ="info-time"><div>排</div><div>05/28 18:00</div></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="biography-info">
+                      <div className="info-introduction">
+                        <p>登入後可輸入狀態</p>
+                      </div>
+                      <div className="info-selfState">
+                        <div className ="selfState-title">
+                          <p>累積場次</p>
+                          <p>出席率</p>
+                          <p>自評等級</p>
+                        </div>
+                        <div className ="prompt">
+                          <p>登入顯示</p>
+                        </div>
+                      </div>
+                      <div className ="records-participation">
+                      <div className ="sponsored-title">
+                        <div className ="hugSponsored-title"><div className ="titleLine"></div><h2>臨打紀錄</h2></div>
+                        
+                        <div className = "sponsored-titleBtn">
+                          <button><img src="./images/btn-left.png" alt="前一個"/></button>
+                          <button><img src="./images/btn-right.png" alt="後一個"/></button>
+                          </div>
+                        </div>
+                        <div className ="prompt"><p>登入顯示</p></div>
+                      <div className ="participation-info">
+                        <div className ="info-time"><div>排</div><div>05/28 18:00</div></div>
+                        </div>
+                      </div>
+                      </div>
+                  </div>
+                  
+                  
+                </section>
+              </main>
+              <footer>
                 <figure className="footer-border"></figure>
                 <div>
                   <figure>
