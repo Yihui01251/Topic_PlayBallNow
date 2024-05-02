@@ -1700,11 +1700,11 @@ button#btn-itinerary.selected,button#btn-pastRecords.selected{
   .personal-Area{
     width: 100%;
     height: fit-content;
-    margin-bottom: 106px;
+    margin-bottom: 180px;
 
     display: grid;
     grid-template-rows: 50px 1fr;
-    gap: 80px;
+    gap: 60px;
     justify-content: center; 
     justify-items: center;
 
@@ -1742,6 +1742,9 @@ button#btn-itinerary.selected,button#btn-pastRecords.selected{
     gap: 5px;
     align-items: center;
     justify-items: center;
+}
+@media screen and (max-width: 640px){
+    .personalArea-infoContainer{gap: 20px;}
 }
 
 /* 包頭像(登入)+狀態的容器 */
@@ -1953,6 +1956,14 @@ button#btn-itinerary.selected,button#btn-pastRecords.selected{
     align-items: center;
 
 }
+@media screen and (max-width: 640px) {
+    .infoContainer-records{
+        height: fit-content;
+        display: grid;
+        grid-template-rows: 205px 1fr;
+        gap: 20px;
+    }}
+
 /* 團主紀錄容器 */
 .records-sponsored{
     width: 315px;
@@ -1967,12 +1978,15 @@ button#btn-itinerary.selected,button#btn-pastRecords.selected{
     grid-template-rows: 19px 1fr ;
     gap:15px;
     justify-items: center;
+    align-items: center;
+    overflow: hidden;
 
 }
 /* 團主紀錄第一行標題 */
 .sponsored-title{
     width: auto;
     height: fit-content;
+    justify-self: flex-start;
 
     display: grid;
     grid-template-columns:95px 59px ;
@@ -1981,6 +1995,7 @@ button#btn-itinerary.selected,button#btn-pastRecords.selected{
 }
 /* 包標題的容器 */
 .hugSponsored-title{
+
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -2003,8 +2018,12 @@ button#btn-itinerary.selected,button#btn-pastRecords.selected{
     color: #6D6D6D;
 }
 /*  */
-.sponsored-info{
-
+.records-info{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-self: flex-start;
+   
 }
 /*臨打紀錄*/
 .records-participation{
@@ -2020,9 +2039,36 @@ button#btn-itinerary.selected,button#btn-pastRecords.selected{
     grid-template-rows: 19px 1fr;
     gap:15px;
     justify-items: center;
+    align-items: center;
+     overflow: hidden;
 }
-.info-time{
-    display: none;
+.info-time{ 
+    width: 100px;
+    height: fit-content;
+    border-radius: 50px;
+    border: 2px solid rgba(131, 185, 15, 0.9);
+    background-color:rgba(247, 246, 245, 0.9); 
+    color: #689607;
+
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+   
+}
+
+.info-time div{
+    width: 33px;
+    height: 42px;
+    border-radius: 50px;
+    background-color: rgba(131, 185, 15, 0.9);
+    color: rgba(247, 246, 245, 0.9);
+    font-size: 30px;
+}
+.info-time p{
+ width: 50px;
+ text-align: center;
 }
 
 /* RWD */
