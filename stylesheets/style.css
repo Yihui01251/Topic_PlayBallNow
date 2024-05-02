@@ -1592,7 +1592,7 @@ button#btn-itinerary.selected,button#btn-pastRecords.selected{
     margin-left: 50px;
 
     display: grid;
-    grid-template-columns: 75px 80px;
+    grid-template-columns: 100px 80px;
     gap: 15px;
     align-content: center;
     justify-content: start;
