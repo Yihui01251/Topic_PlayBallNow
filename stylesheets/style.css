@@ -203,7 +203,7 @@ a {
 }
 
 body {
-    width: 100%;
+    width: auto;
     height: auto;
     background-image: var(--background-image);
     background-repeat: no-repeat; /* 防止背景圖片重複 */
@@ -219,55 +219,84 @@ body {
 .background-Vb{
     background-image: url(../images/CatBg.jpg);
 }
+.background-both{
+    background-image: url(../images/BothBg.jpg);
+}
 
 .body{
     width: 100%;
     height: 100%;
     position: relative;
-    display: grid;
-    grid-template-rows: 100px 1fr 100px;
+    /* display: grid;
+    grid-template-rows: 125px 1fr 100px; */
+    display: flex;
+    flex-direction: column;
     gap: 10px;
     justify-items: center;
     align-items: center;
+    justify-content: center
 }
 /*  */
 /* 導覽列 */
 #topBar {
-    width: 100%;
-    /* 控制子層 */
-    display: flex;
-    flex-direction: column;
+    width: 80%;
+    margin: 25px 100px;
+
+
+     /* 控制子層 */
+     display: flex;
+     flex-direction: column;
+     align-items: center;
 }
 
 /* 桌機 */
-@media(max-with:820px) {}
+@media(max-width:820px) {}
 
 /* 平板 */
-@media (max-with:768px) {}
+@media (max-width:768px) {}
 
 /* 手機 */
-@media (max-with:640px) {
+@media (max-width:640px) {
     #topBar {
-        align-self: flex-end;
-        width: 100%;
-        /* 控制子層 */
-        display: flex;
-        flex-direction: column;
+       
+        width: 90%;
+        position: fixed;
+        bottom: 0;
+        margin-bottom: 15px;
+        z-index: 1;
     }
 }
 
 #top-nav {
-    /* 父 */
-    width: auto;
-    flex: 0 1 auto;
-    align-self: center;
-    margin: 25px 0;
 
+    /* 父 */
+    width: 50%;
+    flex:auto;
+    /* align-self: center; */
+    margin: 20px;
+
+}
+/* 平板 */
+@media (max-width:768px) {}
+
+/* 手機 */
+@media (max-width:640px) {
+    #top-nav {
+
+        /* 父 */
+        width: 320px;
+        align-self: center;
+       
+    
+    }
+    #menu{
+        width: 90%;
+    }
 }
 
 #menu {
     /* 樣式 */
-    width: 800px;
+    width: 100%;
     height: 50px;
     border: 3px solid black;
     border-bottom: 5px solid black;
@@ -278,35 +307,47 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    padding: 5px 15px;
 
+}
+/* 手機 */
+@media (max-width:640px) {
+    #menu{
+        width: 90%;
+    }
 }
 
 #menu li {
-    flex: 1;
-    padding-left: 100px;
+    flex: 1 0 auto;
+    /* padding-left: 100px; */
     /* 控制子層 */
-    text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
-#menu li:last-child {
-    /* 樣式 */
+/* #menu li:last-child {
+    
     padding-right: 100px;
-}
+} */
 
 #menu li a {
+    width: 50%;
     /* 樣式 */
     padding: 1px;
     /* 控制子層 */
-    display: flex;
-    text-align: center;
+    display: flex; 
+    gap: 2px;;
+    flex-wrap: wrap;
 }
 
 #menu .icon {
+    flex: 0 1 auto;
     /* 樣式*/
     width: 32px;
     height: 32px;
     margin-right: 5px;
 }
+
 /*  */
 /* 頁尾 */
 footer {
@@ -317,6 +358,18 @@ footer {
     padding-bottom: 10px;
     position: absolute;
     bottom: 0;
+    margin-top: 100px;
+}
+
+/* 手機 */
+@media (max-width:640px) {
+   footer{
+    display: none;
+   }
+   /* 主內容 */
+    main{
+    margin-bottom: 180px;
+}
 }
 
 .footer-border {
@@ -875,6 +928,10 @@ button#btn-typeVb.selected img {
   
 
 }
+.hugTitle{
+   flex: auto;
+   margin-left: 20px;
+}
 .filter-postArea .filter-title .hugTitle{
     text-align: center;
     
@@ -889,7 +946,7 @@ div.hugTitle h1,div.hugTitle h2{
     z-index: 0;
 }
 /* 增加文字外框線 */
-.hugTitle h1::before,.hugTitle h2::before{
+.hugTitle h1::before,.hugTitle h2::before,.hugTitle::before{
     position: absolute;
     content: attr(value); 
     -webkit-text-stroke: 4px #000000;
@@ -1227,17 +1284,38 @@ main.form-formArea{
 /* 發文表單標題 */
 main div.form-title{
     /* layout */
-    width: 700px;
+    width: 90%;
     height: fit-content;
     margin: 0 50px;
-    margin-bottom: 50px;
 
     /* child */
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+ 
 
+}
+/* 平板 */
+@media (max-width:768px) {}
+
+/* 手機 */
+@media (max-width:640px) {
+    /* 發文表單標題 */
+main div.form-title{
+    /* layout */
+    min-width: 315px;
+    height: fit-content;
+    margin: 20px 0px;
+    /* child */
+    display: flex;
+    flex-direction: row;
+    gap: 80px;
+    justify-content: space-around;
+    align-items: center;
+ 
+
+}
 }
 /* 類別按鈕+表單+預覽區 */
 main section.form-container{
@@ -1616,60 +1694,103 @@ button#btn-itinerary.selected,button#btn-pastRecords.selected{
     background-size: 10px 3px; /* 這裡的第一個值（10px）是虛線的長度，第二個值（2px）是虛線的寬度 */
   }
 
+
   /*  */
   /* main個人檔案 */
   .personal-Area{
     width: 100%;
     height: fit-content;
-    margin-bottom: 98px;
+    margin-bottom: 106px;
 
     display: grid;
     grid-template-rows: 50px 1fr;
     gap: 80px;
     justify-content: center; 
+    justify-items: center;
 
+  }
+  @media screen and (max-width:640px) {
+    .personal-Area{
+        margin-bottom: 180px;
+    }
   }
 /* 資料編輯按鈕*/
 #btn-editFile{
+    flex: 0.1;
+    justify-self: end;
     width: fit-content;
     height: fit-content;
     border-radius: 50px;
     padding: 9px 18px;
+    margin-right: 10px;
     background-color: rgba(155, 58, 232, 0.9);
     color: rgba(247, 246, 245, 0.9);
     border:2px solid black;
     box-shadow:  0px 4px 0px 0px black;
     display: grid;
     grid-template-columns:65px 32px ;
+    align-items: center;
 }
 /* 個人資料容器 */
 .personalArea-infoContainer{
-    width: fit-content;
+    width: 100%;
     height:fit-content;
+    margin: 0 50px;
 
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-}
-/* 包頭像+狀態的容器 */
-.infoContainer-biography{
-    width: auto;
-    height: fit-content;
-    flex-wrap: wrap;
     display: grid;
-    grid-template-columns:1fr 315px;
+    grid-template-rows: 1fr 0.5fr;
+    gap: 5px;
+    align-items: center;
+    justify-items: center;
+}
+
+/* 包頭像(登入)+狀態的容器 */
+.infoContainer-biography{
+
+    max-width:100%;
+    min-width: 315px;
+    height: fit-content;
+
+    /* display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 80px; */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
     gap: 80px;
     justify-content: space-between;
+    align-items: center;
+    justify-items: center;
 
 }
-/* 頭像容器 */
-.biography-bust{
-    width: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+@media screen and (max-width: 640px) {
+    .infoContainer-biography {
+      
+       display: flex;
+       flex-direction: column;
+       gap: 10px;
+        justify-items: center;
+    }
 }
+/* 頭像(登入)容器 */
+.biography-bust{
+    /* flex-grow:1; */
+    width: 30%;
+    height: 250px;
+    display: grid;
+    grid-template-rows: 205px 145px;
+    gap: 15px;
+    justify-content: center;
+    align-items: start;
+    justify-items: center;
+}
+@media screen and (max-width: 640px) {
+    .biography-bust{
+        height: fit-content;
+        display: grid;
+        grid-template-rows: 205px;
+        gap: 0px;
+    }}
 /* 頭像 */
 .biography-bust figure{
     width: 150px;
@@ -1689,6 +1810,7 @@ button#btn-itinerary.selected,button#btn-pastRecords.selected{
     border-radius: 3px;
     font-size: 12px;
     padding: 6px 9px;
+ 
 
     display: flex;
     flex-direction: row;
@@ -1696,24 +1818,38 @@ button#btn-itinerary.selected,button#btn-pastRecords.selected{
     align-items: center;
 
 }
+/*  */
 .btn-logInLine img{
     width: 20px;
     margin-right: 12px;
 }
+/* 登入後姓名 */
+.userName{
+    width: 120px;
+    display: flex;
+    flex-direction: row;
+    color: white;
+
+}
+.userName img{
+    width: 20px;
+}
 /* 包(狀態)容器 */
 .biography-info{
-    width: 315px;
+    /* flex-grow:1; */
+    width:70%;
     height: fit-content;
 
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
     gap: 32px;
     justify-content: center;
     align-items: center;
 }
 /* 介紹 */
 .info-introduction{
-    width: auto;
+    /* width: 100%; */
+    min-width: 215px;
     height: 89px;
     border-radius: 50px;
     padding: 12px 18px;
@@ -1726,9 +1862,10 @@ button#btn-itinerary.selected,button#btn-pastRecords.selected{
     
 
 }
-/* 包(場次+出席+自評狀態)容器 */
+/* 場次+出席+自評狀態 */
 .info-selfState{
-    width: 315px;
+    max-width: 100%;
+    min-width: 315px;
     height: fit-content;
     border-radius: 20px;
     border: 4px solid black;
@@ -1736,7 +1873,7 @@ button#btn-itinerary.selected,button#btn-pastRecords.selected{
     padding:20px;
 
     display: grid;
-    grid-template-rows: 22px 19px;
+    grid-template-rows: 2fr 0.5fr;
     gap: 20px;
     justify-content: center;
     align-items: center;
@@ -1744,6 +1881,50 @@ button#btn-itinerary.selected,button#btn-pastRecords.selected{
     
 
 }
+/* 登入後顯示的場次資料 */
+.selfState-userInfo{
+    height: fit-content;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 35px;
+    align-items: center;
+
+}
+/*  */
+.selfState-userInfo .userInfo{
+    width: 53px;
+    height: 32px;
+    border-radius: 50px;
+    background-color: #83B90F;
+    text-align: center;
+    line-height: 32px;
+    color: rgba(247, 246, 245, 0.9);
+    
+
+}
+/*  */
+.selfState-userInfo div{
+    width: 60px;
+    height: 55px;
+    position: relative;
+}
+.selfState-userInfo div img{
+    position: absolute;
+    width: 100%;
+    top: 0;
+
+    
+}
+.selfState-userInfo div p{
+    
+    position: absolute;
+    top:18px;
+    left: 13px;
+    color: #83B90F;
+
+}
+
+
 /* 累積場次... */
 .selfState-title{
     width: 242px;
@@ -1752,7 +1933,7 @@ button#btn-itinerary.selected,button#btn-pastRecords.selected{
     display:grid;
     grid-template-columns: 67px 51px 67px;
     justify-content: space-between;
-    color:var(--font-color) ;
+    color:#83B90F ;
 
 }
 /*登入顯示字顏色 */
@@ -1761,16 +1942,21 @@ button#btn-itinerary.selected,button#btn-pastRecords.selected{
 }
 /* 包(團主和零打紀錄)的容器 */
 .infoContainer-records{
-    width: auto;
+    max-width:100%;
+    min-width: 315px;
     height: 210px;
     display: grid;
-    grid-template-columns:1fr 1fr;
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+    /* grid-template-columns:1fr 1fr; */
+    gap: 80px;
+    justify-items: center;
+    align-items: center;
 
 }
 /* 團主紀錄容器 */
 .records-sponsored{
-    width: fit-content;
+    width: 315px;
+    min-width: 215px;
     height: fit-content;
     padding: 20px;
     background-color:#F6F6F6;
@@ -1820,9 +2006,10 @@ button#btn-itinerary.selected,button#btn-pastRecords.selected{
 .sponsored-info{
 
 }
-/*  */
+/*臨打紀錄*/
 .records-participation{
     width: 315px;
+    min-width: 215px;
     height: fit-content;
     padding: 20px;
     background-color:#F6F6F6;
@@ -1840,10 +2027,11 @@ button#btn-itinerary.selected,button#btn-pastRecords.selected{
 
 /* RWD */
 /* 桌機 */
-@media(max-with:820px) {}
+@media(max-width:820px) {}
 
 /* 平板 */
-@media (max-with:768px) {}
+@media (max-width:768px) {}
 
 /* 手機 */
-@media (max-with:640px) {}
+@media (max-width:640px) {
+}

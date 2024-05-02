@@ -20,13 +20,23 @@
       }
     </style>
   </head>
-  <body id="body">
+  <body id="body" class="background-both">
     <small class="fileName">檔名：<code>personal.html</code></small>
     <!-- 根元素  -->
     <div id="root"></div>
     <script type="text/babel">
       (async () => {
+
+        const {useState} = React;
+        
         const App = () => {
+          const [loginBtn, setLoginBtn] =useState('');
+          const [infoState,setInfoState] =useState('none');
+          const changeLogInState = (id)=>{
+          setLoginBtn("none");
+          setInfoState("block");
+        }
+
           return (
             <div className="body">
               <header id="topBar">
@@ -78,17 +88,51 @@
                     />
                   </button>
                 </div>{" "}
-                <section className="personalArea-infoContainer">
+                <div className="personalArea-infoContainer">
                   <div className="infoContainer-biography">
                     <div className="biography-bust">
-                      <figure>
-                        <img src="./images/vball.png" alt="排球頭像" />
+                      <figure style ={{display : loginBtn}}>
+                        <img src="./images/bball.png" alt="排球頭像" />
+                        
                       </figure>
-                      <button className="btn-logInLine">
+                      <figure style ={{display : infoState}} >
+                        <img src="./images/player.png" alt="假頭像" />
+                      </figure>
+                      <button className="btn-logInLine" onClick ={()=>changeLogInState("btn-logInLine")} style ={{display : loginBtn}}>
                         <img src="./images/icon-LINE.png" alt="" />
                         Line登入
                       </button>
-                      <div className ="records-sponsored">
+                      <div className ="userName"><img src="./images/icon-male.png" alt=""/><p className ="hugTitle title-M" value="十全大補">十全大補</p></div>  
+                    </div>
+                    <div className="biography-info">
+                      <div className="info-introduction">
+                        <p style ={{display : loginBtn}}>登入後可輸入狀態</p>
+                        <p style ={{display : infoState ,color : "black"}}>很高興可以認識大家...</p>
+                      </div>
+                      <div className="info-selfState">
+                        <div style ={{display : infoState}}>
+                          <div className="selfState-userInfo" >
+                              <p className ="userInfo">100</p>
+                              <div>
+                                <p className = "text-M">85%</p>
+                                <img src="./images/EllipseBar.png" alt=""/>
+                                </div>
+                              <p className ="userInfo">中上</p>
+                              </div>
+                          </div>
+                        <div className ="selfState-title">
+                          <p>累積場次</p>
+                          <p>出席率</p>
+                          <p>自評等級</p>
+                        </div>
+                        <div className ="prompt" style ={{display : loginBtn}}>
+                          <p>登入顯示</p>
+                        </div>
+                      </div>
+                      </div>
+                  </div>
+                  <div className ="infoContainer-records">
+                    <div className ="records-sponsored">
                       <div className ="sponsored-title">
                         <div className ="hugSponsored-title"><div className ="titleLine"></div><h2>團主紀錄</h2></div>
                         
@@ -97,24 +141,9 @@
                           <button><img src="./images/btn-right.png" alt="後一個"/></button>
                           </div>
                         </div>
-                      <div className ="prompt"><p>登入顯示</p></div>
+                      <div className ="prompt" style ={{display : loginBtn}}><p>登入顯示</p></div>
                       <div className ="sponsored-info">
                         <div className ="info-time"><div>排</div><div>05/28 18:00</div></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="biography-info">
-                      <div className="info-introduction">
-                        <p>登入後可輸入狀態</p>
-                      </div>
-                      <div className="info-selfState">
-                        <div className ="selfState-title">
-                          <p>累積場次</p>
-                          <p>出席率</p>
-                          <p>自評等級</p>
-                        </div>
-                        <div className ="prompt">
-                          <p>登入顯示</p>
                         </div>
                       </div>
                       <div className ="records-participation">
@@ -126,16 +155,14 @@
                           <button><img src="./images/btn-right.png" alt="後一個"/></button>
                           </div>
                         </div>
-                        <div className ="prompt"><p>登入顯示</p></div>
+                        <div className ="prompt" style ={{display : loginBtn}}><p>登入顯示</p></div>
                       <div className ="participation-info">
                         <div className ="info-time"><div>排</div><div>05/28 18:00</div></div>
                         </div>
                       </div>
-                      </div>
-                  </div>
+                    </div>
                   
-                  
-                </section>
+                </div>
               </main>
               <footer>
                 <figure className="footer-border"></figure>
