@@ -185,6 +185,10 @@ a {
     color: black;
 }
 
+select,input{
+    font-size: 16px;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -203,8 +207,8 @@ a {
 }
 
 body {
-    width: auto;
-    height: auto;
+    width: 100%;
+    height: 100%;
     background-image: var(--background-image);
     background-repeat: no-repeat; /* 防止背景圖片重複 */
     background-size: cover; /* 確保背景圖片填滿整個容器 */
@@ -240,21 +244,17 @@ body {
 /* 導覽列 */
 #topBar {
     width: 80%;
-    margin: 25px 100px;
-
+    margin: 1vw 19vw; /* header置中 */
+    align-self: center;  /* header置中 */
 
      /* 控制子層 */
      display: flex;
      flex-direction: column;
      align-items: center;
 }
-
-/* 桌機 */
-@media(max-width:820px) {}
-
-/* 平板 */
-@media (max-width:768px) {}
-
+.mobile-TopBar{
+    display: none;
+}
 /* 手機 */
 @media (max-width:640px) {
     #topBar {
@@ -265,6 +265,16 @@ body {
         margin-bottom: 15px;
         z-index: 1;
     }
+    .mobile-TopBar{
+        display: block;
+        align-self: center;
+        min-width: 100vw;
+    }
+    .mobile-TopBar img{
+        width: 100%;
+       
+    }
+    
 }
 
 #top-nav {
@@ -284,7 +294,8 @@ body {
     #top-nav {
 
         /* 父 */
-        width: 320px;
+        width: 60vw;
+        min-width: 320px;
         align-self: center;
        
     
@@ -368,7 +379,8 @@ footer {
    }
    /* 主內容 */
     main{
-    margin-bottom: 180px;
+
+    margin-bottom: 180px; /* 主要内容避免被覆盖 */
 }
 }
 
@@ -416,39 +428,66 @@ footer div p {
 /*  */
 /* 首頁main */
 .index {
+    width: 100%;
     /* 控制子層 */
     display: flex;
     flex-direction: column;
+    align-items: center;
+    /* padding: 0 50px; */
+    gap: 40px;
     
 }
 
 .index-title{
-    width: 700px;
+    width: auto;
     height: fit-content;
     margin: 0 50px;
     margin-bottom: 50px;
-    align-self: center;
+    align-self: flex-start;
 }
 
 /* 搜尋區 */
-/* main> section.search */
+/* main> section(search */
 .search {
     /* 樣式 */
-    min-width: 340px;
-    width: 800px;
+    max-width: 800px;
+    min-width: 300px;
+    width: 90%;
     height: auto;
     /* 布局 */
     flex: 1 1 auto;
     align-self: center;
-    margin-bottom: 50px;
+    margin: 50px 0px;
     /* 控制子層 */
     display: flex;
     flex-direction: row;
-    /* justify-content: center;
-    align-items: center; */
+    justify-content: center;
+    align-items: center;
 }
+/* 手機 */
+@media (max-width:640px) {
+   
+}
+/* 手機 */
+@media (max-width:640px) {
+    .search {
+        /* 樣式 */
+        min-width: 320px;
+        width: 90vw;
+        height: auto;
+        /* 布局 */
+        flex: 1 1 auto;
+        align-self: center;
+        /* margin: 50px 0px; */
+        /* 控制子層 */
+        display: flex;
+        flex-direction: column;
+        /* justify-content: center;
+        align-items: center; */
+    }
 
-/* main > section.search > div#search-Type */
+}
+/* main > section(search > div#search-Type */
 #search-Type {
     /* 布局 */
     flex: 1 1 auto;
@@ -457,6 +496,12 @@ footer div p {
     flex-direction: column;
     align-self: center;
 
+}
+/* 手機 */
+@media (max-width:640px) {
+    #search-Type {
+        display: none;
+    }
 }
 
 #btn-typeVb {
@@ -484,7 +529,7 @@ footer div p {
     object-position: center; /* 圖片位置 */
     opacity: 0.7;
 }
-/* main > section.search > div#search-Type > button */
+/* main > section(search > div(search-Type > button */
 #btn-typeBm {
     /* 樣式 */
     width: 120px;
@@ -504,8 +549,6 @@ footer div p {
     pointer-events: none;
     width: 30%;
     opacity: 0.7;
-    /*object-fit: cover;  裁剪圖片，使其填滿元素 
-    object-position: center; /* 圖片位置 */
 
 }
 
@@ -528,6 +571,13 @@ button#btn-typeVb.selected {
     align-items: center;
     justify-content: center;
 }
+/* 手機 */
+@media (max-width:640px) {
+    button#btn-typeBm.selected,
+button#btn-typeVb.selected{
+        border-radius: 90px;
+    }
+}
 
 button#btn-typeBm.selected img,
 button#btn-typeVb.selected img {
@@ -541,29 +591,59 @@ button#btn-typeVb.selected img {
     /* 圖片位置 */
 }
 
-/* main > section.search > div#search-Bar */
+/* 手機板首頁的打羽球、打排球按鈕容器*/
+.btn-changeType {
+    /* 640px以上不顯示 */
+    display: none;
+    width: 80vw;
+    height:fit-content;
+    flex: 10 1 auto;
+}
+/* 手機 */
+@media (max-width:640px) {
+    .btn-changeType{
+       display: block;
+       min-width: 320px;
+    }
+}
+
+/* main > section(search > div(search-Bar */
 #search-Bar {
     /* 樣式 */
-    width: auto;
+    width: 80vw;
+    min-width: 300px;
     height: 270px;
     border: 4px solid #000;
     border-bottom: 15px solid #000;
     border-radius: 20px;
     background-color: #14AAEB;
     /* 布局 */
-    flex: 15 1 340px;
+    flex: 15 1 40px;
     padding: 20px;
     /* 控制子層 */
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-
 
 
 }
+.searchBtn-box{
+    
+}
+.searchBtn-box #search-Type{
+    display: none; 
 
-/* main > section.search > div#search-Bar > div.dropMenu */
+}
+/* 手機 */
+@media (max-width:640px) {
+    .searchBtn-box #search-Type{
+       display: block;
+       width: 25vw;
+       margin-right: 50px;
+    }
+}
+/* main > section(search > div(search-Bar > div(dropMenu */
 .dropMenu {
+    width: 80%;
     height: auto;
     padding-right: 25px;
     /* 布局 */
@@ -572,9 +652,10 @@ button#btn-typeVb.selected img {
     justify-content: center;
 }
 
-/* main > section.search > div#search-Bar > div.dropMenu > ul*/
+/* main > section(search > div(search-Bar > div(dropMenu > ul*/
 .dropMenu ul {
     /* 樣式 */
+    width: 100%;
     height: auto;
     /*控制子層 */
     display: flex;
@@ -583,16 +664,16 @@ button#btn-typeVb.selected img {
     align-content: center;
 }
 
-/* main > section.search > div#search-Bar > div.dropMenu > ul > input */
+/*  ...> div(search-Bar > div(dropMenu > ul > input */
 .dropMenu input {
     /* 樣式 */
-    width: 250px;
+    width: 60%;
+    max-width: 250px;
+    min-width: 130px;
     height: auto;
-    min-width: 147px;
     min-height: 32.5px;
     border: 3px solid black;
     border-radius: 50px;
-
     margin-bottom: 8px;
     box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.3);
     color: #147CB6;
@@ -604,9 +685,11 @@ button#btn-typeVb.selected img {
 
 }
 
-/* main > section.search > div#search-Bar > div.dropMenu > ul > select */
+/* > div(search-Bar > div(dropMenu > ul > select */
 .dropMenu select {
-    width: 250px;
+    width: 60%;
+    max-width: 250px;
+    min-width: 130px;
     height: auto;
     min-width: 147px;
     min-height: 32.5px;
@@ -622,47 +705,47 @@ button#btn-typeVb.selected img {
 
 }
 
-/* main > section.search > div#search-Bar > div */
+/* main > section(search > div#search-Bar > div */
 #search-Bar div {
-    width: auto;
+    width: 30%;
     height: auto;
     /*控制子層 */
     display: flex;
     flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    align-content: center;
 
 }
 
-/* main > section.search > div#search-Bar > div > button.btn-changeType*/
-#search-Bar .btn-changeType {
-    width: 130px;
-    height: 130px;
-    margin-bottom: 30px;
-    flex: 10 1 auto;
-    visibility: hidden;
-}
-
-/* main > section.search > div#search-Bar > div > button.btn-send*/
+/* 首頁篩選送出按鈕 */
+/* ...> div(search-Bar > div > button(btn-send*/
 .btn-send {
     width: fit-content;
+    min-width: 130px;
     height: fit-content;
     border: 3px solid black;
     border-bottom: 5px solid black;
     border-radius: 50px;
     padding: 5px 40px;
+    margin-right: 20px;
     background-color: var(--btn-color);
 }
-
-/*  */
-/* 首頁main > section:containers */
+/* 首頁貼文容器 */
+/* 首頁main > section */
 .containers {
-    width: 80vh;
+    width: 60vw;
+    min-width: 300px;
     height: fit-content;
     border: 3.5px solid black;
     border-bottom: 6px solid black;
     border-radius: 20px;
     padding: 10px 15px;
+    /* margin: 0 auto; 水平居中 */
     background-color:rgba(247, 246, 245, 0.9) ;
     z-index: -2;
+    /* 和footer的距離 */
+    margin-bottom: 100px;
 
     align-self: center;
     flex: 1 1 auto;
@@ -672,13 +755,17 @@ button#btn-typeVb.selected img {
 
 }
 
+/*  */
 /* 首頁main > section.containers > header.title-postArea*/
 .title-postArea {
+    width: 95%;
+    padding: 20px 10px;
+    margin: 0 auto; /* 水平居中 */
     /*控制子層 */
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 20px 10px;
+    
 
 }
 
@@ -705,11 +792,12 @@ button#btn-typeVb.selected img {
     background-color: var(--btn-color);
     padding: 5px 10px;
 }
-
+/* 首頁貼文容器tag */
 /* 首頁main > section.containers > ul.tags*/
 .tags {
     height: 25px;
-    width: auto;
+    width: 95%;/* 和貼文標題一樣 */
+    margin: 0 auto; /* 水平居中 */
 
     /*控制子層 */
     display: flex;
@@ -746,7 +834,7 @@ button#btn-typeVb.selected img {
     background-color: var(--main-color);
 }
 
-/* 首頁main > section.containers > ul.tags > li > #tags-degree*/
+/* 首頁main > section(containers > ul.tags > li > #tags-degree*/
 #tags-degree {
     background-color: var(--main-color);
     color: white;
@@ -756,22 +844,26 @@ button#btn-typeVb.selected img {
     background-color: var(--main-color);
 }
 
-/* 首頁main > section.containers > div.post*/
+/* 首頁main > section(containers > div.post*/
 .post-block {
     height: 245px;
     width: auto;
     padding: 10px 0px;
 
-
+/* 
     display: flex;
-    flex-direction: row;
+    flex-direction: row; */
+    display: grid; /* 使用网格布局以便更好地控制子元素的排列 */
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* 自适应网格布局，每列最小300px宽度，自动换行 */
+    gap: 20px; /* 设置网格间距 */
+    justify-content: center; /* 水平居中 */
     overflow: hidden;
 }
 
 /* 首頁main > section.containers > div.post > div.content*/
 .content {
     flex: 1 0 auto;
-    width: 245px;
+    width: 100%;
     height: 245px;
     background-image: var(--border-image);
     background-size: cover;
@@ -805,13 +897,13 @@ button#btn-typeVb.selected img {
 
 /* 首頁main > section.containers > div.post > div.content > div.text*/
 .text {
-    width: 144px;
+    width: 90%;
     height: 144px;
     /* background-color: #14AAEB; */
     /* position:  absolute; */
     text-align: center;
     color: white;
-
+    padding: 20px;
     display: inline-flex;
     flex-direction: column;
 
@@ -1273,6 +1365,7 @@ div.hugTitle h1,div.hugTitle h2{
 /* 發文表單頁 */
 /* main(form-formArea */
 main.form-formArea{
+    width: 100%;
     height: max-content;
     /* margin-bottom: 10px; */
    
@@ -1284,7 +1377,9 @@ main.form-formArea{
 /* 發文表單標題 */
 main div.form-title{
     /* layout */
-    width: 90%;
+    width: 60%;
+    max-width: 700px;
+    min-width: 340px;
     height: fit-content;
     margin: 0 50px;
 
@@ -1304,7 +1399,7 @@ main div.form-title{
     /* 發文表單標題 */
 main div.form-title{
     /* layout */
-    min-width: 315px;
+    min-width: 340px;
     height: fit-content;
     margin: 20px 0px;
     /* child */
@@ -1352,7 +1447,8 @@ main div button#btn-postManage{
 }
 /* 切換表單按鈕容器 */
 main div.form-type{
-    width: 365px;
+    
+    width:100%;
     height: fit-content;
     align-self: flex-start;
    
