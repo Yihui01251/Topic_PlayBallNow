@@ -515,6 +515,7 @@ footer div p {
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
 
 }
 /* 手機 */
@@ -599,10 +600,14 @@ button#btn-typeVb.selected {
     }
     
     button#btn-typeBm.selected,
-button#btn-typeVb.selected{
+    button#btn-typeVb.selected{
+        position: absolute;
+       
         display: block;
         border-radius: 90px;
         padding: 10px;
+        right: 1px;
+        top:58px;
        
     }
 }
@@ -1851,7 +1856,7 @@ button#btn-pastRecords.selected {
     gap: 2vw;
     justify-content: center;
     align-items: center;
-    justify-items: end;
+    justify-items: center;
 }
 
 /* 手機 元件兩行變成一行 */
