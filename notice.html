@@ -16,7 +16,7 @@
       }
     </style>
   </head>
-  <body id="body">
+  <body id="body" class="background-both">
     <small class="fileName">檔名：<code>notice.html</code></small>
     <!-- 根元素  -->
     <div id="root"></div>
@@ -106,12 +106,11 @@
                 className="notice-ballType"
                 style={{ backgroundColor: typeStyle }}
               >
-                <p style={{ fontSize: "30px" }}>{type}</p>
+                <p>{type}</p>
               </div>
               <div className="notice-info">
                 <div>
-                  <p>{day}</p>
-                  <p>{startTime}</p>
+                  <p>{day} {startTime}</p>
                 </div>
                 <p>{arena}</p>
                 <div style={{ color: stateStyle ,border:"1px solid" ,stateStyle }}>
@@ -145,6 +144,7 @@
 
           return (
             <div className="body">
+              <div className = "mobile-TopBar"><img src="./images/mobile-both-topbanner.png" alt="不分類的手機版banner"/></div>
               <header id="topBar">
                 <nav id="top-nav">
                   <ul id="menu">
