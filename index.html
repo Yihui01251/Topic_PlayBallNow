@@ -85,7 +85,7 @@
             const bodyStyle = document.getElementById("body");
             console.log(bodyStyle);
 
-            if (id == "btn-typeBm") {
+            if (id === "btn-typeBm" || id ==="btn-formBM") {
               
               colorMain = "#83B90F";
               colorFont = "#689607";
@@ -95,10 +95,10 @@
               // 新增class改變背景
               bodyStyle.classList.add("background-Bm");
               bodyStyle.classList.remove("background-Vb");
-              setSelectedButton("btn-typeBm");
+              setSelectedButton(id);
               setTodayType("bm_today_postData");
               setWeekType("bm_week_postData");
-            } else if (id == "btn-typeVb") {
+            } else if (id === "btn-typeVb" || id === "btn-formVB") {
               
               colorMain = "#14AAEB";
               colorFont ="#147CB6";
@@ -107,7 +107,7 @@
               decorate = 'url("../images/index-searchCat.png")';
               bodyStyle.classList.remove("background-Bm");
               bodyStyle.classList.add("background-Vb");
-              setSelectedButton("btn-typeVb");
+              setSelectedButton(id);
               setTodayType("vb_today_postData");
               setWeekType("vb_week_postData");
             }
@@ -242,10 +242,10 @@
                         <button
                           id="btn-formBM"
                           // ref={btnFormBmRef}
-                          // className={
-                          //   selectedButton === "btn-formBM" ? "selected" : ""
-                          // }
-                          // onClick={() => changeType("btn-formBM")}
+                          className={
+                            selectedButton === "btn-typeBm" ? "selected" : ""
+                          }
+                          onClick={() => changeType("btn-typeBm")}
                         >
                           打羽球
                         </button>
@@ -253,10 +253,10 @@
                         <button
                           id="btn-formVB"
                           // ref={btnFormVbRef}
-                          // className={
-                          //   selectedButton === "btn-formVB" ? "selected" : ""
-                          // }
-                          // onClick={() => changeType("btn-formVB")}
+                          className={
+                            selectedButton === "btn-typeVb" ? "selected" : ""
+                          }
+                          onClick={() => changeType("btn-typeVb")}
                         >
                           打排球
                         </button>
@@ -366,7 +366,7 @@
                     </div>
                     <div className = "searchBtn-box">
                       <div id="search-Type">
-                    <button
+                        <button
                       id="btn-typeVb"
                       className={
                         selectedButton === "btn-typeVb" ? "selected" : ""
@@ -376,8 +376,17 @@
                     >
                       <img src="./images/vball.png" alt="排球" />
                     </button>
-                    
-                  </div>
+                    <button
+                      id="btn-typeBm"
+                      className={
+                        selectedButton === "btn-typeBm" ? "selected" : ""
+                      }
+                      onClick={() => changeType("btn-typeBm")}
+                      ref={btnTypeBmRef}
+                    >
+                      <img src="./images/bball.png" alt="羽球" />
+                    </button>
+                        </div>
                       <a href="./react_postsArea.html"><button className="btn-send">
                         送出
                       </button></a>

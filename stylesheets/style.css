@@ -501,6 +501,7 @@ footer div p {
         /* 控制子層 */
         display: flex;
         flex-direction: column;
+        gap: 0;
         /* justify-content: center;
         align-items: center; */
     }
@@ -520,6 +521,7 @@ footer div p {
 @media (max-width:640px) {
     #search-Type {
         display: none;
+       
     }
 }
 
@@ -592,9 +594,16 @@ button#btn-typeVb.selected {
 }
 /* 手機 */
 @media (max-width:640px) {
+    #btn-typeBm,#btn-typeVb{
+        display: none;
+    }
+    
     button#btn-typeBm.selected,
 button#btn-typeVb.selected{
+        display: block;
         border-radius: 90px;
+        padding: 10px;
+       
     }
 }
 
@@ -602,12 +611,13 @@ button#btn-typeBm.selected img,
 button#btn-typeVb.selected img {
 
     opacity: 1;
-    width: 90%;
-    pointer-events: none;
+    width: 100%;
+    pointer-events:none;
     object-fit: cover;
     /* 裁剪圖片，使其填滿元素 */
     object-position: center;
     /* 圖片位置 */
+    
 }
 
 /* 手機板首頁的打羽球、打排球按鈕容器*/
@@ -654,13 +664,14 @@ button#btn-typeVb.selected img {
 
 }
 
-/* 首頁篩選區動物裝飾 */
+/* 首頁篩選區裝飾動物 */
 #search-Bar::before{
     position: absolute;
-    width: 30px;
+    width: 40px;
     /* background-color: #d9d9d9; */
     height: fit-content;
     content:var(--search-decorate);
+    /* background-size: cover; */
     z-index: 1;
     right: 145px;
     top: -75px;
@@ -670,7 +681,6 @@ button#btn-typeVb.selected img {
     .searchBtn-box #search-Type{
        display: block;
        width: 25vw;
-       margin-right: 50px;
     }
     #search-Bar::before{
         content: none;
@@ -702,7 +712,7 @@ button#btn-typeVb.selected img {
 /*  ...> div(search-Bar > div(dropMenu > ul > input */
 .dropMenu input {
     /* 樣式 */
-    width: 80%;
+    width: 90%;
     max-width: 250px;
     min-width: 130px;
     height: auto;
@@ -722,7 +732,7 @@ button#btn-typeVb.selected img {
 
 /* > div(search-Bar > div(dropMenu > ul > select */
 .dropMenu select {
-    width: 80%;
+    width: 90%;
     max-width: 250px;
     min-width: 130px;
     height: auto;
@@ -1554,10 +1564,14 @@ button#btn-formVB.selected {
     width: fit-content;
     height: fit-content;
     border-radius: 50px;
-    padding: 5px 25px;
+    padding-top: 3px;
+    padding-bottom: 0px;
     color: black;
     background-color: var(--main-color);
-    border: 0px;
+    border-bottom: 7px solid var(--main-color);
+    border-top: 6px solid black;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
     box-shadow: none;
 
     position: relative;
@@ -1567,6 +1581,7 @@ button#btn-formVB.selected {
 /* 選中時陰影 */
 button#btn-formBM.selected::before,
 button#btn-formVB.selected::before {
+    display: block;
     content: '';
     position: absolute;
     top: 20px;
@@ -1771,9 +1786,9 @@ button#btn-formVB.selected::before {
 /* 通知類別按鈕 */
 .notice-type button {
     width: fit-content;
-    height: fit-content;
+    height: min-content;
     border-radius: 50px;
-    padding: 9px 18px;
+    padding: 5px 18px;
     background-color: rgba(155, 58, 232, 0.9);
     color: rgba(247, 246, 245, 0.9);
     border: 2px solid black;
@@ -1787,6 +1802,11 @@ button#btn-pastRecords.selected {
     background-color: rgba(74, 13, 150, 0.9);
     border: none;
     box-shadow: none;
+    padding: 2px 18px;
+    border-bottom: 3px solid rgba(74, 13, 150, 0.9);
+    border-top: 6px solid black;
+    border-right: 2px solid black;
+    border-left: 2px solid black;
 }
 
 /* 副標容器 */
