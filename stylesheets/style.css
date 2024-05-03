@@ -203,7 +203,8 @@ select,input{
     --font-color: #147CB6;
     --border-image: url('../images/catframe.png');
     --background-image: url('../images/CatBg.jpg');
-    /* 通知 */
+    --search-decorate:url('../images/index-searchCat.png');
+    /* 行程 */
     --border-type: solid;
     --evaluate-color: #1A8D07;
 
@@ -226,7 +227,7 @@ body {
 }
 
 .background-Bm {
-    background-image: url(../images/DogBg.jpg);
+    background-image: url(../images/DogBg\ .jpg);
 }
 
 .background-Vb {
@@ -659,9 +660,9 @@ button#btn-typeVb.selected img {
     width: 30px;
     /* background-color: #d9d9d9; */
     height: fit-content;
-    content: url(../images/index-searchCat.png);
+    content:var(--search-decorate);
     z-index: 1;
-    right: 135px;
+    right: 145px;
     top: -75px;
 }
 /* 手機 */
@@ -701,7 +702,7 @@ button#btn-typeVb.selected img {
 /*  ...> div(search-Bar > div(dropMenu > ul > input */
 .dropMenu input {
     /* 樣式 */
-    width: 60%;
+    width: 80%;
     max-width: 250px;
     min-width: 130px;
     height: auto;
@@ -721,7 +722,7 @@ button#btn-typeVb.selected img {
 
 /* > div(search-Bar > div(dropMenu > ul > select */
 .dropMenu select {
-    width: 60%;
+    width: 80%;
     max-width: 250px;
     min-width: 130px;
     height: auto;
@@ -756,12 +757,12 @@ button#btn-typeVb.selected img {
 /* ...> div(search-Bar > div > button(btn-send*/
 .btn-send {
     width: fit-content;
-    min-width: 130px;
+    min-width: 100px;
     height: fit-content;
     border: 3px solid black;
     border-bottom: 5px solid black;
     border-radius: 50px;
-    padding: 5px 40px;
+    padding: 5px 30px;
     margin-right: 20px;
     background-color: var(--btn-color);
 }

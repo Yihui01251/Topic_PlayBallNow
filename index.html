@@ -58,6 +58,7 @@
           const [postBorder, setPostBorder] = useState(
             'url("../images/catframe.png")'
           );
+          const [decorateSearch,setDecorateSearch] = useState('url("../images/index-searchCat.png")');
           const [todayType, setTodayType] = useState("vb_today_postData");
           const [weekType, setWeekType] = useState("vb_week_postData");
           const [selectedButton, setSelectedButton] = useState("btn-typeVb");
@@ -76,6 +77,7 @@
             let colorFont = "";
             let btnColor = "";
             let newBorder = "";
+            let decorate ='';
 
             // 取消其他按鈕的選擇
             const btnTypeVb = document.getElementById("btn-typeVb");
@@ -89,6 +91,7 @@
               colorFont = "#689607";
               btnColor = "#FF8D24";
               newBorder = 'url("../images/dogframe3.png")';
+              decorate = 'url("../images/index-searchDog.png")';
               // 新增class改變背景
               bodyStyle.classList.add("background-Bm");
               bodyStyle.classList.remove("background-Vb");
@@ -101,6 +104,7 @@
               colorFont ="#147CB6";
               btnColor = "#F1DB15";
               newBorder = "url('../images/catframe.png')";
+              decorate = 'url("../images/index-searchCat.png")';
               bodyStyle.classList.remove("background-Bm");
               bodyStyle.classList.add("background-Vb");
               setSelectedButton("btn-typeVb");
@@ -112,11 +116,12 @@
             setFontColor(colorFont);
             setBtnColor(btnColor);
             setPostBorder(newBorder);
+            setDecorateSearch(decorate);
             
             document.documentElement.style.setProperty("--main-color", colorMain);
             document.documentElement.style.setProperty("--font-color", colorFont);
             document.documentElement.style.setProperty("--btn-color", btnColor);
-            
+            document.documentElement.style.setProperty("--search-decorate", decorate);
           };
           // 更改資料類型
           const getPosts = (type) => {
