@@ -1855,7 +1855,7 @@ button#btn-pastRecords.selected {
 }
 
 /* 手機 元件兩行變成一行 */
-@media (max-width:640px) {
+@media (max-width:768px) {
     .notice-itineraryTitle{
         margin-left: 0;
         margin-right: 35vw;
@@ -1939,8 +1939,9 @@ button#btn-pastRecords.selected {
     .notice-container {
         width: 88vw;
         min-width: 330px; 
+        max-width: 378px;
         /* 375*0.88vw */
-        grid-template-columns: 15% calc(82% - 6px);
+        grid-template-columns:14% calc(85% - 6px);
         padding: 6px;
         gap: 0
     }
