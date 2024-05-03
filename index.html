@@ -186,6 +186,7 @@
           };
           return (
             <div className = "body">
+              <div className = "mobile-TopBar"><img src="./images/mobile-top.png" alt="排球的手機版banner"/></div>
               <header id="topBar">
               <nav id="top-nav">
               <ul id="menu">
@@ -221,15 +222,40 @@
               </nav>
               </header>
               <main className="index">
-                <div className="index-title">
+                <div className="form-title">
                   <div className="hugTitle">
                     <h1 className="title-L" value="現在想打球">
                       現在想打球
                     </h1>
                   </div>
                 </div>
+                
                 {/*篩選區 */}
                 <section className="search">
+                  <div className="btn-changeType">
+                    <div className="form-type">
+                        <button
+                          id="btn-formBM"
+                          // ref={btnFormBmRef}
+                          // className={
+                          //   selectedButton === "btn-formBM" ? "selected" : ""
+                          // }
+                          // onClick={() => changeType("btn-formBM")}
+                        >
+                          打羽球
+                        </button>
+
+                        <button
+                          id="btn-formVB"
+                          // ref={btnFormVbRef}
+                          // className={
+                          //   selectedButton === "btn-formVB" ? "selected" : ""
+                          // }
+                          // onClick={() => changeType("btn-formVB")}
+                        >
+                          打排球
+                        </button>
+                      </div></div>
                   <div id="search-Type">
                     <button
                       id="btn-typeVb"
@@ -253,11 +279,11 @@
                     </button>
                   </div>
                   <div id="search-Bar" style={{ backgroundColor: mainColor }}>
-                    <div></div>
+                    
                     <div className="dropMenu">
                       <ul>
                         <input
-                          className="dpMenu-item CN-p"
+                          className="dpMenu-item"
                           type="date"
                           name="日期"
                           id="date"
@@ -268,7 +294,7 @@
                         <select
                           name="縣市"
                           id="city"
-                          className="dpMenu-item  CN-p"
+                          className="dpMenu-item"
                         >
                           <option value="default">縣市</option>
                           <option value="taipei">台北市</option>
@@ -281,7 +307,7 @@
                         <select
                           name="程度"
                           id="degree"
-                          className="dpMenu-item  CN-p"
+                          className="dpMenu-item"
                         >
                           <option value="default">程度</option>
                           <optgroup label="羽球">
@@ -306,7 +332,7 @@
                         <select
                           name="費用"
                           id="cost"
-                          className="dpMenu-item CN-p"
+                          className="dpMenu-item"
                         >
                           <option value="default">費用</option>
                           <option value="150以下">150以下</option>
@@ -317,7 +343,7 @@
                         <select
                           name="類型"
                           id="type"
-                          className="dpMenu-item  CN-p"
+                          className="dpMenu-item"
                         >
                           <option value="default">類型</option>
                           <option value="男網純男">男網純男</option>
@@ -325,15 +351,28 @@
                         <select
                           name="設備"
                           id="equip"
-                          className="dpMenu-item  CN-p"
+                          className="dpMenu-item"
                         >
                           <option value="default">設備</option>
                           <option value="側燈">側燈</option>
                         </select>
                       </ul>
+                      {/**/}
                     </div>
-                    <div>
-                      <button className="btn-changeType">手機切換</button>
+                    <div className = "searchBtn-box">
+                      <div id="search-Type">
+                    <button
+                      id="btn-typeVb"
+                      className={
+                        selectedButton === "btn-typeVb" ? "selected" : ""
+                      }
+                      ref={btnTypeVbRef}
+                      onClick={() => changeType("btn-typeVb")}
+                    >
+                      <img src="./images/vball.png" alt="排球" />
+                    </button>
+                    
+                  </div>
                       <a href="./react_postsArea.html"><button className="btn-send">
                         送出
                       </button></a>
@@ -352,7 +391,9 @@
                     );
                   })}*/}
                   <header className="title-postArea">
-                    
+                    <h2>
+                      <div></div>本日臨打貼文
+                    </h2>
                     <div className="more">
                       <a href="#">
                         更多
