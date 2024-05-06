@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-/* http://meyerweb.com/eric/tools/css/reset/ 
+/* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
 */
@@ -187,7 +187,8 @@ a {
     color: black;
 }
 
-select,input{
+select,
+input {
     font-size: 16px;
 }
 
@@ -203,7 +204,7 @@ select,input{
     --font-color: #147CB6;
     --border-image: url('../images/catframe.png');
     --background-image: url('../images/CatBg.jpg');
-    --search-decorate:url('../images/index-searchCat.png');
+    --search-decorate: url('../images/index-searchCat.png');
     /* 行程 */
     --border-type: solid;
     --evaluate-color: #1A8D07;
@@ -257,17 +258,21 @@ body {
 /* 導覽列 */
 #topBar {
     width: 80%;
-    margin: 1vw 19vw; /* header置中 */
-    align-self: center;  /* header置中 */
+    margin: 1vw 19vw;
+    /* header置中 */
+    align-self: center;
+    /* header置中 */
 
     /* 控制子層 */
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.mobile-TopBar{
+
+.mobile-TopBar {
     display: none;
 }
+
 /* 手機 */
 @media (max-width:640px) {
     #topBar {
@@ -278,16 +283,18 @@ body {
         margin-bottom: 15px;
         z-index: 1;
     }
-    .mobile-TopBar{
+
+    .mobile-TopBar {
         display: block;
         align-self: center;
         min-width: 100vw;
     }
-    .mobile-TopBar img{
+
+    .mobile-TopBar img {
         width: 100%;
-       
+
     }
-    
+
 }
 
 #top-nav {
@@ -296,7 +303,7 @@ body {
     width: 55vw;
     flex: auto;
     margin: 20px;
-    display:inherit;
+    display: inherit;
 
 }
 
@@ -353,7 +360,7 @@ body {
 }
 
 /* #menu li:last-child {
-    
+
     padding-right: 100px;
 } */
 
@@ -376,10 +383,13 @@ body {
     height: 32px;
     margin-right: 5px;
 }
+
 /* 主內容 */
-main{
-    margin-bottom: 15vh; /* 保持與底部距離 */
+main {
+    margin-bottom: 15vh;
+    /* 保持與底部距離 */
 }
+
 /*  */
 /* 頁尾 */
 footer {
@@ -395,9 +405,9 @@ footer {
 
 /* 手機 */
 @media (max-width:640px) {
-   footer{
-    display: none;
-   }
+    footer {
+        display: none;
+    }
 }
 
 .footer-border {
@@ -452,10 +462,10 @@ footer div p {
     flex-direction: column;
     align-items: center;
     gap: 40px;
-    
+
 }
 
-.index-title{
+.index-title {
     width: auto;
     height: fit-content;
     margin: 0 50px;
@@ -484,9 +494,8 @@ footer div p {
 }
 
 /* 手機 */
-@media (max-width:640px) {
-   
-}
+@media (max-width:640px) {}
+
 /* 手機 */
 @media (max-width:640px) {
     .search {
@@ -507,6 +516,7 @@ footer div p {
     }
 
 }
+
 /* main > section(search > div#search-Type */
 #search-Type {
     /* 布局 */
@@ -518,11 +528,12 @@ footer div p {
     position: relative;
 
 }
+
 /* 手機 */
 @media (max-width:640px) {
     #search-Type {
         display: none;
-       
+
     }
 }
 
@@ -547,10 +558,11 @@ footer div p {
     pointer-events: none;
     width: 30%;
 
-    /*object-fit: cover;  裁剪圖片，使其填滿元素 
+    /*object-fit: cover;  裁剪圖片，使其填滿元素
     object-position: center; /* 圖片位置 */
     opacity: 0.7;
 }
+
 /* main > section(search > div(search-Type > button */
 #btn-typeBm {
     /* 樣式 */
@@ -593,22 +605,25 @@ button#btn-typeVb.selected {
     align-items: center;
     justify-content: center;
 }
+
 /* 手機 */
 @media (max-width:640px) {
-    #btn-typeBm,#btn-typeVb{
+
+    #btn-typeBm,
+    #btn-typeVb {
         display: none;
     }
-    
+
     button#btn-typeBm.selected,
-    button#btn-typeVb.selected{
+    button#btn-typeVb.selected {
         position: absolute;
-       
+
         display: block;
         border-radius: 90px;
         padding: 10px;
         right: 1px;
-        top:58px;
-       
+        top: 58px;
+
     }
 }
 
@@ -617,12 +632,12 @@ button#btn-typeVb.selected img {
 
     opacity: 1;
     width: 100%;
-    pointer-events:none;
+    pointer-events: none;
     object-fit: cover;
     /* 裁剪圖片，使其填滿元素 */
     object-position: center;
     /* 圖片位置 */
-    
+
 }
 
 /* 手機板首頁的打羽球、打排球按鈕容器*/
@@ -630,14 +645,15 @@ button#btn-typeVb.selected img {
     /* 640px以上不顯示 */
     display: none;
     width: 80vw;
-    height:fit-content;
+    height: fit-content;
     flex: 10 1 auto;
 }
+
 /* 手機 */
 @media (max-width:640px) {
-    .btn-changeType{
-       display: block;
-       min-width: 320px;
+    .btn-changeType {
+        display: block;
+        min-width: 320px;
     }
 }
 
@@ -661,36 +677,39 @@ button#btn-typeVb.selected img {
 
 
 }
-.searchBtn-box{
-    
-}
-.searchBtn-box #search-Type{
-    display: none; 
+
+.searchBtn-box {}
+
+.searchBtn-box #search-Type {
+    display: none;
 
 }
 
 /* 首頁篩選區裝飾動物 */
-#search-Bar::before{
+#search-Bar::before {
     position: absolute;
     width: 40px;
     /* background-color: #d9d9d9; */
     height: fit-content;
-    content:var(--search-decorate);
+    content: var(--search-decorate);
     /* background-size: cover; */
     z-index: 1;
     right: 145px;
     top: -75px;
 }
+
 /* 手機 */
 @media (max-width:640px) {
-    .searchBtn-box #search-Type{
-       display: block;
-       width: 25vw;
+    .searchBtn-box #search-Type {
+        display: block;
+        width: 25vw;
     }
-    #search-Bar::before{
+
+    #search-Bar::before {
         content: none;
     }
 }
+
 /* main > section(search > div(search-Bar > div(dropMenu */
 .dropMenu {
     width: 80%;
@@ -781,6 +800,7 @@ button#btn-typeVb.selected img {
     margin-right: 20px;
     background-color: var(--btn-color);
 }
+
 /* 首頁貼文容器 */
 /* 首頁main > section */
 .containers {
@@ -809,12 +829,13 @@ button#btn-typeVb.selected img {
 .title-postArea {
     width: 95%;
     padding: 20px 10px;
-    margin: 0 auto; /* 水平居中 */
+    margin: 0 auto;
+    /* 水平居中 */
     /*控制子層 */
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    
+
 
 }
 
@@ -824,6 +845,7 @@ button#btn-typeVb.selected img {
     justify-content: center;
     align-items: center;
 }
+
 /* 標題前的線 */
 h2 div {
     width: 5px;
@@ -831,6 +853,7 @@ h2 div {
     background-color: var(--font-color);
     margin-right: 10px;
 }
+
 /* 更多按鈕 */
 .more {
     width: fit-content;
@@ -841,12 +864,15 @@ h2 div {
     background-color: var(--btn-color);
     padding: 5px 10px;
 }
+
 /* 首頁貼文容器tag */
 /* 首頁main > section(containers > ul(tags*/
 .tags {
     height: 25px;
-    width: 95%;/* 和貼文標題一樣 */
-    margin: 0 auto; /* 水平居中 */
+    width: 95%;
+    /* 和貼文標題一樣 */
+    margin: 0 auto;
+    /* 水平居中 */
 
     /*控制子層 */
     display: flex;
@@ -889,9 +915,10 @@ h2 div {
     color: white;
 }
 
-#tags-degree:active{
+#tags-degree:active {
     background-color: var(--main-color);
 }
+
 /* 裝貼文元件的容器 */
 /* 首頁main > section(containers > div(post-block*/
 .post-block {
@@ -904,9 +931,11 @@ h2 div {
     flex-direction: row;
     /* grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); */
     /* gap: 1vw; */
-    justify-content: flex-start; /* 水平居中 */
+    justify-content: flex-start;
+    /* 水平居中 */
     overflow: hidden;
 }
+
 /* 簡略貼文元件 */
 /* 首頁main > section(containers > div(post-block> div(content*/
 .content {
@@ -923,6 +952,7 @@ h2 div {
     justify-content: center;
     align-items: center;
 }
+
 /* 背景 */
 .content .bg {
 
@@ -942,6 +972,7 @@ h2 div {
     justify-content: center;
     align-items: center;
 }
+
 /* 文字 */
 /* ...> div(post-block > div(content > div(text*/
 .text {
@@ -967,6 +998,7 @@ h2 div {
     justify-content: space-between;
 
 }
+
 /* ... > div(content > div(text > p */
 .text p {
     text-shadow: 1px -1px 0 #000000,
@@ -1439,7 +1471,7 @@ div.hugTitle h2 {
 /*  */
 /* 找人 */
 /* 找人main(form-formArea */
-main.form-formArea{
+main.form-formArea {
     width: 100vw;
     height: max-content;
     /* margin-bottom: 10px; */
@@ -1486,8 +1518,6 @@ main div.form-title {
         gap: 80px;
         justify-content: space-around;
         align-items: center;
-
-
     }
 }
 
@@ -1495,19 +1525,29 @@ main div.form-title {
 main section.form-container {
     width: fit-content;
     height: fit-content;
-    padding: 0px 200px;
-
+    padding: 50px 0px;
     display: grid;
     grid-template-columns: 339px 378px;
     gap: 20px;
 
 }
 
-/* 表單容器 */
+/* RWD 手機版換一行 */
+@media (max-width:640px) {
+    main section.form-container {
+        grid-template-columns: 1fr;
+        justify-content: center;
+        align-items: center;
+        justify-items: center;
+        padding: 15px 0px;
+    }
+}
+
+/* 表單容器:稍微修改不要壓到表單 */
 .form-block {
     display: grid;
     grid-template-rows: 30px 645px;
-    gap: 3px;
+    gap: 8px;
 
 }
 
@@ -1528,9 +1568,9 @@ main div button#btn-postManage {
 }
 
 /* 切換表單按鈕容器 */
-main div.form-type{
-    
-    width:100%;
+main div.form-type {
+
+    width: 100%;
     height: fit-content;
     align-self: flex-start;
 
@@ -1605,6 +1645,16 @@ button#btn-formVB.selected::before {
     display: grid;
     grid-template-rows: 20px 330px 20px 197px;
     gap: 15px;
+    background-color: rgba(88, 88, 88, 0.85);
+    color: white;
+
+}
+
+/* RWD 縮小邊界 */
+@media (max-width:640px) {
+    .form-edit {
+        padding: 10px;
+    }
 }
 
 /* 表單標題 */
@@ -1733,7 +1783,7 @@ button#btn-formVB.selected::before {
     border: 2.5px solid black;
 }
 
-/* 預覽容器 */
+/* 預覽容器 ：背景改色*/
 .form-review {
     width: 395px;
     height: 610px;
@@ -1742,679 +1792,709 @@ button#btn-formVB.selected::before {
     margin-top: 35px;
     margin-left: 30px;
     padding: 20px 15px;
+    background-color: rgba(217, 217, 217, 0.9);
 
     display: grid;
     grid-template-rows: 28px 324px 40px;
     gap: 100px
 }
 
-/* 預覽送出按鈕 */
-.form-review button.btn-send {
-    margin-left: 140px;
-}
-
-/*  */
-/* 行程 */
-/* 行程(通知)main容器 */
-.notice-Area {
-    /*視窗寬比例70/100 */
-    width: 70vw;
-    /* 視窗高比例100 */
-    height: fit-content;
-
-    display: grid;
-    /* 視窗高比grid */
-    /* grid-template-rows:  6vh 6vh 44vh 44vh; */
-    grid-template-rows:repeat(auto-fit,minmax(50px,1fr)) ;
-    gap: 25px;
-    justify-content: center;
-    justify-items: center;
-
-}
-
-
-
-/* 通知類別容器 */
-.notice-type {
-    width: 60%;
-    height: fit-content;
-
-    display: grid;
-    grid-template-columns: 110px 110px;
-    gap: 50px;
-    justify-content: center;
-    align-items: center;
-}
-
-
-
-/* 通知類別按鈕 */
-.notice-type button {
-    width: fit-content;
-    height: min-content;
-    border-radius: 50px;
-    padding: 5px 18px;
-    background-color: rgba(155, 58, 232, 0.9);
-    color: rgba(247, 246, 245, 0.9);
-    border: 2px solid black;
-    box-shadow: 0px 4px 0px 0px black;
-
-}
-
-/* 按鈕選中 */
-button#btn-itinerary.selected,
-button#btn-pastRecords.selected {
-    background-color: rgba(74, 13, 150, 0.9);
-    border: none;
-    box-shadow: none;
-    padding: 2px 18px;
-    border-bottom: 3px solid rgba(74, 13, 150, 0.9);
-    border-top: 6px solid black;
-    border-right: 2px solid black;
-    border-left: 2px solid black;
-}
-
-/* 副標容器 */
-.notice-itineraryTitle {
-    width: 60vw;
-    margin-left: 15vw;
-    display: grid;
-    grid-template-columns: 100px 80px;
-    gap: 15px;
-    align-content: center;
-    justify-content: start;
-    align-items: center;
-    justify-items: center;
-
-}
-
-/* 主辦按鈕 */
-.btn-sponsor {
-    width: fit-content;
-    height: 30px;
-    border-radius: 50px;
-    border: 2px solid black;
-    background-color: rgba(247, 246, 245, 0.9);
-    box-shadow: 0px 4px 0px 0px black;
-    padding: 3px 8px;
-
-    display: grid;
-    grid-template-columns: 25px 40px;
-    gap: 3px;
-}
-
-/* 預定行程容器 */
-.notice-itineraryArea {
-    width: 60vw;
-    height: fit-content;
-    margin: 0 auto;
-    margin-top: 30px;
-    margin-bottom: 5vw;
-    /* child */
-    display: grid;
-    grid-template-columns: 50% 50%;
-    gap: 2vw;
-    justify-content: center;
-    align-items: center;
-    justify-items: center;
-}
-
-/* 手機 元件兩行變成一行 */
-@media (max-width:768px) {
-    .notice-itineraryTitle{
-        margin-left: 0;
-        margin-right: 35vw;
+/* 預覽RWD 縮小邊界、置中 */
+@media (max-width:640px) {
+    .form-review {
+        padding: 10px;
+        margin: 20px 0 0 0;
+        gap: 50px;
+        height: fit-content;
+        width: 380px;
+        justify-content: center;
+        align-items: center;
     }
+    .filter-simplePostInfo{
+        padding: 20px 5px 20px  5px;
+    }
+}
+
+@media (max-width:375px) {
+    .form-review {
+        padding: 0;
+        margin: 35px 0 0 0;
+        gap: 50px;
+        height: fit-content;
+        width: 375px;
+    }
+}
+
+    /* 預覽送出按鈕 */
+    .form-review button.btn-send {
+        margin-left: 140px;
+    }
+
+    /*  */
+    /* 行程 */
+    /* 行程(通知)main容器 */
+    .notice-Area {
+        /*視窗寬比例70/100 */
+        width: 70vw;
+        /* 視窗高比例100 */
+        height: fit-content;
+
+        display: grid;
+        /* 視窗高比grid */
+        /* grid-template-rows:  6vh 6vh 44vh 44vh; */
+        grid-template-rows: repeat(auto-fit, minmax(50px, 1fr));
+        gap: 25px;
+        justify-content: center;
+        justify-items: center;
+
+    }
+
+
+
+    /* 通知類別容器 */
+    .notice-type {
+        width: 60%;
+        height: fit-content;
+
+        display: grid;
+        grid-template-columns: 110px 110px;
+        gap: 50px;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+
+    /* 通知類別按鈕 */
+    .notice-type button {
+        width: fit-content;
+        height: min-content;
+        border-radius: 50px;
+        padding: 5px 18px;
+        background-color: rgba(155, 58, 232, 0.9);
+        color: rgba(247, 246, 245, 0.9);
+        border: 2px solid black;
+        box-shadow: 0px 4px 0px 0px black;
+
+    }
+
+    /* 按鈕選中 */
+    button#btn-itinerary.selected,
+    button#btn-pastRecords.selected {
+        background-color: rgba(74, 13, 150, 0.9);
+        border: none;
+        box-shadow: none;
+        padding: 2px 18px;
+        border-bottom: 3px solid rgba(74, 13, 150, 0.9);
+        border-top: 6px solid black;
+        border-right: 2px solid black;
+        border-left: 2px solid black;
+    }
+
+    /* 副標容器 */
+    .notice-itineraryTitle {
+        width: 60vw;
+        margin-left: 15vw;
+        display: grid;
+        grid-template-columns: 100px 80px;
+        gap: 15px;
+        align-content: center;
+        justify-content: start;
+        align-items: center;
+        justify-items: center;
+
+    }
+
+    /* 主辦按鈕 */
+    .btn-sponsor {
+        width: fit-content;
+        height: 30px;
+        border-radius: 50px;
+        border: 2px solid black;
+        background-color: rgba(247, 246, 245, 0.9);
+        box-shadow: 0px 4px 0px 0px black;
+        padding: 3px 8px;
+
+        display: grid;
+        grid-template-columns: 25px 40px;
+        gap: 3px;
+    }
+
+    /* 預定行程容器 */
     .notice-itineraryArea {
-        grid-template-columns: 1fr;
+        width: 60vw;
+        height: fit-content;
+        margin: 0 auto;
+        margin-top: 30px;
+        margin-bottom: 5vw;
+        /* child */
+        display: grid;
+        grid-template-columns: 50% 50%;
+        gap: 2vw;
         justify-content: center;
         align-items: center;
         justify-items: center;
-        
     }
-}
 
-/* 通知元件容器 */
-.notice-container {
-    width: 80%;
-    height: fit-content;
-    border-radius: 50px;
-    border: 3px var(--border-type)black;
-    padding: 8px 8px 8px 17px;
-    color: var(--font-color);
-    background-color: rgba(247, 246, 245, 0.9);
+    /* 手機 元件兩行變成一行 */
+    @media (max-width:768px) {
+        .notice-itineraryTitle {
+            margin-left: 0;
+            margin-right: 35vw;
+        }
 
-    display: grid;
-    grid-template-columns: 10% 85%;
-    /* display: flex;
+        .notice-itineraryArea {
+            grid-template-columns: 1fr;
+            justify-content: center;
+            align-items: center;
+            justify-items: center;
+
+        }
+    }
+
+    /* 通知元件容器 */
+    .notice-container {
+        width: 80%;
+        height: fit-content;
+        border-radius: 50px;
+        border: 3px var(--border-type)black;
+        padding: 8px 8px 8px 17px;
+        color: var(--font-color);
+        background-color: rgba(247, 246, 245, 0.9);
+
+        display: grid;
+        grid-template-columns: 10% 85%;
+        /* display: flex;
     flex-direction: row;
     flex-wrap: wrap; */
-    gap: 2%;
-    justify-content: start;
-    align-items: center;
-    justify-items: end;
+        gap: 2%;
+        justify-content: start;
+        align-items: center;
+        justify-items: end;
 
-  
-}
 
-/* 羽or排 */
-.notice-ballType {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background-color: var(--font-color);
-    color: rgba(247, 246, 245, 0.9);
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.notice-ballType p{
-    font-size: 2vw;
-}
-
-/* 元件資訊 */
-.notice-info {
-    width: 90%;
-    height: fit-content;
-
-    display: grid;
-    grid-template-columns: 20% 40% 40%;
-    gap: 5px;
-    justify-content: center;
-    align-items: center;
-    justify-items: center;
-}
-
- /* 文字過多刪減 */
- .notice-info>p {
-    max-width: 100%;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-
-/* 手機 元件容器-資訊-文字*/
-@media (max-width:640px) {
-    .notice-Area{
-        width: 90vw;
-        grid-template-rows:repeat(auto-fit,minmax(50px,1fr)) ;
-       
-    }
-    .notice-container {
-        width: 88vw;
-        min-width: 330px; 
-        max-width: 378px;
-        /* 375*0.88vw */
-        grid-template-columns:14% calc(85% - 6px);
-        padding: 6px;
-        gap: 0
     }
 
-    .notice-info {
-        gap: 3%;
-        grid-template-columns: 25% 36% 36%;
-    }
-
-    .notice-info>div:first-child {
+    /* 羽or排 */
+    .notice-ballType {
         width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background-color: var(--font-color);
+        color: rgba(247, 246, 245, 0.9);
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .notice-ballType p {
+        font-size: 2vw;
+    }
+
+    /* 元件資訊 */
+    .notice-info {
+        width: 90%;
+        height: fit-content;
+
         display: grid;
-        grid-gap: 3px;
-        grid-template-columns: 1fr;
+        grid-template-columns: 20% 40% 40%;
+        gap: 5px;
+        justify-content: center;
+        align-items: center;
         justify-items: center;
     }
 
-    .notice-ballType p{
-        font-size: 1.8rem;
+    /* 文字過多刪減 */
+    .notice-info>p {
+        max-width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
     }
 
-   
-}
+    /* 手機 元件容器-資訊-文字*/
+    @media (max-width:640px) {
+        .notice-Area {
+            width: 90vw;
+            grid-template-rows: repeat(auto-fit, minmax(50px, 1fr));
+
+        }
+
+        .notice-container {
+            width: 88vw;
+            min-width: 330px;
+            max-width: 378px;
+            /* 375*0.88vw */
+            grid-template-columns: 14% calc(85% - 6px);
+            padding: 6px;
+            gap: 0
+        }
+
+        .notice-info {
+            gap: 3%;
+            grid-template-columns: 25% 36% 36%;
+        }
+
+        .notice-info>div:first-child {
+            width: 100%;
+            display: grid;
+            grid-gap: 3px;
+            grid-template-columns: 1fr;
+            justify-items: center;
+        }
+
+        .notice-ballType p {
+            font-size: 1.8rem;
+        }
 
 
-/* 評價狀態 */
-.notice-info>div:last-child {
-    width: fit-content;
-    height: fit-content;
-    border-radius: 50px;
-    border: 1px solid var(--evaluate-color);
-    padding: 4px 8px;
-
-    color: var(--evaluate-color);
-}
-
-.notice-pastRecordsArea {
-    display: none;
-}
-
-.custom-dashed-border {
-    border: none;
-    border-radius: 50px;
-    background-image: linear-gradient(to right, black 10px, transparent 0);
-    background-position: left top;
-    background-size: 10px 3px;
-    /* 這裡的第一個值（10px）是虛線的長度，第二個值（2px）是虛線的寬度 */
-}
+    }
 
 
-/* 個人 */
-/* 個人檔案main */
-.personal-Area {
-    width: 100%;
-    height: fit-content;
+    /* 評價狀態 */
+    .notice-info>div:last-child {
+        width: fit-content;
+        height: fit-content;
+        border-radius: 50px;
+        border: 1px solid var(--evaluate-color);
+        padding: 4px 8px;
 
-    display: grid;
-    grid-template-rows: 50px 1fr;
-    gap: 60px;
-    justify-content: center;
-    justify-items: center;
+        color: var(--evaluate-color);
+    }
 
-}
+    .notice-pastRecordsArea {
+        display: none;
+    }
 
-@media screen and (max-width:640px) {
+    .custom-dashed-border {
+        border: none;
+        border-radius: 50px;
+        background-image: linear-gradient(to right, black 10px, transparent 0);
+        background-position: left top;
+        background-size: 10px 3px;
+        /* 這裡的第一個值（10px）是虛線的長度，第二個值（2px）是虛線的寬度 */
+    }
+
+
+    /* 個人 */
+    /* 個人檔案main */
     .personal-Area {
-        margin-bottom: 180px;
+        width: 100%;
+        height: fit-content;
+
+        display: grid;
+        grid-template-rows: 50px 1fr;
+        gap: 60px;
+        justify-content: center;
+        justify-items: center;
+
     }
-}
 
-/* 資料編輯按鈕*/
-#btn-editFile {
-    flex: 0.1;
-    justify-self: end;
-    width: fit-content;
-    height: fit-content;
-    border-radius: 50px;
-    padding: 9px 18px;
-    margin-right: 10px;
-    background-color: rgba(155, 58, 232, 0.9);
-    color: rgba(247, 246, 245, 0.9);
-    border: 2px solid black;
-    box-shadow: 0px 4px 0px 0px black;
-    display: grid;
-    grid-template-columns: 65px 32px;
-    align-items: center;
-}
+    @media screen and (max-width:640px) {
+        .personal-Area {
+            margin-bottom: 180px;
+        }
+    }
 
-/* 個人資料容器 */
-.personalArea-infoContainer {
-    width: 100%;
-    height: fit-content;
-    margin: 0 50px;
+    /* 資料編輯按鈕*/
+    #btn-editFile {
+        flex: 0.1;
+        justify-self: end;
+        width: fit-content;
+        height: fit-content;
+        border-radius: 50px;
+        padding: 9px 18px;
+        margin-right: 10px;
+        background-color: rgba(155, 58, 232, 0.9);
+        color: rgba(247, 246, 245, 0.9);
+        border: 2px solid black;
+        box-shadow: 0px 4px 0px 0px black;
+        display: grid;
+        grid-template-columns: 65px 32px;
+        align-items: center;
+    }
 
-    display: grid;
-    grid-template-rows: 1fr 0.5fr;
-    gap: 5px;
-    align-items: center;
-    justify-items: center;
-}
-
-@media screen and (max-width: 640px) {
+    /* 個人資料容器 */
     .personalArea-infoContainer {
-        gap: 20px;
+        width: 100%;
+        height: fit-content;
+        margin: 0 50px;
+
+        display: grid;
+        grid-template-rows: 1fr 0.5fr;
+        gap: 5px;
+        align-items: center;
+        justify-items: center;
     }
-}
 
-/* 包頭像(登入)+狀態的容器 */
-.infoContainer-biography {
+    @media screen and (max-width: 640px) {
+        .personalArea-infoContainer {
+            gap: 20px;
+        }
+    }
 
-    max-width: 100%;
-    min-width: 315px;
-    height: fit-content;
+    /* 包頭像(登入)+狀態的容器 */
+    .infoContainer-biography {
 
-    /* display: flex;
+        max-width: 100%;
+        min-width: 315px;
+        height: fit-content;
+
+        /* display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 80px; */
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
-    gap: 80px;
-    justify-content: space-between;
-    align-items: center;
-    justify-items: center;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+        gap: 80px;
+        justify-content: space-between;
+        align-items: center;
+        justify-items: center;
 
-}
+    }
 
-@media screen and (max-width: 640px) {
-    .infoContainer-biography {
+    @media screen and (max-width: 640px) {
+        .infoContainer-biography {
 
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            justify-items: center;
+        }
+    }
+
+    /* 頭像(登入)容器 */
+    .biography-bust {
+        /* flex-grow:1; */
+        width: 30%;
+        height: 250px;
+        display: grid;
+        grid-template-rows: 205px 145px;
+        gap: 15px;
+        justify-content: center;
+        align-items: start;
         justify-items: center;
     }
-}
 
-/* 頭像(登入)容器 */
-.biography-bust {
-    /* flex-grow:1; */
-    width: 30%;
-    height: 250px;
-    display: grid;
-    grid-template-rows: 205px 145px;
-    gap: 15px;
-    justify-content: center;
-    align-items: start;
-    justify-items: center;
-}
-
-@media screen and (max-width: 640px) {
-    .biography-bust {
-        height: fit-content;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
+    @media screen and (max-width: 640px) {
+        .biography-bust {
+            height: fit-content;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
     }
-}
 
-/* 頭像 */
-.biography-bust figure {
-    width: 150px;
-    height: 150px;
-    border-radius: 90px;
-    border: 10px solid black;
-    background-color: #ffffff;
-    margin-bottom: 20px;
-}
+    /* 頭像 */
+    .biography-bust figure {
+        width: 150px;
+        height: 150px;
+        border-radius: 90px;
+        border: 10px solid black;
+        background-color: #ffffff;
+        margin-bottom: 20px;
+    }
 
-/* Line登入按鈕 */
-.btn-logInLine {
-    width: 112px;
-    height: 36px;
-    background-color: #44C150;
-    color: rgba(247, 246, 245, 0.9);
-    border: 3px solid black;
-    border-radius: 3px;
-    font-size: 12px;
-    padding: 6px 9px;
-
-
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-
-}
-
-/*  */
-.btn-logInLine img {
-    width: 20px;
-    margin-right: 12px;
-}
-
-/* 登入後姓名 */
-.userName {
-    width: 120px;
-    display: flex;
-    flex-direction: row;
-    color: white;
-
-}
-
-.userName img {
-    width: 20px;
-}
-
-/* 包(狀態)容器 */
-.biography-info {
-    /* flex-grow:1; */
-    width: 70%;
-    height: fit-content;
-
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    gap: 32px;
-    justify-content: center;
-    align-items: center;
-}
-
-/* 介紹 */
-.info-introduction {
-    /* width: 100%; */
-    min-width: 215px;
-    height: 89px;
-    border-radius: 50px;
-    padding: 12px 18px;
-    background-color: rgba(247, 246, 245, 0.9);
-    box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.3);
-    color: #6D6D6D;
-
-    text-align: center;
-    line-height: 89px;
+    /* Line登入按鈕 */
+    .btn-logInLine {
+        width: 112px;
+        height: 36px;
+        background-color: #44C150;
+        color: rgba(247, 246, 245, 0.9);
+        border: 3px solid black;
+        border-radius: 3px;
+        font-size: 12px;
+        padding: 6px 9px;
 
 
-}
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
 
-/* 場次+出席+自評狀態 */
-.info-selfState {
-    max-width: 100%;
-    min-width: 315px;
-    height: fit-content;
-    border-radius: 20px;
-    border: 4px solid black;
-    background-color: rgba(247, 246, 245, 0.9);
-    padding: 20px;
+    }
 
-    display: grid;
-    grid-template-rows: 2fr 0.5fr;
-    gap: 20px;
-    justify-content: center;
-    align-items: center;
-    justify-items: center;
+    /*  */
+    .btn-logInLine img {
+        width: 20px;
+        margin-right: 12px;
+    }
 
+    /* 登入後姓名 */
+    .userName {
+        width: 120px;
+        display: flex;
+        flex-direction: row;
+        color: white;
 
-}
+    }
 
-/* 登入後顯示的場次資料 */
-.selfState-userInfo {
-    height: fit-content;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 35px;
-    align-items: center;
+    .userName img {
+        width: 20px;
+    }
 
-}
+    /* 包(狀態)容器 */
+    .biography-info {
+        /* flex-grow:1; */
+        width: 70%;
+        height: fit-content;
 
-/*  */
-.selfState-userInfo .userInfo {
-    width: 53px;
-    height: 32px;
-    border-radius: 50px;
-    background-color: #83B90F;
-    text-align: center;
-    line-height: 32px;
-    color: rgba(247, 246, 245, 0.9);
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        gap: 32px;
+        justify-content: center;
+        align-items: center;
+    }
 
+    /* 介紹 */
+    .info-introduction {
+        /* width: 100%; */
+        min-width: 215px;
+        height: 89px;
+        border-radius: 50px;
+        padding: 12px 18px;
+        background-color: rgba(247, 246, 245, 0.9);
+        box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.3);
+        color: #6D6D6D;
 
-}
-
-/*  */
-.selfState-userInfo div {
-    width: 60px;
-    height: 55px;
-    position: relative;
-}
-
-.selfState-userInfo div img {
-    position: absolute;
-    width: 100%;
-    top: 0;
+        text-align: center;
+        line-height: 89px;
 
 
-}
+    }
 
-.selfState-userInfo div p {
+    /* 場次+出席+自評狀態 */
+    .info-selfState {
+        max-width: 100%;
+        min-width: 315px;
+        height: fit-content;
+        border-radius: 20px;
+        border: 4px solid black;
+        background-color: rgba(247, 246, 245, 0.9);
+        padding: 20px;
 
-    position: absolute;
-    top: 18px;
-    left: 13px;
-    color: #83B90F;
+        display: grid;
+        grid-template-rows: 2fr 0.5fr;
+        gap: 20px;
+        justify-content: center;
+        align-items: center;
+        justify-items: center;
 
-}
 
+    }
 
-/* 累積場次... */
-.selfState-title {
-    width: 242px;
-    height: fit-content;
-
-    display: grid;
-    grid-template-columns: 67px 51px 67px;
-    justify-content: space-between;
-    color: #83B90F;
-
-}
-
-/*登入顯示字顏色 */
-.info-selfState>div:last-child {
-    color: #6D6D6D;
-}
-
-/* 包(團主和零打紀錄)的容器 */
-.infoContainer-records {
-    max-width: 100%;
-    min-width: 315px;
-    height: 210px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
-    /* grid-template-columns:1fr 1fr; */
-    gap: 80px;
-    justify-items: center;
-    align-items: center;
-
-}
-
-@media screen and (max-width: 640px) {
-    .infoContainer-records {
+    /* 登入後顯示的場次資料 */
+    .selfState-userInfo {
         height: fit-content;
         display: grid;
-        grid-template-rows: 205px 1fr;
-        gap: 20px;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 35px;
+        align-items: center;
+
     }
-}
 
-/* 團主紀錄容器 */
-.records-sponsored {
-    width: 315px;
-    min-width: 215px;
-    height: fit-content;
-    padding: 20px;
-    background-color: #F6F6F6;
-    border-radius: 20px;
-    border: 4px solid black;
+    /*  */
+    .selfState-userInfo .userInfo {
+        width: 53px;
+        height: 32px;
+        border-radius: 50px;
+        background-color: #83B90F;
+        text-align: center;
+        line-height: 32px;
+        color: rgba(247, 246, 245, 0.9);
 
-    display: grid;
-    grid-template-rows: 19px 1fr;
-    gap: 15px;
-    justify-items: center;
-    align-items: center;
-    overflow: hidden;
 
-}
+    }
 
-/* 團主紀錄第一行標題 */
-.sponsored-title {
-    width: 85%;
-    height: fit-content;
-    justify-self: flex-start;
+    /*  */
+    .selfState-userInfo div {
+        width: 60px;
+        height: 55px;
+        position: relative;
+    }
 
-    display: grid;
-    grid-template-columns: 95px 59px;
-    gap: 134px;
-    justify-content: space-between;
-}
+    .selfState-userInfo div img {
+        position: absolute;
+        width: 100%;
+        top: 0;
 
-/* 包標題的容器 */
-.hugSponsored-title {
 
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
+    }
 
-/* 標題前的直線 */
-.titleLine {
-    width: 5px;
-    height: 20px;
-    background-color: black;
-    margin-right: 10px;
-}
+    .selfState-userInfo div p {
 
-/* 包左、右按鈕的容器 */
-.sponsored-titleBtn {
-    display: grid;
-    grid-template-columns: 10px 10px;
-    gap: 41px;
-}
+        position: absolute;
+        top: 18px;
+        left: 13px;
+        color: #83B90F;
 
-/* 提示:登入顯示 */
-.prompt {
-    color: #6D6D6D;
-}
+    }
 
-/*  */
-.records-info {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    justify-self: flex-start;
 
-}
+    /* 累積場次... */
+    .selfState-title {
+        width: 242px;
+        height: fit-content;
 
-/*臨打紀錄*/
-.records-participation {
-    width: 315px;
-    min-width: 215px;
-    height: fit-content;
-    padding: 20px;
-    background-color: #F6F6F6;
-    border-radius: 20px;
-    border: 4px solid black;
+        display: grid;
+        grid-template-columns: 67px 51px 67px;
+        justify-content: space-between;
+        color: #83B90F;
 
-    display: grid;
-    grid-template-rows: 19px 1fr;
-    gap: 15px;
-    justify-items: center;
-    align-items: center;
-    overflow: hidden;
-}
+    }
 
-.info-time {
-    width: 100px;
-    height: fit-content;
-    border-radius: 50px;
-    border: 2px solid rgba(131, 185, 15, 0.9);
-    background-color: rgba(247, 246, 245, 0.9);
-    color: #689607;
+    /*登入顯示字顏色 */
+    .info-selfState>div:last-child {
+        color: #6D6D6D;
+    }
 
-    padding: 5px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
+    /* 包(團主和零打紀錄)的容器 */
+    .infoContainer-records {
+        max-width: 100%;
+        min-width: 315px;
+        height: 210px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+        /* grid-template-columns:1fr 1fr; */
+        gap: 80px;
+        justify-items: center;
+        align-items: center;
 
-}
+    }
 
-.info-time div {
-    width: 33px;
-    height: 42px;
-    border-radius: 50px;
-    background-color: rgba(131, 185, 15, 0.9);
-    color: rgba(247, 246, 245, 0.9);
-    font-size: 30px;
-}
+    @media screen and (max-width: 640px) {
+        .infoContainer-records {
+            height: fit-content;
+            display: grid;
+            grid-template-rows: 205px 1fr;
+            gap: 20px;
+        }
+    }
 
-.info-time p {
-    width: 50px;
-    text-align: center;
-}
+    /* 團主紀錄容器 */
+    .records-sponsored {
+        width: 315px;
+        min-width: 215px;
+        height: fit-content;
+        padding: 20px;
+        background-color: #F6F6F6;
+        border-radius: 20px;
+        border: 4px solid black;
 
-/* RWD */
-/* 桌機 */
-@media(max-width:820px) {}
+        display: grid;
+        grid-template-rows: 19px 1fr;
+        gap: 15px;
+        justify-items: center;
+        align-items: center;
+        overflow: hidden;
 
-/* 平板 */
-@media (max-width:768px) {}
+    }
 
-/* 手機 */
-@media (max-width:640px) {}
+    /* 團主紀錄第一行標題 */
+    .sponsored-title {
+        width: 85%;
+        height: fit-content;
+        justify-self: flex-start;
+
+        display: grid;
+        grid-template-columns: 95px 59px;
+        gap: 134px;
+        justify-content: space-between;
+    }
+
+    /* 包標題的容器 */
+    .hugSponsored-title {
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    /* 標題前的直線 */
+    .titleLine {
+        width: 5px;
+        height: 20px;
+        background-color: black;
+        margin-right: 10px;
+    }
+
+    /* 包左、右按鈕的容器 */
+    .sponsored-titleBtn {
+        display: grid;
+        grid-template-columns: 10px 10px;
+        gap: 41px;
+    }
+
+    /* 提示:登入顯示 */
+    .prompt {
+        color: #6D6D6D;
+    }
+
+    /*  */
+    .records-info {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        justify-self: flex-start;
+
+    }
+
+    /*臨打紀錄*/
+    .records-participation {
+        width: 315px;
+        min-width: 215px;
+        height: fit-content;
+        padding: 20px;
+        background-color: #F6F6F6;
+        border-radius: 20px;
+        border: 4px solid black;
+
+        display: grid;
+        grid-template-rows: 19px 1fr;
+        gap: 15px;
+        justify-items: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .info-time {
+        width: 100px;
+        height: fit-content;
+        border-radius: 50px;
+        border: 2px solid rgba(131, 185, 15, 0.9);
+        background-color: rgba(247, 246, 245, 0.9);
+        color: #689607;
+
+        padding: 5px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+
+    }
+
+    .info-time div {
+        width: 33px;
+        height: 42px;
+        border-radius: 50px;
+        background-color: rgba(131, 185, 15, 0.9);
+        color: rgba(247, 246, 245, 0.9);
+        font-size: 30px;
+    }
+
+    .info-time p {
+        width: 50px;
+        text-align: center;
+    }
+
+    /* RWD */
+    /* 桌機 */
+    @media(max-width:820px) {}
+
+    /* 平板 */
+    @media (max-width:768px) {}
+
+    /* 手機 */
+    @media (max-width:640px) {}
