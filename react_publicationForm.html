@@ -104,6 +104,7 @@
             postRole,
             postPosition,
             postNote,
+            postEq
           }) => {
             return (
               <div className="form-review">
@@ -146,7 +147,7 @@
                       <h4>類型</h4>
                       <p>{postRole}</p>
                     </div>
-                    <div className="equipInfo">
+                    <div className="positionInfo">
                       <h4>位置</h4>
                       <p>{postPosition}</p>
                     </div>
@@ -348,6 +349,7 @@
                             name="postDate"
                             value={formData.postDate}
                             onChange={handleChange}
+                            type="date"
                           />
                           <FormField
                             label="時段"
