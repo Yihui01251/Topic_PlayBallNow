@@ -1,5 +1,5 @@
-// 變數區
-
+// 基礎樣式規範
+// /* 顏色 */
 // 主要顏色
 $main-color-vb: #14AAEB;
 $main-color-bm: #83B90F;
@@ -22,6 +22,11 @@ $btn-color-vb: #F1DB15;
 $btn-color-bm: #ff8d24;
 $btn-color-red: #cb1b1b;
 
+//背景色
+$background-color-lightgrey:#D9D9D9;
+
+
+
 //字體規範
 $font-family-tc:  "jf-openhuninn-2.0", "蘋方-繁", "PingFang TC", "黑體-繁", "Heiti TC", "微軟正黑體", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
 
@@ -39,3 +44,6 @@ $font-size-text-s:  12px;
 $breakpoint-moblie:"max-width:640px";
 $breakpoint-md:"max-width:820px";
 $breakpoint-lg:"min-width:821px";
+
+//圓角
+$border-radius-btn : 50px;

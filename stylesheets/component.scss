@@ -1,0 +1,321 @@
+@import "reset";
+@import "_varible";
+@import url("https://fonts.googleapis.com/css2?family=Alata&display=swap");
+
+@font-face {
+    font-family: "jf open 粉圓 2.0";
+    src: url(./jf-openhuninn-2.0.ttf);
+}
+body {
+    display: flex;
+    flex-direction: column;
+    gap: 15vw;
+    font-family: $font-family-en, $font-family-tc;
+    padding: 10vw 10vw;
+}
+/* tag樣式 */
+.tag-style {
+    width: fit-content;
+    height: fit-content;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    p {
+        padding: 4px 8px;
+        height: fit-content;
+        width: fit-content;
+
+        border-radius: 50px;
+        background-color: white;
+        color: $font-color-bm;
+        text-align: center;
+        margin-right: 5px;
+
+        text-shadow: 0 0;
+    }
+}
+/* 按鈕樣式 */
+//裝按鈕的容器
+.BtnContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: flex-end;
+    
+}
+.button {
+    background-color: $btn-color-bm;
+    width: fit-content;
+    height: fit-content;
+
+    margin-top: 5px;
+    padding: 5px 18px;
+    border-radius: $border-radius-btn;
+    border: 2px solid black;
+    border-bottom: 5px solid black;
+    .selected,
+    :active {
+        width: fit-content;
+        height: fit-content;
+        border-radius: 50px;
+        padding-top: 3px;
+        padding-bottom: 0px;
+        color: black;
+        background-color: $btn-color-vb, var(--main-color);
+        border-bottom: 7px solid var(--main-color);
+        border-top: 6px solid black;
+        border-right: 1px solid black;
+        border-left: 1px solid black;
+        box-shadow: none;
+    }
+}
+.btn-close{
+    background-color: $background-color-lightgrey;
+    width: fit-content;
+    height: fit-content;
+
+    margin-top: 5px;
+    padding: 5px 18px;
+    border-radius: $border-radius-btn;
+    border: 2px solid black;
+    border-bottom: 5px solid black;
+    .selected,
+    :active {
+        width: fit-content;
+        height: fit-content;
+        border-radius: 50px;
+        padding-top: 3px;
+        padding-bottom: 0px;
+        color: black;
+        background-color: $btn-color-vb, var(--main-color);
+        border-bottom: 7px solid var(--main-color);
+        border-top: 6px solid black;
+        border-right: 1px solid black;
+        border-left: 1px solid black;
+        box-shadow: none;
+    }
+}
+/* 貼文元件 */
+.simplePostInfo {
+    width: 348px;
+    height: fit-content;
+    padding: 20px;
+    border-radius: 20px;
+    background: rgba(247, 246, 245, 0.9);
+    border: 3.5px solid rgba(0, 0, 0, 1);
+    box-shadow: 0px 12px 0px 0px #000000;
+
+    display: grid;
+    grid-auto-rows: minmax(20px, auto);
+    gap: 15px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    //繼承按鈕容器樣式
+    @extend .btnContainer !optional;
+
+    ///*貼文元件-主資訊/ > div(main-info */
+    .main-info {
+        /*貼文元件-主資訊*/
+        width: 100%;
+        padding-left: 10px;
+
+        display: grid;
+        grid-template-rows: repeat(3, 1fr);
+        gap: 5px;
+        justify-content: space-between;
+        align-items: center;
+        //元件第一行
+        header {
+            grid-column: 1/4;
+            grid-row: 1;
+
+            width: 100%;
+            height: fit-content;
+            color: $font-color-bm;
+            font-size: $font-size-text-l;
+
+            justify-content: space-between;
+            align-items: center;
+
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+
+            .p {
+                flex: auto;
+                gap: 10px;
+            }
+            //羽球or排球
+            .type-style {
+                flex: 0 1 auto;
+                width: fit-content;
+                height: fit-content;
+                border-radius: 20px;
+                padding: 4px 10px;
+                background: $font-color-bm;
+                color: white;
+                text-align: center;
+
+                p {
+                    font-size: $font-size-text-s;
+                }
+            }
+        }
+        //地區
+        .areaInfo {
+            grid-column: 3/1;
+            grid-row: 2;
+            width: auto;
+            height: auto;
+            color: $font-color-bm;
+            font-size: $font-size-title-m;
+            display: flex;
+            flex-direction: row;
+            gap: 25px;
+        }
+        //tag布局
+        .tag-style {
+            /* tag布局 */
+            grid-column: 1/3;
+            grid-row: 3;
+        }
+    }
+
+    ///*貼文元件-副資訊/div(simplePostInfo > div(sub-info */
+    .sub-info {
+        border-radius: 5px;
+        padding-left: 10px;
+        /* 子 */
+        display: grid;
+        // grid-template-rows: 1fr 0.9fr 0.9fr 2fr;
+        grid-auto-rows: auto;
+        gap: 5px;
+        h4 {
+            color: #6d6d6d;
+            align-self: center;
+        }
+        div {
+            color: white;
+        }
+        div p {
+            color: $font-color-bm;
+        }
+        /*  ...>div(filter-simplePostInfo > div(sub-info > div(solicitor-number */
+        .vacancyInfo {
+            width: auto;
+            height: fit-content;
+
+            /* 子 */
+            display: grid;
+            grid-template-columns: 35px 25px 35px 25px 40px 45px 35px;
+            gap: 6px;
+            justify-content: space-between;
+            align-items: center;
+
+            div {
+                width: fit-content;
+                height: fit-content;
+                padding: 2px 5px;
+                border-radius: 50px;
+                background: #6d6d6d;
+                align-self: center;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+
+        /*  ...>div(filter-simplePostInfo > div(sub-info > div(ball-type */
+        .ballInfo {
+            width: auto;
+            height: fit-content;
+            display: grid;
+            grid-template-columns: 35px 1fr;
+            gap: 6px;
+            justify-content: center;
+            align-items: center;
+
+            h4 {
+                width: fit-content;
+                align-self: center;
+            }
+        }
+        /* 設備/... >div(filter-simplePostInfo >div(sub-info>div(equipInfo*/
+        .equipInfo,
+        .posInfo {
+            width: auto;
+            height: fit-content;
+            display: grid;
+            grid-template-columns: 35px 1fr;
+            gap: 6px;
+        }
+
+        /* 備註/... >div(filter-simplePostInfo>div(sub-info>div(noteInfo*/
+        .noteInfo {
+            width: auto;
+            height: fit-content;
+            display: grid;
+            grid-template-columns: 35px 1fr;
+            gap: 6px;
+        }
+    }
+
+    //貼文元件-報名資訊
+    .apply-info {
+        width: 100%;
+
+        display: grid;
+        grid-template-columns: 0.2fr 1fr;
+
+        grid-auto-rows: min-content;
+        gap: 15px;
+        justify-content: center;
+        align-items: center;
+        //
+        hr {
+            grid-column: 3/1;
+            grid-row: 1;
+            width: 80%;
+            border: 1px solid black;
+            //
+            align-self: flex-end;
+        }
+
+        img {
+            grid-column: 1;
+            grid-row: 2;
+
+            width: 100%;
+        }
+        p {
+            grid-column: 2;
+            grid-row: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            span {
+            }
+        }
+        div {
+            //布局
+            grid-column: 1/3;
+            grid-row: 3;
+            //樣式
+            min-height: 50px;
+            border-radius: 10px;
+            background-color: $background-color-lightgrey;
+            padding: 10px;
+            p {
+            }
+            input {
+                border: none;
+                background-color: $background-color-lightgrey;
+            }
+        }
+    }
+}
+
+/* 臨打報名元件 */

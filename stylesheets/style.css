@@ -803,7 +803,7 @@ button#btn-typeVb.selected img {
 
 /* 首頁貼文容器 */
 /* 首頁main > section */
-.containers {
+.post-containers {
     /* 樣式 */
     width: 50vw;
     min-width: 300px;
