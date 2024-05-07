@@ -1378,7 +1378,7 @@ div.hugTitle h2 {
     padding: 5px;
     /* 子 */
     display: grid;
-    grid-template-rows: 1fr 0.9fr 0.9fr 3cqw;
+    grid-template-rows: 1fr 0.9fr 0.9fr 0.9fr 2fr;
     gap: 5px;
 
 
@@ -1444,8 +1444,8 @@ div.hugTitle h2 {
     align-self: center;
 }
 
-/* 球場介紹... >div(filter-simplePostInfo >div(sub-info>div(equipInfo*/
-.equipInfo {
+/* 設備/... >div(filter-simplePostInfo >div(sub-info>div(equipInfo*/
+.equipInfo, .posInfo {
     width: auto;
     height: fit-content;
     display: grid;
@@ -1453,7 +1453,7 @@ div.hugTitle h2 {
     gap: 6px;
 }
 
-/* 備註... >div(filter-simplePostInfo>div(sub-info>div(noteInfo*/
+/* 備註/... >div(filter-simplePostInfo>div(sub-info>div(noteInfo*/
 .noteInfo {
     width: auto;
     height: fit-content;
@@ -1461,7 +1461,7 @@ div.hugTitle h2 {
     grid-template-columns: 35px 1fr;
     gap: 6px;
 }
-
+/* 報名按鈕 */
 .filter-simplePostInfo>div:last-child {
     display: flex;
     flex-direction: column;
@@ -1545,9 +1545,12 @@ main section.form-container {
 
 /* 表單容器:稍微修改不要壓到表單 */
 .form-block {
-    display: grid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* display: grid;
     grid-template-rows: 30px 645px;
-    gap: 8px;
+    gap: 8px; */
 
 }
 
@@ -1569,7 +1572,7 @@ main div button#btn-postManage {
 
 /* 切換表單按鈕容器 */
 main div.form-type {
-
+    flex: auto;
     width: 100%;
     height: fit-content;
     align-self: flex-start;
@@ -1636,14 +1639,15 @@ button#btn-formVB.selected::before {
 
 /* 表單元素容器 */
 .form-edit {
+    flex: 1 0 auto;
     width: 339px;
-    height: fit-content;
+    height: max-content;
     border-radius: 20px;
     border: 1px solid black;
     padding: 20px 15px;
 
     display: grid;
-    grid-template-rows: 20px 330px 20px 197px;
+    grid-template-rows: 20px 330px 20px 1fr;
     gap: 15px;
     background-color: rgba(88, 88, 88, 0.85);
     color: white;
@@ -1695,7 +1699,7 @@ button#btn-formVB.selected::before {
 
 /* 所有<label>下<input> */
 .form-options label input {
-    width: 100px;
+    width: 20%;
     height: 20px;
     border-radius: 50px;
     border: 2.5px solid black;
@@ -1704,54 +1708,60 @@ button#btn-formVB.selected::before {
 }
 
 /* 時段 */
-.form-options label:nth-child(2) {
+.form-options label:nth-child(2),.form-options label:nth-child(3) {
     display: grid;
-    grid-template-columns: 32px 80px 5px 80px;
+    grid-template-columns: 32px 1fr;
 }
 
-.form-options label:nth-child(2) input {
-    width: 50px;
+#postStartTime,#postEndTime {
+    width: 45%;
 }
 
 /* 地區<label> */
-.form-options label:nth-child(3) {
+.form-options label:nth-child(4),.form-options label:nth-child(5) {
     display: grid;
-    grid-template-columns: 32px 100px 1fr;
+    grid-template-columns: 32px 1fr;
 }
 
+
 /* 地區 類型 程度<select> */
-.form-options label:nth-child(3) select,
+.form-options label:nth-child(4) select,
 .form-options label:nth-child(5) select,
-.form-options label:nth-child(8) select {
-    width: 100px;
+.form-options label:nth-child(7) select,
+.form-options label:nth-child(10) select {
+    width: 40%;
     height: 25px;
     padding-left: 10px;
     border-radius: 50px;
     border: 2.5px solid black;
 }
-
+/* 球場input */
+#postArena{
+    width: 70%;
+}
 /* 缺額<label> */
-.form-options label:nth-child(7) {
+.form-options label:nth-child(9) {
     display: grid;
     grid-template-columns: 32px 75px 75px 70px;
     gap: 10px;
 }
 
 /* 缺額<label>下的<input> */
-.form-options label:nth-child(7) input {
-    width: 45px;
-    padding-left: 10px;
+.form-options label:nth-child(9) input {
+    width: 60%;
+    padding-left: 20%;
 }
 
 /* 選填表單容器 */
 .form-subOptions {
     width: 309px;
-    height: 197px;
+    height: auto;
     margin-top: 10px;
     padding-left: 20px;
 
     display: grid;
     grid-template-rows: auto;
+    gap: 1vh;
 
 }
 
@@ -1782,9 +1792,13 @@ button#btn-formVB.selected::before {
     border-radius: 50px;
     border: 2.5px solid black;
 }
+/* 備註的textArea */
+#edit-ps{
+    width: 75%;
+}
 
 /* 預覽容器 ：背景改色*/
-.form-review {
+.form-preview {
     width: 395px;
     height: 610px;
     border: 1px solid black;
@@ -1801,7 +1815,7 @@ button#btn-formVB.selected::before {
 
 /* 預覽RWD 縮小邊界、置中 */
 @media (max-width:640px) {
-    .form-review {
+    .form-preview {
         padding: 10px;
         margin: 20px 0 0 0;
         gap: 50px;
@@ -1816,7 +1830,7 @@ button#btn-formVB.selected::before {
 }
 
 @media (max-width:375px) {
-    .form-review {
+    .form-preview {
         padding: 0;
         margin: 35px 0 0 0;
         gap: 50px;
@@ -1826,12 +1840,12 @@ button#btn-formVB.selected::before {
 }
 
     /* 預覽送出按鈕 */
-    .form-review button.btn-send {
+    .form-preview button.btn-send {
         margin-left: 140px;
     }
 
     /*  */
-    /* 行程 */
+    /* 行程頁 */
     /* 行程(通知)main容器 */
     .notice-Area {
         /*視窗寬比例70/100 */

@@ -35,7 +35,7 @@
       <script type="text/babel">
         (async () => {
           //Input元件
-          const InputFile = ({
+          const InputFiled = ({
             name,
             label,
             type,
@@ -43,9 +43,11 @@
             placeholder,
             onChange,
           }) => {
+           
             return (
+              
               <>
-                <label htmlFor={name}>
+                <label htmlFor={name} className={name}>
                   {label}
                   <input
                     type={type}
@@ -60,10 +62,10 @@
             );
           };
           //Select元件
-          const SelectFile = ({ name, label, value, option, onChange }) => {
+          const SelectFiled = ({ name, label, value, options, onChange }) => {
             return (
               <>
-                <label htmlFor={name}>
+                <label htmlFor={name} className={name}>
                   {label}
                   <select
                     name={name}
@@ -71,13 +73,12 @@
                     value={value}
                     onChange={(e) => onChange(name, e.target.value)}
                   >
-                    {option.map((option) => {
-                      return(
-                         <option key={option} value={option}>
-                        {option}
-                      </option>
+                    {options.map((options) => {
+                      return (
+                        <option key={options} value={options}>
+                          {options}
+                        </option>
                       );
-                     
                     })}
                   </select>
                 </label>
@@ -85,10 +86,10 @@
             );
           };
           //TextArea元件
-          const TextAreaFile = ({ name, label, value, onChange }) => {
+          const TextAreaFiled = ({ name, label, value, onChange }) => {
             return (
               <>
-                <label htmlFor={name}>
+                <label htmlFor={name} className={name}>
                   {label}
                   <textarea
                     name={name}
@@ -148,7 +149,7 @@
             );
           };
           //預覽元件
-          const PreviewSection = (
+          const PreviewSection = ({
             postDate,
             postStartTime,
             postEndTime,
@@ -164,10 +165,15 @@
             postRole,
             postPosition,
             postEquipment,
-            postNote
-          ) => {
+            postNote,
+            type,
+            VBdisplay,
+            BMdisplay,
+            
+          }) => {
+            // console.log("Received postDate in PreviewSection:", postDate);
             return (
-              <div className="form-review">
+              <div className="form-preview">
                 <div className="sub-title">
                   <h2>
                     <div></div>預覽
@@ -207,11 +213,11 @@
                       <h4>類型</h4>
                       <p>{postRole}</p>
                     </div>
-                    <div className="posInfo">
+                    <div className="posInfo" style={{ display: VBdisplay }}>
                       <h4>位置</h4>
                       <p>{postPosition}</p>
                     </div>
-                    <div className="equipInfo">
+                    <div className="equipInfo" style={{ display: BMdisplay }}>
                       <h4>設備</h4>
                       <p>{postEquipment}</p>
                     </div>
@@ -230,7 +236,6 @@
           };
           const App = () => {
             const { useState, useEffect, useRef } = React;
-
             const btnFormVbRef = useRef(null);
             const btnFormBmRef = useRef(null);
 
@@ -243,7 +248,9 @@
             const [fontColor, setFontColor] = useState("#147CB6");
             const [btnColor, setBtnColor] = useState("#F1DB15");
             const [selectedButton, setSelectedButton] = useState("btn-formVB");
-
+            const [type, setType] = useState("排球");
+            const [BMdisplay, setBMDisplay] = useState("flex");
+            const [VBdisplay, setVBDisplay] = useState("flex");
             const changeType = (id) => {
               let colorMain = "";
               let colorFont = "";
@@ -262,6 +269,9 @@
                 bodyStyle.classList.add("background-Bm");
                 bodyStyle.classList.remove("background-Vb");
                 setSelectedButton("btn-formBM");
+                // 物件顯示狀態
+                setBMDisplay("flex");
+                setVBDisplay("none");
               } else if (id == "btn-formVB") {
                 // newBackground = 'url("../images/catBg.jpg")';
                 colorMain = "#14AAEB";
@@ -272,6 +282,9 @@
                 bodyStyle.classList.remove("background-Bm");
                 bodyStyle.classList.add("background-Vb");
                 setSelectedButton("btn-formVB");
+                //
+                setBMDisplay("none");
+                setVBDisplay("flex");
               }
               setMainColor(colorMain);
               setFontColor(colorFont);
@@ -296,7 +309,6 @@
               postDate: "4/24",
               postStartTime: "18:00",
               postEndTime: "20:00",
-              postType: "排球",
               postCity: "台北市",
               postArea: "中正區",
               postArena: "中正運動中心",
@@ -310,12 +322,20 @@
               postPosition: "無要求",
               postEquipment: "冷氣、側燈",
             });
-
+  
             //輸入即時更改預覽
-            const HandleChange = (name, value) => {
-              //輸入框當前值
-              setFormData({ ...formData, [name]: value });
+            const handleChange = (name, value) => {
+              setFormData({...formData, [name]: value });
             };
+
+            // const handleChange = (name, value) => {
+            //   console.log("Handling change for:", name, "with value:", value);
+            //   setFormData((prevFormData) => {
+            //     const updatedFormData = { ...prevFormData, [name]: value };
+            //     console.log("Current formData state:", updatedFormData);
+            //     return updatedFormData;
+            //   });
+            // };
 
             return (
               <div className="body">
@@ -410,86 +430,91 @@
                           </h2>
                         </div>
                         <div className="form-options">
-                          <InputFile
-                            name="edit-date"
+                          <InputFiled
+                            name="postDate"
                             label="日期"
-                            type="date"
+                            type="text"
                             value={formData.postDate}
-                            onChange={HandleChange}
+                            onChange={handleChange}
                           />
-                          <InputFile
-                            label="時段"
-                            name="edit-startTime"
+                          <InputFiled
+                            label="開始"
+                            name="postStartTime"
                             type="time"
                             value={formData.postStartTime}
-                            onChange={HandleChange}
+                            onChange={handleChange}
                           />
-                          <InputFile
-                            name="edit-endTime"
-                            label="~"
+                          <InputFiled
+                            name="postEndTime"
+                            label="結束"
                             type="time"
                             value={formData.postEndTime}
-                            onChange={HandleChange}
+                            onChange={handleChange}
                           />
-                          <SelectFile
-                            label="地區"
-                            name="edit-city"
+                          <SelectFiled
+                            label="縣市"
+                            name="postCity"
                             value={formData.postCity}
-                            onChange={HandleChange}
-                            option={["台北市", "新北市", "其他"]}
+                            onChange={handleChange}
+                            options={["台北市", "新北市", "其他"]}
                           />
-                          <SelectFile
-                            label=""
-                            name="edit-area"
+                          <SelectFiled
+                            label="地區"
+                            name="postArea"
                             value={formData.postArea}
-                            onChange={HandleChange}
-                            option={["中山區", "中正區", "其他"]}
+                            onChange={handleChange}
+                            options={["全部", "中山區", "中正區", "其他"]}
                           />
 
-                          <InputFile
+                          <InputFiled
                             label="球場"
-                            name="edit-arena"
+                            name="postArena"
                             type="text"
                             value={formData.postArena}
-                            onChange={HandleChange}
+                            onChange={handleChange}
                           />
 
-                          <SelectFile
+                          <SelectFiled
                             label="類型"
-                            name="edit-role"
+                            name="postRole"
                             value={formData.postRole}
-                            onChange={HandleChange}
+                            onChange={handleChange}
                             //optgroup
-                            option={["單打", "雙打", "混雙"]}
+                            options={[
+                              "女網混排",
+                              "男網混排",
+                              "女網純女",
+                              "男網純男",
+                            ]}
                           />
-                          <InputFile
+                          <InputFiled
                             label="費用"
-                            name="edit-cost"
+                            name="postCost"
                             type="number"
                             value={formData.postCost}
-                            onChange={HandleChange}
+                            onChange={handleChange}
                           />
                           <Vacancy
-                            name="edit-vacancy"
+                            name="postFemale"
                             label="缺額"
                             type="text"
                             value={formData.postFemale}
                             placeholder="女     位"
-                            onChange={HandleChange}
-                            name2="edit-male"
-                            value2="postMale"
+                            onChange={handleChange}
+                            name2="postMale"
+                            value2={formData.postMale}
                             placeholder2="男     位"
-                            name3="edit-unspecified"
+                            name3="postUnspecified"
                             value3={formData.postUnspecified}
                             placeholder3="不拘  位"
                           />
-                          <SelectFile
+                          <SelectFiled
                             label="程度"
-                            name="edit-degree"
+                            name="postDegree"
                             value={formData.postDegree}
-                            onChange={HandleChange}
+                            onChange={handleChange}
                             //optgroup
-                            option={["不拘", "初階", "中階"]}
+                            options={["不拘", "初階", "中階"]}
                           />
                         </div>
                         <div className="sub-title">
@@ -498,7 +523,7 @@
                           </h2>
                         </div>
                         <div className="form-subOptions">
-                          <label for="edit-totally">
+                          <label htmlFor="edit-totally">
                             人數/面數
                             <input
                               type="text"
@@ -506,7 +531,7 @@
                               placeholder="                      ex.21人/3面"
                             />
                           </label>
-                          <label for="edit-othersLevel">
+                          <label htmlFor="edit-othersLevel">
                             球友程度{" "}
                             <input
                               type="text"
@@ -514,7 +539,7 @@
                               placeholder="         請輸入內建球友程度"
                             />
                           </label>
-                          <label for="edit-siteIntro">
+                          <label htmlFor="edit-siteIntro">
                             球場介紹
                             <input
                               type="text"
@@ -522,17 +547,17 @@
                               placeholder="                       請介紹球場"
                             />
                           </label>
-                          <TextAreaFile
-                            name="edit-ps"
+                          <TextAreaFiled
+                            name="postNote"
                             label="備註"
-                            value={formData.postUnspecified}
-                            onChange={HandleChange}
+                            value={formData.postNote}
+                            onChange={handleChange}
                           />
-                          <SelectFile
+                          <SelectFiled
                             label="場上位置"
-                            name="edit-position"
+                            name="postPosition"
                             value={formData.postPosition}
-                            onChange={HandleChange}
+                            onChange={handleChange}
                             options={[
                               "無要求",
                               "主攻手",
@@ -541,11 +566,11 @@
                               "舉球員",
                             ]}
                           />
-                          <SelectFile
+                          <SelectFiled
                             label="設備"
-                            name="edit-equipInfo"
+                            name="postEquipment"
                             value={formData.postEquipment}
-                            onChange={HandleChange}
+                            onChange={handleChange}
                             options={[
                               "冷氣",
                               "側燈",
@@ -558,7 +583,7 @@
                       </div>
                     </div>
 
-                    <PreviewSection {...formData} />
+                    {formData && <PreviewSection {...formData} type={type} BMdisplay={BMdisplay} VBdisplay={VBdisplay} />}
                   </section>
                 </main>
                 <footer>
