@@ -43,9 +43,7 @@
             placeholder,
             onChange,
           }) => {
-           
             return (
-              
               <>
                 <label htmlFor={name} className={name}>
                   {label}
@@ -169,7 +167,6 @@
             type,
             VBdisplay,
             BMdisplay,
-            
           }) => {
             // console.log("Received postDate in PreviewSection:", postDate);
             return (
@@ -251,12 +248,17 @@
             const [type, setType] = useState("排球");
             const [BMdisplay, setBMDisplay] = useState("flex");
             const [VBdisplay, setVBDisplay] = useState("flex");
+            const [optionType, setOptionType] = useState(["女網混排", "男網混排", "女網純女", "男網純男"]);
+            const [optionDegree,setOptionDegree] = useState(["C以下","C-B","A","C","B","A"]);
             const changeType = (id) => {
               let colorMain = "";
               let colorFont = "";
               let btnColor = "";
               let newBorder = "";
               let type = "";
+              let option = [];
+              let option_degree = [];
+
               const bodyStyle = document.getElementById("body");
 
               if (id == "btn-formBM") {
@@ -264,6 +266,8 @@
                 colorFont = "#689607";
                 btnColor = "#FF8D24";
                 type = "羽球";
+                option = ["雙打","混雙","女雙","男雙","單打"];
+                option_degree = ["新手", "初階", "初上", "中下", "中階", "中上"];
 
                 // 新增class改變背景
                 bodyStyle.classList.add("background-Bm");
@@ -278,7 +282,8 @@
                 colorFont = "#147CB6";
                 btnColor = "#F1DB15";
                 type = "排球";
-
+                option = ["女網混排", "男網混排", "女網純女", "男網純男"];
+                option_degree = ["C以下","C-B","A","C","B","A"];
                 bodyStyle.classList.remove("background-Bm");
                 bodyStyle.classList.add("background-Vb");
                 setSelectedButton("btn-formVB");
@@ -290,6 +295,8 @@
               setFontColor(colorFont);
               setBtnColor(btnColor);
               setType(type);
+              setOptionType(option);
+              setOptionDegree(option_degree);
               document.documentElement.style.setProperty(
                 "--main-color",
                 colorMain
@@ -322,10 +329,10 @@
               postPosition: "無要求",
               postEquipment: "冷氣、側燈",
             });
-  
+
             //輸入即時更改預覽
             const handleChange = (name, value) => {
-              setFormData({...formData, [name]: value });
+              setFormData({ ...formData, [name]: value });
             };
 
             // const handleChange = (name, value) => {
@@ -480,12 +487,7 @@
                             value={formData.postRole}
                             onChange={handleChange}
                             //optgroup
-                            options={[
-                              "女網混排",
-                              "男網混排",
-                              "女網純女",
-                              "男網純男",
-                            ]}
+                            options={optionType}
                           />
                           <InputFiled
                             label="費用"
@@ -514,7 +516,7 @@
                             value={formData.postDegree}
                             onChange={handleChange}
                             //optgroup
-                            options={["不拘", "初階", "中階"]}
+                            options={optionDegree}
                           />
                         </div>
                         <div className="sub-title">
@@ -564,6 +566,7 @@
                               "副攻手",
                               "自由人",
                               "舉球員",
+                              "欄中"
                             ]}
                           />
                           <SelectFiled
@@ -583,7 +586,14 @@
                       </div>
                     </div>
 
-                    {formData && <PreviewSection {...formData} type={type} BMdisplay={BMdisplay} VBdisplay={VBdisplay} />}
+                    {formData && (
+                      <PreviewSection
+                        {...formData}
+                        type={type}
+                        BMdisplay={BMdisplay}
+                        VBdisplay={VBdisplay}
+                      />
+                    )}
                   </section>
                 </main>
                 <footer>
