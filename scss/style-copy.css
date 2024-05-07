@@ -1,0 +1,1433 @@
+
+
+
+/* 貼文區 */
+/* main.filter-postArea */
+.filter-postArea {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 46px;
+
+}
+
+/* main.filter-postArea > div.filter-title*/
+.filter-postArea .filter-title {
+    width: 700px;
+    height: fit-content;
+    align-self: center;
+
+
+}
+
+.hugTitle {
+    flex: auto;
+    margin-left: 20px;
+}
+
+.filter-postArea .filter-title .hugTitle {
+    text-align: center;
+
+}
+
+/* 標題底線 */
+div.hugTitle h1,
+div.hugTitle h2 {
+    position: relative;
+    color: white;
+    width: fit-content;
+    border-bottom: 4px solid rgba(0, 0, 0, 1);
+    z-index: 0;
+}
+
+/* 增加文字外框線 */
+.hugTitle h1::before,
+.hugTitle h2::before,
+.hugTitle::before {
+    position: absolute;
+    content: attr(value);
+    -webkit-text-stroke: 4px #000000;
+    z-index: -1;
+}
+
+/* main.filter-postArea  > section.filter-box*/
+.filter-box {
+    width: 350px;
+    height: 96px;
+    align-self: center;
+
+
+    /* 子 */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+/* main.filter-postArea  > section.filter-box > div.fitter-info */
+.fitter-info {
+    width: 244px;
+    height: 59px;
+    border-radius: 50px;
+
+    background: rgba(247, 246, 245, 1);
+    border: 3.5px solid rgba(0, 0, 0, 1);
+
+    box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 1);
+    /* 子 */
+    display: flex;
+    flex-direction: column;
+    overflow-wrap: normal;
+
+}
+
+/* ... > section.filter-box > div.fitter-info > div.info-top*/
+.fitter-info .info-top {
+    margin: 2px 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+/* ...> section.filter-box > div.fitter-info > div.info-top >a >img */
+.info-top img {
+    flex: 2;
+    width: 16px;
+    margin: 7px;
+
+}
+
+/* ...> section.filter-box > div.fitter-info > div.info-top >p */
+.info-top p {
+    width: 55px;
+}
+
+/* ...> section.filter-box > div.fitter-info > div.info-top >p.dot */
+.info-top .dot {
+    width: 15px;
+}
+
+/* ...> section.filter-box > div.fitter-info > div.info-down */
+.fitter-info .info-down {
+    align-self: center;
+}
+
+.filter-btnBox {
+    width: 70px;
+    padding-left: 10px;
+    position: relative;
+}
+
+/* ... >div.fitter-info >div.filter-btnBox >button.#btn-filter */
+#btn-filter {
+    width: 58px;
+    height: 58px;
+    top: 4px;
+    border-radius: 90px;
+    border: 3px solid black;
+    box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 1);
+    position: relative;
+}
+
+/* ...> section.filter-box > div.fitter-info > div > button#btn-filter >img */
+#btn-filter img {
+
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    top: 8px;
+    left: 2px;
+
+    /* Image: filter; */
+    background-size: cover;
+
+
+}
+
+/* ...> section.filter-box > div.fitter-info > div > div.by-btn-filterNum */
+.by-btn-filterNum {
+    /* layout */
+    height: auto;
+    padding: 4px 7px 4px 7px;
+    border-radius: 90px;
+    /* color */
+    background: rgba(203, 27, 27, 1);
+    /* border */
+    border: 1.5px solid rgba(0, 0, 0, 1);
+
+    /* 相對#btn-filter位置 */
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    /* 子 */
+    text-align: center;
+}
+
+/* ... > div.fitter-info > div > div.by-btn-filterNum >p */
+.by-btn-filterNum p {
+    color: white;
+
+
+}
+
+/* main.filter-postArea  > section.filter-box > div.filter-postQuantity */
+.filter-postQuantity {
+    width: 165px;
+    height: 19px;
+    margin-top: 30px;
+
+}
+
+.filter-postQuantity p {
+    position: relative;
+    z-index: 0;
+    color: white;
+}
+
+.filter-postQuantity p::before {
+    content: attr(value);
+    position: absolute;
+    z-index: -1;
+    -webkit-text-stroke: 4px #000000;
+}
+
+/* main.filter-postArea > hr */
+.filter-postArea hr {
+    width: 1850px;
+    height: 0px;
+    align-self: center;
+    border: 1px solid black;
+
+}
+
+/* main.filter-postArea > section.filter-containers */
+.filter-containers {
+    width: 100vh;
+    height: auto;
+    margin: 20px;
+
+
+
+}
+
+/* main.filter-postArea > section.filter-containers >div.filter-postBlock */
+.filter-postBlock {
+    width: 100%;
+    height: fit-content;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    overflow-wrap: normal;
+    gap: 30px;
+    justify-content: center;
+
+
+}
+
+/* 篩選貼文區貼文 */
+/* main.filter-postArea > section.filter-containers >div.filter-postBlock >div.filter-simplePostInfo */
+.filter-simplePostInfo {
+    width: 348px;
+    height: fit-content;
+    padding: 20px;
+    border-radius: 20px;
+    background: rgba(247, 246, 245, 0.9);
+    border: 3.5px solid rgba(0, 0, 0, 1);
+    box-shadow: 0px 12px 0px 0px rgba(0, 0, 0, 1);
+
+    display: grid;
+    grid-template-rows: 95px 127px 36px;
+    /* grid-template-rows: 0.25fr 1.2fr 0.25fr; */
+    gap: 10px;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+}
+
+/* ... >div(filter-simplePostInfo > div(main-info */
+.main-info {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 5px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ...>div(filter-simplePostInfo > div(main-info > header */
+.main-info header {
+    width: auto;
+    height: fit-content;
+    color: var(--main-color);
+    display: grid;
+    grid-template-columns: 4.9fr 1.1fr 0.7fr;
+    gap: 15px;
+
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+/* ...>div(filter-simplePostInfo > div(main-info > header> type-style */
+.type-style {
+    width: fit-content;
+    height: fit-content;
+    border-radius: 20px;
+    padding: 4px 10px;
+    background: var(--main-color);
+    color: white;
+
+}
+
+/* ...>div(filter-simplePostInfo > div(main-info > div(areaInfo */
+.areaInfo {
+    width: auto;
+    height: auto;
+    color: var(--main-color);
+    display: grid;
+    grid-template-columns: 55px 55px 110px;
+    gap: 7px;
+    /* 只有在 Flexbox 或 Grid 的容器中使用 gap */
+
+
+}
+
+/*  ... >div(filter-postBlock >div(filter-simplePostInfo > div(sub-info */
+.sub-info {
+    border-radius: 5px;
+    padding: 5px;
+    /* 子 */
+    display: grid;
+    grid-template-rows: 1fr 0.9fr 0.9fr 0.9fr 2fr;
+    gap: 5px;
+
+
+}
+
+/*  ...>div(filter-simplePostInfo > div(sub-info > h4 */
+.sub-info h4 {
+    color: #6D6D6D;
+    align-self: center;
+}
+
+.sub-info div {
+    color: white;
+}
+
+.sub-info div p {
+    color: var(--font-color);
+}
+
+/*  ...>div(filter-simplePostInfo > div(sub-info > div(solicitor-number */
+.vacancyInfo {
+    width: auto;
+    height: fit-content;
+
+    /* 子 */
+    display: grid;
+    grid-template-columns: 35px 25px 35px 25px 40px 45px 35px;
+    gap: 6px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/*  ...>div(filter-simplePostInfo > div(sub-info > h4 */
+.vacancyInfo div {
+    width: fit-content;
+    height: fit-content;
+    padding: 2px 5px;
+    border-radius: 50px;
+    background: #6D6D6D;
+    align-self: center;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*  ...>div(filter-simplePostInfo > div(sub-info > div(ball-type */
+.ballInfo {
+    width: auto;
+    height: fit-content;
+    display: grid;
+    grid-template-columns: 35px 1fr;
+    gap: 6px;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+/*  ...>div(filter-simplePostInfo > div(sub-info > div(ballInfo */
+.ballInfo h4 {
+    width: fit-content;
+    align-self: center;
+}
+
+/* 設備/... >div(filter-simplePostInfo >div(sub-info>div(equipInfo*/
+.equipInfo, .posInfo {
+    width: auto;
+    height: fit-content;
+    display: grid;
+    grid-template-columns: 35px 1fr;
+    gap: 6px;
+}
+
+/* 備註/... >div(filter-simplePostInfo>div(sub-info>div(noteInfo*/
+.noteInfo {
+    width: auto;
+    height: fit-content;
+    display: grid;
+    grid-template-columns: 35px 1fr;
+    gap: 6px;
+}
+/* 報名按鈕 */
+.filter-simplePostInfo>div:last-child {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+/*  */
+/* 找人 */
+/* 找人main(form-formArea */
+main.form-formArea {
+    width: 100vw;
+    height: max-content;
+    /* margin-bottom: 10px; */
+
+    /* 子 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 發文表單標題 */
+main div.form-title {
+    /* layout */
+    width: 60%;
+    max-width: 700px;
+    min-width: 340px;
+    height: fit-content;
+    margin: 0 50px;
+
+    /* child */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+
+}
+
+/* 平板 */
+@media (max-width:768px) {}
+
+/* 手機 */
+@media (max-width:640px) {
+
+    /* 發文表單標題 */
+    main div.form-title {
+        /* layout */
+        min-width: 375px;
+        height: fit-content;
+        margin: 20px 0px;
+        /* child */
+        display: flex;
+        flex-direction: row;
+        gap: 80px;
+        justify-content: space-around;
+        align-items: center;
+    }
+}
+
+/* 類別按鈕+表單+預覽區 */
+main section.form-container {
+    width: fit-content;
+    height: fit-content;
+    padding: 50px 0px;
+    display: grid;
+    grid-template-columns: 339px 378px;
+    gap: 20px;
+
+}
+
+/* RWD 手機版換一行 */
+@media (max-width:640px) {
+    main section.form-container {
+        grid-template-columns: 1fr;
+        justify-content: center;
+        align-items: center;
+        justify-items: center;
+        padding: 15px 0px;
+    }
+}
+
+/* 表單容器:稍微修改不要壓到表單 */
+.form-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* display: grid;
+    grid-template-rows: 30px 645px;
+    gap: 8px; */
+
+}
+
+/* 貼文管理按鈕 */
+main div button#btn-postManage {
+    /* layout */
+    width: fit-content;
+    height: fit-content;
+    border-radius: 50px;
+    border: 2px solid black;
+    padding: 9px 18px;
+    background-color: var(--btn-color);
+    box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 1);
+    /* child */
+    display: grid;
+    grid-template-columns: 64px 20px;
+    gap: 10px;
+}
+
+/* 切換表單按鈕容器 */
+main div.form-type {
+    flex: auto;
+    width: 100%;
+    height: fit-content;
+    align-self: flex-start;
+
+
+    display: flex;
+    justify-content: space-between;
+}
+
+/* 切換表單按鈕容器:打羽球 */
+#btn-formBM {
+    width: fit-content;
+    height: fit-content;
+    border-radius: 50px;
+    border: 2px solid black;
+    box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 1);
+    padding: 5px 25px;
+    background-color: rgba(247, 246, 245, 0.9);
+    color: #689607;
+}
+
+/* 切換表單按鈕容器:打排球 */
+#btn-formVB {
+    width: fit-content;
+    height: fit-content;
+    border-radius: 50px;
+    border: 2px solid black;
+    box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 1);
+    padding: 5px 25px;
+    background-color: rgba(247, 246, 245, 0.9);
+    color: #147CB6;
+}
+
+/* 按鈕被選中 */
+button#btn-formBM.selected,
+button#btn-formVB.selected {
+    width: fit-content;
+    height: fit-content;
+    border-radius: 50px;
+    padding-top: 3px;
+    padding-bottom: 0px;
+    color: black;
+    background-color: var(--main-color);
+    border-bottom: 7px solid var(--main-color);
+    border-top: 6px solid black;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+    box-shadow: none;
+
+    position: relative;
+
+}
+
+/* 選中時陰影 */
+button#btn-formBM.selected::before,
+button#btn-formVB.selected::before {
+    display: block;
+    content: '';
+    position: absolute;
+    top: 20px;
+    box-shadow: inset 0px 10px 0px black;
+}
+
+
+/* 表單元素容器 */
+.form-edit {
+    flex: 1 0 auto;
+    width: 339px;
+    height: max-content;
+    border-radius: 20px;
+    border: 1px solid black;
+    padding: 20px 15px;
+
+    display: grid;
+    grid-template-rows: 20px 330px 20px 1fr;
+    gap: 15px;
+    background-color: rgba(88, 88, 88, 0.85);
+    color: white;
+
+}
+
+/* RWD 縮小邊界 */
+@media (max-width:640px) {
+    .form-edit {
+        padding: 10px;
+    }
+}
+
+/* 表單標題 */
+.sub-title h2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    /* padding: 20px 10px; */
+
+}
+
+/* 表單標題外框線 */
+.sub-title h2 div {
+    background-color: black;
+}
+
+/* 必填表單容器 */
+.form-options {
+    width: 309px;
+    height: 317px;
+    border-bottom: 1px solid black;
+    margin-top: 10px;
+    padding-left: 20px;
+    /* child */
+    display: grid;
+    grid-template-rows: auto;
+}
+
+/* 內容表單元素標題 */
+.form-options label {
+    width: 330px;
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 10px;
+
+}
+
+/* 所有<label>下<input> */
+.form-options label input {
+    width: 20%;
+    height: 20px;
+    border-radius: 50px;
+    border: 2.5px solid black;
+    padding: 0px 15px;
+    align-items: center;
+}
+
+/* 時段 */
+.form-options label:nth-child(2),.form-options label:nth-child(3) {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+}
+
+#postStartTime,#postEndTime {
+    width: 45%;
+}
+
+/* 地區<label> */
+.form-options label:nth-child(4),.form-options label:nth-child(5) {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+}
+
+
+/* 地區 類型 程度<select> */
+.form-options label:nth-child(4) select,
+.form-options label:nth-child(5) select,
+.form-options label:nth-child(7) select,
+.form-options label:nth-child(10) select {
+    width: 40%;
+    height: 25px;
+    padding-left: 10px;
+    border-radius: 50px;
+    border: 2.5px solid black;
+}
+/* 球場input */
+#postArena{
+    width: 70%;
+}
+/* 缺額<label> */
+.form-options label:nth-child(9) {
+    display: grid;
+    grid-template-columns: 32px 75px 75px 70px;
+    gap: 10px;
+}
+
+/* 缺額<label>下的<input> */
+.form-options label:nth-child(9) input {
+    width: 60%;
+    padding-left: 20%;
+}
+
+/* 選填表單容器 */
+.form-subOptions {
+    width: 309px;
+    height: auto;
+    margin-top: 10px;
+    padding-left: 20px;
+
+    display: grid;
+    grid-template-rows: auto;
+    gap: 1vh;
+
+}
+
+/* 選填表單容器下所有<label> */
+.form-subOptions label {
+    width: 330px;
+    display: grid;
+    grid-template-columns: 75px 1fr;
+    gap: 10px;
+
+}
+
+/* 選填表單容器下所有<label>下的<input> */
+.form-subOptions label input {
+    width: 150px;
+    height: 20px;
+    border-radius: 50px;
+    border: 2.5px solid black;
+    padding: 0px 15px;
+    align-items: center;
+}
+
+/* 選填表單容器下所有<label>下的<select> */
+.form-subOptions label select {
+    width: 135px;
+    height: 25px;
+    padding-left: 10px;
+    border-radius: 50px;
+    border: 2.5px solid black;
+}
+/* 備註的textArea */
+#edit-ps{
+    width: 75%;
+}
+
+/* 預覽容器 ：背景改色*/
+.form-preview {
+    width: 395px;
+    height: 610px;
+    border: 1px solid black;
+    border-radius: 20px;
+    margin-top: 35px;
+    margin-left: 30px;
+    padding: 20px 15px;
+    background-color: rgba(217, 217, 217, 0.9);
+
+    display: grid;
+    grid-template-rows: 28px 324px 40px;
+    gap: 100px
+}
+
+/* 預覽RWD 縮小邊界、置中 */
+@media (max-width:640px) {
+    .form-preview {
+        padding: 10px;
+        margin: 20px 0 0 0;
+        gap: 50px;
+        height: fit-content;
+        width: 380px;
+        justify-content: center;
+        align-items: center;
+    }
+    .filter-simplePostInfo{
+        padding: 20px 5px 20px  5px;
+    }
+}
+
+@media (max-width:375px) {
+    .form-preview {
+        padding: 0;
+        margin: 35px 0 0 0;
+        gap: 50px;
+        height: fit-content;
+        width: 375px;
+    }
+}
+
+    /* 預覽送出按鈕 */
+    .form-preview button.btn-send {
+        margin-left: 140px;
+    }
+
+    /*  */
+    /* 行程頁 */
+    /* 行程(通知)main容器 */
+    .notice-Area {
+        /*視窗寬比例70/100 */
+        width: 70vw;
+        /* 視窗高比例100 */
+        height: fit-content;
+
+        display: grid;
+        /* 視窗高比grid */
+        /* grid-template-rows:  6vh 6vh 44vh 44vh; */
+        grid-template-rows: repeat(auto-fit, minmax(50px, 1fr));
+        gap: 25px;
+        justify-content: center;
+        justify-items: center;
+
+    }
+
+
+
+    /* 通知類別容器 */
+    .notice-type {
+        width: 60%;
+        height: fit-content;
+
+        display: grid;
+        grid-template-columns: 110px 110px;
+        gap: 50px;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+
+    /* 通知類別按鈕 */
+    .notice-type button {
+        width: fit-content;
+        height: min-content;
+        border-radius: 50px;
+        padding: 5px 18px;
+        background-color: rgba(155, 58, 232, 0.9);
+        color: rgba(247, 246, 245, 0.9);
+        border: 2px solid black;
+        box-shadow: 0px 4px 0px 0px black;
+
+    }
+
+    /* 按鈕選中 */
+    button#btn-itinerary.selected,
+    button#btn-pastRecords.selected {
+        background-color: rgba(74, 13, 150, 0.9);
+        border: none;
+        box-shadow: none;
+        padding: 2px 18px;
+        border-bottom: 3px solid rgba(74, 13, 150, 0.9);
+        border-top: 6px solid black;
+        border-right: 2px solid black;
+        border-left: 2px solid black;
+    }
+
+    /* 副標容器 */
+    .notice-itineraryTitle {
+        width: 60vw;
+        margin-left: 15vw;
+        display: grid;
+        grid-template-columns: 100px 80px;
+        gap: 15px;
+        align-content: center;
+        justify-content: start;
+        align-items: center;
+        justify-items: center;
+
+    }
+
+    /* 主辦按鈕 */
+    .btn-sponsor {
+        width: fit-content;
+        height: 30px;
+        border-radius: 50px;
+        border: 2px solid black;
+        background-color: rgba(247, 246, 245, 0.9);
+        box-shadow: 0px 4px 0px 0px black;
+        padding: 3px 8px;
+
+        display: grid;
+        grid-template-columns: 25px 40px;
+        gap: 3px;
+    }
+
+    /* 預定行程容器 */
+    .notice-itineraryArea {
+        width: 60vw;
+        height: fit-content;
+        margin: 0 auto;
+        margin-top: 30px;
+        margin-bottom: 5vw;
+        /* child */
+        display: grid;
+        grid-template-columns: 50% 50%;
+        gap: 2vw;
+        justify-content: center;
+        align-items: center;
+        justify-items: center;
+    }
+
+    /* 手機 元件兩行變成一行 */
+    @media (max-width:768px) {
+        .notice-itineraryTitle {
+            margin-left: 0;
+            margin-right: 35vw;
+        }
+
+        .notice-itineraryArea {
+            grid-template-columns: 1fr;
+            justify-content: center;
+            align-items: center;
+            justify-items: center;
+
+        }
+    }
+
+    /* 通知元件容器 */
+    .notice-container {
+        width: 80%;
+        height: fit-content;
+        border-radius: 50px;
+        border: 3px var(--border-type)black;
+        padding: 8px 8px 8px 17px;
+        color: var(--font-color);
+        background-color: rgba(247, 246, 245, 0.9);
+
+        display: grid;
+        grid-template-columns: 10% 85%;
+        /* display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; */
+        gap: 2%;
+        justify-content: start;
+        align-items: center;
+        justify-items: end;
+
+
+    }
+
+    /* 羽or排 */
+    .notice-ballType {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background-color: var(--font-color);
+        color: rgba(247, 246, 245, 0.9);
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .notice-ballType p {
+        font-size: 2vw;
+    }
+
+    /* 元件資訊 */
+    .notice-info {
+        width: 90%;
+        height: fit-content;
+
+        display: grid;
+        grid-template-columns: 20% 40% 40%;
+        gap: 5px;
+        justify-content: center;
+        align-items: center;
+        justify-items: center;
+    }
+
+    /* 文字過多刪減 */
+    .notice-info>p {
+        max-width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    /* 手機 元件容器-資訊-文字*/
+    @media (max-width:640px) {
+        .notice-Area {
+            width: 90vw;
+            grid-template-rows: repeat(auto-fit, minmax(50px, 1fr));
+
+        }
+
+        .notice-container {
+            width: 88vw;
+            min-width: 330px;
+            max-width: 378px;
+            /* 375*0.88vw */
+            grid-template-columns: 14% calc(85% - 6px);
+            padding: 6px;
+            gap: 0
+        }
+
+        .notice-info {
+            gap: 3%;
+            grid-template-columns: 25% 36% 36%;
+        }
+
+        .notice-info>div:first-child {
+            width: 100%;
+            display: grid;
+            grid-gap: 3px;
+            grid-template-columns: 1fr;
+            justify-items: center;
+        }
+
+        .notice-ballType p {
+            font-size: 1.8rem;
+        }
+
+
+    }
+
+
+    /* 評價狀態 */
+    .notice-info>div:last-child {
+        width: fit-content;
+        height: fit-content;
+        border-radius: 50px;
+        border: 1px solid var(--evaluate-color);
+        padding: 4px 8px;
+
+        color: var(--evaluate-color);
+    }
+
+    .notice-pastRecordsArea {
+        display: none;
+    }
+
+    .custom-dashed-border {
+        border: none;
+        border-radius: 50px;
+        background-image: linear-gradient(to right, black 10px, transparent 0);
+        background-position: left top;
+        background-size: 10px 3px;
+        /* 這裡的第一個值（10px）是虛線的長度，第二個值（2px）是虛線的寬度 */
+    }
+
+
+    /* 個人 */
+    /* 個人檔案main */
+    .personal-Area {
+        width: 100%;
+        height: fit-content;
+
+        display: grid;
+        grid-template-rows: 50px 1fr;
+        gap: 60px;
+        justify-content: center;
+        justify-items: center;
+
+    }
+
+    @media screen and (max-width:640px) {
+        .personal-Area {
+            margin-bottom: 180px;
+        }
+    }
+
+    /* 資料編輯按鈕*/
+    #btn-editFile {
+        flex: 0.1;
+        justify-self: end;
+        width: fit-content;
+        height: fit-content;
+        border-radius: 50px;
+        padding: 9px 18px;
+        margin-right: 10px;
+        background-color: rgba(155, 58, 232, 0.9);
+        color: rgba(247, 246, 245, 0.9);
+        border: 2px solid black;
+        box-shadow: 0px 4px 0px 0px black;
+        display: grid;
+        grid-template-columns: 65px 32px;
+        align-items: center;
+    }
+
+    /* 個人資料容器 */
+    .personalArea-infoContainer {
+        width: 100%;
+        height: fit-content;
+        margin: 0 50px;
+
+        display: grid;
+        grid-template-rows: 1fr 0.5fr;
+        gap: 5px;
+        align-items: center;
+        justify-items: center;
+    }
+
+    @media screen and (max-width: 640px) {
+        .personalArea-infoContainer {
+            gap: 20px;
+        }
+    }
+
+    /* 包頭像(登入)+狀態的容器 */
+    .infoContainer-biography {
+
+        max-width: 100%;
+        min-width: 315px;
+        height: fit-content;
+
+        /* display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 80px; */
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+        gap: 80px;
+        justify-content: space-between;
+        align-items: center;
+        justify-items: center;
+
+    }
+
+    @media screen and (max-width: 640px) {
+        .infoContainer-biography {
+
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            justify-items: center;
+        }
+    }
+
+    /* 頭像(登入)容器 */
+    .biography-bust {
+        /* flex-grow:1; */
+        width: 30%;
+        height: 250px;
+        display: grid;
+        grid-template-rows: 205px 145px;
+        gap: 15px;
+        justify-content: center;
+        align-items: start;
+        justify-items: center;
+    }
+
+    @media screen and (max-width: 640px) {
+        .biography-bust {
+            height: fit-content;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+    }
+
+    /* 頭像 */
+    .biography-bust figure {
+        width: 150px;
+        height: 150px;
+        border-radius: 90px;
+        border: 10px solid black;
+        background-color: #ffffff;
+        margin-bottom: 20px;
+    }
+
+    /* Line登入按鈕 */
+    .btn-logInLine {
+        width: 112px;
+        height: 36px;
+        background-color: #44C150;
+        color: rgba(247, 246, 245, 0.9);
+        border: 3px solid black;
+        border-radius: 3px;
+        font-size: 12px;
+        padding: 6px 9px;
+
+
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    /*  */
+    .btn-logInLine img {
+        width: 20px;
+        margin-right: 12px;
+    }
+
+    /* 登入後姓名 */
+    .userName {
+        width: 120px;
+        display: flex;
+        flex-direction: row;
+        color: white;
+
+    }
+
+    .userName img {
+        width: 20px;
+    }
+
+    /* 包(狀態)容器 */
+    .biography-info {
+        /* flex-grow:1; */
+        width: 70%;
+        height: fit-content;
+
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        gap: 32px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* 介紹 */
+    .info-introduction {
+        /* width: 100%; */
+        min-width: 215px;
+        height: 89px;
+        border-radius: 50px;
+        padding: 12px 18px;
+        background-color: rgba(247, 246, 245, 0.9);
+        box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.3);
+        color: #6D6D6D;
+
+        text-align: center;
+        line-height: 89px;
+
+
+    }
+
+    /* 場次+出席+自評狀態 */
+    .info-selfState {
+        max-width: 100%;
+        min-width: 315px;
+        height: fit-content;
+        border-radius: 20px;
+        border: 4px solid black;
+        background-color: rgba(247, 246, 245, 0.9);
+        padding: 20px;
+
+        display: grid;
+        grid-template-rows: 2fr 0.5fr;
+        gap: 20px;
+        justify-content: center;
+        align-items: center;
+        justify-items: center;
+
+
+    }
+
+    /* 登入後顯示的場次資料 */
+    .selfState-userInfo {
+        height: fit-content;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 35px;
+        align-items: center;
+
+    }
+
+    /*  */
+    .selfState-userInfo .userInfo {
+        width: 53px;
+        height: 32px;
+        border-radius: 50px;
+        background-color: #83B90F;
+        text-align: center;
+        line-height: 32px;
+        color: rgba(247, 246, 245, 0.9);
+
+
+    }
+
+    /*  */
+    .selfState-userInfo div {
+        width: 60px;
+        height: 55px;
+        position: relative;
+    }
+
+    .selfState-userInfo div img {
+        position: absolute;
+        width: 100%;
+        top: 0;
+
+
+    }
+
+    .selfState-userInfo div p {
+
+        position: absolute;
+        top: 18px;
+        left: 13px;
+        color: #83B90F;
+
+    }
+
+
+    /* 累積場次... */
+    .selfState-title {
+        width: 242px;
+        height: fit-content;
+
+        display: grid;
+        grid-template-columns: 67px 51px 67px;
+        justify-content: space-between;
+        color: #83B90F;
+
+    }
+
+    /*登入顯示字顏色 */
+    .info-selfState>div:last-child {
+        color: #6D6D6D;
+    }
+
+    /* 包(團主和零打紀錄)的容器 */
+    .infoContainer-records {
+        max-width: 100%;
+        min-width: 315px;
+        height: 210px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+        /* grid-template-columns:1fr 1fr; */
+        gap: 80px;
+        justify-items: center;
+        align-items: center;
+
+    }
+
+    @media screen and (max-width: 640px) {
+        .infoContainer-records {
+            height: fit-content;
+            display: grid;
+            grid-template-rows: 205px 1fr;
+            gap: 20px;
+        }
+    }
+
+    /* 團主紀錄容器 */
+    .records-sponsored {
+        width: 315px;
+        min-width: 215px;
+        height: fit-content;
+        padding: 20px;
+        background-color: #F6F6F6;
+        border-radius: 20px;
+        border: 4px solid black;
+
+        display: grid;
+        grid-template-rows: 19px 1fr;
+        gap: 15px;
+        justify-items: center;
+        align-items: center;
+        overflow: hidden;
+
+    }
+
+    /* 團主紀錄第一行標題 */
+    .sponsored-title {
+        width: 85%;
+        height: fit-content;
+        justify-self: flex-start;
+
+        display: grid;
+        grid-template-columns: 95px 59px;
+        gap: 134px;
+        justify-content: space-between;
+    }
+
+    /* 包標題的容器 */
+    .hugSponsored-title {
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    /* 標題前的直線 */
+    .titleLine {
+        width: 5px;
+        height: 20px;
+        background-color: black;
+        margin-right: 10px;
+    }
+
+    /* 包左、右按鈕的容器 */
+    .sponsored-titleBtn {
+        display: grid;
+        grid-template-columns: 10px 10px;
+        gap: 41px;
+    }
+
+    /* 提示:登入顯示 */
+    .prompt {
+        color: #6D6D6D;
+    }
+
+    /*  */
+    .records-info {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        justify-self: flex-start;
+
+    }
+
+    /*臨打紀錄*/
+    .records-participation {
+        width: 315px;
+        min-width: 215px;
+        height: fit-content;
+        padding: 20px;
+        background-color: #F6F6F6;
+        border-radius: 20px;
+        border: 4px solid black;
+
+        display: grid;
+        grid-template-rows: 19px 1fr;
+        gap: 15px;
+        justify-items: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .info-time {
+        width: 100px;
+        height: fit-content;
+        border-radius: 50px;
+        border: 2px solid rgba(131, 185, 15, 0.9);
+        background-color: rgba(247, 246, 245, 0.9);
+        color: #689607;
+
+        padding: 5px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+
+    }
+
+    .info-time div {
+        width: 33px;
+        height: 42px;
+        border-radius: 50px;
+        background-color: rgba(131, 185, 15, 0.9);
+        color: rgba(247, 246, 245, 0.9);
+        font-size: 30px;
+    }
+
+    .info-time p {
+        width: 50px;
+        text-align: center;
+    }
+
+    /* RWD */
+    /* 桌機 */
+    @media(max-width:820px) {}
+
+    /* 平板 */
+    @media (max-width:768px) {}
+
+    /* 手機 */
+    @media (max-width:640px) {}
