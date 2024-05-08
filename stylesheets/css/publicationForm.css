@@ -4,6 +4,7 @@
 /* 找人main(form-formArea */
 .form-formArea {
   width: 100vw;
+  height: -moz-max-content;
   height: max-content;
   /* margin-bottom: 10px; */
   /* 子 */
@@ -18,6 +19,7 @@ div.form-title {
   width: 60%;
   max-width: 700px;
   min-width: 340px;
+  height: -moz-fit-content;
   height: fit-content;
   margin: 0 50px;
   /* child */
@@ -26,10 +28,11 @@ div.form-title {
   justify-content: space-between;
   align-items: center;
 }
-@media (max-width: 640px) {
+@media (max-width:640px) {
   div.form-title {
     /* layout */
     min-width: 375px;
+    height: -moz-fit-content;
     height: fit-content;
     margin: 20px 0px;
     /* child */
@@ -43,14 +46,16 @@ div.form-title {
 
 /* 類別按鈕+表單+預覽區 */
 section.form-container {
+  width: -moz-fit-content;
   width: fit-content;
+  height: -moz-fit-content;
   height: fit-content;
   padding: 50px 0px;
   display: grid;
   grid-template-columns: 339px 378px;
   gap: 20px;
 }
-@media (max-width: 640px) {
+@media (max-width:640px) {
   section.form-container {
     /* RWD 手機版換一行 */
     grid-template-columns: 1fr;
@@ -74,13 +79,15 @@ section.form-container {
 /* 貼文管理按鈕 */
 main div button#btn-postManage {
   /* layout */
+  width: -moz-fit-content;
   width: fit-content;
+  height: -moz-fit-content;
   height: fit-content;
   border-radius: 50px;
   border: 2px solid black;
   padding: 9px 18px;
   background-color: var(--btn-color);
-  box-shadow: 0px 4px 0px 0px rgb(0, 0, 0);
+  box-shadow: 0px 4px 0px 0px #000000;
   /* child */
   display: grid;
   grid-template-columns: 64px 20px;
@@ -91,6 +98,7 @@ main div button#btn-postManage {
 main div .form-type {
   flex: auto;
   width: 100%;
+  height: -moz-fit-content;
   height: fit-content;
   align-self: flex-start;
   display: flex;
@@ -99,11 +107,13 @@ main div .form-type {
 
 /* 切換表單按鈕容器:打羽球 */
 #btn-formBM {
+  width: -moz-fit-content;
   width: fit-content;
+  height: -moz-fit-content;
   height: fit-content;
   border-radius: 50px;
   border: 2px solid black;
-  box-shadow: 0px 4px 0px 0px rgb(0, 0, 0);
+  box-shadow: 0px 4px 0px 0px #000000;
   padding: 5px 25px;
   background-color: rgba(247, 246, 245, 0.9);
   color: #689607;
@@ -111,11 +121,13 @@ main div .form-type {
 
 /* 切換表單按鈕容器:打排球 */
 #btn-formVB {
+  width: -moz-fit-content;
   width: fit-content;
+  height: -moz-fit-content;
   height: fit-content;
   border-radius: 50px;
   border: 2px solid black;
-  box-shadow: 0px 4px 0px 0px rgb(0, 0, 0);
+  box-shadow: 0px 4px 0px 0px #000000;
   padding: 5px 25px;
   background-color: rgba(247, 246, 245, 0.9);
   color: #147CB6;
@@ -124,12 +136,14 @@ main div .form-type {
 /* 按鈕被選中 */
 button#btn-formBM.selected,
 button#btn-formVB.selected {
+  width: -moz-fit-content;
   width: fit-content;
+  height: -moz-fit-content;
   height: fit-content;
   border-radius: 50px;
   padding-top: 3px;
   padding-bottom: 0px;
-  color: black;
+  color: #000000;
   background-color: var(--main-color);
   border-bottom: 7px solid var(--main-color);
   border-top: 6px solid black;
@@ -145,13 +159,14 @@ button#btn-formVB.selected::before {
   content: "";
   position: absolute;
   top: 20px;
-  box-shadow: inset 0px 10px 0px black;
+  box-shadow: inset 0px 10px 0px #000000;
 }
 
 /* 表單元素容器 */
 .form-edit {
   flex: 1 0 auto;
   width: 339px;
+  height: -moz-max-content;
   height: max-content;
   border-radius: 20px;
   border: 1px solid black;
@@ -160,9 +175,9 @@ button#btn-formVB.selected::before {
   grid-template-rows: 20px 330px 20px 1fr;
   gap: 15px;
   background-color: rgba(88, 88, 88, 0.85);
-  color: white;
+  color: #ffffff;
 }
-@media (max-width: 640px) {
+@media (max-width:640px) {
   .form-edit {
     /* RWD 縮小邊界 */
     padding: 10px;
@@ -179,7 +194,7 @@ button#btn-formVB.selected::before {
 }
 .sub-title h2 div {
   /* 表單標題外框線 */
-  background-color: black;
+  background-color: #000000;
 }
 
 /* 必填表單容器 */
@@ -309,11 +324,12 @@ button#btn-formVB.selected::before {
   grid-template-rows: 28px 324px 40px;
   gap: 100px;
 }
-@media (max-width: 640px) {
+@media (max-width:640px) {
   .form-preview {
     padding: 10px;
     margin: 20px 0 0 0;
     gap: 50px;
+    height: -moz-fit-content;
     height: fit-content;
     width: 380px;
     justify-content: center;
@@ -325,13 +341,14 @@ button#btn-formVB.selected::before {
     padding: 0;
     margin: 35px 0 0 0;
     gap: 50px;
+    height: -moz-fit-content;
     height: fit-content;
     width: 375px;
   }
 }
 
 /* 預覽RWD 縮小邊界、置中 */
-@media (max-width: 640px) {
+@media (max-width:640px) {
   .filter-simplePostInfo {
     padding: 20px 5px 20px 5px;
   }
