@@ -25,7 +25,6 @@
 
 
 /* 共用區 */
-
 h1,
 .title-L {
   font-size: $font-size-title-l;
@@ -69,7 +68,7 @@ a {
   display: block;
   /* 拿掉超連結文字底線 */
   text-decoration: none;
-  color: black;
+  color: $second-color-black;
 }
 
 section {
@@ -197,9 +196,9 @@ body {
   /* 樣式 */
   width: 100%;
   height: 50px;
-  border: 3px solid black;
-  border-bottom: 5px solid black;
-  border-radius: 20px;
+  border: 3px solid $second-color-black;
+  border-bottom: 5px solid $second-color-black;
+  border-radius: $border-radius-s;
   background-color: white;
   /* 控制子層 */
   display: flex;
@@ -257,7 +256,7 @@ main {
 footer {
   height: 100px;
   width: 100%;
-  background-color: rgba(3, 9, 40, 0.6);
+  background-color: $background-color-gray;
   background-size: cover;
   padding-bottom: 10px;
   position: absolute;
@@ -715,3 +714,7 @@ h2 div {
 
 
 @import "index";
+@import "postArea";
+@import "publicationForm";
+@import "notice";
+@import "personal";

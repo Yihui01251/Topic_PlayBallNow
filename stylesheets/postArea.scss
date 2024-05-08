@@ -3,7 +3,6 @@
 /* 貼文區 */
 /* main.filter-postArea */
 .filter-postArea {
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,9 +28,9 @@
 div.hugTitle h1,
 div.hugTitle h2 {
   position: relative;
-  color: white;
+  color: $second-color-white;
   width: fit-content;
-  border-bottom: 4px solid rgba(0, 0, 0, 1);
+  border-bottom: 4px solid $border-black;
   z-index: 0;
 }
 
@@ -41,7 +40,7 @@ div.hugTitle h2 {
 .hugTitle::before {
   position: absolute;
   content: attr(value);
-  -webkit-text-stroke: 4px #000000;
+  -webkit-text-stroke: 4px $second-color-black;
   z-index: -1;
 }
 
@@ -61,12 +60,12 @@ div.hugTitle h2 {
   .filter-info {
     width: fit-content;
     height: 59px;
-    border-radius: 50px;
+    border-radius: $border-radius-m;
 
-    background: rgba(247, 246, 245, 1);
-    border: 3.5px solid rgba(0, 0, 0, 1);
+    background:$background-color-lightwhite2;
+    border: 3.5px solid $border-black;
 
-    box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 1);
+    box-shadow: 0px 4px 0px 0px $border-black;
     /* 子 */
     /* display: flex; */
     display: grid;
@@ -124,20 +123,18 @@ div.hugTitle h2 {
   width: 58px;
   height: 58px;
   top: 4px;
-  border-radius: 90px;
-  border: 3px solid black;
-  box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 1);
+  border-radius: $border-radius-l;
+  border: 3px solid $border-black;
+  box-shadow: 0px 4px 0px 0px $second-color-black;
   display: flex;
   justify-content: center;
   align-items: center;
 
   img {
-
     width: 18px;
     height: 18px;
     top: 8px;
     left: 2px;
-
   }
 
 }
@@ -147,11 +144,11 @@ div.hugTitle h2 {
   /* layout */
   height: auto;
   padding: 4px 7px 4px 7px;
-  border-radius: 90px;
+  border-radius: $border-radius-l;
   /* color */
-  background: rgba(203, 27, 27, 1);
+  background: $btn-color-red;
   /* border */
-  border: 1.5px solid rgba(0, 0, 0, 1);
+  border: 1.5px solid $border-black;
 
   /* 相對#btn-filter位置 */
   position: absolute;
@@ -162,7 +159,7 @@ div.hugTitle h2 {
   text-align: center;
 
   p {
-    color: white;
+    color: $second-color-white;
   }
 }
 
@@ -176,13 +173,13 @@ div.hugTitle h2 {
   p {
     position: relative;
     z-index: 0;
-    color: white;
+    color: $second-color-white;
 
     &::before {
       content: attr(value);
       position: absolute;
       z-index: -1;
-      -webkit-text-stroke: 4px #000000;
+      -webkit-text-stroke: 4px $second-color-black;
     }
   }
 }
@@ -193,7 +190,7 @@ div.hugTitle h2 {
   width: 1850px;
   height: 0px;
   align-self: center;
-  border: 1px solid black;
+  border: 1px solid $second-color-black;
 }
 
 /* main.filter-postArea > section.filter-containers */
@@ -220,10 +217,10 @@ div.hugTitle h2 {
   width: 348px;
   height: fit-content;
   padding: 20px;
-  border-radius: 20px;
-  background: rgba(247, 246, 245, 0.9);
-  border: 3.5px solid rgba(0, 0, 0, 1);
-  box-shadow: 0px 12px 0px 0px rgba(0, 0, 0, 1);
+  border-radius: $border-radius-s;
+  background: $background-color-lightwhite-s;
+  border: 3.5px solid $border-black;
+  box-shadow: 0px 12px 0px 0px $second-color-black;
 
   display: grid;
   grid-template-rows: 95px 127px 36px;
@@ -262,10 +259,10 @@ div.hugTitle h2 {
 .type-style {
   width: fit-content;
   height: fit-content;
-  border-radius: 20px;
+  border-radius: $border-radius-s;
   padding: 4px 10px;
   background: var(--main-color);
-  color: white;
+  color: $second-color-white;
 }
 
 /* ...>div(filter-simplePostInfo > div(main-info > div(areaInfo */
@@ -281,7 +278,7 @@ div.hugTitle h2 {
 
 /*  ... >div(filter-postBlock >div(filter-simplePostInfo > div(sub-info */
 .sub-info {
-  border-radius: 5px;
+  border-radius: $border-radius-xs;
   padding: 5px;
   /* 子 */
   display: grid;
@@ -289,12 +286,12 @@ div.hugTitle h2 {
   gap: 5px;
 
   h4 {
-    color: #6D6D6D;
+    color:$second-color-darkgray;
     align-self: center;
   }
 
   div {
-    color: white;
+    color: $second-color-white;
 
     p {
       color: var(--font-color);
@@ -319,8 +316,8 @@ div.hugTitle h2 {
     width: fit-content;
     height: fit-content;
     padding: 2px 5px;
-    border-radius: 50px;
-    background: #6D6D6D;
+    border-radius: $border-radius-m;
+    background: $second-color-darkgray;
     align-self: center;
 
     display: flex;
