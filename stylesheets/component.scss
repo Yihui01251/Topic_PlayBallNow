@@ -1,18 +1,30 @@
-@import "reset";
-@import "_varible";
-@import url("https://fonts.googleapis.com/css2?family=Alata&display=swap");
+// @import "reset";
+// @import "_varible";
+// @import url("https://fonts.googleapis.com/css2?family=Alata&display=swap");
+// @font-face {
+//     font-family: "jf open 粉圓 2.0";
+//     src: url(./jf-openhuninn-2.0.ttf);
+// }
+/* 變數區 */
+// :root {
+//     --main-color: #14AAEB;
+//     --btn-color: #F1DB15;
+//     --font-color: #147CB6;
+//     --border-image: url('../images/catframe.png');
+//     --background-image: url('../images/CatBg.jpg');
+//     --search-decorate: url('../images/index-searchCat.png');
+//     /* 行程 */
+//     --border-type: solid;
+//     --evaluate-color: #1A8D07;
 
-@font-face {
-    font-family: "jf open 粉圓 2.0";
-    src: url(./jf-openhuninn-2.0.ttf);
-}
-body {
-    display: flex;
-    flex-direction: column;
-    gap: 15vw;
-    font-family: $font-family-en, $font-family-tc;
-    padding: 10vw 10vw;
-}
+// }
+// body {
+//     display: flex;
+//     flex-direction: column;
+//     gap: 50px;
+//     font-family: $font-family-en, $font-family-tc;
+//     padding: 10vw 10vw;
+// }
 /* tag樣式 */
 .tag-style {
     width: fit-content;
@@ -29,7 +41,7 @@ body {
 
         border-radius: 50px;
         background-color: white;
-        color: $font-color-bm;
+        color: var(--font-color);
         text-align: center;
         margin-right: 5px;
 
@@ -46,7 +58,7 @@ body {
     
 }
 .button {
-    background-color: $btn-color-bm;
+    background-color:var(--btn-color);
     width: fit-content;
     height: fit-content;
 
@@ -63,7 +75,7 @@ body {
         padding-top: 3px;
         padding-bottom: 0px;
         color: black;
-        background-color: $btn-color-vb, var(--main-color);
+        background-color: var(--main-color);
         border-bottom: 7px solid var(--main-color);
         border-top: 6px solid black;
         border-right: 1px solid black;
@@ -89,7 +101,7 @@ body {
         padding-top: 3px;
         padding-bottom: 0px;
         color: black;
-        background-color: $btn-color-vb, var(--main-color);
+        background-color: var(--main-color);
         border-bottom: 7px solid var(--main-color);
         border-top: 6px solid black;
         border-right: 1px solid black;
@@ -133,7 +145,7 @@ body {
 
             width: 100%;
             height: fit-content;
-            color: $font-color-bm;
+            color: var(--font-color);
             font-size: $font-size-text-l;
 
             justify-content: space-between;
@@ -154,7 +166,7 @@ body {
                 height: fit-content;
                 border-radius: 20px;
                 padding: 4px 10px;
-                background: $font-color-bm;
+                background: var(--main-color);
                 color: white;
                 text-align: center;
 
@@ -169,7 +181,7 @@ body {
             grid-row: 2;
             width: auto;
             height: auto;
-            color: $font-color-bm;
+            color:var(--font-color);
             font-size: $font-size-title-m;
             display: flex;
             flex-direction: row;
@@ -200,7 +212,7 @@ body {
             color: white;
         }
         div p {
-            color: $font-color-bm;
+            color: var(--font-color);
         }
         /*  ...>div(filter-simplePostInfo > div(sub-info > div(solicitor-number */
         .vacancyInfo {

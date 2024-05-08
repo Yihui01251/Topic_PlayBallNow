@@ -1066,7 +1066,7 @@ h2 div {
 }
 
 /* 報名按鈕 */
-#apply {
+/* #apply {
     flex: 1 1 auto;
     width: fit-content;
     height: fit-content;
@@ -1078,7 +1078,7 @@ h2 div {
     border-bottom: 5px solid black;
     background-color: var(--btn-color);
 
-}
+} */
 
 
 

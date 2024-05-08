@@ -97,10 +97,23 @@ video {
   font-family: "jf open 粉圓 2.0";
   src: url(./jf-openhuninn-2.0.ttf);
 }
+/* 變數區 */
+:root {
+  --main-color: #14AAEB;
+  --btn-color: #F1DB15;
+  --font-color: #147CB6;
+  --border-image: url("../images/catframe.png");
+  --background-image: url("../images/CatBg.jpg");
+  --search-decorate: url("../images/index-searchCat.png");
+  /* 行程 */
+  --border-type: solid;
+  --evaluate-color: #1A8D07;
+}
+
 body {
   display: flex;
   flex-direction: column;
-  gap: 15vw;
+  gap: 50px;
   font-family: "Alata", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Helvetica, Arial, "jf-openhuninn-2.0", "蘋方-繁", "PingFang TC", "黑體-繁", "Heiti TC", "微軟正黑體", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
   padding: 10vw 10vw;
 }
@@ -120,7 +133,7 @@ body {
   width: fit-content;
   border-radius: 50px;
   background-color: white;
-  color: #689607;
+  color: var(--font-color);
   text-align: center;
   margin-right: 5px;
   text-shadow: 0 0;
@@ -135,7 +148,7 @@ body {
 }
 
 .button {
-  background-color: #ff8d24;
+  background-color: var(--btn-color);
   width: fit-content;
   height: fit-content;
   margin-top: 5px;
@@ -152,7 +165,7 @@ body {
   padding-top: 3px;
   padding-bottom: 0px;
   color: black;
-  background-color: #F1DB15, var(--main-color);
+  background-color: var(--main-color);
   border-bottom: 7px solid var(--main-color);
   border-top: 6px solid black;
   border-right: 1px solid black;
@@ -178,7 +191,7 @@ body {
   padding-top: 3px;
   padding-bottom: 0px;
   color: black;
-  background-color: #F1DB15, var(--main-color);
+  background-color: var(--main-color);
   border-bottom: 7px solid var(--main-color);
   border-top: 6px solid black;
   border-right: 1px solid black;
@@ -216,7 +229,7 @@ body {
   grid-row: 1;
   width: 100%;
   height: fit-content;
-  color: #689607;
+  color: var(--font-color);
   font-size: 18px;
   justify-content: space-between;
   align-items: center;
@@ -234,7 +247,7 @@ body {
   height: fit-content;
   border-radius: 20px;
   padding: 4px 10px;
-  background: #689607;
+  background: var(--main-color);
   color: white;
   text-align: center;
 }
@@ -246,7 +259,7 @@ body {
   grid-row: 2;
   width: auto;
   height: auto;
-  color: #689607;
+  color: var(--font-color);
   font-size: 20px;
   display: flex;
   flex-direction: row;
@@ -277,7 +290,7 @@ body {
   color: white;
 }
 .simplePostInfo .sub-info div p {
-  color: #689607;
+  color: var(--font-color);
 }
 .simplePostInfo .sub-info .vacancyInfo {
   width: auto;

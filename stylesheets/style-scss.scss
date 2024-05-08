@@ -1,4 +1,4 @@
-@import "varible";
+@import "_varible";
 
 @import url('https://fonts.googleapis.com/css2?family=Alata&display=swap');
 
@@ -8,6 +8,7 @@
 }
 
 @import "reset";
+@import "component";
 
 /* 變數區 */
 :root {
