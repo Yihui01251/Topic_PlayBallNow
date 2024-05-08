@@ -1,0 +1,311 @@
+@import "varible";
+
+@import url('https://fonts.googleapis.com/css2?family=Alata&display=swap');
+
+@font-face {
+  font-family: "jf open 粉圓 2.0";
+  src: url(./jf-openhuninn-2.0.ttf);
+}
+
+@import "reset";
+
+/* 變數區 */
+:root {
+  --main-color: #14AAEB;
+  --btn-color: #F1DB15;
+  --font-color: #147CB6;
+  --border-image: url('../images/catframe.png');
+  --background-image: url('../images/CatBg.jpg');
+  --search-decorate: url('../images/index-searchCat.png');
+  /* 行程 */
+  --border-type: solid;
+  --evaluate-color: #1A8D07;
+}
+
+
+/* 共用區 */
+
+h1,
+.title-L {
+  font-size: $font-size-title-l;
+  font-style: normal;
+}
+
+h2,
+.title-M {
+  font-size: $font-size-title-m;
+  font-style: normal;
+}
+
+h3,
+.text-L {
+  font-size: $font-size-text-l;
+  font-style: normal;
+}
+
+p,
+.text-M,
+button,
+label,
+select,
+input {
+  font-size: $font-size-text-m;
+  font-style: normal;
+}
+
+small,
+.text-S {
+  font-size: $font-size-text-s;
+  font-style: normal;
+}
+
+/* 移除有序和無序列表的預設樣式 */
+ul {
+  list-style: none;
+}
+
+a {
+  display: block;
+  /* 拿掉超連結文字底線 */
+  text-decoration: none;
+  color: black;
+}
+
+section {
+  margin-bottom: 50px;
+  /* 控制子層 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  background-image: var(--background-image);
+  background-repeat: no-repeat;
+  /* 防止背景圖片重複 */
+  background-size: cover;
+  /* 確保背景圖片填滿整個容器 */
+  background-attachment: fixed;
+  /* 讓背景圖片固定不動 */
+  background-position: center center;
+  /* 讓背景圖片在容器中置中 */
+  font-family: $font-family-en, $font-family-tc;
+}
+
+.background-Bm {
+  background-image: url(../images/DogBg\ .jpg);
+}
+
+.background-Vb {
+  background-image: url(../images/CatBg.jpg);
+}
+
+.background-both {
+  background-image: url(../images/BothBg.jpg);
+}
+
+
+.body {
+  width: 100vw;
+  height: fit-content;
+  position: relative;
+  /* display: grid;
+  grid-template-rows: 125px 1fr 100px; */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-items: center;
+  align-items: center;
+  justify-content: center
+}
+
+/*  */
+/* 導覽列 */
+#topBar {
+  width: 80%;
+  margin: 1vw 19vw;
+  /* header置中 */
+  align-self: center;
+  /* header置中 */
+
+  /* 控制子層 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mobile-TopBar {
+  display: none;
+}
+
+/* 手機 */
+@media ($breakpoint-moblie) {
+  #topBar {
+    width: 90%;
+    position: fixed;
+    bottom: 0;
+    margin-bottom: 15px;
+    z-index: 1;
+  }
+
+  .mobile-TopBar {
+    display: block;
+    align-self: center;
+    min-width: 100vw;
+  }
+
+  .mobile-TopBar img {
+    width: 100%;
+  }
+
+}
+
+#top-nav {
+  /* 父 */
+  width: 55vw;
+  flex: auto;
+  margin: 20px;
+  display: inherit;
+
+  @media ($breakpoint-moblie) {
+    /* 父 */
+    width: 60vw;
+    min-width: 320px;
+    align-self: center;
+  }
+}
+
+
+#menu {
+  /* 樣式 */
+  width: 100%;
+  height: 50px;
+  border: 3px solid black;
+  border-bottom: 5px solid black;
+  border-radius: 20px;
+  background-color: white;
+  /* 控制子層 */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 5vw;
+
+  @media ($breakpoint-moblie) {
+    width: 90%;
+  }
+
+  li {
+    flex: 1 0 auto;
+    /* padding-left: 100px; */
+    /* 控制子層 */
+    display: flex;
+    justify-content: center;
+
+    a {
+      width: 50%;
+      /* 樣式 */
+      padding: 1px;
+      /* 控制子層 */
+      display: flex;
+      gap: 3px;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  .icon {
+    flex: 0 1 auto;
+    /* 樣式*/
+    width: 32px;
+    height: 32px;
+    margin-right: 5px;
+  }
+}
+
+
+/* #menu li:last-child {
+
+  padding-right: 100px;
+} */
+
+/* 主內容 */
+main {
+  margin-bottom: 15vh;
+  /* 保持與底部距離 */
+}
+
+/*  */
+/* 頁尾 */
+footer {
+  height: 100px;
+  width: 100%;
+  background-color: rgba(3, 9, 40, 0.6);
+  background-size: cover;
+  padding-bottom: 10px;
+  position: absolute;
+  bottom: 0;
+  margin-top: 100px;
+
+  @media (max-width:640px) {
+    display: none;
+  }
+
+  footer div {
+    margin-top: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    p {
+      color: white;
+      width: 237px;
+      margin-left: 10px;
+      text-align: center;
+    }
+  }
+}
+
+.footer-border {
+  width: auto;
+  height: 21px;
+  background-image: url("../images/logo2.png");
+  background-size: 24px;
+  background-repeat: repeat;
+  background-position: center;
+}
+
+#logo {
+  width: 35px;
+  height: 33px;
+  margin-left: 10px;
+  flex: 1 0 auto;
+}
+
+#selectArea {
+  display: none;
+}
+
+/* 標題前的線 */
+h2 div {
+  width: 5px;
+  height: 20px;
+  background-color: var(--font-color);
+  margin-right: 10px;
+}
+
+@import "index";
