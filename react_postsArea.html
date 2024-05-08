@@ -20,7 +20,7 @@
       referrerpolicy="no-referrer"
     ></script>
     <title>篩選區_現在想打球</title>
-    <link rel="stylesheet" href="./stylesheets/style.css" />
+    <link rel="stylesheet" href="./stylesheets/css/style-scss.css" />
     <style>
       .fileName {
         display: none;
@@ -52,9 +52,6 @@
           const { useState, useEffect, useRef } = React;
           //   const [todayType, setTodayType] = useState("");
 
-         
-
-
           // 更改資料類型
           //    const getPosts = (type) => {
           //     switch (type) {
@@ -69,8 +66,8 @@
           //   };
 
           // 元件
-          // 建立貼文元件
-          const ApplyCard = ({
+          // 建立簡略貼文元件
+          const ApplySimpleCard = ({
             id,
             type,
             postDate,
@@ -85,21 +82,20 @@
             role,
             pos,
             note,
+            href,
           }) => {
             // const {key,date,time,city,area,arena,tag1,tag2} = props;
             return (
               <>
-                <div
-                  className="filter-simplePostInfo"
-                >
+                <div className="simplePostInfo">
                   <div className="main-info">
                     <header>
-                      <p className="text-L">
+                      <p>
                         {postDate} {postStartTime}~{postEndTime}
                       </p>
                       <div className="type-style">{type}</div>
                       <button className="collect">
-                        <img src="./images/heart.png" alt="收藏" />
+                        <img src="./images/heart-no.svg" alt="收藏" />
                       </button>
                     </header>
                     <div className="areaInfo">
@@ -108,8 +104,8 @@
                       <h3>{postArena}</h3>
                     </div>
                     <div className="tag-style">
-                      <p className="text-S">{primaryTag}</p>
-                      <p className="text-S">${secondaryTag}</p>
+                      <p>{primaryTag}</p>
+                      <p>${secondaryTag}</p>
                     </div>
                   </div>
                   <div className="sub-info">
@@ -134,53 +130,177 @@
                       <p>{note}</p>
                     </div>
                   </div>
-                  <div>
-                    {" "}
-                    <button id="apply">報名</button>
+                  <div className="BtnContainer">
+                    <a className="button" href={`#${href}`}>
+                      報名
+                    </a>
                   </div>
                 </div>
-              </> 
+                <ApplyCard
+                  href={href}
+                  type={type}
+                  postDate={postDate}
+                  postStartTime={postStartTime}
+                  postEndTime={postEndTime}
+                  postCity={postCity}
+                  postArea={postArea}
+                  postArena={postArena}
+                  primaryTag={primaryTag}
+                  secondaryTag={secondaryTag}
+                  female={reqCount[0].count}
+                  male={reqCount[1].count}
+                  unspecified={reqCount[2].count}
+                  role={role}
+                  pos={pos}
+                  note={note}
+                />
+              </>
+            );
+          };
+          const ApplyCard = ({
+            href,
+            postDate,
+            postStartTime,
+            postEndTime,
+            postCity,
+            postArea,
+            postArena,
+            primaryTag,
+            secondaryTag,
+            female,
+            male,
+            unspecified,
+            role,
+            pos,
+            note,
+          }) => {
+            return (
+              <div className="popup" id={href}>
+                <div className="popup-inner">
+                  <div className="popup__content">
+                    <div className="detailPostInfo">
+                      <div className="simplePostInfo">
+                        <div className="main-info">
+                          <header>
+                            <p>
+                              {postDate} {postStartTime}~{postEndTime}
+                            </p>
+                            <div className="type-style">羽球</div>
+                            <button className="collect">
+                              <img src="../images/heart-no.svg" alt="收藏" />
+                            </button>
+                          </header>
+                          <div className="areaInfo">
+                            <h3>{postCity}</h3>
+                            <h3>{postArea}</h3>
+                            <h3>{postArena}</h3>
+                          </div>
+                          <div className="tag-style">
+                            <p>{primaryTag}</p>
+                            <p>${secondaryTag}</p>
+                          </div>
+                        </div>
+                        <div className="sub-info">
+                          <div className="vacancyInfo">
+                            <h4>缺額</h4>
+                            <div>女</div>
+                            <p>{female}位</p>
+                            <div>男</div>
+                            <p>{male}位</p>
+                            <div>不限</div> <p>{unspecified}位</p>
+                          </div>
+                          <div className="ballInfo">
+                            <h4>類型</h4>
+                            <p>{role}</p>
+                          </div>
+                          <div className="equipInfo">
+                            <h4>位置</h4>
+                            <p>{pos}</p>
+                          </div>
+                          <div className="noteInfo">
+                            <h4>備註</h4>
+                            <p>{note}</p>
+                          </div>
+                        </div>
+
+                        <div className="apply-info">
+                          <hr />
+                          <img
+                            src="../images/player-border.png"
+                            alt="團主頭貼"
+                          />
+                          <p>
+                            團主<span>Joson</span>
+                          </p>
+                          <div>
+                            <p>報名備註</p>
+                            <input
+                              type="text"
+                              placeholder="輸入對團主的話..."
+                            />
+                          </div>
+                        </div>
+
+                        <div className="BtnContainer">
+                          <a className="btn-close popup__close" href="#">
+                            關閉
+                          </a>
+                          <button className="button" id="apply">
+                            確認報名
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             );
           };
           return (
-            <div className = "body">
+            <div className="body">
+              <div className="mobile-TopBar">
+                <img
+                  src="./images/mobile-both-topbanner.png"
+                  alt="不分類的手機版banner"
+                />
+              </div>
               <header id="topBar">
-              <nav id="top-nav">
-              <ul id="menu">
-              <li>
-              <a href="./index.html">
-              <img
-              className="icon"
-              src="./images/magnifier.png"
-              alt=""
-              />
-                  探索
-                </a>
-              </li>
-              <li>
-                <a href="./publicationForm.html">
-                  <img className="icon" src="./images/post.png" alt="" />
-                  找人
-                </a>
-              </li>
-              <li>
-                <a href="notice.html">
-                  <img className="icon" src="./images/bell3.png" alt="" />
-                  行程
-                </a>
-              </li>
-              <li>
-                <a href="personal.html">
-                  <img className="icon" src="./images/cat.png" alt="" />
-                  個人
-                </a>
-              </li>
-              </ul>
-              </nav>
+                <nav id="top-nav">
+                  <ul id="menu">
+                    <li>
+                      <a href="./index.html">
+                        <img
+                          className="icon"
+                          src="./images/magnifier.png"
+                          alt=""
+                        />
+                        探索
+                      </a>
+                    </li>
+                    <li>
+                      <a href="./publicationForm.html">
+                        <img className="icon" src="./images/post.png" alt="" />
+                        找人
+                      </a>
+                    </li>
+                    <li>
+                      <a href="notice.html">
+                        <img className="icon" src="./images/bell3.png" alt="" />
+                        行程
+                      </a>
+                    </li>
+                    <li>
+                      <a href="personal.html">
+                        <img className="icon" src="./images/cat.png" alt="" />
+                        個人
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
               </header>
 
               <main className="filter-postArea">
-                <div className="filter-title">
+                <div className="title">
                   <div className="hugTitle">
                     <h1 className="title-L" value="篩選貼文">
                       篩選貼文
@@ -189,25 +309,27 @@
                 </div>
                 <section className="filter-box">
                   <a href="./index.html">
-                  <div className="filter-btnBox">
-                    <button id="btn-filter">
-                      <img src="./images/arrow-left.png" alt="" />
-                    </button>                  
-                  </div>
+                    <div className="filter-btnBox">
+                      <button id="btn-filter">
+                        <img src="./images/arrow-left.png" alt="" />
+                      </button>
+                    </div>
                   </a>
-                  <a href="#"><div className="filter-info">
-                    <div className="info-top">
-                      <p className="title-M">6/24</p>
-                      <p className="title-M dot">|</p>
-                      <p className="title-M">上午</p>
-                    </div>
+                  <a href="#">
+                    <div className="filter-info">
+                      <div className="info-top">
+                        <p className="title-M">6/24</p>
+                        <p className="title-M dot">|</p>
+                        <p className="title-M">上午</p>
+                      </div>
 
-                    <div className="info-down">
-                      <p className="text-M">新店區，與其他2個區域</p>
+                      <div className="info-down">
+                        <p className="text-M">新店區，與其他2個區域</p>
+                      </div>
+                      <img src="./images/filiter.png" alt="篩選icon" />
                     </div>
-                    <img src="./images/filiter.png" alt="篩選icon"/>
-                  </div></a>
-                  
+                  </a>
+
                   <div className="filter-postQuantity">
                     <p className="text-M" value="共有11筆資料">
                       共有11筆資料
@@ -218,7 +340,7 @@
                 {/* 貼文 */}
                 <section className="filter-containers">
                   <div className="filter-postBlock">
-                   {/* // {postData.map((group,index)=>{
+                    {/* // {postData.map((group,index)=>{
                     //   group.map((post_data)=>{
                     //     return(<ApplyCard
                     //       key={post_data.id}
@@ -242,10 +364,9 @@
                     //   })
                     // })*/}
 
-                    
                     {vb_week_postData.map((post_data) => {
                       return (
-                        <ApplyCard
+                        <ApplySimpleCard
                           key={post_data.id}
                           id={post_data.id}
                           type={post_data.type}
@@ -261,10 +382,10 @@
                           role={post_data.role}
                           pos={post_data.pos}
                           note={post_data.note}
+                          href={`ApplyPopUp-${post_data.id}`}
                         />
                       );
                     })}
-                    
                   </div>
                 </section>
               </main>

@@ -20,7 +20,7 @@
       referrerpolicy="no-referrer"
     ></script>
     <title>現在想打球</title>
-    <link rel="stylesheet" href="./stylesheets/style.css" />
+    <link rel="stylesheet" href="./stylesheets/css/style-scss.css" />
     <style>
       .fileName {
         display: none;
@@ -56,10 +56,10 @@
           const [fontColor, setFontColor] = useState("#147CB6");
           const [btnColor, setBtnColor] = useState("#F1DB15");
           const [postBorder, setPostBorder] = useState(
-            'url("../images/catframe.png")'
+            'url("./images/catframe.png")'
           );
           const [decorateSearch, setDecorateSearch] = useState(
-            'url("../images/index-searchCat.png")'
+            'url("./images/index-searchCat.png")'
           );
           const [todayType, setTodayType] = useState("vb_today_postData");
           const [weekType, setWeekType] = useState("vb_week_postData");
@@ -150,7 +150,7 @@
 
           // 元件
           const Card = ({ name }) => {
-            //console.log(name);
+            // console.log(name);
           };
           // 建立貼文元件
           const PostCard = ({
@@ -163,6 +163,7 @@
             postArena,
             primaryTag,
             secondaryTag,
+            href
           }) => {
             // const {key,date,time,city,area,arena,tag1,tag2} = props;
             return (
@@ -172,118 +173,138 @@
                   id={id}
                   style={{ backgroundImage: postBorder }}
                 >
-                    <div className="text">
-                      <header>
-                        <p className="text-S">{postDate}</p>
-                        <p className="text-L">
-                          {postStartTime}~{postEndTime}
-                        </p>
-                      </header>
-                      <div className="subtext">
-                        <p className="text-S">{postCity}</p>
-                        <p className="text-S">{postArea}</p>
-                      </div>
-                      <h3 className="text-L" value={`${postArena}`}>
-                        {postArena}
-                      </h3>
-                      <div className="tag-style">
-                        <p className="text-S">{primaryTag}</p>
-                        <p className="text-S">${secondaryTag}</p>
-                      </div>
-                      <div className="BtnContainer">
-                        <a className="button" href="#applyPopup">
-                          報名
-                        </a>
-                      </div>
+                  <div className="text">
+                    <header>
+                      <p className="text-S">{postDate}</p>
+                      <p className="text-L">
+                        {postStartTime}~{postEndTime}
+                      </p>
+                    </header>
+                    <div className="subtext">
+                      <p className="text-S">{postCity}</p>
+                      <p className="text-S">{postArea}</p>
+                    </div>
+                    <h3 className="text-L" value={`${postArena}`}>
+                      {postArena}
+                    </h3>
+                    <div className="tag-style">
+                      <p className="text-S">{primaryTag}</p>
+                      <p className="text-S">${secondaryTag}</p>
+                    </div>
+                    <div className="BtnContainer">
+                      <a className="button" href={`#${href}`}>
+                        報名
+                      </a>
+                    </div>
 
-                      <div className="popup" id="applyPopup">
-                        <div className="popup-inner">
-                          <div className="popup__content">
-                            <div className="detailPostInfo">
-                              <div className="simplePostInfo">
-                                <div className="main-info">
-                                  <header>
-                                    <p> 18:00~20:00</p>
-                                    <div className="type-style">羽球</div>
-                                    <button className="collect">
-                                      <img
-                                        src="../images/heart-no.svg"
-                                        alt="收藏"
-                                      />
-                                    </button>
-                                  </header>
-                                  <div className="areaInfo">
-                                    <h3>台北市</h3>
-                                    <h3>中山區</h3>
-                                    <h3>中山運動中心</h3>
-                                  </div>
-                                  <div className="tag-style">
-                                    <p>初階</p>
-                                    <p>$150</p>
-                                  </div>
-                                </div>
-                                <div className="sub-info">
-                                  <div className="vacancyInfo">
-                                    <h4>缺額</h4>
-                                    <div>女</div>
-                                    <p>0 位</p>
-                                    <div>男</div>
-                                    <p>3 位</p>
-                                    <div>不限</div>
-                                    <p>2 位</p>
-                                  </div>
-                                  <div className="ballInfo">
-                                    <h4>類型</h4>
-                                    <p>雙打</p>
-                                  </div>
-                                  <div className="equipInfo">
-                                    <h4>設備</h4>
-                                    <p>冷氣</p>
-                                  </div>
-                                  <div className="noteInfo">
-                                    <h4>備註</h4>
-                                    <p>請提早10分鐘到場換裝熱身</p>
-                                  </div>
-                                </div>
-
-                                <div className="apply-info">
-                                  <hr />
-                                  <img
-                                    src="../images/player(border).png"
-                                    alt="團主頭貼"
-                                  />
-                                  <p>
-                                    團主<span>Joson</span>
-                                  </p>
-                                  <div>
-                                    <p>報名備註</p>
-                                    <input
-                                      type="text"
-                                      placeholder="輸入對團主的話..."
+                    
+                  </div>
+                  <div className="bg"></div>
+                </div>
+                <ApplyCard href ={href}  postDate={postDate}
+                          postStartTime={postStartTime}
+                          postEndTime={postEndTime}
+                          postCity={postCity}
+                          postArea={postArea}
+                          postArena={postArena}
+                          primaryTag={primaryTag}
+                          secondaryTag={secondaryTag}
+                          />
+              </>
+            );
+          };
+          const ApplyCard = ({href,postDate,
+            postStartTime,
+            postEndTime,
+            postCity,
+            postArea,
+            postArena,
+            primaryTag,
+            secondaryTag,})=>{
+            return(
+              <div className="popup" id={href}>
+                      <div className="popup-inner">
+                        <div className="popup__content">
+                          <div className="detailPostInfo">
+                            <div className="simplePostInfo">
+                              <div className="main-info">
+                                <header>
+                                  <p>{postDate} {postStartTime}~{postEndTime}</p>
+                                  <div className="type-style">羽球</div>
+                                  <button className="collect">
+                                    <img
+                                      src="../images/heart-no.svg"
+                                      alt="收藏"
                                     />
-                                  </div>
-                                </div>
-
-                                <div className="BtnContainer">
-                                  <a className="btn-close popup__close" href="#">
-                                    關閉
-                                  </a>
-                                  <button className="button" id="apply">
-                                    確認報名
                                   </button>
+                                </header>
+                                <div className="areaInfo">
+                                  <h3>{postCity}</h3>
+                                  <h3>{postArea}</h3>
+                                  <h3>{postArena}</h3>
                                 </div>
+                                <div className="tag-style">
+                                  <p>{primaryTag}</p>
+                                  <p>${secondaryTag}</p>
+                                </div>
+                              </div>
+                              <div className="sub-info">
+                                <div className="vacancyInfo">
+                                  <h4>缺額</h4>
+                                  <div>女</div>
+                                  <p>0 位</p>
+                                  <div>男</div>
+                                  <p>3 位</p>
+                                  <div>不限</div>
+                                  <p>2 位</p>
+                                </div>
+                                <div className="ballInfo">
+                                  <h4>類型</h4>
+                                  <p>雙打</p>
+                                </div>
+                                <div className="equipInfo">
+                                  <h4>設備</h4>
+                                  <p>冷氣</p>
+                                </div>
+                                <div className="noteInfo">
+                                  <h4>備註</h4>
+                                  <p>請提早10分鐘到場換裝熱身</p>
+                                </div>
+                              </div>
+
+                              <div className="apply-info">
+                                <hr />
+                                <img
+                                  src="../images/player(border).png"
+                                  alt="團主頭貼"
+                                />
+                                <p>
+                                  團主<span>Joson</span>
+                                </p>
+                                <div>
+                                  <p>報名備註</p>
+                                  <input
+                                    type="text"
+                                    placeholder="輸入對團主的話..."
+                                  />
+                                </div>
+                              </div>
+
+                              <div className="BtnContainer">
+                                <a className="btn-close popup__close" href="#">
+                                  關閉
+                                </a>
+                                <button className="button" id="apply">
+                                  確認報名
+                                </button>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  <div className="bg">
-                   </div></div>
-                
-              </>
-            );
-          };
+            )
+          }
           return (
             <div className="body">
               <div className="mobile-TopBar">
@@ -324,7 +345,7 @@
                 </nav>
               </header>
               <main className="index-Area">
-                <div className="form-title">
+                <div className="title">
                   <div className="hugTitle">
                     <h1 className="title-L" value="現在想打球">
                       現在想打球
@@ -509,6 +530,7 @@
                           postArena={post_data.arena}
                           primaryTag={post_data.tagDegree}
                           secondaryTag={post_data.tagPrice}
+                          href={`todayApplyPopUp-${post_data.id}`}
                         />
                       );
                     })}
@@ -546,6 +568,7 @@
                           postArena={post_data.arena}
                           primaryTag={post_data.tagDegree}
                           secondaryTag={post_data.tagPrice}
+                          href={`weekApplyPopUp-${post_data.id}`}
                         />
                       );
                     })}
@@ -565,11 +588,13 @@
                   <p>Copyright© 2024 PlayBallNow. All Right Reserved. </p>
                 </div>
               </footer>
+             
             </div>
           );
         };
         ReactDOM.createRoot(document.getElementById("root")).render(<App />);
       })();
     </script>
+    
   </body>
 </html>

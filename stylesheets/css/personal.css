@@ -3,7 +3,6 @@
 /* 個人檔案main */
 .personal-Area {
   width: 100%;
-  height: -moz-fit-content;
   height: fit-content;
   display: grid;
   grid-template-rows: 50px 1fr;
@@ -21,9 +20,7 @@
 #btn-editFile {
   flex: 0.1;
   justify-self: end;
-  width: -moz-fit-content;
   width: fit-content;
-  height: -moz-fit-content;
   height: fit-content;
   border-radius: 50px;
   padding: 9px 18px;
@@ -40,7 +37,6 @@
 /* 個人資料容器 */
 .personalArea-infoContainer {
   width: 100%;
-  height: -moz-fit-content;
   height: fit-content;
   margin: 0 50px;
   display: grid;
@@ -59,7 +55,6 @@
 .infoContainer-biography {
   max-width: 100%;
   min-width: 315px;
-  height: -moz-fit-content;
   height: fit-content;
   /* display: flex;
     flex-direction: row;
@@ -95,7 +90,6 @@
 }
 @media screen and (max-width:640px) {
   .biography-bust {
-    height: -moz-fit-content;
     height: fit-content;
     display: flex;
     flex-direction: column;
@@ -147,7 +141,6 @@
 .biography-info {
   /* flex-grow:1; */
   width: 70%;
-  height: -moz-fit-content;
   height: fit-content;
   display: grid;
   grid-template-rows: 1fr 1fr;
@@ -174,7 +167,6 @@
 .info-selfState {
   max-width: 100%;
   min-width: 315px;
-  height: -moz-fit-content;
   height: fit-content;
   border-radius: 20px;
   border: 4px solid black;
@@ -190,7 +182,6 @@
 
 /* 登入後顯示的場次資料 */
 .selfState-userInfo {
-  height: -moz-fit-content;
   height: fit-content;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -226,7 +217,6 @@
 /* 累積場次... */
 .selfState-title {
   width: 242px;
-  height: -moz-fit-content;
   height: fit-content;
   display: grid;
   grid-template-columns: 67px 51px 67px;
@@ -253,7 +243,6 @@
 }
 @media screen and (max-width:640px) {
   .infoContainer-records {
-    height: -moz-fit-content;
     height: fit-content;
     display: grid;
     grid-template-rows: 205px 1fr;
@@ -265,7 +254,6 @@
 .records-sponsored {
   width: 315px;
   min-width: 215px;
-  height: -moz-fit-content;
   height: fit-content;
   padding: 20px;
   background-color: rgba(247, 246, 245, 0.9);
@@ -282,7 +270,6 @@
 /* 團主紀錄第一行標題 */
 .sponsored-title {
   width: 85%;
-  height: -moz-fit-content;
   height: fit-content;
   justify-self: flex-start;
   display: grid;
@@ -330,7 +317,6 @@
 .records-participation {
   width: 315px;
   min-width: 215px;
-  height: -moz-fit-content;
   height: fit-content;
   padding: 20px;
   background-color: rgba(247, 246, 245, 0.9);
@@ -346,7 +332,6 @@
 
 .info-time {
   width: 100px;
-  height: -moz-fit-content;
   height: fit-content;
   border-radius: 50px;
   border: 2px solid rgba(131, 185, 15, 0.9);

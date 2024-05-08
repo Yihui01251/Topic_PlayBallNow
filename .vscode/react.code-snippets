@@ -99,4 +99,12 @@
 	],
 	"description":"整個導覽列"		
 
-}}
+},
+"報名貼文元件":{
+	"prefix": "applycard",
+	"body":[
+		
+	],
+	"description":"報名貼文元件"	
+}
+}
