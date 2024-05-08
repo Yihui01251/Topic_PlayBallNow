@@ -170,6 +170,10 @@ img {
   width: 100%;
 }
 
+.svg {
+  background: rgba(247, 246, 245, 0.9);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -685,8 +689,8 @@ h2 div {
 }
 .popup__content {
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: auto;
   overflow: auto;

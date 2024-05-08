@@ -20,7 +20,7 @@
       referrerpolicy="no-referrer"
     ></script>
     <title>現在想打球</title>
-    <link rel="stylesheet" href="./stylesheets/style.css">
+    <link rel="stylesheet" href="./stylesheets/style.css" />
     <style>
       .fileName {
         display: none;
@@ -39,8 +39,8 @@
         const data = await axios.get("./postData_test.json");
         const { postData } = data.data;
         console.log(postData);
-        const { vb_today_postData} = postData[0];
-         const { vb_week_postData } = postData[1];
+        const { vb_today_postData } = postData[0];
+        const { vb_week_postData } = postData[1];
         const { bm_today_postData } = postData[2];
         const { bm_week_postData } = postData[3];
         console.log(vb_today_postData);
@@ -58,7 +58,9 @@
           const [postBorder, setPostBorder] = useState(
             'url("../images/catframe.png")'
           );
-          const [decorateSearch,setDecorateSearch] = useState('url("../images/index-searchCat.png")');
+          const [decorateSearch, setDecorateSearch] = useState(
+            'url("../images/index-searchCat.png")'
+          );
           const [todayType, setTodayType] = useState("vb_today_postData");
           const [weekType, setWeekType] = useState("vb_week_postData");
           const [selectedButton, setSelectedButton] = useState("btn-typeVb");
@@ -77,7 +79,7 @@
             let colorFont = "";
             let btnColor = "";
             let newBorder = "";
-            let decorate ='';
+            let decorate = "";
 
             // 取消其他按鈕的選擇
             const btnTypeVb = document.getElementById("btn-typeVb");
@@ -85,8 +87,7 @@
             const bodyStyle = document.getElementById("body");
             console.log(bodyStyle);
 
-            if (id === "btn-typeBm" || id ==="btn-formBM") {
-              
+            if (id === "btn-typeBm" || id === "btn-formBM") {
               colorMain = "#83B90F";
               colorFont = "#689607";
               btnColor = "#FF8D24";
@@ -99,9 +100,8 @@
               setTodayType("bm_today_postData");
               setWeekType("bm_week_postData");
             } else if (id === "btn-typeVb" || id === "btn-formVB") {
-              
               colorMain = "#14AAEB";
-              colorFont ="#147CB6";
+              colorFont = "#147CB6";
               btnColor = "#F1DB15";
               newBorder = "url('../images/catframe.png')";
               decorate = 'url("../images/index-searchCat.png")';
@@ -111,17 +111,26 @@
               setTodayType("vb_today_postData");
               setWeekType("vb_week_postData");
             }
-            
+
             setMainColor(colorMain);
             setFontColor(colorFont);
             setBtnColor(btnColor);
             setPostBorder(newBorder);
             setDecorateSearch(decorate);
-            
-            document.documentElement.style.setProperty("--main-color", colorMain);
-            document.documentElement.style.setProperty("--font-color", colorFont);
+
+            document.documentElement.style.setProperty(
+              "--main-color",
+              colorMain
+            );
+            document.documentElement.style.setProperty(
+              "--font-color",
+              colorFont
+            );
             document.documentElement.style.setProperty("--btn-color", btnColor);
-            document.documentElement.style.setProperty("--search-decorate", decorate);
+            document.documentElement.style.setProperty(
+              "--search-decorate",
+              decorate
+            );
           };
           // 更改資料類型
           const getPosts = (type) => {
@@ -140,9 +149,9 @@
           };
 
           // 元件
-          const Card = ({name}) => {
+          const Card = ({ name }) => {
             //console.log(name);
-           };
+          };
           // 建立貼文元件
           const PostCard = ({
             id,
@@ -163,7 +172,6 @@
                   id={id}
                   style={{ backgroundImage: postBorder }}
                 >
-                  <div className="bg">
                     <div className="text">
                       <header>
                         <p className="text-S">{postDate}</p>
@@ -182,49 +190,138 @@
                         <p className="text-S">{primaryTag}</p>
                         <p className="text-S">${secondaryTag}</p>
                       </div>
-                      <a className ="button" href ="#applyPopup">報名</a>
+                      <div className="BtnContainer">
+                        <a className="button" href="#applyPopup">
+                          報名
+                        </a>
+                      </div>
+
+                      <div className="popup" id="applyPopup">
+                        <div className="popup-inner">
+                          <div className="popup__content">
+                            <div className="detailPostInfo">
+                              <div className="simplePostInfo">
+                                <div className="main-info">
+                                  <header>
+                                    <p> 18:00~20:00</p>
+                                    <div className="type-style">羽球</div>
+                                    <button className="collect">
+                                      <img
+                                        src="../images/heart-no.svg"
+                                        alt="收藏"
+                                      />
+                                    </button>
+                                  </header>
+                                  <div className="areaInfo">
+                                    <h3>台北市</h3>
+                                    <h3>中山區</h3>
+                                    <h3>中山運動中心</h3>
+                                  </div>
+                                  <div className="tag-style">
+                                    <p>初階</p>
+                                    <p>$150</p>
+                                  </div>
+                                </div>
+                                <div className="sub-info">
+                                  <div className="vacancyInfo">
+                                    <h4>缺額</h4>
+                                    <div>女</div>
+                                    <p>0 位</p>
+                                    <div>男</div>
+                                    <p>3 位</p>
+                                    <div>不限</div>
+                                    <p>2 位</p>
+                                  </div>
+                                  <div className="ballInfo">
+                                    <h4>類型</h4>
+                                    <p>雙打</p>
+                                  </div>
+                                  <div className="equipInfo">
+                                    <h4>設備</h4>
+                                    <p>冷氣</p>
+                                  </div>
+                                  <div className="noteInfo">
+                                    <h4>備註</h4>
+                                    <p>請提早10分鐘到場換裝熱身</p>
+                                  </div>
+                                </div>
+
+                                <div className="apply-info">
+                                  <hr />
+                                  <img
+                                    src="../images/player(border).png"
+                                    alt="團主頭貼"
+                                  />
+                                  <p>
+                                    團主<span>Joson</span>
+                                  </p>
+                                  <div>
+                                    <p>報名備註</p>
+                                    <input
+                                      type="text"
+                                      placeholder="輸入對團主的話..."
+                                    />
+                                  </div>
+                                </div>
+
+                                <div className="BtnContainer">
+                                  <a className="btn-close popup__close" href="#">
+                                    關閉
+                                  </a>
+                                  <button className="button" id="apply">
+                                    確認報名
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
+                  <div className="bg">
+                   </div></div>
+                
               </>
             );
           };
           return (
-            <div className = "body">
-              <div className = "mobile-TopBar"><img src="./images/mobile-top.png" alt="排球的手機版banner"/></div>
+            <div className="body">
+              <div className="mobile-TopBar">
+                <img src="./images/mobile-top.png" alt="排球的手機版banner" />
+              </div>
               <header id="topBar">
-              <nav id="top-nav">
-              <ul id="menu">
-              <li>
-              <a href="./index.html">
-              <img
-              className="icon"
-              src="./images/magnifier.png"
-              alt=""
-              />
-                  探索
-                </a>
-              </li>
-              <li>
-                <a href="./publicationForm.html">
-                  <img className="icon" src="./images/post.png" alt="" />
-                  找人
-                </a>
-              </li>
-              <li>
-                <a href="notice.html">
-                  <img className="icon" src="./images/bell3.png" alt="" />
-                  行程
-                </a>
-              </li>
-              <li>
-                <a href="personal.html">
-                  <img className="icon" src="./images/cat.png" alt="" />
-                  個人
-                </a>
-              </li>
-              </ul>
-              </nav>
+                <nav id="top-nav">
+                  <ul id="menu">
+                    <li>
+                      <a href="./index.html">
+                        <img
+                          className="icon"
+                          src="./images/magnifier.png"
+                          alt=""
+                        />
+                        探索
+                      </a>
+                    </li>
+                    <li>
+                      <a href="./publicationForm.html">
+                        <img className="icon" src="./images/post.png" alt="" />
+                        找人
+                      </a>
+                    </li>
+                    <li>
+                      <a href="notice.html">
+                        <img className="icon" src="./images/bell3.png" alt="" />
+                        行程
+                      </a>
+                    </li>
+                    <li>
+                      <a href="personal.html">
+                        <img className="icon" src="./images/cat.png" alt="" />
+                        個人
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
               </header>
               <main className="index-Area">
                 <div className="form-title">
@@ -234,33 +331,34 @@
                     </h1>
                   </div>
                 </div>
-                
+
                 {/*篩選區 */}
                 <section className="search">
                   <div className="btn-changeType">
                     <div className="form-type">
-                        <button
-                          id="btn-formBM"
-                          // ref={btnFormBmRef}
-                          className={
-                            selectedButton === "btn-typeBm" ? "selected" : ""
-                          }
-                          onClick={() => changeType("btn-typeBm")}
-                        >
-                          打羽球
-                        </button>
+                      <button
+                        id="btn-formBM"
+                        // ref={btnFormBmRef}
+                        className={
+                          selectedButton === "btn-typeBm" ? "selected" : ""
+                        }
+                        onClick={() => changeType("btn-typeBm")}
+                      >
+                        打羽球
+                      </button>
 
-                        <button
-                          id="btn-formVB"
-                          // ref={btnFormVbRef}
-                          className={
-                            selectedButton === "btn-typeVb" ? "selected" : ""
-                          }
-                          onClick={() => changeType("btn-typeVb")}
-                        >
-                          打排球
-                        </button>
-                      </div></div>
+                      <button
+                        id="btn-formVB"
+                        // ref={btnFormVbRef}
+                        className={
+                          selectedButton === "btn-typeVb" ? "selected" : ""
+                        }
+                        onClick={() => changeType("btn-typeVb")}
+                      >
+                        打排球
+                      </button>
+                    </div>
+                  </div>
                   <div id="search-Type">
                     <button
                       id="btn-typeVb"
@@ -284,7 +382,6 @@
                     </button>
                   </div>
                   <div id="search-Bar" style={{ backgroundColor: mainColor }}>
-                    
                     <div className="dropMenu">
                       <ul>
                         <input
@@ -296,11 +393,7 @@
                           required
                           style={{ color: mainColor }}
                         />
-                        <select
-                          name="縣市"
-                          id="city"
-                          className="dpMenu-item"
-                        >
+                        <select name="縣市" id="city" className="dpMenu-item">
                           <option value="default">縣市</option>
                           <option value="taipei">台北市</option>
                           <option value="xinpei">新北市</option>
@@ -309,11 +402,7 @@
                         <select name="" multiple id="selectArea">
                           <option value="default">地區</option>
                         </select>
-                        <select
-                          name="程度"
-                          id="degree"
-                          className="dpMenu-item"
-                        >
+                        <select name="程度" id="degree" className="dpMenu-item">
                           <option value="default">程度</option>
                           <optgroup label="羽球">
                             <option value="新手">新手</option>
@@ -334,62 +423,50 @@
                           </optgroup>
                         </select>
 
-                        <select
-                          name="費用"
-                          id="cost"
-                          className="dpMenu-item"
-                        >
+                        <select name="費用" id="cost" className="dpMenu-item">
                           <option value="default">費用</option>
                           <option value="150以下">150以下</option>
                           <option value="default">200以下</option>
                           <option value="default">250以下</option>
                           <option value="default">250+</option>
                         </select>
-                        <select
-                          name="類型"
-                          id="type"
-                          className="dpMenu-item"
-                        >
+                        <select name="類型" id="type" className="dpMenu-item">
                           <option value="default">類型</option>
                           <option value="男網純男">男網純男</option>
                         </select>
-                        <select
-                          name="設備"
-                          id="equip"
-                          className="dpMenu-item"
-                        >
+                        <select name="設備" id="equip" className="dpMenu-item">
                           <option value="default">設備</option>
                           <option value="側燈">側燈</option>
                         </select>
                       </ul>
                       {/**/}
                     </div>
-                    <div className = "searchBtn-box">
+                    <div className="searchBtn-box">
                       <div id="search-Type">
                         <button
-                      id="btn-typeVb"
-                      className={
-                        selectedButton === "btn-typeVb" ? "selected" : ""
-                      }
-                      ref={btnTypeVbRef}
-                      onClick={() => changeType("btn-typeVb")}
-                    >
-                      <img src="./images/vball.png" alt="排球" />
-                    </button>
-                    <button
-                      id="btn-typeBm"
-                      className={
-                        selectedButton === "btn-typeBm" ? "selected" : ""
-                      }
-                      onClick={() => changeType("btn-typeBm")}
-                      ref={btnTypeBmRef}
-                    >
-                      <img src="./images/bball.png" alt="羽球" />
-                    </button>
-                        </div>
-                      <a href="./react_postsArea.html"><button className="btn-send">
-                        送出
-                      </button></a>
+                          id="btn-typeVb"
+                          className={
+                            selectedButton === "btn-typeVb" ? "selected" : ""
+                          }
+                          ref={btnTypeVbRef}
+                          onClick={() => changeType("btn-typeVb")}
+                        >
+                          <img src="./images/vball.png" alt="排球" />
+                        </button>
+                        <button
+                          id="btn-typeBm"
+                          className={
+                            selectedButton === "btn-typeBm" ? "selected" : ""
+                          }
+                          onClick={() => changeType("btn-typeBm")}
+                          ref={btnTypeBmRef}
+                        >
+                          <img src="./images/bball.png" alt="羽球" />
+                        </button>
+                      </div>
+                      <a href="./react_postsArea.html">
+                        <button className="btn-send">送出</button>
+                      </a>
                     </div>
                   </div>
                 </section>
@@ -409,9 +486,7 @@
                       <div></div>本日臨打貼文
                     </h2>
                     <div className="more">
-                      <a href="#">
-                        更多
-                      </a>
+                      <a href="#">更多</a>
                     </div>
                   </header>
                   <ul className="tags">

@@ -85,7 +85,9 @@ img {
   display: block;
   width: 100%;
 }
-
+.svg{
+  background:rgba(247, 246, 245, 0.9);
+}
 
 * {
   margin: 0;
@@ -654,8 +656,8 @@ h2 div {
   }
   &__content {
     display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     height: auto;
     overflow:auto;
