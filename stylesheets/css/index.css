@@ -304,7 +304,7 @@ button#btn-typeVb.selected img {
 
 /* 首頁貼文容器 */
 /* 首頁main > section */
-.containers {
+.post-containers {
   /* 樣式 */
   width: 50vw;
   min-width: 300px;
@@ -417,7 +417,7 @@ button#btn-typeVb.selected img {
   overflow: hidden;
 }
 
-/* 簡略貼文元件 */
+/* 首頁小貼文元件 */
 /* 首頁main > section(containers > div(post-block> div(content*/
 .content {
   flex: 1 0 auto;
@@ -494,42 +494,4 @@ button#btn-typeVb.selected img {
 }
 .subtext p {
   margin-right: 10px;
-}
-
-/*  > div(post > div(content > div(text > div(tag-style */
-.tag-style {
-  width: fit-content;
-  height: fit-content;
-  /* display: grid;
-  grid-template-columns: 76px 76px;
-  gap: 10px; */
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-}
-.tag-style p {
-  padding: 4px 8px;
-  height: fit-content;
-  width: fit-content;
-  border-radius: 50px;
-  background-color: white;
-  color: var(--main-color);
-  text-align: center;
-  margin-right: 5px;
-  text-shadow: 0 0;
-}
-
-/* 報名按鈕 */
-#apply {
-  flex: 1 1 auto;
-  width: fit-content;
-  height: fit-content;
-  align-self: flex-end;
-  margin-top: 5px;
-  border-radius: 50px;
-  padding: 5px 18px;
-  border: 2px solid black;
-  border-bottom: 5px solid black;
-  background-color: var(--btn-color);
 }/*# sourceMappingURL=index.css.map */
