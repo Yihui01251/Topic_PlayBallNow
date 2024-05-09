@@ -1,0 +1,369 @@
+@import "_varible";
+
+/* 個人 */
+/* 個人檔案main */
+.personal-Area {
+  width: 100%;
+  height: fit-content;
+
+  justify-items: center;
+
+  @media screen and ($breakpoint-moblie) {
+    margin-bottom: 180px;
+  }
+}
+
+/* 資料編輯按鈕*/
+#btn-editFile {
+  flex: 0.1;
+  justify-self: end;
+  width: fit-content;
+  height: fit-content;
+  border-radius: $border-radius-m;
+  padding: 9px 18px;
+  margin-right: 10px;
+  background-color: $background-color-purple-s;
+  color: $background-color-lightwhite-s;
+  border: 2px solid $border-black;
+  box-shadow: 0px 4px 0px 0px $second-color-black;
+  display: grid;
+  grid-template-columns: 65px 32px;
+  align-items: center;
+}
+
+/* 個人資料容器 */
+.personalArea-infoContainer {
+  width: 100%;
+  height: fit-content;
+  /* child */
+  display: grid;
+  grid-template-rows: 1fr 0.5fr;
+  gap: 5px;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+
+  @media screen and ($breakpoint-moblie) {
+    gap: 20px;
+  }
+}
+
+/* 包頭像(登入)+狀態的容器 */
+.infoContainer-biography {
+  max-width: 100%;
+  min-width: 315px;
+  height: fit-content;
+  /* display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 80px; */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+  gap: 80px;
+  justify-content: space-between;
+  align-items: center;
+  justify-items: center;
+
+  @media screen and ($breakpoint-moblie) {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-items: center;
+  }
+}
+
+/* 頭像(登入)容器 */
+.biography-bust {
+  /* flex-grow:1; */
+  width: 30%;
+  height: 250px;
+  display: grid;
+  grid-template-rows: 205px 145px;
+  gap: 15px;
+  justify-content: center;
+  align-items: start;
+  justify-items: center;
+
+  @media screen and ($breakpoint-moblie) {
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  figure {
+    width: 150px;
+    height: 150px;
+    border-radius: $border-radius-l;
+    border: 10px solid $border-black;
+    background-color: $background-color-white;
+    margin-bottom: 20px;
+  }
+}
+
+/* Line登入按鈕 */
+.btn-logInLine {
+  width: 112px;
+  height: 36px;
+  background-color: #44C150;
+  color: $background-color-lightwhite-s;
+  border: 3px solid $border-black;
+  border-radius: $border-radius-xs;
+  font-size: 12px;
+  padding: 6px 9px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    width: 20px;
+    margin-right: 12px;
+  }
+}
+
+
+/* 登入後姓名 */
+.userName {
+  width: 120px;
+  display: flex;
+  flex-direction: row;
+  color: white;
+
+  img {
+    width: 20px;
+  }
+}
+
+/* 包(狀態)容器 */
+.biography-info {
+  /* flex-grow:1; */
+  width: 70%;
+  height: fit-content;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 32px;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 介紹 */
+.info-introduction {
+  /* width: 100%; */
+  min-width: 215px;
+  height: 89px;
+  border-radius: $border-radius-m;
+  padding: 12px 18px;
+  background-color: rgba(247, 246, 245, 0.9);
+  box-shadow: 5px 5px 5px 0px $box-shadow;
+  color: $second-color-darkgray;
+  text-align: center;
+  line-height: 89px;
+}
+
+/* 場次+出席+自評狀態 */
+.info-selfState {
+  max-width: 100%;
+  min-width: 315px;
+  height: fit-content;
+  border-radius: $border-radius-s;
+  border: 4px solid $border-black;
+  background-color: $background-color-lightwhite-s;
+  padding: 20px;
+  display: grid;
+  grid-template-rows: 2fr 0.5fr;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+}
+
+/* 登入後顯示的場次資料 */
+.selfState-userInfo {
+  height: fit-content;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 35px;
+  align-items: center;
+
+  .userInfo {
+    width: 53px;
+    height: 32px;
+    border-radius: $border-radius-m;
+    background-color: $main-color-bm;
+    text-align: center;
+    line-height: 32px;
+    color: $background-color-lightwhite-s;
+  }
+
+  div {
+    width: 60px;
+    height: 55px;
+    position: relative;
+
+    p {
+      position: absolute;
+      top: 18px;
+      left: 13px;
+      color: $main-color-bm;
+    }
+
+    img {
+      position: absolute;
+      width: 100%;
+      top: 0;
+    }
+  }
+}
+
+
+/* 累積場次... */
+.selfState-title {
+  width: 242px;
+  height: fit-content;
+
+  display: grid;
+  grid-template-columns: 67px 51px 67px;
+  justify-content: space-between;
+  color: $main-color-bm;
+}
+
+/*登入顯示字顏色 */
+.info-selfState>div:last-child {
+  color: $second-color-darkgray;
+}
+
+/* 包(團主和零打紀錄)的容器 */
+.infoContainer-records {
+  max-width: 100%;
+  min-width: 315px;
+  height: 210px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  /* grid-template-columns:1fr 1fr; */
+  gap: 80px;
+  justify-items: center;
+  align-items: center;
+
+  @media screen and ($breakpoint-moblie) {
+    height: fit-content;
+    display: grid;
+    grid-template-rows: 205px 1fr;
+    gap: 20px;
+  }
+}
+
+/* 團主紀錄容器 */
+.records-sponsored {
+  width: 315px;
+  min-width: 215px;
+  height: fit-content;
+  padding: 20px;
+  background-color: $background-color-lightwhite-s;
+  border-radius: $border-radius-s;
+  border: 4px solid $border-black;
+
+  display: grid;
+  grid-template-rows: 19px 1fr;
+  gap: 15px;
+  justify-items: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* 團主紀錄第一行標題 */
+.sponsored-title {
+  width: 85%;
+  height: fit-content;
+  justify-self: flex-start;
+
+  display: grid;
+  grid-template-columns: 95px 59px;
+  gap: 134px;
+  justify-content: space-between;
+}
+
+
+/* 包標題的容器 */
+.hugSponsored-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+/* 標題前的直線 */
+.titleLine {
+  width: 5px;
+  height: 20px;
+  background-color: $second-color-black;
+  margin-right: 10px;
+}
+
+/* 包左、右按鈕的容器 */
+.sponsored-titleBtn {
+  display: grid;
+  grid-template-columns: 10px 10px;
+  gap: 41px;
+}
+
+
+/* 提示:登入顯示 */
+.prompt {
+  color: $second-color-darkgray;
+}
+
+/*  */
+.records-info {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-self: flex-start;
+}
+
+/*臨打紀錄*/
+.records-participation {
+  width: 315px;
+  min-width: 215px;
+  height: fit-content;
+  padding: 20px;
+  background-color: $background-color-lightwhite-s;
+  border-radius: $border-radius-s;
+  border: 4px solid $border-black;
+
+  display: grid;
+  grid-template-rows: 19px 1fr;
+  gap: 15px;
+  justify-items: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.info-time {
+  width: 100px;
+  height: fit-content;
+  border-radius: $border-radius-m;
+  border: 2px solid $background-color-green-s;
+  background-color: $background-color-lightwhite-s;
+  color: $font-color-bm;
+
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+
+  div {
+    width: 33px;
+    height: 42px;
+    border-radius: $border-radius-m;
+    background-color: $background-color-green-s;
+    color: $background-color-lightwhite-s;
+    font-size: 30px;
+  }
+
+  p {
+    width: 50px;
+    text-align: center;
+  }
+}

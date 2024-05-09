@@ -6,7 +6,7 @@
 	"<html lang=\"zh-Hant-TW\">",
 "<head>",
   "<title> </title>",
-  "<link rel=\"stylesheet\" href=\"./stylesheets/style.css\" />",
+  "<link rel=\"stylesheet\" href=\"./stylesheets/css/style-scss.css\" />",
   "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">",
   "<meta charset=\"UTF-8\">",
   "<script src=\"https://unpkg.com/react@18/umd/react.development.js\"></script>",
@@ -62,6 +62,12 @@
 "導覽列":{
 	"prefix": "navbar",
 	"body":[
+		"<div className=\"mobile-TopBar\">",
+                "<img",
+                  "src=\"./images/mobile-both-topbanner.png\"",
+                  "alt=\"不分類的手機版banner\"",
+                "/>",
+              "</div>",
 		"<header id=\"topBar\">",
 			  "<nav id=\"top-nav\">",
 				"<ul id=\"menu\">",
@@ -99,4 +105,12 @@
 	],
 	"description":"整個導覽列"		
 
-}}
+},
+"報名貼文元件":{
+	"prefix": "applycard",
+	"body":[
+		
+	],
+	"description":"報名貼文元件"	
+}
+}

@@ -2,63 +2,50 @@
 /* 貼文區 */
 /* main.filter-postArea */
 .filter-postArea {
+  width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 46px;
+  margin-bottom: 20vw;
 }
-.filter-postArea .filter-title {
-  width: 700px;
-  height: fit-content;
+.filter-postArea hr {
+  width: 80vw;
+  height: 0px;
   align-self: center;
-}
-.filter-postArea .filter-title .hugTitle {
-  text-align: center;
-}
-
-.hugTitle {
-  flex: auto;
-  margin-left: 20px;
-}
-
-/* 標題底線 */
-div.hugTitle h1,
-div.hugTitle h2 {
-  position: relative;
-  color: white;
-  width: fit-content;
-  border-bottom: 4px solid rgb(0, 0, 0);
-  z-index: 0;
-}
-
-/* 增加文字外框線 */
-.hugTitle h1::before,
-.hugTitle h2::before,
-.hugTitle::before {
-  position: absolute;
-  content: attr(value);
-  -webkit-text-stroke: 4px #000000;
-  z-index: -1;
+  border: 1px solid #000000;
 }
 
 /* main.filter-postArea  > section.filter-box*/
 .filter-box {
-  width: 500px;
+  max-width: 400px;
+  width: 70vw;
   height: 96px;
   align-self: center;
+  margin-top: 2vh;
   /* 子 */
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
+  gap: 10px;
+}
+@media (max-width:640px) {
+  .filter-box {
+    margin-top: 5vh;
+    display: grid;
+    grid-template-rows: minmax(80px, auto);
+    grid-template-columns: 60px 1fr;
+    gap: 10px;
+    justify-items: center;
+  }
 }
 .filter-box .filter-info {
   width: fit-content;
   height: 59px;
   border-radius: 50px;
   background: rgb(247, 246, 245);
-  border: 3.5px solid rgb(0, 0, 0);
-  box-shadow: 0px 4px 0px 0px rgb(0, 0, 0);
+  border: 3.5px solid black;
+  box-shadow: 0px 4px 0px 0px black;
   /* 子 */
   /* display: flex; */
   display: grid;
@@ -95,6 +82,12 @@ div.hugTitle h2 {
   grid-row: 2;
   align-self: center;
 }
+@media (max-width:640px) {
+  .filter-box .filter-info .info-down {
+    grid-row: 2;
+    grid-column: 1/3;
+  }
+}
 
 .filter-btnBox {
   width: 70px;
@@ -109,7 +102,7 @@ div.hugTitle h2 {
   top: 4px;
   border-radius: 90px;
   border: 3px solid black;
-  box-shadow: 0px 4px 0px 0px rgb(0, 0, 0);
+  box-shadow: 0px 4px 0px 0px #000000;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -128,9 +121,9 @@ div.hugTitle h2 {
   padding: 4px 7px 4px 7px;
   border-radius: 90px;
   /* color */
-  background: rgb(203, 27, 27);
+  background: #cb1b1b;
   /* border */
-  border: 1.5px solid rgb(0, 0, 0);
+  border: 1.5px solid black;
   /* 相對#btn-filter位置 */
   position: absolute;
   top: 0;
@@ -139,7 +132,7 @@ div.hugTitle h2 {
   text-align: center;
 }
 .by-btn-filterNum p {
-  color: white;
+  color: #ffffff;
 }
 
 /* main.filter-postArea  > section.filter-box > div.filter-postQuantity */
@@ -147,11 +140,20 @@ div.hugTitle h2 {
   width: 165px;
   height: 19px;
   margin-top: 30px;
+  text-align: center;
+}
+@media (max-width:640px) {
+  .filter-postQuantity {
+    margin-top: 10px;
+    padding: 0 auto;
+    grid-row: 2;
+    grid-column: 1/3;
+  }
 }
 .filter-postQuantity p {
   position: relative;
   z-index: 0;
-  color: white;
+  color: #ffffff;
 }
 .filter-postQuantity p::before {
   content: attr(value);
@@ -160,170 +162,24 @@ div.hugTitle h2 {
   -webkit-text-stroke: 4px #000000;
 }
 
-/* main.filter-postArea > hr */
-.filter-postArea hr {
-  width: 1850px;
-  height: 0px;
-  align-self: center;
-  border: 1px solid black;
-}
-
 /* main.filter-postArea > section.filter-containers */
 .filter-containers {
-  width: 100vh;
+  width: 100%;
   height: auto;
   margin: 20px;
+  display: flex;
+  align-items: center;
 }
 
 /* main.filter-postArea > section.filter-containers >div.filter-postBlock */
 .filter-postBlock {
-  width: 100%;
+  width: 80%;
   height: fit-content;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   overflow-wrap: normal;
   gap: 30px;
   justify-content: center;
-}
-
-/* 篩選貼文區貼文 */
-/* main.filter-postArea > section.filter-containers >div.filter-postBlock >div.filter-simplePostInfo */
-.filter-simplePostInfo {
-  width: 348px;
-  height: fit-content;
-  padding: 20px;
-  border-radius: 20px;
-  background: rgba(247, 246, 245, 0.9);
-  border: 3.5px solid rgb(0, 0, 0);
-  box-shadow: 0px 12px 0px 0px rgb(0, 0, 0);
-  display: grid;
-  grid-template-rows: 95px 127px 36px;
-  /* grid-template-rows: 0.25fr 1.2fr 0.25fr; */
-  gap: 10px;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-
-/* ... >div(filter-simplePostInfo > div(main-info */
-.main-info {
-  display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
-  gap: 5px;
-  justify-content: space-between;
-  align-items: center;
-}
-.main-info header {
-  width: auto;
-  height: fit-content;
-  color: var(--main-color);
-  display: grid;
-  grid-template-columns: 4.9fr 1.1fr 0.7fr;
-  gap: 15px;
-  justify-content: space-between;
-  align-items: center;
-}
-
-/* ...>div(filter-simplePostInfo > div(main-info > header> type-style */
-.type-style {
-  width: fit-content;
-  height: fit-content;
-  border-radius: 20px;
-  padding: 4px 10px;
-  background: var(--main-color);
-  color: white;
-}
-
-/* ...>div(filter-simplePostInfo > div(main-info > div(areaInfo */
-.areaInfo {
-  width: auto;
-  height: auto;
-  color: var(--main-color);
-  display: grid;
-  grid-template-columns: 55px 55px 110px;
-  gap: 7px;
-  /* 只有在 Flexbox 或 Grid 的容器中使用 gap */
-}
-
-/*  ... >div(filter-postBlock >div(filter-simplePostInfo > div(sub-info */
-.sub-info {
-  border-radius: 5px;
-  padding: 5px;
-  /* 子 */
-  display: grid;
-  grid-template-rows: 1fr 0.9fr 0.9fr 0.9fr 2fr;
-  gap: 5px;
-}
-.sub-info h4 {
-  color: #6D6D6D;
-  align-self: center;
-}
-.sub-info div {
-  color: white;
-}
-.sub-info div p {
-  color: var(--font-color);
-}
-
-/*  ...>div(filter-simplePostInfo > div(sub-info > div(solicitor-number */
-.vacancyInfo {
-  width: auto;
-  height: fit-content;
-  /* 子 */
-  display: grid;
-  grid-template-columns: 35px 25px 35px 25px 40px 45px 35px;
-  gap: 6px;
-  justify-content: space-between;
-  align-items: center;
-}
-.vacancyInfo div {
-  width: fit-content;
-  height: fit-content;
-  padding: 2px 5px;
-  border-radius: 50px;
-  background: #6D6D6D;
-  align-self: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/*  ...>div(filter-simplePostInfo > div(sub-info > div(ball-type */
-.ballInfo {
-  width: auto;
-  height: fit-content;
-  display: grid;
-  grid-template-columns: 35px 1fr;
-  gap: 6px;
-  justify-content: center;
-  align-items: center;
-}
-.ballInfo h4 {
-  width: fit-content;
-  align-self: center;
-}
-
-/* 設備/... >div(filter-simplePostInfo >div(sub-info>div(equipInfo*/
-.equipInfo,
-.posInfo {
-  width: auto;
-  height: fit-content;
-  display: grid;
-  grid-template-columns: 35px 1fr;
-  gap: 6px;
-}
-
-/* 備註/... >div(filter-simplePostInfo>div(sub-info>div(noteInfo*/
-.noteInfo {
-  width: auto;
-  height: fit-content;
-  display: grid;
-  grid-template-columns: 35px 1fr;
-  gap: 6px;
-}
-
-/* 報名按鈕 */
-.filter-simplePostInfo > div:last-child {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  padding-left: 10px;
 }/*# sourceMappingURL=postArea.css.map */

@@ -4,20 +4,19 @@
 
 @font-face {
   font-family: "jf open 粉圓 2.0";
-  src: url(./jf-openhuninn-2.0.ttf);
+  src: url(./jf-openhuninn-2.0.ttf); 
 }
 
 @import "reset";
 
-
-/* 變數區 */
+/* 變數區 */  
 :root {
   --main-color: #14AAEB;
   --btn-color: #F1DB15;
   --font-color: #147CB6;
-  --border-image: url('../images/catframe.png');
-  --background-image: url('../images/CatBg.jpg');
-  --search-decorate: url('../images/index-searchCat.png');
+  --border-image: url('/images/catframe.png');
+  --background-image: url('/images/CatBg.jpg');
+  --search-decorate: url('/images/index-searchCat.png');
   /* 行程 */
   --border-type: solid;
   --evaluate-color: #1A8D07;
@@ -25,7 +24,7 @@
 
 
 /* 共用區 */
-
+/* 標題文字 */ 
 h1,
 .title-L {
   font-size: $font-size-title-l;
@@ -34,7 +33,7 @@ h1,
 
 h2,
 .title-M {
-  font-size: $font-size-title-m;
+  font-size: $font-size-title-m; 
   font-style: normal;
 }
 
@@ -43,7 +42,66 @@ h3,
   font-size: $font-size-text-l;
   font-style: normal;
 }
+.title {
+  /* layout */ 
+  width: 60vw;
+  max-width: 700px;
+  min-width: 340px;
+  height: fit-content;
+  margin: 0 50px;
 
+  /* child */ 
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  @media ($breakpoint-moblie) {
+    /* layout */
+    min-width: 300px;
+    height: fit-content;
+    margin: 20px 0px;
+    /* child */
+    display: flex;
+    flex-direction: row;
+    gap: 80px;
+    justify-content: space-around;
+    align-items: center;
+  }
+}
+.hugTitle { 
+  width: 100%; 
+  text-align: center;
+  flex: auto;
+  margin-left: 20px;
+}
+
+/* 標題底線 */
+div.hugTitle h1,
+div.hugTitle h2 {
+  position: relative;
+  color: $second-color-white;
+  width: fit-content;
+  border-bottom: 4px solid $border-black;
+  z-index: 0;
+} 
+/* 增加文字外框線 */ 
+.hugTitle h1::before,
+.hugTitle h2::before,
+.hugTitle::before {
+  position: absolute; 
+  content: attr(value);
+  -webkit-text-stroke: 4px $second-color-black;
+  z-index: -1;
+}
+/* 標題前的線 */
+h2 div {
+  width: 5px;
+  height: 20px;
+  background-color: var(--font-color);
+  margin-right: 10px;
+}
+
+/*  */
 p,
 .text-M,
 button,
@@ -69,7 +127,8 @@ a {
   display: block;
   /* 拿掉超連結文字底線 */
   text-decoration: none;
-  color: black;
+  color: $second-color-black;
+  z-index: 5;
 }
 
 section {
@@ -85,13 +144,27 @@ img {
   display: block;
   width: 100%;
 }
+.svg{
+  background:rgba(247, 246, 245, 0.9);
+}
+/* 所有input */
+input,select{ 
+  border-radius: $border-radius-m;
+  border: 2.5px solid $border-black;
+  box-shadow: 0 4px 0 0 $box-shadow;
+  padding: 4px 10px;
 
-
+  &:active,&:hover{
+    box-shadow: none;
+  }
+}
+ 
+/* 全域 */
 * {
   margin: 0;
   padding: 0;
 }
-
+/* 包react的 */
 body {
   width: 100%;
   height: 100%;
@@ -105,21 +178,27 @@ body {
   background-position: center center;
   /* 讓背景圖片在容器中置中 */
   font-family: $font-family-en, $font-family-tc;
+
+  z-index: -10;
 }
 
 .background-Bm {
-  background-image: url(../images/DogBg\ .jpg);
+  background-image: url(/images/DogBg\ .jpg);
 }
 
 .background-Vb {
-  background-image: url(../images/CatBg.jpg);
+  background-image: url(/images/CatBg.jpg);
 }
 
 .background-both {
-  background-image: url(../images/BothBg.jpg);
+  background-image: url(/images/BothBg.jpg);
 }
-
-
+/* react下的root */
+#root{
+  position: absolute;
+  z-index: -21;
+}
+/* 包渲染內容的容器 */
 .body {
   width: 100vw;
   height: fit-content;
@@ -131,7 +210,9 @@ body {
   gap: 10px;
   justify-items: center;
   align-items: center;
-  justify-content: center
+  justify-content: center;
+  
+  z-index: -9;
 }
 
 /*  */
@@ -149,14 +230,32 @@ body {
   align-items: center;
 }
 
-.mobile-TopBar {
+.mobile-TopBar { 
   display: none;
 }
 
+
+
+#top-nav {
+  /* 父 */
+  width: 55vw;
+  flex: auto;
+  margin: 20px;
+  display: inherit;
+
+  // @media ($breakpoint-moblie) {
+  //   /* 父 */
+  //   width: 60vw;
+  //   min-width: 320px;
+  //   align-self: center;
+  // }
+}
 /* 手機 */
 @media ($breakpoint-moblie) {
-  #topBar {
-    width: 90%;
+  #top-nav { 
+    width: 60vw;
+    align-self:center;
+    min-width: 320px;
     position: fixed;
     bottom: 0;
     margin-bottom: 15px;
@@ -175,29 +274,14 @@ body {
 
 }
 
-#top-nav {
-  /* 父 */
-  width: 55vw;
-  flex: auto;
-  margin: 20px;
-  display: inherit;
-
-  @media ($breakpoint-moblie) {
-    /* 父 */
-    width: 60vw;
-    min-width: 320px;
-    align-self: center;
-  }
-}
-
 
 #menu {
   /* 樣式 */
   width: 100%;
   height: 50px;
-  border: 3px solid black;
-  border-bottom: 5px solid black;
-  border-radius: 20px;
+  border: 3px solid $second-color-black;
+  border-bottom: 5px solid $second-color-black;
+  border-radius: $border-radius-s;
   background-color: white;
   /* 控制子層 */
   display: flex;
@@ -237,15 +321,10 @@ body {
     margin-right: 5px;
   }
 }
-
-
-/* #menu li:last-child {
-
-  padding-right: 100px;
-} */
-
+/*  */
 /* 主內容 */
 main {
+  width: 100vw;
   margin-bottom: 15vh;
   /* 保持與底部距離 */
 }
@@ -254,8 +333,8 @@ main {
 /* 頁尾 */
 footer {
   height: 100px;
-  width: 100%;
-  background-color: rgba(3, 9, 40, 0.6);
+  width: 100vw;
+  background-color: $background-color-gray;
   background-size: cover;
   padding-bottom: 10px;
   position: absolute;
@@ -266,7 +345,7 @@ footer {
     display: none;
   }
 
-  footer div {
+  div {
     margin-top: 24px;
     display: flex;
     justify-content: center;
@@ -284,12 +363,12 @@ footer {
 .footer-border {
   width: auto;
   height: 21px;
-  background-image: url("../images/logo2.png");
+  background-image: url("/images/logo2.png");
   background-size: 24px;
   background-repeat: repeat;
   background-position: center;
 }
-
+/* logo */
 #logo {
   width: 35px;
   height: 33px;
@@ -297,17 +376,7 @@ footer {
   flex: 1 0 auto;
 }
 
-#selectArea {
-  display: none;
-}
 
-/* 標題前的線 */
-h2 div {
-  width: 5px;
-  height: 20px;
-  background-color: var(--font-color);
-  margin-right: 10px;
-}
 
 /* 元件 */
 /* tag樣式 */
@@ -350,26 +419,28 @@ h2 div {
   margin-top: 5px;
   padding: 5px 18px;
   border-radius: $border-radius-btn;
-  border: 2px solid black;
-  border-bottom: 5px solid black;
+  border: 2px solid $border-black;
+  border-bottom: 5px solid $border-black;
 
   text-decoration: none;
   text-transform: uppercase;
   cursor: pointer;
 
   &:hover{
-    box-shadow: 0 1px 3px rgba(0,0,0,0.25)
+    margin-top: 0px; 
+    box-shadow: 0 2px  $border-black
   }
   &:active {
       width: fit-content;
       height: fit-content;
       border-radius: 50px;
+      margin-top: 7px; 
       padding-top: 3px;
       padding-bottom: 0px;
       color: black;
       background-color: var(--main-color);
-      border-bottom: 7px solid var(--main-color);
-      border-top: 6px solid black;
+      border-bottom: -1px solid $second-color-black;
+      border-top: 1px solid black;
       border-right: 1px solid black;
       border-left: 1px solid black;
       box-shadow: none;
@@ -399,11 +470,12 @@ h2 div {
       border-right: 1px solid black;
       border-left: 1px solid black;
       box-shadow: none;
-  }
+  } 
 }
-/* 貼文元件 */
+/* 貼文元件 */ 
 .simplePostInfo {
-  width: 348px;
+  flex: 0 1 auto;
+  width: 300px;
   height: fit-content;
   padding: 20px;
   border-radius: 20px;
@@ -477,7 +549,7 @@ h2 div {
           font-size: $font-size-title-m;
           display: flex;
           flex-direction: row;
-          gap: 25px;
+          gap: 10px;
       }
       //tag布局
       .tag-style {
@@ -633,13 +705,14 @@ h2 div {
   bottom: 0;
   right: 0;
   background-color: rgba(0, 0, 0, .80);
-  z-index: 2;
+  z-index: 99;
   visibility: hidden;
   opacity: 0;
   overflow: hidden;
   transition: .64s ease-in-out;
   &-inner {
     position: relative;
+    z-index: 99;
     bottom: -100vw;
     right: -100vh;
     display: flex;
@@ -653,12 +726,13 @@ h2 div {
     transition: .64s ease-in-out;
   }
   &__content {
+ 
     display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     height: auto;
-    overflow:auto;
+    overflow:visible;
   }
   &__photo {
     display: flex;
@@ -713,3 +787,8 @@ h2 div {
 
 
 @import "index";
+@import "postArea";
+@import "publicationForm";
+@import "notice";
+@import "personal";
+@import "register";
