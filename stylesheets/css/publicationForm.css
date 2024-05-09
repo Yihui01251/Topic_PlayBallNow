@@ -13,7 +13,7 @@
 }
 
 /* 發文表單標題 */
-div.form-title {
+.form-title {
   /* layout */
   width: 60%;
   max-width: 700px;
@@ -27,7 +27,7 @@ div.form-title {
   align-items: center;
 }
 @media (max-width:640px) {
-  div.form-title {
+  .form-title {
     /* layout */
     min-width: 375px;
     height: fit-content;
@@ -72,7 +72,7 @@ section.form-container {
 }
 
 /* 貼文管理按鈕 */
-main div button#btn-postManage {
+#btn-postManage {
   /* layout */
   width: fit-content;
   height: fit-content;
@@ -88,7 +88,7 @@ main div button#btn-postManage {
 }
 
 /* 切換表單按鈕容器 */
-main div .form-type {
+.form-type {
   flex: auto;
   width: 100%;
   height: fit-content;

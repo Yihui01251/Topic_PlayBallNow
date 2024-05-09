@@ -1,4 +1,14 @@
 @charset "UTF-8";
+/* 紀錄Z-index 
+main:10
+>serach:1
+>post-container:auto
+  >>post-block:auto
+  >>content:
+    >>>text:1
+    >>>bg:-2
+    >>>popup:99
+*/
 /* 探索頁 */
 /* 首頁main容器 */
 .index-Area {
@@ -10,7 +20,8 @@
   flex-direction: column;
   align-items: center;
   gap: 40px;
-  z-index: -4;
+  z-index: 10;
+  position: relative;
 }
 
 /* 首頁篩選區 */
@@ -25,7 +36,7 @@
   flex: 1 1 auto;
   align-self: center;
   margin: 50px 0px;
-  z-index: 2;
+  z-index: 1;
   /* 控制子層 */
   display: flex;
   gap: 5vw;
@@ -199,6 +210,10 @@ button#btn-typeVb.selected img {
   align-content: center;
 }
 
+#selectArea {
+  display: none;
+}
+
 .searchBtn-box #search-Type {
   display: none;
 }
@@ -308,7 +323,7 @@ button#btn-typeVb.selected img {
   /* 布局 */
   align-self: center;
   flex: 1 1 auto;
-  z-index: -3;
+  z-index: auto;
   /*子層 */
   padding: 10px 15px;
   display: flex;
@@ -316,7 +331,6 @@ button#btn-typeVb.selected img {
 }
 
 /* 首頁貼文容器標題(今日臨打...) */
-/* 首頁main > section(containers > header.title-postArea*/
 .title-postArea {
   width: 95%;
   padding: 20px 10px;
@@ -392,6 +406,8 @@ button#btn-typeVb.selected img {
 /* 裝貼文元件的容器 */
 /* 首頁main > section(containers > div(post-block*/
 .post-block {
+  /* 布局 */
+  z-index: auto;
   height: 245px;
   width: 90%;
   padding: 10px 0px;
@@ -441,21 +457,20 @@ button#btn-typeVb.selected img {
 /* 文字 */
 /* ...> div(post-block > div(content > div(text*/
 .text {
+  /* 布局 */
+  z-index: 1;
+  position: absolute;
+  padding: 20px;
+  /* layout */
   width: 70%;
   height: 144px;
-  /* background-color: #14AAEB; */
-  /* position:  absolute; */
-  text-align: center;
   color: white;
-  padding: 20px;
+  /* 子 */
+  text-align: center;
   display: inline-flex;
   flex-direction: column;
-}
-.text header {
-  flex: 1 0 auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  align-items: flex-start;
+  gap: 3px;
 }
 .text h3 {
   flex: auto;
@@ -469,54 +484,30 @@ button#btn-typeVb.selected img {
   -webkit-text-stroke: 4px #000000;
   z-index: -1;
 }
-.text p {
+
+.mainText {
+  z-index: 1;
+  /*  */
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding-left: 10px;
+}
+.mainText p {
   text-shadow: 1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
 }
 
 /* ...> div(content > div(text >div(subtext*/
 .subtext {
+  z-index: 1;
   display: flex;
   flex: auto;
   align-self: flex-start;
 }
 .subtext p {
   margin-right: 10px;
-}
-
-/*  > div(post > div(content > div(text > div(tag-style */
-.tag-style {
-  width: fit-content;
-  height: fit-content;
-  /* display: grid;
-  grid-template-columns: 76px 76px;
-  gap: 10px; */
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-}
-.tag-style p {
-  padding: 4px 8px;
-  height: fit-content;
-  width: fit-content;
-  border-radius: 50px;
-  background-color: white;
-  color: var(--main-color);
-  text-align: center;
-  margin-right: 5px;
-  text-shadow: 0 0;
-}
-
-/* 報名按鈕 */
-#apply {
-  flex: 1 1 auto;
-  width: fit-content;
-  height: fit-content;
-  align-self: flex-end;
-  margin-top: 5px;
-  border-radius: 50px;
-  padding: 5px 18px;
-  border: 2px solid black;
-  border-bottom: 5px solid black;
-  background-color: var(--btn-color);
+  text-shadow: 1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
 }/*# sourceMappingURL=index.css.map */

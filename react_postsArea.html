@@ -83,6 +83,7 @@
             pos,
             note,
             href,
+            host
           }) => {
             // const {key,date,time,city,area,arena,tag1,tag2} = props;
             return (
@@ -153,12 +154,15 @@
                   role={role}
                   pos={pos}
                   note={note}
+                  host={host}
                 />
               </>
             );
           };
+          //建立報名元件
           const ApplyCard = ({
             href,
+            type,
             postDate,
             postStartTime,
             postEndTime,
@@ -173,7 +177,12 @@
             role,
             pos,
             note,
+            host
           }) => {
+            const hostType ='vb';
+            if(type=="羽球"){
+              hostType="bm";
+            }
             return (
               <div className="popup" id={href}>
                 <div className="popup-inner">
@@ -185,7 +194,7 @@
                             <p>
                               {postDate} {postStartTime}~{postEndTime}
                             </p>
-                            <div className="type-style">羽球</div>
+                            <div className="type-style">{type}</div>
                             <button className="collect">
                               <img src="../images/heart-no.svg" alt="收藏" />
                             </button>
@@ -226,11 +235,11 @@
                         <div className="apply-info">
                           <hr />
                           <img
-                            src="../images/player-border.png"
+                            src={`./images/host-${hostType}.png`}
                             alt="團主頭貼"
                           />
                           <p>
-                            團主<span>Joson</span>
+                            團主<span>{host}</span>
                           </p>
                           <div>
                             <p>報名備註</p>
@@ -297,9 +306,6 @@
                     </li>
                   </ul>
                 </nav>
-              </header>
-
-              <main className="filter-postArea">
                 <div className="title">
                   <div className="hugTitle">
                     <h1 className="title-L" value="篩選貼文">
@@ -307,6 +313,10 @@
                     </h1>
                   </div>
                 </div>
+                </header>
+
+              <main className="filter-postArea">
+                
                 <section className="filter-box">
                   <a href="./index.html">
                     <div className="filter-btnBox">
@@ -383,6 +393,7 @@
                           pos={post_data.pos}
                           note={post_data.note}
                           href={`ApplyPopUp-${post_data.id}`}
+                          host={post_data.host}
                         />
                       );
                     })}

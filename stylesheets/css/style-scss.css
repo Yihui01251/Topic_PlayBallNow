@@ -111,6 +111,7 @@ video {
 }
 
 /* 共用區 */
+/* 標題文字 */
 h1,
 .title-L {
   font-size: 24px;
@@ -130,18 +131,35 @@ h3,
 }
 
 .title {
-  width: 60%;
+  /* layout */
+  width: 60vw;
   max-width: 700px;
   min-width: 340px;
   height: fit-content;
   margin: 0 50px;
+  /* child */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
+@media (max-width:640px) {
+  .title {
+    /* layout */
+    min-width: 300px;
+    height: fit-content;
+    margin: 20px 0px;
+    /* child */
+    display: flex;
+    flex-direction: row;
+    gap: 80px;
+    justify-content: space-around;
+    align-items: center;
+  }
+}
 
 .hugTitle {
+  width: 100%;
   text-align: center;
   flex: auto;
   margin-left: 20px;
@@ -167,6 +185,15 @@ div.hugTitle h2 {
   z-index: -1;
 }
 
+/* 標題前的線 */
+h2 div {
+  width: 5px;
+  height: 20px;
+  background-color: var(--font-color);
+  margin-right: 10px;
+}
+
+/*  */
 p,
 .text-M,
 button,
@@ -179,7 +206,7 @@ input {
 
 small,
 .text-S {
-  font-size: 12px;
+  font-size: 14px;
   font-style: normal;
 }
 
@@ -213,11 +240,24 @@ img {
   background: rgba(247, 246, 245, 0.9);
 }
 
+/* 所有input */
+input, select {
+  border-radius: 50px;
+  border: 2.5px solid black;
+  box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.3);
+  padding: 4px 10px;
+}
+input:active, input:hover, select:active, select:hover {
+  box-shadow: none;
+}
+
+/* 全域 */
 * {
   margin: 0;
   padding: 0;
 }
 
+/* 包react的 */
 body {
   width: 100%;
   height: 100%;
@@ -246,11 +286,13 @@ body {
   background-image: url(/images/BothBg.jpg);
 }
 
+/* react下的root */
 #root {
   position: absolute;
   z-index: -21;
 }
 
+/* 包渲染內容的容器 */
 .body {
   width: 100vw;
   height: fit-content;
@@ -267,7 +309,7 @@ body {
 }
 
 /*  */
-/* 導覽列 */
+/* header */
 #topBar {
   width: 80%;
   margin: 1vw 19vw;
@@ -284,40 +326,38 @@ body {
   display: none;
 }
 
-/* 手機 */
-@media (max-width:640px) {
-  #topBar {
-    width: 90%;
-    position: fixed;
-    bottom: 0;
-    margin-bottom: 15px;
-    z-index: 1;
-  }
-  .mobile-TopBar {
-    display: block;
-    align-self: center;
-    min-width: 100vw;
-  }
-  .mobile-TopBar img {
-    width: 100%;
-  }
-}
+/*  */
+/* 導覽列容器 */
 #top-nav {
   /* 父 */
   width: 55vw;
   flex: auto;
   margin: 20px;
   display: inherit;
-}
-@media (max-width:640px) {
-  #top-nav {
-    /* 父 */
-    width: 60vw;
-    min-width: 320px;
-    align-self: center;
-  }
+  z-index: 10;
 }
 
+@media (max-width:640px) {
+  #top-nav {
+    width: 60vw;
+    align-self: center;
+    min-width: 320px;
+    position: fixed;
+    bottom: 0;
+    margin-bottom: 15px;
+    z-index: 15;
+  }
+  .mobile-TopBar {
+    align-self: center;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+  }
+  .mobile-TopBar img {
+    width: 100%;
+  }
+}
+/* ul容器包連結 */
 #menu {
   /* 樣式 */
   width: 100%;
@@ -364,10 +404,7 @@ body {
   margin-right: 5px;
 }
 
-/* #menu li:last-child {
-
-  padding-right: 100px;
-} */
+/*  */
 /* 主內容 */
 main {
   width: 100vw;
@@ -414,23 +451,12 @@ footer div p {
   background-position: center;
 }
 
+/* logo */
 #logo {
   width: 35px;
   height: 33px;
   margin-left: 10px;
   flex: 1 0 auto;
-}
-
-#selectArea {
-  display: none;
-}
-
-/* 標題前的線 */
-h2 div {
-  width: 5px;
-  height: 20px;
-  background-color: var(--font-color);
-  margin-right: 10px;
 }
 
 /* 元件 */
@@ -461,6 +487,7 @@ h2 div {
   flex-direction: row;
   gap: 10px;
   justify-content: flex-end;
+  align-self: flex-end;
 }
 
 .button {
@@ -477,18 +504,20 @@ h2 div {
   cursor: pointer;
 }
 .button:hover {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  margin-top: 0px;
+  box-shadow: 0 2px black;
 }
 .button:active {
   width: fit-content;
   height: fit-content;
   border-radius: 50px;
+  margin-top: 7px;
   padding-top: 3px;
   padding-bottom: 0px;
   color: black;
   background-color: var(--main-color);
-  border-bottom: 7px solid var(--main-color);
-  border-top: 6px solid black;
+  border-bottom: -1px solid #000000;
+  border-top: 1px solid black;
   border-right: 1px solid black;
   border-left: 1px solid black;
   box-shadow: none;
@@ -574,7 +603,7 @@ h2 div {
   text-align: center;
 }
 .simplePostInfo .main-info header .type-style p {
-  font-size: 12px;
+  font-size: 14px;
 }
 .simplePostInfo .main-info .areaInfo {
   grid-column: 3/1;
@@ -701,21 +730,22 @@ h2 div {
 }
 .simplePostInfo .apply-info div input {
   border: none;
+  box-shadow: none;
   background-color: #D9D9D9;
 }
 
 /* 互動臨打報名元件 */
 .popup {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
   position: fixed;
-  width: 100vw;
-  height: 100vh;
   bottom: 0;
   right: 0;
-  background-color: rgba(0, 0, 0, 0.8);
-  z-index: 99;
+  z-index: 9999;
   visibility: hidden;
   opacity: 0;
   overflow: hidden;
@@ -723,7 +753,7 @@ h2 div {
 }
 .popup-inner {
   position: relative;
-  z-index: 99;
+  z-index: 999;
   bottom: -100vw;
   right: -100vh;
   display: flex;
@@ -737,6 +767,7 @@ h2 div {
   transition: 0.64s ease-in-out;
 }
 .popup__content {
+  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -793,6 +824,16 @@ h2 div {
   opacity: 1;
 }
 
+/* 紀錄Z-index 
+main:10
+>serach:1
+>post-container:auto
+  >>post-block:auto
+  >>content:
+    >>>text:1
+    >>>bg:-2
+    >>>popup:99
+*/
 /* 探索頁 */
 /* 首頁main容器 */
 .index-Area {
@@ -804,7 +845,8 @@ h2 div {
   flex-direction: column;
   align-items: center;
   gap: 40px;
-  z-index: -4;
+  z-index: 10;
+  position: relative;
 }
 
 /* 首頁篩選區 */
@@ -819,7 +861,7 @@ h2 div {
   flex: 1 1 auto;
   align-self: center;
   margin: 50px 0px;
-  z-index: 2;
+  z-index: 1;
   /* 控制子層 */
   display: flex;
   gap: 5vw;
@@ -993,6 +1035,10 @@ button#btn-typeVb.selected img {
   align-content: center;
 }
 
+#selectArea {
+  display: none;
+}
+
 .searchBtn-box #search-Type {
   display: none;
 }
@@ -1102,7 +1148,7 @@ button#btn-typeVb.selected img {
   /* 布局 */
   align-self: center;
   flex: 1 1 auto;
-  z-index: -3;
+  z-index: auto;
   /*子層 */
   padding: 10px 15px;
   display: flex;
@@ -1110,7 +1156,6 @@ button#btn-typeVb.selected img {
 }
 
 /* 首頁貼文容器標題(今日臨打...) */
-/* 首頁main > section(containers > header.title-postArea*/
 .title-postArea {
   width: 95%;
   padding: 20px 10px;
@@ -1186,6 +1231,8 @@ button#btn-typeVb.selected img {
 /* 裝貼文元件的容器 */
 /* 首頁main > section(containers > div(post-block*/
 .post-block {
+  /* 布局 */
+  z-index: auto;
   height: 245px;
   width: 90%;
   padding: 10px 0px;
@@ -1235,21 +1282,20 @@ button#btn-typeVb.selected img {
 /* 文字 */
 /* ...> div(post-block > div(content > div(text*/
 .text {
+  /* 布局 */
+  z-index: 1;
+  position: absolute;
+  padding: 20px;
+  /* layout */
   width: 70%;
   height: 144px;
-  /* background-color: #14AAEB; */
-  /* position:  absolute; */
-  text-align: center;
   color: white;
-  padding: 20px;
+  /* 子 */
+  text-align: center;
   display: inline-flex;
   flex-direction: column;
-}
-.text header {
-  flex: 1 0 auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  align-items: flex-start;
+  gap: 3px;
 }
 .text h3 {
   flex: auto;
@@ -1263,56 +1309,32 @@ button#btn-typeVb.selected img {
   -webkit-text-stroke: 4px #000000;
   z-index: -1;
 }
-.text p {
+
+.mainText {
+  z-index: 1;
+  /*  */
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding-left: 10px;
+}
+.mainText p {
   text-shadow: 1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
 }
 
 /* ...> div(content > div(text >div(subtext*/
 .subtext {
+  z-index: 1;
   display: flex;
   flex: auto;
   align-self: flex-start;
 }
 .subtext p {
   margin-right: 10px;
-}
-
-/*  > div(post > div(content > div(text > div(tag-style */
-.tag-style {
-  width: fit-content;
-  height: fit-content;
-  /* display: grid;
-  grid-template-columns: 76px 76px;
-  gap: 10px; */
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-}
-.tag-style p {
-  padding: 4px 8px;
-  height: fit-content;
-  width: fit-content;
-  border-radius: 50px;
-  background-color: white;
-  color: var(--main-color);
-  text-align: center;
-  margin-right: 5px;
-  text-shadow: 0 0;
-}
-
-/* 報名按鈕 */
-#apply {
-  flex: 1 1 auto;
-  width: fit-content;
-  height: fit-content;
-  align-self: flex-end;
-  margin-top: 5px;
-  border-radius: 50px;
-  padding: 5px 18px;
-  border: 2px solid black;
-  border-bottom: 5px solid black;
-  background-color: var(--btn-color);
+  text-shadow: 1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
 }
 
 /* 貼文區 */
@@ -1514,7 +1536,7 @@ button#btn-typeVb.selected img {
 }
 
 /* 發文表單標題 */
-div.form-title {
+.form-title {
   /* layout */
   width: 60%;
   max-width: 700px;
@@ -1528,7 +1550,7 @@ div.form-title {
   align-items: center;
 }
 @media (max-width:640px) {
-  div.form-title {
+  .form-title {
     /* layout */
     min-width: 375px;
     height: fit-content;
@@ -1573,7 +1595,7 @@ section.form-container {
 }
 
 /* 貼文管理按鈕 */
-main div button#btn-postManage {
+#btn-postManage {
   /* layout */
   width: fit-content;
   height: fit-content;
@@ -1589,7 +1611,7 @@ main div button#btn-postManage {
 }
 
 /* 切換表單按鈕容器 */
-main div .form-type {
+.form-type {
   flex: auto;
   width: 100%;
   height: fit-content;
@@ -2067,10 +2089,6 @@ button#btn-pastRecords.selected {
 .personal-Area {
   width: 100%;
   height: fit-content;
-  display: grid;
-  grid-template-rows: 50px 1fr;
-  gap: 60px;
-  justify-content: center;
   justify-items: center;
 }
 @media screen and (max-width:640px) {
@@ -2101,12 +2119,13 @@ button#btn-pastRecords.selected {
 .personalArea-infoContainer {
   width: 100%;
   height: fit-content;
-  margin: 0 50px;
+  /* child */
   display: grid;
   grid-template-rows: 1fr 0.5fr;
   gap: 5px;
   align-items: center;
   justify-items: center;
+  justify-content: center;
 }
 @media screen and (max-width:640px) {
   .personalArea-infoContainer {
@@ -2417,4 +2436,179 @@ button#btn-pastRecords.selected {
 .info-time p {
   width: 50px;
   text-align: center;
+}
+
+/*  */
+/* 註冊頁 */
+/* main(register-Area)容器 */
+.register-Area {
+  /* layout */
+  width: 80%;
+  height: auto;
+  /* 布局 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.register-section {
+  /* 包註冊內容的容器  */
+  /* layout */
+  width: 40%;
+  min-width: 280px;
+  max-width: 700px;
+  height: 572px;
+  border-radius: 20px;
+  border: 3px solid #000000;
+  padding: 30px;
+  /* child */
+  gap: 15px;
+}
+@media (max-width:640px) {
+  .register-section {
+    margin: 0 15vw;
+  }
+}
+
+.register-info {
+  /* 包資訊的容器 */
+  /* 布局 */
+  flex: auto;
+  /* layout */
+  width: 100%;
+  height: auto;
+  /* 子 */
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+}
+.register-info .title {
+  margin: 0px;
+  align-self: flex-start;
+}
+.register-info .BtnContainer {
+  /* 註冊按鈕容器 */
+}
+.register-info .BtnContainer .button {
+  /* 註冊按鈕 */
+}
+
+.photo {
+  /* 頭像及上傳檔案按鈕 */
+  /* layout */
+  width: 100%;
+  height: fit-content;
+  /* 子 */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.photo img {
+  width: 150px;
+  height: 150px;
+}
+.photo input {
+  width: auto;
+  height: auto;
+  border: none;
+  box-shadow: none;
+}
+
+.player-info {
+  /* 表單容器 */
+  /* layout */
+  width: fit-content;
+  height: fit-content;
+  /* 子 */
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  grid-auto-rows: minmax(30px, auto);
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+.player-info label {
+  /* 布局 */
+  grid-column: 1;
+  grid-row: auto;
+}
+.player-info input {
+  /* 布局 */
+  grid-column: 2;
+  grid-row: auto;
+}
+.player-info div {
+  /* 布局 */
+  grid-column: 2;
+  grid-row: 2;
+  /* layout */
+  width: fit-content;
+}
+.player-info div .button {
+  /* layout */
+  background-color: #ffffff;
+  margin-right: 10px;
+  margin-top: 5px;
+}
+.player-info div .button:hover {
+  margin-top: 0;
+}
+
+.register-degree {
+  /* 程度容器 */
+  /* 子 */
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.register-degree .title {
+  /* 布局 */
+  align-self: flex-start;
+  margin: 0;
+}
+
+.degreeBtn { /* 羽球或排球按鈕容器 */
+  /* 布局 */
+  align-items: flex-end;
+  /* layout */
+  width: 275px;
+  height: fit-content;
+  /* child */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+.degreeBtn .bmBtn {
+  background-color: #83B90F;
+}
+.degreeBtn .vbBtn {
+  background-color: #14AAEB;
+}
+
+.degreeSelect {
+  /* 程度選單容器 */
+  /* 布局 */
+  align-items: flex-end;
+  /* layout */
+  width: 275px;
+  height: fit-content;
+  /* child */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+.degreeSelect #degree-bm {
+  color: #83B90F;
+}
+.degreeSelect #degree-vb {
+  color: #14AAEB;
 }/*# sourceMappingURL=style-scss.css.map */

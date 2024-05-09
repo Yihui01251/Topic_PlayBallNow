@@ -30,8 +30,8 @@
         const {useState} = React;
         
         const App = () => {
-          const [loginBtn, setLoginBtn] =useState('');
-          const [infoState,setInfoState] =useState('none');
+          const [loginBtn, setLoginBtn] =useState('none');
+          const [infoState,setInfoState] =useState('block');
           const changeLogInState = (id)=>{
           setLoginBtn("none");
           setInfoState("block");
@@ -100,10 +100,7 @@
                       <figure style ={{display : infoState}} >
                         <img src="./images/player-border.png" alt="假頭像" />
                       </figure>
-                      <a href="/register.html"><button className="btn-logInLine" style ={{display : loginBtn}}>{/*  onClick ={()=>changeLogInState("btn-logInLine")} */}
-                        <img src="./images/icon-LINE.png" alt="" />
-                        Line登入
-                      </button></a>
+                     
                       <div style ={{display : infoState}}><div className ="userName" ><img src="./images/icon-male.png" alt=""/><p className ="hugTitle title-M" value="十全大補">十全大補</p></div></div>  
                     </div>
                     <div className="biography-info">

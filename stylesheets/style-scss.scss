@@ -4,13 +4,13 @@
 
 @font-face {
   font-family: "jf open 粉圓 2.0";
-  src: url(./jf-openhuninn-2.0.ttf);
+  src: url(./jf-openhuninn-2.0.ttf); 
 }
+
 
 @import "reset";
 
-
-/* 變數區 */
+/* 變數區 */  
 :root {
   --main-color: #14AAEB;
   --btn-color: #F1DB15;
@@ -25,6 +25,7 @@
 
 
 /* 共用區 */
+/* 標題文字 */ 
 h1,
 .title-L {
   font-size: $font-size-title-l;
@@ -33,7 +34,7 @@ h1,
 
 h2,
 .title-M {
-  font-size: $font-size-title-m;
+  font-size: $font-size-title-m; 
   font-style: normal;
 }
 
@@ -43,17 +44,33 @@ h3,
   font-style: normal;
 }
 .title {
-  width: 60%;
+  /* layout */ 
+  width: 60vw;
   max-width: 700px;
   min-width: 340px;
   height: fit-content;
   margin: 0 50px;
+
+  /* child */ 
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  @media ($breakpoint-moblie) {
+    /* layout */
+    min-width: 300px;
+    height: fit-content;
+    margin: 20px 0px;
+    /* child */
+    display: flex;
+    flex-direction: row;
+    gap: 80px;
+    justify-content: space-around;
+    align-items: center;
+  }
 }
 .hugTitle { 
+  width: 100%; 
   text-align: center;
   flex: auto;
   margin-left: 20px;
@@ -67,16 +84,25 @@ div.hugTitle h2 {
   width: fit-content;
   border-bottom: 4px solid $border-black;
   z-index: 0;
-}
-/* 增加文字外框線 */
+} 
+/* 增加文字外框線 */ 
 .hugTitle h1::before,
 .hugTitle h2::before,
 .hugTitle::before {
-  position: absolute;
+  position: absolute; 
   content: attr(value);
   -webkit-text-stroke: 4px $second-color-black;
   z-index: -1;
 }
+/* 標題前的線 */
+h2 div {
+  width: 5px;
+  height: 20px;
+  background-color: var(--font-color);
+  margin-right: 10px;
+}
+
+/*  */
 p,
 .text-M,
 button,
@@ -122,12 +148,24 @@ img {
 .svg{
   background:rgba(247, 246, 245, 0.9);
 }
+/* 所有input */
+input,select{ 
+  border-radius: $border-radius-m;
+  border: 2.5px solid $border-black;
+  box-shadow: 0 4px 0 0 $box-shadow;
+  padding: 4px 10px;
 
+  &:active,&:hover{
+    box-shadow: none;
+  }
+}
+ 
+/* 全域 */
 * {
   margin: 0;
   padding: 0;
 }
-
+/* 包react的 */
 body {
   width: 100%;
   height: 100%;
@@ -156,11 +194,12 @@ body {
 .background-both {
   background-image: url(/images/BothBg.jpg);
 }
+/* react下的root */
 #root{
   position: absolute;
   z-index: -21;
 }
-
+/* 包渲染內容的容器 */
 .body {
   width: 100vw;
   height: fit-content;
@@ -176,9 +215,9 @@ body {
   
   z-index: -9;
 }
-
+ 
 /*  */
-/* 導覽列 */
+/* header */
 #topBar {
   width: 80%;
   margin: 1vw 19vw;
@@ -192,48 +231,53 @@ body {
   align-items: center;
 }
 
-.mobile-TopBar {
+.mobile-TopBar { 
   display: none;
 }
 
-/* 手機 */
-@media ($breakpoint-moblie) {
-  #topBar {
-    width: 90%;
-    position: fixed;
-    bottom: 0;
-    margin-bottom: 15px;
-    z-index: 1;
-  }
-
-  .mobile-TopBar {
-    display: block;
-    align-self: center;
-    min-width: 100vw;
-  }
-
-  .mobile-TopBar img {
-    width: 100%;
-  }
-
-}
-
+/*  */ 
+/* 導覽列容器 */
 #top-nav {
   /* 父 */
   width: 55vw;
   flex: auto;
   margin: 20px;
   display: inherit;
+  z-index: 10;
 
-  @media ($breakpoint-moblie) {
-    /* 父 */
-    width: 60vw;
-    min-width: 320px;
-    align-self: center;
-  }
+  // @media ($breakpoint-moblie) {
+  //   /* 父 */
+  //   width: 60vw;
+  //   min-width: 320px;
+  //   align-self: center;
+  // }
 }
+//手機
+@media ($breakpoint-moblie) {
+  #top-nav { 
+    width: 60vw;
+    align-self:center;
+    min-width: 320px;
+    position: fixed;
+    bottom: 0;
+    margin-bottom: 15px;
+    z-index: 15;
+  }
 
+  .mobile-TopBar {
+    align-self: center;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+  }
 
+  .mobile-TopBar img {
+    width: 100%;
+  
+  }
+
+}
+/* ul容器包連結 */
 #menu {
   /* 樣式 */
   width: 100%;
@@ -275,18 +319,12 @@ body {
   .icon {
     flex: 0 1 auto;
     /* 樣式*/
-    width: 32px;
+    width: 32px; 
     height: 32px;
     margin-right: 5px;
   }
 }
-
-
-/* #menu li:last-child {
-
-  padding-right: 100px;
-} */
-
+/*  */
 /* 主內容 */
 main {
   width: 100vw;
@@ -333,25 +371,15 @@ footer {
   background-repeat: repeat;
   background-position: center;
 }
-
+/* logo */
 #logo {
   width: 35px;
   height: 33px;
   margin-left: 10px;
-  flex: 1 0 auto;
+  flex: 1 0 auto; 
 }
 
-#selectArea {
-  display: none;
-}
 
-/* 標題前的線 */
-h2 div {
-  width: 5px;
-  height: 20px;
-  background-color: var(--font-color);
-  margin-right: 10px;
-}
 
 /* 元件 */
 /* tag樣式 */
@@ -379,16 +407,17 @@ h2 div {
 }
 /* 按鈕樣式 */
 //裝按鈕的容器
-.BtnContainer {
-  display: flex;
+.BtnContainer { 
+  display: flex; 
   flex-direction: row;
   gap: 10px;
   justify-content: flex-end;
+  align-self: flex-end;
   
 }
 .button {
   background-color:var(--btn-color);
-  width: fit-content;
+  width: fit-content; 
   height: fit-content;
 
   margin-top: 5px;
@@ -402,22 +431,24 @@ h2 div {
   cursor: pointer;
 
   &:hover{
-    box-shadow: 0 1px 3px rgba(0,0,0,0.25)
+    margin-top: 0px; 
+    box-shadow: 0 2px  $border-black
   }
   &:active {
       width: fit-content;
       height: fit-content;
       border-radius: 50px;
+      margin-top: 7px; 
       padding-top: 3px;
       padding-bottom: 0px;
       color: black;
       background-color: var(--main-color);
-      border-bottom: 7px solid var(--main-color);
-      border-top: 6px solid black;
+      border-bottom: -1px solid $second-color-black;
+      border-top: 1px solid black;
       border-right: 1px solid black;
       border-left: 1px solid black;
       box-shadow: none;
-  }
+  } 
 }
 .btn-close{
   background-color: $background-color-lightgrey;
@@ -661,6 +692,7 @@ h2 div {
           }
           input {
               border: none;
+              box-shadow: none;
               background-color: $background-color-lightgrey;
           }
       }
@@ -669,29 +701,32 @@ h2 div {
 
 /* 互動臨打報名元件 */
 .popup {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, .80);
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   position: fixed;
-  width: 100vw;
-  height: 100vh;
   bottom: 0;
   right: 0;
-  background-color: rgba(0, 0, 0, .80);
-  z-index: 99;
+ 
+  z-index: 9999;
   visibility: hidden;
   opacity: 0;
   overflow: hidden;
   transition: .64s ease-in-out;
   &-inner {
     position: relative;
-    z-index: 99;
+    z-index: 999;
     bottom: -100vw;
     right: -100vh;
     display: flex;
     align-items: center;
-    max-width: 800px;
-    max-height: 600px;
+    max-width: 800px; 
+    max-height: 600px; 
     width: 60%;
     height: 80%;
     background-color: #ffffff00;
@@ -699,7 +734,7 @@ h2 div {
     transition: .64s ease-in-out;
   }
   &__content {
- 
+    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -726,7 +761,7 @@ h2 div {
     width: 60%;
     height: 100%;
     padding: 4rem;
-    h1 {
+    h1 {  
       font-size: 2rem;
       font-weight: 600;
       margin-bottom: 2rem;
@@ -764,3 +799,4 @@ h2 div {
 @import "publicationForm";
 @import "notice";
 @import "personal";
+@import "register";
