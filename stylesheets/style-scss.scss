@@ -7,6 +7,7 @@
   src: url(./jf-openhuninn-2.0.ttf); 
 }
 
+
 @import "reset";
 
 /* 變數區 */  
@@ -214,9 +215,9 @@ body {
   
   z-index: -9;
 }
-
+ 
 /*  */
-/* 導覽列 */
+/* header */
 #topBar {
   width: 80%;
   margin: 1vw 19vw;
@@ -234,14 +235,15 @@ body {
   display: none;
 }
 
-
-
+/*  */ 
+/* 導覽列容器 */
 #top-nav {
   /* 父 */
   width: 55vw;
   flex: auto;
   margin: 20px;
   display: inherit;
+  z-index: 10;
 
   // @media ($breakpoint-moblie) {
   //   /* 父 */
@@ -250,7 +252,7 @@ body {
   //   align-self: center;
   // }
 }
-/* 手機 */
+//手機
 @media ($breakpoint-moblie) {
   #top-nav { 
     width: 60vw;
@@ -259,22 +261,23 @@ body {
     position: fixed;
     bottom: 0;
     margin-bottom: 15px;
-    z-index: 1;
+    z-index: 15;
   }
 
   .mobile-TopBar {
-    display: block;
     align-self: center;
-    min-width: 100vw;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
   }
 
   .mobile-TopBar img {
     width: 100%;
+  
   }
 
 }
-
-
+/* ul容器包連結 */
 #menu {
   /* 樣式 */
   width: 100%;
@@ -316,7 +319,7 @@ body {
   .icon {
     flex: 0 1 auto;
     /* 樣式*/
-    width: 32px;
+    width: 32px; 
     height: 32px;
     margin-right: 5px;
   }
@@ -373,7 +376,7 @@ footer {
   width: 35px;
   height: 33px;
   margin-left: 10px;
-  flex: 1 0 auto;
+  flex: 1 0 auto; 
 }
 
 
@@ -404,16 +407,17 @@ footer {
 }
 /* 按鈕樣式 */
 //裝按鈕的容器
-.BtnContainer {
-  display: flex;
+.BtnContainer { 
+  display: flex; 
   flex-direction: row;
   gap: 10px;
   justify-content: flex-end;
+  align-self: flex-end;
   
 }
 .button {
   background-color:var(--btn-color);
-  width: fit-content;
+  width: fit-content; 
   height: fit-content;
 
   margin-top: 5px;
@@ -444,7 +448,7 @@ footer {
       border-right: 1px solid black;
       border-left: 1px solid black;
       box-shadow: none;
-  }
+  } 
 }
 .btn-close{
   background-color: $background-color-lightgrey;
@@ -688,6 +692,7 @@ footer {
           }
           input {
               border: none;
+              box-shadow: none;
               background-color: $background-color-lightgrey;
           }
       }
@@ -696,29 +701,32 @@ footer {
 
 /* 互動臨打報名元件 */
 .popup {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, .80);
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   position: fixed;
-  width: 100vw;
-  height: 100vh;
   bottom: 0;
   right: 0;
-  background-color: rgba(0, 0, 0, .80);
-  z-index: 99;
+ 
+  z-index: 9999;
   visibility: hidden;
   opacity: 0;
   overflow: hidden;
   transition: .64s ease-in-out;
   &-inner {
     position: relative;
-    z-index: 99;
+    z-index: 999;
     bottom: -100vw;
     right: -100vh;
     display: flex;
     align-items: center;
-    max-width: 800px;
-    max-height: 600px;
+    max-width: 800px; 
+    max-height: 600px; 
     width: 60%;
     height: 80%;
     background-color: #ffffff00;
@@ -726,7 +734,7 @@ footer {
     transition: .64s ease-in-out;
   }
   &__content {
- 
+    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -753,7 +761,7 @@ footer {
     width: 60%;
     height: 100%;
     padding: 4rem;
-    h1 {
+    h1 {  
       font-size: 2rem;
       font-weight: 600;
       margin-bottom: 2rem;

@@ -56,7 +56,7 @@
           const [fontColor, setFontColor] = useState("#147CB6");
           const [btnColor, setBtnColor] = useState("#F1DB15");
           const [postBorder, setPostBorder] = useState(
-            'url("./images/catframe.png")'
+            'url("./images/catsroke.svg")'
           );
           const [decorateSearch, setDecorateSearch] = useState(
             'url("./images/index-searchCat.png")'
@@ -64,6 +64,9 @@
           const [todayType, setTodayType] = useState("vb_today_postData");
           const [weekType, setWeekType] = useState("vb_week_postData");
           const [selectedButton, setSelectedButton] = useState("btn-typeVb");
+          const [BMdisplay, setBMDisplay] = useState("none");
+          const [VBdisplay, setVBDisplay] = useState("flex");
+          
 
           const btnTypeVbRef = useRef(null);
           const btnTypeBmRef = useRef(null);
@@ -86,12 +89,13 @@
             const btnTypeBm = document.getElementById("btn-typeBm");
             const bodyStyle = document.getElementById("body");
             console.log(bodyStyle);
-
+            
             if (id === "btn-typeBm" || id === "btn-formBM") {
+              // 如果是羽球:
               colorMain = "#83B90F";
               colorFont = "#689607";
               btnColor = "#FF8D24";
-              newBorder = 'url("../images/dogframe3.png")';
+              newBorder = 'url("../images/dogstroke.svg")';
               decorate = 'url("../images/index-searchDog.png")';
               // 新增class改變背景
               bodyStyle.classList.add("background-Bm");
@@ -99,17 +103,24 @@
               setSelectedButton(id);
               setTodayType("bm_today_postData");
               setWeekType("bm_week_postData");
+              // banner顯示狀態
+              setBMDisplay("flex");
+                setVBDisplay("none");
             } else if (id === "btn-typeVb" || id === "btn-formVB") {
+              // 如果是排球
               colorMain = "#14AAEB";
               colorFont = "#147CB6";
               btnColor = "#F1DB15";
-              newBorder = "url('../images/catframe.png')";
+              newBorder = "url('../images/catsroke.svg')";
               decorate = 'url("../images/index-searchCat.png")';
               bodyStyle.classList.remove("background-Bm");
               bodyStyle.classList.add("background-Vb");
               setSelectedButton(id);
               setTodayType("vb_today_postData");
               setWeekType("vb_week_postData");
+              //
+              setBMDisplay("none");
+              setVBDisplay("block");
             }
 
             setMainColor(colorMain);
@@ -173,13 +184,14 @@
                   id={id}
                   style={{ backgroundImage: postBorder }}
                 >
+               
                   <div className="text">
-                    <header>
-                      <p className="text-S">{postDate}</p>
+                    <div className="mainText">
+                      <p className="text-M">{postDate}</p>
                       <p className="text-L">
-                        {postStartTime}~{postEndTime}
+                        {postStartTime}
                       </p>
-                    </header>
+                    </div>
                     <div className="subtext">
                       <p className="text-S">{postCity}</p>
                       <p className="text-S">{postArea}</p>
@@ -199,8 +211,9 @@
 
                     
                   </div>
-                  <div className="bg"></div>
+                  
                 </div>
+                
                 <ApplyCard href ={href}  postDate={postDate}
                           postStartTime={postStartTime}
                           postEndTime={postEndTime}
@@ -275,7 +288,7 @@
                               <div className="apply-info">
                                 <hr />
                                 <img
-                                  src="../images/player(border).png"
+                                  src="../images/player-border.png"
                                   alt="團主頭貼"
                                 />
                                 <p>
@@ -308,7 +321,8 @@
           return (
             <div className="body">
               <div className="mobile-TopBar">
-                <img src="./images/mobile-top.png" alt="排球的手機版banner" />
+                <img src="./images/mobile-top.svg" alt="排球的手機版banner"  style={{ display: VBdisplay }} />
+                <img src="./images/mobile-bm-topbanner.png" alt="羽球的手機版banner" style={{ display: BMdisplay }} />
               </div>
               <header id="topBar">
                 <nav id="top-nav">
