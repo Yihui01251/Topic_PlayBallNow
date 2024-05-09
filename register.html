@@ -91,19 +91,21 @@
                     </div>
                     <div className="player-info">
                       <label htmlFor="name">稱呼</label>
-                      <input id="name" type="text" />
+                      <input id="name" type="text" value ="十全大補" />
                       <label htmlFor="gender">性別</label>
-                      <button  className="button">男性</button>
-                      <button className="button">女性</button>
+                      <div>
+                        <button  className="button">男性</button>
+                        <button className="button">女性</button>
+                        </div>
                       <label htmlFor="status">狀態</label>
-                      <input id="status" type="text" />
+                      <input id="status" type="text"  value="很高興可以認識大家..."/>
                     </div>
                   </div>
 
                   <div className="register-degree">
                     <div className="title">
                       <div className="hugTitle">
-                        <h2 value="程度認證">程度認證</h2>
+                        <h2 value="自評程度">自評程度</h2>
                       </div>
                     </div>
                     <div className="degreeBtn">
@@ -137,7 +139,7 @@
                   </div>
                 
                   <div className="BtnContainer">
-                    <a className="button" href="popup-regider">註冊</a>
+                    <a className="button" href="/personal_login.html">註冊</a>
                     </div>
                   </section>
               </main>
@@ -154,11 +156,12 @@
                   <p>Copyright© 2024 PlayBallNow. All Right Reserved. </p>
                 </div>
               </footer>
-            </div>
+              
+              </div>
           );
         };
         ReactDOM.createRoot(document.getElementById("root")).render(<App />);
       })();
-    </script>
+    </script> 
   </body>
 </html>

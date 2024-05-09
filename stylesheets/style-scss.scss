@@ -4,13 +4,12 @@
 
 @font-face {
   font-family: "jf open 粉圓 2.0";
-  src: url(./jf-openhuninn-2.0.ttf);
+  src: url(./jf-openhuninn-2.0.ttf); 
 }
 
 @import "reset";
 
-
-/* 變數區 */
+/* 變數區 */  
 :root {
   --main-color: #14AAEB;
   --btn-color: #F1DB15;
@@ -25,7 +24,7 @@
 
 
 /* 共用區 */
-/* 標題文字 */
+/* 標題文字 */ 
 h1,
 .title-L {
   font-size: $font-size-title-l;
@@ -44,8 +43,8 @@ h3,
   font-style: normal;
 }
 .title {
-  /* layout */
-  width: 60%;
+  /* layout */ 
+  width: 60vw;
   max-width: 700px;
   min-width: 340px;
   height: fit-content;
@@ -58,7 +57,7 @@ h3,
   align-items: center;
   @media ($breakpoint-moblie) {
     /* layout */
-    min-width: 375px;
+    min-width: 300px;
     height: fit-content;
     margin: 20px 0px;
     /* child */
@@ -70,8 +69,9 @@ h3,
   }
 }
 .hugTitle { 
+  width: 100%; 
   text-align: center;
-  flex: auto; 
+  flex: auto;
   margin-left: 20px;
 }
 
@@ -83,12 +83,12 @@ div.hugTitle h2 {
   width: fit-content;
   border-bottom: 4px solid $border-black;
   z-index: 0;
-}
-/* 增加文字外框線 */
+} 
+/* 增加文字外框線 */ 
 .hugTitle h1::before,
 .hugTitle h2::before,
 .hugTitle::before {
-  position: absolute;
+  position: absolute; 
   content: attr(value);
   -webkit-text-stroke: 4px $second-color-black;
   z-index: -1;
@@ -152,6 +152,11 @@ input,select{
   border-radius: $border-radius-m;
   border: 2.5px solid $border-black;
   box-shadow: 0 4px 0 0 $box-shadow;
+  padding: 4px 10px;
+
+  &:active,&:hover{
+    box-shadow: none;
+  }
 }
  
 /* 全域 */
@@ -229,10 +234,28 @@ body {
   display: none;
 }
 
+
+
+#top-nav {
+  /* 父 */
+  width: 55vw;
+  flex: auto;
+  margin: 20px;
+  display: inherit;
+
+  // @media ($breakpoint-moblie) {
+  //   /* 父 */
+  //   width: 60vw;
+  //   min-width: 320px;
+  //   align-self: center;
+  // }
+}
 /* 手機 */
 @media ($breakpoint-moblie) {
-  #topBar {
-    width: 90%;
+  #top-nav { 
+    width: 60vw;
+    align-self:center;
+    min-width: 320px;
     position: fixed;
     bottom: 0;
     margin-bottom: 15px;
@@ -249,21 +272,6 @@ body {
     width: 100%;
   }
 
-}
-
-#top-nav {
-  /* 父 */
-  width: 55vw;
-  flex: auto;
-  margin: 20px;
-  display: inherit;
-
-  @media ($breakpoint-moblie) {
-    /* 父 */
-    width: 60vw;
-    min-width: 320px;
-    align-self: center;
-  }
 }
 
 
@@ -419,18 +427,20 @@ footer {
   cursor: pointer;
 
   &:hover{
-    box-shadow: 0 1px 3px rgba(0,0,0,0.25)
+    margin-top: 0px; 
+    box-shadow: 0 2px  $border-black
   }
   &:active {
       width: fit-content;
       height: fit-content;
       border-radius: 50px;
+      margin-top: 7px; 
       padding-top: 3px;
       padding-bottom: 0px;
       color: black;
       background-color: var(--main-color);
-      border-bottom: 7px solid var(--main-color);
-      border-top: 6px solid black;
+      border-bottom: -1px solid $second-color-black;
+      border-top: 1px solid black;
       border-right: 1px solid black;
       border-left: 1px solid black;
       box-shadow: none;

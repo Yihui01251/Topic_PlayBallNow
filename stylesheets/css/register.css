@@ -10,40 +10,36 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   gap: 20px;
 }
 
 .register-section {
   /* 包註冊內容的容器  */
+  /* layout */
+  width: 40%;
+  min-width: 280px;
+  max-width: 700px;
+  height: 572px;
   border-radius: 20px;
   border: 3px solid #000000;
   padding: 30px;
+  /* child */
+  gap: 15px;
+}
+@media (max-width:640px) {
+  .register-section {
+    margin: 0 15vw;
+  }
 }
 
 .register-info {
   /* 包資訊的容器 */
-  /* layout */
-  width: 100%;
-  height: auto;
-  /* 子 */
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-.register-info .BtnContainer {
-  /* 註冊按鈕容器 */
-}
-.register-info .BtnContainer .button {
-  /* 註冊按鈕 */
-}
-
-.register-info {
-  /* 個人資訊容器 */
   /* 布局 */
   flex: auto;
   /* layout */
-  width: fit-content;
-  height: fit-content;
+  width: 100%;
+  height: auto;
   /* 子 */
   display: flex;
   flex-direction: column;
@@ -53,8 +49,38 @@
 }
 .register-info .title {
   margin: 0px;
+  align-self: flex-start;
 }
-.register-info .player-info {
+.register-info .BtnContainer {
+  /* 註冊按鈕容器 */
+}
+.register-info .BtnContainer .button {
+  /* 註冊按鈕 */
+}
+
+.photo {
+  /* 頭像及上傳檔案按鈕 */
+  /* layout */
+  width: 100%;
+  height: fit-content;
+  /* 子 */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.photo img {
+  width: 150px;
+  height: 150px;
+}
+.photo input {
+  width: auto;
+  height: auto;
+  border: none;
+  box-shadow: none;
+}
+
+.player-info {
   /* 表單容器 */
   /* layout */
   width: fit-content;
@@ -67,16 +93,31 @@
   justify-content: center;
   gap: 15px;
 }
-.register-info .player-info label {
+.player-info label {
+  /* 布局 */
   grid-column: 1;
   grid-row: auto;
 }
-.register-info .player-info input {
+.player-info input {
+  /* 布局 */
   grid-column: 2;
   grid-row: auto;
 }
-.register-info .player-info .button {
+.player-info div {
+  /* 布局 */
+  grid-column: 2;
+  grid-row: 2;
+  /* layout */
+  width: fit-content;
+}
+.player-info div .button {
+  /* layout */
   background-color: #ffffff;
+  margin-right: 10px;
+  margin-top: 5px;
+}
+.player-info div .button:hover {
+  margin-top: 0;
 }
 
 .register-degree {
@@ -88,7 +129,8 @@
 }
 .register-degree .title {
   /* 布局 */
-  align-items: flex-start;
+  align-self: flex-start;
+  margin: 0;
 }
 
 .degreeBtn { /* 羽球或排球按鈕容器 */
@@ -130,25 +172,4 @@
 }
 .degreeSelect #degree-vb {
   color: #14AAEB;
-}
-
-.photo {
-  /* 頭像及上傳檔案按鈕 */
-  /* layout */
-  width: fit-content;
-  height: fit-content;
-  /* 子 */
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-.photo img {
-  width: 150px;
-  height: 150px;
-}
-.photo input {
-  width: auto;
-  height: auto;
-  border: none;
 }/*# sourceMappingURL=register.css.map */
