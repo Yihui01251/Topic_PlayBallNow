@@ -25,6 +25,7 @@
 
 
 /* 共用區 */
+/* 標題文字 */
 h1,
 .title-L {
   font-size: $font-size-title-l;
@@ -33,7 +34,7 @@ h1,
 
 h2,
 .title-M {
-  font-size: $font-size-title-m;
+  font-size: $font-size-title-m; 
   font-style: normal;
 }
 
@@ -43,19 +44,34 @@ h3,
   font-style: normal;
 }
 .title {
+  /* layout */
   width: 60%;
   max-width: 700px;
   min-width: 340px;
   height: fit-content;
   margin: 0 50px;
+
+  /* child */ 
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  @media ($breakpoint-moblie) {
+    /* layout */
+    min-width: 375px;
+    height: fit-content;
+    margin: 20px 0px;
+    /* child */
+    display: flex;
+    flex-direction: row;
+    gap: 80px;
+    justify-content: space-around;
+    align-items: center;
+  }
 }
 .hugTitle { 
   text-align: center;
-  flex: auto;
+  flex: auto; 
   margin-left: 20px;
 }
 
@@ -77,6 +93,15 @@ div.hugTitle h2 {
   -webkit-text-stroke: 4px $second-color-black;
   z-index: -1;
 }
+/* 標題前的線 */
+h2 div {
+  width: 5px;
+  height: 20px;
+  background-color: var(--font-color);
+  margin-right: 10px;
+}
+
+/*  */
 p,
 .text-M,
 button,
@@ -122,12 +147,19 @@ img {
 .svg{
   background:rgba(247, 246, 245, 0.9);
 }
-
+/* 所有input */
+input,select{ 
+  border-radius: $border-radius-m;
+  border: 2.5px solid $border-black;
+  box-shadow: 0 4px 0 0 $box-shadow;
+}
+ 
+/* 全域 */
 * {
   margin: 0;
   padding: 0;
 }
-
+/* 包react的 */
 body {
   width: 100%;
   height: 100%;
@@ -156,11 +188,12 @@ body {
 .background-both {
   background-image: url(/images/BothBg.jpg);
 }
+/* react下的root */
 #root{
   position: absolute;
   z-index: -21;
 }
-
+/* 包渲染內容的容器 */
 .body {
   width: 100vw;
   height: fit-content;
@@ -192,7 +225,7 @@ body {
   align-items: center;
 }
 
-.mobile-TopBar {
+.mobile-TopBar { 
   display: none;
 }
 
@@ -280,13 +313,7 @@ body {
     margin-right: 5px;
   }
 }
-
-
-/* #menu li:last-child {
-
-  padding-right: 100px;
-} */
-
+/*  */
 /* 主內容 */
 main {
   width: 100vw;
@@ -333,7 +360,7 @@ footer {
   background-repeat: repeat;
   background-position: center;
 }
-
+/* logo */
 #logo {
   width: 35px;
   height: 33px;
@@ -341,17 +368,7 @@ footer {
   flex: 1 0 auto;
 }
 
-#selectArea {
-  display: none;
-}
 
-/* 標題前的線 */
-h2 div {
-  width: 5px;
-  height: 20px;
-  background-color: var(--font-color);
-  margin-right: 10px;
-}
 
 /* 元件 */
 /* tag樣式 */
@@ -764,3 +781,4 @@ h2 div {
 @import "publicationForm";
 @import "notice";
 @import "personal";
+@import "register";

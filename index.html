@@ -343,8 +343,6 @@
                     </li>
                   </ul>
                 </nav>
-              </header>
-              <main className="index-Area">
                 <div className="title">
                   <div className="hugTitle">
                     <h1 className="title-L" value="現在想打球">
@@ -352,6 +350,9 @@
                     </h1>
                   </div>
                 </div>
+                </header>
+              <main className="index-Area">
+                
 
                 {/*篩選區 */}
                 <section className="search">
@@ -420,8 +421,11 @@
                           <option value="xinpei">新北市</option>
                           <option value="counties">其他</option>
                         </select>
-                        <select name="" multiple id="selectArea">
+                        <select name="地區" multiple id="selectArea">
                           <option value="default">地區</option>
+                          <option value="taipei">台北市</option>
+                          <option value="xinpei">新北市</option>
+                          <option value="counties">其他</option>
                         </select>
                         <select name="程度" id="degree" className="dpMenu-item">
                           <option value="default">程度</option>
@@ -493,23 +497,15 @@
                 </section>
                 {/* 本日臨打貼文 */}
                 <section className="post-containers">
-                  {/*
-                  {postData.map((index) => {
-                    return (
-                      <>
-                        <div key={index}>
-                        <Card name={index} /></div>
-                      </>
-                    );
-                  })}*/}
-                  <header className="title-postArea">
+                
+                  <div className="title-postArea">
                     <h2>
                       <div></div>本日臨打貼文
                     </h2>
                     <div className="more">
                       <a href="#">更多</a>
                     </div>
-                  </header>
+                  </div>
                   <ul className="tags">
                     <button className="tags-degre ">B-</button>
                     <button className="tags-time ">12-18</button>
@@ -538,7 +534,7 @@
                 </section>
                 {/* 本週臨打貼文 */}
                 <section className="post-containers">
-                  <header className="title-postArea">
+                  <div className="title-postArea">
                     <h2>
                       <div></div>本週臨打貼文
                     </h2>
@@ -547,7 +543,7 @@
                         更多
                       </a>
                     </div>
-                  </header>
+                  </div>
                   <ul className="tags">
                     <button className="tags-degree">C</button>
                     <button className="tags-time ">12-18</button>

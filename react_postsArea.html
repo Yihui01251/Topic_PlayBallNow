@@ -157,8 +157,10 @@
               </>
             );
           };
+          //建立報名元件
           const ApplyCard = ({
             href,
+            type,
             postDate,
             postStartTime,
             postEndTime,
@@ -185,7 +187,7 @@
                             <p>
                               {postDate} {postStartTime}~{postEndTime}
                             </p>
-                            <div className="type-style">羽球</div>
+                            <div className="type-style">{type}</div>
                             <button className="collect">
                               <img src="../images/heart-no.svg" alt="收藏" />
                             </button>
@@ -297,9 +299,6 @@
                     </li>
                   </ul>
                 </nav>
-              </header>
-
-              <main className="filter-postArea">
                 <div className="title">
                   <div className="hugTitle">
                     <h1 className="title-L" value="篩選貼文">
@@ -307,6 +306,10 @@
                     </h1>
                   </div>
                 </div>
+                </header>
+
+              <main className="filter-postArea">
+                
                 <section className="filter-box">
                   <a href="./index.html">
                     <div className="filter-btnBox">

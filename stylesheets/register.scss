@@ -1,0 +1,168 @@
+@import "_varible";
+/*  */
+/* 註冊頁 */
+/* main(register-Area)容器 */
+.register-Area {
+    /* layout */
+    width: 80%;
+    height: auto;
+    /* 布局 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;   
+}
+.register-section {
+    /* 包註冊內容的容器  */
+    border-radius: $border-radius-s;
+    border: 3px solid $second-color-black;
+    padding: 30px;
+
+    
+}
+.register-info {
+    /* 包資訊的容器 */
+
+    /* layout */
+    width: 100%;
+    height: auto;
+
+    /* 子 */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+   
+    .BtnContainer {
+        /* 註冊按鈕容器 */
+
+        .button {
+            /* 註冊按鈕 */
+        }
+    }
+}
+.register-info {
+    /* 個人資訊容器 */
+
+    /* 布局 */
+    flex: auto;
+    /* layout */
+    width: fit-content;
+    height: fit-content;
+    /* 子 */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    .title{
+        margin: 0px;
+    }
+    
+    .player-info {
+        /* 表單容器 */
+
+        /* layout */
+        width: fit-content;
+        height: fit-content;
+        /* 子 */
+        display: grid;
+        grid-template-columns:  40px 1fr;
+        grid-auto-rows: minmax(30px,auto);
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+
+        label{
+            grid-column: 1;
+            grid-row: auto;
+        }
+        input{
+            grid-column: 2;
+            grid-row: auto;
+        }
+        .button{
+            background-color: $background-color-white;
+        }
+
+    }
+}
+.register-degree {
+    /* 程度容器 */
+
+    /* 子 */
+    display: flex;
+    flex-direction: column;
+    gap : 15px;
+    .title{
+        /* 布局 */
+        align-items: flex-start;
+    }
+    
+}
+.degreeBtn {/* 羽球或排球按鈕容器 */
+    
+    /* 布局 */
+    align-items: flex-end;
+    /* layout */
+    width: 275px;
+    height: fit-content;
+    /* child */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    
+    .bmBtn{
+        background-color: $main-color-bm;
+    }
+    .vbBtn{
+        background-color: $main-color-vb;
+    }
+}
+.degreeSelect {
+    /* 程度選單容器 */
+
+    /* 布局 */
+    align-items: flex-end;
+     /* layout */
+     width: 275px;
+     height: fit-content;
+     /* child */
+     display: flex;
+     flex-direction: row;
+     justify-content: center;
+     align-items: center;
+     gap: 12px;
+
+    #degree-bm{
+        color: $main-color-bm;
+    }
+    #degree-vb{
+        color: $main-color-vb;
+    }
+}
+.photo {
+    /* 頭像及上傳檔案按鈕 */
+
+    /* layout */
+    width: fit-content;
+    height: fit-content;
+    /* 子 */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    img {
+        width: 150px;
+        height: 150px;
+
+    }
+    input{
+        width: auto;
+        height: auto;
+        border: none;
+        
+    }
+}

@@ -111,6 +111,7 @@ video {
 }
 
 /* 共用區 */
+/* 標題文字 */
 h1,
 .title-L {
   font-size: 24px;
@@ -130,15 +131,31 @@ h3,
 }
 
 .title {
+  /* layout */
   width: 60%;
   max-width: 700px;
   min-width: 340px;
   height: fit-content;
   margin: 0 50px;
+  /* child */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+}
+@media (max-width:640px) {
+  .title {
+    /* layout */
+    min-width: 375px;
+    height: fit-content;
+    margin: 20px 0px;
+    /* child */
+    display: flex;
+    flex-direction: row;
+    gap: 80px;
+    justify-content: space-around;
+    align-items: center;
+  }
 }
 
 .hugTitle {
@@ -167,6 +184,15 @@ div.hugTitle h2 {
   z-index: -1;
 }
 
+/* 標題前的線 */
+h2 div {
+  width: 5px;
+  height: 20px;
+  background-color: var(--font-color);
+  margin-right: 10px;
+}
+
+/*  */
 p,
 .text-M,
 button,
@@ -213,11 +239,20 @@ img {
   background: rgba(247, 246, 245, 0.9);
 }
 
+/* 所有input */
+input, select {
+  border-radius: 50px;
+  border: 2.5px solid black;
+  box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.3);
+}
+
+/* 全域 */
 * {
   margin: 0;
   padding: 0;
 }
 
+/* 包react的 */
 body {
   width: 100%;
   height: 100%;
@@ -246,11 +281,13 @@ body {
   background-image: url(/images/BothBg.jpg);
 }
 
+/* react下的root */
 #root {
   position: absolute;
   z-index: -21;
 }
 
+/* 包渲染內容的容器 */
 .body {
   width: 100vw;
   height: fit-content;
@@ -364,10 +401,7 @@ body {
   margin-right: 5px;
 }
 
-/* #menu li:last-child {
-
-  padding-right: 100px;
-} */
+/*  */
 /* 主內容 */
 main {
   width: 100vw;
@@ -414,23 +448,12 @@ footer div p {
   background-position: center;
 }
 
+/* logo */
 #logo {
   width: 35px;
   height: 33px;
   margin-left: 10px;
   flex: 1 0 auto;
-}
-
-#selectArea {
-  display: none;
-}
-
-/* 標題前的線 */
-h2 div {
-  width: 5px;
-  height: 20px;
-  background-color: var(--font-color);
-  margin-right: 10px;
 }
 
 /* 元件 */
@@ -993,6 +1016,10 @@ button#btn-typeVb.selected img {
   align-content: center;
 }
 
+#selectArea {
+  display: none;
+}
+
 .searchBtn-box #search-Type {
   display: none;
 }
@@ -1514,7 +1541,7 @@ button#btn-typeVb.selected img {
 }
 
 /* 發文表單標題 */
-div.form-title {
+.form-title {
   /* layout */
   width: 60%;
   max-width: 700px;
@@ -1528,7 +1555,7 @@ div.form-title {
   align-items: center;
 }
 @media (max-width:640px) {
-  div.form-title {
+  .form-title {
     /* layout */
     min-width: 375px;
     height: fit-content;
@@ -1573,7 +1600,7 @@ section.form-container {
 }
 
 /* 貼文管理按鈕 */
-main div button#btn-postManage {
+#btn-postManage {
   /* layout */
   width: fit-content;
   height: fit-content;
@@ -1589,7 +1616,7 @@ main div button#btn-postManage {
 }
 
 /* 切換表單按鈕容器 */
-main div .form-type {
+.form-type {
   flex: auto;
   width: 100%;
   height: fit-content;
@@ -2417,4 +2444,157 @@ button#btn-pastRecords.selected {
 .info-time p {
   width: 50px;
   text-align: center;
+}
+
+/*  */
+/* 註冊頁 */
+/* main(register-Area)容器 */
+.register-Area {
+  /* layout */
+  width: 80%;
+  height: auto;
+  /* 布局 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+.register-Area .register-section {
+  /* 包註冊內容的容器  */
+  border-radius: 20px;
+  border: 3px solid #000000;
+  padding: 30px;
+}
+
+.register-info {
+  /* 包資訊的容器 */
+  /* layout */
+  width: 100%;
+  height: auto;
+  /* 子 */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.register-info .BtnContainer {
+  /* 註冊按鈕容器 */
+}
+.register-info .BtnContainer .button {
+  /* 註冊按鈕 */
+}
+
+.register-info {
+  /* 個人資訊容器 */
+  /* 布局 */
+  flex: auto;
+  /* layout */
+  width: fit-content;
+  height: fit-content;
+  /* 子 */
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+}
+.register-info .title {
+  margin: 0px;
+}
+.register-info .player-info {
+  /* 表單容器 */
+  /* layout */
+  width: fit-content;
+  height: fit-content;
+  /* 子 */
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  grid-auto-rows: minmax(30px, auto);
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+.register-info .player-info label {
+  grid-column: 1;
+  grid-row: auto;
+}
+.register-info .player-info input {
+  grid-column: 2;
+  grid-row: auto;
+}
+.register-info .player-info .button {
+  background-color: #ffffff;
+}
+
+.register-degree {
+  /* 程度容器 */
+  /* 子 */
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.register-degree .title {
+  /* 布局 */
+  align-items: flex-start;
+}
+
+.degreeBtn { /* 羽球或排球按鈕容器 */
+  /* 布局 */
+  align-items: flex-end;
+  /* layout */
+  width: 275px;
+  height: fit-content;
+  /* child */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+.degreeBtn .bmBtn {
+  background-color: #83B90F;
+}
+.degreeBtn .vbBtn {
+  background-color: #14AAEB;
+}
+
+.degreeSelect {
+  /* 程度選單容器 */
+  /* 布局 */
+  align-items: flex-end;
+  /* layout */
+  width: 275px;
+  height: fit-content;
+  /* child */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+.degreeSelect #degree-bm {
+  color: #83B90F;
+}
+.degreeSelect #degree-vb {
+  color: #14AAEB;
+}
+
+.photo {
+  /* 頭像及上傳檔案按鈕 */
+  /* layout */
+  width: fit-content;
+  height: fit-content;
+  /* 子 */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.photo img {
+  width: 150px;
+  height: 150px;
+}
+.photo input {
+  width: auto;
+  height: auto;
+  border: none;
 }/*# sourceMappingURL=style-scss.css.map */

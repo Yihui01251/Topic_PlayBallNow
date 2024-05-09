@@ -73,9 +73,7 @@
                     </li>
                   </ul>
                 </nav>
-              </header>
-              <main className="personal-Area">
-                <div className="form-title">
+                <div className="title">
                   <div className="hugTitle">
                     <h1 className="title-L" value="個人檔案">
                       個人檔案
@@ -88,7 +86,10 @@
                       alt="資料編輯的icon公事包"
                     />
                   </button>
-                </div>{" "}
+                </div>
+                </header>
+              <main className="personal-Area">
+                
                 <div className="personalArea-infoContainer">
                   <div className="infoContainer-biography">
                     <div className="biography-bust">
@@ -97,7 +98,7 @@
                         
                       </figure>
                       <figure style ={{display : infoState}} >
-                        <img src="./images/player.png" alt="假頭像" />
+                        <img src="./images/player-border.png" alt="假頭像" />
                       </figure>
                       <button className="btn-logInLine" onClick ={()=>changeLogInState("btn-logInLine")} style ={{display : loginBtn}}>
                         <img src="./images/icon-LINE.png" alt="" />
