@@ -83,6 +83,7 @@
             pos,
             note,
             href,
+            host
           }) => {
             // const {key,date,time,city,area,arena,tag1,tag2} = props;
             return (
@@ -153,6 +154,7 @@
                   role={role}
                   pos={pos}
                   note={note}
+                  host={host}
                 />
               </>
             );
@@ -175,7 +177,12 @@
             role,
             pos,
             note,
+            host
           }) => {
+            const hostType ='vb';
+            if(type=="羽球"){
+              hostType="bm";
+            }
             return (
               <div className="popup" id={href}>
                 <div className="popup-inner">
@@ -228,11 +235,11 @@
                         <div className="apply-info">
                           <hr />
                           <img
-                            src="../images/player-border.png"
+                            src={`./images/host-${hostType}.png`}
                             alt="團主頭貼"
                           />
                           <p>
-                            團主<span>Joson</span>
+                            團主<span>{host}</span>
                           </p>
                           <div>
                             <p>報名備註</p>
@@ -386,6 +393,7 @@
                           pos={post_data.pos}
                           note={post_data.note}
                           href={`ApplyPopUp-${post_data.id}`}
+                          host={post_data.host}
                         />
                       );
                     })}
