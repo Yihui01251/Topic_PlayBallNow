@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+  <head>
+    <title>行程</title>
+    <link rel="stylesheet" href="./stylesheets/css/style-scss.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.0/redux.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+      .fileName {
+        display: none;
+      }
+    </style>
+  </head>
+  <body id="body" class="background-both">
+    <small class="fileName">檔名：<code>notice.html</code></small>
+    <!-- 根元素  -->
+    <div id="root"></div>
+    <script type="text/babel">
+      (async () => {
+        //取得json資料
+        const data = await axios.get("./userData.json");
+        const { userData } = data.data;
+        console.log(userData);
+        const { past_appl_userData } = userData[0];
+        const { future_All_userData } = userData[1];
+        const { future_cancel_userData } = userData[2];
+        const { future_host_userData } = userData[3];
+        const { future_appl_userData } = userData[4];
+
+        const { useState, useEffect, useRef } = React;
+        
+
+        const Notify = ({ day, startTime, type, arena, state,identity }) => {
+
+          const [typeStyle, setTypeStyle] = useState("");
+          const [typeFontStyle, setTypeFontStyle] = useState("");
+          const[stateStyle,setStateStyle]=useState("");
+          const[identityStyle,setIdentityStyle]=useState("");
+          useEffect(() => {
+            // 羽or排顏色
+            let typeStyle = "";
+            let typeFontStyle = "";
+            let stateColor ="";
+            if (type === "羽") {
+              typeStyle = "rgba(131, 185, 15, 0.9)";
+              typeFontStyle = "#689607";
+            } else if (type === "排") {
+              typeStyle = "#14AAEB";
+              typeFontStyle = "#147CB6";
+            }
+            setTypeFontStyle(typeFontStyle);
+            setTypeStyle(typeStyle);
+            document.documentElement.style.setProperty(
+              "--font-color",
+              typeFontStyle
+            );
+            document.documentElement.style.setProperty(
+              "--main-color",
+              typeStyle
+            );
+
+            // 狀態顏色
+            switch (state) {
+              case "報名成功":
+                  return setStateStyle("#1A8D07");
+              case "報名失敗":
+                return setStateStyle("#777777");
+              case "候補中":
+                return setStateStyle("#2D2AE6");
+              case "已取消":
+                return setStateStyle("#777777");
+              case "申請中":
+                return setStateStyle("#FF4F03");
+              case "未評價":
+                return setStateStyle("#FF4F03");
+              case "取消ing":
+                return setStateStyle("#FF4F03");
+            
+              default:
+                break;
+            }
+            // 身分樣式
+            let borderStyle = "";
+            document.getElementsByClassName("notice-container");
+            if (identity === "團主") {
+              borderStyle = "3px dashed black";
+             
+            } else if (identity === "臨打") {
+              borderStyle = "3px solid black";
+            }
+            setIdentityStyle(borderStyle);
+            document.documentElement.style.setProperty(
+              "--border-type",borderStyle);
+
+          }, [type,state,identity]);
+
+          return (
+            // <div className={"notice-container" +(identityStyle === "3px dashed black" ? "custom-dashed-border" :"")} style={{ color: typeFontStyle, border:identityStyle }}>
+              <div className={"notice-container"} style={{ color: typeFontStyle, border:identityStyle }}>
+              <div
+                className="notice-ballType"
+                style={{ backgroundColor: typeStyle }}
+              >
+                <p>{type}</p>
+              </div>
+              <div className="notice-info">
+                <div>
+                  <p>{day} {startTime}</p>
+                </div>
+                <p>{arena}</p>
+                <div style={{ color: stateStyle ,border:"1px solid" ,stateStyle }}>
+                  <p>{state}</p>
+                </div>
+              </div>
+            </div>
+          );
+        };
+
+        const App = () => {
+          
+
+          const [selectedButton, setSelectedButton] = useState("btn-itinerary");
+          const [noticeType, setNoticeType] = useState("btn-itinerary");
+          const itineraryBtn = document.getElementById("btn-itinerary");
+          const pastRecordsBtn = document.getElementById("btn-pastRecords");
+
+          const changeNotifyType = (id) => {
+            let newType = "";
+            setSelectedButton(id);
+            setNoticeType(id);
+            if (id == "btn-itinerary") {
+              newType = "itinerary";
+            } else if (id == "btn-pastRecords") {
+              newType = "pastRecords";
+            }
+          };
+
+          
+
+          return (
+            <div className="body">
+              <div className = "mobile-TopBar"><img src="./images/mobile-both-topbanner.png" alt="不分類的手機版banner"/></div>
+              <header id="topBar">
+                <nav id="top-nav">
+                  <ul id="menu">
+                    <li>
+                      <a href="./index.html">
+                        <img
+                          className="icon"
+                          src="./images/magnifier.png"
+                          alt=""
+                        />
+                        探索
+                      </a>
+                    </li>
+                    <li>
+                      <a href="./publicationForm.html">
+                        <img className="icon" src="./images/post.png" alt="" />
+                        找人
+                      </a>
+                    </li>
+                    <li>
+                      <a href="notice.html">
+                        <img className="icon" src="./images/bell3.png" alt="" />
+                        行程
+                      </a>
+                    </li>
+                    <li>
+                      <a href="personal.html">
+                        <img className="icon" src="./images/cat.png" alt="" />
+                        個人
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+              </header>
+              <main className="notice-Area">
+                <div className="form-title">
+                  <div className="hugTitle">
+                    <h1 className="title-L" value="我的行程">
+                      我的行程
+                    </h1>
+                  </div>
+                </div>
+                <div className="notice-type">
+                  <button
+                    id="btn-itinerary"
+                    className={
+                      selectedButton === "btn-itinerary" ? "selected" : ""
+                    }
+                    onClick={() => changeNotifyType("btn-itinerary")}
+                  >
+                    未來行程
+                  </button>
+
+                  <button
+                    id="btn-pastRecords"
+                    className={
+                      selectedButton === "btn-pastRecords" ? "selected" : ""
+                    }
+                    onClick={() => changeNotifyType("btn-pastRecords")}
+                  >
+                    過去紀錄
+                  </button>
+                </div>
+                <div
+                  style={{
+                    display: noticeType === "btn-itinerary" ? "block" : "none",
+                  }}
+                >
+                  <div className="notice-itineraryTitle">
+                    <div className="hugTitle">
+                      <h2 className="text-L" value="預定行程">
+                        預定行程
+                      </h2>
+                    </div>
+                    <button className="btn-sponsor">
+                      <img src="./images/icon-sponsor.png" alt="" />
+                      主辦
+                    </button>
+                  </div>
+                  <section className="notice-itineraryArea">
+                    {future_All_userData.map((post_data) => {
+                      return (
+                        <Notify
+                          key={post_data.id}
+                          type={post_data.typeAbbr}
+                          identity={post_data.identity}
+                          day={post_data.dateAbbr}
+                          startTime={post_data.startTime}
+                          arena={post_data.arena}
+                          state={post_data.state}
+                        />
+                      );
+                    })}
+                  </section>
+                  <div className="notice-itineraryTitle">
+                    <div className="hugTitle">
+                      <h2 className="text-L" value="取消行程">
+                        取消行程
+                      </h2>
+                    </div>
+                  </div>
+                  <section className="notice-itineraryArea">
+                    {future_cancel_userData.map((post_data) => {
+                      return (
+                        <Notify
+                          key={post_data.id}
+                          type={post_data.typeAbbr}
+                          day={post_data.dateAbbr}
+                          startTime={post_data.startTime}
+                          arena={post_data.arena}
+                          state={post_data.state}
+                        />
+                      );
+                    })}
+                  </section>
+                </div>
+                <div
+                  style={{
+                    display:
+                      noticeType === "btn-pastRecords" ? "block" : "none",
+                  }}
+                >
+                  <section className="notice-itineraryArea">
+                    {past_appl_userData.map((post_data) => {
+                      return (
+                        <Notify
+                          key={post_data.id}
+                          type={post_data.typeAbbr}
+                          day={post_data.dateAbbr}
+                          startTime={post_data.startTime}
+                          arena={post_data.arena}
+                          state={post_data.state}
+                        />
+                      );
+                    })}
+                  </section>
+                </div>
+              </main>
+              <footer>
+                <figure className="footer-border"></figure>
+                <div>
+                  <figure>
+                    <img
+                      id="logo"
+                      src="./images/logo.png"
+                      alt="logo-PlayBallNow"
+                    />
+                  </figure>
+                  <p>Copyright© 2024 PlayBallNow. All Right Reserved. </p>
+                </div>
+              </footer>
+            </div>
+          );
+        };
+        ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,495 @@
+{
+  "postData": [
+    {
+      "vb_today_postData": [
+        {
+          "id": "1",
+          "type": "排球",
+          "date": "06/26(三)",
+          "dateAbbr": "06/26",
+          "startTime": "10:00",
+          "endTime": "11:00",
+          "city": "台北市",
+          "area": "中山區",
+          "arena": "中山運動中心",
+          "tagDegree": "B",
+          "tagPrice": "200",
+          "reqCount": [
+            {
+              "gender": "female",
+              "count": 1
+            },
+            {
+              "gender": "male",
+              "count": 1
+            },
+            {
+              "gender": "unspecified",
+              "count": 0
+            }
+          ],
+          "role": "男網",
+          "pos": "不拘",
+          "note": "有穩定接發與防守觀念者、態度積極",
+          "host": "王大明"
+        },
+        {
+          "id": "2",
+          "type": "排球",
+          "date": "06/26(三)",
+          "dateAbbr": "06/26",
+          "startTime": "15:00",
+          "endTime": "18:00",
+          "city": "台北市",
+          "area": "大同區",
+          "arena": "大同運動中心",
+          "tagDegree": "C",
+          "tagPrice": "120",
+          "reqCount": [
+            {
+              "gender": "female",
+              "count": 1
+            },
+            {
+              "gender": "male",
+              "count": 2
+            },
+            {
+              "gender": "unspecified",
+              "count": 0
+            }
+          ],
+          "role": "女網混排",
+          "pos": "不拘",
+          "note": "希望報名者有基本程度，懂攻防，會站位，非新手場",
+          "host": "陳曉麗"
+        },
+        {
+          "id": "3",
+          "type": "排球",
+          "date": "06/26(三)",
+          "dateAbbr": "06/26",
+          "startTime": "10:00",
+          "endTime": "11:00",
+          "city": "台北市",
+          "area": "中正區",
+          "arena": "中正運動中心",
+          "tagDegree": "B~A",
+          "tagPrice": "200",
+          "reqCount": [
+            { "gender": "female", "count": 1 },
+            { "gender": "male", "count": 1 },
+            { "gender": "unspecified", "count": 0 }],
+             "role": "女網混排",
+          "pos": "不拘",
+          "note": "冷氣錢另計",
+          "host": "王大明"
+        },
+        {
+          "id": "4",
+          "type": "排球",
+          "date": "06/26(三)",
+          "dateAbbr": "06/26",
+          "startTime": "21:00",
+          "endTime": "23:00",
+          "city": "台北市",
+          "area": "大安區",
+          "arena": "大安運動中心",
+          "tagDegree": "B~A",
+          "tagPrice": "190",
+          "reqCount": [
+            { "gender": "female", "count": 1 },
+            { "gender": "male", "count": 1 },
+            { "gender": "unspecified", "count": 0 }],
+             "role": "女網混排",
+          "pos": "不拘",
+          "note": "具基本接發攻擊及站位觀念",
+          "host": "尤利水"
+        }
+      ]
+    },
+    {
+      "vb_week_postData": [
+        {
+            "id": "1",
+            "type": "排球",
+            "date": "06/24(一)",
+            "dateAbbr": "06/24",
+            "startTime": "13:00",
+            "endTime": "15:00",
+            "city": "台北市",
+            "area": "大安區",
+            "arena": "大安運動中心",
+            "tagDegree": "B~A",
+            "tagPrice": "250",
+            "reqCount": [
+              {
+                "gender": "female",
+                "count": 5
+              },
+              {
+                "gender": "male",
+                "count": 1
+              },
+              {
+                "gender": "unspecified",
+                "count": 0
+              }
+            ],
+            "role": "女網",
+            "pos": "中等發球,防守,舉球,攻擊",
+            "note": "常有重扣多來回，非新手場多半校隊跟成熟系隊",
+            "host": "王鵬豪"
+        },
+        {
+            "id": "2",
+            "type": "排球",
+            "date": "06/26(三)",
+            "dateAbbr": "06/26",
+            "startTime": "13:00",
+            "endTime": "15:00",
+            "city": "台北市",
+            "area": "中正區",
+            "arena": "中正運動中心",
+            "tagDegree": "C",
+            "tagPrice": "100",
+            "reqCount": [
+              {
+                "gender": "female",
+                "count": 5
+              },
+              {
+                "gender": "male",
+                "count": 1
+              },
+              {
+                "gender": "unspecified",
+                "count": 0
+              }
+            ],
+            "role": "女網混排",
+            "pos": "不拘",
+            "note": "入口在哈密街59巷21弄 ，經過警衛室後左轉上四樓球場",
+            "host": "陳曉麗"
+        },
+        {
+            "id": "3",
+            "type": "排球",
+            "date": "06/27(四)",
+            "dateAbbr": "06/27",
+            "startTime": "18:00",
+            "endTime": "22:00",
+            "city": "台北市",
+            "area": "大同區",
+            "arena": "大同運動中心",
+            "tagDegree": "C~B",
+            "tagPrice": "250",
+            "reqCount": [
+              {
+                "gender": "female",
+                "count": 5
+              },
+              {
+                "gender": "male",
+                "count": 1
+              },
+              {
+                "gender": "unspecified",
+                "count": 0
+              }
+            ],
+            "role": "男網",
+            "pos": "防守,舉球,攻擊",
+            "note": "場地及好，遮陽避雨～～",
+            "host": "王大明"
+        },
+        {
+            "id": "4",
+            "type": "排球",
+            "date": "06/30(日)",
+            "dateAbbr": "06/30",
+            "startTime": "10:00",
+            "endTime": "15:00",
+            "city": "台北市",
+            "area": "中山區",
+            "arena": "中山運動中心",
+            "tagDegree": "A",
+            "tagPrice": "200",
+            "reqCount": [
+            {
+              "gender": "female",
+              "count": 5
+            },
+            {
+              "gender": "male",
+              "count": 1
+            },
+            {
+              "gender": "unspecified",
+              "count": 0
+            }
+          ],
+            "role": "男網",
+            "pos": "攻擊",
+            "note": "希望有基礎能力, 打起來比較順利.",
+            "host": "黃筱原"
+        }
+    ]},
+    {
+      "bm_today_postData": [
+        {
+            "id": "1",
+            "type": "羽球",
+            "date": "06/26(三)",
+            "dateAbbr": "06/26",
+            "startTime": "10:00",
+            "endTime": "11:00",
+            "city": "台北市",
+            "area": "大安區",
+            "arena": "大安運動中心",
+            "tagDegree": "新手友善",
+            "tagPrice": "200",
+            "reqCount": [
+              {
+                "gender": "female",
+                "count": 5
+              },
+              {
+                "gender": "male",
+                "count": 1
+              },
+              {
+                "gender": "unspecified",
+                "count": 0
+              }
+            ],
+            "ballBrand": "RSL4",
+            "equip": "冷氣,冷熱水淋浴間,飲水機",
+            "note": "挑戰高手 (尋求刺激)",
+            "host":"王大明"
+        },
+        {
+            "id": "2",
+            "type": "羽球",
+            "date": "06/26(三)",
+            "dateAbbr": "06/26",
+            "startTime": "10:00",
+            "endTime": "15:00",
+            "city": "台北市",
+            "area": "中正區",
+            "arena": "中正運動中心",
+            "tagDegree": "初階",
+            "tagPrice": "150",
+            "reqCount": [
+              {
+                "gender": "female",
+                "count": 5
+              },
+              {
+                "gender": "male",
+                "count": 1
+              },
+              {
+                "gender": "unspecified",
+                "count": 0
+              }
+            ],
+            "ballBrand": "YY Acl 30",
+            "equip": "停車,冷熱水淋浴間,飲水機",
+            "note": "交通方便",
+            "host":"陳曉麗"
+        },
+        {
+            "id": "3",
+            "type": "羽球",
+            "date": "06/26(三)",
+            "dateAbbr": "06/26",
+            "startTime": "18:00",
+            "endTime": "22:00",
+            "city": "台北市",
+            "area": "大同區",
+            "arena": "大同運動中心",
+            "tagDegree": "中下",
+            "tagPrice": "250",
+            "reqCount": [
+              {
+                "gender": "female",
+                "count": 5
+              },
+              {
+                "gender": "male",
+                "count": 1
+              },
+              {
+                "gender": "unspecified",
+                "count": 0
+              }
+            ],
+            "ballBrand": "勝利比賽球",
+            "equip": "飲水機",
+            "note": "專人排場不少打",
+            "host":"王大明"
+        },
+        {
+            "id": "4",
+            "type": "羽球",
+            "date": "06/26(三)",
+            "dateAbbr": "06/26",
+            "startTime": "16:00",
+            "endTime": "20:00",
+            "city": "台北市",
+            "area": "中山區",
+            "arena": "中山運動中心",
+            "tagDegree": "新手友善",
+            "tagPrice": "150",
+            "reqCount": [
+              {
+                "gender": "female",
+                "count": 5
+              },
+              {
+                "gender": "male",
+                "count": 1
+              },
+              {
+                "gender": "unspecified",
+                "count": 0
+              }
+            ],
+            "ballBrand": "亞獅龍RSL4號,摩亞MS-85,久奈司AJ-40",
+            "equip": "飲水機,風扇",
+            "note": "進學校左轉上3樓，靠近講台兩面場，原則上打1休1",
+            "host":"尤利水"
+        }
+    ]
+    },
+    {
+      "bm_week_postData": [
+        {
+            "id": "1",
+            "type": "羽球",
+            "date": "06/24(一)",
+            "dateAbbr": "06/24",
+            "startTime": "10:00",
+            "endTime": "11:00",
+            "city": "台北市",
+            "area": "大安區",
+            "arena": "大安運動中心",
+            "tagDegree": "新手友善",
+            "tagPrice": "500",
+            "reqCount": [
+              {
+                "gender": "female",
+                "count": 5
+              },
+              {
+                "gender": "male",
+                "count": 1
+              },
+              {
+                "gender": "unspecified",
+                "count": 0
+              }
+            ],
+            "ballBrand": "勝利比賽球",
+            "equip": "飲水機",
+            "note": "入口在哈密街59巷21弄 ，經過警衛室後左轉上四樓球場",
+            "host":"王鵬豪"
+        },
+        {
+            "id": "2",
+            "type": "羽球",
+            "date": "06/26(三)",
+            "dateAbbr": "06/26",
+            "startTime": "10:00",
+            "endTime": "15:00",
+            "city": "台北市",
+            "area": "中正區",
+            "arena": "中正運動中心",
+            "tagDegree": "中上",
+            "tagPrice": "125",
+            "reqCount": [
+              {
+                "gender": "female",
+                "count": 5
+              },
+              {
+                "gender": "male",
+                "count": 1
+              },
+              {
+                "gender": "unspecified",
+                "count": 0
+              }
+            ],
+            "ballBrand": "勝利比賽球",
+            "equip": "側光",
+            "note": "專人排場不少打",
+            "host":"陳曉麗"
+        },
+        {
+            "id": "3",
+            "type": "羽球",
+            "date": "06/27(四)",
+            "dateAbbr": "06/27",
+            "startTime": "19:00",
+            "endTime": "21:00",
+            "city": "台北市",
+            "area": "大同區",
+            "arena": "大同運動中心",
+            "tagDegree": "中進階",
+            "tagPrice": "110",
+            "reqCount": [
+              {
+                "gender": "female",
+                "count": 5
+              },
+              {
+                "gender": "male",
+                "count": 1
+              },
+              {
+                "gender": "unspecified",
+                "count": 0
+              }
+            ],
+            "ballBrand": "yonex ACL30",
+            "equip": "木質地板球場",
+            "note": "專人排場不少打",
+            "host":"王大明"
+        },
+        {
+            "id": "4",
+            "type": "羽球",
+            "date": "06/30(日)",
+            "dateAbbr": "06/30",
+            "startTime": "10:00",
+            "endTime": "15:00",
+            "city": "台北市",
+            "area": "中山區",
+            "arena": "中山運動中心",
+            "tagDegree": "進階",
+            "tagPrice": "100",
+            "reqCount": [
+              {
+                "gender": "female",
+                "count": 5
+              },
+              {
+                "gender": "male",
+                "count": 1
+              },
+              {
+                "gender": "unspecified",
+                "count": 0
+              }
+            ],
+            "ballBrand": "勝利藍桶比賽球",
+            "equip": "飲水機",
+            "note": "勝負心不強、友善的球友報名",
+            "host":"黃筱原"
+        }
+    ]
+    }
+  ]
+}

@@ -1,0 +1,369 @@
+@import "_varible";
+
+/*  */
+/* 找人 */
+/* 找人main(form-formArea */
+.form-formArea {
+  width: 100vw;
+  height: max-content;
+  /* margin-bottom: 10px; */
+
+  /* 子 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+/* 發文表單標題 */
+.form-title {
+  /* layout */
+  width: 60%;
+  max-width: 700px;
+  min-width: 340px;
+  height: fit-content;
+  margin: 0 50px;
+
+  /* child */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  @media ($breakpoint-moblie) {
+    /* layout */
+    min-width: 375px;
+    height: fit-content;
+    margin: 20px 0px;
+    /* child */
+    display: flex;
+    flex-direction: row;
+    gap: 80px;
+    justify-content: space-around;
+    align-items: center;
+  }
+}
+
+/* 類別按鈕+表單+預覽區 */
+section.form-container {
+  width: fit-content;
+  height: fit-content;
+  padding: 50px 0px;
+  display: grid;
+  grid-template-columns: 339px 378px;
+  gap: 20px;
+
+  @media ($breakpoint-moblie) {
+    /* RWD 手機版換一行 */
+    grid-template-columns: 1fr;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    padding: 15px 0px;
+
+  }
+
+}
+
+/* 表單容器:稍微修改不要壓到表單 */
+.form-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* display: grid;
+    grid-template-rows: 30px 645px;
+    gap: 8px; */
+
+}
+
+
+/* 貼文管理按鈕 */
+#btn-postManage{
+  /* layout */
+  width: fit-content;
+  height: fit-content;
+  border-radius: $border-radius-m;
+  border: 2px solid $border-black;
+  padding: 9px 18px;
+  background-color: var(--btn-color);
+  box-shadow: 0px 4px 0px 0px $second-color-black;
+  /* child */
+  display: grid;
+  grid-template-columns: 64px 20px;
+  gap: 10px;
+}
+
+
+/* 切換表單按鈕容器 */
+.form-type {
+  flex: auto;
+  width: 100%;
+  height: fit-content;
+  align-self: flex-start;
+
+
+  display: flex;
+  justify-content: space-between;
+}
+
+
+/* 切換表單按鈕容器:打羽球 */
+#btn-formBM {
+  width: fit-content;
+  height: fit-content;
+  border-radius: $border-radius-m;
+  border: 2px solid $border-black;
+  box-shadow: 0px 4px 0px 0px $second-color-black;
+  padding: 5px 25px;
+  background-color: rgba(247, 246, 245, 0.9);
+  color: $font-color-bm;
+}
+
+/* 切換表單按鈕容器:打排球 */
+#btn-formVB {
+  width: fit-content;
+  height: fit-content;
+  border-radius: $border-radius-m;
+  border: 2px solid $border-black;
+  box-shadow: 0px 4px 0px 0px $second-color-black;
+  padding: 5px 25px;
+  background-color:$background-color-lightwhite-s;
+  color: $font-color-vb;
+}
+
+
+/* 按鈕被選中 */
+button#btn-formBM.selected,
+button#btn-formVB.selected {
+  width: fit-content;
+  height: fit-content;
+  border-radius: $border-radius-m;
+  padding-top: 3px;
+  padding-bottom: 0px;
+  color: $second-color-black;
+  background-color: var(--main-color);
+  border-bottom: 7px solid var(--main-color);
+  border-top: 6px solid $border-black;
+  border-right: 1px solid $border-black;
+  border-left: 1px solid $border-black;
+  box-shadow: none;
+
+  position: relative;
+
+  &::before {
+    /* 選中時陰影 */
+    display: block;
+    content: '';
+    position: absolute;
+    top: 20px;
+    box-shadow: inset 0px 10px 0px $second-color-black;
+  }
+
+}
+
+/* 表單元素容器 */
+.form-edit {
+  flex: 1 0 auto;
+  width: 339px;
+  height: max-content;
+  border-radius: $border-radius-s;
+  border: 1px solid $border-black;
+  padding: 20px 15px;
+
+  display: grid;
+  grid-template-rows: 20px 330px 20px 1fr;
+  gap: 15px;
+  background-color:$background-color-gray2;
+  color: $second-color-white;
+
+  @media ($breakpoint-moblie) {
+    /* RWD 縮小邊界 */
+    padding: 10px;
+  }
+
+}
+
+/* 表單標題 */
+.sub-title h2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  /* padding: 20px 10px; */
+
+  div {
+    /* 表單標題外框線 */
+    background-color: $second-color-black;
+  }
+
+}
+
+
+/* 必填表單容器 */
+.form-options {
+  width: 309px;
+  height: 317px;
+  border-bottom: 1px solid $border-black;
+  margin-top: 10px;
+  padding-left: 20px;
+  /* child */
+  display: grid;
+  grid-template-rows: auto;
+
+  label {
+    /* 內容表單元素標題 */
+    width: 330px;
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 10px;
+
+    input {
+      /* 所有<label>下<input> */
+      width: 20%;
+      height: 20px;
+      border-radius: $border-radius-m;
+      border: 2.5px solid $border-black;
+      padding: 0px 15px;
+      align-items: center;
+    }
+  }
+}
+
+/* 寫在.form-options外面 註解比較不會跑版 */
+
+/* 時段 */
+.form-options label:nth-child(2),
+.form-options label:nth-child(3) {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+}
+
+#postStartTime,
+#postEndTime {
+  width: 45%;
+}
+
+/* 地區<label> */
+.form-options label:nth-child(4),
+.form-options label:nth-child(5) {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+}
+
+/* 地區 類型 程度<select> */
+.form-options label:nth-child(4) select,
+.form-options label:nth-child(5) select,
+.form-options label:nth-child(7) select,
+.form-options label:nth-child(10) select {
+  width: 40%;
+  height: 25px;
+  padding-left: 10px;
+  border-radius: $border-radius-m;
+  border: 2.5px solid $border-black;
+}
+
+/* 球場input */
+#postArena {
+  width: 70%;
+}
+
+/* 缺額<label> */
+.form-options label:nth-child(9) {
+  display: grid;
+  grid-template-columns: 32px 75px 75px 70px;
+  gap: 10px;
+
+  input {
+    width: 60%;
+    padding-left: 20%;
+  }
+}
+
+
+/* 選填表單容器 */
+.form-subOptions {
+  width: 309px;
+  height: auto;
+  margin-top: 10px;
+  padding-left: 20px;
+
+  display: grid;
+  grid-template-rows: auto;
+  gap: 1vh;
+
+  label {
+    width: 330px;
+    display: grid;
+    grid-template-columns: 75px 1fr;
+    gap: 10px;
+
+    input {
+      width: 150px;
+      height: 20px;
+      border-radius: $border-radius-m;
+      border: 2.5px solid $border-black;
+      padding: 0px 15px;
+      align-items: center;
+    }
+
+    select {
+      width: 135px;
+      height: 25px;
+      padding-left: 10px;
+      border-radius: $border-radius-m;
+      border: 2.5px solid $border-black;
+    }
+  }
+}
+
+/* 備註的textArea */
+#postNote {
+  width: 75%;
+}
+
+/* 預覽容器 ：背景改色*/
+.form-preview {
+  width: 395px;
+  height: 610px;
+  border: 1px solid $border-black;
+  border-radius: $border-radius-s;
+  margin-top: 35px;
+  margin-left: 30px;
+  padding: 20px 15px;
+  background-color:$background-color-lightgrey-s;
+
+  display: grid;
+  grid-template-rows: 28px 324px 40px;
+  gap: 100px;
+
+  @media ($breakpoint-moblie) {
+    padding: 10px;
+    margin: 20px 0 0 0;
+    gap: 50px;
+    height: fit-content;
+    width: 380px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  @media (max-width:375px) {
+    padding: 0;
+    margin: 35px 0 0 0;
+    gap: 50px;
+    height: fit-content;
+    width: 375px;
+  }
+}
+
+/* 預覽RWD 縮小邊界、置中 */
+@media ($breakpoint-moblie) {
+  .filter-simplePostInfo {
+    padding: 20px 5px 20px 5px;
+  }
+}
+
+
+/* 預覽送出按鈕 */
+.form-preview button.btn-send {
+  margin-left: 140px;
+}

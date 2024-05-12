@@ -19,16 +19,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }else{
             selectArea.style.display = "none";
         }
-        let opArea = options[selectCity.value];
-        // console.log(`可選擇${area}`);
-
-        if(opArea){
-                      
+        let opArea =  options[selectCity.value];
+        console.log(`可選擇${opArea}`);
+        if(opArea){  
+              
+            
             opArea.forEach((option) => {
                 var opElement = document.createElement("option");
+                console.log(`目前${opElement}`); 
+                if(opElement.length >=2){
+                    selectArea.removeChild(opElement);
+                    
+                }                    
                 opElement.textContent = option;
                 opElement.value = option;
                 selectArea.appendChild(opElement);
+               
             });
             console.log("更新子選單");
         }

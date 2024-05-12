@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+  <head>
+    <title>個人</title>
+    <link rel="stylesheet" href="./stylesheets/css/style-scss.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.0/redux.min.js"
+      integrity="sha512-1/8Tj23BRrWnKZXeBruk6wTnsMJbi/lJsk9bsRgVwb6j5q39n0A00gFjbCTaDo5l5XrPVv4DZXftrJExhRF/Ug=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <style>
+      .fileName {
+        display: none;
+      }
+    </style>
+  </head>
+  <body id="body" class="background-both">
+    <small class="fileName">檔名：<code>personal.html</code></small>
+    <!-- 根元素  -->
+    <div id="root"></div>
+    <script type="text/babel">
+      (async () => {
+
+        const {useState} = React;
+        
+        const App = () => {
+          const [loginBtn, setLoginBtn] =useState('none');
+          const [infoState,setInfoState] =useState('block');
+          const changeLogInState = (id)=>{
+          setLoginBtn("none");
+          setInfoState("block");
+        }
+
+          return (
+            <div className="body">
+              <div className = "mobile-TopBar"><img src="./images/mobile-both-topbanner.png" alt="不分類的手機版banner"/></div>
+              <header id="topBar">
+                <nav id="top-nav">
+                  <ul id="menu">
+                    <li>
+                      <a href="./index.html">
+                        <img
+                          className="icon"
+                          src="./images/magnifier.png"
+                          alt=""
+                        />
+                        探索
+                      </a>
+                    </li>
+                    <li>
+                      <a href="./publicationForm.html">
+                        <img className="icon" src="./images/post.png" alt="" />
+                        找人
+                      </a>
+                    </li>
+                    <li>
+                      <a href="notice.html">
+                        <img className="icon" src="./images/bell3.png" alt="" />
+                        行程
+                      </a>
+                    </li>
+                    <li>
+                      <a href="personal.html">
+                        <img className="icon" src="./images/cat.png" alt="" />
+                        個人
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+                <div className="title">
+                  <div className="hugTitle">
+                    <h1 className="title-L" value="個人檔案">
+                      個人檔案
+                    </h1>
+                  </div>
+                  <button id="btn-editFile">
+                    資料編輯
+                    <img
+                      src="../images/icon-editFile.png"
+                      alt="資料編輯的icon公事包"
+                    />
+                  </button>
+                </div>
+                </header>
+              <main className="personal-Area">
+                
+                <div className="personalArea-infoContainer">
+                  <div className="infoContainer-biography">
+                    <div className="biography-bust">
+                      <figure style ={{display : loginBtn}}>
+                        <img src="./images/bball.png" alt="排球頭像" />
+                        
+                      </figure>
+                      <figure style ={{display : infoState}} >
+                        <img src="./images/player-border.png" alt="假頭像" />
+                      </figure>
+                     
+                      <div style ={{display : infoState}}><div className ="userName" ><img src="./images/icon-male.png" alt=""/><p className ="hugTitle title-M" value="十全大補">十全大補</p></div></div>  
+                    </div>
+                    <div className="biography-info">
+                      <div className="info-introduction">
+                        <p style ={{display : loginBtn}}>登入後可輸入狀態</p>
+                        <p style ={{display : infoState ,color : "black"}}>很高興可以認識大家...</p>
+                      </div>
+                      <div className="info-selfState">
+                        <div style ={{display : infoState}}>
+                          <div className="selfState-userInfo" >
+                              <p className ="userInfo">100</p>
+                              <div>
+                                <p className = "text-M">85%</p>
+                                <img src="./images/EllipseBar.png" alt=""/>
+                                </div>
+                              <p className ="userInfo">中上</p>
+                              </div>
+                          </div>
+                        <div className ="selfState-title">
+                          <p>累積場次</p>
+                          <p>出席率</p>
+                          <p>自評等級</p>
+                        </div>
+                        <div className ="prompt" style ={{display : loginBtn}}>
+                          <p>登入顯示</p>
+                        </div>
+                      </div>
+                      </div>
+                  </div>
+                  <div className ="infoContainer-records">
+                    <div className ="records-sponsored">
+                      <div className ="sponsored-title">
+                        <div className ="hugSponsored-title"><div className ="titleLine"></div><h2>團主紀錄</h2></div>
+                        
+                        <div className = "sponsored-titleBtn">
+                          <button><img src="./images/btn-left.png" alt="前一個"/></button>
+                          <button><img src="./images/btn-right.png" alt="後一個"/></button>
+                          </div>
+                        </div>
+                      <div className ="prompt" style ={{display : loginBtn}}><p>登入顯示</p></div>
+                      <div className ="records-info">
+                        <div style ={{display : infoState}}><div className ="info-time"><div>羽</div><p>05/28 18:00</p></div></div>
+                        <div style ={{display : infoState}}><div className ="info-time"><div>羽</div><p>05/28 18:00</p></div></div>
+                        <div style ={{display : infoState}}><div className ="info-time"><div>羽</div><p>05/28 18:00</p></div></div>
+                        </div>
+                      </div>
+                      <div className ="records-participation">
+                      <div className ="sponsored-title">
+                        <div className ="hugSponsored-title"><div className ="titleLine"></div><h2>臨打紀錄</h2></div>
+                        
+                        <div className = "sponsored-titleBtn">
+                          <button><img src="./images/btn-left.png" alt="前一個"/></button>
+                          <button><img src="./images/btn-right.png" alt="後一個"/></button>
+                          </div>
+                        </div>
+                        <div className ="prompt" style ={{display : loginBtn}}><p>登入顯示</p></div>
+                      <div className ="records-info">
+                        <div style ={{display : infoState}}><div className ="info-time"><div>羽</div><p>05/28 18:00</p></div></div>
+                        <div style ={{display : infoState}}><div className ="info-time"><div>羽</div><p>05/28 18:00</p></div></div>
+                        <div style ={{display : infoState}}><div className ="info-time"><div>羽</div><p>05/28 18:00</p></div></div>
+                        </div>
+                      </div>
+                    </div>
+                  
+                </div>
+              </main>
+              <footer>
+                <figure className="footer-border"></figure>
+                <div>
+                  <figure>
+                    <img
+                      id="logo"
+                      src="./images/logo.png"
+                      alt="logo-PlayBallNow"
+                    />
+                  </figure>
+                  <p>Copyright© 2024 PlayBallNow. All Right Reserved. </p>
+                </div>
+              </footer>
+            </div>
+          );
+        };
+        ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+      })();
+    </script>
+  </body>
+</html>

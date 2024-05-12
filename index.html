@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant-TW">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <script src="./javascripts/vendor.js"></script> -->
     <script
       crossorigin
       src="https://unpkg.com/react@18/umd/react.development.js"
@@ -12,181 +13,635 @@
       src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
     ></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.0/redux.min.js"
+      integrity="sha512-1/8Tj23BRrWnKZXeBruk6wTnsMJbi/lJsk9bsRgVwb6j5q39n0A00gFjbCTaDo5l5XrPVv4DZXftrJExhRF/Ug=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
     <title>現在想打球</title>
-    <link rel="stylesheet" href="./stylesheets/style.css" />
+    <link rel="stylesheet" href="./stylesheets/css/style-scss.css" />
+    <style>
+      .fileName {
+        display: none;
+      }
+    </style>
   </head>
-  <body>
+
+  <body id="body">
+    <small class="fileName">檔名：<code>index.html</code></small>
+    <!-- 載入axios套件 -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <div id="root"></div>
     <script type="text/babel">
-      const App = () => {
-        return (
-          <>
+      (async () => {
+        //取得json資料
+        const data = await axios.get("./postData_test.json");
+        const { postData } = data.data;
+        console.log(postData);
+        const { vb_today_postData } = postData[0];
+        const { vb_week_postData } = postData[1];
+        const { bm_today_postData } = postData[2];
+        const { bm_week_postData } = postData[3];
+        console.log(vb_today_postData);
+        console.log(vb_week_postData);
+        console.log(bm_today_postData);
+        console.log(bm_week_postData);
 
-          <header id="topBar">
-              <nav id="top-nav">
-                <ul id="menu">
-                  <li>
-                    <a href="./index.html">
-                      <img className="icon" src="./images/magnifier.png" alt="" />
-                      探索
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <img className="icon" src="./images/post.png" alt="" />
-                      找人
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <img className="icon" src="./images/bell3.png" alt="" />
-                      行程
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <img className="icon" src="./images/cat.png" alt="" />
-                      個人
-                    </a>
-                  </li>
-                </ul>
-              </nav>
-            </header>
-            <main className="index">
-              <section className="search">
-                <div id="search-Type">
-                  <button id="btn-typeVb">
-                    <img src="./images/vball.png" alt=""/>
-                  </button>
-                  <button id="btn-typeBm">
-                    <img src="./images/bball.png" alt="羽球" />
-                  </button>
-                </div>
-                <div id="search-Bar">
-                  <div></div>
-                  <div className="dropMenu">
-                    <ul>
-                      <input className = "dpMenu-item"
-                        type="date"
-                        name="日期"
-                        id="date"
-                        title="打球日"
-                        required
-                      />
-                      <select name="類型" id="type" className = "dpMenu-item">
-                        <option value="default">類型</option>
-                      </select>
-                      <select name="程度" id="degree" className = "dpMenu-item">
-                        <option value="default">程度</option>
-                      </select>
-                      <select name="時間" id="time" className = "dpMenu-item">
-                        <option value="default">時間</option>
-                      </select>
-                      <select name="縣市" id="city" className = "dpMenu-item">
-                        <option value="default">縣市</option>
-                      </select>
-                      <select name="費用" id="cost" className = "dpMenu-item">
-                        <option value="default">費用</option>
-                      </select>
-                    </ul>
-                    
-                  </div>
-                  <div>
-                      <button className="btn-changeType">切換</button>
-                      <button className="btn-send">送出</button>
+        const App = () => {
+          const { useState, useEffect, useRef } = React;
+
+          // const [backgroundImage, setBackgroundImage] = useState("url('../images/CatBg.jpg')");
+          const [mainColor, setMainColor] = useState("#14AAEB");
+          const [fontColor, setFontColor] = useState("#147CB6");
+          const [btnColor, setBtnColor] = useState("#F1DB15");
+          const [postBorder, setPostBorder] = useState(
+            'url("./images/catsroke.svg")'
+          );
+          const [decorateSearch, setDecorateSearch] = useState(
+            'url("./images/index-searchCat.png")'
+          );
+          const [todayType, setTodayType] = useState("vb_today_postData");
+          const [weekType, setWeekType] = useState("vb_week_postData");
+          const [selectedButton, setSelectedButton] = useState("btn-typeVb");
+          const [BMdisplay, setBMDisplay] = useState("none");
+          const [VBdisplay, setVBDisplay] = useState("flex");
+
+          const btnTypeVbRef = useRef(null);
+          const btnTypeBmRef = useRef(null);
+
+          useEffect(() => {
+            // 組件載入後，將焦點設置到 btn-typeVb 按鈕上
+            //btnTypeVbRef.current.focus();
+          }, []);
+
+          const changeType = (id) => {
+            // let newBackground = "";
+            let colorMain = "";
+            let colorFont = "";
+            let btnColor = "";
+            let newBorder = "";
+            let decorate = "";
+
+            // 取消其他按鈕的選擇
+            const btnTypeVb = document.getElementById("btn-typeVb");
+            const btnTypeBm = document.getElementById("btn-typeBm");
+            const bodyStyle = document.getElementById("body");
+            console.log(bodyStyle);
+
+            if (id === "btn-typeBm" || id === "btn-formBM") {
+              // 如果是羽球:
+              colorMain = "#83B90F";
+              colorFont = "#689607";
+              btnColor = "#FF8D24";
+              newBorder = 'url("../images/dogstroke.svg")';
+              decorate = 'url("../images/index-searchDog.png")';
+              // 新增class改變背景
+              bodyStyle.classList.add("background-Bm");
+              bodyStyle.classList.remove("background-Vb");
+              setSelectedButton(id);
+              setTodayType("bm_today_postData");
+              setWeekType("bm_week_postData");
+              // banner顯示狀態
+              setBMDisplay("flex");
+              setVBDisplay("none");
+            } else if (id === "btn-typeVb" || id === "btn-formVB") {
+              // 如果是排球
+              colorMain = "#14AAEB";
+              colorFont = "#147CB6";
+              btnColor = "#F1DB15";
+              newBorder = "url('../images/catsroke.svg')";
+              decorate = 'url("../images/index-searchCat.png")';
+              bodyStyle.classList.remove("background-Bm");
+              bodyStyle.classList.add("background-Vb");
+              setSelectedButton(id);
+              setTodayType("vb_today_postData");
+              setWeekType("vb_week_postData");
+              //
+              setBMDisplay("none");
+              setVBDisplay("block");
+            }
+
+            setMainColor(colorMain);
+            setFontColor(colorFont);
+            setBtnColor(btnColor);
+            setPostBorder(newBorder);
+            setDecorateSearch(decorate);
+
+            document.documentElement.style.setProperty(
+              "--main-color",
+              colorMain
+            );
+            document.documentElement.style.setProperty(
+              "--font-color",
+              colorFont
+            );
+            document.documentElement.style.setProperty("--btn-color", btnColor);
+            document.documentElement.style.setProperty(
+              "--search-decorate",
+              decorate
+            );
+          };
+          // 更改資料類型
+          const getPosts = (type) => {
+            switch (type) {
+              case "vb_today_postData":
+                return vb_today_postData;
+              case "bm_today_postData":
+                return bm_today_postData;
+              case "vb_week_postData":
+                return vb_week_postData;
+              case "bm_week_postData":
+                return bm_week_postData;
+              default:
+                return [];
+            }
+          };
+
+          // 元件
+          const Card = ({ name }) => {
+            // console.log(name);
+          };
+          // 建立貼文元件
+          const PostCard = ({
+            id,
+            type,
+            postDate,
+            postStartTime,
+            postEndTime,
+            postCity,
+            postArea,
+            postArena,
+            primaryTag,
+            secondaryTag,
+            reqCount,
+            role,
+            pos,
+            note,
+            href,
+            host,
+          }) => {
+            // const {key,date,time,city,area,arena,tag1,tag2} = props;
+            return (
+              <>
+                <div
+                  className="content"
+                  id={id}
+                  style={{ backgroundImage: postBorder }}
+                >
+                  <div className="text">
+                    <div className="mainText">
+                      <p className="text-M">{postDate}</p>
+                      <p className="text-L">{postStartTime}</p>
                     </div>
+                    <div className="subtext">
+                      <p className="text-S">{postCity}</p>
+                      <p className="text-S">{postArea}</p>
+                    </div>
+                    <h3 className="text-L" value={`${postArena}`}>
+                      {postArena}
+                    </h3>
+                    <div className="tag-style">
+                      <p className="text-S">{primaryTag}</p>
+                      <p className="text-S">${secondaryTag}</p>
+                    </div>
+                    <div className="BtnContainer">
+                      <a className="button" href={`#${href}`}>
+                        報名
+                      </a>
+                    </div>
+                  </div>
                 </div>
-              </section>
 
-              <section className = "containers">
-                <header className = "title-postArea">
-                 
-                  <h2>本日臨打貼文</h2>
-                  <div><a href="#">更多>></a></div>
-                  </header>
-                <ul className = "tags">
-                  <button id ="tags-degree">中下</button>
-                  <button>12-18</button>
-                  <button>200+</button>
-                  <button>側燈</button>
+                <ApplyCard
+                  href={href}
+                  type={type}
+                  postDate={postDate}
+                  postStartTime={postStartTime}
+                  postEndTime={postEndTime}
+                  postCity={postCity}
+                  postArea={postArea}
+                  postArena={postArena}
+                  primaryTag={primaryTag}
+                  secondaryTag={secondaryTag}
+                  female={reqCount[0].count}
+                  male={reqCount[1].count}
+                  unspecified={reqCount[2].count}
+                  role={role}
+                  pos={pos}
+                  note={note}
+                  host={host}
+                />
+              </>
+            );
+          };
+          const ApplyCard = ({
+            href,
+            type,
+            postDate,
+            postStartTime,
+            postEndTime,
+            postCity,
+            postArea,
+            postArena,
+            primaryTag,
+            secondaryTag,
+            female,
+            male,
+            unspecified,
+            role,
+            pos,
+            note,
+            host,
+          }) => {
+            var hostType = "vb";
+            if (type == "羽球") {
+              hostType = "bm";
+            }
+            return (
+              <div className="popup" id={href}>
+                <div className="popup-inner">
+                  <div className="popup__content">
+                    <div className="detailPostInfo">
+                      <div className="simplePostInfo">
+                        <div className="main-info">
+                          <header>
+                            <p>
+                              {postDate} {postStartTime}~{postEndTime}
+                            </p>
+                            <div className="type-style">{type}</div>
+                            <button className="collect">
+                              <img src="../images/heart-no.svg" alt="收藏" />
+                            </button>
+                          </header>
+                          <div className="areaInfo">
+                            <h3>{postCity}</h3>
+                            <h3>{postArea}</h3>
+                            <h3>{postArena}</h3>
+                          </div>
+                          <div className="tag-style">
+                            <p>{primaryTag}</p>
+                            <p>${secondaryTag}</p>
+                          </div>
+                        </div>
+                        <div className="sub-info">
+                          <div className="vacancyInfo">
+                            <h4>缺額</h4>
+                            <div>女</div>
+                            <p>{female}位</p>
+                            <div>男</div>
+                            <p>{male}位</p>
+                            <div>不限</div> <p>{unspecified}位</p>
+                          </div>
+                          <div className="ballInfo">
+                            <h4>類型</h4>
+                            <p>{role}</p>
+                          </div>
+                          <div className="equipInfo">
+                            <h4>位置</h4>
+                            <p>{pos}</p>
+                          </div>
+                          <div className="noteInfo">
+                            <h4>備註</h4>
+                            <p>{note}</p>
+                          </div>
+                        </div>
+
+                        <div className="apply-info">
+                          <hr />
+                          <img
+                            src={`./images/host-${hostType}.png`}
+                            alt="團主頭貼"
+                          />
+                          <p>
+                            團主<span>{host}</span>
+                          </p>
+                          <div>
+                            <p>報名備註</p>
+                            <input
+                              type="text"
+                              placeholder="輸入對團主的話..."
+                            />
+                          </div>
+                        </div>
+
+                        <div className="BtnContainer">
+                          <a className="btn-close popup__close" href="#">
+                            關閉
+                          </a>
+                          <button className="button" id="apply">
+                            確認報名
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          };
+          return (
+            <div className="body">
+              <div className="mobile-TopBar">
+                <img
+                  src="./images/mobile-top.svg"
+                  alt="排球的手機版banner"
+                  style={{ display: VBdisplay }}
+                />
+                <img
+                  src="./images/mobile-bm-topbanner.png"
+                  alt="羽球的手機版banner"
+                  style={{ display: BMdisplay }}
+                />
+              </div>
+              <header id="topBar">
+                <nav id="top-nav">
+                  <ul id="menu">
+                    <li>
+                      <a href="./index.html">
+                        <img
+                          className="icon"
+                          src="./images/magnifier.png"
+                          alt=""
+                        />
+                        探索
+                      </a>
+                    </li>
+                    <li>
+                      <a href="./publicationForm.html">
+                        <img className="icon" src="./images/post.png" alt="" />
+                        找人
+                      </a>
+                    </li>
+                    <li>
+                      <a href="notice.html">
+                        <img className="icon" src="./images/bell3.png" alt="" />
+                        行程
+                      </a>
+                    </li>
+                    <li>
+                      <a href="personal.html">
+                        <img className="icon" src="./images/cat.png" alt="" />
+                        個人
+                      </a>
+                    </li>
                   </ul>
-                <div className="post">
-                  <div className="content">
-                      <div className = "bg"></div>
-                      <div className = "text">
-                        <header>
-                        <small>06/27(三) </small>
-                        <h3>18:00</h3>
-                        </header>
-                      <small>台北市 中山區</small>
-                      <h2>中山運動中心</h2>
-                      <div className = "tag-content">
-                        <div><small>女網混排</small></div>
-                        <small>程度不拘</small>
-                        </div>
-                        <button id="signUp">報名</button>
-                        </div>
-                      
+                </nav>
+                <div className="title">
+                  <div className="hugTitle">
+                    <h1 className="title-L" value="現在想打球">
+                      現在想打球
+                    </h1>
+                  </div>
+                </div>
+              </header>
+              <main className="index-Area">
+                {/*篩選區 */}
+                <section className="search">
+                  <div className="btn-changeType">
+                    <div className="form-type">
+                      <button
+                        id="btn-formBM"
+                        // ref={btnFormBmRef}
+                        className={
+                          selectedButton === "btn-typeBm" ? "selected" : ""
+                        }
+                        onClick={() => changeType("btn-typeBm")}
+                      >
+                        打羽球
+                      </button>
+
+                      <button
+                        id="btn-formVB"
+                        // ref={btnFormVbRef}
+                        className={
+                          selectedButton === "btn-typeVb" ? "selected" : ""
+                        }
+                        onClick={() => changeType("btn-typeVb")}
+                      >
+                        打排球
+                      </button>
+                    </div>
+                  </div>
+                  <div id="search-Type">
+                    <button
+                      id="btn-typeVb"
+                      className={
+                        selectedButton === "btn-typeVb" ? "selected" : ""
+                      }
+                      ref={btnTypeVbRef}
+                      onClick={() => changeType("btn-typeVb")}
+                    >
+                      <img src="./images/vball.png" alt="排球" />
+                    </button>
+                    <button
+                      id="btn-typeBm"
+                      className={
+                        selectedButton === "btn-typeBm" ? "selected" : ""
+                      }
+                      onClick={() => changeType("btn-typeBm")}
+                      ref={btnTypeBmRef}
+                    >
+                      <img src="./images/bball.png" alt="羽球" />
+                    </button>
+                  </div>
+                  <div id="search-Bar" style={{ backgroundColor: mainColor }}>
+                    <div className="dropMenu">
+                      <ul>
+                        <input
+                          className="dpMenu-item"
+                          type="date"
+                          name="日期"
+                          id="date"
+                          title="打球日"
+                          required
+                          style={{ color: mainColor }}
+                        />
+                        <select name="縣市" id="city" className="dpMenu-item">
+                          <option value="default">縣市</option>
+                          <option value="taipei">台北市</option>
+                          <option value="xinpei">新北市</option>
+                          <option value="counties">其他</option>
+                        </select>
+                        <select name="地區" multiple id="selectArea">
+                          <option value="default">地區</option>
+                          <option value="taipei">台北市</option>
+                          <option value="xinpei">新北市</option>
+                          <option value="counties">其他</option>
+                        </select>
+                        <select name="程度" id="degree" className="dpMenu-item">
+                          <option value="default">程度</option>
+                          <optgroup label="羽球">
+                            <option value="新手">新手</option>
+                            <option value="初階">初階</option>
+                            <option value="初上"> 初上</option>
+                            <option value="中下">中下</option>
+                            <option value="中階">中階</option>
+                            <option value="中上">中上</option>
+                          </optgroup>
+                          <optgroup label="排球">
+                            <option value="C以下">C以下</option>
+                            <option value="C">C</option>
+                            <option value="C~B">C~B</option>
+                            <option value="B">B</option>
+                            <option value="B~A">B~A</option>
+                            <option value="C">A</option>
+                            <option value="C">A~S</option>
+                          </optgroup>
+                        </select>
+
+                        <select name="費用" id="cost" className="dpMenu-item">
+                          <option value="default">費用</option>
+                          <option value="150以下">150以下</option>
+                          <option value="default">200以下</option>
+                          <option value="default">250以下</option>
+                          <option value="default">250+</option>
+                        </select>
+                        <select name="類型" id="type" className="dpMenu-item">
+                          <option value="default">類型</option>
+                          <option value="男網純男">男網純男</option>
+                        </select>
+                        <select name="設備" id="equip" className="dpMenu-item">
+                          <option value="default">設備</option>
+                          <option value="側燈">側燈</option>
+                        </select>
+                      </ul>
+                      {/**/}
+                    </div>
+                    <div className="searchBtn-box">
+                      <div id="search-Type">
+                        <button
+                          id="btn-typeVb"
+                          className={
+                            selectedButton === "btn-typeVb" ? "selected" : ""
+                          }
+                          ref={btnTypeVbRef}
+                          onClick={() => changeType("btn-typeVb")}
+                        >
+                          <img src="./images/vball.png" alt="排球" />
+                        </button>
+                        <button
+                          id="btn-typeBm"
+                          className={
+                            selectedButton === "btn-typeBm" ? "selected" : ""
+                          }
+                          onClick={() => changeType("btn-typeBm")}
+                          ref={btnTypeBmRef}
+                        >
+                          <img src="./images/bball.png" alt="羽球" />
+                        </button>
                       </div>
-                      <div className="content">
-                      <div className = "bg"></div>
-                      <img className ="vb-border" src="./images/catframe.png" alt=""/>
-                      <div className = "text">
-                        <header>
-                        <small>06/27(三) </small>
-                        <h3>18:00</h3>
-                        </header>
-                      <small>台北市 中山區</small>
-                      <h2>中山運動中心</h2>
-                      <div className = "tag-content">
-                        <div><small>女網混排</small></div>
-                        <small>程度不拘</small>
-                        </div>
-                        <button id="signUp">報名</button>
-                        </div>
-                      
-                      </div>
-                      </div>
+                      <a href="./react_postsArea.html">
+                        <button className="btn-send">送出</button>
+                      </a>
+                    </div>
+                  </div>
                 </section>
-
-
-                <section className = "containers">
-                <header className = "title-postArea">
-                  <figure><img src="" alt=""/></figure>
-                  <h2>本日臨打貼文</h2>
-                  <div><a href=" ">更多</a></div>
-                  </header>
-                <ul className = "tags">
-                  <li id = "tags-degree">中下</li>
-                  <li id = "tags-time">12-18</li>
-                  <li>200+</li>
-                  <li>側燈</li>
+                {/* 本日臨打貼文 */}
+                <section className="post-containers">
+                  <div className="title-postArea">
+                    <h2>
+                      <div></div>本日臨打貼文
+                    </h2>
+                    <div className="more">
+                      <a href="#">更多</a>
+                    </div>
+                  </div>
+                  <ul className="tags">
+                    <button className="tags-degre ">B-</button>
+                    <button className="tags-time ">12-18</button>
+                    <button className="tags-cost ">200+</button>
+                    <button className="tags-eqip ">側燈</button>
                   </ul>
-                <div className = "Containers">
-                  <div className="post">
-                    <div className="content">
-                      
-                      <header>
-                        <small>06/27(三) </small>
-                        <h3>18:00</h3>
-                        </header>
-                      <small>台北市 中山區</small>
-                      <h2>中山運動中心</h2>
-                      <div className = "tag-content">
-                        <div><small>女網混排</small></div>
-                        <small>程度不拘</small>
-                        </div>
-                        <button id="signUp">報名</button>
-                      </div></div></div>
+                  <div className="post-block">
+                    {getPosts(todayType).map((post_data) => {
+                      return (
+                        <PostCard
+                          key={post_data.id}
+                          id={post_data.id}
+                          type={post_data.type}
+                          postDate={post_data.date}
+                          postStartTime={post_data.startTime}
+                          postEndTime={post_data.endTime}
+                          postCity={post_data.city}
+                          postArea={post_data.area}
+                          postArena={post_data.arena}
+                          primaryTag={post_data.tagDegree}
+                          secondaryTag={post_data.tagPrice}
+                          reqCount={post_data.reqCount}
+                          role={post_data.role}
+                          pos={post_data.pos}
+                          note={post_data.note}
+                          href={`todayApplyPopUp-${post_data.id}`}
+                          host={post_data.host}
+                        />
+                      );
+                    })}
+                  </div>
                 </section>
-            </main>
-            <footer>
-              <figure></figure>
-            </footer>
-          </>
-        );
-      };
-      ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+                {/* 本週臨打貼文 */}
+                <section className="post-containers">
+                  <div className="title-postArea">
+                    <h2>
+                      <div></div>本週臨打貼文
+                    </h2>
+                    <div className="more">
+                      <a href="#" className="CN-p">
+                        更多
+                      </a>
+                    </div>
+                  </div>
+                  <ul className="tags">
+                    <button className="tags-degree">C</button>
+                    <button className="tags-time ">12-18</button>
+                    <button className="tags-cost">150+</button>
+                    <button className="tags-eqip ">冷氣</button>
+                  </ul>
+                  <div className="post-block">
+                    {getPosts(weekType).map((post_data) => {
+                      return (
+                        <PostCard
+                          key={post_data.id}
+                          id={post_data.id}
+                          type={post_data.type}
+                          postDate={post_data.date}
+                          postStartTime={post_data.startTime}
+                          postEndTime={post_data.endTime}
+                          postCity={post_data.city}
+                          postArea={post_data.area}
+                          postArena={post_data.arena}
+                          primaryTag={post_data.tagDegree}
+                          secondaryTag={post_data.tagPrice}
+                          reqCount={post_data.reqCount}
+                          role={post_data.role}
+                          pos={post_data.pos}
+                          note={post_data.note}
+                          href={`weekApplyPopUp-${post_data.id}`}
+                          host={post_data.host}
+                        />
+                      );
+                    })}
+                  </div>
+                </section>
+              </main>
+              <footer>
+                <figure className="footer-border"></figure>
+                <div>
+                  <figure>
+                    <img
+                      id="logo"
+                      src="./images/logo.png"
+                      alt="logo-PlayBallNow"
+                    />
+                  </figure>
+                  <p>Copyright© 2024 PlayBallNow. All Right Reserved. </p>
+                </div>
+              </footer>
+            </div>
+          );
+        };
+        ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+      })();
     </script>
   </body>
 </html>

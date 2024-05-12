@@ -1,0 +1,75 @@
+// 基礎樣式規範
+// /* 顏色 */
+// 主要顏色
+$main-color-vb: #14AAEB;
+$main-color-bm: #83B90F;
+
+// 主要顏色-透明
+$main-color-vb-light:rgba(20, 170, 235, 0.9);
+
+// 字體顏色
+$font-color-vb: #147CB6;
+$font-color-bm: #689607;
+
+//輔助字色
+$second-color-orange: #ff4f03;
+$second-color-green: #008415;
+$second-color-gray: #777777;
+$second-color-darkgray: #6D6D6D;
+$second-color-blue: #2d2ae6;
+$second-color-black: #000000;
+$second-color-white: #ffffff;
+
+//評估字型
+$evaluate-color: #1A8D07;
+
+// 按鈕顏色
+$btn-color-vb: #F1DB15;
+$btn-color-bm: #ff8d24;
+$btn-color-red: #cb1b1b;
+
+//背景色
+$background-color-lightgrey:#D9D9D9;
+$background-color-gray: rgba(3, 9, 40, 0.6);
+$background-color-gray2: rgba(88, 88, 88, 0.85);
+$background-color-lightwhite2:rgba(247, 246, 245, 1);
+$background-color-white:#ffffff;
+
+//背景色 透明
+$background-color-purple-s:rgba(155, 58, 232, 0.9);
+$background-color-darkpurple-s:rgba(74, 13, 150, 0.9);
+$background-color-lightwhite-s:rgba(247, 246, 245, 0.9);
+$background-color-lightgrey-s:rgba(217, 217, 217, 0.9);
+$background-color-green-s:rgba(131, 185, 15, 0.9);
+
+$border-black:black;
+$box-shadow: rgba(0, 0, 0, 0.3);
+
+
+
+//字體規範
+$font-family-tc:  "jf-openhuninn-2.0", "蘋方-繁", "PingFang TC", "黑體-繁", "Heiti TC", "微軟正黑體", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+
+$font-family-en:  "Alata", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Helvetica, Arial;
+
+//字級規範
+$font-size-title-l: 24px;
+$font-size-title-m: 20px;
+$font-size-text-l: 18px;
+$font-size-text-m:  16px;
+$font-size-text-s:  14px;
+
+
+//響應式規範------------------
+$breakpoint-moblie:"max-width:640px";
+$breakpoint-md:"max-width:820px";
+$breakpoint-lg:"min-width:821px";
+
+//圓角
+
+$border-radius-xs : 5px;
+$border-radius-s : 20px;
+$border-radius-btn : 50px;
+$border-radius-m : 50px;
+$border-radius-l : 90px;
+$border-radius-half:50%
