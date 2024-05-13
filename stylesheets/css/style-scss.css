@@ -130,6 +130,12 @@ h3,
   font-style: normal;
 }
 
+h5,
+.text-s {
+  font-size: 14px;
+  color: #777777;
+}
+
 .title {
   /* layout */
   width: 60vw;
@@ -220,11 +226,11 @@ a {
   /* 拿掉超連結文字底線 */
   text-decoration: none;
   color: #000000;
-  z-index: 5;
+  z-index: 1;
 }
 
 section {
-  margin-bottom: 50px;
+  margin-bottom: 10px;
   /* 控制子層 */
   display: flex;
   flex-direction: column;
@@ -287,11 +293,6 @@ body {
 }
 
 /* react下的root */
-#root {
-  position: absolute;
-  z-index: -21;
-}
-
 /* 包渲染內容的容器 */
 .body {
   width: 100vw;
@@ -305,7 +306,6 @@ body {
   justify-items: center;
   align-items: center;
   justify-content: center;
-  z-index: -9;
 }
 
 /*  */
@@ -420,9 +420,8 @@ footer {
   background-color: rgba(3, 9, 40, 0.6);
   background-size: cover;
   padding-bottom: 10px;
-  position: absolute;
+  position: static;
   bottom: 0;
-  margin-top: 100px;
 }
 @media (max-width: 640px) {
   footer {
@@ -483,6 +482,7 @@ footer div p {
 
 /* 按鈕樣式 */
 .BtnContainer {
+  height: 40px;
   display: flex;
   flex-direction: row;
   gap: 10px;
@@ -547,6 +547,96 @@ footer div p {
   border-right: 1px solid black;
   border-left: 1px solid black;
   box-shadow: none;
+}
+
+/* 燈箱效果 */
+.popup {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 9999;
+  visibility: hidden;
+  opacity: 0;
+  overflow: hidden;
+  transition: 0.64s ease-in-out;
+}
+.popup-inner {
+  position: relative;
+  z-index: 999;
+  bottom: -100vw;
+  right: -100vh;
+  display: flex;
+  align-items: center;
+  max-width: 800px;
+  max-height: 600px;
+  width: 60%;
+  height: 80%;
+  background-color: rgba(255, 255, 255, 0);
+  transform: rotate(32deg);
+  transition: 0.64s ease-in-out;
+}
+.popup__content {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.popup__photo {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: 40%;
+  height: 100%;
+  overflow: hidden;
+}
+.popup__photo img {
+  width: auto;
+  height: 100%;
+}
+.popup__text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 60%;
+  height: 100%;
+  padding: 4rem;
+}
+.popup__text h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  color: #0A0A0A;
+}
+.popup__text p {
+  font-size: 0.875rem;
+  color: #686868;
+  line-height: 1.5;
+}
+.popup:target {
+  visibility: visible;
+  opacity: 1;
+}
+.popup:target .popup-inner {
+  bottom: 0;
+  right: 0;
+  transform: rotate(0);
+}
+.popup__close {
+  cursor: pointer;
+  opacity: 0.7;
+}
+.popup__close:hover {
+  opacity: 1;
 }
 
 /* 貼文元件 */
@@ -734,94 +824,363 @@ footer div p {
   background-color: #D9D9D9;
 }
 
-/* 互動臨打報名元件 */
-.popup {
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.8);
+/* 報名審核中元件 */
+.notice-apply {
+  /* style */
+  width: fit-content;
+  height: fit-content;
+  border-radius: 20px;
+  border: 2px solid black;
+  background-color: #ffffff;
+  /* layout */
+  padding: 15px 20px;
+  /* child */
   display: flex;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  z-index: 9999;
-  visibility: hidden;
-  opacity: 0;
-  overflow: hidden;
-  transition: 0.64s ease-in-out;
-}
-.popup-inner {
-  position: relative;
-  z-index: 999;
-  bottom: -100vw;
-  right: -100vh;
-  display: flex;
-  align-items: center;
-  max-width: 800px;
-  max-height: 600px;
-  width: 60%;
-  height: 80%;
-  background-color: rgba(255, 255, 255, 0);
-  transform: rotate(32deg);
-  transition: 0.64s ease-in-out;
-}
-.popup__content {
-  position: absolute;
-  display: flex;
+  flex-direction: row;
+  gap: 30px;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  color: var(--font-color);
+}
+.notice-apply img {
+  width: 10px;
+  height: 10px;
+}
+
+/* 註冊成功通知元件 */
+.notice-register {
+  /* style */
+  width: fit-content;
+  height: fit-content;
+  border-radius: 20px;
+  border: 2px solid black;
+  background-color: #ffffff;
+  /* layout */
+  padding: 15px 20px;
+  /* child */
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+  color: rgba(155, 58, 232, 0.9);
+}
+.notice-register img {
+  width: 10px;
+  height: 10px;
+}
+
+/* 篩選元件 */
+.filterFormBox {
+  /* 樣式 */
+  min-width: 200px;
+  width: 300px;
   height: auto;
-  overflow: visible;
-}
-.popup__photo {
+  /* 布局 */
+  align-self: center;
+  margin: 50px 0px;
+  /* 控制子層 */
   display: flex;
+  gap: 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+@media (max-width:640px) {
+  .filterFormBox {
+    /* 樣式 */
+    min-width: 320px;
+    width: 90vw;
+    height: auto;
+    /* 布局 */
+    flex: 1 1 auto;
+    align-self: center;
+    /* margin: 50px 0px; */
+    /* 控制子層 */
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    /* justify-content: center;
+    align-items: center; */
+  }
+}
+.filterFormBox .btn-changeFilter { /* 打羽球、打排球按鈕容器*/
+  display: flex;
+  max-width: 340px;
+  min-width: 250px;
+  height: fit-content;
+}
+@media (max-width:640px) {
+  .filterFormBox .btn-changeFilter {
+    display: block;
+    min-width: 320px;
+  }
+}
+.filterFormBox #search-Bar { /* 裝篩選表單+按鈕的容器 */
+  /* 樣式 */
+  max-width: 340px;
+  min-width: 250px;
+  height: 270px;
+  border: 4px solid black;
+  border-bottom: 15px solid black;
+  border-radius: 20px;
+  background-color: #14AAEB;
+  /* 布局 */
+  flex: 15 1 40px;
+  padding: 15px;
+  /* 控制子層 */
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+.filterFormBox #search-Bar div {
+  height: auto;
+  /*控制子層 */
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
   justify-content: flex-end;
-  align-items: flex-end;
-  width: 40%;
-  height: 100%;
-  overflow: hidden;
+  align-items: center;
+  align-content: center;
 }
-.popup__photo img {
-  width: auto;
-  height: 100%;
+.filterFormBox #search-Bar #search-Type { /* 包羽球or排球圖案的容器 */
+  width: 100%;
+  /* 控制子層 */
+  text-align: center;
 }
-.popup__text {
+@media (max-width:640px) {
+  .filterFormBox #search-Bar #search-Type {
+    display: none;
+  }
+}
+.filterFormBox #search-Bar .searchBtn-box {
+  /* main > section(search > div(search-Type > button */
+}
+.filterFormBox #search-Bar .searchBtn-box #btn-typeVb {
+  /* 樣式 */
+  width: 120px;
+  height: 120px;
+  border: 4px solid black;
+  background-color: #ffffff;
+  box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.3);
+  border-radius: 90px;
+  margin-bottom: 30px;
+  opacity: 0.5;
+  /* 子層 */
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+.filterFormBox #search-Bar .searchBtn-box #btn-typeVb img {
+  pointer-events: none;
+  width: 100%;
+  /*object-fit: cover;  裁剪圖片，使其填滿元素
+  object-position: center; /* 圖片位置 */
+  opacity: 0.7;
+}
+.filterFormBox #search-Bar .searchBtn-box #btn-typeBm {
+  /* 樣式 */
+  width: 120px;
+  height: 120px;
+  border: 4px solid #83B90F;
+  background-color: #D9D9D9;
+  box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.3);
+  border-radius: 90px;
+  opacity: 0.1;
+  /* 子層 */
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+.filterFormBox #search-Bar .searchBtn-box #btn-typeBm img {
+  pointer-events: none;
+  width: 30%;
+  opacity: 0.7;
+}
+.filterFormBox #search-Bar .searchBtn-box button#btn-typeBm.selected,
+.filterFormBox #search-Bar .searchBtn-box button#btn-typeVb.selected {
+  /* 樣式 */
+  width: 120px;
+  height: 120px;
+  background-color: #ffffff;
+  border: 4px solid black;
+  border-radius: 90px;
+  box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.3);
+  margin-bottom: 30px;
+  opacity: 1;
+  padding: 10px;
+  /* 子層 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.filterFormBox #search-Bar .searchBtn-box button#btn-typeBm.selected img,
+.filterFormBox #search-Bar .searchBtn-box button#btn-typeVb.selected img {
+  opacity: 1;
+  width: 100%;
+  pointer-events: none;
+  object-fit: cover;
+  /* 裁剪圖片，使其填滿元素 */
+  object-position: center;
+  /* 圖片位置 */
+}
+.filterFormBox #search-Bar .searchBtn-box #search-Type { /* 羽排圖片 */
+  display: block;
+}
+@media (max-width:640px) {
+  .filterFormBox #search-Bar .searchBtn-box #search-Type {
+    width: 100%;
+  }
+}
+
+/* 團主審核報名元件 */
+.audit-apply {
+  max-width: 360px;
+  min-width: 300px;
+  height: fit-content;
+  border-radius: 20px;
+  border: 2px solid black;
+  padding: 15px;
+  background-color: #ffffff;
+  /* layout */
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+.audit-apply .topBtn-container { /* 黑名單+關閉按鈕容器 */
+  width: 100%;
+  height: auto;
+  /* layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.audit-apply .topBtn-container .popup__close {
+  width: 5%;
+  margin-right: 10px;
+}
+.audit-apply .audit-info { /* 報名資訊容器 */
+  width: inherit;
+  height: auto;
+  /*  */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+.audit-apply .audit-info .info-selfState {
+  width: 40%;
+  border: none;
+  background-color: inherit;
+  gap: 10px;
+  padding: 0;
+}
+.audit-apply .audit-info .info-selfState .selfState-userInfo {
+  width: 90%;
+  justify-items: center;
+  align-items: center;
+  gap: 0px;
+}
+.audit-apply .audit-info .info-selfState .selfState-userInfo .applicantInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+}
+.audit-apply .audit-info .info-selfState .selfState-userInfo .applicantInfo .applicantImg {
   width: 60%;
-  height: 100%;
-  padding: 4rem;
 }
-.popup__text h1 {
-  font-size: 2rem;
-  font-weight: 600;
-  margin-bottom: 2rem;
-  text-transform: uppercase;
-  color: #0A0A0A;
+.audit-apply .audit-info .info-selfState .selfState-userInfo .applicantInfo p {
+  color: #000000;
 }
-.popup__text p {
-  font-size: 0.875rem;
-  color: #686868;
-  line-height: 1.5;
+.audit-apply .audit-info .info-selfState .selfState-userInfo .applicantImg {
+  width: 60%;
 }
-.popup:target {
-  visibility: visible;
-  opacity: 1;
+.audit-apply .audit-info .info-selfState .selfState-userInfo p {
+  color: var(--font-color);
 }
-.popup:target .popup-inner {
-  bottom: 0;
-  right: 0;
-  transform: rotate(0);
+.audit-apply .audit-info .info-selfState .selfState-userInfo .userInfo {
+  color: rgba(247, 246, 245, 0.9);
+  background-color: var(--main-color);
 }
-.popup__close {
-  cursor: pointer;
-  opacity: 0.7;
+.audit-apply .audit-info .info-selfState .selfState-userInfo .reason-cancel {
+  grid-column: 2/4;
+  width: 150px;
+  height: 50px;
+  border-radius: 10px;
+  border: 1px solid black;
+  background-color: #D9D9D9;
+  padding: 10px;
 }
-.popup__close:hover {
-  opacity: 1;
+.audit-apply .audit-info .info-selfState .selfState-userInfo .reason-cancel p {
+  line-height: 40px;
+  color: #000000;
+}
+.audit-apply .audit-info .info-selfState .selfState-title {
+  width: 100%;
+  color: var(--font-color);
+  /* layout */
+  justify-content: center;
+  gap: 35px;
+  justify-items: center;
+}
+.audit-apply .audit-info .info-selfState .selfState-title h4 {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  justify-self: flex-start;
+  font-size: 16px;
+  color: #000000;
+}
+.audit-apply .audit-info .info-remark {
+  width: 275px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px dashed black;
+  background-color: #D9D9D9;
+  padding: 10px;
+}
+.audit-apply .audit-info .info-remark p {
+  line-height: 25px;
+}
+.audit-apply .audit-info .notice-container {
+  border: 3px dashed black;
+}
+.audit-apply .audit-info .notice-container .notice-ballType p {
+  font-size: 28px;
+}
+.audit-apply .audit-info .info-applicantNote {
+  width: 275px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid black;
+  background-color: #D9D9D9;
+  padding: 10px;
+}
+.audit-apply .audit-info .info-applicantNote p {
+  line-height: 25px;
+}
+.audit-apply .bottomBtn-container { /* 接受+拒絕按鈕容器 */
+  width: 60%;
+  height: 35px;
+  /*  */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding-bottom: 10px;
+}
+.audit-apply .bottomBtn-container .btn-yes {
+  background-color: var(--main-color);
+  color: rgba(247, 246, 245, 0.9);
+}
+.audit-apply .bottomBtn-container .btn-no {
+  background-color: #cb1b1b;
+  color: rgba(247, 246, 245, 0.9);
 }
 
 /* 紀錄Z-index 
@@ -860,7 +1219,6 @@ main:10
   /* 布局 */
   flex: 1 1 auto;
   align-self: center;
-  margin: 50px 0px;
   z-index: 1;
   /* 控制子層 */
   display: flex;
@@ -868,6 +1226,7 @@ main:10
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  /* 首頁篩選區裝飾動物 */
 }
 @media (max-width:640px) {
   .search {
@@ -885,6 +1244,23 @@ main:10
     gap: 0;
     /* justify-content: center;
     align-items: center; */
+  }
+}
+.search #search-Bar::before {
+  position: absolute;
+  width: 40px;
+  height: fit-content;
+  /* background-color: #d9d9d9; */
+  height: fit-content;
+  content: var(--search-decorate);
+  /* background-size: cover; */
+  z-index: 1;
+  right: 145px;
+  top: -75px;
+}
+@media (max-width:640px) {
+  .search #search-Bar::before {
+    content: none;
   }
 }
 
@@ -1018,16 +1394,16 @@ button#btn-typeVb.selected img {
   background-color: #14AAEB;
   /* 布局 */
   flex: 15 1 40px;
-  padding: 20px;
+  padding: 15px;
   /* 控制子層 */
   display: flex;
   flex-direction: row;
   position: relative;
 }
 #search-Bar div {
-  width: 30%;
   height: auto;
   /*控制子層 */
+  flex: 1 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -1049,27 +1425,9 @@ button#btn-typeVb.selected img {
   }
 }
 
-/* 首頁篩選區裝飾動物 */
-#search-Bar::before {
-  position: absolute;
-  width: 40px;
-  /* background-color: #d9d9d9; */
-  height: fit-content;
-  content: var(--search-decorate);
-  /* background-size: cover; */
-  z-index: 1;
-  right: 145px;
-  top: -75px;
-}
-@media (max-width:640px) {
-  #search-Bar::before {
-    content: none;
-  }
-}
-
 /* main > section(search > div(search-Bar > div(dropMenu */
 .dropMenu {
-  width: 80%;
+  width: 50%;
   height: auto;
   padding-right: 25px;
   /* 布局 */
@@ -1089,7 +1447,7 @@ button#btn-typeVb.selected img {
 }
 .dropMenu ul input {
   /* 樣式 */
-  width: 90%;
+  width: 80%;
   max-width: 250px;
   min-width: 130px;
   height: auto;
@@ -1103,7 +1461,7 @@ button#btn-typeVb.selected img {
   flex: 1 1 auto;
   align-self: center;
 }
-.dropMenu select {
+.dropMenu ul select {
   width: 90%;
   max-width: 250px;
   min-width: 130px;
@@ -1130,7 +1488,7 @@ button#btn-typeVb.selected img {
   border-bottom: 5px solid black;
   border-radius: 50px;
   padding: 5px 30px;
-  margin-right: 20px;
+  margin-right: 5px;
   background-color: var(--btn-color);
 }
 
@@ -1197,7 +1555,8 @@ button#btn-typeVb.selected img {
   flex-direction: row;
   justify-content: flex-start;
 }
-.tags button { /* 臨打貼文tag */
+.tags button {
+  /* 臨打貼文tag */
   /* flex: auto; */
   height: 23px;
   width: fit-content;
@@ -1345,6 +1704,7 @@ button#btn-typeVb.selected img {
   flex-direction: column;
   align-items: center;
   margin-bottom: 20vw;
+  gap: 40px;
 }
 .filter-postArea hr {
   width: 80vw;
@@ -1691,6 +2051,9 @@ button#btn-formVB.selected::before {
     padding: 10px;
   }
 }
+.form-edit .sub-title {
+  margin-top: 5px;
+}
 
 /* 表單標題 */
 .sub-title h2 {
@@ -1818,9 +2181,9 @@ button#btn-formVB.selected::before {
   width: 75%;
 }
 
-/* 預覽容器 ：背景改色*/
+/* 預覽容器*/
 .form-preview {
-  width: 395px;
+  width: 40vw;
   height: 610px;
   border: 1px solid black;
   border-radius: 20px;
@@ -1838,7 +2201,7 @@ button#btn-formVB.selected::before {
     margin: 20px 0 0 0;
     gap: 50px;
     height: fit-content;
-    width: 380px;
+    width: 60vw;
     justify-content: center;
     align-items: center;
   }
@@ -1852,6 +2215,9 @@ button#btn-formVB.selected::before {
     width: 375px;
   }
 }
+.form-preview .sub-title {
+  margin-top: 15px;
+}
 
 /* 預覽RWD 縮小邊界、置中 */
 @media (max-width:640px) {
@@ -1861,7 +2227,7 @@ button#btn-formVB.selected::before {
 }
 /* 預覽送出按鈕 */
 .form-preview button.btn-send {
-  margin-left: 140px;
+  margin: 0 auto;
 }
 
 /*  */
@@ -1872,9 +2238,8 @@ button#btn-formVB.selected::before {
   width: 70vw;
   /* 視窗高比例100 */
   height: fit-content;
+  /* layout */
   display: grid;
-  /* 視窗高比grid */
-  /* grid-template-rows:  6vh 6vh 44vh 44vh; */
   grid-template-rows: repeat(auto-fit, minmax(50px, 1fr));
   gap: 25px;
   justify-content: center;
@@ -1891,6 +2256,7 @@ button#btn-formVB.selected::before {
 .notice-type {
   width: 60%;
   height: fit-content;
+  /* layout */
   display: grid;
   grid-template-columns: 110px 110px;
   gap: 50px;
@@ -1925,6 +2291,7 @@ button#btn-pastRecords.selected {
 .notice-itineraryTitle {
   width: 60vw;
   margin-left: 15vw;
+  /* layout */
   display: grid;
   grid-template-columns: 100px 80px;
   gap: 15px;
@@ -1949,6 +2316,7 @@ button#btn-pastRecords.selected {
   background-color: rgba(247, 246, 245, 0.9);
   box-shadow: 0px 4px 0px 0px #000000;
   padding: 3px 8px;
+  /* layout */
   display: grid;
   grid-template-columns: 25px 40px;
   gap: 3px;
@@ -1957,11 +2325,11 @@ button#btn-pastRecords.selected {
 /* 預定行程容器 */
 .notice-itineraryArea {
   width: 60vw;
-  height: fit-content;
+  height: auto;
   margin: 0 auto;
   margin-top: 30px;
-  margin-bottom: 5vw;
-  /* child */
+  margin-bottom: 50px;
+  /* layout */
   display: grid;
   grid-template-columns: 50% 50%;
   gap: 2vw;
@@ -1988,11 +2356,9 @@ button#btn-pastRecords.selected {
   padding: 8px 8px 8px 17px;
   color: var(--font-color);
   background-color: rgba(247, 246, 245, 0.9);
+  /* layout */
   display: grid;
-  grid-template-columns: 10% 85%;
-  /* display: flex;
-  flex-direction: row;
-  flex-wrap: wrap; */
+  grid-template-columns: 13% 85%;
   gap: 2%;
   justify-content: start;
   align-items: center;
@@ -2017,6 +2383,7 @@ button#btn-pastRecords.selected {
   border-radius: 50%;
   background-color: var(--font-color);
   color: rgba(247, 246, 245, 0.9);
+  /* layout */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -2029,6 +2396,7 @@ button#btn-pastRecords.selected {
 .notice-info {
   width: 90%;
   height: fit-content;
+  /* layout */
   display: grid;
   grid-template-columns: 20% 40% 40%;
   gap: 5px;
@@ -2052,6 +2420,7 @@ button#btn-pastRecords.selected {
 @media (max-width:640px) {
   .notice-info > div:first-child {
     width: 100%;
+    /* layout */
     display: grid;
     grid-gap: 3px;
     grid-template-columns: 1fr;
@@ -2062,7 +2431,7 @@ button#btn-pastRecords.selected {
   }
 }
 /* 評價狀態 */
-.notice-info > div:last-child {
+.notice-info > div:last-child, .audit-state {
   width: fit-content;
   height: fit-content;
   border-radius: 50px;
@@ -2279,18 +2648,18 @@ button#btn-pastRecords.selected {
   line-height: 32px;
   color: rgba(247, 246, 245, 0.9);
 }
-.selfState-userInfo div {
+.selfState-userInfo .attendance {
   width: 60px;
   height: 55px;
   position: relative;
 }
-.selfState-userInfo div p {
+.selfState-userInfo .attendance p {
   position: absolute;
   top: 18px;
   left: 13px;
   color: #83B90F;
 }
-.selfState-userInfo div img {
+.selfState-userInfo .attendance img {
   position: absolute;
   width: 100%;
   top: 0;

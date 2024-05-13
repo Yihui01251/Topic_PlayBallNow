@@ -67,7 +67,7 @@
 
           // 元件
           // 建立簡略貼文元件
-          const ApplySimpleCard = ({
+          const SimplePostCard = ({
             id,
             type,
             postDate,
@@ -376,7 +376,7 @@
 
                     {vb_week_postData.map((post_data) => {
                       return (
-                        <ApplySimpleCard
+                        <SimplePostCard
                           key={post_data.id}
                           id={post_data.id}
                           type={post_data.type}

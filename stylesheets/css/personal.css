@@ -194,18 +194,18 @@
   line-height: 32px;
   color: rgba(247, 246, 245, 0.9);
 }
-.selfState-userInfo div {
+.selfState-userInfo .attendance {
   width: 60px;
   height: 55px;
   position: relative;
 }
-.selfState-userInfo div p {
+.selfState-userInfo .attendance p {
   position: absolute;
   top: 18px;
   left: 13px;
   color: #83B90F;
 }
-.selfState-userInfo div img {
+.selfState-userInfo .attendance img {
   position: absolute;
   width: 100%;
   top: 0;

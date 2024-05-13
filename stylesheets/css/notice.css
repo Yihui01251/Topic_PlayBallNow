@@ -7,9 +7,8 @@
   width: 70vw;
   /* 視窗高比例100 */
   height: fit-content;
+  /* layout */
   display: grid;
-  /* 視窗高比grid */
-  /* grid-template-rows:  6vh 6vh 44vh 44vh; */
   grid-template-rows: repeat(auto-fit, minmax(50px, 1fr));
   gap: 25px;
   justify-content: center;
@@ -26,6 +25,7 @@
 .notice-type {
   width: 60%;
   height: fit-content;
+  /* layout */
   display: grid;
   grid-template-columns: 110px 110px;
   gap: 50px;
@@ -60,6 +60,7 @@ button#btn-pastRecords.selected {
 .notice-itineraryTitle {
   width: 60vw;
   margin-left: 15vw;
+  /* layout */
   display: grid;
   grid-template-columns: 100px 80px;
   gap: 15px;
@@ -84,6 +85,7 @@ button#btn-pastRecords.selected {
   background-color: rgba(247, 246, 245, 0.9);
   box-shadow: 0px 4px 0px 0px #000000;
   padding: 3px 8px;
+  /* layout */
   display: grid;
   grid-template-columns: 25px 40px;
   gap: 3px;
@@ -92,11 +94,11 @@ button#btn-pastRecords.selected {
 /* 預定行程容器 */
 .notice-itineraryArea {
   width: 60vw;
-  height: fit-content;
+  height: auto;
   margin: 0 auto;
   margin-top: 30px;
-  margin-bottom: 5vw;
-  /* child */
+  margin-bottom: 50px;
+  /* layout */
   display: grid;
   grid-template-columns: 50% 50%;
   gap: 2vw;
@@ -123,11 +125,9 @@ button#btn-pastRecords.selected {
   padding: 8px 8px 8px 17px;
   color: var(--font-color);
   background-color: rgba(247, 246, 245, 0.9);
+  /* layout */
   display: grid;
-  grid-template-columns: 10% 85%;
-  /* display: flex;
-  flex-direction: row;
-  flex-wrap: wrap; */
+  grid-template-columns: 13% 85%;
   gap: 2%;
   justify-content: start;
   align-items: center;
@@ -152,6 +152,7 @@ button#btn-pastRecords.selected {
   border-radius: 50%;
   background-color: var(--font-color);
   color: rgba(247, 246, 245, 0.9);
+  /* layout */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -164,6 +165,7 @@ button#btn-pastRecords.selected {
 .notice-info {
   width: 90%;
   height: fit-content;
+  /* layout */
   display: grid;
   grid-template-columns: 20% 40% 40%;
   gap: 5px;
@@ -187,6 +189,7 @@ button#btn-pastRecords.selected {
 @media (max-width:640px) {
   .notice-info > div:first-child {
     width: 100%;
+    /* layout */
     display: grid;
     grid-gap: 3px;
     grid-template-columns: 1fr;
@@ -197,7 +200,7 @@ button#btn-pastRecords.selected {
   }
 }
 /* 評價狀態 */
-.notice-info > div:last-child {
+.notice-info > div:last-child, .audit-state {
   width: fit-content;
   height: fit-content;
   border-radius: 50px;

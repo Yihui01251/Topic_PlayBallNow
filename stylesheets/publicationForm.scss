@@ -82,7 +82,7 @@ section.form-container {
   /* layout */
   width: fit-content;
   height: fit-content;
-  border-radius: $border-radius-m;
+  border-radius: $border-radius-50;
   border: 2px solid $border-black;
   padding: 9px 18px;
   background-color: var(--btn-color);
@@ -111,7 +111,7 @@ section.form-container {
 #btn-formBM {
   width: fit-content;
   height: fit-content;
-  border-radius: $border-radius-m;
+  border-radius: $border-radius-50;
   border: 2px solid $border-black;
   box-shadow: 0px 4px 0px 0px $second-color-black;
   padding: 5px 25px;
@@ -123,7 +123,7 @@ section.form-container {
 #btn-formVB {
   width: fit-content;
   height: fit-content;
-  border-radius: $border-radius-m;
+  border-radius: $border-radius-50;
   border: 2px solid $border-black;
   box-shadow: 0px 4px 0px 0px $second-color-black;
   padding: 5px 25px;
@@ -137,7 +137,7 @@ button#btn-formBM.selected,
 button#btn-formVB.selected {
   width: fit-content;
   height: fit-content;
-  border-radius: $border-radius-m;
+  border-radius: $border-radius-50;
   padding-top: 3px;
   padding-bottom: 0px;
   color: $second-color-black;
@@ -166,7 +166,7 @@ button#btn-formVB.selected {
   flex: 1 0 auto;
   width: 339px;
   height: max-content;
-  border-radius: $border-radius-s;
+  border-radius: $border-radius-20;
   border: 1px solid $border-black;
   padding: 20px 15px;
 
@@ -180,7 +180,9 @@ button#btn-formVB.selected {
     /* RWD 縮小邊界 */
     padding: 10px;
   }
-
+  .sub-title{
+    margin-top: 5px;
+  }
 }
 
 /* 表單標題 */
@@ -221,7 +223,7 @@ button#btn-formVB.selected {
       /* 所有<label>下<input> */
       width: 20%;
       height: 20px;
-      border-radius: $border-radius-m;
+      border-radius: $border-radius-50;
       border: 2.5px solid $border-black;
       padding: 0px 15px;
       align-items: center;
@@ -258,7 +260,7 @@ button#btn-formVB.selected {
   width: 40%;
   height: 25px;
   padding-left: 10px;
-  border-radius: $border-radius-m;
+  border-radius: $border-radius-50;
   border: 2.5px solid $border-black;
 }
 
@@ -300,7 +302,7 @@ button#btn-formVB.selected {
     input {
       width: 150px;
       height: 20px;
-      border-radius: $border-radius-m;
+      border-radius: $border-radius-50;
       border: 2.5px solid $border-black;
       padding: 0px 15px;
       align-items: center;
@@ -310,7 +312,7 @@ button#btn-formVB.selected {
       width: 135px;
       height: 25px;
       padding-left: 10px;
-      border-radius: $border-radius-m;
+      border-radius: $border-radius-50;
       border: 2.5px solid $border-black;
     }
   }
@@ -321,12 +323,12 @@ button#btn-formVB.selected {
   width: 75%;
 }
 
-/* 預覽容器 ：背景改色*/
+/* 預覽容器*/
 .form-preview {
-  width: 395px;
+  width: 40vw;
   height: 610px;
   border: 1px solid $border-black;
-  border-radius: $border-radius-s;
+  border-radius: $border-radius-20;
   margin-top: 35px;
   margin-left: 30px;
   padding: 20px 15px;
@@ -341,7 +343,7 @@ button#btn-formVB.selected {
     margin: 20px 0 0 0;
     gap: 50px;
     height: fit-content;
-    width: 380px;
+    width: 60vw;
     justify-content: center;
     align-items: center;
   }
@@ -353,6 +355,10 @@ button#btn-formVB.selected {
     height: fit-content;
     width: 375px;
   }
+
+  .sub-title{
+    margin-top: 15px;
+  }
 }
 
 /* 預覽RWD 縮小邊界、置中 */
@@ -360,10 +366,12 @@ button#btn-formVB.selected {
   .filter-simplePostInfo {
     padding: 20px 5px 20px 5px;
   }
+
+  
 }
 
 
 /* 預覽送出按鈕 */
 .form-preview button.btn-send {
-  margin-left: 140px;
+  margin: 0 auto;
 }
