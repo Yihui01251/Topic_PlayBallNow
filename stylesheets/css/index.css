@@ -35,7 +35,6 @@ main:10
   /* 布局 */
   flex: 1 1 auto;
   align-self: center;
-  margin: 50px 0px;
   z-index: 1;
   /* 控制子層 */
   display: flex;
@@ -43,6 +42,7 @@ main:10
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  /* 首頁篩選區裝飾動物 */
 }
 @media (max-width:640px) {
   .search {
@@ -60,6 +60,23 @@ main:10
     gap: 0;
     /* justify-content: center;
     align-items: center; */
+  }
+}
+.search #search-Bar::before {
+  position: absolute;
+  width: 40px;
+  height: fit-content;
+  /* background-color: #d9d9d9; */
+  height: fit-content;
+  content: var(--search-decorate);
+  /* background-size: cover; */
+  z-index: 1;
+  right: 145px;
+  top: -75px;
+}
+@media (max-width:640px) {
+  .search #search-Bar::before {
+    content: none;
   }
 }
 
@@ -193,16 +210,16 @@ button#btn-typeVb.selected img {
   background-color: #14AAEB;
   /* 布局 */
   flex: 15 1 40px;
-  padding: 20px;
+  padding: 15px;
   /* 控制子層 */
   display: flex;
   flex-direction: row;
   position: relative;
 }
 #search-Bar div {
-  width: 30%;
   height: auto;
   /*控制子層 */
+  flex: 1 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -224,27 +241,9 @@ button#btn-typeVb.selected img {
   }
 }
 
-/* 首頁篩選區裝飾動物 */
-#search-Bar::before {
-  position: absolute;
-  width: 40px;
-  /* background-color: #d9d9d9; */
-  height: fit-content;
-  content: var(--search-decorate);
-  /* background-size: cover; */
-  z-index: 1;
-  right: 145px;
-  top: -75px;
-}
-@media (max-width:640px) {
-  #search-Bar::before {
-    content: none;
-  }
-}
-
 /* main > section(search > div(search-Bar > div(dropMenu */
 .dropMenu {
-  width: 80%;
+  width: 50%;
   height: auto;
   padding-right: 25px;
   /* 布局 */
@@ -264,7 +263,7 @@ button#btn-typeVb.selected img {
 }
 .dropMenu ul input {
   /* 樣式 */
-  width: 90%;
+  width: 80%;
   max-width: 250px;
   min-width: 130px;
   height: auto;
@@ -278,7 +277,7 @@ button#btn-typeVb.selected img {
   flex: 1 1 auto;
   align-self: center;
 }
-.dropMenu select {
+.dropMenu ul select {
   width: 90%;
   max-width: 250px;
   min-width: 130px;
@@ -305,7 +304,7 @@ button#btn-typeVb.selected img {
   border-bottom: 5px solid black;
   border-radius: 50px;
   padding: 5px 30px;
-  margin-right: 20px;
+  margin-right: 5px;
   background-color: var(--btn-color);
 }
 
@@ -372,7 +371,8 @@ button#btn-typeVb.selected img {
   flex-direction: row;
   justify-content: flex-start;
 }
-.tags button { /* 臨打貼文tag */
+.tags button {
+  /* 臨打貼文tag */
   /* flex: auto; */
   height: 23px;
   width: fit-content;

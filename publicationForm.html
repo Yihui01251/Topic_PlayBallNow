@@ -3,7 +3,7 @@
   <html>
     <head>
       <title>找人</title>
-      <link rel="stylesheet" href="./stylesheets/style.css" />
+      <link rel="stylesheet" href="./stylesheets/css/style-scss.css" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta charset="UTF-8" />
       <!-- <script src="./javascripts/vendor.js"></script> -->
@@ -176,7 +176,7 @@
                     <div></div>預覽
                   </h2>
                 </div>
-                <div className="filter-simplePostInfo">
+                <div className="simplePostInfo">
                   <div className="main-info">
                     <header>
                       <p className="text-L">
@@ -184,7 +184,7 @@
                       </p>
                       <div className="type-style">{type}</div>
                       <button className="collect">
-                        <img src="./images/heart.png" alt="收藏" />
+                        <img src="../images/heart-no.svg" alt="收藏" />
                       </button>
                     </header>
                     <div className="areaInfo">
@@ -223,8 +223,8 @@
                       <p>{postNote}</p>
                     </div>
                   </div>
-                  <div>
-                    <button id="apply">報名</button>
+                  <div className = "BtnContainer">
+                    <button className="button">報名</button>
                   </div>
                 </div>
                 <button className="btn-send">送出</button>
@@ -391,7 +391,7 @@
                   </header>
 
                 <main className="form-formArea">
-                  <div className="fortitle">
+                  <div className="form-title">
                     <div className="hugTitle">
                       <h1 value="發文找人" className="title-L">
                         發文找人
