@@ -2183,7 +2183,7 @@ button#btn-formVB.selected::before {
 
 /* 預覽容器*/
 .form-preview {
-  width: 40vw;
+  width: 350px;
   height: 610px;
   border: 1px solid black;
   border-radius: 20px;
