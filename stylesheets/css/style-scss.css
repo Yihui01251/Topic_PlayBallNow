@@ -139,10 +139,10 @@ h5,
 .title {
   /* layout */
   width: 60vw;
-  max-width: 700px;
+  max-width: 1000px;
   min-width: 340px;
   height: fit-content;
-  margin: 0 50px;
+  margin: 0 auto;
   /* child */
   display: flex;
   flex-direction: row;
@@ -199,6 +199,41 @@ h2 div {
   margin-right: 10px;
 }
 
+.sponsored-title {
+  width: 95%;
+  height: fit-content;
+  justify-self: flex-start;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  justify-content: space-between;
+}
+
+/* 包標題的容器 */
+.line-hugTitle {
+  grid-column: 1/5;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+/* 標題前的直線 */
+.titleLine {
+  width: 5px;
+  height: 20px;
+  background-color: #000000;
+  margin-right: 10px;
+}
+
+/* 包左、右按鈕的容器 */
+.titleArrowBtn {
+  grid-column: 5;
+  width: 60px;
+  display: grid;
+  grid-template-columns: 10px 10px;
+  gap: 41px;
+}
+
 /*  */
 p,
 .text-M,
@@ -216,6 +251,10 @@ small,
   font-style: normal;
 }
 
+small {
+  color: #777777;
+}
+
 /* 移除有序和無序列表的預設樣式 */
 ul {
   list-style: none;
@@ -227,6 +266,11 @@ a {
   text-decoration: none;
   color: #000000;
   z-index: 1;
+}
+a img {
+  margin: 0 auto;
+  max-width: 50px;
+  min-width: 18px;
 }
 
 section {
@@ -240,6 +284,11 @@ section {
 img {
   display: block;
   width: 100%;
+}
+
+.img-border {
+  border-radius: 50%;
+  border: 5px solid black;
 }
 
 .svg {
@@ -312,14 +361,16 @@ body {
 /* header */
 #topBar {
   width: 80%;
-  margin: 1vw 19vw;
+  margin: 0 auto;
   /* header置中 */
   align-self: center;
   /* header置中 */
+  margin-bottom: 3vh;
   /* 控制子層 */
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 2vh;
 }
 
 .mobile-TopBar {
@@ -493,12 +544,18 @@ footer div p {
 .button {
   background-color: var(--btn-color);
   width: fit-content;
-  height: fit-content;
+  max-height: 50px;
   margin-top: 5px;
   padding: 5px 18px;
   border-radius: 50px;
   border: 2px solid black;
   border-bottom: 5px solid black;
+  /* 布局 */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  /*  */
   text-decoration: none;
   text-transform: uppercase;
   cursor: pointer;
@@ -514,8 +571,8 @@ footer div p {
   margin-top: 7px;
   padding-top: 3px;
   padding-bottom: 0px;
-  color: black;
-  background-color: var(--main-color);
+  color: rgba(247, 246, 245, 0.9);
+  background-color: #353535;
   border-bottom: -1px solid #000000;
   border-top: 1px solid black;
   border-right: 1px solid black;
@@ -665,7 +722,7 @@ footer div p {
   justify-content: space-between;
   align-items: center;
 }
-.simplePostInfo .main-info header {
+.simplePostInfo .main-info .header {
   grid-column: 1/4;
   grid-row: 1;
   width: 100%;
@@ -678,12 +735,13 @@ footer div p {
   flex-direction: row;
   gap: 10px;
 }
-.simplePostInfo .main-info header .p {
-  flex: auto;
+.simplePostInfo .main-info .header .p {
+  flex: 1 0 auto;
   gap: 10px;
 }
-.simplePostInfo .main-info header .type-style {
+.simplePostInfo .main-info .header .type-style {
   flex: 0 1 auto;
+  min-width: 30px;
   width: fit-content;
   height: fit-content;
   border-radius: 20px;
@@ -692,8 +750,17 @@ footer div p {
   color: white;
   text-align: center;
 }
-.simplePostInfo .main-info header .type-style p {
+.simplePostInfo .main-info .header .type-style p {
   font-size: 14px;
+}
+.simplePostInfo .main-info .header a {
+  width: 8%;
+  margin-right: 10px;
+}
+.simplePostInfo .main-info .header img {
+  margin: 0 auto;
+  flex: auto;
+  min-width: 18px;
 }
 .simplePostInfo .main-info .areaInfo {
   grid-column: 3/1;
@@ -748,7 +815,7 @@ footer div p {
   height: fit-content;
   padding: 2px 5px;
   border-radius: 50px;
-  background: #6d6d6d;
+  background: #353535;
   align-self: center;
   display: flex;
   justify-content: center;
@@ -823,8 +890,153 @@ footer div p {
   box-shadow: none;
   background-color: #D9D9D9;
 }
+.simplePostInfo .auditList {
+  width: 100%;
+  height: 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+}
+.simplePostInfo .auditList .applicant-container {
+  width: 100%;
+  height: 72px;
+  display: grid;
+  grid-template-columns: repeat(3, 80px);
+  justify-content: start;
+  align-items: center;
+  align-content: center;
+}
+.simplePostInfo .auditList .applicant-container a {
+  width: 100%;
+  height: 100%;
+  flex: auto;
+  position: relative;
+}
+.simplePostInfo .auditList .applicant-container a img {
+  width: 50%;
+  margin: 0 auto;
+}
+.simplePostInfo .auditList .applicant-container a .notice-new {
+  position: absolute;
+  top: -5px;
+  right: 0px;
+  border: 1px solid black;
+  border-radius: 50px;
+  padding: 1px 5px;
+  background-color: #cb1b1b;
+  color: #ffffff;
+  font-size: 14px;
+}
 
-/* 報名審核中元件 */
+/* 行程元件 */
+.notice-container {
+  width: 80%;
+  height: fit-content;
+  border-radius: 50px;
+  border: 3px var(--border-type) black;
+  padding: 8px 8px 8px 17px;
+  color: var(--font-color);
+  background-color: rgba(247, 246, 245, 0.9);
+  /* layout */
+  display: grid;
+  grid-template-columns: 13% 85%;
+  gap: 2%;
+  justify-content: start;
+  align-items: center;
+  justify-items: end;
+}
+@media (max-width:640px) {
+  .notice-container {
+    width: 88vw;
+    min-width: 280px;
+    max-width: 378px;
+    /* 375*0.88vw */
+    grid-template-columns: 14% calc(85% - 6px);
+    padding: 6px;
+    gap: 0;
+  }
+}
+
+/* 羽or排 */
+.notice-ballType {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: var(--font-color);
+  color: rgba(247, 246, 245, 0.9);
+  /* layout */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.notice-ballType p {
+  font-size: 2vw;
+}
+
+/* 元件資訊 */
+.notice-info {
+  width: 90%;
+  height: fit-content;
+  /* layout */
+  display: grid;
+  grid-template-columns: 20% 40% 40%;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+}
+@media (max-width:640px) {
+  .notice-info {
+    gap: 3%;
+    grid-template-columns: 25% 36% 36%;
+  }
+}
+.notice-info > p {
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@media (max-width:640px) {
+  .notice-info > div:first-child {
+    width: 100%;
+    /* layout */
+    display: grid;
+    grid-gap: 3px;
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+  .notice-ballType p {
+    font-size: 1.8rem;
+  }
+}
+/* 評價狀態 */
+.notice-info > div:last-child, .audit-state {
+  width: fit-content;
+  height: fit-content;
+  border-radius: 50px;
+  border: 1px solid var(--evaluate-color);
+  padding: 4px 8px;
+  color: var(--evaluate-color);
+}
+
+.notice-pastRecordsArea {
+  display: none;
+}
+
+.custom-dashed-border {
+  border: none;
+  border-radius: 50px;
+  background-image: linear-gradient(to right, #000000 10px, transparent 0);
+  background-position: left top;
+  background-size: 10px 3px;
+  /* 這裡的第一個值（10px）是虛線的長度，第二個值（2px）是虛線的寬度 */
+}
+
+/* 通知報名審核中元件 */
 .notice-apply {
   /* style */
   width: fit-content;
@@ -842,12 +1054,11 @@ footer div p {
   align-items: center;
   color: var(--font-color);
 }
-.notice-apply img {
-  width: 10px;
-  height: 10px;
+.notice-apply a {
+  width: fit-content;
+  height: fit-content;
 }
-
-/* 註冊成功通知元件 */
+/* 通知註冊成功元件 */
 .notice-register {
   /* style */
   width: fit-content;
@@ -1061,6 +1272,9 @@ footer div p {
 .audit-apply .topBtn-container .popup__close {
   width: 5%;
   margin-right: 10px;
+}
+.audit-apply .topBtn-container a {
+  width: fit-content;
 }
 .audit-apply .audit-info { /* 報名資訊容器 */
   width: inherit;
@@ -1956,7 +2170,7 @@ section.form-container {
 }
 
 /* 貼文管理按鈕 */
-#btn-postManage {
+.btn-postManage {
   /* layout */
   width: fit-content;
   height: fit-content;
@@ -2216,8 +2430,16 @@ button#btn-formVB.selected::before {
     width: 375px;
   }
 }
-.form-preview .sub-title {
-  margin-top: 15px;
+.form-preview a {
+  margin: 0 auto;
+  grid-row: 3;
+  width: 100px;
+  min-width: 100px;
+  height: 50px;
+}
+.form-preview a button {
+  width: 100%;
+  height: fit-content;
 }
 
 /* 預覽RWD 縮小邊界、置中 */
@@ -2226,11 +2448,6 @@ button#btn-formVB.selected::before {
     padding: 20px 5px 20px 5px;
   }
 }
-/* 預覽送出按鈕 */
-.form-preview button.btn-send {
-  margin: 0 auto;
-}
-
 /*  */
 /* 行程頁 */
 /* 行程(通知)main容器 */
@@ -2347,111 +2564,8 @@ button#btn-pastRecords.selected {
     justify-items: center;
   }
 }
-
-/* 通知元件容器 */
-.notice-container {
-  width: 80%;
-  height: fit-content;
-  border-radius: 50px;
-  border: 3px var(--border-type) black;
-  padding: 8px 8px 8px 17px;
-  color: var(--font-color);
-  background-color: rgba(247, 246, 245, 0.9);
-  /* layout */
-  display: grid;
-  grid-template-columns: 13% 85%;
-  gap: 2%;
-  justify-content: start;
-  align-items: center;
-  justify-items: end;
-}
-@media (max-width:640px) {
-  .notice-container {
-    width: 88vw;
-    min-width: 280px;
-    max-width: 378px;
-    /* 375*0.88vw */
-    grid-template-columns: 14% calc(85% - 6px);
-    padding: 6px;
-    gap: 0;
-  }
-}
-
-/* 羽or排 */
-.notice-ballType {
+.notice-itineraryArea a {
   width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background-color: var(--font-color);
-  color: rgba(247, 246, 245, 0.9);
-  /* layout */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.notice-ballType p {
-  font-size: 2vw;
-}
-
-/* 元件資訊 */
-.notice-info {
-  width: 90%;
-  height: fit-content;
-  /* layout */
-  display: grid;
-  grid-template-columns: 20% 40% 40%;
-  gap: 5px;
-  justify-content: center;
-  align-items: center;
-  justify-items: center;
-}
-@media (max-width:640px) {
-  .notice-info {
-    gap: 3%;
-    grid-template-columns: 25% 36% 36%;
-  }
-}
-.notice-info > p {
-  max-width: 100%;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-@media (max-width:640px) {
-  .notice-info > div:first-child {
-    width: 100%;
-    /* layout */
-    display: grid;
-    grid-gap: 3px;
-    grid-template-columns: 1fr;
-    justify-items: center;
-  }
-  .notice-ballType p {
-    font-size: 1.8rem;
-  }
-}
-/* 評價狀態 */
-.notice-info > div:last-child, .audit-state {
-  width: fit-content;
-  height: fit-content;
-  border-radius: 50px;
-  border: 1px solid var(--evaluate-color);
-  padding: 4px 8px;
-  color: var(--evaluate-color);
-}
-
-.notice-pastRecordsArea {
-  display: none;
-}
-
-.custom-dashed-border {
-  border: none;
-  border-radius: 50px;
-  background-image: linear-gradient(to right, #000000 10px, transparent 0);
-  background-position: left top;
-  background-size: 10px 3px;
-  /* 這裡的第一個值（10px）是虛線的長度，第二個值（2px）是虛線的寬度 */
 }
 
 /* 個人 */
@@ -2717,39 +2831,6 @@ button#btn-pastRecords.selected {
   justify-items: center;
   align-items: center;
   overflow: hidden;
-}
-
-/* 團主紀錄第一行標題 */
-.sponsored-title {
-  width: 85%;
-  height: fit-content;
-  justify-self: flex-start;
-  display: grid;
-  grid-template-columns: 95px 59px;
-  gap: 134px;
-  justify-content: space-between;
-}
-
-/* 包標題的容器 */
-.hugSponsored-title {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-/* 標題前的直線 */
-.titleLine {
-  width: 5px;
-  height: 20px;
-  background-color: #000000;
-  margin-right: 10px;
-}
-
-/* 包左、右按鈕的容器 */
-.sponsored-titleBtn {
-  display: grid;
-  grid-template-columns: 10px 10px;
-  gap: 41px;
 }
 
 /* 提示:登入顯示 */

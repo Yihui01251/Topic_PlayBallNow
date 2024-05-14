@@ -264,39 +264,6 @@
   overflow: hidden;
 }
 
-/* 團主紀錄第一行標題 */
-.sponsored-title {
-  width: 85%;
-  height: fit-content;
-  justify-self: flex-start;
-  display: grid;
-  grid-template-columns: 95px 59px;
-  gap: 134px;
-  justify-content: space-between;
-}
-
-/* 包標題的容器 */
-.hugSponsored-title {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-/* 標題前的直線 */
-.titleLine {
-  width: 5px;
-  height: 20px;
-  background-color: #000000;
-  margin-right: 10px;
-}
-
-/* 包左、右按鈕的容器 */
-.sponsored-titleBtn {
-  display: grid;
-  grid-template-columns: 10px 10px;
-  gap: 41px;
-}
-
 /* 提示:登入顯示 */
 .prompt {
   color: #6D6D6D;

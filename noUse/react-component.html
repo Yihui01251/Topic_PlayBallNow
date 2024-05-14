@@ -622,13 +622,13 @@
       <!-- 簡略貼文元件 -->
       <div class="simplePostInfo">
         <div class="main-info">
-          <header>
+          <div class="header">
             <p>5/24 18:00~20:00</p>
             <div class="type-style">羽球</div>
             <button class="collect">
               <img class="svg" src="../images/heart-no.svg" alt="收藏" />
             </button>
-          </header>
+          </div>
           <div class="areaInfo">
             <h3>台北市</h3>
             <h3>中山區</h3>
@@ -673,13 +673,13 @@
       <div class="detailPostInfo">
         <div class="simplePostInfo">
           <div class="main-info">
-            <header>
+            <div class="header">
               <p>5/24 18:00~20:00</p>
               <div class="type-style">羽球</div>
               <button class="collect">
                 <img src="../images/heart-no.svg" alt="收藏" />
               </button>
-            </header>
+            </div>
             <div class="areaInfo">
               <h3>台北市</h3>
               <h3>中山區</h3>
@@ -751,7 +751,8 @@
       </div>
 
       <br />
-      <a href="#auditApplyPopup">
+      <!-- 簡略行程元件 -->
+      <a href="#detailPostPopup">
         <div class="notice-container">
           <div class="notice-ballType">
             <p>排</p>
@@ -767,7 +768,104 @@
           </div>
         </div>
       </a>
-      <br/>
+      <br />
+
+      <!-- 團主查看行程元件 -->
+      <div class="detailItinerary">
+        <div class="simplePostInfo">
+          <div class="main-info">
+            <div class="header">
+              <p>5/24 18:00~20:00</p>
+              <div class="type-style">羽球</div>
+              <a class="popup__close" href="#"
+                ><img src="../images/cancel.png" alt=""
+              /></a>
+            </div>
+            <div class="areaInfo">
+              <h3>台北市</h3>
+              <h3>中山區</h3>
+              <h3>中山運動中心</h3>
+            </div>
+            <div class="tag-style">
+              <p>初階</p>
+              <p>$150</p>
+            </div>
+          </div>
+          <div class="sub-info">
+            <div class="vacancyInfo">
+              <h4>缺額</h4>
+              <div>女</div>
+              <p>0 位</p>
+              <div>男</div>
+              <p>3 位</p>
+              <div>不限</div>
+              <p>2 位</p>
+            </div>
+            <div class="ballInfo">
+              <h4>類型</h4>
+              <p>雙打</p>
+            </div>
+            <div class="equipInfo">
+              <h4>設備</h4>
+              <p>冷氣</p>
+            </div>
+            <div class="noteInfo">
+              <h4>備註</h4>
+              <p>請提早10分鐘到場換裝熱身</p>
+            </div>
+          </div>
+
+          <div class="auditList">
+            <div class="sponsored-title">
+              <div class="line-hugTitle">
+                <div class="titleLine"></div>
+                <h3>球友申請列表</h3>
+              </div>
+              <div class="titleArrowBtn">
+                <button>
+                  <img src="../images/btn-left.png" alt="前一個" />
+                </button>
+                <button>
+                  <img src="../images/btn-right.png" alt="後一個" />
+                </button>
+              </div>
+            </div>
+            <div class="applicant-container">
+              <a href=""
+                ><img class="img-border" src="../images/player.png" alt="" />
+                <div class="notice-new">New</div></a
+              >
+              <a href=""
+                ><img class="img-border" src="../images/vball.png" alt="" />
+                <div class="notice-new">New</div></a
+              >
+              <a href=""
+                ><img
+                  class="img-border"
+                  src="../images/player-agree.png"
+                  alt=""
+              /></a>
+            </div>
+          </div>
+
+          <div class="auditList">
+            <div class="sponsored-title">
+              <div class="line-hugTitle">
+                <div class="titleLine"></div>
+                <h3>取消申請列表</h3>
+              </div>
+            </div>
+            <div class="applicant-container">
+              <a href=""
+                ><img class="img-border" src="../images/bball.png" alt="" />
+                <div class="notice-new">New</div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br />
       <!-- 團主審核報名元件 -->
       <div class="audit-apply">
         <div class="topBtn-container">
@@ -820,9 +918,6 @@
           </div>
           <div class="audit-state audit-yes" style="display: none">
             <p>同意申請</p>
-          </div>
-          <div class="audit-state audit-no" style="display: none">
-            <p>已婉拒</p>
           </div>
         </div>
       </div>
@@ -1113,7 +1208,174 @@
         </div>
       </div>
 
-      <br>
+      <!-- 燈箱效果=>團主查看貼文元件 -->
+      <div class="popup" id="detailPostPopup">
+        <div class="popup-inner">
+          <div class="popup__content">
+            <!-- 團主查看行程元件 -->
+            <div class="detailItinerary">
+              <div class="simplePostInfo">
+                <div class="main-info">
+                  <div class="header">
+                    <p>5/24 18:00~20:00</p>
+                    <div class="type-style">羽球</div>
+                    <a class="popup__close" href="#"
+                      ><img src="../images/cancel.png" alt=""
+                    /></a>
+                  </div>
+                  <div class="areaInfo">
+                    <h3>台北市</h3>
+                    <h3>中山區</h3>
+                    <h3>中山運動中心</h3>
+                  </div>
+                  <div class="tag-style">
+                    <p>初階</p>
+                    <p>$150</p>
+                  </div>
+                </div>
+                <div class="sub-info">
+                  <div class="vacancyInfo">
+                    <h4>缺額</h4>
+                    <div>女</div>
+                    <p>0 位</p>
+                    <div>男</div>
+                    <p>3 位</p>
+                    <div>不限</div>
+                    <p>2 位</p>
+                  </div>
+                  <div class="ballInfo">
+                    <h4>類型</h4>
+                    <p>雙打</p>
+                  </div>
+                  <div class="equipInfo">
+                    <h4>設備</h4>
+                    <p>冷氣</p>
+                  </div>
+                  <div class="noteInfo">
+                    <h4>備註</h4>
+                    <p>請提早10分鐘到場換裝熱身</p>
+                  </div>
+                </div>
+
+                <div class="auditList">
+                  <div class="sponsored-title">
+                    <div class="line-hugTitle">
+                      <div class="titleLine"></div>
+                      <h3>球友申請列表</h3>
+                    </div>
+                    <div class="titleArrowBtn">
+                      <button>
+                        <img src="../images/btn-left.png" alt="前一個" />
+                      </button>
+                      <button>
+                        <img src="../images/btn-right.png" alt="後一個" />
+                      </button>
+                    </div>
+                  </div>
+                  <div class="applicant-container">
+                    <a href="#auditApplyPopup"
+                      ><img
+                        class="img-border"
+                        src="../images/player.png"
+                        alt=""
+                      />
+                      <div class="notice-new">New</div></a
+                    >
+                    <a href="#auditApplyPopup"
+                      ><img
+                        class="img-border"
+                        src="../images/vball.png"
+                        alt=""
+                      />
+                      <div class="notice-new">New</div></a
+                    >
+                    <a href="#auditApplyPopup"
+                      ><img
+                        class="img-border"
+                        src="../images/player-agree.png"
+                        alt=""
+                    /></a>
+                  </div>
+                </div>
+
+                <div class="auditList">
+                  <div class="sponsored-title">
+                    <div class="line-hugTitle">
+                      <div class="titleLine"></div>
+                      <h3>取消申請列表</h3>
+                    </div>
+                  </div>
+                  <div class="applicant-container">
+                    <a href="#auditCancelPopup"
+                      ><img
+                        class="img-border"
+                        src="../images/bball.png"
+                        alt=""
+                      />
+                      <div class="notice-new">New</div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 燈箱效果-團主審核取消 -->
+      <div class="popup" id="auditCancelPopup">
+        <div class="popup-inner">
+          <div class="popup__content">
+            
+            <div class="audit-apply">
+              <div class="topBtn-container">
+                <a href="#"><img src="../images/waring.png" alt="" /></a>
+                <a class="popup__close" href="#"
+                  ><img src="../images/cancel.png" alt=""
+                /></a>
+              </div>
+              <div class="audit-info">
+                <div class="info-selfState">
+                  <div class="selfState-userInfo">
+                    <div class="applicantInfo">
+                      <img class="applicantImg" src="../images/player.png" alt="" />
+                      <p>Roy</p>
+                    </div>
+                    <div class="reason-cancel">
+                      <h5>取消原因:</h5>
+                      <p>手受傷</p>
+                    </div>
+                  </div>
+                  <div class="selfState-title"><h4>取消場次 :</h4></div>
+                </div>
+      
+                <div class="notice-container">
+                  <div class="notice-ballType">
+                    <p>排</p>
+                  </div>
+                  <div class="notice-info">
+                    <div>
+                      <p>06/28 18:00</p>
+                    </div>
+                    <p>中山運動中心</p>
+                    <div class="audit-state">
+                      <p>10/10</p>
+                    </div>
+                  </div>
+                </div>
+      
+                <div class="bottomBtn-container">
+                  <a href="#" class="button btn-no">婉拒</a>
+                  <a href="#" class="button btn-yes">同意取消</a>
+                </div>
+                <div><p>{resultText}</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br />
     </div>
   </body>
 </html>

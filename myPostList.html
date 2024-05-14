@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
   <head>
-    <title>行程</title>
+    <title>我的貼文(現在想打球)</title>
     <link rel="stylesheet" href="./stylesheets/css/style-scss.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="UTF-8" />
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.0/redux.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.0/redux.min.js"
+      integrity="sha512-1/8Tj23BRrWnKZXeBruk6wTnsMJbi/lJsk9bsRgVwb6j5q39n0A00gFjbCTaDo5l5XrPVv4DZXftrJExhRF/Ug=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <style>
       .fileName {
@@ -16,8 +21,8 @@
       }
     </style>
   </head>
-  <body id="body" class="background-both">
-    <small class="fileName">檔名：<code>notice.html</code></small>
+  <body id="body">
+    <small class="fileName">檔名：<code>myPostList.html</code></small>
     <!-- 根元素  -->
     <div id="root"></div>
     <script type="text/babel">
@@ -26,13 +31,8 @@
         const data = await axios.get("./userData.json");
         const { userData } = data.data;
         console.log(userData);
-        const { past_appl_userData } = userData[0];
-        const { future_All_userData } = userData[1];
-        const { future_cancel_userData } = userData[2];
         const { future_host_userData } = userData[3];
-        const { future_appl_userData } = userData[4];
-
-        const { useState, useEffect, useRef } = React;
+        const { useState, useEffect, useRef, useMemo } = React;
 
         const Notify = ({
           day,
@@ -50,8 +50,9 @@
         }) => {
           const [typeStyle, setTypeStyle] = useState("");
           const [typeFontStyle, setTypeFontStyle] = useState("");
-          const [stateStyle, setStateStyle] = useState("");
-          const [identityStyle, setIdentityStyle] = useState("");
+          const [stateStyle, setStateStyle] = useState("#1A8D07");
+          const [identityStyle, setIdentityStyle] =
+            useState("3px dashed black");
           const [popupHref, setPopupHref] = useState("");
           useEffect(() => {
             // 羽or排顏色
@@ -67,57 +68,19 @@
             }
             setTypeFontStyle(typeFontStyle);
             setTypeStyle(typeStyle);
-            document.documentElement.style.setProperty(
-              "--font-color",
-              typeFontStyle
-            );
-            document.documentElement.style.setProperty(
-              "--main-color",
-              typeStyle
-            );
-
-            // 狀態顏色
-            switch (state) {
-              case "報名成功":
-                return setStateStyle("#1A8D07");
-              case "報名失敗":
-                return setStateStyle("#777777");
-              case "候補中":
-                return setStateStyle("#2D2AE6");
-              case "已取消":
-                return setStateStyle("#777777");
-              case "申請中":
-                return setStateStyle("#FF4F03");
-              case "未評價":
-                return setStateStyle("#FF4F03");
-              case "取消ing":
-                return setStateStyle("#FF4F03");
-
-              default:
-                break;
-            }
-            // 身分樣式
-            let borderStyle = "";
-            let newHref = "";
-            document.getElementsByClassName("notice-container");
-            if (identity === "團主") {
-              borderStyle = "3px dashed black";
-              newHref = "auditApplyPopup";
-            } else if (identity === "臨打") {
-              borderStyle = "3px solid black";
-              newHref = "itineraryPopup";
-            }
-            setIdentityStyle(borderStyle);
-            document.documentElement.style.setProperty(
-              "--border-type",
-              borderStyle
-            );
-            setPopupHref(newHref);
-          }, [type, state, identity]);
+            // document.documentElement.style.setProperty(
+            //   "--font-color",
+            //   typeFontStyle
+            // );
+            // document.documentElement.style.setProperty(
+            //   "--main-color",
+            //   typeStyle
+            //);
+          }, [type]);
 
           return (
             <>
-              <a href={`#${popupHref}-${id}`}>
+              <a href={`#detailPostPopup-${id}`}>
                 <div
                   className={"notice-container"}
                   style={{ color: typeFontStyle, border: identityStyle }}
@@ -179,13 +142,12 @@
           state,
           identity,
           id,
-          popUp,
           typeStyle,
           typeFontStyle,
         }) => {
           return (
             <>
-              <div className="popup" id={`${popUp}-${id}`}>
+              <div className="popup" id={`detailPostPopup-${id}`}>
                 <div className="popup-inner">
                   <div className="popup__content">
                     <div className="detailItinerary">
@@ -297,7 +259,7 @@
                             </div>
                           </div>
                           <div className="applicant-container">
-                            <a href="#auditCancelPopup">
+                            <a href={`#auditCancelPopup-${id}`}>
                               <img
                                 className="img-border"
                                 src="../images/bball.png"
@@ -313,6 +275,14 @@
                 </div>
               </div>
               <AuditApplyCard
+                day={day}
+                startTime={startTime}
+                type={type}
+                arena={arena}
+                state={state}
+                id={id}
+              />
+              <AuditCancelCard
                 day={day}
                 startTime={startTime}
                 type={type}
@@ -436,189 +406,178 @@
             </div>
           );
         };
+        const AuditCancelCard = ({day, startTime, type, arena, state, id})=>{
+            const [btnDisplay, setBtnDisplay] = useState("flex");
+          const [resultDisplay, setResultDisplay] = useState("none");
+          const [resultText, setResultText] = useState("");
+          const [resultColor, setResultColor] = useState("#1A8D07");
+          const auditResult = (type) => {
+            let text = "";
 
-        const App = () => {
-          const [selectedButton, setSelectedButton] = useState("btn-itinerary");
-          const [noticeType, setNoticeType] = useState("btn-itinerary");
-          const itineraryBtn = document.getElementById("btn-itinerary");
-          const pastRecordsBtn = document.getElementById("btn-pastRecords");
-
-          const changeNotifyType = (id) => {
-            let newType = "";
-            setSelectedButton(id);
-            setNoticeType(id);
-            if (id == "btn-itinerary") {
-              newType = "itinerary";
-            } else if (id == "btn-pastRecords") {
-              newType = "pastRecords";
+            setBtnDisplay("none");
+            setResultDisplay("block");
+            if (type === "no") {
+              text = "已婉拒";
+              setResultColor("#FF4F03");
+            } else if (type === "yes") {
+              text = "同意取消";
             }
+            setResultText(text);
           };
-
+            return(
+                <div className="popup" id={`auditCancelPopup-${id}`}>
+        <div className="popup-inner">
+          <div className="popup__content">
+            
+            <div className="audit-apply">
+              <div className="topBtn-container">
+                <a href="#"><img src="../images/waring.png" alt="" /></a>
+                <a className="popup__close" href="#"
+                  ><img src="../images/cancel.png" alt=""
+                /></a>
+              </div>
+              <div className="audit-info">
+                <div className="info-selfState">
+                  <div className="selfState-userInfo">
+                    <div className="applicantInfo">
+                      <img className="applicantImg" src="../images/player.png" alt="" />
+                      <p>Roy</p>
+                    </div>
+                    <div className="reason-cancel">
+                      <h5>取消原因:</h5>
+                      <p>手受傷</p>
+                    </div>
+                  </div>
+                  <div className="selfState-title"><h4>取消場次 :</h4></div>
+                </div>
+      
+                <div className="notice-container">
+                        <div className="notice-ballType">
+                          <p>{type}</p>
+                        </div>
+                        <div className="notice-info">
+                          <div>
+                            <p>
+                              {day} {startTime}
+                            </p>
+                          </div>
+                          <p>{arena}</p>
+                          <div className="audit-state">
+                            <p>{state}</p>
+                          </div>
+                        </div>
+                      </div>
+      
+                <div className="bottomBtn-container" style={{ display: btnDisplay }}>
+                    <button
+                          className="button btn-no"
+                          onClick={() => auditResult("no")}
+                        >
+                          婉拒
+                        </button>
+                        <button
+                          className="button btn-yes"
+                          onClick={() => auditResult("yes")}
+                        >
+                          同意
+                        </button>
+                </div>
+                <div
+                        className="audit-state audit-yes"
+                        style={{
+                          display: resultDisplay,
+                          color: resultColor,
+                          borderColor: resultColor,
+                        }}
+                      >
+                        <p>{resultText}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div></div>
+            )
+        }
+        const App = () => {
           return (
             <div className="body">
-              <div className="mobile-TopBar">
-                <img
-                  src="./images/mobile-both-topbanner.png"
-                  alt="不分類的手機版banner"
-                />
-              </div>
-              <header id="topBar">
-                <nav id="top-nav">
-                  <ul id="menu">
-                    <li>
-                      <a href="./index.html">
-                        <img
-                          className="icon"
-                          src="./images/magnifier.png"
-                          alt=""
-                        />
-                        探索
-                      </a>
-                    </li>
-                    <li>
-                      <a href="./publicationForm.html">
-                        <img className="icon" src="./images/post.png" alt="" />
-                        找人
-                      </a>
-                    </li>
-                    <li>
-                      <a href="notice.html">
-                        <img className="icon" src="./images/bell3.png" alt="" />
-                        行程
-                      </a>
-                    </li>
-                    <li>
-                      <a href="personal.html">
-                        <img className="icon" src="./images/cat.png" alt="" />
-                        個人
-                      </a>
-                    </li>
-                  </ul>
-                </nav>
-              </header>
-              <main className="notice-Area">
-                <div className="form-title">
-                  <div className="hugTitle">
-                    <h1 className="title-L" value="我的行程">
-                      我的行程
-                    </h1>
-                  </div>
+              <main style={{ marginBottom: "45vh" }}>
+                <div className="mobile-TopBar">
+                  <img
+                    src="./images/mobile-both-topbanner.png"
+                    alt="不分類的手機版banner"
+                  />
                 </div>
-                <div className="notice-type">
-                  <button
-                    id="btn-itinerary"
-                    className={
-                      selectedButton === "btn-itinerary" ? "selected" : ""
-                    }
-                    onClick={() => changeNotifyType("btn-itinerary")}
-                  >
-                    未來行程
-                  </button>
-
-                  <button
-                    id="btn-pastRecords"
-                    className={
-                      selectedButton === "btn-pastRecords" ? "selected" : ""
-                    }
-                    onClick={() => changeNotifyType("btn-pastRecords")}
-                  >
-                    過去紀錄
-                  </button>
-                </div>
-                <div
-                  style={{
-                    display: noticeType === "btn-itinerary" ? "block" : "none",
-                  }}
-                >
-                  <div className="notice-itineraryTitle">
+                <header id="topBar">
+                  <nav id="top-nav">
+                    <ul id="menu">
+                      <li>
+                        <a href="./index.html">
+                          <img
+                            className="icon"
+                            src="./images/magnifier.png"
+                            alt=""
+                          />
+                          探索
+                        </a>
+                      </li>
+                      <li>
+                        <a href="./publicationForm.html">
+                          <img
+                            className="icon"
+                            src="./images/post.png"
+                            alt=""
+                          />
+                          找人
+                        </a>
+                      </li>
+                      <li>
+                        <a href="notice.html">
+                          <img
+                            className="icon"
+                            src="./images/bell3.png"
+                            alt=""
+                          />
+                          行程
+                        </a>
+                      </li>
+                      <li>
+                        <a href="personal.html">
+                          <img className="icon" src="./images/cat.png" alt="" />
+                          個人
+                        </a>
+                      </li>
+                    </ul>
+                  </nav>
+                  <div className="title">
                     <div className="hugTitle">
-                      <h2 className="text-L" value="預定行程">
-                        預定行程
-                      </h2>
-                    </div>
-                    <button className="btn-sponsor">
-                      <img src="./images/icon-sponsor.png" alt="" />
-                      主辦
-                    </button>
-                  </div>
-                  <section className="notice-itineraryArea">
-                    {future_All_userData.map((post_data) => {
-                      return (
-                        <Notify
-                          key={post_data.id}
-                          type={post_data.typeAbbr}
-                          identity={post_data.identity}
-                          day={post_data.dateAbbr}
-                          startTime={post_data.startTime}
-                          endTime={post_data.endTime}
-                          city={post_data.city}
-                          area={post_data.area}
-                          arena={post_data.arena}
-                          tagDegree={post_data.tagDegree}
-                          tagPrice={post_data.tagPrice}
-                          state={post_data.state}
-                          id={post_data.id}
-                        />
-                      );
-                    })}
-                  </section>
-                  <div className="notice-itineraryTitle">
-                    <div className="hugTitle">
-                      <h2 className="text-L" value="取消行程">
-                        取消行程
-                      </h2>
+                      <h1 className="title-L" value="我的貼文">
+                        我的貼文
+                      </h1>
                     </div>
                   </div>
-                  <section className="notice-itineraryArea">
-                    {future_cancel_userData.map((post_data) => {
-                      return (
-                        <Notify
-                          key={post_data.id}
-                          type={post_data.typeAbbr}
-                          identity={post_data.identity}
-                          day={post_data.dateAbbr}
-                          startTime={post_data.startTime}
-                          endTime={post_data.endTime}
-                          city={post_data.city}
-                          area={post_data.area}
-                          arena={post_data.arena}
-                          tagDegree={post_data.tagDegree}
-                          tagPrice={post_data.tagPrice}
-                          state={post_data.state}
-                          id={post_data.id}
-                        />
-                      );
-                    })}
-                  </section>
-                </div>
-                <div
-                  style={{
-                    display:
-                      noticeType === "btn-pastRecords" ? "block" : "none",
-                  }}
-                >
-                  <section className="notice-itineraryArea">
-                    {past_appl_userData.map((post_data) => {
-                      return (
-                        <Notify
-                          key={post_data.id}
-                          type={post_data.typeAbbr}
-                          identity={post_data.identity}
-                          day={post_data.dateAbbr}
-                          startTime={post_data.startTime}
-                          endTime={post_data.endTime}
-                          city={post_data.city}
-                          area={post_data.area}
-                          arena={post_data.arena}
-                          tagDegree={post_data.tagDegree}
-                          tagPrice={post_data.tagPrice}
-                          state={post_data.state}
-                          id={post_data.id}
-                        />
-                      );
-                    })}
-                  </section>
-                </div>
+                </header>
+                <section className="notice-itineraryArea">
+                  {future_host_userData.map((post_data) => {
+                    return (
+                      <Notify
+                        key={post_data.id}
+                        type={post_data.typeAbbr}
+                        identity={post_data.identity}
+                        day={post_data.dateAbbr}
+                        startTime={post_data.startTime}
+                        endTime={post_data.endTime}
+                        city={post_data.city}
+                        area={post_data.area}
+                        arena={post_data.arena}
+                        tagDegree={post_data.tagDegree}
+                        tagPrice={post_data.tagPrice}
+                        state={post_data.state}
+                        id={post_data.id}
+                      />
+                    );
+                  })}
+                </section>
               </main>
               <footer>
                 <figure className="footer-border"></figure>

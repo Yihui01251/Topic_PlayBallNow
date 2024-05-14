@@ -72,7 +72,7 @@ section.form-container {
 }
 
 /* 貼文管理按鈕 */
-#btn-postManage {
+.btn-postManage {
   /* layout */
   width: fit-content;
   height: fit-content;
@@ -332,8 +332,16 @@ button#btn-formVB.selected::before {
     width: 375px;
   }
 }
-.form-preview .sub-title {
-  margin-top: 15px;
+.form-preview a {
+  margin: 0 auto;
+  grid-row: 3;
+  width: 100px;
+  min-width: 100px;
+  height: 50px;
+}
+.form-preview a button {
+  width: 100%;
+  height: fit-content;
 }
 
 /* 預覽RWD 縮小邊界、置中 */
@@ -341,8 +349,4 @@ button#btn-formVB.selected::before {
   .filter-simplePostInfo {
     padding: 20px 5px 20px 5px;
   }
-}
-/* 預覽送出按鈕 */
-.form-preview button.btn-send {
-  margin: 0 auto;
 }/*# sourceMappingURL=publicationForm.css.map */
