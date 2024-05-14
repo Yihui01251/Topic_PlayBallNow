@@ -15,6 +15,7 @@
   "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.0/redux.min.js\"",
     "integrity=\"sha512-1/8Tj23BRrWnKZXeBruk6wTnsMJbi/lJsk9bsRgVwb6j5q39n0A00gFjbCTaDo5l5XrPVv4DZXftrJExhRF/Ug==\"",
     "crossorigin=\"anonymous\" referrerpolicy=\"no-referrer\"></script>",
+	"<script src=\"https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js\"></script>",
   "<style>",
 	".fileName {display: none;}",
   "</style>",
@@ -101,6 +102,13 @@
 			"</li>",
 				"</ul>",
 			  "</nav>",
+			  "<div className=\"title\">",
+                  "<div className=\"hugTitle\">",
+                    "<h1 value=\"現在想打球\">",
+                      "現在想打球",
+                    "</h1>",
+                 " </div>",
+                "</div>",
 			"</header>",
 	],
 	"description":"整個導覽列"		
@@ -112,5 +120,25 @@
 		
 	],
 	"description":"報名貼文元件"	
+},
+"報名審核中通知元件":{
+	"prefix": "notice-apply",
+	"body":[
+		"{/*燈箱效果-報名審核中通知 */}",
+		"<div class=\"popup\" id=\"noticeApplyPopup\">",
+		"<div class=\"popup-inner\">",
+		 " <div class=\"popup__content\">",
+			"{/* 報名審核中通知元件 */}",
+			"<div class=\"notice-apply\">",
+			  "<p>已送出報名，團主審核中</p>",
+			  "<a class=\"popup__close\" href=\"#\">",
+				"<img src=\"../images/cancel.png\" alt=\"關閉按鈕\" />",
+			  "</a>",
+			"</div>",
+		  "</div>",
+		"</div>",
+		"</div>",
+	],
+	"description":"套燈箱效果的報名審核中通知元件"	
 }
 }

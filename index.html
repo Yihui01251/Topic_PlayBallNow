@@ -266,7 +266,7 @@
                     <div className="detailPostInfo">
                       <div className="simplePostInfo">
                         <div className="main-info">
-                          <header>
+                          <div className="header">
                             <p>
                               {postDate} {postStartTime}~{postEndTime}
                             </p>
@@ -274,7 +274,7 @@
                             <button className="collect">
                               <img src="../images/heart-no.svg" alt="收藏" />
                             </button>
-                          </header>
+                          </div>
                           <div className="areaInfo">
                             <h3>{postCity}</h3>
                             <h3>{postArea}</h3>
@@ -330,9 +330,9 @@
                           <a className="btn-close popup__close" href="#">
                             關閉
                           </a>
-                          <button className="button" id="apply">
+                          <a class="button" href="#noticeApplyPopup">
                             確認報名
-                          </button>
+                          </a>
                         </div>
                       </div>
                     </div>
@@ -533,7 +533,7 @@
                         </button>
                       </div>
                       <a href="./react_postsArea.html">
-                        <button className="btn-send">送出</button>
+                        <button type="submit" className="btn-send">送出</button>
                       </a>
                     </div>
                   </div>
@@ -638,6 +638,20 @@
                   <p>Copyright© 2024 PlayBallNow. All Right Reserved. </p>
                 </div>
               </footer>
+              {/*燈箱效果-報名審核中通知 */}
+              <div class="popup" id="noticeApplyPopup">
+                <div class="popup-inner">
+                  <div class="popup__content">
+                    {/* 報名審核中通知元件 */}
+                    <div class="notice-apply">
+                      <p>已送出報名，團主審核中</p>
+                      <a class="popup__close" href="#">
+                        <img src="../images/cancel.png" alt="關閉按鈕" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           );
         };
