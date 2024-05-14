@@ -23,13 +23,13 @@
       #body {
         padding: 5vw;
       }
-      #root{
+      #root {
         position: static;
       }
-      .warp{
+      .warp {
         margin-top: 50px;
       }
-      .body{
+      .body {
         z-index: auto;
       }
     </style>
@@ -362,7 +362,6 @@
 
                       <button
                         id="btn-formVB"
-                    
                         className={
                           selectedButton === "btn-typeVb" ? "selected" : ""
                         }
@@ -493,9 +492,7 @@
                   href={`ApplyPopUp-${post_data.id}`}
                   host={post_data.host}
                 /> */}
-                
               </main>
-              
             </div>
           );
         };
@@ -503,7 +500,6 @@
       })();
     </script>
     <div class="warp">
-      
       <!-- 簡略貼文元件 -->
       <div class="simplePostInfo">
         <div class="main-info">
@@ -551,9 +547,9 @@
           <a class="button" href="#applyPopup">報名</a>
         </div>
       </div>
-  
+
       <br />
-  
+
       <!-- 臨打報名元件 -->
       <div class="detailPostInfo">
         <div class="simplePostInfo">
@@ -598,7 +594,7 @@
               <p>請提早10分鐘到場換裝熱身</p>
             </div>
           </div>
-  
+
           <div class="apply-info">
             <hr />
             <img src="../images/player-border.png" alt="團主頭貼" />
@@ -608,116 +604,54 @@
               <input type="text" placeholder="輸入對團主的話..." />
             </div>
           </div>
-  
+
           <div class="BtnContainer">
             <button class="btn-close popup__close">關閉</button>
-            <button class="button" id="apply">確認報名</button>
+            <a class="button" href="#noticeApplyPopup">確認報名</a>
           </div>
         </div>
       </div>
-            <!-- 燈箱效果 -->
-            <div class="popup" id="applyPopup">
-              <div class="popup-inner">
-                <div class="popup__content">
-                  <div class="detailPostInfo">
-                    <div class="simplePostInfo">
-                      <div class="main-info">
-                        <header>
-                          <p>5/24 18:00~20:00</p>
-                          <div class="type-style">羽球</div>
-                          <button class="collect">
-                            <img src="../images/heart-no.svg" alt="收藏" />
-                          </button>
-                        </header>
-                        <div class="areaInfo">
-                          <h3>台北市</h3>
-                          <h3>中山區</h3>
-                          <h3>中山運動中心</h3>
-                        </div>
-                        <div class="tag-style">
-                          <p>初階</p>
-                          <p>$150</p>
-                        </div>
-                      </div>
-                      <div class="sub-info">
-                        <div class="vacancyInfo">
-                          <h4>缺額</h4>
-                          <div>女</div>
-                          <p>0 位</p>
-                          <div>男</div>
-                          <p>3 位</p>
-                          <div>不限</div>
-                          <p>2 位</p>
-                        </div>
-                        <div class="ballInfo">
-                          <h4>類型</h4>
-                          <p>雙打</p>
-                        </div>
-                        <div class="equipInfo">
-                          <h4>設備</h4>
-                          <p>冷氣</p>
-                        </div>
-                        <div class="noteInfo">
-                          <h4>備註</h4>
-                          <p>請提早10分鐘到場換裝熱身</p>
-                        </div>
-                      </div>
-        
-                      <div class="apply-info">
-                        <hr />
-                        <img src="../images/player-border.png" alt="團主頭貼" />
-                        <p>團主<span>Joson</span></p>
-                        <div>
-                          <p>報名備註</p>
-                          <input type="text" placeholder="輸入對團主的話..." />
-                        </div>
-                      </div>
-        
-                      <div class="BtnContainer">
-                        <a class="btn-close popup__close" href="#">關閉</a>
-                        <button class="button" id="apply">確認報名</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+
       <br />
-  
+
       <!-- 報名審核中通知元件 -->
       <div class="notice-apply">
         <p>已送出報名，團主審核中</p>
         <div></div>
-        <img src="../images/cancel.png" alt="" />
+        <a class="popup__close" href="#"
+          ><img src="../images/cancel.png" alt="關閉按鈕"
+        /></a>
       </div>
-  
+
       <br />
-  
+
       <!-- 報名審核中通知元件 -->
       <div class="notice-register">
         <p>註冊成功</p>
         <img src="../images/cancel.png" alt="" />
       </div>
-  
+
       <br />
 
       <!-- 團主審核報名元件 -->
       <div class="audit-apply">
         <div class="topBtn-container">
-          <a href="#"><img src="../images/waring.png" alt=""></a>
-          <a class="popup__close" href="#"><img src="../images/cancel.png" alt=""></a>
+          <a href="#"><img src="../images/waring.png" alt="" /></a>
+          <a class="popup__close" href="#"
+            ><img src="../images/cancel.png" alt=""
+          /></a>
         </div>
         <div class="audit-info">
           <div class="info-selfState">
-              <div class="selfState-userInfo" >
-                  <img class="applicantImg" src="../images/player.png" alt="">
-                  <div class="attendance">
-                    <p class = "text-M">85%</p>
-                    <img src="../images/EllipseBar_vb.png" alt=""/>
-                    </div>
-                  <p class ="userInfo">中上</p>
-                  </div>
-            <div class ="selfState-title">
+            <div class="selfState-userInfo">
+              <img class="applicantImg" src="../images/player.png" alt="" />
+              <div class="attendance">
+                <p class="text-M">85%</p>
+                <img src="../images/EllipseBar_vb.png" alt="" />
+              </div>
+              <p class="userInfo">中上</p>
+            </div>
+            <div class="selfState-title">
               <p>Roy</p>
               <p>出席率</p>
               <p>自評等級</p>
@@ -727,28 +661,25 @@
             <h5>備註（僅限自己可看）：</h5>
             <p>這個人很愛放鴿子</p>
           </div>
-            <div class="notice-container">
-              <div
-                class="notice-ballType"
-              >
-                <p>排</p>
+          <div class="notice-container">
+            <div class="notice-ballType">
+              <p>排</p>
+            </div>
+            <div class="notice-info">
+              <div>
+                <p>06/28 18:00</p>
               </div>
-              <div class="notice-info">
-                <div>
-                  <p>06/28 18:00</p> 
-                </div>
-                <p>中山運動中心</p>
-                <div class="audit-state">
-                  <p>1/10</p>
-                </div>
+              <p>中山運動中心</p>
+              <div class="audit-state">
+                <p>1/10</p>
               </div>
             </div>
+          </div>
           <div class="info-applicantNote">
             <h5>報名備註：</h5>
             <p>下班若塞車可能會晚到15分鐘</p>
-          
           </div>
-          <div class="bottomBtn-container" style="display: none;">
+          <div class="bottomBtn-container" style="display: none">
             <a href="#" class="button btn-no">婉拒</a>
             <a href="#" class="button btn-yes">同意</a>
           </div>
@@ -756,7 +687,6 @@
             <p>同意申請</p>
           </div>
         </div>
-        
       </div>
 
       <br />
@@ -764,20 +694,22 @@
       <!-- 團主審核候補元件 -->
       <div class="audit-apply">
         <div class="topBtn-container">
-          <a href="#"><img src="../images/waring.png" alt=""></a>
-          <a class="popup__close" href="#"><img src="../images/cancel.png" alt=""></a>
+          <a href="#"><img src="../images/waring.png" alt="" /></a>
+          <a class="popup__close" href="#"
+            ><img src="../images/cancel.png" alt=""
+          /></a>
         </div>
         <div class="audit-info">
           <div class="info-selfState">
-              <div class="selfState-userInfo" >
-                  <img class="applicantImg" src="../images/player.png" alt="">
-                  <div class="attendance">
-                    <p class = "text-M">85%</p>
-                    <img src="../images/EllipseBar_vb.png" alt=""/>
-                    </div>
-                  <p class ="userInfo">中上</p>
-                  </div>
-            <div class ="selfState-title">
+            <div class="selfState-userInfo">
+              <img class="applicantImg" src="../images/player.png" alt="" />
+              <div class="attendance">
+                <p class="text-M">85%</p>
+                <img src="../images/EllipseBar_vb.png" alt="" />
+              </div>
+              <p class="userInfo">中上</p>
+            </div>
+            <div class="selfState-title">
               <p>Roy</p>
               <p>出席率</p>
               <p>自評等級</p>
@@ -787,26 +719,23 @@
             <h5>備註（僅限自己可看）：</h5>
             <p>這個人很愛放鴿子</p>
           </div>
-            <div class="notice-container">
-              <div
-                class="notice-ballType"
-              >
-                <p>排</p>
+          <div class="notice-container">
+            <div class="notice-ballType">
+              <p>排</p>
+            </div>
+            <div class="notice-info">
+              <div>
+                <p>06/28 18:00</p>
               </div>
-              <div class="notice-info">
-                <div>
-                  <p>06/28 18:00</p> 
-                </div>
-                <p>中山運動中心</p>
-                <div class="audit-state">
-                  <p>10/10</p>
-                </div>
+              <p>中山運動中心</p>
+              <div class="audit-state">
+                <p>10/10</p>
               </div>
             </div>
+          </div>
           <div class="info-applicantNote">
             <h5>報名備註：</h5>
             <p>下班若塞車可能會晚到15分鐘</p>
-          
           </div>
           <div class="bottomBtn-container">
             <a href="#" class="button btn-no">婉拒</a>
@@ -816,7 +745,6 @@
             <p>候補一</p>
           </div>
         </div>
-        
       </div>
 
       <br />
@@ -824,68 +752,151 @@
       <!-- 團主審核取消元件 -->
       <div class="audit-apply">
         <div class="topBtn-container">
-          <a href="#"><img src="../images/waring.png" alt=""></a>
-          <a class="popup__close" href="#"><img src="../images/cancel.png" alt=""></a>
+          <a href="#"><img src="../images/waring.png" alt="" /></a>
+          <a class="popup__close" href="#"
+            ><img src="../images/cancel.png" alt=""
+          /></a>
         </div>
         <div class="audit-info">
           <div class="info-selfState">
-              <div class="selfState-userInfo" >
-                  <div class="applicantInfo">
-                    <img class="applicantImg" src="../images/player.png" alt="">
-                    <p>Roy</p>
-                  </div>
-                  <div class="reason-cancel">
-                    <h5>取消原因:</h5>
-                    <p>手受傷</p>
-                    </div>
-                  
-                  </div>
-                  <div class ="selfState-title"><h4>取消場次 : </h4></div>
-          </div>
-          
-            <div class="notice-container">
-              <div
-                class="notice-ballType"
-              >
-                <p>排</p>
+            <div class="selfState-userInfo">
+              <div class="applicantInfo">
+                <img class="applicantImg" src="../images/player.png" alt="" />
+                <p>Roy</p>
               </div>
-              <div class="notice-info">
-                <div>
-                  <p>06/28 18:00</p> 
-                </div>
-                <p>中山運動中心</p>
-                <div class="audit-state">
-                  <p>10/10</p>
-                </div>
+              <div class="reason-cancel">
+                <h5>取消原因:</h5>
+                <p>手受傷</p>
               </div>
             </div>
+            <div class="selfState-title"><h4>取消場次 :</h4></div>
+          </div>
+
+          <div class="notice-container">
+            <div class="notice-ballType">
+              <p>排</p>
+            </div>
+            <div class="notice-info">
+              <div>
+                <p>06/28 18:00</p>
+              </div>
+              <p>中山運動中心</p>
+              <div class="audit-state">
+                <p>10/10</p>
+              </div>
+            </div>
+          </div>
 
           <div class="bottomBtn-container">
             <a href="#" class="button btn-no">婉拒</a>
             <a href="#" class="button btn-yes">同意取消</a>
           </div>
         </div>
-        
       </div>
 
       <br />
-      
+
       <!-- 取消行程元件 -->
-  
 
       <br />
 
       <!-- 確定取消元件 -->
-  
 
       <br />
 
       <!-- 團主審核取消元件 -->
-  
 
       <br />
 
->
+      <!-- 燈箱效果 -->
+      <div class="popup" id="">
+        <div class="popup-inner">
+          <div class="popup__content"></div>
+        </div>
+      </div>
+
+      <!-- 燈箱效果-報名 -->
+      <div class="popup" id="applyPopup">
+        <div class="popup-inner">
+          <div class="popup__content">
+            <div class="detailPostInfo">
+              <div class="simplePostInfo">
+                <div class="main-info">
+                  <header>
+                    <p>5/24 18:00~20:00</p>
+                    <div class="type-style">羽球</div>
+                    <button class="collect">
+                      <img src="../images/heart-no.svg" alt="收藏" />
+                    </button>
+                  </header>
+                  <div class="areaInfo">
+                    <h3>台北市</h3>
+                    <h3>中山區</h3>
+                    <h3>中山運動中心</h3>
+                  </div>
+                  <div class="tag-style">
+                    <p>初階</p>
+                    <p>$150</p>
+                  </div>
+                </div>
+                <div class="sub-info">
+                  <div class="vacancyInfo">
+                    <h4>缺額</h4>
+                    <div>女</div>
+                    <p>0 位</p>
+                    <div>男</div>
+                    <p>3 位</p>
+                    <div>不限</div>
+                    <p>2 位</p>
+                  </div>
+                  <div class="ballInfo">
+                    <h4>類型</h4>
+                    <p>雙打</p>
+                  </div>
+                  <div class="equipInfo">
+                    <h4>設備</h4>
+                    <p>冷氣</p>
+                  </div>
+                  <div class="noteInfo">
+                    <h4>備註</h4>
+                    <p>請提早10分鐘到場換裝熱身</p>
+                  </div>
+                </div>
+
+                <div class="apply-info">
+                  <hr />
+                  <img src="../images/player-border.png" alt="團主頭貼" />
+                  <p>團主<span>Joson</span></p>
+                  <div>
+                    <p>報名備註</p>
+                    <input type="text" placeholder="輸入對團主的話..." />
+                  </div>
+                </div>
+
+                <div class="BtnContainer">
+                  <a class="btn-close popup__close" href="#">關閉</a>
+                  <a class="button" href="#noticeApplyPopup">確認報名</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 燈箱效果-報名審核中通知 -->
+      <div class="popup" id="noticeApplyPopup">
+        <div class="popup-inner">
+          <div class="popup__content">
+            <!-- 報名審核中通知元件 -->
+            <div class="notice-apply">
+              <p>已送出報名，團主審核中</p>
+              <a class="popup__close" href="#"
+                ><img src="../images/cancel.png" alt="關閉按鈕"
+              /></a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>
