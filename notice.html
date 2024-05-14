@@ -33,19 +33,18 @@
         const { future_appl_userData } = userData[4];
 
         const { useState, useEffect, useRef } = React;
-        
 
-        const Notify = ({ day, startTime, type, arena, state,identity }) => {
-
+        const Notify = ({ day, startTime, type, arena, state, identity,id }) => {
           const [typeStyle, setTypeStyle] = useState("");
           const [typeFontStyle, setTypeFontStyle] = useState("");
-          const[stateStyle,setStateStyle]=useState("");
-          const[identityStyle,setIdentityStyle]=useState("");
+          const [stateStyle, setStateStyle] = useState("");
+          const [identityStyle, setIdentityStyle] = useState("");
+          const [popupHref, setPopupHref] = useState("");
           useEffect(() => {
             // 羽or排顏色
             let typeStyle = "";
             let typeFontStyle = "";
-            let stateColor ="";
+            let stateColor = "";
             if (type === "羽") {
               typeStyle = "rgba(131, 185, 15, 0.9)";
               typeFontStyle = "#689607";
@@ -67,7 +66,7 @@
             // 狀態顏色
             switch (state) {
               case "報名成功":
-                  return setStateStyle("#1A8D07");
+                return setStateStyle("#1A8D07");
               case "報名失敗":
                 return setStateStyle("#777777");
               case "候補中":
@@ -80,50 +79,149 @@
                 return setStateStyle("#FF4F03");
               case "取消ing":
                 return setStateStyle("#FF4F03");
-            
+
               default:
                 break;
             }
             // 身分樣式
             let borderStyle = "";
+            let newHref = "";
             document.getElementsByClassName("notice-container");
             if (identity === "團主") {
               borderStyle = "3px dashed black";
-             
+              newHref = "auditApplyPopup";
             } else if (identity === "臨打") {
               borderStyle = "3px solid black";
+              newHref = "itineraryPopup";
             }
             setIdentityStyle(borderStyle);
             document.documentElement.style.setProperty(
-              "--border-type",borderStyle);
-
-          }, [type,state,identity]);
+              "--border-type",
+              borderStyle
+            );
+            setPopupHref(newHref);
+          }, [type, state, identity]);
 
           return (
-            // <div className={"notice-container" +(identityStyle === "3px dashed black" ? "custom-dashed-border" :"")} style={{ color: typeFontStyle, border:identityStyle }}>
-              <div className={"notice-container"} style={{ color: typeFontStyle, border:identityStyle }}>
+            <>
+            
+            <a href={`#${popupHref}-${id}`}>
               <div
-                className="notice-ballType"
-                style={{ backgroundColor: typeStyle }}
+                className={"notice-container"}
+                style={{ color: typeFontStyle, border: identityStyle }}
               >
-                <p>{type}</p>
-              </div>
-              <div className="notice-info">
-                <div>
-                  <p>{day} {startTime}</p>
+                <div
+                  className="notice-ballType"
+                  style={{ backgroundColor: typeStyle }}
+                >
+                  <p>{type}</p>
                 </div>
-                <p>{arena}</p>
-                <div style={{ color: stateStyle ,border:"1px solid" ,stateStyle }}>
-                  <p>{state}</p>
+                <div className="notice-info">
+                  <div>
+                    <p>
+                      {day} {startTime}
+                    </p>
+                  </div>
+                  <p>{arena}</p>
+                  <div
+                    style={{
+                      color: stateStyle,
+                      border: "1px solid",
+                      stateStyle,
+                    }}
+                  >
+                    <p>{state}</p>
+                  </div>
                 </div>
               </div>
-            </div>
+            </a>
+            <AuditApplyCard day={day} startTime={startTime} type={type} arena ={arena} state={state} id={id} popUp = {popupHref}/>
+            </>
           );
         };
-
+        const AuditApplyCard =({day, startTime, type, arena, state,id,popUp})=>{
+          return(
+            /* 燈箱效果-=團主審核報名元件 */
+            <div className="popup" id={`${popUp}-${id}`}>
+                <div className="popup-inner">
+                  <div className="popup__content">
+                    {/* 團主審核報名元件 */}
+                    <div className="audit-apply">
+                      <div className="topBtn-container">
+                        <a href="#">
+                          <img src="../images/waring.png" alt="" />
+                        </a>
+                        <a className="popup__close" href="#">
+                          <img src="../images/cancel.png" alt="" />
+                        </a>
+                      </div>
+                      <div className="audit-info">
+                        <div className="info-selfState">
+                          <div className="selfState-userInfo">
+                            <img
+                              className="applicantImg"
+                              src="../images/player.png"
+                              alt=""
+                            />
+                            <div className="attendance">
+                              <p className="text-M">85%</p>
+                              <img src="../images/EllipseBar_vb.png" alt="" />
+                            </div>
+                            <p className="userInfo">中上</p>
+                          </div>
+                          <div className="selfState-title">
+                            <p>Roy</p>
+                            <p>出席率</p>
+                            <p>自評等級</p>
+                          </div>
+                        </div>
+                        <div className="info-remark">
+                          <h5>備註（僅限自己可看）：</h5>
+                          <p>這個人很愛放鴿子</p>
+                        </div>
+                        <div className="notice-container">
+                          <div className="notice-ballType">
+                            <p>{type}</p>
+                          </div>
+                          <div className="notice-info">
+                            <div>
+                              <p>{day} {startTime}</p>
+                            </div>
+                            <p>{arena}</p>
+                            <div className="audit-state">
+                              <p>{state}</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="info-applicantNote">
+                          <h5>報名備註：</h5>
+                          <p>下班若塞車可能會晚到15分鐘</p>
+                        </div>
+                        <div className="bottomBtn-container" style={{display : 'flex'}}>
+                          <a href="#" className="button btn-no">
+                            婉拒
+                          </a>
+                          <a href="#" className="button btn-yes">
+                            同意
+                          </a>
+                        </div>
+                        <div
+                          className="audit-state audit-yes"
+                          style={{display: "none"}}
+                        >
+                          <p>同意申請</p>
+                        </div>
+                        <div className="audit-state audit-no" style={{display: "none"}}>
+                          <p>已婉拒</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          )
+        }
         const App = () => {
-          
-
           const [selectedButton, setSelectedButton] = useState("btn-itinerary");
           const [noticeType, setNoticeType] = useState("btn-itinerary");
           const itineraryBtn = document.getElementById("btn-itinerary");
@@ -140,11 +238,14 @@
             }
           };
 
-          
-
           return (
             <div className="body">
-              <div className = "mobile-TopBar"><img src="./images/mobile-both-topbanner.png" alt="不分類的手機版banner"/></div>
+              <div className="mobile-TopBar">
+                <img
+                  src="./images/mobile-both-topbanner.png"
+                  alt="不分類的手機版banner"
+                />
+              </div>
               <header id="topBar">
                 <nav id="top-nav">
                   <ul id="menu">
@@ -235,6 +336,7 @@
                           startTime={post_data.startTime}
                           arena={post_data.arena}
                           state={post_data.state}
+                          id={post_data.id}
                         />
                       );
                     })}
@@ -256,6 +358,7 @@
                           startTime={post_data.startTime}
                           arena={post_data.arena}
                           state={post_data.state}
+                          id={post_data.id}
                         />
                       );
                     })}
@@ -277,6 +380,7 @@
                           startTime={post_data.startTime}
                           arena={post_data.arena}
                           state={post_data.state}
+                          id={post_data.id}
                         />
                       );
                     })}
@@ -296,6 +400,7 @@
                   <p>Copyright© 2024 PlayBallNow. All Right Reserved. </p>
                 </div>
               </footer>
+              
             </div>
           );
         };

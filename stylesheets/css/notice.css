@@ -136,7 +136,7 @@ button#btn-pastRecords.selected {
 @media (max-width:640px) {
   .notice-container {
     width: 88vw;
-    min-width: 330px;
+    min-width: 280px;
     max-width: 378px;
     /* 375*0.88vw */
     grid-template-columns: 14% calc(85% - 6px);

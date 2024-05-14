@@ -1137,11 +1137,15 @@ footer {
       }
     }
     .notice-container{
+      width: 80%;
         border: 3px dashed $border-black;
         .notice-ballType{
           p{
             font-size: 28px
           }
+        }
+        .notice-info{
+          
         }
       }
     .info-applicantNote{
