@@ -542,6 +542,9 @@ footer div p {
   align-self: flex-end;
   align-items: center;
 }
+.BtnContainer a {
+  width: fit-content;
+}
 
 .button {
   background-color: var(--btn-color);
@@ -718,7 +721,7 @@ footer div p {
   height: fit-content;
   padding: 20px;
   border-radius: 20px;
-  background: rgba(247, 246, 245, 0.9);
+  background: #ffffff;
   border: 3.5px solid rgb(0, 0, 0);
   box-shadow: 0px 12px 0px 0px #000000;
   display: grid;
@@ -953,7 +956,7 @@ footer div p {
   border: 3px var(--border-type) black;
   padding: 8px 8px 8px 17px;
   color: var(--font-color);
-  background-color: rgba(247, 246, 245, 0.9);
+  background-color: #ffffff;
   /* layout */
   display: grid;
   grid-template-columns: 13% 85%;
@@ -1410,7 +1413,7 @@ footer div p {
   width: 275px;
   height: 56px;
   border-radius: 10px;
-  border: 1px dashed black;
+  border: 1px solid black;
   background-color: #ffffff;
   /* layout */
   padding: 8px;
@@ -2590,7 +2593,7 @@ button#btn-pastRecords.selected {
     justify-items: center;
   }
 }
-.notice-itineraryArea a {
+.notice-itineraryArea .container-component {
   width: 100%;
 }
 

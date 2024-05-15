@@ -26,7 +26,8 @@
         const data = await axios.get("./userData.json");
         const { userData } = data.data;
         console.log(userData);
-        const { past_appl_userData } = userData[0];
+        const { past_ALL_userData } = userData[0];
+        const { past_appl_userData } = userData[5];
         const { future_All_userData } = userData[1];
         const { future_cancel_userData } = userData[2];
         const { future_host_userData } = userData[3];
@@ -51,9 +52,31 @@
           const [typeStyle, setTypeStyle] = useState("");
           const [typeFontStyle, setTypeFontStyle] = useState("");
           const [stateStyle, setStateStyle] = useState("");
-          const [identityStyle, setIdentityStyle] = useState("");
+          const [identityStyle, setIdentityStyle] = useState("3px solid black");
           const [popupHref, setPopupHref] = useState("");
           useEffect(() => {
+            // 保存最新的 identity 值
+            const currentIdentity = identity;
+             // 身分樣式
+             console.log("身分: " + currentIdentity);
+            let borderStyle = "";
+            let newHref = "";
+
+            if (identity === "團主") {
+              borderStyle = "3px dashed black";
+              newHref = "auditApplyPopup";
+            } else if (identity === "臨打") {
+              borderStyle = "3px solid black";
+              newHref = "itineraryPopup";
+            }
+            setIdentityStyle(borderStyle);
+            document.documentElement.style.setProperty(
+              "--border-type",
+              borderStyle
+            );
+            console.log(newHref);
+            setPopupHref(newHref);
+            console.log(popupHref);
             // 羽or排顏色
             let typeStyle = "";
             let typeFontStyle = "";
@@ -96,28 +119,13 @@
               default:
                 break;
             }
-            // 身分樣式
-            let borderStyle = "";
-            let newHref = "";
+           
             document.getElementsByClassName("notice-container");
-            if (identity === "團主") {
-              borderStyle = "3px dashed black";
-              newHref = "auditApplyPopup";
-            } else if (identity === "臨打") {
-              borderStyle = "3px solid black";
-              newHref = "itineraryPopup";
-            }
-            setIdentityStyle(borderStyle);
-            document.documentElement.style.setProperty(
-              "--border-type",
-              borderStyle
-            );
-            setPopupHref(newHref);
-          }, [type, state, identity]);
+          }, [type, state, identity,popupHref]);
 
           return (
             <>
-              <a href={`#${popupHref}-${id}`}>
+              <a className="container-component" href={`#${popupHref}-${id}`}>
                 <div
                   className={"notice-container"}
                   style={{ color: typeFontStyle, border: identityStyle }}
@@ -163,6 +171,22 @@
                 typeStyle={typeStyle}
                 typeFontStyle={typeFontStyle}
               />
+              <CancelCard
+                day={day}
+                startTime={startTime}
+                endTime={endTime}
+                type={type}
+                city={city}
+                area={area}
+                arena={arena}
+                tagDegree={tagDegree}
+                tagPrice={tagPrice}
+                state={state}
+                id={id}
+                popUp={popupHref}
+                typeStyle={typeStyle}
+                typeFontStyle={typeFontStyle}
+              />
             </>
           );
         };
@@ -185,7 +209,7 @@
         }) => {
           return (
             <>
-              <div className="popup" id={`${popUp}-${id}`}>
+              <div className="popup" id={`auditApplyPopup-${id}`}>
                 <div className="popup-inner">
                   <div className="popup__content">
                     <div className="detailItinerary">
@@ -437,6 +461,98 @@
           );
         };
 
+        const CancelCard = ({
+          day,
+          startTime,
+          endTime,
+          type,
+          city,
+          area,
+          arena,
+          tagDegree,
+          tagPrice,
+          state,
+          identity,
+          id,
+          popUp,
+          typeStyle,
+          typeFontStyle,
+        }) => {
+          return (
+            <>
+              <div className="popup" id={`itineraryPopup-${id}`}>
+                <div className="popup-inner">
+                  <div className="popup__content">
+                    <div className="simplePostInfo">
+                      <div className="main-info">
+                        <div
+                          className="header"
+                          style={{ color: typeFontStyle }}
+                        >
+                          <p>
+                            {day} {startTime}~{endTime}
+                          </p>
+                          <div
+                            className="type-style"
+                            style={{ backgroundColor: typeStyle }}
+                          >
+                            {type}球
+                          </div>
+                          <a className="popup__close" href="#">
+                            <img src="../images/cancel.png" alt="" />
+                          </a>
+                        </div>
+                        <div
+                          className="areaInfo"
+                          style={{ color: typeFontStyle }}
+                        >
+                          <h3>{city}</h3>
+                          <h3>{area}</h3>
+                          <h3>{arena}</h3>
+                        </div>
+                        <div className="tag-style">
+                          <p style={{ color: typeFontStyle }}>{tagDegree}</p>
+                          <p style={{ color: typeFontStyle }}>${tagPrice}</p>
+                        </div>
+                      </div>
+                      <div className="sub-info">
+                        <div className="vacancyInfo">
+                          <h4>缺額</h4>
+                          <div>女</div>
+                          <p>0 位</p>
+                          <div>男</div>
+                          <p>3 位</p>
+                          <div>不限</div>
+                          <p>2 位</p>
+                        </div>
+                        <div className="ballInfo">
+                          <h4>類型</h4>
+                          <p>雙打</p>
+                        </div>
+                        <div className="equipInfo">
+                          <h4>設備</h4>
+                          <p>冷氣</p>
+                        </div>
+                        <div className="noteInfo">
+                          <h4>備註</h4>
+                          <p>請提早10分鐘到場換裝熱身</p>
+                        </div>
+                      </div>
+                      <div className="BtnContainer">
+                        <a className="popup__close btn-close" href="#">
+                          關閉
+                        </a>
+                        <a href="#confirmCancel" className="button btn-no">
+                          取消行程
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </>
+          );
+        };
         const App = () => {
           const [selectedButton, setSelectedButton] = useState("btn-itinerary");
           const [noticeType, setNoticeType] = useState("btn-itinerary");
@@ -598,7 +714,7 @@
                   }}
                 >
                   <section className="notice-itineraryArea">
-                    {past_appl_userData.map((post_data) => {
+                    {past_ALL_userData.map((post_data) => {
                       return (
                         <Notify
                           key={post_data.id}

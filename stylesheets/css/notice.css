@@ -115,6 +115,6 @@ button#btn-pastRecords.selected {
     justify-items: center;
   }
 }
-.notice-itineraryArea a {
+.notice-itineraryArea .container-component {
   width: 100%;
 }/*# sourceMappingURL=notice.css.map */
