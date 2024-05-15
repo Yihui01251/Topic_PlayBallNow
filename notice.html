@@ -33,7 +33,7 @@
         const { future_host_userData } = userData[3];
         const { future_appl_userData } = userData[4];
 
-        const { useState, useEffect, useRef } = React;
+        const { useState, useEffect, useRef, useMemo } = React;
 
         const Notify = ({
           name,
@@ -67,8 +67,6 @@
           const [identityStyle, setIdentityStyle] = useState("3px solid black");
           /* 呼叫燈箱元件連結 */
           const [popupHref, setPopupHref] = useState("");
-          /*  */
-          const [callComponent, setCallComponent] = useState("");
           /* 顯示報名列 */
           const [showApplicants, setShowApplicants] = useState("");
           /* 顯示取消列 */
@@ -77,20 +75,18 @@
             // 保存最新的 identity 值
             const currentIdentity = identity;
             // 身分樣式
-            console.log("身分: " + currentIdentity);
+            // console.log("身分: " + currentIdentity);
             let borderStyle = "";
             let newHref = "";
 
             if (identity === "團主") {
               borderStyle = "3px dashed black";
               newHref = "auditApplyPopup";
-              setCallComponent("DetailPost");
               setShowApplicants("flex");
               setShowCancel("none");
             } else if (identity === "臨打") {
               borderStyle = "3px solid black";
               newHref = "itineraryPopup";
-              setCallComponent("Cancel");
               setShowApplicants("none");
               setShowCancel("flex");
             }
@@ -100,7 +96,7 @@
               borderStyle
             );
             setPopupHref("auditApplyPopup");
-            console.log("目前連結" + popupHref);
+            // console.log("目前連結" + popupHref);
             // 羽or排顏色
             let typeStyle = "";
             let typeFontStyle = "";
@@ -261,7 +257,7 @@
                             style={{ color: typeFontStyle }}
                           >
                             <h3>{city}</h3>
-                            <h3>{area}</h3>                 
+                            <h3>{area}</h3>
                           </div>
                           <div
                             className="arenaInfo"
@@ -270,8 +266,22 @@
                             <h3>{arena}</h3>
                           </div>
                           <div className="tag-style">
-                            <p style={{ color: typeFontStyle,borderColor:typeFontStyle }}>{tagDegree}</p>
-                            <p style={{ color: typeFontStyle ,borderColor:typeFontStyle}}>${tagPrice}</p>
+                            <p
+                              style={{
+                                color: typeFontStyle,
+                                borderColor: typeFontStyle,
+                              }}
+                            >
+                              {tagDegree}
+                            </p>
+                            <p
+                              style={{
+                                color: typeFontStyle,
+                                borderColor: typeFontStyle,
+                              }}
+                            >
+                              ${tagPrice}
+                            </p>
                           </div>
                         </div>
                         <div className="sub-info">
@@ -296,9 +306,7 @@
                           </div>
                           <div className="noteInfo">
                             <h4>備註</h4>
-                            <p style={{ color: typeFontStyle }}>
-                              {note}
-                            </p>
+                            <p style={{ color: typeFontStyle }}>{note}</p>
                           </div>
                         </div>
 
@@ -755,6 +763,8 @@
           const [noticeType, setNoticeType] = useState("btn-itinerary");
           const itineraryBtn = document.getElementById("btn-itinerary");
           const pastRecordsBtn = document.getElementById("btn-pastRecords");
+          /* 改變map的資料 */
+          const [callData, setCallData] = useState(future_All_userData);
 
           const changeNotifyType = (id) => {
             let newType = "";
@@ -766,6 +776,13 @@
               newType = "pastRecords";
             }
           };
+          // console.log(future_host_userData);
+          // const changeData = () => {
+          //   return(
+          //     setCallData(future_host_userData)
+          //   )
+           
+          // }
 
           return (
             <div className="body">
@@ -849,13 +866,13 @@
                         預定行程
                       </h2>
                     </div>
-                    <button className="btn-sponsor">
+                    <button className="btn-sponsor button" onClick={()=>{setCallData(future_host_userData)}}>
                       <img src="./images/icon-sponsor.png" alt="" />
                       主辦
                     </button>
                   </div>
-                  <section className="notice-itineraryArea">
-                    {future_All_userData.map((post_data) => {
+                  <section className="notice-itineraryArea" >
+                    {callData.map((post_data) => {
                       return (
                         <Notify
                           name={"所有未來行程貼文"}
@@ -882,6 +899,7 @@
                       );
                     })}
                   </section>
+                 
                   <div className="notice-itineraryTitle">
                     <div className="hugTitle">
                       <h2 className="text-L" value="取消行程">

@@ -2548,10 +2548,11 @@ button#btn-pastRecords.selected {
 /* 副標容器 */
 .notice-itineraryTitle {
   width: 60vw;
+  height: 50px;
   margin-left: 15vw;
   /* layout */
   display: grid;
-  grid-template-columns: 100px 80px;
+  grid-template-columns: 100px 90px;
   gap: 15px;
   align-content: center;
   justify-content: start;
