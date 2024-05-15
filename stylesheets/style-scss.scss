@@ -1022,7 +1022,10 @@ footer {
 
   color: var(--evaluate-color);
 }
-
+/* 確定取消狀態 */
+.audit-cancel{
+  justify-self: flex-end;
+}
 .notice-pastRecordsArea {
   display: none;
 }
@@ -1405,7 +1408,7 @@ footer {
     }
   }
   .bottomBtn-container{/* 接受+拒絕按鈕容器 */
-    width: 60%;
+    width: 70%;
     height: 35px;
     /*  */
     display: flex;

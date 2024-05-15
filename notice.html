@@ -49,25 +49,42 @@
           identity,
           id,
         }) => {
+          /* 主色 */
           const [typeStyle, setTypeStyle] = useState("");
+          /* 文字色 */
           const [typeFontStyle, setTypeFontStyle] = useState("");
+          /* 狀態色 */
           const [stateStyle, setStateStyle] = useState("");
+          /* 邊框樣式 */
           const [identityStyle, setIdentityStyle] = useState("3px solid black");
+          /* 呼叫燈箱元件連結 */
           const [popupHref, setPopupHref] = useState("");
+          /*  */
+          const [callComponent, setCallComponent] = useState("");
+          /* 顯示報名列 */
+          const [showApplicants, setShowApplicants] = useState("");
+          /* 顯示取消列 */
+          const [showCancel, setShowCancel] = useState("");
           useEffect(() => {
             // 保存最新的 identity 值
             const currentIdentity = identity;
-             // 身分樣式
-             console.log("身分: " + currentIdentity);
+            // 身分樣式
+            console.log("身分: " + currentIdentity);
             let borderStyle = "";
             let newHref = "";
 
             if (identity === "團主") {
               borderStyle = "3px dashed black";
               newHref = "auditApplyPopup";
+              setCallComponent("DetailPost");
+              setShowApplicants("flex");
+              setShowCancel("none");
             } else if (identity === "臨打") {
               borderStyle = "3px solid black";
               newHref = "itineraryPopup";
+              setCallComponent("Cancel");
+              setShowApplicants("none");
+              setShowCancel("flex");
             }
             setIdentityStyle(borderStyle);
             document.documentElement.style.setProperty(
@@ -75,7 +92,7 @@
               borderStyle
             );
             console.log(newHref);
-            setPopupHref(newHref);
+            setPopupHref("auditApplyPopup");
             console.log(popupHref);
             // 羽or排顏色
             let typeStyle = "";
@@ -119,9 +136,9 @@
               default:
                 break;
             }
-           
+
             document.getElementsByClassName("notice-container");
-          }, [type, state, identity,popupHref]);
+          }, [type, state, identity, popupHref]);
 
           return (
             <>
@@ -170,22 +187,8 @@
                 popUp={popupHref}
                 typeStyle={typeStyle}
                 typeFontStyle={typeFontStyle}
-              />
-              <CancelCard
-                day={day}
-                startTime={startTime}
-                endTime={endTime}
-                type={type}
-                city={city}
-                area={area}
-                arena={arena}
-                tagDegree={tagDegree}
-                tagPrice={tagPrice}
-                state={state}
-                id={id}
-                popUp={popupHref}
-                typeStyle={typeStyle}
-                typeFontStyle={typeFontStyle}
+                showApplicants={showApplicants}
+                showCancel={showCancel}
               />
             </>
           );
@@ -206,6 +209,8 @@
           popUp,
           typeStyle,
           typeFontStyle,
+          showApplicants,
+          showCancel,
         }) => {
           return (
             <>
@@ -271,7 +276,10 @@
                           </div>
                         </div>
 
-                        <div className="auditList">
+                        <div
+                          className="auditList"
+                          style={{ display: showApplicants }}
+                        >
                           <div className="sponsored-title">
                             <div className="line-hugTitle">
                               <div className="titleLine"></div>
@@ -313,7 +321,10 @@
                           </div>
                         </div>
 
-                        <div className="auditList">
+                        <div
+                          className="auditList"
+                          style={{ display: showApplicants }}
+                        >
                           <div className="sponsored-title">
                             <div className="line-hugTitle">
                               <div className="titleLine"></div>
@@ -321,7 +332,7 @@
                             </div>
                           </div>
                           <div className="applicant-container">
-                            <a href="#auditCancelPopup">
+                            <a href={`#auditCancelPopup-${id}`}>
                               <img
                                 className="img-border"
                                 src="../images/bball.png"
@@ -330,6 +341,20 @@
                               <div className="notice-new">New</div>
                             </a>
                           </div>
+                        </div>
+                        <div
+                          className="BtnContainer"
+                          style={{ display: showCancel }}
+                        >
+                          <a className="popup__close btn-close" href="#">
+                            關閉
+                          </a>
+                          <a
+                            href={`#confirmCancel-${id}`}
+                            className="button btn-no"
+                          >
+                            取消行程
+                          </a>
                         </div>
                       </div>
                     </div>
@@ -344,6 +369,28 @@
                 state={state}
                 id={id}
               />
+              <AuditCancelCard
+                day={day}
+                startTime={startTime}
+                type={type}
+                arena={arena}
+                state={state}
+                id={id}
+              />
+              <CancelCard
+                day={day}
+                startTime={startTime}
+                endTime={endTime}
+                type={type}
+                city={city}
+                area={area}
+                arena={arena}
+                tagDegree={tagDegree}
+                tagPrice={tagPrice}
+                id={id}
+                typeStyle={typeStyle}
+                typeFontStyle={typeFontStyle}
+              />
             </>
           );
         };
@@ -353,6 +400,7 @@
           const [resultDisplay, setResultDisplay] = useState("none");
           const [resultText, setResultText] = useState("");
           const [resultColor, setResultColor] = useState("#1A8D07");
+          /* 審核結果標籤 */
           const auditResult = (type) => {
             let text = "";
 
@@ -440,7 +488,7 @@
                           className="button btn-yes"
                           onClick={() => auditResult("yes")}
                         >
-                          同意
+                          同意取消
                         </button>
                       </div>
                       <div
@@ -460,7 +508,119 @@
             </div>
           );
         };
+        const AuditCancelCard = ({
+          day,
+          startTime,
+          type,
+          arena,
+          state,
+          id,
+        }) => {
+          const [btnDisplay, setBtnDisplay] = useState("flex");
+          const [resultDisplay, setResultDisplay] = useState("none");
+          const [resultText, setResultText] = useState("");
+          const [resultColor, setResultColor] = useState("#1A8D07");
+          /* 審核結果標籤 */
+          const auditResult = (type) => {
+            let text = "";
 
+            setBtnDisplay("none");
+            setResultDisplay("block");
+            if (type === "no") {
+              text = "已婉拒";
+              setResultColor("#FF4F03");
+            } else if (type === "yes") {
+              text = "同意取消";
+            }
+            setResultText(text);
+          };
+
+          return (
+            /* 燈箱效果-=團主審核報名元件 */
+            <div className="popup" id={`auditCancelPopup-${id}`}>
+              <div className="popup-inner">
+                <div className="popup__content">
+                  {/* 團主審核報名元件 */}
+                  <div className="audit-apply">
+                    <div className="topBtn-container">
+                      <a href="#">
+                        <img src="../images/waring.png" alt="" />
+                      </a>
+                      <a className="popup__close" href="#">
+                        <img src="../images/cancel.png" alt="" />
+                      </a>
+                    </div>
+                    <div className="audit-info">
+                      <div class="info-selfState">
+                        <div class="selfState-userInfo">
+                          <div class="applicantInfo">
+                            <img
+                              class="applicantImg"
+                              src="../images/player.png"
+                              alt=""
+                            />
+                            <p>Roy</p>
+                          </div>
+                          <div class="reason-cancel">
+                            <h5>取消原因:</h5>
+                            <p>手受傷</p>
+                          </div>
+                        </div>
+                        <div class="selfState-title">
+                          <h4>取消場次 :</h4>
+                        </div>
+                      </div>
+
+                      <div className="notice-container">
+                        <div className="notice-ballType">
+                          <p>{type}</p>
+                        </div>
+                        <div className="notice-info">
+                          <div>
+                            <p>
+                              {day} {startTime}
+                            </p>
+                          </div>
+                          <p>{arena}</p>
+                          <div className="audit-state">
+                            <p>{state}</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="bottomBtn-container"
+                        style={{ display: btnDisplay }}
+                      >
+                        <button
+                          className="button btn-no"
+                          onClick={() => auditResult("no")}
+                        >
+                          婉拒
+                        </button>
+                        <button
+                          className="button btn-yes"
+                          onClick={() => auditResult("yes")}
+                        >
+                          同意取消
+                        </button>
+                      </div>
+                      <div
+                        className="audit-state audit-yes"
+                        style={{
+                          display: resultDisplay,
+                          color: resultColor,
+                          borderColor: resultColor,
+                        }}
+                      >
+                        <p>{resultText}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        };
         const CancelCard = ({
           day,
           startTime,
@@ -471,16 +631,25 @@
           arena,
           tagDegree,
           tagPrice,
-          state,
           identity,
           id,
-          popUp,
           typeStyle,
           typeFontStyle,
         }) => {
+          const [btnDisplay, setBtnDisplay] = useState("flex");
+          const [resultDisplay, setResultDisplay] = useState("none");
+          const [resultColor, setResultColor] = useState("#1A8D07");
+          /* 取消ing標籤 */
+          const applicantResult = (type) => {
+            setBtnDisplay("none");
+            setResultDisplay("block");
+            if (type === "cancel") {
+              setResultColor("#FF4F03");
+            }
+          };
           return (
             <>
-              <div className="popup" id={`itineraryPopup-${id}`}>
+              <div className="popup" id={`confirmCancel-${id}`}>
                 <div className="popup-inner">
                   <div className="popup__content">
                     <div className="simplePostInfo">
@@ -515,36 +684,33 @@
                           <p style={{ color: typeFontStyle }}>${tagPrice}</p>
                         </div>
                       </div>
-                      <div className="sub-info">
-                        <div className="vacancyInfo">
-                          <h4>缺額</h4>
-                          <div>女</div>
-                          <p>0 位</p>
-                          <div>男</div>
-                          <p>3 位</p>
-                          <div>不限</div>
-                          <p>2 位</p>
-                        </div>
-                        <div className="ballInfo">
-                          <h4>類型</h4>
-                          <p>雙打</p>
-                        </div>
-                        <div className="equipInfo">
-                          <h4>設備</h4>
-                          <p>冷氣</p>
-                        </div>
-                        <div className="noteInfo">
-                          <h4>備註</h4>
-                          <p>請提早10分鐘到場換裝熱身</p>
-                        </div>
+                      <div class="component-writeBlock">
+                        <h5>取消原因：</h5>
+                        <input type="text" placeholder="請輸入取消原因"></input>
                       </div>
-                      <div className="BtnContainer">
+                      <div
+                        className="BtnContainer"
+                        style={{ display: btnDisplay }}
+                      >
                         <a className="popup__close btn-close" href="#">
                           關閉
                         </a>
-                        <a href="#confirmCancel" className="button btn-no">
-                          取消行程
-                        </a>
+                        <button
+                          className="button btn-no"
+                          onClick={() => applicantResult("cancel")}
+                        >
+                          確認取消
+                        </button>
+                      </div>
+                      <div
+                        className="audit-state audit-cancel"
+                        style={{
+                          display: resultDisplay,
+                          color: resultColor,
+                          borderColor: resultColor,
+                        }}
+                      >
+                        <p>取消ing</p>
                       </div>
                     </div>
                   </div>
