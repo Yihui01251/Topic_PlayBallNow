@@ -367,43 +367,7 @@ button#btn-typeVb.selected {
 
 /* 首頁貼文容器tag */
 /* 首頁main > section(containers > ul(tags*/
-.tags {
-  height: 25px;
-  width: 95%;
-  /* 和貼文標題一樣 */
-  margin: 0 auto;
-  /* 水平居中 */
 
-  /*控制子層 */
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  button {
-    /* 臨打貼文tag */
-    /* flex: auto; */
-    height: 23px;
-    width: fit-content;
-    border: 2px solid var(--main-color);
-    border-radius: $border-radius-50;
-    margin: 0px 3px;
-    padding: 4px 10px;
-    background-color: transparent;
-    color: var(--main-color);
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    &:active {
-      background-color: var(--main-color);
-    }
-
-    p {
-      /* text-align: center;
-      padding-bottom: 10px; */
-    }
-  }
-}
 
 /* 首頁main > section(containers > ul.tags > li > #tags-degree*/
 #tags-degree {

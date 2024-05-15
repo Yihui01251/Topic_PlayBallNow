@@ -29,7 +29,7 @@
   </head>
 
   <body>
-    <small class="fileName">檔名：<code>react_postsArea.html</code></small>
+    <small class="fileName">檔名：<code>todayMore-postsArea.html</code></small>
     <!-- 載入axios套件 -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <div id="root"></div>
@@ -205,11 +205,8 @@
                           <div className="areaInfo">
                             <h3>{postCity}</h3>
                             <h3>{postArea}</h3>
-                            
-                          </div>
-                          <div className="arenaInfo">
                             <h3>{postArena}</h3>
-                            </div>
+                          </div>
                           <div className="tag-style">
                             <p>{primaryTag}</p>
                             <p>${secondaryTag}</p>
@@ -332,13 +329,13 @@
                   <a href="#">
                     <div className="filter-info">
                       <div className="info-top">
-                        <p className="title-M">6/24</p>
+                        <p className="title-M">今天</p>
                         <p className="title-M dot">|</p>
-                        <p className="title-M">上午</p>
+                        <p className="title-M">全部</p>
                       </div>
 
                       <div className="info-down">
-                        <p className="text-M">新店區，與其他2個區域</p>
+                        <p className="text-M">未選擇篩選地區</p>
                       </div>
                       <img src="./images/filiter.png" alt="篩選icon" />
                     </div>
@@ -354,31 +351,8 @@
                 {/* 貼文 */}
                 <section className="filter-containers">
                   <div className="filter-postBlock">
-                    {/* // {postData.map((group,index)=>{
-                    //   group.map((post_data)=>{
-                    //     return(<ApplyCard
-                    //       key={post_data.id}
-                    //       id={post_data.id}
-                    //       type={post_data.type}
-                    //       postDate={post_data.date}
-                    //       postStartTime={post_data.startTime}
-                    //       postEndTime={post_data.endTime}
-                    //       postCity={post_data.city}
-                    //       postArea={post_data.area}
-                    //       postArena={post_data.arena}
-                    //       primaryTag={post_data.tagDegree}
-                    //       secondaryTag={post_data.tagPrice}
-                    //       reqCount={post_data.reqCount}
-                    //       role={post_data.role}
-                    //       pos={post_data.pos}
-                    //       note={post_data.note}
-                    //     />
 
-                    //     )
-                    //   })
-                    // })*/}
-
-                    {vb_week_postData.map((post_data) => {
+                    {vb_today_postData.map((post_data) => {
                       return (
                         <SimplePostCard
                           key={post_data.id}
