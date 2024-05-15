@@ -534,11 +534,13 @@ footer div p {
 /* 按鈕樣式 */
 .BtnContainer {
   height: 40px;
+  /* layout */
   display: flex;
   flex-direction: row;
   gap: 10px;
   justify-content: flex-end;
   align-self: flex-end;
+  align-items: center;
 }
 
 .button {
@@ -580,6 +582,7 @@ footer div p {
   box-shadow: none;
 }
 
+/* 關閉按鈕 */
 .btn-close {
   background-color: #D9D9D9;
   width: fit-content;
@@ -604,6 +607,18 @@ footer div p {
   border-right: 1px solid black;
   border-left: 1px solid black;
   box-shadow: none;
+}
+
+/* 接受按鈕 */
+.btn-yes {
+  background-color: var(--main-color);
+  color: rgba(247, 246, 245, 0.9);
+}
+
+/* 婉拒按鈕 */
+.btn-no {
+  background-color: #cb1b1b;
+  color: rgba(247, 246, 245, 0.9);
 }
 
 /* 燈箱效果 */
@@ -1389,13 +1404,24 @@ footer div p {
   gap: 20px;
   padding-bottom: 10px;
 }
-.audit-apply .bottomBtn-container .btn-yes {
-  background-color: var(--main-color);
-  color: rgba(247, 246, 245, 0.9);
+
+/* 元件內輸入框樣式 */
+.component-writeBlock {
+  width: 275px;
+  height: 56px;
+  border-radius: 10px;
+  border: 1px dashed black;
+  background-color: #ffffff;
+  /* layout */
+  padding: 8px;
 }
-.audit-apply .bottomBtn-container .btn-no {
-  background-color: #cb1b1b;
-  color: rgba(247, 246, 245, 0.9);
+.component-writeBlock input {
+  width: 90%;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: none;
+  margin-top: 10px;
 }
 
 /* 紀錄Z-index 

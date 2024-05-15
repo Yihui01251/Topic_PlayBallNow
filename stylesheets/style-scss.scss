@@ -462,11 +462,13 @@ footer {
 //裝按鈕的容器
 .BtnContainer { 
   height: 40px;
+  /* layout */
   display: flex; 
   flex-direction: row;
   gap: 10px;
   justify-content: flex-end;
   align-self: flex-end;
+  align-items: center;
   
 }
 .button {
@@ -508,6 +510,7 @@ footer {
       box-shadow: none;
   } 
 }
+/* 關閉按鈕 */
 .btn-close{
   background-color: $background-color-lightgrey;
   width: fit-content;
@@ -534,7 +537,16 @@ footer {
       box-shadow: none;
   } 
 }
-
+/* 接受按鈕 */ 
+.btn-yes{
+  background-color: var(--main-color);
+  color: $background-color-lightwhite-s;
+}
+/* 婉拒按鈕 */
+.btn-no{
+  background-color: $btn-color-red;
+  color: $background-color-lightwhite-s;
+}
 /* 燈箱效果 */
 .popup {
   width: 100vw;
@@ -1400,17 +1412,27 @@ footer {
     gap: 20px;
     padding-bottom: 10px;
 
-    .btn-yes{
-      background-color: var(--main-color);
-      color: $background-color-lightwhite-s;
-    }
-    .btn-no{
-      background-color: $btn-color-red;
-      color: $background-color-lightwhite-s;
-    }
+    
   }
 }
-
+/* 元件內輸入框樣式 */
+.component-writeBlock{
+  width: 275px;
+  height: 56px;
+  border-radius: $border-radius-10;
+  border: 1px dashed $border-black;
+  background-color: $background-color-white;
+  /* layout */
+  padding: 8px;
+  input{
+    width: 90%;
+    font-size: $font-size-text-m;
+    border: none;
+    border-radius: $border-radius-10;
+    box-shadow: none;
+    margin-top: 10px
+  }
+}
  
 @import "index";
 @import "postArea";
