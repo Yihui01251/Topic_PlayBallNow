@@ -1437,6 +1437,7 @@ footer div p {
   background-color: rgba(247, 246, 245, 0.9);
   box-shadow: none;
   margin-top: 10px;
+  outline: none;
 }
 
 /* 紀錄Z-index 
