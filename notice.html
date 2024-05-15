@@ -36,6 +36,7 @@
         const { useState, useEffect, useRef } = React;
 
         const Notify = ({
+          name,
           day,
           startTime,
           endTime,
@@ -48,7 +49,14 @@
           state,
           identity,
           id,
+          role,
+          female,
+          male,
+          unspecified,
+          equip,
+          note,
         }) => {
+          console.log(name);
           /* 主色 */
           const [typeStyle, setTypeStyle] = useState("");
           /* 文字色 */
@@ -91,9 +99,8 @@
               "--border-type",
               borderStyle
             );
-            console.log(newHref);
             setPopupHref("auditApplyPopup");
-            console.log(popupHref);
+            console.log("目前連結" + popupHref);
             // 羽or排顏色
             let typeStyle = "";
             let typeFontStyle = "";
@@ -184,6 +191,12 @@
                 tagPrice={tagPrice}
                 state={state}
                 id={id}
+                role={role}
+                female={female}
+                male={male}
+                unspecified={unspecified}
+                equip={equip}
+                note={note}
                 popUp={popupHref}
                 typeStyle={typeStyle}
                 typeFontStyle={typeFontStyle}
@@ -206,6 +219,12 @@
           state,
           identity,
           id,
+          role,
+          female,
+          male,
+          unspecified,
+          equip,
+          note,
           popUp,
           typeStyle,
           typeFontStyle,
@@ -242,36 +261,43 @@
                             style={{ color: typeFontStyle }}
                           >
                             <h3>{city}</h3>
-                            <h3>{area}</h3>
+                            <h3>{area}</h3>                 
+                          </div>
+                          <div
+                            className="arenaInfo"
+                            style={{ color: typeFontStyle }}
+                          >
                             <h3>{arena}</h3>
                           </div>
                           <div className="tag-style">
-                            <p style={{ color: typeFontStyle }}>{tagDegree}</p>
-                            <p style={{ color: typeFontStyle }}>${tagPrice}</p>
+                            <p style={{ color: typeFontStyle,borderColor:typeFontStyle }}>{tagDegree}</p>
+                            <p style={{ color: typeFontStyle ,borderColor:typeFontStyle}}>${tagPrice}</p>
                           </div>
                         </div>
                         <div className="sub-info">
                           <div className="vacancyInfo">
                             <h4>缺額</h4>
                             <div>女</div>
-                            <p style={{ color: typeFontStyle }}>0 位</p>
+                            <p style={{ color: typeFontStyle }}>{female}位</p>
                             <div>男</div>
-                            <p style={{ color: typeFontStyle }}>3 位</p>
+                            <p style={{ color: typeFontStyle }}>{male}位</p>
                             <div>不限</div>
-                            <p style={{ color: typeFontStyle }}>2 位</p>
+                            <p style={{ color: typeFontStyle }}>
+                              {unspecified}位
+                            </p>
                           </div>
                           <div className="ballInfo">
                             <h4>類型</h4>
-                            <p style={{ color: typeFontStyle }}>雙打</p>
+                            <p style={{ color: typeFontStyle }}>{role}</p>
                           </div>
                           <div className="equipInfo">
                             <h4>設備</h4>
-                            <p style={{ color: typeFontStyle }}>冷氣</p>
+                            <p style={{ color: typeFontStyle }}>{equip}</p>
                           </div>
                           <div className="noteInfo">
                             <h4>備註</h4>
                             <p style={{ color: typeFontStyle }}>
-                              請提早10分鐘到場換裝熱身
+                              {note}
                             </p>
                           </div>
                         </div>
@@ -551,22 +577,22 @@
                       </a>
                     </div>
                     <div className="audit-info">
-                      <div class="info-selfState">
-                        <div class="selfState-userInfo">
-                          <div class="applicantInfo">
+                      <div className="info-selfState">
+                        <div className="selfState-userInfo">
+                          <div className="applicantInfo">
                             <img
-                              class="applicantImg"
+                              className="applicantImg"
                               src="../images/player.png"
                               alt=""
                             />
                             <p>Roy</p>
                           </div>
-                          <div class="reason-cancel">
+                          <div className="reason-cancel">
                             <h5>取消原因:</h5>
                             <p>手受傷</p>
                           </div>
                         </div>
-                        <div class="selfState-title">
+                        <div className="selfState-title">
                           <h4>取消場次 :</h4>
                         </div>
                       </div>
@@ -677,6 +703,11 @@
                         >
                           <h3>{city}</h3>
                           <h3>{area}</h3>
+                        </div>
+                        <div
+                          className="arenaInfo"
+                          style={{ color: typeFontStyle }}
+                        >
                           <h3>{arena}</h3>
                         </div>
                         <div className="tag-style">
@@ -684,7 +715,7 @@
                           <p style={{ color: typeFontStyle }}>${tagPrice}</p>
                         </div>
                       </div>
-                      <div class="component-writeBlock">
+                      <div className="component-writeBlock">
                         <h5>取消原因：</h5>
                         <input type="text" placeholder="請輸入取消原因"></input>
                       </div>
@@ -827,6 +858,7 @@
                     {future_All_userData.map((post_data) => {
                       return (
                         <Notify
+                          name={"所有未來行程貼文"}
                           key={post_data.id}
                           type={post_data.typeAbbr}
                           identity={post_data.identity}
@@ -840,6 +872,12 @@
                           tagPrice={post_data.tagPrice}
                           state={post_data.state}
                           id={post_data.id}
+                          role={post_data.role}
+                          female={post_data.reqCount[0].count}
+                          male={post_data.reqCount[1].count}
+                          unspecified={post_data.reqCount[2].count}
+                          equip={post_data.equip}
+                          note={post_data.note}
                         />
                       );
                     })}
@@ -855,6 +893,7 @@
                     {future_cancel_userData.map((post_data) => {
                       return (
                         <Notify
+                          name={"所有未來取消貼文"}
                           key={post_data.id}
                           type={post_data.typeAbbr}
                           identity={post_data.identity}
@@ -868,6 +907,12 @@
                           tagPrice={post_data.tagPrice}
                           state={post_data.state}
                           id={post_data.id}
+                          role={post_data.role}
+                          female={post_data.reqCount[0].count}
+                          male={post_data.reqCount[1].count}
+                          unspecified={post_data.reqCount[2].count}
+                          equip={post_data.equip}
+                          note={post_data.note}
                         />
                       );
                     })}
@@ -883,6 +928,7 @@
                     {past_ALL_userData.map((post_data) => {
                       return (
                         <Notify
+                          name={"所有過去貼文"}
                           key={post_data.id}
                           type={post_data.typeAbbr}
                           identity={post_data.identity}
@@ -896,6 +942,12 @@
                           tagPrice={post_data.tagPrice}
                           state={post_data.state}
                           id={post_data.id}
+                          role={post_data.role}
+                          female={post_data.reqCount[0].count}
+                          male={post_data.reqCount[1].count}
+                          unspecified={post_data.reqCount[2].count}
+                          equip={post_data.equip}
+                          note={post_data.note}
                         />
                       );
                     })}

@@ -491,14 +491,25 @@ button#btn-typeVb.selected {
     flex: auto;
     align-self: flex-start;
     position: relative;
+    max-width: 100%;
+    min-height: 30px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
 
-    &::before {
-      /* 增加h3文字外框線 */
-      content: attr(value);
-      position: absolute;
-      -webkit-text-stroke: 4px #000000;
-      z-index: -1;
-    }
+      text-shadow:
+      1px -1px 0 #000000,
+      1px -1px 0 #000000,
+      -1px 1px 0 #000000,
+      1px 1px 0 #000000;
+  
+    // &::before {
+    //   /* 增加h3文字外框線 */
+    //   content: attr(value);
+    //   position: absolute;
+    //   -webkit-text-stroke: 4px #000000;
+    //   z-index: -1;
+    // }
   }
 }
 .mainText {

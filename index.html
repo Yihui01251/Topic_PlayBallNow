@@ -177,9 +177,11 @@
             reqCount,
             role,
             pos,
+            equip,
             note,
             href,
             host,
+            ballBrand
           }) => {
             // const {key,date,time,city,area,arena,tag1,tag2} = props;
             return (
@@ -228,9 +230,11 @@
                   male={reqCount[1].count}
                   unspecified={reqCount[2].count}
                   role={role}
+                  equip={equip}
                   pos={pos}
                   note={note}
                   host={host}
+                  ballBrand={ballBrand}
                 />
               </>
             );
@@ -252,13 +256,25 @@
             unspecified,
             role,
             pos,
+            equip,
             note,
             host,
+            ballBrand
           }) => {
+            
+            const [showBallBrand,setShowBallBrand]=useState('none');
+            const [showVbInfo,setShowVbInfo]=useState('flex');
+            useEffect(()=>{
+              
+              if (type == "羽球") {
+              hostType = "bm";
+              setShowBallBrand("flex");
+              setShowVbInfo("none");
+            }
+            },[type])
             var hostType = "vb";
             if (type == "羽球") {
-              hostType = "bm";
-            }
+              hostType = "bm";}
             return (
               <div className="popup" id={href}>
                 <div className="popup-inner">
@@ -278,8 +294,11 @@
                           <div className="areaInfo">
                             <h3>{postCity}</h3>
                             <h3>{postArea}</h3>
-                            <h3>{postArena}</h3>
+                            
                           </div>
+                          <div className="arenaInfo">
+                            <h3>{postArena}</h3>
+                            </div>
                           <div className="tag-style">
                             <p>{primaryTag}</p>
                             <p>${secondaryTag}</p>
@@ -294,13 +313,21 @@
                             <p>{male}位</p>
                             <div>不限</div> <p>{unspecified}位</p>
                           </div>
-                          <div className="ballInfo">
+                          <div className="ballInfo" style={{display:showVbInfo}}>
                             <h4>類型</h4>
                             <p>{role}</p>
                           </div>
-                          <div className="equipInfo">
+                          <div className="ballInfo" style={{display:showBallBrand}}>
+                            <h4>用球</h4>
+                            <p>{ballBrand}</p>
+                          </div>
+                          <div className="equipInfo" style={{display:showVbInfo}}>
                             <h4>位置</h4>
                             <p>{pos}</p>
+                          </div>
+                          <div className="equipInfo" style={{display:showBallBrand}}>
+                            <h4>設備</h4>
+                            <p>{equip}</p>
                           </div>
                           <div className="noteInfo">
                             <h4>備註</h4>
@@ -317,8 +344,8 @@
                           <p>
                             團主<span>{host}</span>
                           </p>
-                          <div>
-                            <p>報名備註</p>
+                          <div className="component-writeBlock">
+                            <p>報名備註 : </p>
                             <input
                               type="text"
                               placeholder="輸入對團主的話..."
@@ -575,6 +602,7 @@
                           note={post_data.note}
                           href={`todayApplyPopUp-${post_data.id}`}
                           host={post_data.host}
+                          ballBrand={post_data.ballBrand}
                         />
                       );
                     })}
@@ -616,6 +644,7 @@
                           reqCount={post_data.reqCount}
                           role={post_data.role}
                           pos={post_data.pos}
+                          equip={post_data.equip}
                           note={post_data.note}
                           href={`weekApplyPopUp-${post_data.id}`}
                           host={post_data.host}

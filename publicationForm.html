@@ -162,7 +162,7 @@
             const [btnColor, setBtnColor] = useState("#F1DB15");
             const [selectedButton, setSelectedButton] = useState("btn-formVB");
             const [type, setType] = useState("排球");
-            const [BMdisplay, setBMDisplay] = useState("flex");
+            const [BMdisplay, setBMDisplay] = useState("none");
             const [VBdisplay, setVBDisplay] = useState("flex");
             const [optionType, setOptionType] = useState([
               "女網混排",
@@ -264,6 +264,7 @@
               postNote: "請不要放鴿子",
               postPosition: "無要求",
               postEquipment: "冷氣、側燈",
+              postBall:"勝利藍蓋",
             });
 
             //輸入即時更改預覽
@@ -286,6 +287,7 @@
             postMale,
             postUnspecified,
             postRole,
+            postBall,
             postPosition,
             postEquipment,
             postNote,
@@ -336,9 +338,13 @@
                       <p>{postMale}位</p>
                       <div>不限</div> <p>{postUnspecified}位</p>
                     </div>
-                    <div className="ballInfo">
+                    <div className="ballInfo" style={{ display: VBdisplay }}>
                       <h4>類型</h4>
                       <p>{postRole}</p>
+                    </div>
+                    <div className="ballInfo" style={{ display: BMdisplay }}>
+                      <h4>用球</h4>
+                      <p>{postBall}</p>
                     </div>
                     <div className="posInfo" style={{ display: VBdisplay }}>
                       <h4>位置</h4>
@@ -555,11 +561,11 @@
                             />
                           </label>
                           <label htmlFor="edit-siteIntro">
-                            球場介紹
+                            用球
                             <input
                               type="text"
                               id="edit-siteIntro"
-                              placeholder="                       請介紹球場"
+                              placeholder="                請輸入用球"
                             />
                           </label>
                           <TextAreaFiled
@@ -587,10 +593,11 @@
                             name="postEquipment"
                             value={formData.postEquipment}
                             onChange={handleChange}
+                            style={{display:"none"}}
                             options={[
                               "冷氣",
                               "側燈",
-                              "pu場地",
+                              "PVC場地",
                               "停車場",
                               "飲水機",
                             ]}
