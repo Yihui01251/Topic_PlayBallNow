@@ -410,7 +410,7 @@ body {
     /* 樣式*/
     width: 32px;
     height: 32px;
-    margin-right: 5px;
+    
   }
 }
 /*  */
@@ -526,13 +526,15 @@ footer {
     padding: 1px 10px;
     background-color: transparent;
     color: var(--font-color);
-
+    opacity: 0.7;
     display: flex;
     justify-content: center;
     align-items: center;
     line-height: 23px;
     &:hover {
       cursor: pointer;
+      
+      opacity: 1;
     }
     &:active {
       background-color: var(--main-color);
@@ -608,6 +610,45 @@ footer {
   grid-column: 1 / auto;
   a {
     width: fit-content;
+  }
+}
+%button,%a{
+  background-color: var(--btn-color);
+  width: fit-content;
+  max-height: 50px;
+  margin-top: 5px;
+  padding: 5px 18px;
+  border-radius: $border-radius-btn;
+  border: 2px solid $border-black;
+  border-bottom: 5px solid $border-black;
+  /* 布局 */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  /*  */
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+
+  &:hover {
+    margin-top: 0px;
+    box-shadow: 0 2px $border-black;
+  }
+  &:active {
+    width: fit-content;
+    height: fit-content;
+    border-radius: 50px;
+    margin-top: 7px;
+    padding-top: 3px;
+    padding-bottom: 0px;
+    color: $background-color-lightwhite-s;
+    background-color: $background-color-deepGrey;
+    border-bottom: -1px solid $second-color-black;
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+    box-shadow: none;
   }
 }
 .button {
