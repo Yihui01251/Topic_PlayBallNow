@@ -64,7 +64,7 @@
   align-items: center;
   justify-items: center;
 
-  @media screen and ($breakpoint-moblie) {
+  @media screen and ($breakpoint-md) {
     display: flex;
     flex-direction: column;
     gap: 10px;
