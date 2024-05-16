@@ -360,40 +360,6 @@ button#btn-typeVb.selected img {
 
 /* 首頁貼文容器tag */
 /* 首頁main > section(containers > ul(tags*/
-.tags {
-  height: 25px;
-  width: 95%;
-  /* 和貼文標題一樣 */
-  margin: 0 auto;
-  /* 水平居中 */
-  /*控制子層 */
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-}
-.tags button {
-  /* 臨打貼文tag */
-  /* flex: auto; */
-  height: 23px;
-  width: fit-content;
-  border: 2px solid var(--main-color);
-  border-radius: 50px;
-  margin: 0px 3px;
-  padding: 4px 10px;
-  background-color: transparent;
-  color: var(--main-color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.tags button:active {
-  background-color: var(--main-color);
-}
-.tags button p {
-  /* text-align: center;
-  padding-bottom: 10px; */
-}
-
 /* 首頁main > section(containers > ul.tags > li > #tags-degree*/
 #tags-degree {
   background-color: var(--main-color);
@@ -476,13 +442,12 @@ button#btn-typeVb.selected img {
   flex: auto;
   align-self: flex-start;
   position: relative;
-}
-.text h3::before {
-  /* 增加h3文字外框線 */
-  content: attr(value);
-  position: absolute;
-  -webkit-text-stroke: 4px #000000;
-  z-index: -1;
+  max-width: 100%;
+  min-height: 30px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-shadow: 1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
 }
 
 .mainText {
