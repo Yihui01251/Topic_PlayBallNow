@@ -2752,6 +2752,9 @@ button#btn-pastRecords.selected {
 .notice-itineraryArea .container-component {
   width: 100%;
 }
+.notice-itineraryArea .pastPostArea {
+  margin-bottom: 15vh;
+}
 
 /* 個人 */
 /* 個人檔案main */
