@@ -2,9 +2,19 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Alata&display=swap");
 
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap');
+
+
 @font-face {
   font-family: "jf open 粉圓 2.0";
   src: url(./jf-openhuninn-2.0.ttf);
+}
+
+.noto-sans-tc {
+  font-family: "Noto Sans TC", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
 }
 
 @import "reset";
@@ -46,6 +56,7 @@ h5,
   font-size: $font-size-text-s;
   color: $second-color-gray;
 }
+
 .title {
   /* layout */
   width: 60vw;
@@ -53,6 +64,10 @@ h5,
   min-width: 340px;
   height: fit-content;
   margin: 0 auto;
+  justify-content: center;
+
+  /*標題前後圖片*/
+
 
   /* child */
   display: flex;
@@ -77,7 +92,27 @@ h5,
   text-align: center;
   flex: auto;
   margin-left: 20px;
+  display: flex;
+  gap: 8px;
+  letter-spacing: 5px;
+
+  img{
+    width: 34px;
+    height: 34px;
+  }
+
+  @media screen and ($breakpoint-moblie) {
+    font-size: $font-size-text-l;
+    letter-spacing: 3px;
+
+    img {
+      display: none;
+    }
+  }
 }
+
+
+
 
 /* 標題底線 */
 div.hugTitle h1,
@@ -85,8 +120,9 @@ div.hugTitle h2 {
   position: relative;
   color: $second-color-white;
   width: fit-content;
-  border-bottom: 4px solid $border-black;
+  // border-bottom: 4px solid $border-black;
   z-index: 0;
+
 }
 /* 增加文字外框線 */
 .hugTitle h1::before,
@@ -97,6 +133,8 @@ div.hugTitle h2 {
   -webkit-text-stroke: 4px $second-color-black;
   z-index: -1;
 }
+
+
 /* 標題前的線 */
 h2 div {
   width: 5px;
@@ -275,13 +313,13 @@ body {
   /* header置中 */
   align-self: center;
   /* header置中 */
-  margin-bottom: 3vh;
+  margin-bottom: 2vh;
 
   /* 控制子層 */
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2vh;
+  gap: 1vh;
 }
 
 .mobile-TopBar {
@@ -477,7 +515,7 @@ footer {
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
-  button {
+  a,button {
     /* 臨打貼文tag */
     /* flex: auto; */
     height: 23px;
@@ -485,7 +523,7 @@ footer {
     border: 2px solid var(--main-color);
     border-radius: $border-radius-50;
     margin: 0px 3px;
-    padding: 4px 10px;
+    padding: 1px 10px;
     background-color: transparent;
     color: var(--font-color);
 
@@ -505,7 +543,12 @@ footer {
       /* text-align: center;
       padding-bottom: 10px; */
     }
+    
   }
+  .active{
+      background-color: var(--main-color);
+      color: $background-color-lightwhite-s;
+    }
   .custom-checkbox {
     position: relative;
     padding-left: 10px; /* 为复选框留出空间 */
@@ -969,8 +1012,6 @@ footer {
       border-radius: 10px;
 
       padding: 10px;
-      p {
-      }
     }
   }
 

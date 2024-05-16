@@ -336,14 +336,15 @@ button#btn-formVB.selected {
 
   display: grid;
   grid-template-rows: 28px 324px 40px;
-  gap: 100px;
+  gap: 100px 0px;
 
   @media ($breakpoint-moblie) {
     padding: 10px;
     margin: 20px 0 0 0;
-    gap: 50px;
+    gap: 50px 0px;
     height: fit-content;
     width: 60vw;
+    min-width: 380px;
     justify-content: center;
     align-items: center;
   }
@@ -351,10 +352,11 @@ button#btn-formVB.selected {
   @media (max-width:375px) {
     padding: 0;
     margin: 35px 0 0 0;
-    gap: 50px;
+    gap: 50px 0px;
     height: fit-content;
     width: 375px;
   }
+
   a{
     margin: 0 auto;
     grid-row: 3;
@@ -362,7 +364,7 @@ button#btn-formVB.selected {
     min-width: 100px;
     height: 50px;
     button{
-     
+
       width: 100%;
       height: fit-content;
     }
@@ -375,6 +377,6 @@ button#btn-formVB.selected {
     padding: 20px 5px 20px 5px;
   }
 
-  
+
 }
 

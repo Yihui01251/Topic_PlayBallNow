@@ -19,7 +19,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-    <title>篩選_現在想打球</title>
+    <title>羽球本週臨打_現在想打球</title>
     <link rel="stylesheet" href="./stylesheets/css/style-scss.css" />
     <style>
       .fileName {
@@ -29,7 +29,7 @@
   </head>
 
   <body>
-    <small class="fileName">檔名：<code>todayMore-postsArea.html</code></small>
+    <small class="fileName">檔名：<code>BMweekMore-postsArea.html</code></small>
     <!-- 載入axios套件 -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <div id="root"></div>
@@ -50,21 +50,20 @@
 
         const App = () => {
           const { useState, useEffect, useRef } = React;
-          //   const [todayType, setTodayType] = useState("");
-
-          // 更改資料類型
-          //    const getPosts = (type) => {
-          //     switch (type) {
-          //       case "vb_search_postData":
-          //         return vb_today_postData;
-          //       case "bm_search_postData":
-          //         return bm_today_postData;
-
-          //       default:
-          //         return [];
-          //     }
-          //   };
-
+          
+          const length = bm_week_postData.length + bm_today_postData.length;
+          const lengthValue = `共有${length}筆資料`; 
+          useEffect(() => {
+            document.documentElement.style.setProperty(
+              "--main-color",
+              "#83B90F");
+            document.documentElement.style.setProperty(
+              "--font-color",
+              "#689607"
+            );
+            document.documentElement.style.setProperty("--btn-color", "#FF8D24");
+          }, []);
+           
           // 元件
           // 建立簡略貼文元件
           const SimplePostCard = ({
@@ -83,7 +82,8 @@
             pos,
             note,
             href,
-            host
+            host,
+            
           }) => {
             // const {key,date,time,city,area,arena,tag1,tag2} = props;
             return (
@@ -180,9 +180,10 @@
             role,
             pos,
             note,
-            host
+            host,
+            
           }) => {
-            const hostType ='vb';
+            let hostType ='bm';
             if(type=="羽球"){
               hostType="bm";
             }
@@ -205,6 +206,9 @@
                           <div className="areaInfo">
                             <h3>{postCity}</h3>
                             <h3>{postArea}</h3>
+                            
+                          </div>
+                          <div className="arenaInfo">
                             <h3>{postArena}</h3>
                           </div>
                           <div className="tag-style">
@@ -244,7 +248,7 @@
                           <p>
                             團主<span>{host}</span>
                           </p>
-                          <div>
+                          <div className="component-writeBlock">
                             <p>報名備註</p>
                             <input
                               type="text"
@@ -257,7 +261,7 @@
                           <a className="btn-close popup__close" href="#">
                             關閉
                           </a>
-                          <a class="button" href="#noticeApplyPopup">確認報名</a>
+                          <a className="button" href="#noticeApplyPopup">確認報名</a>
                         </div>
                       </div>
                     </div>
@@ -309,8 +313,8 @@
                 </nav>
                 <div className="title">
                   <div className="hugTitle">
-                    <h1 className="title-L" value="篩選貼文">
-                      篩選貼文
+                    <h1 className="title-L" value="羽球-本週貼文">
+                      羽球-本週貼文
                     </h1>
                   </div>
                 </div>
@@ -329,7 +333,7 @@
                   <a href="#">
                     <div className="filter-info">
                       <div className="info-top">
-                        <p className="title-M">今天</p>
+                        <p className="title-M">本週</p>
                         <p className="title-M dot">|</p>
                         <p className="title-M">全部</p>
                       </div>
@@ -342,8 +346,8 @@
                   </a>
 
                   <div className="filter-postQuantity">
-                    <p className="text-M" value="共有11筆資料">
-                      共有11筆資料
+                    <p className="text-M" value={lengthValue}>
+                      共有{length}筆資料
                     </p>
                   </div>
                 </section>
@@ -351,8 +355,7 @@
                 {/* 貼文 */}
                 <section className="filter-containers">
                   <div className="filter-postBlock">
-
-                    {vb_today_postData.map((post_data) => {
+                    {bm_today_postData.map((post_data) => {
                       return (
                         <SimplePostCard
                           key={post_data.id}
@@ -371,7 +374,30 @@
                           pos={post_data.pos}
                           note={post_data.note}
                           href={`ApplyPopUp-${post_data.id}`}
-                          host={post_data.host}
+                          host={post_data.host} 
+                        />
+                      );
+                    })}
+                    {bm_week_postData.map((post_data) => {
+                      return (
+                        <SimplePostCard
+                          key={post_data.id}
+                          id={post_data.id}
+                          type={post_data.type}
+                          postDate={post_data.date}
+                          postStartTime={post_data.startTime}
+                          postEndTime={post_data.endTime}
+                          postCity={post_data.city}
+                          postArea={post_data.area}
+                          postArena={post_data.arena}
+                          primaryTag={post_data.tagDegree}
+                          secondaryTag={post_data.tagPrice}
+                          reqCount={post_data.reqCount}
+                          role={post_data.role}
+                          pos={post_data.pos}
+                          note={post_data.note}
+                          href={`ApplyPopUp-${post_data.id}`}
+                          host={post_data.host} 
                         />
                       );
                     })}
@@ -392,13 +418,13 @@
                 </div>
               </footer>
               {/*燈箱效果-報名審核中通知 */}
-              <div class="popup" id="noticeApplyPopup">
-              <div class="popup-inner">
-               <div class="popup__content">
+              <div className="popup" id="noticeApplyPopup">
+              <div className="popup-inner">
+               <div className="popup__content">
               {/* 報名審核中通知元件 */}
-              <div class="notice-apply">
+              <div className="notice-apply">
               <p>已送出報名，團主審核中</p>
-              <a class="popup__close" href="#">
+              <a className="popup__close" href="#">
               <img src="../images/cancel.png" alt="關閉按鈕" />
               </a>
               </div>

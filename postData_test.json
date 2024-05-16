@@ -13,7 +13,7 @@
             "area": "三重區",
             "arena": "三重商工(四樓球場)",
             "tagDegree": "B",
-            "tagPrice": "200",
+            "tagPrice": "230",
             "reqCount":  [
               {
                 "gender": "female",
@@ -111,7 +111,7 @@
             "city": "桃園市",
             "area": "八德區",
             "arena": "play one 排球館",
-            "tagDegree": "B~A",
+            "tagDegree": "A",
             "tagPrice": "190",
             "reqCount":  [
               {
@@ -174,15 +174,15 @@
         {
             "id": "2",
             "type": "排球",
-            "date": "06/26(三)",
-            "dateAbbr": "06/26",
+            "date": "06/29(三)",
+            "dateAbbr": "06/29",
             "startTime": "13:00",
             "endTime": "15:00",
             "city": "新北市",
             "area": "蘆洲區",
             "arena": "輕鬆玩心流運動空間",
             "tagDegree": "C",
-            "tagPrice": "100",
+            "tagPrice": "150",
             "reqCount": [
               {
                 "gender": "female",
@@ -410,6 +410,7 @@
     {
       "bm_week_postData": [
         {
+          
             "id": "1",
             "type": "羽球",
             "date": "06/28(五)",
@@ -445,39 +446,6 @@
         {
             "id": "2",
             "type": "羽球",
-            "date": "06/26(三)",
-            "dateAbbr": "06/26",
-            "startTime": "10:00",
-            "endTime": "15:00",
-            "city": "台北市",
-            "area": "中正區",
-            "arena": "螢橋國小",
-            "tagDegree": "中上",
-            "tagPrice": "125",
-            "reqCount":  [
-              {
-                "gender": "female",
-                "count": 1
-              },
-              {
-                "gender": "male",
-                "count": 1
-              },
-              {
-                "gender": "unspecified",
-                "count": 0
-              }
-            ],
-            "ballBrand": "勝利比賽球",
-            "equip": "側光",
-            "note": "專人排場不少打",
-            "host": "陳曉成",
-            "like": "false",
-            "state": "appiled"
-        },
-        {
-            "id": "3",
-            "type": "羽球",
             "date": "06/27(四)",
             "dateAbbr": "06/27",
             "startTime": "19:00",
@@ -509,6 +477,39 @@
             "state": "appiled"
         },
         {
+          "id": "3",
+          "type": "羽球",
+          "date": "06/28(四)",
+          "dateAbbr": "06/28",
+          "startTime": "18:00",
+          "endTime": "20:00",
+          "city": "台北市",
+          "area": "中正區",
+          "arena": "中正運動中心",
+          "tagDegree": "中階",
+          "tagPrice": "210",
+          "reqCount":  [
+            {
+              "gender": "female",
+              "count": 0
+            },
+            {
+              "gender": "male",
+              "count": 1
+            },
+            {
+              "gender": "unspecified",
+              "count": 3
+            }
+          ],
+          "ballBrand": "yonex ACL30",
+          "equip": "木質地板球場,停車場",
+          "note": "若臨時有不可抗拒的因素,而無法出席時，也煩請儘早通知",
+          "host": "QQ",
+          "like": "true",
+          "state": "appiled"
+      },
+        {
             "id": "4",
             "type": "羽球",
             "date": "06/30(日)",
@@ -518,8 +519,8 @@
             "city": "台北市",
             "area": "南港區",
             "arena": "成德國小活動中心",
-            "tagDegree": "進階",
-            "tagPrice": "100",
+            "tagDegree": "初階",
+            "tagPrice": "150",
             "reqCount":  [
               {
                 "gender": "female",
