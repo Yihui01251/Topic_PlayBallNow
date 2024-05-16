@@ -338,6 +338,7 @@ button#btn-typeVb.selected {
 /* 首頁貼文容器標題(今日臨打...) */
 .title-postArea {
   width: 95%;
+  height: 30px;
   padding: 20px 10px;
   margin: 0 auto;
   /* 水平居中 */
@@ -345,6 +346,7 @@ button#btn-typeVb.selected {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 
   h2 {
     color: var(--font-color);
@@ -402,6 +404,7 @@ button#btn-typeVb.selected {
 /* 首頁main > section(containers > div(post-block> div(content*/
 .content {
   flex: 1 0 auto;
+  max-width: 235px;
   width: 235px;
   height: 245px;
   background-image: var(--border-image);

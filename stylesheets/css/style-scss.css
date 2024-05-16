@@ -558,7 +558,7 @@ footer div p {
   align-items: center;
   flex-wrap: wrap;
 }
-.tags button {
+.tags a, .tags button {
   /* 臨打貼文tag */
   /* flex: auto; */
   height: 23px;
@@ -566,7 +566,7 @@ footer div p {
   border: 2px solid var(--main-color);
   border-radius: 50px;
   margin: 0px 3px;
-  padding: 4px 10px;
+  padding: 1px 10px;
   background-color: transparent;
   color: var(--font-color);
   display: flex;
@@ -574,16 +574,20 @@ footer div p {
   align-items: center;
   line-height: 23px;
 }
-.tags button:hover {
+.tags a:hover, .tags button:hover {
   cursor: pointer;
 }
-.tags button:active {
+.tags a:active, .tags button:active {
   background-color: var(--main-color);
   color: rgba(247, 246, 245, 0.9);
 }
-.tags button p {
+.tags a p, .tags button p {
   /* text-align: center;
   padding-bottom: 10px; */
+}
+.tags .active {
+  background-color: var(--main-color);
+  color: rgba(247, 246, 245, 0.9);
 }
 .tags .custom-checkbox {
   position: relative;
@@ -1876,6 +1880,7 @@ button#btn-typeVb.selected img {
 /* 首頁貼文容器標題(今日臨打...) */
 .title-postArea {
   width: 95%;
+  height: 30px;
   padding: 20px 10px;
   margin: 0 auto;
   /* 水平居中 */
@@ -1883,6 +1888,7 @@ button#btn-typeVb.selected img {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 }
 .title-postArea h2 {
   color: var(--font-color);
@@ -1936,6 +1942,7 @@ button#btn-typeVb.selected img {
 /* 首頁main > section(containers > div(post-block> div(content*/
 .content {
   flex: 1 0 auto;
+  max-width: 235px;
   width: 235px;
   height: 245px;
   background-image: var(--border-image);

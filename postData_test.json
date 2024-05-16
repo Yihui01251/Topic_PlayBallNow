@@ -13,7 +13,7 @@
             "area": "三重區",
             "arena": "三重商工(四樓球場)",
             "tagDegree": "B",
-            "tagPrice": "200",
+            "tagPrice": "230",
             "reqCount":  [
               {
                 "gender": "female",
@@ -111,7 +111,7 @@
             "city": "桃園市",
             "area": "八德區",
             "arena": "play one 排球館",
-            "tagDegree": "B~A",
+            "tagDegree": "A",
             "tagPrice": "190",
             "reqCount":  [
               {
