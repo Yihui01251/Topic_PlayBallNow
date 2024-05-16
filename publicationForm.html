@@ -362,6 +362,18 @@
         };
         return (
           <div className="body">
+            <div className="mobile-TopBar">
+                <img
+                  src="./images/mobile-top.svg"
+                  alt="排球的手機版banner"
+                  style={{ display: VBdisplay }}
+                />
+                <img
+                  src="./images/mobile-bm-topbanner.png"
+                  alt="羽球的手機版banner"
+                  style={{ display: BMdisplay }}
+                />
+              </div>
             <header id="topBar">
               <nav id="top-nav">
                 <ul id="menu">
@@ -403,9 +415,6 @@
                   </li>
                 </ul>
               </nav>
-            </header>
-
-            <main className="form-formArea">
               <div className="form-title">
                 <div className="hugTitle noto-sans-tc">
                   <img src="./images/vbtitle.svg" alt="" />
@@ -420,6 +429,10 @@
                 </a>
 
               </div>
+            </header>
+
+            <main className="form-formArea">
+
               <section className="form-container">
                 <div className="form-block">
                   <div className="form-type">

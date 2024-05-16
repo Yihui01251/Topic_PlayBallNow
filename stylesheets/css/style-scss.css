@@ -398,12 +398,12 @@ body {
   /* header置中 */
   align-self: center;
   /* header置中 */
-  margin-bottom: 3vh;
+  margin-bottom: 2vh;
   /* 控制子層 */
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2vh;
+  gap: 1vh;
 }
 
 .mobile-TopBar {
@@ -2614,16 +2614,17 @@ button#btn-formVB.selected::before {
   background-color: rgba(217, 217, 217, 0.9);
   display: grid;
   grid-template-rows: 28px 324px 40px;
-  gap: 100px;
+  gap: 100px 0px;
 }
 @media (max-width:640px) {
   .form-preview {
     padding: 10px;
     margin: 20px 0 0 0;
-    gap: 50px;
+    gap: 50px 0px;
     height: -moz-fit-content;
     height: fit-content;
     width: 60vw;
+    min-width: 380px;
     justify-content: center;
     align-items: center;
   }
@@ -2632,7 +2633,7 @@ button#btn-formVB.selected::before {
   .form-preview {
     padding: 0;
     margin: 35px 0 0 0;
-    gap: 50px;
+    gap: 50px 0px;
     height: -moz-fit-content;
     height: fit-content;
     width: 375px;
@@ -2853,7 +2854,7 @@ button#btn-pastRecords.selected {
   align-items: center;
   justify-items: center;
 }
-@media screen and (max-width:640px) {
+@media screen and (max-width:820px) {
   .infoContainer-biography {
     display: flex;
     flex-direction: column;
