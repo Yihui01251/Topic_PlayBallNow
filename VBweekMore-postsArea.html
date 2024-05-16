@@ -19,7 +19,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-    <title>篩選_現在想打球</title>
+    <title>排球本週臨打_現在想打球</title>
     <link rel="stylesheet" href="./stylesheets/css/style-scss.css" />
     <style>
       .fileName {
@@ -29,7 +29,7 @@
   </head>
 
   <body>
-    <small class="fileName">檔名：<code>todayMore-postsArea.html</code></small>
+    <small class="fileName">檔名：<code>VBweekMore-postsArea.html</code></small>
     <!-- 載入axios套件 -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <div id="root"></div>
@@ -41,29 +41,16 @@
         console.log(postData);
         const { vb_today_postData } = postData[0];
         const { vb_week_postData } = postData[1];
-        const { bm_today_postData } = postData[2];
-        const { bm_week_postData } = postData[3];
+
         console.log(vb_today_postData);
         console.log(vb_week_postData);
-        console.log(bm_today_postData);
-        console.log(bm_week_postData);
+
 
         const App = () => {
           const { useState, useEffect, useRef } = React;
-          //   const [todayType, setTodayType] = useState("");
-
-          // 更改資料類型
-          //    const getPosts = (type) => {
-          //     switch (type) {
-          //       case "vb_search_postData":
-          //         return vb_today_postData;
-          //       case "bm_search_postData":
-          //         return bm_today_postData;
-
-          //       default:
-          //         return [];
-          //     }
-          //   };
+          
+          const length = vb_week_postData.length;
+          const lengthValue = `共有${length}筆資料`; 
 
           // 元件
           // 建立簡略貼文元件
@@ -205,6 +192,9 @@
                           <div className="areaInfo">
                             <h3>{postCity}</h3>
                             <h3>{postArea}</h3>
+                            
+                          </div>
+                          <div className="arenaInfo">
                             <h3>{postArena}</h3>
                           </div>
                           <div className="tag-style">
@@ -244,7 +234,7 @@
                           <p>
                             團主<span>{host}</span>
                           </p>
-                          <div>
+                          <div className ="component-writeBlock">
                             <p>報名備註</p>
                             <input
                               type="text"
@@ -309,8 +299,8 @@
                 </nav>
                 <div className="title">
                   <div className="hugTitle">
-                    <h1 className="title-L" value="篩選貼文">
-                      篩選貼文
+                    <h1 className="title-L" value="排球-本週貼文">
+                      排球-本週貼文
                     </h1>
                   </div>
                 </div>
@@ -329,7 +319,7 @@
                   <a href="#">
                     <div className="filter-info">
                       <div className="info-top">
-                        <p className="title-M">今天</p>
+                        <p className="title-M">本週</p>
                         <p className="title-M dot">|</p>
                         <p className="title-M">全部</p>
                       </div>
@@ -342,8 +332,8 @@
                   </a>
 
                   <div className="filter-postQuantity">
-                    <p className="text-M" value="共有11筆資料">
-                      共有11筆資料
+                    <p className="text-M" value={lengthValue}>
+                      共有{length}筆資料
                     </p>
                   </div>
                 </section>
@@ -352,7 +342,8 @@
                 <section className="filter-containers">
                   <div className="filter-postBlock">
 
-                    {vb_today_postData.map((post_data) => {
+                  
+                    {vb_week_postData.map((post_data) => {
                       return (
                         <SimplePostCard
                           key={post_data.id}

@@ -19,7 +19,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-    <title>篩選_現在想打球</title>
+    <title>排球本日臨打_現在想打球</title>
     <link rel="stylesheet" href="./stylesheets/css/style-scss.css" />
     <style>
       .fileName {
@@ -29,7 +29,7 @@
   </head>
 
   <body>
-    <small class="fileName">檔名：<code>react_postsArea.html</code></small>
+    <small class="fileName">檔名：<code>VBtodayMore-postsArea.html</code></small>
     <!-- 載入axios套件 -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <div id="root"></div>
@@ -51,9 +51,8 @@
         const App = () => {
           const { useState, useEffect, useRef } = React;
           
-          const length = postData.length;
+          const length = vb_today_postData.length;
           const lengthValue = `共有${length}筆資料`; 
-
           // 元件
           // 建立簡略貼文元件
           const SimplePostCard = ({
@@ -72,7 +71,8 @@
             pos,
             note,
             href,
-            host
+            host,
+            
           }) => {
             // const {key,date,time,city,area,arena,tag1,tag2} = props;
             return (
@@ -169,7 +169,8 @@
             role,
             pos,
             note,
-            host
+            host,
+            
           }) => {
             const hostType ='vb';
             if(type=="羽球"){
@@ -198,7 +199,7 @@
                           </div>
                           <div className="arenaInfo">
                             <h3>{postArena}</h3>
-                            </div>
+                          </div>
                           <div className="tag-style">
                             <p>{primaryTag}</p>
                             <p>${secondaryTag}</p>
@@ -236,7 +237,7 @@
                           <p>
                             團主<span>{host}</span>
                           </p>
-                          <div>
+                          <div className="component-writeBlock">
                             <p>報名備註</p>
                             <input
                               type="text"
@@ -249,7 +250,7 @@
                           <a className="btn-close popup__close" href="#">
                             關閉
                           </a>
-                          <a class="button" href="#noticeApplyPopup">確認報名</a>
+                          <a className="button" href="#noticeApplyPopup">確認報名</a>
                         </div>
                       </div>
                     </div>
@@ -301,8 +302,8 @@
                 </nav>
                 <div className="title">
                   <div className="hugTitle">
-                    <h1 className="title-L" value="篩選貼文">
-                      篩選貼文
+                    <h1 className="title-L" value="排球-本日貼文">
+                      排球-本日貼文
                     </h1>
                   </div>
                 </div>
@@ -321,13 +322,13 @@
                   <a href="#">
                     <div className="filter-info">
                       <div className="info-top">
-                        <p className="title-M">6/24</p>
+                        <p className="title-M">今天</p>
                         <p className="title-M dot">|</p>
-                        <p className="title-M">上午</p>
+                        <p className="title-M">全部</p>
                       </div>
 
                       <div className="info-down">
-                        <p className="text-M">中山區，與其他2個區域</p>
+                        <p className="text-M">未選擇篩選地區</p>
                       </div>
                       <img src="./images/filiter.png" alt="篩選icon" />
                     </div>
@@ -343,31 +344,8 @@
                 {/* 貼文 */}
                 <section className="filter-containers">
                   <div className="filter-postBlock">
-                    {/* // {postData.map((group,index)=>{
-                    //   group.map((post_data)=>{
-                    //     return(<ApplyCard
-                    //       key={post_data.id}
-                    //       id={post_data.id}
-                    //       type={post_data.type}
-                    //       postDate={post_data.date}
-                    //       postStartTime={post_data.startTime}
-                    //       postEndTime={post_data.endTime}
-                    //       postCity={post_data.city}
-                    //       postArea={post_data.area}
-                    //       postArena={post_data.arena}
-                    //       primaryTag={post_data.tagDegree}
-                    //       secondaryTag={post_data.tagPrice}
-                    //       reqCount={post_data.reqCount}
-                    //       role={post_data.role}
-                    //       pos={post_data.pos}
-                    //       note={post_data.note}
-                    //     />
 
-                    //     )
-                    //   })
-                    // })*/}
-
-                    {vb_week_postData.map((post_data) => {
+                    {vb_today_postData.map((post_data) => {
                       return (
                         <SimplePostCard
                           key={post_data.id}
@@ -386,7 +364,7 @@
                           pos={post_data.pos}
                           note={post_data.note}
                           href={`ApplyPopUp-${post_data.id}`}
-                          host={post_data.host}
+                          host={post_data.host} 
                         />
                       );
                     })}
@@ -407,13 +385,13 @@
                 </div>
               </footer>
               {/*燈箱效果-報名審核中通知 */}
-              <div class="popup" id="noticeApplyPopup">
-              <div class="popup-inner">
-               <div class="popup__content">
+              <div className="popup" id="noticeApplyPopup">
+              <div className="popup-inner">
+               <div className="popup__content">
               {/* 報名審核中通知元件 */}
-              <div class="notice-apply">
+              <div className="notice-apply">
               <p>已送出報名，團主審核中</p>
-              <a class="popup__close" href="#">
+              <a className="popup__close" href="#">
               <img src="../images/cancel.png" alt="關閉按鈕" />
               </a>
               </div>
