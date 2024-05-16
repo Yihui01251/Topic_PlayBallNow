@@ -66,6 +66,8 @@
           const [selectedButton, setSelectedButton] = useState("btn-typeVb");
           const [BMdisplay, setBMDisplay] = useState("none");
           const [VBdisplay, setVBDisplay] = useState("flex");
+          const [hrefTodayMore,setHrefTodayMore] = useState("./VBtodayMore-postsArea.html");
+          const [hrefWeekMore,setHrefWeekMore] = useState("./VBweekMore-postsArea.html");
 
           const btnTypeVbRef = useRef(null);
           const btnTypeBmRef = useRef(null);
@@ -75,6 +77,8 @@
             //btnTypeVbRef.current.focus();
           }, []);
 
+          
+          /* 改變類型(羽/排) */
           const changeType = (id) => {
             // let newBackground = "";
             let colorMain = "";
@@ -82,6 +86,9 @@
             let btnColor = "";
             let newBorder = "";
             let decorate = "";
+            /* 更多的連結 */
+          let hrefTodayMore = "./VBtodayMore-postsArea.html";
+          let hrefWeekMore = "./VBweekMore-postsArea.html";
 
             // 取消其他按鈕的選擇
             const btnTypeVb = document.getElementById("btn-typeVb");
@@ -105,6 +112,9 @@
               // banner顯示狀態
               setBMDisplay("flex");
               setVBDisplay("none");
+              //更多的連結
+              hrefTodayMore = "./BMtodayMore-postsArea.html";
+              hrefWeekMore = "./BMweekMore-postsArea.html";
             } else if (id === "btn-typeVb" || id === "btn-formVB") {
               // 如果是排球
               colorMain = "#14AAEB";
@@ -120,6 +130,9 @@
               //
               setBMDisplay("none");
               setVBDisplay("block");
+              //
+              hrefTodayMore = "./VBtodayMore-postsArea.html";
+              hrefWeekMore = "./VBweekMore-postsArea.html";
             }
 
             setMainColor(colorMain);
@@ -141,6 +154,9 @@
               "--search-decorate",
               decorate
             );
+
+            setHrefTodayMore(hrefTodayMore);
+            setHrefWeekMore(hrefWeekMore);
           };
           // 更改資料類型
           const getPosts = (type) => {
@@ -177,9 +193,11 @@
             reqCount,
             role,
             pos,
+            equip,
             note,
             href,
             host,
+            ballBrand
           }) => {
             // const {key,date,time,city,area,arena,tag1,tag2} = props;
             return (
@@ -202,8 +220,8 @@
                       {postArena}
                     </h3>
                     <div className="tag-style">
-                      <p className="text-S">{primaryTag}</p>
-                      <p className="text-S">${secondaryTag}</p>
+                      <p className="text-S tagMargin">{primaryTag}</p>
+                      <p className="text-S tagMargin">${secondaryTag}</p>
                     </div>
                     <div className="BtnContainer">
                       <a className="button" href={`#${href}`}>
@@ -228,9 +246,11 @@
                   male={reqCount[1].count}
                   unspecified={reqCount[2].count}
                   role={role}
+                  equip={equip}
                   pos={pos}
                   note={note}
                   host={host}
+                  ballBrand={ballBrand}
                 />
               </>
             );
@@ -252,13 +272,25 @@
             unspecified,
             role,
             pos,
+            equip,
             note,
             host,
+            ballBrand
           }) => {
+            
+            const [showBallBrand,setShowBallBrand]=useState('none');
+            const [showVbInfo,setShowVbInfo]=useState('flex');
+            useEffect(()=>{
+              
+              if (type == "羽球") {
+              hostType = "bm";
+              setShowBallBrand("flex");
+              setShowVbInfo("none");
+            }
+            },[type])
             var hostType = "vb";
             if (type == "羽球") {
-              hostType = "bm";
-            }
+              hostType = "bm";}
             return (
               <div className="popup" id={href}>
                 <div className="popup-inner">
@@ -278,8 +310,11 @@
                           <div className="areaInfo">
                             <h3>{postCity}</h3>
                             <h3>{postArea}</h3>
-                            <h3>{postArena}</h3>
+                            
                           </div>
+                          <div className="arenaInfo">
+                            <h3>{postArena}</h3>
+                            </div>
                           <div className="tag-style">
                             <p>{primaryTag}</p>
                             <p>${secondaryTag}</p>
@@ -294,13 +329,21 @@
                             <p>{male}位</p>
                             <div>不限</div> <p>{unspecified}位</p>
                           </div>
-                          <div className="ballInfo">
+                          <div className="ballInfo" style={{display:showVbInfo}}>
                             <h4>類型</h4>
                             <p>{role}</p>
                           </div>
-                          <div className="equipInfo">
+                          <div className="ballInfo" style={{display:showBallBrand}}>
+                            <h4>用球</h4>
+                            <p>{ballBrand}</p>
+                          </div>
+                          <div className="equipInfo" style={{display:showVbInfo}}>
                             <h4>位置</h4>
                             <p>{pos}</p>
+                          </div>
+                          <div className="equipInfo" style={{display:showBallBrand}}>
+                            <h4>設備</h4>
+                            <p>{equip}</p>
                           </div>
                           <div className="noteInfo">
                             <h4>備註</h4>
@@ -317,8 +360,8 @@
                           <p>
                             團主<span>{host}</span>
                           </p>
-                          <div>
-                            <p>報名備註</p>
+                          <div className="component-writeBlock">
+                            <p>報名備註 : </p>
                             <input
                               type="text"
                               placeholder="輸入對團主的話..."
@@ -544,8 +587,8 @@
                     <h2>
                       <div></div>本日臨打貼文
                     </h2>
-                    <div className="more">
-                      <a href="#">更多</a>
+                    <div className="more button">
+                      <a href={hrefTodayMore}>更多</a>
                     </div>
                   </div>
                   <ul className="tags">
@@ -575,6 +618,7 @@
                           note={post_data.note}
                           href={`todayApplyPopUp-${post_data.id}`}
                           host={post_data.host}
+                          ballBrand={post_data.ballBrand}
                         />
                       );
                     })}
@@ -586,8 +630,8 @@
                     <h2>
                       <div></div>本週臨打貼文
                     </h2>
-                    <div className="more">
-                      <a href="#" className="CN-p">
+                    <div className="more button">
+                      <a href={hrefWeekMore}>
                         更多
                       </a>
                     </div>
@@ -616,6 +660,7 @@
                           reqCount={post_data.reqCount}
                           role={post_data.role}
                           pos={post_data.pos}
+                          equip={post_data.equip}
                           note={post_data.note}
                           href={`weekApplyPopUp-${post_data.id}`}
                           host={post_data.host}

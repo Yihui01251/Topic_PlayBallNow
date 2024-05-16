@@ -33,9 +33,10 @@
         const { future_host_userData } = userData[3];
         const { future_appl_userData } = userData[4];
 
-        const { useState, useEffect, useRef } = React;
+        const { useState, useEffect, useRef, useMemo } = React;
 
         const Notify = ({
+          name,
           day,
           startTime,
           endTime,
@@ -48,7 +49,14 @@
           state,
           identity,
           id,
+          role,
+          female,
+          male,
+          unspecified,
+          equip,
+          note,
         }) => {
+          console.log(name);
           /* 主色 */
           const [typeStyle, setTypeStyle] = useState("");
           /* 文字色 */
@@ -59,8 +67,6 @@
           const [identityStyle, setIdentityStyle] = useState("3px solid black");
           /* 呼叫燈箱元件連結 */
           const [popupHref, setPopupHref] = useState("");
-          /*  */
-          const [callComponent, setCallComponent] = useState("");
           /* 顯示報名列 */
           const [showApplicants, setShowApplicants] = useState("");
           /* 顯示取消列 */
@@ -69,20 +75,18 @@
             // 保存最新的 identity 值
             const currentIdentity = identity;
             // 身分樣式
-            console.log("身分: " + currentIdentity);
+            // console.log("身分: " + currentIdentity);
             let borderStyle = "";
             let newHref = "";
 
             if (identity === "團主") {
               borderStyle = "3px dashed black";
               newHref = "auditApplyPopup";
-              setCallComponent("DetailPost");
               setShowApplicants("flex");
               setShowCancel("none");
             } else if (identity === "臨打") {
               borderStyle = "3px solid black";
               newHref = "itineraryPopup";
-              setCallComponent("Cancel");
               setShowApplicants("none");
               setShowCancel("flex");
             }
@@ -91,9 +95,8 @@
               "--border-type",
               borderStyle
             );
-            console.log(newHref);
             setPopupHref("auditApplyPopup");
-            console.log(popupHref);
+            // console.log("目前連結" + popupHref);
             // 羽or排顏色
             let typeStyle = "";
             let typeFontStyle = "";
@@ -184,6 +187,12 @@
                 tagPrice={tagPrice}
                 state={state}
                 id={id}
+                role={role}
+                female={female}
+                male={male}
+                unspecified={unspecified}
+                equip={equip}
+                note={note}
                 popUp={popupHref}
                 typeStyle={typeStyle}
                 typeFontStyle={typeFontStyle}
@@ -206,6 +215,12 @@
           state,
           identity,
           id,
+          role,
+          female,
+          male,
+          unspecified,
+          equip,
+          note,
           popUp,
           typeStyle,
           typeFontStyle,
@@ -243,36 +258,55 @@
                           >
                             <h3>{city}</h3>
                             <h3>{area}</h3>
+                          </div>
+                          <div
+                            className="arenaInfo"
+                            style={{ color: typeFontStyle }}
+                          >
                             <h3>{arena}</h3>
                           </div>
                           <div className="tag-style">
-                            <p style={{ color: typeFontStyle }}>{tagDegree}</p>
-                            <p style={{ color: typeFontStyle }}>${tagPrice}</p>
+                            <p
+                              style={{
+                                color: typeFontStyle,
+                                borderColor: typeFontStyle,
+                              }}
+                            >
+                              {tagDegree}
+                            </p>
+                            <p
+                              style={{
+                                color: typeFontStyle,
+                                borderColor: typeFontStyle,
+                              }}
+                            >
+                              ${tagPrice}
+                            </p>
                           </div>
                         </div>
                         <div className="sub-info">
                           <div className="vacancyInfo">
                             <h4>缺額</h4>
                             <div>女</div>
-                            <p style={{ color: typeFontStyle }}>0 位</p>
+                            <p style={{ color: typeFontStyle }}>{female}位</p>
                             <div>男</div>
-                            <p style={{ color: typeFontStyle }}>3 位</p>
+                            <p style={{ color: typeFontStyle }}>{male}位</p>
                             <div>不限</div>
-                            <p style={{ color: typeFontStyle }}>2 位</p>
+                            <p style={{ color: typeFontStyle }}>
+                              {unspecified}位
+                            </p>
                           </div>
                           <div className="ballInfo">
                             <h4>類型</h4>
-                            <p style={{ color: typeFontStyle }}>雙打</p>
+                            <p style={{ color: typeFontStyle }}>{role}</p>
                           </div>
                           <div className="equipInfo">
                             <h4>設備</h4>
-                            <p style={{ color: typeFontStyle }}>冷氣</p>
+                            <p style={{ color: typeFontStyle }}>{equip}</p>
                           </div>
                           <div className="noteInfo">
                             <h4>備註</h4>
-                            <p style={{ color: typeFontStyle }}>
-                              請提早10分鐘到場換裝熱身
-                            </p>
+                            <p style={{ color: typeFontStyle }}>{note}</p>
                           </div>
                         </div>
 
@@ -551,22 +585,22 @@
                       </a>
                     </div>
                     <div className="audit-info">
-                      <div class="info-selfState">
-                        <div class="selfState-userInfo">
-                          <div class="applicantInfo">
+                      <div className="info-selfState">
+                        <div className="selfState-userInfo">
+                          <div className="applicantInfo">
                             <img
-                              class="applicantImg"
+                              className="applicantImg"
                               src="../images/player.png"
                               alt=""
                             />
                             <p>Roy</p>
                           </div>
-                          <div class="reason-cancel">
+                          <div className="reason-cancel">
                             <h5>取消原因:</h5>
                             <p>手受傷</p>
                           </div>
                         </div>
-                        <div class="selfState-title">
+                        <div className="selfState-title">
                           <h4>取消場次 :</h4>
                         </div>
                       </div>
@@ -677,6 +711,11 @@
                         >
                           <h3>{city}</h3>
                           <h3>{area}</h3>
+                        </div>
+                        <div
+                          className="arenaInfo"
+                          style={{ color: typeFontStyle }}
+                        >
                           <h3>{arena}</h3>
                         </div>
                         <div className="tag-style">
@@ -684,7 +723,7 @@
                           <p style={{ color: typeFontStyle }}>${tagPrice}</p>
                         </div>
                       </div>
-                      <div class="component-writeBlock">
+                      <div className="component-writeBlock">
                         <h5>取消原因：</h5>
                         <input type="text" placeholder="請輸入取消原因"></input>
                       </div>
@@ -724,6 +763,8 @@
           const [noticeType, setNoticeType] = useState("btn-itinerary");
           const itineraryBtn = document.getElementById("btn-itinerary");
           const pastRecordsBtn = document.getElementById("btn-pastRecords");
+          /* 改變map的資料 */
+          const [callData, setCallData] = useState(future_All_userData);
 
           const changeNotifyType = (id) => {
             let newType = "";
@@ -818,15 +859,16 @@
                         預定行程
                       </h2>
                     </div>
-                    <button className="btn-sponsor">
+                    <button className="btn-sponsor button" onClick={()=>{setCallData(future_host_userData)}}>
                       <img src="./images/icon-sponsor.png" alt="" />
                       主辦
                     </button>
                   </div>
-                  <section className="notice-itineraryArea">
-                    {future_All_userData.map((post_data) => {
+                  <section className="notice-itineraryArea" >
+                    {callData.map((post_data) => {
                       return (
                         <Notify
+                          name={"所有未來行程貼文"}
                           key={post_data.id}
                           type={post_data.typeAbbr}
                           identity={post_data.identity}
@@ -840,10 +882,17 @@
                           tagPrice={post_data.tagPrice}
                           state={post_data.state}
                           id={post_data.id}
+                          role={post_data.role}
+                          female={post_data.reqCount[0].count}
+                          male={post_data.reqCount[1].count}
+                          unspecified={post_data.reqCount[2].count}
+                          equip={post_data.equip}
+                          note={post_data.note}
                         />
                       );
                     })}
                   </section>
+                 
                   <div className="notice-itineraryTitle">
                     <div className="hugTitle">
                       <h2 className="text-L" value="取消行程">
@@ -855,6 +904,7 @@
                     {future_cancel_userData.map((post_data) => {
                       return (
                         <Notify
+                          name={"所有未來取消貼文"}
                           key={post_data.id}
                           type={post_data.typeAbbr}
                           identity={post_data.identity}
@@ -868,6 +918,12 @@
                           tagPrice={post_data.tagPrice}
                           state={post_data.state}
                           id={post_data.id}
+                          role={post_data.role}
+                          female={post_data.reqCount[0].count}
+                          male={post_data.reqCount[1].count}
+                          unspecified={post_data.reqCount[2].count}
+                          equip={post_data.equip}
+                          note={post_data.note}
                         />
                       );
                     })}
@@ -883,6 +939,7 @@
                     {past_ALL_userData.map((post_data) => {
                       return (
                         <Notify
+                          name={"所有過去貼文"}
                           key={post_data.id}
                           type={post_data.typeAbbr}
                           identity={post_data.identity}
@@ -896,6 +953,12 @@
                           tagPrice={post_data.tagPrice}
                           state={post_data.state}
                           id={post_data.id}
+                          role={post_data.role}
+                          female={post_data.reqCount[0].count}
+                          male={post_data.reqCount[1].count}
+                          unspecified={post_data.reqCount[2].count}
+                          equip={post_data.equip}
+                          note={post_data.note}
                         />
                       );
                     })}

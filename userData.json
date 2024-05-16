@@ -29,7 +29,7 @@
                           "count": 0
                         }],
                     "ballBrand": ",摩亞MS-85,",
-                    "role": "",
+                    "role": "單打",
                     "equip": "木質地板球場,停車場",
                     "note": "若臨時有不可抗拒的因素,而無法出席時，也煩請儘早通知",
                     "host": "陳曉成",
@@ -64,7 +64,7 @@
                           "count": 0
                         }],
                     "ballBrand": "久奈司AJ-40",
-                    "role": "",
+                    "role": "雙打",
                     "equip": "停車,冷熱水淋浴間,飲水機",
                     "note": "交通方便",
                     "host": "",
@@ -99,7 +99,7 @@
                           "count": 0
                         }],
                     "ballBrand": "",
-                    "role": "男網",
+                    "role": "男網混排",
                     "equip": "防守,舉球,攻擊",
                     "note": "計分：21分制，場地及好，遮陽避雨～～",
                     "host": "王鵬豪",
@@ -134,7 +134,7 @@
                           "count": 0
                         }],
                     "ballBrand": "勝利比賽球",
-                    "role": "",
+                    "role": "混雙",
                     "equip": "飲水機",
                     "note": "專人排場不少打",
                     "host": "陳曉成",
@@ -173,7 +173,7 @@
                           "count": 1
                         }],
                     "ballBrand": "勝利比賽球",
-                    "role": "",
+                    "role": "雙打",
                     "equip": "飲水機",
                     "note": "專人排場不少打",
                     "host": "",
@@ -243,7 +243,7 @@
                           "count": 0
                         }],
                     "ballBrand": "",
-                    "role": "男網",
+                    "role": "男網混排",
                     "equip": "防守,舉球,攻擊",
                     "note": "計分：21分制，場地及好，遮陽避雨～～",
                     "host": "",
@@ -278,7 +278,7 @@
                           "count": 0
                         }],
                     "ballBrand": "",
-                    "role": "男網",
+                    "role": "男網純男",
                     "equip": "攻擊",
                     "note": "希望有基礎能力, 打起來比較順利.",
                     "host": "",
@@ -313,7 +313,7 @@
                           "count": 0
                         }],
                     "ballBrand": "勝利比賽球",
-                    "role": "",
+                    "role": "女雙",
                     "equip": "飲水機",
                     "note": "入口在哈密街59巷21弄 ，經過警衛室後左轉上四樓球場",
                     "host": "王鵬豪",
@@ -348,7 +348,7 @@
                           "count": 0
                         }],
                     "ballBrand": "YONEX ACL-30",
-                    "role": "",
+                    "role": "雙打",
                     "equip": "停車,冷熱水淋浴間,飲水機",
                     "note": "交通方便",
                     "host": "陳曉成",
@@ -383,7 +383,7 @@
                           "count": 0
                         }],
                     "ballBrand": "勝利藍桶比賽球",
-                    "role": "",
+                    "role": "混雙",
                     "equip": "飲水機",
                     "note": "勝負心不強、友善的球友報名",
                     "host": "黃筱原",
@@ -470,64 +470,145 @@
         {
             "future_host_userData": [
                 {
-                    "id": "1",
-                    "state": "1/5位",
-                    "typeAbbr": "羽",
-                    "dateAbbr": "06/26",
-                    "startTime": "17:00",
-                    "endTime": "21:00",
-                    "city": "台北市",
-                    "area": "中正區",
-                    "arena": "成功高中",
-                    "tagDegree": "新手友善",
-                    "tagPrice": "500",
-                    "like": "false",
-                    "": ""
-                },
-                {
-                    "id": "2",
-                    "state": "4/5位",
-                    "typeAbbr": "羽",
-                    "dateAbbr": "06/26",
-                    "startTime": "10:00",
-                    "endTime": "15:00",
-                    "city": "台北市",
-                    "area": "中正區",
-                    "arena": "成功高中",
-                    "tagDegree": "初階",
-                    "tagPrice": "125",
-                    "like": "false",
-                    "": ""
-                },
-                {
-                    "id": "3",
-                    "state": "4/4位",
-                    "typeAbbr": "排",
-                    "dateAbbr": "06/27",
-                    "startTime": "18:00",
-                    "endTime": "22:00",
-                    "city": "新北市",
-                    "area": "三重區",
-                    "arena": "3.14排球館",
-                    "tagDegree": "C~B",
-                    "tagPrice": "250",
-                    "like": "false",
-                    "": ""
-                },
-                {
-                    "id": "4",
-                    "state": "3/4位",
-                    "typeAbbr": "排",
-                    "dateAbbr": "06/30",
-                    "startTime": "10:00",
-                    "endTime": "15:00",
-                    "city": "新北市",
-                    "area": "板橋區",
-                    "arena": "板橋國中室內體育館",
-                    "tagDegree": "A",
-                    "tagPrice": "200",
-                    "like": "false"
-                }
+                  "id": "1",
+                  "identity": "團主",
+                  "state": "1/5位",
+                  "typeAbbr": "羽",
+                  "dateAbbr": "06/26",
+                  "startTime": "17:00",
+                  "endTime": "21:00",
+                  "city": "台北市",
+                  "area": "中正區",
+                  "arena": "成功高中",
+                  "tagDegree": "新手友善",
+                  "tagPrice": "200",
+                  "reqCount": [
+                      {
+                        "gender": "female",
+                        "count": 3
+                      },
+                      {
+                        "gender": "male",
+                        "count": 1
+                      },
+                      {
+                        "gender": "unspecified",
+                        "count": 1
+                      }],
+                  "ballBrand": "勝利比賽球",
+                  "role": "雙打",
+                  "equip": "飲水機",
+                  "note": "專人排場不少打",
+                  "host": "",
+                  "appl": "陳小明,陳曉成",
+                  "cancel": "陳猷明",
+                  "like": ""
+              },
+              {
+                  "id": "2",
+                  "identity": "團主",
+                  "state": "4/5位",
+                  "typeAbbr": "羽",
+                  "dateAbbr": "06/26",
+                  "startTime": "10:00",
+                  "endTime": "15:00",
+                  "city": "台北市",
+                  "area": "中正區",
+                  "arena": "成功高中",
+                  "tagDegree": "初階",
+                  "tagPrice": "125",
+                  "reqCount": [
+                      {
+                        "gender": "female",
+                        "count": 2
+                      },
+                      {
+                        "gender": "male",
+                        "count": 1
+                      },
+                      {
+                        "gender": "unspecified",
+                        "count": 1
+                      }],
+                  "ballBrand": "亞獅龍RSL4號,摩亞MS-85,久奈司AJ-40",
+                  "role": "",
+                  "equip": "飲水機,風扇",
+                  "note": "進學校左轉上3樓，靠近講台兩面場，原則上打1休1",
+                  "host": "",
+                  "appl": "陳小明,陳曉成",
+                  "cancel": "陳猷明",
+                  "like": ""
+              },
+              {
+                  "id": "3",
+                  "identity": "團主",
+                  "state": "4/4位",
+                  "typeAbbr": "排",
+                  "dateAbbr": "06/27",
+                  "startTime": "18:00",
+                  "endTime": "22:00",
+                  "city": "新北市",
+                  "area": "三重區",
+                  "arena": "3.14排球館",
+                  "tagDegree": "C~B",
+                  "tagPrice": "250",
+                  "reqCount": [
+                      {
+                        "gender": "female",
+                        "count": 0
+                      },
+                      {
+                        "gender": "male",
+                        "count": 3
+                      },
+                      {
+                        "gender": "unspecified",
+                        "count": 0
+                      }],
+                  "ballBrand": "",
+                  "role": "男網混排",
+                  "equip": "防守,舉球,攻擊",
+                  "note": "計分：21分制，場地及好，遮陽避雨～～",
+                  "host": "",
+                  "appl": "王鵬豪,尤利水",
+                  "cancel": "陳猷明",
+                  "like": ""
+              },
+              {
+                  "id": "4",
+                  "identity": "團主",
+                  "state": "3/4位",
+                  "typeAbbr": "排",
+                  "dateAbbr": "06/30",
+                  "startTime": "10:00",
+                  "endTime": "15:00",
+                  "city": "新北市",
+                  "area": "板橋區",
+                  "arena": "板橋國中室內體育館",
+                  "tagDegree": "A",
+                  "tagPrice": "200",
+                  "reqCount": [
+                      {
+                        "gender": "female",
+                        "count": 0
+                      },
+                      {
+                        "gender": "male",
+                        "count": 5
+                      },
+                      {
+                        "gender": "unspecified",
+                        "count": 0
+                      }],
+                  "ballBrand": "",
+                  "role": "男網純男",
+                  "equip": "攻擊",
+                  "note": "希望有基礎能力, 打起來比較順利.",
+                  "host": "",
+                  "appl": "王鵬豪,尤利水",
+                  "cancel": "陳猷明",
+                  "like": ""
+              }
             ]
         },
         {

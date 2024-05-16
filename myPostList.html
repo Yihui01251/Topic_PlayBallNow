@@ -80,7 +80,7 @@
 
           return (
             <>
-              <a href={`#detailPostPopup-${id}`}>
+              <a className="container-component" href={`#detailPostPopup-${id}`}>
                 <div
                   className={"notice-container"}
                   style={{ color: typeFontStyle, border: identityStyle }}
@@ -174,13 +174,19 @@
                             className="areaInfo"
                             style={{ color: typeFontStyle }}
                           >
-                            <h3>{city}</h3>
-                            <h3>{area}</h3>
+                            <p className="text-M">{city}</p>
+                            <p className="text-M">{area}</p>
+                            
+                          </div>
+                          <div
+                            className="arenaInfo"
+                            style={{ color: typeFontStyle }}
+                          >
                             <h3>{arena}</h3>
                           </div>
                           <div className="tag-style">
-                            <p style={{ color: typeFontStyle }}>{tagDegree}</p>
-                            <p style={{ color: typeFontStyle }}>${tagPrice}</p>
+                            <p style={{ color: typeFontStyle ,borderColor:typeFontStyle }}>{tagDegree}</p>
+                            <p style={{ color: typeFontStyle ,borderColor:typeFontStyle}}>${tagPrice}</p>
                           </div>
                         </div>
                         <div className="sub-info">
