@@ -72,6 +72,8 @@
           const [hrefWeekMore, setHrefWeekMore] = useState(
             "./VBweekMore-postsArea.html"
           );
+          //篩選的tag值
+          const [filterTag, setFilterTag] = useState("排球");
 
           const btnTypeVbRef = useRef(null);
           const btnTypeBmRef = useRef(null);
@@ -113,6 +115,7 @@
               /* 改變要map的資料名稱 */
               setTodayType("bm_today_postData");
               setWeekType("bm_week_postData");
+              setFilterTag("羽球");
               // banner顯示狀態
               setBMDisplay("flex");
               setVBDisplay("none");
@@ -132,6 +135,7 @@
               //
               setTodayType("vb_today_postData");
               setWeekType("vb_week_postData");
+              setFilterTag("排球");
               //
               setBMDisplay("none");
               setVBDisplay("block");
@@ -179,15 +183,31 @@
             }
           };
           /* tag篩選 */
-          //篩選的tag值
-          const [filterTag, setFilterTag] = useState("排球");
-          //
+          
+          //篩選程度
           const [filterDegree, setFilterDegree] = useState("");
+          //篩選價格
           const [filterPrice, setFilterPrice] = useState("");
+          //篩選時段
+          const [filterTime, setFilterTime] = useState("");
           //取得tag對應資料屬性
           const [tagDataType, setTagDataType] = useState("type");
           //
-          const [conditions, setConditions] = useState({type:'排球',});
+          const [conditions, setConditions] = useState({ type: filterTag });
+          const newConditions = {};
+          useEffect(() => {
+                
+                if (filterDegree !== "") {
+                  newConditions.tagDegree = filterDegree;
+                }
+                if (filterPrice !== "") {
+                  newConditions.tagPrice = filterPrice;
+                }
+                if (filterTime !== "") {
+                  newConditions.startTime = filterTime;
+                }
+                setConditions(newConditions);
+              }, [filterDegree, filterPrice, filterTime]);
 
           const tagFilter = (id, value, name) => {
             //取得包tag的容器
@@ -195,12 +215,9 @@
             //取得filterBox下所有的button
             // const filterButtons = filterBox.querySelectorAll("button");
             // filterButtons.forEach((button) => {
-              // 移除所有button的active類
+            // 移除所有button的active類
             //   button.classList.remove("active");
             // });
-              const newConditions ={
-                [filterTag] :value,
-              }
 
             const tagStyle = document.getElementById(id);
             console.log("類型: " + name);
@@ -210,33 +227,169 @@
               /* 如果已經選中=>移除class="active" */
               tagStyle.classList.remove("active");
               console.log("取消選取");
-              setFilterTag([]);
+              switch (name) {
+                case "tagDegree":
+                  setFilterDegree("");
+                  break;
+                case "tagPrice":
+                  setFilterPrice("");
+                  break;
+                case "startTime":
+                  setFilterTime("");
+                  break;
+                default:
+                  break;
+              }
             } else {
               /* 如果沒有選中=>新增class="active" */
               tagStyle.classList.add("active");
               console.log(tagStyle);
-              setFilterTag([`${value}`]);
-              setTagDataType(name);
-              setConditions(newConditions);
+              switch (name) {
+                case "tagDegree":
+                  setFilterDegree(`${value}`);
+                  break;
+                case "tagPrice":
+                  setFilterPrice(`${value}`);
+                  break;
+                case "startTime":
+                  setFilterTime(`${value}`);
+                  break;
+                default:
+                  break;
+              }
+
+              // setFilterTag([`${value}`]);
+              // setTagDataType(name);
+              // const newConditions = {
+              //   tagDegree: filterDegree,
+              //   tagPrice: filterPrice,
+              //   startTime: filterTime,
+              // };
+             
+              // multiFilter(conditions);
               filterPosts;
             }
           };
-          console.log("目前篩選: " + filterTag);
-
+          useEffect(() => {
+            console.log("目前篩選: ", conditions);
+            // 在 conditions 更改后重新计算 filterPosts
+            // 这将触发 useMemo 中的重新计算
+          }, [conditions]);
           /* 篩選資料 */
           const filterPosts = useMemo(() => {
-            console.log("資料屬性: " + tagDataType);
+            // 沒有篩選時渲染全部貼文
+            if (!filterDegree && !filterPrice && !filterTime) {
+              return [...getPosts(todayType)];
+            }
             return [...getPosts(todayType)].filter((posts) => {
-              // console.log("可取得" + posts[tagDataType]);
-               return posts[tagDataType].match(filterTag);
-              // for(const key in conditions){
-              //   if(posts[key] !== conditions[key]){
-              //     return false;
-              //   }
-              // }
-              // return true;
-            });
-          }, [filterTag, tagDataType,conditions]);
+              let matchAllConditions = true;
+              for (const key in conditions) {
+                if (
+                  // newConditions.hasOwnProperty(key) &&
+                  conditions[key] !== ""
+                ) {
+                  console.log("");
+                  // 检查数据中是否有该属性
+                  // if (posts.hasOwnProperty(key)) {
+                    // 根据条件类型进行比较
+                    switch (key) {
+                      case "tagDegree":
+                        matchAllConditions =
+                          matchAllConditions && posts[key].includes(conditions[key]);
+                          break;
+                      case "tagPrice":
+                        //比較價格小於條件值
+                        matchAllConditions =
+                          matchAllConditions &&
+                          posts[key] <= parseInt(conditions[key]);
+                          break;
+                      case "startTime":
+                        // 比較startTime 是否大于條件
+                        matchAllConditions =
+                          matchAllConditions &&
+                          
+                            parseInt(posts[key].split(":")[0]) >=
+                            conditions[key];
+                        break;
+                      default:
+                        // 未知屬性
+                        matchAllConditions = false;
+                        break;
+                    }
+                   } else {
+                    // 如果数据中没有该属性，则不匹配
+                    matchAllConditions = false;
+                  
+
+                  // 如果某个条件不匹配，则停止遍历并返回 false
+              //     if (!matchAllConditions) {
+              //       return false;
+              //     }
+                 }
+               }
+
+              // 如果所有条件都匹配，则返回 true
+              return matchAllConditions;
+              console.log("有匹配的資料");
+          });
+          }, [filterTag, tagDataType, conditions]);
+
+          // const multiFilter = (conditions) => {
+          //   // 对数据进行多重条件过滤
+          //   return [...getPosts(todayType)].filter((item) => {
+          //     // 初始化变量，假设数据符合所有条件
+          //     let matchAllConditions = true;
+
+          //     // 遍历条件对象中的每个条件
+          //     for (const key in conditions) {
+          //       // 检查数据中是否有该属性
+          //       if (item.hasOwnProperty(key)) {
+          //         // 根据条件类型进行比较
+          //         switch (key) {
+          //           case "tagDegree":
+          //           matchAllConditions =
+          //               matchAllConditions && item[key] === conditions[key];
+          //           case "tagPrice":
+          //             //比較價格小於條件值
+          //           matchAllConditions =
+          //               matchAllConditions && item[key] < conditions[key];
+          //             break;
+          //           case "startTime":
+          //             // 比較startTime 是否大于條件
+          //             matchAllConditions =
+          //               matchAllConditions &&
+          //               conditions[key+6] > parseInt(item[key].split(":")[0]) > conditions[key];
+          //             break;
+          //           default:
+          //             // 未知屬性
+          //             matchAllConditions = false;
+          //             break;
+          //         }
+          //       } else {
+          //         // 如果数据中没有该属性，则不匹配
+          //         matchAllConditions = false;
+          //       }
+
+          //       // 如果某个条件不匹配，则停止遍历并返回 false
+          //       if (!matchAllConditions) {
+          //         return false;
+          //       }
+          //     }
+
+          //     // 如果所有条件都匹配，则返回 true
+          //     return matchAllConditions;
+
+          //   });
+          // };
+
+          // const filterPosts = useMemo(() => {
+          //   console.log("資料屬性: " + tagDataType);
+          //   return [...getPosts(todayType)].filter((posts) => {
+          //      console.log("可取得" + posts[tagDataType]);
+          //      return posts[tagDataType].match(filterTag);
+
+          //   });
+          // }, [filterTag, tagDataType,conditions]);
 
           // 元件
           const Card = ({ name }) => {
