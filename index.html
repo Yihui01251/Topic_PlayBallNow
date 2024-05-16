@@ -77,7 +77,7 @@
             //btnTypeVbRef.current.focus();
           }, []);
 
-          
+
           /* 改變類型(羽/排) */
           const changeType = (id) => {
             // let newBackground = "";
@@ -277,11 +277,11 @@
             host,
             ballBrand
           }) => {
-            
+
             const [showBallBrand,setShowBallBrand]=useState('none');
             const [showVbInfo,setShowVbInfo]=useState('flex');
             useEffect(()=>{
-              
+
               if (type == "羽球") {
               hostType = "bm";
               setShowBallBrand("flex");
@@ -310,7 +310,7 @@
                           <div className="areaInfo">
                             <h3>{postCity}</h3>
                             <h3>{postArea}</h3>
-                            
+
                           </div>
                           <div className="arenaInfo">
                             <h3>{postArena}</h3>
@@ -432,10 +432,12 @@
                   </ul>
                 </nav>
                 <div className="title">
-                  <div className="hugTitle">
+                  <div className="hugTitle noto-sans-tc">
+                    <img src="./images/vbtitle.svg" alt=""/>
                     <h1 className="title-L" value="現在想打球">
                       現在想打球
                     </h1>
+                    <img src="./images/bmtitle.svg" alt=""/>
                   </div>
                 </div>
               </header>

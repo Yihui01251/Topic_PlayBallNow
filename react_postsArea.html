@@ -50,9 +50,9 @@
 
         const App = () => {
           const { useState, useEffect, useRef } = React;
-          
+
           const length = postData.length;
-          const lengthValue = `共有${length}筆資料`; 
+          const lengthValue = `共有${length}筆資料`;
 
           // 元件
           // 建立簡略貼文元件
@@ -91,7 +91,7 @@
                     <div className="areaInfo">
                             <h3>{postCity}</h3>
                             <h3>{postArea}</h3>
-                            
+
                           </div>
                           <div className="arenaInfo">
                             <h3>{postArena}</h3>
@@ -194,7 +194,7 @@
                           <div className="areaInfo">
                             <h3>{postCity}</h3>
                             <h3>{postArea}</h3>
-                            
+
                           </div>
                           <div className="arenaInfo">
                             <h3>{postArena}</h3>
@@ -300,16 +300,18 @@
                   </ul>
                 </nav>
                 <div className="title">
-                  <div className="hugTitle">
+                  <div className="hugTitle noto-sans-tc">
+                  <img src="./images/vbtitle.svg" alt="" />
                     <h1 className="title-L" value="篩選貼文">
                       篩選貼文
                     </h1>
+                    <img src="./images/bmtitle.svg" alt="" />
                   </div>
                 </div>
                 </header>
 
               <main className="filter-postArea">
-                
+
                 <section className="filter-box">
                   <a href="./index.html">
                     <div className="filter-btnBox">

@@ -1,640 +1,637 @@
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
-  <html>
-    <head>
-      <title>找人</title>
-      <link rel="stylesheet" href="./stylesheets/css/style-scss.css" />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <meta charset="UTF-8" />
-      <!-- <script src="./javascripts/vendor.js"></script> -->
-      <script
-        crossorigin
-        src="https://unpkg.com/react@18/umd/react.development.js"
-      ></script>
-      <script
-        crossorigin
-        src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
-      ></script>
-      <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-      <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.0/redux.min.js"
-        integrity="sha512-1/8Tj23BRrWnKZXeBruk6wTnsMJbi/lJsk9bsRgVwb6j5q39n0A00gFjbCTaDo5l5XrPVv4DZXftrJExhRF/Ug=="
-        crossorigin="anonymous"
-        referrerpolicy="no-referrer"
-      ></script>
-      <style>
-        .fileName {
-          display: none;
-        }
-      </style>
-    </head>
-    <body id="body">
-      <small class="fileName">檔名：<code>publicationForm.html</code></small>
-      <!-- 根元素  -->
-      <div id="root"></div>
-      <script type="text/babel">
-        (async () => {
-          //Input元件
-          const InputFiled = ({
-            name,
-            label,
-            type,
-            value,
-            placeholder,
-            onChange,
-          }) => {
-            return (
-              <>
-                <label htmlFor={name} className={name}>
-                  {label}
-                  <input
-                    type={type}
-                    name={name}
-                    id={name}
-                    value={value}
-                    placeholder={placeholder}
-                    onChange={(e) => onChange(name, e.target.value)}
-                  />
-                </label>
-              </>
-            );
-          };
-          //Select元件
-          const SelectFiled = ({ name, label, value, options, onChange }) => {
-            return (
-              <>
-                <label htmlFor={name} className={name}>
-                  {label}
-                  <select
-                    name={name}
-                    id={name}
-                    value={value}
-                    onChange={(e) => onChange(name, e.target.value)}
-                  >
-                    {options.map((options) => {
-                      return (
-                        <option key={options} value={options}>
-                          {options}
-                        </option>
-                      );
-                    })}
-                  </select>
-                </label>
-              </>
-            );
-          };
-          //TextArea元件
-          const TextAreaFiled = ({ name, label, value, onChange }) => {
-            return (
-              <>
-                <label htmlFor={name} className={name}>
-                  {label}
-                  <textarea
-                    name={name}
-                    id={name}
-                    value={value}
-                    onChange={(e) => onChange(name, e.target.value)}
-                  />
-                </label>
-              </>
-            );
-          };
-          //缺額元件
-          const Vacancy = ({
-            name,
-            label,
-            type,
-            value,
-            placeholder,
-            onChange,
-            name2,
-            name3,
-            value2,
-            value3,
-            placeholder2,
-            placeholder3,
-          }) => {
-            return (
-              <>
-                <label htmlFor={name}>
-                  {label}
-                  <input
-                    type={type}
-                    name={name}
-                    id={name}
-                    value={value}
-                    placeholder={placeholder}
-                    onChange={(e) => onChange(name, e.target.value)}
-                  />
-                  <input
-                    type={type}
-                    name={name2}
-                    id={name2}
-                    value={value2}
-                    placeholder={placeholder2}
-                    onChange={(e) => onChange(name2, e.target.value)}
-                  />
-                  <input
-                    type={type}
-                    name={name3}
-                    id={name3}
-                    value={value3}
-                    placeholder={placeholder3}
-                    onChange={(e) => onChange(name3, e.target.value)}
-                  />
-                </label>
-              </>
-            );
-          };
-          
-          const App = () => {
-            const { useState, useEffect, useRef } = React;
-            const btnFormVbRef = useRef(null);
-            const btnFormBmRef = useRef(null);
+<html>
 
-            useEffect(() => {
-              // 組件載入後，將焦點設置到 btn-typeVb 按鈕上
-              // btnFormBmRef.current.focus();
-            }, []);
+<head>
+  <title>找人</title>
+  <link rel="stylesheet" href="./stylesheets/css/style-scss.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" />
+  <!-- <script src="./javascripts/vendor.js"></script> -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.0/redux.min.js"
+    integrity="sha512-1/8Tj23BRrWnKZXeBruk6wTnsMJbi/lJsk9bsRgVwb6j5q39n0A00gFjbCTaDo5l5XrPVv4DZXftrJExhRF/Ug=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <style>
+    .fileName {
+      display: none;
+    }
+  </style>
+</head>
 
-            const [mainColor, setMainColor] = useState("#14AAEB");
-            const [fontColor, setFontColor] = useState("#147CB6");
-            const [btnColor, setBtnColor] = useState("#F1DB15");
-            const [selectedButton, setSelectedButton] = useState("btn-formVB");
-            const [type, setType] = useState("排球");
-            const [BMdisplay, setBMDisplay] = useState("none");
-            const [VBdisplay, setVBDisplay] = useState("flex");
-            const [optionType, setOptionType] = useState([
-              "女網混排",
-              "男網混排",
-              "女網純女",
-              "男網純男",
-            ]);
-            const [optionDegree, setOptionDegree] = useState([
-              "C以下",
-              "C-B",
-              "B",
-              "B-A",
-              "A",
-              "A-S",
-              "S"
-            ]);
-            const changeType = (id) => {
-              let colorMain = "";
-              let colorFont = "";
-              let btnColor = "";
-              let newBorder = "";
-              let type = "";
-              let option = [];
-              let option_degree = [];
+<body id="body">
+  <small class="fileName">檔名：<code>publicationForm.html</code></small>
+  <!-- 根元素  -->
+  <div id="root"></div>
+  <script type="text/babel">
+    (async () => {
+      //Input元件
+      const InputFiled = ({
+        name,
+        label,
+        type,
+        value,
+        placeholder,
+        onChange,
+      }) => {
+        return (
+          <>
+            <label htmlFor={name} className={name}>
+              {label}
+              <input
+                type={type}
+                name={name}
+                id={name}
+                value={value}
+                placeholder={placeholder}
+                onChange={(e) => onChange(name, e.target.value)}
+              />
+            </label>
+          </>
+        );
+      };
+      //Select元件
+      const SelectFiled = ({ name, label, value, options, onChange }) => {
+        return (
+          <>
+            <label htmlFor={name} className={name}>
+              {label}
+              <select
+                name={name}
+                id={name}
+                value={value}
+                onChange={(e) => onChange(name, e.target.value)}
+              >
+                {options.map((options) => {
+                  return (
+                    <option key={options} value={options}>
+                      {options}
+                    </option>
+                  );
+                })}
+              </select>
+            </label>
+          </>
+        );
+      };
+      //TextArea元件
+      const TextAreaFiled = ({ name, label, value, onChange }) => {
+        return (
+          <>
+            <label htmlFor={name} className={name}>
+              {label}
+              <textarea
+                name={name}
+                id={name}
+                value={value}
+                onChange={(e) => onChange(name, e.target.value)}
+              />
+            </label>
+          </>
+        );
+      };
+      //缺額元件
+      const Vacancy = ({
+        name,
+        label,
+        type,
+        value,
+        placeholder,
+        onChange,
+        name2,
+        name3,
+        value2,
+        value3,
+        placeholder2,
+        placeholder3,
+      }) => {
+        return (
+          <>
+            <label htmlFor={name}>
+              {label}
+              <input
+                type={type}
+                name={name}
+                id={name}
+                value={value}
+                placeholder={placeholder}
+                onChange={(e) => onChange(name, e.target.value)}
+              />
+              <input
+                type={type}
+                name={name2}
+                id={name2}
+                value={value2}
+                placeholder={placeholder2}
+                onChange={(e) => onChange(name2, e.target.value)}
+              />
+              <input
+                type={type}
+                name={name3}
+                id={name3}
+                value={value3}
+                placeholder={placeholder3}
+                onChange={(e) => onChange(name3, e.target.value)}
+              />
+            </label>
+          </>
+        );
+      };
 
-              const bodyStyle = document.getElementById("body");
+      const App = () => {
+        const { useState, useEffect, useRef } = React;
+        const btnFormVbRef = useRef(null);
+        const btnFormBmRef = useRef(null);
 
-              if (id == "btn-formBM") {
-                colorMain = "#6C9C07";
-                colorFont = "#689607";
-                btnColor = "#FF8D24";
-                type = "羽球";
-                option = ["雙打", "混雙", "女雙", "男雙", "單打"];
-                option_degree = [
-                  "新手",
-                  "初階",
-                  "初上",
-                  "中下",
-                  "中階",
-                  "中上",
-                ];
+        useEffect(() => {
+          // 組件載入後，將焦點設置到 btn-typeVb 按鈕上
+          // btnFormBmRef.current.focus();
+        }, []);
 
-                // 新增class改變背景
-                bodyStyle.classList.add("background-Bm");
-                bodyStyle.classList.remove("background-Vb");
-                setSelectedButton("btn-formBM");
-                // 物件顯示狀態
-                setBMDisplay("flex");
-                setVBDisplay("none");
-              } else if (id == "btn-formVB") {
-                // newBackground = 'url("../images/catBg.jpg")';
-                colorMain = "#14AAEB";
-                colorFont = "#147CB6";
-                btnColor = "#F1DB15";
-                type = "排球";
-                option = ["女網混排", "男網混排", "女網純女", "男網純男"];
-                option_degree = ["C以下", "C-B", "A", "C", "B", "A"];
-                bodyStyle.classList.remove("background-Bm");
-                bodyStyle.classList.add("background-Vb");
-                setSelectedButton("btn-formVB");
-                //
-                setBMDisplay("none");
-                setVBDisplay("flex");
-              }
-              setMainColor(colorMain);
-              setFontColor(colorFont);
-              setBtnColor(btnColor);
-              setType(type);
-              setOptionType(option);
-              setOptionDegree(option_degree);
-              document.documentElement.style.setProperty(
-                "--main-color",
-                colorMain
-              );
-              document.documentElement.style.setProperty(
-                "--font-color",
-                colorFont
-              );
-              document.documentElement.style.setProperty(
-                "--btn-color",
-                btnColor
-              );
-            };
+        const [mainColor, setMainColor] = useState("#14AAEB");
+        const [fontColor, setFontColor] = useState("#147CB6");
+        const [btnColor, setBtnColor] = useState("#F1DB15");
+        const [selectedButton, setSelectedButton] = useState("btn-formVB");
+        const [type, setType] = useState("排球");
+        const [BMdisplay, setBMDisplay] = useState("none");
+        const [VBdisplay, setVBDisplay] = useState("flex");
+        const [optionType, setOptionType] = useState([
+          "女網混排",
+          "男網混排",
+          "女網純女",
+          "男網純男",
+        ]);
+        const [optionDegree, setOptionDegree] = useState([
+          "C以下",
+          "C-B",
+          "B",
+          "B-A",
+          "A",
+          "A-S",
+          "S"
+        ]);
+        const changeType = (id) => {
+          let colorMain = "";
+          let colorFont = "";
+          let btnColor = "";
+          let newBorder = "";
+          let type = "";
+          let option = [];
+          let option_degree = [];
 
-            //預覽
-            const [formData, setFormData] = useState({
-              postDate: "4/24",
-              postStartTime: "18:00",
-              postEndTime: "20:00",
-              postCity: "台北市",
-              postArea: "中正區",
-              postArena: "中正運動中心",
-              postRole: "女網混排",
-              postCost: "250",
-              postFemale: "1",
-              postMale: "1",
-              postUnspecified: "3",
-              postDegree: "程度不拘",
-              postNote: "請不要放鴿子",
-              postPosition: "無要求",
-              postEquipment: "冷氣、側燈",
-              postBall:"勝利藍蓋",
-            });
+          const bodyStyle = document.getElementById("body");
 
-            //輸入即時更改預覽
-            const handleChange = (name, value) => {
-              setFormData({ ...formData, [name]: value });
-            };
+          if (id == "btn-formBM") {
+            colorMain = "#6C9C07";
+            colorFont = "#689607";
+            btnColor = "#FF8D24";
+            type = "羽球";
+            option = ["雙打", "混雙", "女雙", "男雙", "單打"];
+            option_degree = [
+              "新手",
+              "初階",
+              "初上",
+              "中下",
+              "中階",
+              "中上",
+            ];
 
-            //預覽元件
-          const PreviewSection = ({
-            postDate,
-            postStartTime,
-            postEndTime,
-            postType,
-            postCity,
-            postArea,
-            postArena,
-            postDegree,
-            postCost,
-            postFemale,
-            postMale,
-            postUnspecified,
-            postRole,
-            postBall,
-            postPosition,
-            postEquipment,
-            postNote,
-            type,
-            VBdisplay,
-            BMdisplay,
-          }) => {
-            // console.log("Received postDate in PreviewSection:", postDate);
-            const handleSubmit =(e)=>{
-              //取消html預設
-              e.preventDefault();
-              console.log(formData);
-            }
-            
-            return (
-              <div className="form-preview">
-                <div className="line-hugTitle">
-                  <div className="titleLine"></div>
-                  <h2>預覽</h2>
-                </div>
-                <div className="simplePostInfo">
-                  <div className="main-info">
-                    <div className="header">
-                      <p className="text-L">
-                        {postDate} {postStartTime}~{postEndTime}
-                      </p>
-                      <div className="type-style">{type}</div>
-                      <button className="collect">
-                        <img src="../images/heart-no.svg" alt="收藏" />
-                      </button>
-                    </div>
-                    <div className="areaInfo">
-                      <h3>{postCity}</h3>
-                      <h3>{postArea}</h3>
-                      <h3>{postArena}</h3>
-                    </div>
-                    <div className="tag-style">
-                      <p className="text-S">{postDegree}</p>
-                      <p className="text-S">${postCost}</p>
-                    </div>
-                  </div>
-                  <div className="sub-info">
-                    <div className="vacancyInfo">
-                      <h4>缺額</h4>
-                      <div>女</div>
-                      <p>{postFemale}位</p>
-                      <div>男</div>
-                      <p>{postMale}位</p>
-                      <div>不限</div> <p>{postUnspecified}位</p>
-                    </div>
-                    <div className="ballInfo" style={{ display: VBdisplay }}>
-                      <h4>類型</h4>
-                      <p>{postRole}</p>
-                    </div>
-                    <div className="ballInfo" style={{ display: BMdisplay }}>
-                      <h4>用球</h4>
-                      <p>{postBall}</p>
-                    </div>
-                    <div className="posInfo" style={{ display: VBdisplay }}>
-                      <h4>位置</h4>
-                      <p>{postPosition}</p>
-                    </div>
-                    <div className="equipInfo" style={{ display: BMdisplay }}>
-                      <h4>設備</h4>
-                      <p>{postEquipment}</p>
-                    </div>
-                    <div className="noteInfo">
-                      <h4>備註</h4>
-                      <p>{postNote}</p>
-                    </div>
-                  </div>
-                  <div className="BtnContainer">
-                    <button className="button">報名</button>
-                  </div>
-                </div>
-                <a href="./react_postsArea.html" ><button type="submit"className="button" onClick={handleSubmit}>送出</button></a>
+            // 新增class改變背景
+            bodyStyle.classList.add("background-Bm");
+            bodyStyle.classList.remove("background-Vb");
+            setSelectedButton("btn-formBM");
+            // 物件顯示狀態
+            setBMDisplay("flex");
+            setVBDisplay("none");
+          } else if (id == "btn-formVB") {
+            // newBackground = 'url("../images/catBg.jpg")';
+            colorMain = "#14AAEB";
+            colorFont = "#147CB6";
+            btnColor = "#F1DB15";
+            type = "排球";
+            option = ["女網混排", "男網混排", "女網純女", "男網純男"];
+            option_degree = ["C以下", "C-B", "A", "C", "B", "A"];
+            bodyStyle.classList.remove("background-Bm");
+            bodyStyle.classList.add("background-Vb");
+            setSelectedButton("btn-formVB");
+            //
+            setBMDisplay("none");
+            setVBDisplay("flex");
+          }
+          setMainColor(colorMain);
+          setFontColor(colorFont);
+          setBtnColor(btnColor);
+          setType(type);
+          setOptionType(option);
+          setOptionDegree(option_degree);
+          document.documentElement.style.setProperty(
+            "--main-color",
+            colorMain
+          );
+          document.documentElement.style.setProperty(
+            "--font-color",
+            colorFont
+          );
+          document.documentElement.style.setProperty(
+            "--btn-color",
+            btnColor
+          );
+        };
+
+        //預覽
+        const [formData, setFormData] = useState({
+          postDate: "4/24",
+          postStartTime: "18:00",
+          postEndTime: "20:00",
+          postCity: "台北市",
+          postArea: "中正區",
+          postArena: "中正運動中心",
+          postRole: "女網混排",
+          postCost: "250",
+          postFemale: "1",
+          postMale: "1",
+          postUnspecified: "3",
+          postDegree: "程度不拘",
+          postNote: "請不要放鴿子",
+          postPosition: "無要求",
+          postEquipment: "冷氣、側燈",
+          postBall: "勝利藍蓋",
+        });
+
+        //輸入即時更改預覽
+        const handleChange = (name, value) => {
+          setFormData({ ...formData, [name]: value });
+        };
+
+        //預覽元件
+        const PreviewSection = ({
+          postDate,
+          postStartTime,
+          postEndTime,
+          postType,
+          postCity,
+          postArea,
+          postArena,
+          postDegree,
+          postCost,
+          postFemale,
+          postMale,
+          postUnspecified,
+          postRole,
+          postBall,
+          postPosition,
+          postEquipment,
+          postNote,
+          type,
+          VBdisplay,
+          BMdisplay,
+        }) => {
+          // console.log("Received postDate in PreviewSection:", postDate);
+          const handleSubmit = (e) => {
+            //取消html預設
+            e.preventDefault();
+            console.log(formData);
+          }
+
+          return (
+            <div className="form-preview">
+              <div className="line-hugTitle">
+                <div className="titleLine"></div>
+                <h2>預覽</h2>
               </div>
-            );
-          };
-            return (
-              <div className="body">
-                <header id="topBar">
-                  <nav id="top-nav">
-                    <ul id="menu">
-                      <li>
-                        <a href="./index.html">
-                          <img
-                            className="icon"
-                            src="./images/magnifier.png"
-                            alt=""
-                          />
-                          探索
-                        </a>
-                      </li>
-                      <li>
-                        <a href="./publicationForm.html">
-                          <img
-                            className="icon"
-                            src="./images/post.png"
-                            alt=""
-                          />
-                          找人
-                        </a>
-                      </li>
-                      <li>
-                        <a href="notice.html">
-                          <img
-                            className="icon"
-                            src="./images/bell3.png"
-                            alt=""
-                          />
-                          行程
-                        </a>
-                      </li>
-                      <li>
-                        <a href="personal.html">
-                          <img className="icon" src="./images/cat.png" alt="" />
-                          個人
-                        </a>
-                      </li>
-                    </ul>
-                  </nav>
-                </header>
-
-                <main className="form-formArea">
-                  <div className="form-title">
-                    <div className="hugTitle">
-                      <h1 value="發文找人" className="title-L">
-                        發文找人
-                      </h1>
-                    </div>
-                    <a href="/myPostList.html" className="button btn-postManage">
-                      我的貼文
-                      <img src="./images/Vector.png" alt="" />
-                    </a>
-                    
+              <div className="simplePostInfo">
+                <div className="main-info">
+                  <div className="header">
+                    <p className="text-L">
+                      {postDate} {postStartTime}~{postEndTime}
+                    </p>
+                    <div className="type-style">{type}</div>
+                    <button className="collect">
+                      <img src="../images/heart-no.svg" alt="收藏" />
+                    </button>
                   </div>
-                  <section className="form-container">
-                    <div className="form-block">
-                      <div className="form-type">
-                        <button
-                          id="btn-formBM"
-                          ref={btnFormBmRef}
-                          className={
-                            selectedButton === "btn-formBM" ? "selected" : ""
-                          }
-                          onClick={() => changeType("btn-formBM")}
-                        >
-                          打羽球
-                        </button>
-
-                        <button
-                          id="btn-formVB"
-                          ref={btnFormVbRef}
-                          className={
-                            selectedButton === "btn-formVB" ? "selected" : ""
-                          }
-                          onClick={() => changeType("btn-formVB")}
-                        >
-                          打排球
-                        </button>
-                      </div>
-
-                      <div className="form-edit">
-                        <div className="line-hugTitle">
-                          <div className="titleLine"></div>
-                          <h2>必填資訊</h2>
-                        </div>
-                        <div className="form-options">
-                          <InputFiled
-                            name="postDate"
-                            label="日期"
-                            type="text"
-                            value={formData.postDate}
-                            onChange={handleChange}
-                          />
-                          <InputFiled
-                            label="開始"
-                            name="postStartTime"
-                            type="time"
-                            value={formData.postStartTime}
-                            onChange={handleChange}
-                          />
-                          <InputFiled
-                            name="postEndTime"
-                            label="結束"
-                            type="time"
-                            value={formData.postEndTime}
-                            onChange={handleChange}
-                          />
-                          <SelectFiled
-                            label="縣市"
-                            name="postCity"
-                            value={formData.postCity}
-                            onChange={handleChange}
-                            options={["台北市", "新北市", "其他"]}
-                          />
-                          <SelectFiled
-                            label="地區"
-                            name="postArea"
-                            value={formData.postArea}
-                            onChange={handleChange}
-                            options={["全部", "中山區", "中正區", "其他"]}
-                          />
-
-                          <InputFiled
-                            label="球場"
-                            name="postArena"
-                            type="text"
-                            value={formData.postArena}
-                            onChange={handleChange}
-                          />
-
-                          <SelectFiled
-                            label="類型"
-                            name="postRole"
-                            value={formData.postRole}
-                            onChange={handleChange}
-                            //optgroup
-                            options={optionType}
-                          />
-                          <InputFiled
-                            label="費用"
-                            name="postCost"
-                            type="number"
-                            value={formData.postCost}
-                            onChange={handleChange}
-                          />
-                          <Vacancy
-                            name="postFemale"
-                            label="缺額"
-                            type="text"
-                            value={formData.postFemale}
-                            placeholder="女     位"
-                            onChange={handleChange}
-                            name2="postMale"
-                            value2={formData.postMale}
-                            placeholder2="男     位"
-                            name3="postUnspecified"
-                            value3={formData.postUnspecified}
-                            placeholder3="不拘  位"
-                          />
-                          <SelectFiled
-                            label="程度"
-                            name="postDegree"
-                            value={formData.postDegree}
-                            onChange={handleChange}
-                            //optgroup
-                            options={optionDegree}
-                          />
-                        </div>
-                        <div className="line-hugTitle">
-                          <div className="titleLine"></div>
-                          <h2>選填資訊</h2>
-                        </div>
-                        <div className="form-subOptions">
-                          <label htmlFor="edit-totally">
-                            人數/面數
-                            <input
-                              type="text"
-                              id="edit-totally"
-                              placeholder="                      ex.21人/3面"
-                            />
-                          </label>
-                          <label htmlFor="edit-othersLevel">
-                            球友程度{" "}
-                            <input
-                              type="text"
-                              id="edit-othersLevel"
-                              placeholder="         請輸入內建球友程度"
-                            />
-                          </label>
-                          <label htmlFor="edit-siteIntro">
-                            用球
-                            <input
-                              type="text"
-                              id="edit-siteIntro"
-                              placeholder="                請輸入用球"
-                            />
-                          </label>
-                          <TextAreaFiled
-                            name="postNote"
-                            label="備註"
-                            value={formData.postNote}
-                            onChange={handleChange}
-                          />
-                          <SelectFiled
-                            label="場上位置"
-                            name="postPosition"
-                            value={formData.postPosition}
-                            onChange={handleChange}
-                            options={[
-                              "無要求",
-                              "主攻手",
-                              "副攻手",
-                              "自由人",
-                              "舉球員",
-                              "欄中",
-                            ]}
-                          />
-                          <SelectFiled
-                            label="設備"
-                            name="postEquipment"
-                            value={formData.postEquipment}
-                            onChange={handleChange}
-                            style={{display:"none"}}
-                            options={[
-                              "冷氣",
-                              "側燈",
-                              "PVC場地",
-                              "停車場",
-                              "飲水機",
-                            ]}
-                          />
-                        </div>
-                      </div>
-                    </div>
-
-                    {formData && (
-                      <PreviewSection
-                        {...formData}
-                        type={type}
-                        BMdisplay={BMdisplay}
-                        VBdisplay={VBdisplay}
-                      />
-                    )}
-                  </section>
-                </main>
-                <footer>
-                  <figure className="footer-border"></figure>
-                  <div>
-                    <figure>
+                  <div className="areaInfo">
+                    <h3>{postCity}</h3>
+                    <h3>{postArea}</h3>
+                    <h3>{postArena}</h3>
+                  </div>
+                  <div className="tag-style">
+                    <p className="text-S">{postDegree}</p>
+                    <p className="text-S">${postCost}</p>
+                  </div>
+                </div>
+                <div className="sub-info">
+                  <div className="vacancyInfo">
+                    <h4>缺額</h4>
+                    <div>女</div>
+                    <p>{postFemale}位</p>
+                    <div>男</div>
+                    <p>{postMale}位</p>
+                    <div>不限</div> <p>{postUnspecified}位</p>
+                  </div>
+                  <div className="ballInfo" style={{ display: VBdisplay }}>
+                    <h4>類型</h4>
+                    <p>{postRole}</p>
+                  </div>
+                  <div className="ballInfo" style={{ display: BMdisplay }}>
+                    <h4>用球</h4>
+                    <p>{postBall}</p>
+                  </div>
+                  <div className="posInfo" style={{ display: VBdisplay }}>
+                    <h4>位置</h4>
+                    <p>{postPosition}</p>
+                  </div>
+                  <div className="equipInfo" style={{ display: BMdisplay }}>
+                    <h4>設備</h4>
+                    <p>{postEquipment}</p>
+                  </div>
+                  <div className="noteInfo">
+                    <h4>備註</h4>
+                    <p>{postNote}</p>
+                  </div>
+                </div>
+                <div className="BtnContainer">
+                  <button className="button">報名</button>
+                </div>
+              </div>
+              <a href="./react_postsArea.html" ><button type="submit" className="button" onClick={handleSubmit}>送出</button></a>
+            </div>
+          );
+        };
+        return (
+          <div className="body">
+            <header id="topBar">
+              <nav id="top-nav">
+                <ul id="menu">
+                  <li>
+                    <a href="./index.html">
                       <img
-                        id="logo"
-                        src="./images/logo.png"
-                        alt="logo-PlayBallNow"
+                        className="icon"
+                        src="./images/magnifier.png"
+                        alt=""
                       />
-                    </figure>
-                    <p>Copyright© 2024 PlayBallNow. All Right Reserved. </p>
-                  </div>
-                </footer>
+                      探索
+                    </a>
+                  </li>
+                  <li>
+                    <a href="./publicationForm.html">
+                      <img
+                        className="icon"
+                        src="./images/post.png"
+                        alt=""
+                      />
+                      找人
+                    </a>
+                  </li>
+                  <li>
+                    <a href="notice.html">
+                      <img
+                        className="icon"
+                        src="./images/bell3.png"
+                        alt=""
+                      />
+                      行程
+                    </a>
+                  </li>
+                  <li>
+                    <a href="personal.html">
+                      <img className="icon" src="./images/cat.png" alt="" />
+                      個人
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </header>
+
+            <main className="form-formArea">
+              <div className="form-title">
+                <div className="hugTitle noto-sans-tc">
+                  <img src="./images/vbtitle.svg" alt="" />
+                  <h1 value="發文找人" className="title-L">
+                    發文找人
+                  </h1>
+                  <img src="./images/bmtitle.svg" alt="" />
+                </div>
+                <a href="/myPostList.html" className="button btn-postManage">
+                  我的貼文
+                  <img src="./images/Vector.png" alt="" />
+                </a>
+
               </div>
-            );
-          };
-          ReactDOM.createRoot(document.getElementById("root")).render(<App />);
-        })();
-      </script>
-    </body>
-  </html>
+              <section className="form-container">
+                <div className="form-block">
+                  <div className="form-type">
+                    <button
+                      id="btn-formBM"
+                      ref={btnFormBmRef}
+                      className={
+                        selectedButton === "btn-formBM" ? "selected" : ""
+                      }
+                      onClick={() => changeType("btn-formBM")}
+                    >
+                      打羽球
+                    </button>
+
+                    <button
+                      id="btn-formVB"
+                      ref={btnFormVbRef}
+                      className={
+                        selectedButton === "btn-formVB" ? "selected" : ""
+                      }
+                      onClick={() => changeType("btn-formVB")}
+                    >
+                      打排球
+                    </button>
+                  </div>
+
+                  <div className="form-edit">
+                    <div className="line-hugTitle">
+                      <div className="titleLine"></div>
+                      <h2>必填資訊</h2>
+                    </div>
+                    <div className="form-options">
+                      <InputFiled
+                        name="postDate"
+                        label="日期"
+                        type="text"
+                        value={formData.postDate}
+                        onChange={handleChange}
+                      />
+                      <InputFiled
+                        label="開始"
+                        name="postStartTime"
+                        type="time"
+                        value={formData.postStartTime}
+                        onChange={handleChange}
+                      />
+                      <InputFiled
+                        name="postEndTime"
+                        label="結束"
+                        type="time"
+                        value={formData.postEndTime}
+                        onChange={handleChange}
+                      />
+                      <SelectFiled
+                        label="縣市"
+                        name="postCity"
+                        value={formData.postCity}
+                        onChange={handleChange}
+                        options={["台北市", "新北市", "其他"]}
+                      />
+                      <SelectFiled
+                        label="地區"
+                        name="postArea"
+                        value={formData.postArea}
+                        onChange={handleChange}
+                        options={["全部", "中山區", "中正區", "其他"]}
+                      />
+
+                      <InputFiled
+                        label="球場"
+                        name="postArena"
+                        type="text"
+                        value={formData.postArena}
+                        onChange={handleChange}
+                      />
+
+                      <SelectFiled
+                        label="類型"
+                        name="postRole"
+                        value={formData.postRole}
+                        onChange={handleChange}
+                        //optgroup
+                        options={optionType}
+                      />
+                      <InputFiled
+                        label="費用"
+                        name="postCost"
+                        type="number"
+                        value={formData.postCost}
+                        onChange={handleChange}
+                      />
+                      <Vacancy
+                        name="postFemale"
+                        label="缺額"
+                        type="text"
+                        value={formData.postFemale}
+                        placeholder="女     位"
+                        onChange={handleChange}
+                        name2="postMale"
+                        value2={formData.postMale}
+                        placeholder2="男     位"
+                        name3="postUnspecified"
+                        value3={formData.postUnspecified}
+                        placeholder3="不拘  位"
+                      />
+                      <SelectFiled
+                        label="程度"
+                        name="postDegree"
+                        value={formData.postDegree}
+                        onChange={handleChange}
+                        //optgroup
+                        options={optionDegree}
+                      />
+                    </div>
+                    <div className="line-hugTitle">
+                      <div className="titleLine"></div>
+                      <h2>選填資訊</h2>
+                    </div>
+                    <div className="form-subOptions">
+                      <label htmlFor="edit-totally">
+                        人數/面數
+                        <input
+                          type="text"
+                          id="edit-totally"
+                          placeholder="                      ex.21人/3面"
+                        />
+                      </label>
+                      <label htmlFor="edit-othersLevel">
+                        球友程度{" "}
+                        <input
+                          type="text"
+                          id="edit-othersLevel"
+                          placeholder="         請輸入內建球友程度"
+                        />
+                      </label>
+                      <label htmlFor="edit-siteIntro">
+                        用球
+                        <input
+                          type="text"
+                          id="edit-siteIntro"
+                          placeholder="                請輸入用球"
+                        />
+                      </label>
+                      <TextAreaFiled
+                        name="postNote"
+                        label="備註"
+                        value={formData.postNote}
+                        onChange={handleChange}
+                      />
+                      <SelectFiled
+                        label="場上位置"
+                        name="postPosition"
+                        value={formData.postPosition}
+                        onChange={handleChange}
+                        options={[
+                          "無要求",
+                          "主攻手",
+                          "副攻手",
+                          "自由人",
+                          "舉球員",
+                          "欄中",
+                        ]}
+                      />
+                      <SelectFiled
+                        label="設備"
+                        name="postEquipment"
+                        value={formData.postEquipment}
+                        onChange={handleChange}
+                        style={{ display: "none" }}
+                        options={[
+                          "冷氣",
+                          "側燈",
+                          "PVC場地",
+                          "停車場",
+                          "飲水機",
+                        ]}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {formData && (
+                  <PreviewSection
+                    {...formData}
+                    type={type}
+                    BMdisplay={BMdisplay}
+                    VBdisplay={VBdisplay}
+                  />
+                )}
+              </section>
+            </main>
+            <footer>
+              <figure className="footer-border"></figure>
+              <div>
+                <figure>
+                  <img
+                    id="logo"
+                    src="./images/logo.png"
+                    alt="logo-PlayBallNow"
+                  />
+                </figure>
+                <p>Copyright© 2024 PlayBallNow. All Right Reserved. </p>
+              </div>
+            </footer>
+          </div>
+        );
+      };
+      ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+    })();
+  </script>
+</body>
+
+</html>
+
 </html>
