@@ -53,7 +53,7 @@ section.form-container {
   grid-template-columns: 339px 378px;
   gap: 20px;
 
-  @media ($breakpoint-moblie) {
+  @media ($breakpoint-md) {
     /* RWD 手機版換一行 */
     grid-template-columns: 1fr;
     justify-content: center;
