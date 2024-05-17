@@ -21,7 +21,7 @@
   width: 60%;
   max-width: 700px;
   min-width: 340px;
-  height: fit-content;
+  height: 50px;/* 這樣hover時才不會縮小 */
   margin: 0 50px;
 
   /* child */

@@ -293,10 +293,7 @@
                   // newConditions.hasOwnProperty(key) &&
                   conditions[key] !== ""
                 ) {
-                  console.log("");
-                  // 检查数据中是否有该属性
-                  // if (posts.hasOwnProperty(key)) {
-                    // 根据条件类型进行比较
+                   if (posts.hasOwnProperty(key)) {
                     switch (key) {
                       case "tagDegree":
                         matchAllConditions =
@@ -322,17 +319,17 @@
                         break;
                     }
                    } else {
-                    // 如果数据中没有该属性，则不匹配
+                    // 
                     matchAllConditions = false;
                   
 
                   // 如果某个条件不匹配，则停止遍历并返回 false
-              //     if (!matchAllConditions) {
-              //       return false;
-              //     }
+                  if (!matchAllConditions) {
+                    return false;
+                  }
                  }
                }
-
+               }
               // 如果所有条件都匹配，则返回 true
               return matchAllConditions;
               console.log("有匹配的資料");
@@ -768,9 +765,9 @@
                     <h2>
                       <div></div>本日臨打貼文
                     </h2>
-                    <div className="more button">
-                      <a href={hrefTodayMore}>更多</a>
-                    </div>
+                    <a href={hrefTodayMore}><div className="more button">
+                      更多
+                    </div></a>
                   </div>
                   <ul className="tags" id="today_allfilterBtn">
                     <button
@@ -832,9 +829,9 @@
                     <h2>
                       <div></div>本週臨打貼文
                     </h2>
-                    <div className="more button">
-                      <a href={hrefWeekMore}>更多</a>
-                    </div>
+                    <a href={hrefWeekMore}><div className="more button">
+                      更多
+                    </div></a>
                   </div>
                   <ul className="tags" id="week_allfilterBtn">
                     <a className="tags-degree" href="javascripts:;">

@@ -485,7 +485,6 @@ body {
   /* 樣式*/
   width: 32px;
   height: 32px;
-  margin-right: 5px;
 }
 
 /*  */
@@ -604,6 +603,7 @@ footer div p {
   padding: 1px 10px;
   background-color: transparent;
   color: var(--font-color);
+  opacity: 0.7;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -611,14 +611,11 @@ footer div p {
 }
 .tags a:hover, .tags button:hover {
   cursor: pointer;
+  opacity: 1;
 }
 .tags a:active, .tags button:active {
   background-color: var(--main-color);
   color: rgba(247, 246, 245, 0.9);
-}
-.tags a p, .tags button p {
-  /* text-align: center;
-  padding-bottom: 10px; */
 }
 .tags .active {
   background-color: var(--main-color);
@@ -679,6 +676,48 @@ footer div p {
 .BtnContainer a {
   width: -moz-fit-content;
   width: fit-content;
+}
+
+#btn-filter {
+  background-color: var(--btn-color);
+  width: -moz-fit-content;
+  width: fit-content;
+  max-height: 50px;
+  margin-top: 5px;
+  padding: 5px 18px;
+  border-radius: 50px;
+  border: 2px solid black;
+  border-bottom: 5px solid black;
+  /* 布局 */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  /*  */
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+#btn-filter:hover {
+  margin-top: 0px;
+  box-shadow: 0 2px black;
+}
+#btn-filter:active {
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  border-radius: 50px;
+  margin-top: 7px;
+  padding-top: 3px;
+  padding-bottom: 0px;
+  color: rgba(247, 246, 245, 0.9);
+  background-color: #353535;
+  border-bottom: -1px solid #000000;
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+  box-shadow: none;
 }
 
 .button {
@@ -2213,6 +2252,7 @@ button#btn-typeVb.selected img {
   border-radius: 90px;
   border: 3px solid black;
   box-shadow: 0px 4px 0px 0px #000000;
+  background-color: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -2315,8 +2355,7 @@ button#btn-typeVb.selected img {
   width: 60%;
   max-width: 700px;
   min-width: 340px;
-  height: -moz-fit-content;
-  height: fit-content;
+  height: 50px; /* 這樣hover時才不會縮小 */
   margin: 0 50px;
   /* child */
   display: flex;
@@ -2743,7 +2782,6 @@ button#btn-pastRecords.selected {
 @media (max-width: 768px) {
   .notice-itineraryTitle {
     margin-left: 0;
-    margin-right: 35vw;
   }
 }
 
@@ -2778,9 +2816,20 @@ button#btn-pastRecords.selected {
   align-items: center;
   justify-items: center;
 }
-@media (max-width: 768px) {
+@media (max-width:820px) {
   .notice-itineraryArea {
     /* 手機 元件兩行變成一行 */
+    width: 70vw;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+  }
+}
+@media (max-width:640px) {
+  .notice-itineraryArea {
+    /* 手機 元件兩行變成一行 */
+    width: 60vw;
     grid-template-columns: 1fr;
     justify-content: center;
     align-items: center;
@@ -2789,6 +2838,11 @@ button#btn-pastRecords.selected {
 }
 .notice-itineraryArea .container-component {
   width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.notice-itineraryArea .pastPostArea {
+  margin-bottom: 15vh;
 }
 
 /* 個人 */
@@ -2923,7 +2977,7 @@ button#btn-pastRecords.selected {
 
 /* 登入後姓名 */
 .userName {
-  width: 120px;
+  width: 150px;
   display: flex;
   flex-direction: row;
   color: white;
