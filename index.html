@@ -293,10 +293,7 @@
                   // newConditions.hasOwnProperty(key) &&
                   conditions[key] !== ""
                 ) {
-                  console.log("");
-                  // 检查数据中是否有该属性
-                  // if (posts.hasOwnProperty(key)) {
-                    // 根据条件类型进行比较
+                   if (posts.hasOwnProperty(key)) {
                     switch (key) {
                       case "tagDegree":
                         matchAllConditions =
@@ -322,17 +319,17 @@
                         break;
                     }
                    } else {
-                    // 如果数据中没有该属性，则不匹配
+                    // 
                     matchAllConditions = false;
                   
 
                   // 如果某个条件不匹配，则停止遍历并返回 false
-              //     if (!matchAllConditions) {
-              //       return false;
-              //     }
+                  if (!matchAllConditions) {
+                    return false;
+                  }
                  }
                }
-
+               }
               // 如果所有条件都匹配，则返回 true
               return matchAllConditions;
               console.log("有匹配的資料");
