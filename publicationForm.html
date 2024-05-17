@@ -153,6 +153,7 @@
         const [mainColor, setMainColor] = useState("#14AAEB");
         const [fontColor, setFontColor] = useState("#147CB6");
         const [btnColor, setBtnColor] = useState("#F1DB15");
+        const [inputColor, setInputColor] = useState("#B1C3E8");
         const [selectedButton, setSelectedButton] = useState("btn-formVB");
         const [type, setType] = useState("排球");
         const [BMdisplay, setBMDisplay] = useState("none");
@@ -177,6 +178,7 @@
           let colorFont = "";
           let btnColor = "";
           let newBorder = "";
+          let inputColor = "";
           let type = "";
           let option = [];
           let option_degree = [];
@@ -184,9 +186,11 @@
           const bodyStyle = document.getElementById("body");
 
           if (id == "btn-formBM") {
+            /* 如果是打羽球 */
             colorMain = "#6C9C07";
             colorFont = "#689607";
             btnColor = "#FF8D24";
+            inputColor = "#B6DBAA";
             type = "羽球";
             option = ["雙打", "混雙", "女雙", "男雙", "單打"];
             option_degree = [
@@ -205,11 +209,14 @@
             // 物件顯示狀態
             setBMDisplay("flex");
             setVBDisplay("none");
+
           } else if (id == "btn-formVB") {
+            //如果打排球
             // newBackground = 'url("../images/catBg.jpg")';
             colorMain = "#14AAEB";
             colorFont = "#147CB6";
             btnColor = "#F1DB15";
+            inputColor = "#B1C3E8";
             type = "排球";
             option = ["女網混排", "男網混排", "女網純女", "男網純男"];
             option_degree = ["C以下", "C-B", "A", "C", "B", "A"];
@@ -223,6 +230,7 @@
           setMainColor(colorMain);
           setFontColor(colorFont);
           setBtnColor(btnColor);
+          setInputColor(inputColor);
           setType(type);
           setOptionType(option);
           setOptionDegree(option_degree);
@@ -237,6 +245,10 @@
           document.documentElement.style.setProperty(
             "--btn-color",
             btnColor
+          );
+          document.documentElement.style.setProperty(
+            "--input-hover-color",
+            inputColor
           );
         };
 

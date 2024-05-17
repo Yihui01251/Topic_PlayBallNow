@@ -105,11 +105,20 @@ video {
   vertical-align: baseline;
 }
 
+@keyframes cube-rotate {
+  0% {
+    transform: rotateX(0);
+  }
+  100% {
+    transform: rotateX(360deg);
+  }
+}
 /* 變數區 */
 :root {
   --main-color: #14aaeb;
   --btn-color: #f1db15;
   --font-color: #147cb6;
+  --input-hover-color:#B1C3E8;
   --border-image: url("/images/catframe.png");
   --background-image: url("/images/CatBg.jpg");
   --search-decorate: url("/images/index-searchCat.png");
@@ -187,7 +196,7 @@ h5,
   width: 34px;
   height: 34px;
 }
-@media screen and (max-width:640px) {
+@media screen and (max-width:820px) {
   .hugTitle {
     font-size: 18px;
     letter-spacing: 3px;
@@ -332,6 +341,8 @@ input:active, input:hover,
 select:active,
 select:hover {
   box-shadow: none;
+  background-color: var(--input-hover-color);
+  color: #ffffff !important;
 }
 
 /* 全域 */
@@ -553,8 +564,8 @@ footer div p {
   width: fit-content;
   border-radius: 50px;
   border: 1px solid var(--font-color);
-  background-color: white;
-  color: var(--font-color);
+  background-color: var(--font-color);
+  color: #ffffff;
   text-align: center;
   padding: 4px 8px;
   margin: 5px;
@@ -570,7 +581,7 @@ footer div p {
 
 /* 按鈕tag樣式 */
 .tags {
-  height: 25px;
+  height: max-content;
   width: 95%;
   /* 和貼文標題一樣 */
   margin: 0 auto;
@@ -581,6 +592,10 @@ footer div p {
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
+  row-gap: 8px;
+}
+.tags h4 {
+  margin-right: 10px;
 }
 .tags a, .tags button {
   /* 臨打貼文tag */
@@ -815,6 +830,19 @@ footer div p {
   transform: rotate(32deg);
   transition: 0.64s ease-in-out;
 }
+.popup-static {
+  position: relative;
+  z-index: 999;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  max-width: 500px;
+  max-height: 200px;
+  width: 60%;
+  height: 80%;
+  background-color: rgba(255, 255, 255, 0);
+}
 .popup__content {
   position: absolute;
   display: flex;
@@ -872,33 +900,51 @@ footer div p {
 .popup__close:hover {
   opacity: 1;
 }
+.popup .ani {
+  transform: perspective(250px);
+  transform-style: preserve-3d;
+  animation: cube-rotate 1s ease-in-out;
+  animation-delay: 3s;
+}
+.popup .notice-apply {
+  /* 動畫 */
+  transform: perspective(250px);
+  transform-style: preserve-3d;
+  animation: cube-rotate 0.5s ease-in-out;
+}
 
-/* 貼文元件 */
+.hoverPost:hover {
+  border: 3.5px solid rgb(253, 66, 66);
+}
+
+/* 子元件 */
 .simplePostInfo {
   flex: 0 1 auto;
   width: 300px;
-  height: fit-content;
+  max-height: 90vh;
   border-radius: 20px;
   background: #ffffff;
   border: 3.5px solid rgb(0, 0, 0);
   box-shadow: 0px 12px 0px 0px #000000;
   padding: 20px;
-  display: grid;
-  grid-auto-rows: minmax(20px, auto);
-  grid-template-columns: 1;
-  row-gap: 15px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 2vh;
   justify-content: flex-start;
   align-items: flex-start;
 }
 .simplePostInfo .main-info {
   /*貼文元件-主資訊*/
   width: 100%;
+  height: 80%;
+  max-height: 140px;
   padding-left: 10px;
+  flex: 1 0 auto;
   display: grid;
-  grid-template-rows: repeat(4, 1fr);
-  gap: 1px;
+  grid-template-rows: repeat(4, fit-content);
   justify-content: space-between;
   align-items: center;
+  row-gap: 5px;
 }
 .simplePostInfo .main-info .header {
   grid-column: 1/3;
@@ -966,6 +1012,9 @@ footer div p {
   /* tag布局 */
   grid-column: 1/3;
   grid-row: 4;
+}
+.simplePostInfo .main-info .tag-style p {
+  margin-left: 0;
 }
 .simplePostInfo .sub-info {
   border-radius: 5px;
@@ -1111,6 +1160,100 @@ footer div p {
   color: #ffffff;
   font-size: 14px;
 }
+.simplePostInfo .evaluateContainer {
+  width: 90%;
+  height: fit-content;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(65px, 75px));
+  column-gap: 10px;
+  justify-content: start;
+  align-items: center;
+  justify-items: center;
+}
+.simplePostInfo .evaluateContainer .evaluatePlayerList {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 1vh;
+}
+.simplePostInfo .evaluateContainer .evaluatePlayerList .playerName {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.simplePostInfo .evaluateContainer .evaluatePlayerList .playerName img {
+  width: 60px;
+}
+.simplePostInfo .evaluateContainer .evaluatePlayerList .evaluateState-no {
+  border-radius: 50px;
+  background-color: #cb1b1b;
+  color: #ffffff;
+  padding: 2px 8px;
+  line-height: 25px;
+}
+.simplePostInfo .evaluateContainer .evaluatePlayerList .evaluateState-yes {
+  border-radius: 50px;
+  background-color: var(--main-color);
+  color: #ffffff;
+  padding: 2px 8px;
+  line-height: 25px;
+}
+.simplePostInfo .evaluateForm {
+  /* 審核容器 */
+  width: 95%;
+  height: 60%;
+  border-radius: 20px;
+  border: 1px solid black;
+  background-color: #D9D9D9;
+  padding: 1vw;
+  margin: 0 auto;
+  grid-row: 4;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1vh;
+  align-items: center;
+}
+.simplePostInfo .evaluateForm .info-selfState {
+  /* 被審核者資訊 */
+  width: 80%;
+  min-width: 200px;
+  max-width: 100%;
+  border: none;
+  background-color: inherit;
+  padding: 5%;
+  gap: 1.5vh;
+}
+.simplePostInfo .evaluateForm .component-writeBlock {
+  /* 備註輸入框 */
+  width: 80%;
+  border: 1px dashed black;
+}
+.simplePostInfo .evaluateForm .component-writeBlock h5 {
+  color: #000000;
+}
+.simplePostInfo .evaluateForm .evaluateOption {
+  /* 審查選項 */
+  align-self: flex-start;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 2vw;
+  align-items: center;
+  justify-content: center;
+}
+.simplePostInfo .evaluateForm .evaluateOption h5 {
+  font-size: 20px;
+  color: var(--font-color);
+}
+.simplePostInfo .evaluateForm .evaluateOption input {
+  box-shadow: none;
+}
+.simplePostInfo .evaluateForm .BtnContainer {
+  width: 90%;
+  align-self: center;
+}
 
 /* 行程元件 */
 .notice-container {
@@ -1128,6 +1271,10 @@ footer div p {
   justify-content: start;
   align-items: center;
   justify-items: end;
+}
+.notice-container:hover {
+  background-color: #D9D9D9;
+  color: #ffffff;
 }
 @media (max-width:640px) {
   .notice-container {
@@ -1588,7 +1735,9 @@ footer div p {
 /* 元件內輸入框樣式 */
 .component-writeBlock {
   width: 275px;
-  height: 56px;
+  height: 6vh;
+  min-height: 30px;
+  max-height: 56px;
   border-radius: 10px;
   border: 1px solid black;
   background-color: rgba(247, 246, 245, 0.9);
@@ -1603,7 +1752,7 @@ footer div p {
   border-radius: 10px;
   background-color: rgba(247, 246, 245, 0.9);
   box-shadow: none;
-  margin-top: 10px;
+  margin-top: 1vh;
   outline: none;
 }
 
@@ -1712,7 +1861,7 @@ main:10
   border: 4px solid rgba(20, 170, 235, 0.9);
   background-color: #D9D9D9;
   box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.3);
-  border-radius: 20px;
+  border-radius: 90px;
   margin-bottom: 30px;
   opacity: 0.5;
   /* 子層 */
@@ -1756,7 +1905,7 @@ button#btn-typeVb.selected {
   height: 120px;
   background-color: #ffffff;
   border: 4px solid black;
-  border-radius: 20px;
+  border-radius: 90px;
   box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.3);
   margin-bottom: 30px;
   opacity: 1;
@@ -1768,7 +1917,7 @@ button#btn-typeVb.selected {
 button#btn-typeBm.selected img,
 button#btn-typeVb.selected img {
   opacity: 1;
-  width: 100%;
+  width: 80%;
   pointer-events: none;
   object-fit: cover;
   /* 裁剪圖片，使其填滿元素 */
@@ -1785,7 +1934,7 @@ button#btn-typeVb.selected img {
   button#btn-typeBm.selected,
   button#btn-typeVb.selected {
     position: absolute;
-    display: block;
+    display: flex;
     border-radius: 90px;
     padding: 10px;
     right: 1px;
@@ -1872,11 +2021,11 @@ button#btn-typeVb.selected img {
 }
 .dropMenu ul input {
   /* 樣式 */
-  width: 80%;
+  width: 78%;
   max-width: 250px;
-  min-width: 130px;
+  min-width: 120px;
   height: auto;
-  min-height: 32.5px;
+  min-height: 20.5px;
   border: 3px solid black;
   border-radius: 50px;
   margin-bottom: 8px;
@@ -1885,6 +2034,9 @@ button#btn-typeVb.selected img {
   /* 佈局 */
   flex: 1 1 auto;
   align-self: center;
+}
+.dropMenu ul input:hover {
+  box-shadow: none;
 }
 .dropMenu ul select {
   width: 90%;
@@ -1901,6 +2053,9 @@ button#btn-typeVb.selected img {
   align-self: center;
   box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.3);
   color: var(--main-color);
+}
+.dropMenu ul select:hover {
+  box-shadow: none;
 }
 
 /* 首頁篩選送出按鈕 */
@@ -2327,7 +2482,7 @@ section.form-container {
   grid-template-columns: 339px 378px;
   gap: 20px;
 }
-@media (max-width:640px) {
+@media (max-width:820px) {
   section.form-container {
     /* RWD 手機版換一行 */
     grid-template-columns: 1fr;

@@ -618,7 +618,7 @@
         ReactDOM.createRoot(document.getElementById("root")).render(<App />);
       })();
     </script>
-    <div class="warp">
+    <d class="warp">
       <!-- 簡略貼文元件 -->
       <div class="simplePostInfo">
         <div class="main-info">
@@ -1149,36 +1149,30 @@
           <h3>球友臨打回饋</h3>
         </div>
         <div class="sub-info">
-         <div class="tag-style">
+         <div class="tags">
           <h4 class="text-L">氣氛</h4>
-          <p>有帥哥</p>
-          <p>有妹子</p>
-          <p>性別友善</p>
-          <p>有指導家</p>
-          <p>輕鬆歡樂</p>
-          <p>新手友善</p>
-          <!-- <input type="checkbox" name="好團" class="custom-checkbox "></input>
-          <input type="checkbox">有帥哥</input>
-          <input type="checkbox">有妹子</input >
-          <input type="checkbox">性別友善</input>
-          <input type="checkbox">有指導家</input >
-          <input type="checkbox">新手友善</input>
-          <input type="checkbox">輕鬆歡樂</input> -->
+          <button>有帥哥</button>
+          <button>有妹子</button>
+          <button>性別友善</button>
+          <button>有指導家</button>
+          <button>輕鬆歡樂</button>
+          <button>新手友善</button>
+
          </div>
-         <div class="tag-style">
+         <div class="tags">
           <h4 class="text-L">程度</h4>
-          <p>有強者</p>
-          <p>多拍/多來回</p>
-          <p>符合徵求程度</p>
-          <p>多新手/初階</p>
+          <button>有強者</button>
+          <button>多拍/多來回</button>
+          <button>符合徵求程度</button>
+          <button>多新手/初階</button>
          </div>
-         <div class="tag-style">
+         <div class="tags">
           <h4 class="text-L">團主</h4>
-          <p>懂安排程度</p>
-          <p>人數超收</p>
-          <p>用球大方</p>
-          <p>會告知設備/上場規則</p>
-          <p>用心</p>
+          <button>懂安排程度</button>
+          <button>人數超收</button>
+          <button>用球大方</button>
+          <button>會告知設備/上場規則</button>
+          <button>用心</button>
          </div></div>
         <div class="BtnContainer">
           <a class="popup__close btn-close"  href="#">關閉</a>
@@ -1216,60 +1210,63 @@
         </div>
         <div class="evaluateContainer">
           <div class="evaluatePlayerList">
-            <div>
-              <img class="applicantImg" src="../images/player.png" alt="" />
-              <p>Geeeed</p>
-              <p>未評價</p>
+
+              <div class="playerName"><img class="applicantImg" src="../images/player.png" alt="" />
+              <p>Geeeed</p></div>
+              
+              <p class="evaluateState-no">未評價</p>
             </div>
-            <div>
-              <img class="applicantImg" src="../images/player2.png" alt="" />
-              <p>Roy</p>
-              <p>已評價</p>
-            </div>
-          </div>
-        </div>
-        <div class="evaluateForm">
-          <div class="info-selfState">
-            <div class="selfState-userInfo">
-              <img class="applicantImg" src="../images/player.png" alt="" />
-              <div class="attendance">
-                <p class="text-M">85%</p>
-                <img src="../images/EllipseBar_vb.png" alt="" />
+            <div class="evaluatePlayerList">
+              <div class="playerName">
+                <img class="applicantImg" src="../images/player2.png" alt="" />
+                <p>Roy</p>
               </div>
-              <p class="userInfo">中上</p>
-            </div>
-            <div class="selfState-title">
-              <p>Roy</p>
-              <p>出席率</p>
-              <p>自評等級</p>
+              <p class="evaluateState-yes">已評價</p>
             </div>
           </div>
-          <div class="component-writeBlock">
-            <h5>備註（僅限自己可看）：</h5>
-            <input type="text"/>
-          </div>
-          <div>
-            <h5>出席</h5>
-            <input type="radio" name="正常出席" id="attend">
-            <label for="正常出席">正常出席</label>
-            <input type="radio" name="無故缺席" id="absent">
-            <label for="無故出席">無故出席</label>
-          </div>
-          <div>
-            <h5>程度</h5>
-            <input type="radio" name="符合自評" id="comply">
-            <label for="符合自評">符合自評</label>
-            
-            <input type="radio" name="不確定" id="uncertainty">
-            <label for="符合自評">不確定</label>
+          
+          <div class="evaluateForm">
+            <div class="info-selfState">
+              <div class="selfState-userInfo">
+                <img class="applicantImg" src="../images/player.png" alt="" />
+                <div class="attendance">
+                  <p class="text-M">85%</p>
+                  <img src="../images/EllipseBar_vb.png" alt="" />
+                </div>
+                <p class="userInfo">中上</p>
+              </div>
+              <div class="selfState-title">
+                <p>Roy</p>
+                <p>出席率</p>
+                <p>自評等級</p>
+              </div>
+            </div>
+            <div class="component-writeBlock">
+              <h5>備註（僅限自己可看）：</h5>
+              <input type="text" placeholder="可在此輸入備註"/>
+            </div>
+            <div class="evaluateOption">
+              <h5>出席</h5>
+              <input type="radio" name="正常出席" id="attend">
+              <label for="正常出席">正常出席</label>
+              <input type="radio" name="無故缺席" id="absent">
+              <label for="無故出席">無故出席</label>
+            </div>
+            <div class="evaluateOption">
+              <h5>程度</h5>
+              <input type="radio" name="符合自評" id="comply">
+              <label for="符合自評">符合自評</label>
+              
+              <input type="radio" name="不確定" id="uncertainty">
+              <label for="符合自評">不確定</label>
+            </div>
+            <div class="BtnContainer">
+              <a href="#" class="button btn-no">送出,並加入黑名單</a>
+              <a class="popup__close btn-close"  href="#">送出</a>
+             </div>
           </div>
         </div>
-        <div class="BtnContainer">
-          <a href="#" class="button btn-no">送出,並加入黑名單</a>
-          <a class="popup__close btn-close"  href="#">送出</a>
-         
-        </div>
-      </div>
+ 
 
       <br>
 
