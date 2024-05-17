@@ -76,7 +76,7 @@ button#btn-pastRecords.selected {
 
   @media (max-width:768px) {
     margin-left: 0;
-    margin-right: 35vw;
+    // margin-right: 35vw;
   }
 
 }
@@ -112,16 +112,29 @@ button#btn-pastRecords.selected {
   align-items: center;
   justify-items: center;
 
-  @media (max-width:768px) {
+  @media ( $breakpoint-md ) {
     /* 手機 元件兩行變成一行 */
+    width: 70vw;
     grid-template-columns: 1fr;
     justify-content: center;
     align-items: center;
     justify-items: center;
+  }
 
+  @media ( $breakpoint-moblie ) {
+    /* 手機 元件兩行變成一行 */
+    width: 60vw;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
   }
   .container-component{
   width: 100%;
+  display: flex;
+  justify-content: center;
 }
-
+.pastPostArea{
+  margin-bottom: 15vh;
+}
 }
