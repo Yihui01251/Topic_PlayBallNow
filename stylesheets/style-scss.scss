@@ -284,10 +284,10 @@ body {
   background-image: url(/images/BothBg.jpg);
 }
 /* react下的root */
-#root {
-  // position: absolute;
-  // z-index: -21;
-}
+// #root {
+//   position: absolute;
+//   z-index: -21;
+// }
 /* 包渲染內容的容器 */
 .body {
   width: 100vw;
@@ -410,7 +410,7 @@ body {
     /* 樣式*/
     width: 32px;
     height: 32px;
-    
+
   }
 }
 /*  */
@@ -533,7 +533,7 @@ footer {
     line-height: 23px;
     &:hover {
       cursor: pointer;
-      
+
       opacity: 1;
     }
     &:active {
@@ -541,11 +541,11 @@ footer {
       color: $background-color-lightwhite-s;
     }
 
-    p {
-      /* text-align: center;
-      padding-bottom: 10px; */
-    }
-    
+    // p {
+    //   /* text-align: center;
+    //   padding-bottom: 10px; */
+    // }
+
   }
   .active{
       background-color: var(--main-color);
@@ -1041,8 +1041,8 @@ footer {
       display: flex;
       flex-direction: column;
       gap: 10px;
-      span {
-      }
+      // span {
+      // }
     }
     div {
       //布局
