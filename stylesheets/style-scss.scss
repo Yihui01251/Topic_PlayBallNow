@@ -36,6 +36,7 @@
   --border-image: url("/images/catframe.png");
   --background-image: url("/images/CatBg.jpg");
   --search-decorate: url("/images/index-searchCat.png");
+  --ellipseBar-image:url("/images/bmellipsebar.png");
   /* 行程 */
   --border-type: solid;
   --evaluate-color: #1a8d07;
@@ -864,11 +865,7 @@ footer {
   }
 }
 
-.hoverPost{
-  &:hover{
-    border:3.5px solid rgb(253, 66, 66); ;
-  }
-}
+
 /* 子元件 */
 .simplePostInfo {
   flex: 0 1 auto;
@@ -1286,10 +1283,7 @@ footer {
   justify-content: start;
   align-items: center;
   justify-items: end;
-  &:hover{
-    background-color: $background-color-lightgrey;
-    color: $background-color-white;
-  }
+  
 
   @media ($breakpoint-moblie) {
     width: 88vw;
@@ -1791,8 +1785,18 @@ footer {
     outline: none;
   }
 }
-/* 臨打回饋元件 */
-
+/* hover區 */
+.hoverPost{
+  &:hover{
+    border:3.5px solid rgb(253, 66, 66); ;
+  }
+}
+.hoverNotice{
+  &:hover{
+    background-color: $background-color-lightgrey;
+    color: $background-color-white;
+  }
+}
 @import "index";
 @import "postArea";
 @import "publicationForm";
