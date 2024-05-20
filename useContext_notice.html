@@ -333,7 +333,7 @@
             </>
           );
         };
-        /* 建立元件 燈箱效果- 查看行程*/
+        /* 建立元件 燈箱效果-查看行程*/
         const DetailPostCard = ({
           day,
           startTime,
@@ -587,7 +587,7 @@
             </>
           );
         };
-        /* 建立元件 燈箱效果-審核申請 */
+        /* 建立元件 燈箱效果-(審核申請) */
         const AuditApplyCard = ({ day, startTime, type, arena, state, id }) => {
           const [btnDisplay, setBtnDisplay] = useState("flex");
           const [resultDisplay, setResultDisplay] = useState("none");
@@ -701,7 +701,7 @@
             </div>
           );
         };
-        /* 建立元件 燈箱效果-審核取消 */
+        /* 建立元件 燈箱效果-(審核取消) */
         const AuditCancelCard = ({
           day,
           startTime,
@@ -815,7 +815,7 @@
             </div>
           );
         };
-        /* 建立元件 燈箱效果-確認取消 */
+        /* 建立元件 燈箱效果-(確認取消) */
         const DetailsNotifyCard = ({
           day,
           startTime,
@@ -923,7 +923,7 @@
             </>
           );
         };
-        /* 建立元件 燈箱效果-臨打回饋 */
+        /* 建立元件 燈箱效果-(臨打回饋) */
         const EvaluateSponsorCard = ({
           day,
           startTime,
@@ -1040,7 +1040,7 @@
             </div>
           );
         };
-        /* 建立元件 燈箱效果-團主評價 */
+        /* 建立元件 燈箱效果-(團主評價) */
         const EvaluateApplicantsCard = ({}) => {
           return <></>;
         };
@@ -1067,7 +1067,7 @@
             {children}
           </postInfo.Provider>;
         };
-        const showData = () => {
+        const ShowData = (props) => {
           const { typeStyle, setTypeStyle, typeFontStyle, setTypeFontStyle } =
             useContext(postInfo);
           const [selectedButton, setSelectedButton] = useState("btn-itinerary");
@@ -1242,7 +1242,9 @@
             <>
               <div className="body">
                 <TopBar />
-                <PostProvider>{showData}</PostProvider>
+                <PostProvider>{
+                    <ShowData/>
+                }</PostProvider>
                 <Footer />
               </div>
             </>
