@@ -35,6 +35,7 @@
         const { useState, useEffect, useRef, useMemo } = React;
 
         const Notify = ({
+          name,
           day,
           startTime,
           endTime,
@@ -47,6 +48,14 @@
           state,
           identity,
           id,
+          role,
+          female,
+          male,
+          unspecified,
+          equip,
+          note,
+          like,
+          ballBrand
         }) => {
           const [typeStyle, setTypeStyle] = useState("");
           const [typeFontStyle, setTypeFontStyle] = useState("");
@@ -56,6 +65,9 @@
           const [popupHref, setPopupHref] = useState("");
           /* 出席率圖 */
           const [ellipseBar, setEllipseBar] = useState("");
+          /* 元件副資訊 */
+          const [showBallBrand, setShowBallBrand] = useState("");
+          const [showVbInfo, setShowVbInfo] = useState("");
           useEffect(() => {
             // 羽or排顏色
             let typeStyle = "";
@@ -66,10 +78,16 @@
               typeStyle = "rgba(131, 185, 15, 0.9)";
               typeFontStyle = "#689607";
               ellipseBar = "/images/ellipsebarbm.png";
+              //副資訊
+              setShowBallBrand("flex");
+              setShowVbInfo("none");
             } else if (type === "排") {
               typeStyle = "#14AAEB";
               typeFontStyle = "#147CB6";
               ellipseBar = "/images/ellipsebarvb.png";
+              //
+              setShowBallBrand("none");
+              setShowVbInfo("flex");
             }
             setTypeFontStyle(typeFontStyle);
             setTypeStyle(typeStyle);
@@ -86,7 +104,10 @@
 
           return (
             <>
-              <a className="container-component" href={`#detailPostPopup-${id}`}>
+              <a
+                className="container-component"
+                href={`#detailPostPopup-${id}`}
+              >
                 <div
                   className={"notice-container"}
                   style={{ color: typeFontStyle, border: identityStyle }}
@@ -117,21 +138,29 @@
                 </div>
               </a>
               <DetailPostCard
-                day={day}
-                startTime={startTime}
-                endTime={endTime}
-                type={type}
-                city={city}
-                area={area}
-                arena={arena}
-                tagDegree={tagDegree}
-                tagPrice={tagPrice}
-                state={state}
-                id={id}
-                popUp={popupHref}
-                typeStyle={typeStyle}
-                typeFontStyle={typeFontStyle}
-                ellipseBar={ellipseBar}
+              day={day}
+                  startTime={startTime}
+                  endTime={endTime}
+                  type={type}
+                  city={city}
+                  area={area}
+                  arena={arena}
+                  tagDegree={tagDegree}
+                  tagPrice={tagPrice}
+                  state={state}
+                  id={id}
+                  female={female}
+                  male={male}
+                  unspecified={unspecified}
+                  role={role}
+                  equip={equip}
+                  ballBrand={ballBrand}
+                  note={note}
+                  typeStyle={typeStyle}
+                  typeFontStyle={typeFontStyle}
+                  ellipseBar={ellipseBar}
+                  showBmInfo={showBallBrand}
+                  showVbInfo={showVbInfo}
               />
             </>
           );
@@ -147,11 +176,19 @@
           tagDegree,
           tagPrice,
           state,
-          identity,
           id,
+          female,
+          male,
+          unspecified,
+          role,
+          equip,
+          ballBrand,
+          note,
           typeStyle,
           typeFontStyle,
-          ellipseBar
+          showBmInfo,
+          showVbInfo,
+          ellipseBar,
         }) => {
           return (
             <>
@@ -184,7 +221,6 @@
                           >
                             <p className="text-M">{city}</p>
                             <p className="text-M">{area}</p>
-
                           </div>
                           <div
                             className="arenaInfo"
@@ -193,35 +229,57 @@
                             <h3>{arena}</h3>
                           </div>
                           <div className="tag-style">
-                            <p style={{  backgroundColor:typeFontStyle }}>{tagDegree}</p>
-                            <p style={{  backgroundColor:typeFontStyle}}>${tagPrice}</p>
+                            <p style={{ backgroundColor: typeFontStyle }}>
+                              {tagDegree}
+                            </p>
+                            <p style={{ backgroundColor: typeFontStyle }}>
+                              ${tagPrice}
+                            </p>
                           </div>
                         </div>
                         <div className="sub-info">
                           <div className="vacancyInfo">
                             <h4>缺額</h4>
                             <div>女</div>
-                            <p style={{ color: typeFontStyle }}>0 位</p>
+                            <p style={{ color: typeFontStyle }}>{female}位</p>
                             <div>男</div>
-                            <p style={{ color: typeFontStyle }}>3 位</p>
+                            <p style={{ color: typeFontStyle }}>{male}位</p>
                             <div>不限</div>
-                            <p style={{ color: typeFontStyle }}>2 位</p>
+                            <p style={{ color: typeFontStyle }}>
+                              {unspecified}位
+                            </p>
                           </div>
-                          <div className="ballInfo">
+                          <div className="ballInfo" style={{ display: showVbInfo }}>
                             <h4>類型</h4>
-                            <p style={{ color: typeFontStyle }}>雙打</p>
+                            <p style={{ color: typeFontStyle }}>{role}</p>
                           </div>
-                          <div className="equipInfo">
+                          <div
+                            className="equipInfo" 
+                            style={{ display: showVbInfo }}
+                          >
+                            <h4>位置</h4>
+                            <p style={{ color: typeFontStyle }}>{equip}</p>
+                          </div>
+                          <div
+                            className="ballInfo"
+                            style={{ display: showBmInfo }}
+                          >
+                            <h4>用球</h4>
+                            <p style={{ color: typeFontStyle }}>{ballBrand}</p>
+                          </div>
+                          <div
+                            className="equipInfo"
+                            style={{ display: showBmInfo }}
+                          >
                             <h4>設備</h4>
-                            <p style={{ color: typeFontStyle }}>冷氣</p>
+                            <p style={{ color: typeFontStyle }}>{equip}</p>
                           </div>
                           <div className="noteInfo">
                             <h4>備註</h4>
-                            <p style={{ color: typeFontStyle }}>
-                              請提早10分鐘到場換裝熱身
-                            </p>
+                            <p style={{ color: typeFontStyle }}>{note}</p>
                           </div>
                         </div>
+
 
                         <div className="auditList">
                           <div className="sponsored-title">
@@ -306,12 +364,25 @@
                 arena={arena}
                 state={state}
                 id={id}
+
+                typeStyle={typeStyle}
+                typeFontStyle={typeFontStyle}
               />
             </>
           );
         };
 
-        const AuditApplyCard = ({ day, startTime, type, arena, state, id,typeStyle,typeFontStyle,ellipseBarType }) => {
+        const AuditApplyCard = ({
+          day,
+          startTime,
+          type,
+          arena,
+          state,
+          id,
+          typeStyle,
+          typeFontStyle,
+          ellipseBarType,
+        }) => {
           const [btnDisplay, setBtnDisplay] = useState("flex");
           const [resultDisplay, setResultDisplay] = useState("none");
           const [resultText, setResultText] = useState("");
@@ -347,43 +418,43 @@
                     </div>
                     <div className="audit-info">
                       <div className="selfState-userInfo">
-                          <div className="info">
-                            <img
-                              className="applicantImg"
-                              src="../images/player.png"
-                              alt=""
-                            />
-                            <p style={{ color: typeFontStyle }}>Roy</p>
-                          </div>
-                          <div className="info">
-                            <div className="attendance">
-                              <p
-                                className="text-M"
-                                style={{ color: typeFontStyle }}
-                              >
-                                85%
-                              </p>
-                              <img src={ellipseBarType} alt="" />
-                            </div>
-                            <p style={{ color:  typeFontStyle}}>出席率</p>
-                          </div>
-                          <div className="info">
-                            <div
-                              className="userInfo"
-                              
-                            >
-                              <p style={{ backgroundColor: typeStyle }}>B</p>
-                            </div>
-                            <p style={{ color: typeFontStyle }}>自評等級</p>
-                          </div>
+                        <div className="info">
+                          <img
+                            className="applicantImg"
+                            src="../images/player.png"
+                            alt=""
+                          />
+                          <p style={{ color: typeFontStyle }}>Roy</p>
                         </div>
+                        <div className="info">
+                          <div className="attendance">
+                            <p
+                              className="text-M"
+                              style={{ color: typeFontStyle }}
+                            >
+                              85%
+                            </p>
+                            <img src={ellipseBarType} alt="" />
+                          </div>
+                          <p style={{ color: typeFontStyle }}>出席率</p>
+                        </div>
+                        <div className="info">
+                          <div className="userInfo">
+                            <p style={{ backgroundColor: typeStyle }}>B</p>
+                          </div>
+                          <p style={{ color: typeFontStyle }}>自評等級</p>
+                        </div>
+                      </div>
                       <div className="info-remark">
                         <h5>備註（僅限自己可看）：</h5>
                         <p>這個人很愛放鴿子</p>
                       </div>
                       <div className="notice-container">
-                        <div className="notice-ballType" style={{ backgroundColor: typeStyle }}>
-                          <p >{type}</p>
+                        <div
+                          className="notice-ballType"
+                          style={{ backgroundColor: typeStyle }}
+                        >
+                          <p>{type}</p>
                         </div>
                         <div className="notice-info">
                           <div>
@@ -435,8 +506,16 @@
             </div>
           );
         };
-        const AuditCancelCard = ({day, startTime, type, arena, state, id})=>{
-            const [btnDisplay, setBtnDisplay] = useState("flex");
+        const AuditCancelCard = ({
+          day,
+          startTime,
+          type,
+          arena,
+          state,
+          id,
+          typeStyle,typeFontStyle
+        }) => {
+          const [btnDisplay, setBtnDisplay] = useState("flex");
           const [resultDisplay, setResultDisplay] = useState("none");
           const [resultText, setResultText] = useState("");
           const [resultColor, setResultColor] = useState("#1A8D07");
@@ -453,52 +532,65 @@
             }
             setResultText(text);
           };
-            return(
-                <div className="popup" id={`auditCancelPopup-${id}`}>
-        <div className="popup-inner">
-          <div className="popup__content">
-
-            <div className="audit-apply">
-              <div className="topBtn-container">
-                <a href="#"><img src="../images/waring.png" alt="" /></a>
-                <a className="popup__close" href="#"
-                  ><img src="../images/cancel.png" alt=""
-                /></a>
-              </div>
-              <div className="audit-info">
-                <div className="info-selfState">
-                  <div className="selfState-userInfo">
-                    <div className="applicantInfo">
-                      <img className="applicantImg" src="../images/player.png" alt="" />
-                      <p>Roy</p>
+          return (
+            <div className="popup" id={`auditCancelPopup-${id}`}>
+              <div className="popup-inner">
+                <div className="popup__content">
+                  <div className="audit-apply">
+                    <div className="topBtn-container">
+                      <a href="#">
+                        <img src="../images/waring.png" alt="" />
+                      </a>
+                      <a className="popup__close" href="#">
+                        <img src="../images/cancel.png" alt="" />
+                      </a>
                     </div>
-                    <div className="reason-cancel">
-                      <h5>取消原因:</h5>
-                      <p>手受傷</p>
-                    </div>
-                  </div>
-                  <div className="selfState-title"><h4>取消場次 :</h4></div>
-                </div>
+                    <div className="audit-info">
+                      <div className="info-selfState">
+                        <div className="selfState-userInfo">
+                          <div className="applicantInfo">
+                            <img
+                              className="applicantImg"
+                              src="../images/player.png"
+                              alt=""
+                            />
+                            <p>Roy</p>
+                          </div>
+                          <div className="reason-cancel">
+                            <h5>取消原因:</h5>
+                            <p>手受傷</p>
+                          </div>
+                        </div>
+                        <div className="selfState-title">
+                          <h4>取消場次 :</h4>
+                        </div>
+                      </div>
 
-                <div className="notice-container">
-                        <div className="notice-ballType">
+                      <div className="notice-container">
+                        <div
+                          className="notice-ballType"
+                          style={{ backgroundColor: typeStyle }}
+                        >
                           <p>{type}</p>
                         </div>
                         <div className="notice-info">
                           <div>
-                            <p>
+                            <p style={{ color: typeFontStyle }}>
                               {day} {startTime}
                             </p>
                           </div>
-                          <p>{arena}</p>
+                          <p style={{ color: typeFontStyle }}>{arena}</p>
                           <div className="audit-state">
                             <p>{state}</p>
                           </div>
                         </div>
                       </div>
 
-                <div className="bottomBtn-container" style={{ display: btnDisplay }}>
-                    <button
+                      <div
+                        className="bottomBtn-container"
+                        style={{ display: btnDisplay }}
+                      >
+                        <button
                           className="button btn-no"
                           onClick={() => auditResult("no")}
                         >
@@ -510,8 +602,8 @@
                         >
                           同意
                         </button>
-                </div>
-                <div
+                      </div>
+                      <div
                         className="audit-state audit-yes"
                         style={{
                           display: resultDisplay,
@@ -520,13 +612,14 @@
                         }}
                       >
                         <p>{resultText}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div></div>
-            )
-        }
+          );
+        };
         const App = () => {
           return (
             <div className="body">
@@ -580,11 +673,11 @@
                   </nav>
                   <div className="title">
                     <div className="hugTitle noto-sans-tc">
-                    <img src="./images/vbtitle.svg" alt=""/>
+                      <img src="./images/vbtitle.svg" alt="" />
                       <h1 className="title-L" value="我的貼文">
                         我的貼文
                       </h1>
-                      <img src="./images/bmtitle.svg" alt=""/>
+                      <img src="./images/bmtitle.svg" alt="" />
                     </div>
                   </div>
                 </header>
@@ -604,7 +697,14 @@
                         tagDegree={post_data.tagDegree}
                         tagPrice={post_data.tagPrice}
                         state={post_data.state}
+                        female={post_data.reqCount[0].count}
+                        male={post_data.reqCount[1].count}
+                        unspecified={post_data.reqCount[2].count}
+                        role={post_data.role}
+                        note={post_data.note}
                         id={post_data.id}
+                        ballBrand={post_data.ballBrand}
+                        equip={post_data.equip}
                       />
                     );
                   })}

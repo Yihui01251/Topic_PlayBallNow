@@ -55,6 +55,8 @@
           unspecified,
           equip,
           note,
+          like,
+          ballBrand
         }) => {
           /* 主色 */
           const [typeStyle, setTypeStyle] = useState("");
@@ -72,7 +74,10 @@
           const [showApplicants, setShowApplicants] = useState("");
           /* 顯示取消列 */
           const [showCancel, setShowCancel] = useState("");
-
+          /* 元件副資訊 */
+          const [showBallBrand, setShowBallBrand] = useState("");
+          const [showVbInfo, setShowVbInfo] = useState("");
+         
           useEffect(() => {
             // 保存最新的 identity 值
             const currentIdentity = identity;
@@ -90,8 +95,6 @@
               } else {
                 newHref = "auditApplyPopup";
               }
-
-              
             } else if (identity === "臨打") {
               borderStyle = "3px solid black";
               setShowApplicants("none");
@@ -102,7 +105,7 @@
                 newHref = "auditApplyPopup";
               }
 
-              if(name === "所有未來取消貼文"){
+              if (name === "所有未來取消貼文") {
                 setShowApplicants("none");
                 setShowCancel("none");
               }
@@ -123,10 +126,16 @@
               typeStyle = "rgba(131, 185, 15, 0.9)";
               typeFontStyle = "#689607";
               ellipseBar = "/images/ellipsebarbm.png";
+              //副資訊
+              setShowBallBrand("flex");
+              setShowVbInfo("none");
             } else if (type === "排") {
               typeStyle = "#14AAEB";
               typeFontStyle = "#147CB6";
               ellipseBar = "/images/ellipsebarvb.png";
+              //副資訊
+              setShowBallBrand("none");
+              setShowVbInfo("flex");
             }
             setTypeFontStyle(typeFontStyle);
             setTypeStyle(typeStyle);
@@ -160,7 +169,7 @@
               default:
                 break;
             }
-
+           
             document.getElementsByClassName("notice-container");
           }, [type, state, identity, popupHref, name]);
 
@@ -239,11 +248,12 @@
                   tagPrice={tagPrice}
                   state={state}
                   id={id}
-                  role={role}
                   female={female}
                   male={male}
                   unspecified={unspecified}
+                  role={role}
                   equip={equip}
+                  ballBrand={ballBrand}
                   note={note}
                   popUp={popupHref}
                   typeStyle={typeStyle}
@@ -251,6 +261,8 @@
                   showApplicants={showApplicants}
                   showCancel={showCancel}
                   ellipseBar={ellipseBar}
+                  showBmInfo={showBallBrand}
+                  showVbInfo={showVbInfo}
                 />
               )}
               {applicantEvaluateCard && (
@@ -268,6 +280,7 @@
                   typeStyle={typeStyle}
                   typeFontStyle={typeFontStyle}
                   popUp={popupHref}
+                  
                 />
               )}
               {sponsorEvaluateCard && (
@@ -305,18 +318,22 @@
           state,
           identity,
           id,
-          role,
           female,
           male,
           unspecified,
+          role,
           equip,
+          ballBrand,
           note,
           popUp,
           typeStyle,
           typeFontStyle,
           showApplicants,
           showCancel,
-          ellipseBar
+          showBmInfo,
+          showVbInfo,
+          ellipseBar,
+          
         }) => {
           /* 生成審核報名元件 */
           const [auditApplyCard, setAuditApplyCard] = useState(false);
@@ -397,11 +414,28 @@
                               {unspecified}位
                             </p>
                           </div>
-                          <div className="ballInfo">
+                          <div className="ballInfo" style={{ display: showVbInfo }}>
                             <h4>類型</h4>
                             <p style={{ color: typeFontStyle }}>{role}</p>
                           </div>
-                          <div className="equipInfo">
+                          <div
+                            className="equipInfo" 
+                            style={{ display: showVbInfo }}
+                          >
+                            <h4>位置</h4>
+                            <p style={{ color: typeFontStyle }}>{equip}</p>
+                          </div>
+                          <div
+                            className="ballInfo"
+                            style={{ display: showBmInfo }}
+                          >
+                            <h4>用球</h4>
+                            <p style={{ color: typeFontStyle }}>{ballBrand}</p>
+                          </div>
+                          <div
+                            className="equipInfo"
+                            style={{ display: showBmInfo }}
+                          >
                             <h4>設備</h4>
                             <p style={{ color: typeFontStyle }}>{equip}</p>
                           </div>
@@ -512,8 +546,8 @@
                   state={state}
                   id={id}
                   typeStyle={typeStyle}
-                typeFontStyle={typeFontStyle}
-                ellipseBarType={ellipseBar}
+                  typeFontStyle={typeFontStyle}
+                  ellipseBarType={ellipseBar}
                 />
               )}
               {auditCancelCard && (
@@ -525,7 +559,7 @@
                   state={state}
                   id={id}
                   typeStyle={typeStyle}
-                typeFontStyle={typeFontStyle}
+                  typeFontStyle={typeFontStyle}
                 />
               )}
               {detailsNotifyCard && (
@@ -548,7 +582,17 @@
           );
         };
         /* 建立元件 燈箱效果-審核申請 */
-        const AuditApplyCard = ({ day, startTime, type, arena, state, id,typeStyle,typeFontStyle,ellipseBarType}) => {
+        const AuditApplyCard = ({
+          day,
+          startTime,
+          type,
+          arena,
+          state,
+          id,
+          typeStyle,
+          typeFontStyle,
+          ellipseBarType,
+        }) => {
           const [btnDisplay, setBtnDisplay] = useState("flex");
           const [resultDisplay, setResultDisplay] = useState("none");
           const [resultText, setResultText] = useState("");
@@ -585,43 +629,43 @@
                     </div>
                     <div className="audit-info">
                       <div className="selfState-userInfo">
-                          <div className="info">
-                            <img
-                              className="applicantImg"
-                              src="../images/player.png"
-                              alt=""
-                            />
-                            <p style={{ color: typeFontStyle }}>Roy</p>
-                          </div>
-                          <div className="info">
-                            <div className="attendance">
-                              <p
-                                className="text-M"
-                                style={{ color: typeFontStyle }}
-                              >
-                                85%
-                              </p>
-                              <img src={ellipseBarType} alt="" />
-                            </div>
-                            <p style={{ color: typeFontStyle }}>出席率</p>
-                          </div>
-                          <div className="info">
-                            <div
-                              className="userInfo"
-                              
-                            >
-                              <p style={{ backgroundColor: typeStyle }}>B</p>
-                            </div>
-                            <p style={{ color: typeFontStyle }}>自評等級</p>
-                          </div>
+                        <div className="info">
+                          <img
+                            className="applicantImg"
+                            src="../images/player.png"
+                            alt=""
+                          />
+                          <p style={{ color: typeFontStyle }}>Roy</p>
                         </div>
+                        <div className="info">
+                          <div className="attendance">
+                            <p
+                              className="text-M"
+                              style={{ color: typeFontStyle }}
+                            >
+                              85%
+                            </p>
+                            <img src={ellipseBarType} alt="" />
+                          </div>
+                          <p style={{ color: typeFontStyle }}>出席率</p>
+                        </div>
+                        <div className="info">
+                          <div className="userInfo">
+                            <p style={{ backgroundColor: typeStyle }}>B</p>
+                          </div>
+                          <p style={{ color: typeFontStyle }}>自評等級</p>
+                        </div>
+                      </div>
                       <div className="info-remark">
                         <h5>備註（僅限自己可看）：</h5>
                         <p>這個人很愛放鴿子</p>
                       </div>
                       <div className="notice-container">
-                        <div className="notice-ballType" style={{ backgroundColor: typeStyle }}>
-                          <p >{type}</p>
+                        <div
+                          className="notice-ballType"
+                          style={{ backgroundColor: typeStyle }}
+                        >
+                          <p>{type}</p>
                         </div>
                         <div className="notice-info">
                           <div>
@@ -682,7 +726,7 @@
           state,
           id,
           typeFontStyle,
-          typeStyle
+          typeStyle,
         }) => {
           const [btnDisplay, setBtnDisplay] = useState("flex");
           const [resultDisplay, setResultDisplay] = useState("none");
@@ -740,8 +784,11 @@
                       </div>
 
                       <div className="notice-container">
-                        <div className="notice-ballType" style={{ backgroundColor: typeStyle }}>
-                          <p >{type}</p>
+                        <div
+                          className="notice-ballType"
+                          style={{ backgroundColor: typeStyle }}
+                        >
+                          <p>{type}</p>
                         </div>
                         <div className="notice-info">
                           <div>
@@ -1110,10 +1157,7 @@
                             <p style={{ color: typeFontStyle }}>出席率</p>
                           </div>
                           <div className="info">
-                            <div
-                              className="userInfo"
-                              
-                            >
+                            <div className="userInfo">
                               <p style={{ backgroundColor: typeStyle }}>B</p>
                             </div>
                             <p style={{ color: typeFontStyle }}>自評等級</p>
@@ -1292,6 +1336,7 @@
                           unspecified={post_data.reqCount[2].count}
                           equip={post_data.equip}
                           note={post_data.note}
+                          ballBrand={post_data.ballBrand}
                         />
                       );
                     })}
@@ -1361,8 +1406,6 @@
                           female={post_data.reqCount[0].count}
                           male={post_data.reqCount[1].count}
                           unspecified={post_data.reqCount[2].count}
-                          equip={post_data.equip}
-                          note={post_data.note}
                         />
                       );
                     })}
