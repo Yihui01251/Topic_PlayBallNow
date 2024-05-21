@@ -663,11 +663,10 @@ footer {
   /*  */
   text-decoration: none;
   text-transform: uppercase;
-  cursor: pointer;
-
   &:hover {
     margin-top: 0px;
     box-shadow: 0 2px $border-black;
+    cursor: pointer;
   }
   &:active {
     width: fit-content;

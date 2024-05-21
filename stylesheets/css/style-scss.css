@@ -711,11 +711,11 @@ footer div p {
   /*  */
   text-decoration: none;
   text-transform: uppercase;
-  cursor: pointer;
 }
 #btn-filter:hover {
   margin-top: 0px;
   box-shadow: 0 2px black;
+  cursor: pointer;
 }
 #btn-filter:active {
   width: fit-content;
@@ -930,7 +930,7 @@ footer div p {
 .simplePostInfo {
   flex: 0 1 auto;
   /*  */
-  max-width: 60vw;
+  max-width: 20vw;
   min-width: 300px;
   min-height: 310px;
   max-height: 90vh;
@@ -2900,6 +2900,12 @@ button#btn-formVB.selected::before {
   color: rgba(247, 246, 245, 0.9);
   border: 2px solid black;
   box-shadow: 0px 4px 0px 0px #000000;
+  margin-top: 5px;
+}
+.notice-type button:hover {
+  cursor: pointer;
+  margin-top: 0px;
+  box-shadow: 0 6px black;
 }
 
 /* 按鈕選中 */
@@ -2948,6 +2954,23 @@ button#btn-pastRecords.selected {
   display: grid;
   grid-template-columns: 25px 40px;
   gap: 3px;
+}
+.btn-sponsor:hover {
+  cursor: pointer;
+  margin-top: 0px;
+  box-shadow: 0 6px black;
+}
+.btn-sponsor:active {
+  background-color: #353535;
+}
+
+.btn-sponsor.selected {
+  box-shadow: 0px -4px 0px 0px #000000;
+}
+.btn-sponsor.selected:hover {
+  cursor: pointer;
+  margin-top: 5px;
+  box-shadow: 0 -4px black;
 }
 
 /* 預定行程容器 */

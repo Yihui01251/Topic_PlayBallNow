@@ -1218,6 +1218,19 @@
             }
           };
 
+          const sponsorChange=()=>{
+            
+            const sponsorBtn=document.querySelector(".btn-sponsor");
+            if(sponsorBtn.classList.contains("selected")){
+              sponsorBtn.classList.remove('selected');
+              setCallData(future_All_userData);
+            }else{
+              sponsorBtn.classList.add('selected');
+              setCallData(future_host_userData);
+            }
+
+          }
+
           return (
             <div className="body">
               <div className="mobile-TopBar">
@@ -1305,7 +1318,7 @@
                     <button
                       className="btn-sponsor button"
                       onClick={() => {
-                        setCallData(future_host_userData);
+                        sponsorChange()
                       }}
                     >
                       <img src="./images/icon-sponsor.png" alt="" />
