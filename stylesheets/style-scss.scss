@@ -315,6 +315,7 @@ body {
 .body {
   width: 100vw;
   height: fit-content;
+  min-height: 100vh;
   position: relative;
   /* display: grid;
   grid-template-rows: 125px 1fr 100px; */

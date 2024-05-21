@@ -392,6 +392,7 @@ body {
 .body {
   width: 100vw;
   height: fit-content;
+  min-height: 100vh;
   position: relative;
   /* display: grid;
   grid-template-rows: 125px 1fr 100px; */
@@ -2523,16 +2524,17 @@ button#btn-typeBm.selected {
 }
 
 /* 類別按鈕+表單+預覽區 */
-section.form-container {
+.form-container {
   width: fit-content;
   height: fit-content;
   padding: 50px 0px;
   display: grid;
   grid-template-columns: 339px 378px;
-  gap: 20px;
+  column-gap: 50px;
+  align-items: end;
 }
 @media (max-width:820px) {
-  section.form-container {
+  .form-container {
     /* RWD 手機版換一行 */
     grid-template-columns: 1fr;
     justify-content: center;
@@ -2544,6 +2546,7 @@ section.form-container {
 
 /* 表單容器:稍微修改不要壓到表單 */
 .form-block {
+  height: fit-content;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2632,14 +2635,14 @@ button#btn-formVB.selected::before {
 /* 表單元素容器 */
 .form-edit {
   flex: 1 0 auto;
-  width: 339px;
+  min-width: 339px;
   height: max-content;
   border-radius: 20px;
   border: 1px solid black;
   padding: 20px 15px;
   display: grid;
-  grid-template-rows: 20px 330px 20px 1fr;
-  gap: 15px;
+  grid-template-rows: 20px 450px 20px 1fr;
+  row-gap: 15px;
   background-color: rgba(88, 88, 88, 0.85);
   color: #ffffff;
 }
@@ -2669,10 +2672,11 @@ button#btn-formVB.selected::before {
 /* 必填表單容器 */
 .form-options {
   width: 309px;
-  height: 317px;
+  height: auto;
   border-bottom: 1px solid black;
   margin-top: 10px;
   padding-left: 20px;
+  padding-bottom: 10px;
   /* child */
   display: grid;
   grid-template-rows: auto;
@@ -2683,11 +2687,12 @@ button#btn-formVB.selected::before {
   display: grid;
   grid-template-columns: 32px 1fr;
   gap: 10px;
+  align-items: center;
 }
 .form-options label input {
   /* 所有<label>下<input> */
   width: 20%;
-  height: 20px;
+  height: 25px;
   border-radius: 50px;
   border: 2.5px solid black;
   padding: 0px 15px;
@@ -2720,7 +2725,7 @@ button#btn-formVB.selected::before {
 .form-options label:nth-child(7) select,
 .form-options label:nth-child(10) select {
   width: 40%;
-  height: 25px;
+  height: 30px;
   padding-left: 10px;
   border-radius: 50px;
   border: 2.5px solid black;
@@ -2735,10 +2740,10 @@ button#btn-formVB.selected::before {
 .form-options label:nth-child(9) {
   display: grid;
   grid-template-columns: 32px 75px 75px 70px;
-  gap: 10px;
+  gap: 0px 10px;
 }
 .form-options label:nth-child(9) input {
-  width: 60%;
+  width: 50%;
   padding-left: 20%;
 }
 
@@ -2750,7 +2755,7 @@ button#btn-formVB.selected::before {
   padding-left: 20px;
   display: grid;
   grid-template-rows: auto;
-  gap: 1vh;
+  row-gap: 15px;
 }
 .form-subOptions label {
   width: 330px;
@@ -2760,7 +2765,7 @@ button#btn-formVB.selected::before {
 }
 .form-subOptions label input {
   width: 150px;
-  height: 20px;
+  height: 25px;
   border-radius: 50px;
   border: 2.5px solid black;
   padding: 0px 15px;
@@ -2768,7 +2773,7 @@ button#btn-formVB.selected::before {
 }
 .form-subOptions label select {
   width: 135px;
-  height: 25px;
+  height: 30px;
   padding-left: 10px;
   border-radius: 50px;
   border: 2.5px solid black;
@@ -2782,22 +2787,19 @@ button#btn-formVB.selected::before {
 /* 預覽容器*/
 .form-preview {
   width: 350px;
-  height: 610px;
+  height: 797px;
   border: 1px solid black;
   border-radius: 20px;
   margin-top: 35px;
-  margin-left: 30px;
   padding: 20px 15px;
   background-color: rgba(217, 217, 217, 0.9);
   display: grid;
-  grid-template-rows: 28px 324px 40px;
-  gap: 100px 0px;
+  grid-template-rows: repeat(10, 1fr);
 }
 @media (max-width:640px) {
   .form-preview {
     padding: 10px;
     margin: 20px 0 0 0;
-    gap: 50px 0px;
     height: fit-content;
     width: 60vw;
     min-width: 380px;
@@ -2809,14 +2811,20 @@ button#btn-formVB.selected::before {
   .form-preview {
     padding: 0;
     margin: 35px 0 0 0;
-    gap: 50px 0px;
     height: fit-content;
     width: 375px;
   }
 }
+.form-preview .line-hugTitle {
+  align-self: flex-start;
+}
+.form-preview .simplePostInfo {
+  grid-row: 3/8;
+  height: fit-content;
+}
 .form-preview a {
   margin: 0 auto;
-  grid-row: 3;
+  grid-row: 10;
   width: 100px;
   min-width: 100px;
   height: 50px;
