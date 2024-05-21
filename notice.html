@@ -115,11 +115,11 @@
             if (type === "羽") {
               typeStyle = "rgba(131, 185, 15, 0.9)";
               typeFontStyle = "#689607";
-              ellipseBar = "/images/ellipsebarbm.png"
+              ellipseBar = "/images/ellipsebarbm.png";
             } else if (type === "排") {
               typeStyle = "#14AAEB";
               typeFontStyle = "#147CB6";
-              ellipseBar = "/images/ellipsebarvb.png"
+              ellipseBar = "/images/ellipsebarvb.png";
             }
             setTypeFontStyle(typeFontStyle);
             setTypeStyle(typeStyle);
@@ -276,7 +276,7 @@
                   id={id}
                   typeStyle={typeStyle}
                   typeFontStyle={typeFontStyle}
-                  ellipseBarType = {ellipseBar}
+                  ellipseBarType={ellipseBar}
                   popUp={popupHref}
                 />
               )}
@@ -878,7 +878,7 @@
           id,
           typeStyle,
           typeFontStyle,
-          popUp
+          popUp,
         }) => {
           return (
             <div className="popup" id={`${popUp}-${id}`}>
@@ -886,40 +886,37 @@
                 <div className="popup__content">
                   <div className="simplePostInfo">
                     <div className="main-info">
+                      <div className="header" style={{ color: typeFontStyle }}>
+                        <p>
+                          {day} {startTime}~{endTime}
+                        </p>
                         <div
-                          className="header"
-                          style={{ color: typeFontStyle }}
+                          className="type-style"
+                          style={{ backgroundColor: typeStyle }}
                         >
-                          <p>
-                            {day} {startTime}~{endTime}
-                          </p>
-                          <div
-                            className="type-style"
-                            style={{ backgroundColor: typeStyle }}
-                          >
-                            {type}球
-                          </div>
-                          <a className="popup__close" href="#">
-                            <img src="../images/cancel.png" alt="" />
-                          </a>
+                          {type}球
                         </div>
-                        <div
-                          className="areaInfo"
-                          style={{ color: typeFontStyle }}
-                        >
-                          <h3>{city}</h3>
-                          <h3>{area}</h3>
-                          <h3>{arena}</h3>
-                        </div>
-                        <div className="tag-style">
-                          <p style={{ backgroundColor: typeFontStyle }}>
-                            {tagDegree}
-                          </p>
-                          <p style={{ backgroundColor: typeFontStyle }}>
-                            ${tagPrice}
-                          </p>
-                        </div>
+                        <a className="popup__close" href="#">
+                          <img src="../images/cancel.png" alt="" />
+                        </a>
                       </div>
+                      <div
+                        className="areaInfo"
+                        style={{ color: typeFontStyle }}
+                      >
+                        <h3>{city}</h3>
+                        <h3>{area}</h3>
+                        <h3>{arena}</h3>
+                      </div>
+                      <div className="tag-style">
+                        <p style={{ backgroundColor: typeFontStyle }}>
+                          {tagDegree}
+                        </p>
+                        <p style={{ backgroundColor: typeFontStyle }}>
+                          ${tagPrice}
+                        </p>
+                      </div>
+                    </div>
                     <div className="line-hugTitle">
                       <div className="titleLine"></div>
                       <h3>球友臨打回饋</h3>
@@ -954,7 +951,11 @@
                       <a className="popup__close btn-close" href="#">
                         關閉
                       </a>
-                      <a href="#" className="button btn-yes" style={{ backgroundColor: typeFontStyle }}>
+                      <a
+                        href="#"
+                        className="button btn-yes"
+                        style={{ backgroundColor: typeFontStyle }}
+                      >
                         送出
                       </a>
                     </div>
@@ -965,7 +966,8 @@
           );
         };
         /* 建立元件 燈箱效果-團主評價 */
-        const EvaluateApplicantsCard = ({ day,
+        const EvaluateApplicantsCard = ({
+          day,
           startTime,
           endTime,
           type,
@@ -978,7 +980,8 @@
           typeStyle,
           typeFontStyle,
           ellipseBarType,
-          popUp}) => {
+          popUp,
+        }) => {
           return (
             <>
               <div className="popup" id={`${popUp}-${id}`}>
@@ -1011,7 +1014,7 @@
                           <h3>{area}</h3>
                           <h3>{arena}</h3>
                         </div>
-      
+
                         <div className="tag-style">
                           <p style={{ backgroundColor: typeFontStyle }}>
                             {tagDegree}
@@ -1047,30 +1050,48 @@
                             />
                             <p>Roy</p>
                           </div>
-                          <p className="evaluateState-yes" style={{ backgroundColor: typeStyle }}>已評價</p>
+                          <p
+                            className="evaluateState-yes"
+                            style={{ backgroundColor: typeStyle }}
+                          >
+                            已評價
+                          </p>
                         </a>
                       </div>
 
                       <div className="evaluateForm">
-                        <div className="info-selfState">
-                          <div className="selfState-userInfo">
+                        <div className="selfState-userInfo">
+                          <div className="info">
                             <img
                               className="applicantImg"
                               src="../images/player.png"
                               alt=""
                             />
+                            <p style={{ color: typeFontStyle }}>Roy</p>
+                          </div>
+                          <div className="info">
                             <div className="attendance">
-                              <p className="text-M" style={{ color: typeFontStyle }}>85%</p>
+                              <p
+                                className="text-M"
+                                style={{ color: typeFontStyle }}
+                              >
+                                85%
+                              </p>
                               <img src={ellipseBarType} alt="" />
                             </div>
-                            <p className="userInfo" style={{ backgroundColor: typeStyle }}>B</p>
+                            <p style={{ color: typeFontStyle }}>出席率</p>
                           </div>
-                          <div className="selfState-title">
-                            <p>Roy</p>
-                            <p>出席率</p>
-                            <p>自評等級</p>
+                          <div className="info">
+                            <div
+                              className="userInfo"
+                              
+                            >
+                              <p style={{ backgroundColor: typeStyle }}>B</p>
+                            </div>
+                            <p style={{ color: typeFontStyle }}>自評等級</p>
                           </div>
                         </div>
+
                         <div className="component-writeBlock">
                           <h5>備註（僅限自己可看）：</h5>
                           <input type="text" placeholder="可在此輸入備註" />
