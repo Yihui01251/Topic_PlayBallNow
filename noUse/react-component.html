@@ -618,7 +618,7 @@
         ReactDOM.createRoot(document.getElementById("root")).render(<App />);
       })();
     </script>
-    <d class="warp">
+    < class="warp">
       <!-- 簡略貼文元件 -->
       <div class="simplePostInfo">
         <div class="main-info">
@@ -1209,20 +1209,20 @@
           <h3>本場臨打球友</h3>
         </div>
         <div class="evaluateContainer">
-          <div class="evaluatePlayerList">
+          <a href="#" class="evaluatePlayerList">
 
               <div class="playerName"><img class="applicantImg" src="../images/player.png" alt="" />
               <p>Geeeed</p></div>
               
               <p class="evaluateState-no">未評價</p>
-            </div>
-            <div class="evaluatePlayerList">
+              </a>
+          <a href="#" class="evaluatePlayerList">
               <div class="playerName">
                 <img class="applicantImg" src="../images/player2.png" alt="" />
                 <p>Roy</p>
               </div>
               <p class="evaluateState-yes">已評價</p>
-            </div>
+            </a>
           </div>
           
           <div class="evaluateForm">
@@ -1245,21 +1245,21 @@
               <h5>備註（僅限自己可看）：</h5>
               <input type="text" placeholder="可在此輸入備註"/>
             </div>
-            <div class="evaluateOption">
+            <fieldset class="evaluateOption">
               <h5>出席</h5>
-              <input type="radio" name="正常出席" id="attend">
+              <input type="radio" name="出席" id="attend">
               <label for="正常出席">正常出席</label>
-              <input type="radio" name="無故缺席" id="absent">
+              <input type="radio" name="出席" id="absent">
               <label for="無故出席">無故出席</label>
-            </div>
-            <div class="evaluateOption">
+            </fieldset>
+            <fieldset class="evaluateOption">
               <h5>程度</h5>
-              <input type="radio" name="符合自評" id="comply">
+              <input type="radio" name="程度" id="comply">
               <label for="符合自評">符合自評</label>
               
-              <input type="radio" name="不確定" id="uncertainty">
+              <input type="radio" name="程度" id="uncertainty">
               <label for="符合自評">不確定</label>
-            </div>
+            </fieldset>
             <div class="BtnContainer">
               <a href="#" class="button btn-no">送出,並加入黑名單</a>
               <a class="button btn-yes"  href="#">送出</a>
@@ -1273,7 +1273,9 @@
       <!-- 燈箱效果 -->
       <div class="popup" id="">
         <div class="popup-inner">
-          <div class="popup__content"></div>
+          <div class="popup__content">
+            
+          </div>
         </div>
       </div>
 
@@ -1769,6 +1771,97 @@
         <a href="#" class="button btn-yes">送出</a>
       </div>
     </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 燈箱效果-團主評價 -->
+      <div class="popup" id="">
+        <div class="popup-inner">
+          <div class="popup__content">
+            <div class="simplePostInfo">
+              <div class="main-info">
+                <div class="header">
+                  <p>5/24 18:00~20:00</p>
+                  <div class="type-style">羽球</div>
+                  <button class="collect">
+                    <img class="svg" src="../images/heart-no.svg" alt="收藏" />
+                  </button>
+                </div>
+                <div class="areaInfo">
+                  <h3>台北市</h3>
+                  <h3>中山區</h3>
+                </div>
+                <div class="arenaInfo">
+                  <h3>中山運動中心</h3>
+                </div>
+                <div class="tag-style">
+                  <p>初階</p>
+                  <p>$150</p>
+                </div>
+              </div>
+              <div class="line-hugTitle">
+                <div class="titleLine"></div>
+                <h3>本場臨打球友</h3>
+              </div>
+              <div class="evaluateContainer">
+                <a href="#" class="evaluatePlayerList">
+      
+                    <div class="playerName"><img class="applicantImg" src="../images/player.png" alt="" />
+                    <p>Geeeed</p></div>
+                    
+                    <p class="evaluateState-no">未評價</p>
+                    </a>
+                <a href="#" class="evaluatePlayerList">
+                    <div class="playerName">
+                      <img class="applicantImg" src="../images/player2.png" alt="" />
+                      <p>Roy</p>
+                    </div>
+                    <p class="evaluateState-yes">已評價</p>
+                  </a>
+                </div>
+                
+                <div class="evaluateForm">
+                  <div class="info-selfState">
+                    <div class="selfState-userInfo">
+                      <img class="applicantImg" src="../images/player.png" alt="" />
+                      <div class="attendance">
+                        <p class="text-M">85%</p>
+                        <img src="../images/vbellipsebar.png" alt="" />
+                      </div>
+                      <p class="userInfo">B</p>
+                    </div>
+                    <div class="selfState-title">
+                      <p>Roy</p>
+                      <p>出席率</p>
+                      <p>自評等級</p>
+                    </div>
+                  </div>
+                  <div class="component-writeBlock">
+                    <h5>備註（僅限自己可看）：</h5>
+                    <input type="text" placeholder="可在此輸入備註"/>
+                  </div>
+                  <fieldset class="evaluateOption">
+                    <h5>出席</h5>
+                    <input type="radio" name="出席" id="attend">
+                    <label for="正常出席">正常出席</label>
+                    <input type="radio" name="出席" id="absent">
+                    <label for="無故出席">無故出席</label>
+                  </fieldset>
+                  <fieldset class="evaluateOption">
+                    <h5>程度</h5>
+                    <input type="radio" name="程度" id="comply">
+                    <label for="符合自評">符合自評</label>
+                    
+                    <input type="radio" name="程度" id="uncertainty">
+                    <label for="符合自評">不確定</label>
+                  </fieldset>
+                  <div class="BtnContainer">
+                    <a href="#" class="button btn-no">送出,並加入黑名單</a>
+                    <a class="button btn-yes"  href="#">送出</a>
+                   </div>
+                </div>
+              </div>
           </div>
         </div>
       </div>

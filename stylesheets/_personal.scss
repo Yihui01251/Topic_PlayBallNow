@@ -191,7 +191,7 @@
     width: 53px;
     height: 32px;
     border-radius: $border-radius-50;
-    background-color: $main-color-bm;
+    background-color: var(--main-color);
     text-align: center;
     line-height: 32px;
     color: $background-color-lightwhite-s;
@@ -206,7 +206,7 @@
       position: absolute;
       top: 18px;
       left: 13px;
-      color: $main-color-bm;
+      color: $font-color-vb;
     }
 
     img {

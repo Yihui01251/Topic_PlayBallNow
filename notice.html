@@ -70,11 +70,6 @@
           const [showApplicants, setShowApplicants] = useState("");
           /* 顯示取消列 */
           const [showCancel, setShowCancel] = useState("");
-          /* 建立查看貼文元件 */
-          const [detailNotify, setDetailNotify] = useState(false);
-          const establishDetailNotify = () => {
-            setDetailNotify(true);
-          };
 
           useEffect(() => {
             // 保存最新的 identity 值
@@ -90,8 +85,7 @@
               setShowCancel("none");
               if (name === "所有過去貼文") {
                 newHref = "evaluateApplyPopup";
-              }
-              else {
+              } else {
                 newHref = "auditApplyPopup";
               }
             } else if (identity === "臨打") {
@@ -100,8 +94,7 @@
               setShowCancel("flex");
               if (name === "所有過去貼文") {
                 newHref = "evaluateSponsorPopup";
-              }
-              else {
+              } else {
                 newHref = "auditApplyPopup";
               }
             }
@@ -158,12 +151,38 @@
             document.getElementsByClassName("notice-container");
           }, [type, state, identity, popupHref, name]);
 
+          /* 查看貼文元件 */
+          const [detailNotify, setDetailNotify] = useState(false);
+          /* 臨打評價元件 */
+          const [applicantEvaluateCard, setApplicantEvaluateCard] =
+            useState(false);
+          /* 團主評價元件 */
+          const [sponsorEvaluateCard, setSponsorEvaluateCard] = useState(false);
+          /* 是否呼叫元件 */
+          const establishDetailNotify = (href) => {
+            {
+              if (href === "auditApplyPopup") {
+                setDetailNotify(true);
+                setApplicantEvaluateCard(false);
+                setSponsorEvaluateCard(false);
+              } else if (href === "evaluateApplyPopup") {
+                setDetailNotify(false);
+                setApplicantEvaluateCard(false);
+                setSponsorEvaluateCard(true);
+              } else {
+                setDetailNotify(false);
+                setApplicantEvaluateCard(true);
+                setSponsorEvaluateCard(false);
+              }
+            }
+          };
+
           return (
             <>
               <a
                 className="container-component"
                 href={`#${popupHref}-${id}`}
-                onClick={establishDetailNotify}
+                onClick={() => establishDetailNotify(popupHref)}
               >
                 <div
                   className={"notice-container hoverNotice"}
@@ -218,6 +237,36 @@
                   typeFontStyle={typeFontStyle}
                   showApplicants={showApplicants}
                   showCancel={showCancel}
+                />
+              )}
+              {applicantEvaluateCard && (
+                <EvaluateSponsorCard
+                  day={day}
+                  startTime={startTime}
+                  endTime={endTime}
+                  type={type}
+                  city={city}
+                  area={area}
+                  arena={arena}
+                  tagDegree={tagDegree}
+                  tagPrice={tagPrice}
+                  id={id}
+                  popUp={popupHref}
+                />
+              )}
+              {sponsorEvaluateCard && (
+                <EvaluateApplicantsCard
+                  day={day}
+                  startTime={startTime}
+                  endTime={endTime}
+                  type={type}
+                  city={city}
+                  area={area}
+                  arena={arena}
+                  tagDegree={tagDegree}
+                  tagPrice={tagPrice}
+                  id={id}
+                  popUp={popupHref}
                 />
               )}
             </>
@@ -592,7 +641,7 @@
             </div>
           );
         };
-       /* 建立元件 燈箱效果-審核取消 */
+        /* 建立元件 燈箱效果-審核取消 */
         const AuditCancelCard = ({
           day,
           startTime,
@@ -706,7 +755,7 @@
             </div>
           );
         };
-       /* 建立元件 燈箱效果-確認取消 */
+        /* 建立元件 燈箱效果-確認取消 */
         const DetailsNotifyCard = ({
           day,
           startTime,
@@ -814,45 +863,74 @@
             </>
           );
         };
-       /* 建立元件 燈箱效果-臨打回饋 */
-        const EvaluateSponsorCard = ({}) => {
+        /* 建立元件 燈箱效果-臨打回饋 */
+        const EvaluateSponsorCard = ({
+          day,
+          startTime,
+          endTime,
+          type,
+          city,
+          area,
+          arena,
+          tagDegree,
+          tagPrice,
+          id,
+          typeStyle,
+          typeFontStyle,
+          popUp
+        }) => {
           return (
-            
-            <div class="popup" id="">
-              <div class="popup-inner">
-                <div class="popup__content">
-                  <div class="simplePostInfo">
-                    <div class="main-info">
-                      <div class="header">
-                        <p>5/24 18:00~20:00</p>
-                        <div class="type-style">排球</div>
-                        <button class="collect">
-                          <img
-                            class="svg"
-                            src="../images/heart-no.svg"
-                            alt="收藏"
-                          />
-                        </button>
+            <div class="popup" id={`${popUp}-${id}`}>
+              <div className="popup-inner">
+                <div className="popup__content">
+                  <div className="simplePostInfo">
+                    <div className="main-info">
+                        <div
+                          className="header"
+                          style={{ color: typeFontStyle }}
+                        >
+                          <p>
+                            {day} {startTime}~{endTime}
+                          </p>
+                          <div
+                            className="type-style"
+                            style={{ backgroundColor: typeStyle }}
+                          >
+                            {type}球
+                          </div>
+                          <a className="popup__close" href="#">
+                            <img src="../images/cancel.png" alt="" />
+                          </a>
+                        </div>
+                        <div
+                          className="areaInfo"
+                          style={{ color: typeFontStyle }}
+                        >
+                          <h3>{city}</h3>
+                          <h3>{area}</h3>
+                        </div>
+                        <div
+                          className="arenaInfo"
+                          style={{ color: typeFontStyle }}
+                        >
+                          <h3>{arena}</h3>
+                        </div>
+                        <div className="tag-style">
+                          <p style={{ backgroundColor: typeFontStyle }}>
+                            {tagDegree}
+                          </p>
+                          <p style={{ backgroundColor: typeFontStyle }}>
+                            ${tagPrice}
+                          </p>
+                        </div>
                       </div>
-                      <div class="areaInfo">
-                        <h3>台北市</h3>
-                        <h3>中山區</h3>
-                      </div>
-                      <div class="arenaInfo">
-                        <h3>中山運動中心</h3>
-                      </div>
-                      <div class="tag-style">
-                        <p>初階</p>
-                        <p>$150</p>
-                      </div>
-                    </div>
-                    <div class="line-hugTitle">
-                      <div class="titleLine"></div>
+                    <div className="line-hugTitle">
+                      <div className="titleLine"></div>
                       <h3>球友臨打回饋</h3>
                     </div>
-                    <div class="sub-info">
-                      <div class="tags">
-                        <h4 class="text-L">氣氛</h4>
+                    <div className="sub-info">
+                      <div className="tags">
+                        <h4 className="text-L">氣氛</h4>
                         <button>有帥哥</button>
                         <button>有妹子</button>
                         <button>性別友善</button>
@@ -860,15 +938,15 @@
                         <button>輕鬆歡樂</button>
                         <button>新手友善</button>
                       </div>
-                      <div class="tags">
-                        <h4 class="text-L">程度</h4>
+                      <div className="tags">
+                        <h4 className="text-L">程度</h4>
                         <button>有強者</button>
                         <button>多拍/多來回</button>
                         <button>符合徵求程度</button>
                         <button>多新手/初階</button>
                       </div>
-                      <div class="tags">
-                        <h4 class="text-L">團主</h4>
+                      <div className="tags">
+                        <h4 className="text-L">團主</h4>
                         <button>懂安排程度</button>
                         <button>人數超收</button>
                         <button>用球大方</button>
@@ -876,11 +954,11 @@
                         <button>用心</button>
                       </div>
                     </div>
-                    <div class="BtnContainer">
-                      <a class="popup__close btn-close" href="#">
+                    <div className="BtnContainer">
+                      <a className="popup__close btn-close" href="#">
                         關閉
                       </a>
-                      <a href="#" class="button btn-yes">
+                      <a href="#" className="button btn-yes">
                         送出
                       </a>
                     </div>
@@ -890,10 +968,151 @@
             </div>
           );
         };
-       /* 建立元件 燈箱效果-團主評價 */
-       const EvaluateApplicantsCard = ({})=>{
-        return(<></>)
-       }
+        /* 建立元件 燈箱效果-團主評價 */
+        const EvaluateApplicantsCard = ({ day,
+          startTime,
+          endTime,
+          type,
+          city,
+          area,
+          arena,
+          tagDegree,
+          tagPrice,
+          id,
+          typeStyle,
+          typeFontStyle,
+          popUp}) => {
+          return (
+            <>
+              <div className="popup" id={`${popUp}-${id}`}>
+                <div className="popup-inner">
+                  <div className="popup__content">
+                    <div className="simplePostInfo">
+                      <div className="main-info">
+                        <div
+                          className="header"
+                          style={{ color: typeFontStyle }}
+                        >
+                          <p>
+                            {day} {startTime}~{endTime}
+                          </p>
+                          <div
+                            className="type-style"
+                            style={{ backgroundColor: typeStyle }}
+                          >
+                            {type}球
+                          </div>
+                          <a className="popup__close" href="#">
+                            <img src="../images/cancel.png" alt="" />
+                          </a>
+                        </div>
+                        <div
+                          className="areaInfo"
+                          style={{ color: typeFontStyle }}
+                        >
+                          <h3>{city}</h3>
+                          <h3>{area}</h3>
+                        </div>
+                        <div
+                          className="arenaInfo"
+                          style={{ color: typeFontStyle }}
+                        >
+                          <h3>{arena}</h3>
+                        </div>
+                        <div className="tag-style">
+                          <p style={{ backgroundColor: typeFontStyle }}>
+                            {tagDegree}
+                          </p>
+                          <p style={{ backgroundColor: typeFontStyle }}>
+                            ${tagPrice}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="line-hugTitle">
+                        <div className="titleLine"></div>
+                        <h3>本場臨打球友</h3>
+                      </div>
+                      <div className="evaluateContainer">
+                        <a href="#" className="evaluatePlayerList">
+                          <div className="playerName">
+                            <img
+                              className="applicantImg"
+                              src="../images/player.png"
+                              alt=""
+                            />
+                            <p>Geeeed</p>
+                          </div>
+
+                          <p className="evaluateState-no">未評價</p>
+                        </a>
+                        <a href="#" className="evaluatePlayerList">
+                          <div className="playerName">
+                            <img
+                              className="applicantImg"
+                              src="../images/player2.png"
+                              alt=""
+                            />
+                            <p>Roy</p>
+                          </div>
+                          <p className="evaluateState-yes">已評價</p>
+                        </a>
+                      </div>
+
+                      <div className="evaluateForm">
+                        <div className="info-selfState">
+                          <div className="selfState-userInfo">
+                            <img
+                              className="applicantImg"
+                              src="../images/player.png"
+                              alt=""
+                            />
+                            <div className="attendance">
+                              <p className="text-M">85%</p>
+                              <img src="../images/vbellipsebar.png" alt="" />
+                            </div>
+                            <p className="userInfo">B</p>
+                          </div>
+                          <div className="selfState-title">
+                            <p>Roy</p>
+                            <p>出席率</p>
+                            <p>自評等級</p>
+                          </div>
+                        </div>
+                        <div className="component-writeBlock">
+                          <h5>備註（僅限自己可看）：</h5>
+                          <input type="text" placeholder="可在此輸入備註" />
+                        </div>
+                        <fieldset className="evaluateOption">
+                          <h5>出席</h5>
+                          <input type="radio" name="出席" id="attend" />
+                          <label for="正常出席">正常出席</label>
+                          <input type="radio" name="出席" id="absent" />
+                          <label for="無故出席">無故出席</label>
+                        </fieldset>
+                        <fieldset className="evaluateOption">
+                          <h5>程度</h5>
+                          <input type="radio" name="程度" id="comply" />
+                          <label for="符合自評">符合自評</label>
+
+                          <input type="radio" name="程度" id="uncertainty" />
+                          <label for="符合自評">不確定</label>
+                        </fieldset>
+                        <div className="BtnContainer">
+                          <a href="#" className="button btn-no">
+                            送出,並加入黑名單
+                          </a>
+                          <a className="button btn-yes" href="#">
+                            送出
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </>
+          );
+        };
         const App = () => {
           const [selectedButton, setSelectedButton] = useState("btn-itinerary");
           const [noticeType, setNoticeType] = useState("btn-itinerary");
