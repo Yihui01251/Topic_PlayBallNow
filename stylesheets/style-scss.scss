@@ -34,7 +34,7 @@
   //hover表單顏色
   --input-hover-color:#B1C3E8;
   --border-image: url("/images/catframe.png");
-  --background-image: url("/images/CatBg.jpg");
+  --background-image: url("/images/bg.png");
   --search-decorate: url("/images/index-searchCat.png");
   --ellipseBar-image:url("/images/bmellipsebar.png");
   /* 行程 */
@@ -163,12 +163,20 @@ h2 div {
   gap: 10px;
   justify-content: space-between;
 }
-/* 包標題的容器 */
+/* 包有線標題的容器 */
 .line-hugTitle {
   grid-column: 1/5;
   display: flex;
   flex-direction: row;
   align-items: center;
+  h2{
+    color: $second-color-white;
+    text-shadow:
+        1px -1px 0 #000000,
+        1px -1px 0 #000000,
+        -1px 1px 0 #000000,
+        1px 1px 0 #000000;
+  }
 }
 
 /* 標題前的直線 */
@@ -177,6 +185,7 @@ h2 div {
   height: 20px;
   background-color: $second-color-black;
   margin-right: 10px;
+  
 }
 
 /* 包左、右按鈕的容器 */
@@ -540,9 +549,9 @@ footer {
     border-radius: $border-radius-50;
     margin: 0px 3px;
     padding: 1px 10px;
-    background-color: transparent;
+    background-color: $background-color-lightwhite-s;
     color: var(--font-color);
-    opacity: 0.7;
+    opacity: 0.8;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -553,7 +562,7 @@ footer {
       opacity: 1;
     }
     &:active {
-      background-color: var(--main-color);
+      background-color: var(--font-color);
       color: $background-color-lightwhite-s;
     }
 
@@ -564,8 +573,9 @@ footer {
 
   }
   .active{
-      background-color: var(--main-color);
+      background-color: var(--font-color);
       color: $background-color-lightwhite-s;
+      opacity: 1;
     }
   .custom-checkbox {
     position: relative;
