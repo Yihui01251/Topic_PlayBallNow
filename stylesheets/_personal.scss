@@ -194,6 +194,11 @@
     justify-content: center;
     align-items: center;
     row-gap: 10px;
+
+    p{
+      color: var(--font-color);
+    }
+
     .applicantImg{
       width: 75px;
     }
