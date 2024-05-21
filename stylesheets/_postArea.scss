@@ -194,7 +194,8 @@
 
 /* main.filter-postArea > section.filter-containers >div.filter-postBlock */
 .filter-postBlock {
-  width: 80%;
+  width: 70%;
+  min-width: 345px;
   height: fit-content;
   display: flex;
   flex-direction: row;
@@ -202,6 +203,14 @@
 
   overflow-wrap: normal;
   gap: 30px;
-  justify-content: center;
-  padding-left: 10px;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 15vw;
+  @media ($breakpoint-moblie) {
+   margin: 0;
+  }
+  @media ($breakpoint-md) {
+    margin: 0;
+    justify-content: center;
+   }
 }

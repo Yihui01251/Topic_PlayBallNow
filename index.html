@@ -568,7 +568,7 @@
 
           // 元件
           /* 建立元件 header元件 */
-        const TopBar = ({mobileTopBar}) => {
+          const TopBar = ({mobileTopBar}) => {
           return (
             <>
               <div className="mobile-TopBar">
@@ -615,6 +615,10 @@
                     </h1>
                     <img src="./images/bmtitle.svg" alt="" />
                   </div>
+                  <a href="/myCollect.html" className="button btn-postManage">
+                  我的收藏
+                  <img src="./images/heart-yes.svg" alt="" />
+                </a>
                 </div>
               </header>
             </>
@@ -714,10 +718,10 @@
             unspecified,
             role,
             pos,
-            equip,
+            equip,ballBrand,
             note,
             host,
-            ballBrand,
+            
             noticeHref,
           }) => {
             const [showBallBrand, setShowBallBrand] = useState("none");
@@ -1083,6 +1087,8 @@
                           href={`todayApplyPopUp-${post_data.id}`}
                           host={post_data.host}
                           ballBrand={post_data.ballBrand}
+                          equip={post_data.equip}
+                          like={post_data.like}
                         />
                       );
                     })}
@@ -1151,10 +1157,12 @@
                           reqCount={post_data.reqCount}
                           role={post_data.role}
                           pos={post_data.pos}
-                          equip={post_data.equip}
                           note={post_data.note}
                           href={`weekApplyPopUp-${post_data.id}`}
                           host={post_data.host}
+                          ballBrand={post_data.ballBrand}
+                          equip={post_data.equip}
+                          like={post_data.like}
                         />
                       );
                     })}

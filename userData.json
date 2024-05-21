@@ -104,8 +104,9 @@
                     "note": "計分：21分制，場地及好，遮陽避雨～～",
                     "host": "王鵬豪",
                     "appl": "",
+                    "pos":"舉球",
                     "cancel": "",
-                    "like": "false"
+                    "like": "true"
                 },
                 {
                     "id": "4",
@@ -298,7 +299,7 @@
                     "area": "大安區",
                     "arena": "大安運動中心",
                     "tagDegree": "新手友善",
-                    "tagPrice": "300",
+                    "tagPrice": "260",
                     "reqCount": [
                         {
                           "gender": "female",
@@ -367,7 +368,7 @@
                     "city": "台北市",
                     "area": "南港區",
                     "arena": "成德國小活動中心",
-                    "tagDegree": "進階",
+                    "tagDegree": "中進階",
                     "tagPrice": "100",
                     "reqCount": [
                         {
@@ -748,6 +749,37 @@
                     "like": "false"
                 }
             ]
+        },
+        {
+          "collect_userData":[
+            {
+              "id": "1",
+              "state": "已評價",
+              "typeAbbr": "羽",
+              "dateAbbr": "05/01",
+              "startTime": "10:00",
+              "endTime": "13:00",
+              "city": "台北市",
+              "area": "文山區",
+              "arena": "武功國小",
+              "tagDegree": "新手友善",
+              "tagPrice": "150",
+              "like": "true"
+          },{
+            "id": "2",
+            "state": "未評價",
+            "typeAbbr": "羽",
+            "dateAbbr": "05/15",
+            "startTime": "19:00",
+            "endTime": "21:00",
+            "city": "台北市",
+            "area": "中正區",
+            "arena": "成功高中",
+            "tagDegree": "中進階",
+            "tagPrice": "110",
+            "like": "true"
+        }
+          ]
         }
     ]
 }
