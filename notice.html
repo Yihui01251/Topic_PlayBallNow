@@ -90,6 +90,8 @@
               } else {
                 newHref = "auditApplyPopup";
               }
+
+              
             } else if (identity === "臨打") {
               borderStyle = "3px solid black";
               setShowApplicants("none");
@@ -98,6 +100,11 @@
                 newHref = "evaluateSponsorPopup";
               } else {
                 newHref = "auditApplyPopup";
+              }
+
+              if(name === "所有未來取消貼文"){
+                setShowApplicants("none");
+                setShowCancel("none");
               }
             }
             setIdentityStyle(borderStyle);
@@ -243,6 +250,7 @@
                   typeFontStyle={typeFontStyle}
                   showApplicants={showApplicants}
                   showCancel={showCancel}
+                  ellipseBar={ellipseBar}
                 />
               )}
               {applicantEvaluateCard && (
@@ -308,6 +316,7 @@
           typeFontStyle,
           showApplicants,
           showCancel,
+          ellipseBar
         }) => {
           /* 生成審核報名元件 */
           const [auditApplyCard, setAuditApplyCard] = useState(false);
@@ -502,6 +511,9 @@
                   arena={arena}
                   state={state}
                   id={id}
+                  typeStyle={typeStyle}
+                typeFontStyle={typeFontStyle}
+                ellipseBarType={ellipseBar}
                 />
               )}
               {auditCancelCard && (
@@ -512,6 +524,8 @@
                   arena={arena}
                   state={state}
                   id={id}
+                  typeStyle={typeStyle}
+                typeFontStyle={typeFontStyle}
                 />
               )}
               {detailsNotifyCard && (
@@ -534,7 +548,7 @@
           );
         };
         /* 建立元件 燈箱效果-審核申請 */
-        const AuditApplyCard = ({ day, startTime, type, arena, state, id }) => {
+        const AuditApplyCard = ({ day, startTime, type, arena, state, id,typeStyle,typeFontStyle,ellipseBarType}) => {
           const [btnDisplay, setBtnDisplay] = useState("flex");
           const [resultDisplay, setResultDisplay] = useState("none");
           const [resultText, setResultText] = useState("");
@@ -570,40 +584,52 @@
                       </a>
                     </div>
                     <div className="audit-info">
-                      <div className="info-selfState">
-                        <div className="selfState-userInfo">
-                          <img
-                            className="applicantImg"
-                            src="../images/player.png"
-                            alt=""
-                          />
-                          <div className="attendance">
-                            <p className="text-M">85%</p>
-                            <img src="../images/EllipseBar_vb.png" alt="" />
+                      <div className="selfState-userInfo">
+                          <div className="info">
+                            <img
+                              className="applicantImg"
+                              src="../images/player.png"
+                              alt=""
+                            />
+                            <p style={{ color: typeFontStyle }}>Roy</p>
                           </div>
-                          <p className="userInfo">中上</p>
+                          <div className="info">
+                            <div className="attendance">
+                              <p
+                                className="text-M"
+                                style={{ color: typeFontStyle }}
+                              >
+                                85%
+                              </p>
+                              <img src={ellipseBarType} alt="" />
+                            </div>
+                            <p style={{ color: typeFontStyle }}>出席率</p>
+                          </div>
+                          <div className="info">
+                            <div
+                              className="userInfo"
+                              
+                            >
+                              <p style={{ backgroundColor: typeStyle }}>B</p>
+                            </div>
+                            <p style={{ color: typeFontStyle }}>自評等級</p>
+                          </div>
                         </div>
-                        <div className="selfState-title">
-                          <p>Roy</p>
-                          <p>出席率</p>
-                          <p>自評等級</p>
-                        </div>
-                      </div>
                       <div className="info-remark">
                         <h5>備註（僅限自己可看）：</h5>
                         <p>這個人很愛放鴿子</p>
                       </div>
                       <div className="notice-container">
-                        <div className="notice-ballType">
-                          <p>{type}</p>
+                        <div className="notice-ballType" style={{ backgroundColor: typeStyle }}>
+                          <p >{type}</p>
                         </div>
                         <div className="notice-info">
                           <div>
-                            <p>
+                            <p style={{ color: typeFontStyle }}>
                               {day} {startTime}
                             </p>
                           </div>
-                          <p>{arena}</p>
+                          <p style={{ color: typeFontStyle }}>{arena}</p>
                           <div className="audit-state">
                             <p>{state}</p>
                           </div>
@@ -655,6 +681,8 @@
           arena,
           state,
           id,
+          typeFontStyle,
+          typeStyle
         }) => {
           const [btnDisplay, setBtnDisplay] = useState("flex");
           const [resultDisplay, setResultDisplay] = useState("none");
@@ -712,16 +740,16 @@
                       </div>
 
                       <div className="notice-container">
-                        <div className="notice-ballType">
-                          <p>{type}</p>
+                        <div className="notice-ballType" style={{ backgroundColor: typeStyle }}>
+                          <p >{type}</p>
                         </div>
                         <div className="notice-info">
                           <div>
-                            <p>
+                            <p style={{ color: typeFontStyle }}>
                               {day} {startTime}
                             </p>
                           </div>
-                          <p>{arena}</p>
+                          <p style={{ color: typeFontStyle }}>{arena}</p>
                           <div className="audit-state">
                             <p>{state}</p>
                           </div>
