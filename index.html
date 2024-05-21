@@ -81,7 +81,7 @@
           const [decorateSearch, setDecorateSearch] = useState(
             'url("/images/index-searchCat.png")'
           );
-          const[mobileTopBar,setMobileTopBar] = useState('url("./images/mobiletopbm.png")');
+          const[mobileTopBar,setMobileTopBar] = useState("/images/mobiletopvb.svg");
           /* 要map的資料 */
           const [todayType, setTodayType] = useState("vb_today_postData");
           const [weekType, setWeekType] = useState("vb_week_postData");
@@ -134,7 +134,7 @@
               inputColor = "#B6DBAA";
               newBorder = 'url("../images/dogstroke.svg")';
               decorate = 'url("/images/index-searchDog.png")';
-              topBanner = './images/mobiletopbm.png';
+              topBanner = "/images/mobiletopbm.png";
               // 新增class改變背景
               //bodyStyle.classList.add("background-Bm");
               //bodyStyle.classList.remove("background-Vb");
@@ -159,7 +159,7 @@
               inputColor = "#B1C3E8";
               newBorder = "url('../images/catsroke.svg')";
               decorate = 'url("/images/index-searchCat.png")';
-              topBanner = "./images/mobiletopvb.png";
+              topBanner = "/images/mobiletopvb.svg";
               //
               //bodyStyle.classList.remove("background-Bm");
               //bodyStyle.classList.add("background-Vb");
@@ -203,7 +203,10 @@
               "--input-hover-color",
               inputColor
             );
-
+            // document.documentElement.style.setProperty(
+            //   "--mobileTop-image",
+            //   topBanner
+            // );
             setHrefTodayMore(hrefTodayMore);
             setHrefWeekMore(hrefWeekMore);
           };
@@ -563,11 +566,11 @@
 
           // 元件
           /* 建立元件 header元件 */
-        const TopBar = (mobileTopBar) => {
+        const TopBar = ({mobileTopBar}) => {
           return (
             <>
               <div className="mobile-TopBar">
-                
+                <img src={mobileTopBar} alt=""/>
               </div>
               <header id="topBar">
                 <nav id="top-nav">
@@ -747,10 +750,7 @@
                             </div>
                             <div className="areaInfo">
                               <h3>{postCity}</h3>
-                              <h3>{postArea}</h3>
-                            </div>
-                            <div className="arenaInfo">
-                              <h3>{postArena}</h3>
+                              <h3>{postArea}</h3> <h3>{postArena}</h3>
                             </div>
                             <div className="tag-style">
                               <p>{primaryTag}</p>
@@ -902,7 +902,6 @@
                       ref={btnTypeVbRef}
                       onClick={() => changeType("btn-typeVb")}
                     >
-                      <img  src="./images/vball.png" alt="排球" />
                     </button>
                     <button
                       id="btn-typeBm"
@@ -912,7 +911,7 @@
                       onClick={() => changeType("btn-typeBm")}
                       ref={btnTypeBmRef}
                     >
-                      打羽球
+                      
                     </button>
                   </div>
                   <div id="search-Bar" style={{ backgroundColor: mainColor }}>
@@ -988,7 +987,7 @@
                           ref={btnTypeVbRef}
                           onClick={() => changeType("btn-typeVb")}
                         >
-                          <img src="./images/vball.png" alt="排球" />
+                          
                         </button>
                         <button
                           id="btn-typeBm"
@@ -998,7 +997,7 @@
                           onClick={() => changeType("btn-typeBm")}
                           ref={btnTypeBmRef}
                         >
-                          <img src="./images/bball.png" alt="羽球" />
+                         
                         </button>
                       </div>
                       <a href="./react_postsArea.html">

@@ -106,7 +106,7 @@
 .btn-logInLine {
   width: 112px;
   height: 36px;
-  background-color: #44C150;
+  background-color: #44c150;
   color: $background-color-lightwhite-s;
   border: 3px solid $border-black;
   border-radius: $border-radius-5;
@@ -123,14 +123,13 @@
   }
 }
 
-
 /* 登入後姓名 */
 .userName {
   width: 150px;
   display: flex;
   flex-direction: row;
   color: white;
-  
+
   img {
     width: 20px;
   }
@@ -172,7 +171,7 @@
   background-color: $background-color-lightwhite-s;
   padding: 20px;
   display: grid;
-  grid-template-rows: 2fr 0.5fr;
+  grid-template-rows: 2fr;
   gap: 20px;
   justify-content: center;
   align-items: center;
@@ -181,42 +180,63 @@
 
 /* 登入後顯示的場次資料 */
 .selfState-userInfo {
+  max-width: 90%;
+  min-width: 200px;
   height: fit-content;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 35px;
   align-items: center;
-
-  .userInfo {
-    width: 53px;
-    height: 32px;
-    border-radius: $border-radius-50;
-    background-color: var(--main-color);
-    text-align: center;
-    line-height: 32px;
-    color: $background-color-lightwhite-s;
-  }
-
-  .attendance {
-    width: 60px;
-    height: 55px;
-    position: relative;
-
-    p {
-      position: absolute;
-      top: 18px;
-      left: 13px;
-      color: $font-color-vb;
+  padding: 20px;
+  .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 10px;
+    .applicantImg{
+      width: 75px;
     }
-
-    img {
-      position: absolute;
-      width: 100%;
-      top: 0;
+    .userInfo {
+      width: 53px;
+      height: 75px;
+      
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-content: center;
+      p {
+        
+        text-align: center;
+        line-height: 30px;
+        border-radius: $border-radius-50;
+        background-color: var(--main-color);
+        color: $background-color-lightwhite-s;
+      }
+    }
+  
+    .attendance {
+      width: 60px;
+      height: 75px;
+      position: relative;
+      p {
+        position: absolute;
+        top: 25px;
+        left: 13px;
+        color: $font-color-vb;
+  
+      }
+  
+      img {
+        position: absolute;
+        width: 100%;
+        top: 5px;
+        left: 0;
+  
+      }
     }
   }
 }
-
 
 /* 累積場次... */
 .selfState-title {
@@ -230,7 +250,7 @@
 }
 
 /*登入顯示字顏色 */
-.info-selfState>div:last-child {
+.info-selfState > div:last-child {
   color: $second-color-darkgray;
 }
 
@@ -271,8 +291,6 @@
   align-items: center;
   overflow: hidden;
 }
-
-
 
 /* 提示:登入顯示 */
 .prompt {

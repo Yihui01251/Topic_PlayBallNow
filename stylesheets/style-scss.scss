@@ -38,7 +38,7 @@
   --background-image: url("/images/bg.png");
   --search-decorate: url("/images/index-searchCat.png");
   --ellipseBar-image:url("/images/bmellipsebar.png");
-  --mobileTop-image:url("/images/mobiletopvb.png")
+  --mobileTop-image:url("/images/mobiletopvb.svg");
   /* 行程 */
   --border-type: solid;
   --evaluate-color: #1a8d07;
@@ -347,9 +347,11 @@ body {
 
 .mobile-TopBar {
   width: 100vw;
-  height: fit-content;
-  background: var(--mobileTop-image);
   display: none;
+  img{
+    width: 100%;
+    height: fit-content;
+  }
 }
 
 /*  */
@@ -553,7 +555,7 @@ footer {
     border: 2px solid var(--main-color);
     border-radius: $border-radius-50;
     margin: 0px 3px;
-    padding: 1px 10px;
+    padding:10px 10px;
     background-color: $background-color-lightwhite-s;
     color: var(--font-color);
     opacity: 0.8;
@@ -1677,6 +1679,7 @@ footer {
         justify-items: center;
         align-items: center;
         gap: 0px;
+        
         .applicantInfo {
           display: flex;
           flex-direction: column;
@@ -1692,13 +1695,7 @@ footer {
         .applicantImg {
           width: 60%;
         }
-        p {
-          color: var(--font-color);
-        }
-        .userInfo {
-          color: $background-color-lightwhite-s;
-          background-color: var(--main-color);
-        }
+
         .reason-cancel {
           grid-column: 2/4;
           width: 150px;
@@ -1712,6 +1709,7 @@ footer {
             color: $second-color-black;
           }
         }
+        
       }
 
       .selfState-title {

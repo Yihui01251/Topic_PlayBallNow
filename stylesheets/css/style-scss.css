@@ -124,7 +124,7 @@ video {
   --background-image: url("/images/bg.png");
   --search-decorate: url("/images/index-searchCat.png");
   --ellipseBar-image:url("/images/bmellipsebar.png");
-  --mobileTop-image:url("/images/mobiletopvb.png")
+  --mobileTop-image:url("/images/mobiletopvb.svg");
   /* 行程 */
   --border-type: solid;
   --evaluate-color: #1a8d07;
@@ -421,9 +421,11 @@ body {
 
 .mobile-TopBar {
   width: 100vw;
-  height: fit-content;
-  background: var(--mobileTop-image);
   display: none;
+}
+.mobile-TopBar img {
+  width: 100%;
+  height: fit-content;
 }
 
 /*  */
@@ -615,7 +617,7 @@ footer div p {
   border: 2px solid var(--main-color);
   border-radius: 50px;
   margin: 0px 3px;
-  padding: 1px 10px;
+  padding: 10px 10px;
   background-color: rgba(247, 246, 245, 0.9);
   color: var(--font-color);
   opacity: 0.8;
@@ -1670,13 +1672,6 @@ footer div p {
 .audit-apply .audit-info .info-selfState .selfState-userInfo .applicantImg {
   width: 60%;
 }
-.audit-apply .audit-info .info-selfState .selfState-userInfo p {
-  color: var(--font-color);
-}
-.audit-apply .audit-info .info-selfState .selfState-userInfo .userInfo {
-  color: rgba(247, 246, 245, 0.9);
-  background-color: var(--main-color);
-}
 .audit-apply .audit-info .info-selfState .selfState-userInfo .reason-cancel {
   grid-column: 2/4;
   width: 150px;
@@ -1887,11 +1882,14 @@ main:10
   box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.3);
   border-radius: 90px;
   margin-bottom: 30px;
-  opacity: 0.5;
+  opacity: 0.8;
   /* 子層 */
   display: flex;
   align-items: center;
   justify-content: center;
+}
+#btn-typeVb::before {
+  content: "打排球";
 }
 #btn-typeVb img {
   pointer-events: none;
@@ -1899,6 +1897,12 @@ main:10
   /*object-fit: cover;  裁剪圖片，使其填滿元素
   object-position: center; /* 圖片位置 */
   opacity: 0.7;
+}
+#btn-typeVb:hover {
+  opacity: 1;
+}
+#btn-typeVb:active {
+  box-shadow: none;
 }
 
 /* main > section(search > div(search-Type > button */
@@ -1910,16 +1914,25 @@ main:10
   background-color: #D9D9D9;
   box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.3);
   border-radius: 20px;
-  opacity: 0.7;
+  opacity: 0.8;
   /* 子層 */
   display: flex;
   align-items: center;
   justify-content: center;
 }
+#btn-typeBm::before {
+  content: "打羽球";
+}
 #btn-typeBm img {
   pointer-events: none;
   width: 30%;
   opacity: 0.7;
+}
+#btn-typeBm:hover {
+  opacity: 1;
+}
+#btn-typeBm:active {
+  box-shadow: none;
 }
 
 button#btn-typeBm.selected,
@@ -1938,6 +1951,10 @@ button#btn-typeVb.selected {
   align-items: center;
   justify-content: center;
 }
+button#btn-typeBm.selected::before,
+button#btn-typeVb.selected::before {
+  content: "";
+}
 button#btn-typeBm.selected img,
 button#btn-typeVb.selected img {
   opacity: 1;
@@ -1947,6 +1964,20 @@ button#btn-typeVb.selected img {
   /* 裁剪圖片，使其填滿元素 */
   object-position: center;
   /* 圖片位置 */
+}
+
+button#btn-typeVb.selected {
+  background-image: url(/images/vball.png);
+  background-position: center;
+  background-size: 80%;
+  background-repeat: no-repeat;
+}
+
+button#btn-typeBm.selected {
+  background-image: url(/images/bball.png);
+  background-position: center;
+  background-size: 80%;
+  background-repeat: no-repeat;
 }
 
 /* 手機 */
@@ -1960,14 +1991,8 @@ button#btn-typeVb.selected img {
     display: flex;
     border-radius: 90px;
     padding: 10px;
-    right: 1px;
+    right: -10px;
     top: 58px;
-  }
-  button#btn-typeVb.selected {
-    background-image: url(/images/vball.png);
-  }
-  button#btn-typeBm.selected {
-    background-image: url(/images/bball.png);
   }
 }
 /* 手機板首頁的打羽球、打排球按鈕容器*/
@@ -3053,7 +3078,7 @@ button#btn-pastRecords.selected {
 .btn-logInLine {
   width: 112px;
   height: 36px;
-  background-color: #44C150;
+  background-color: #44c150;
   color: rgba(247, 246, 245, 0.9);
   border: 3px solid black;
   border-radius: 5px;
@@ -3116,7 +3141,7 @@ button#btn-pastRecords.selected {
   background-color: rgba(247, 246, 245, 0.9);
   padding: 20px;
   display: grid;
-  grid-template-rows: 2fr 0.5fr;
+  grid-template-rows: 2fr;
   gap: 20px;
   justify-content: center;
   align-items: center;
@@ -3125,36 +3150,56 @@ button#btn-pastRecords.selected {
 
 /* 登入後顯示的場次資料 */
 .selfState-userInfo {
+  max-width: 90%;
+  min-width: 200px;
   height: fit-content;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 35px;
   align-items: center;
+  padding: 20px;
 }
-.selfState-userInfo .userInfo {
+.selfState-userInfo .info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 10px;
+}
+.selfState-userInfo .info .applicantImg {
+  width: 75px;
+}
+.selfState-userInfo .info .userInfo {
   width: 53px;
-  height: 32px;
+  height: 75px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+.selfState-userInfo .info .userInfo p {
+  text-align: center;
+  line-height: 30px;
   border-radius: 50px;
   background-color: var(--main-color);
-  text-align: center;
-  line-height: 32px;
   color: rgba(247, 246, 245, 0.9);
 }
-.selfState-userInfo .attendance {
+.selfState-userInfo .info .attendance {
   width: 60px;
-  height: 55px;
+  height: 75px;
   position: relative;
 }
-.selfState-userInfo .attendance p {
+.selfState-userInfo .info .attendance p {
   position: absolute;
-  top: 18px;
+  top: 25px;
   left: 13px;
   color: #0F6A9D;
 }
-.selfState-userInfo .attendance img {
+.selfState-userInfo .info .attendance img {
   position: absolute;
   width: 100%;
-  top: 0;
+  top: 5px;
+  left: 0;
 }
 
 /* 累積場次... */
