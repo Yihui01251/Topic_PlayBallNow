@@ -54,20 +54,26 @@
           const [identityStyle, setIdentityStyle] =
             useState("3px dashed black");
           const [popupHref, setPopupHref] = useState("");
+          /* 出席率圖 */
+          const [ellipseBar, setEllipseBar] = useState("");
           useEffect(() => {
             // 羽or排顏色
             let typeStyle = "";
             let typeFontStyle = "";
             let stateColor = "";
+            let ellipseBar = "";
             if (type === "羽") {
               typeStyle = "rgba(131, 185, 15, 0.9)";
               typeFontStyle = "#689607";
+              ellipseBar = "/images/ellipsebarbm.png";
             } else if (type === "排") {
               typeStyle = "#14AAEB";
               typeFontStyle = "#147CB6";
+              ellipseBar = "/images/ellipsebarvb.png";
             }
             setTypeFontStyle(typeFontStyle);
             setTypeStyle(typeStyle);
+            setEllipseBar(ellipseBar);
             // document.documentElement.style.setProperty(
             //   "--font-color",
             //   typeFontStyle
@@ -125,6 +131,7 @@
                 popUp={popupHref}
                 typeStyle={typeStyle}
                 typeFontStyle={typeFontStyle}
+                ellipseBar={ellipseBar}
               />
             </>
           );
@@ -144,6 +151,7 @@
           id,
           typeStyle,
           typeFontStyle,
+          ellipseBar
         }) => {
           return (
             <>
@@ -185,8 +193,8 @@
                             <h3>{arena}</h3>
                           </div>
                           <div className="tag-style">
-                            <p style={{ color: typeFontStyle ,borderColor:typeFontStyle }}>{tagDegree}</p>
-                            <p style={{ color: typeFontStyle ,borderColor:typeFontStyle}}>${tagPrice}</p>
+                            <p style={{  backgroundColor:typeFontStyle }}>{tagDegree}</p>
+                            <p style={{  backgroundColor:typeFontStyle}}>${tagPrice}</p>
                           </div>
                         </div>
                         <div className="sub-info">
@@ -287,6 +295,9 @@
                 arena={arena}
                 state={state}
                 id={id}
+                typeStyle={typeStyle}
+                typeFontStyle={typeFontStyle}
+                ellipseBarType={ellipseBar}
               />
               <AuditCancelCard
                 day={day}
@@ -300,7 +311,7 @@
           );
         };
 
-        const AuditApplyCard = ({ day, startTime, type, arena, state, id }) => {
+        const AuditApplyCard = ({ day, startTime, type, arena, state, id,typeStyle,typeFontStyle,ellipseBarType }) => {
           const [btnDisplay, setBtnDisplay] = useState("flex");
           const [resultDisplay, setResultDisplay] = useState("none");
           const [resultText, setResultText] = useState("");
@@ -335,40 +346,52 @@
                       </a>
                     </div>
                     <div className="audit-info">
-                      <div className="info-selfState">
-                        <div className="selfState-userInfo">
-                          <img
-                            className="applicantImg"
-                            src="../images/player.png"
-                            alt=""
-                          />
-                          <div className="attendance">
-                            <p className="text-M">85%</p>
-                            <img src="../images/EllipseBar_vb.png" alt="" />
+                      <div className="selfState-userInfo">
+                          <div className="info">
+                            <img
+                              className="applicantImg"
+                              src="../images/player.png"
+                              alt=""
+                            />
+                            <p style={{ color: typeFontStyle }}>Roy</p>
                           </div>
-                          <p className="userInfo">中上</p>
+                          <div className="info">
+                            <div className="attendance">
+                              <p
+                                className="text-M"
+                                style={{ color: typeFontStyle }}
+                              >
+                                85%
+                              </p>
+                              <img src={ellipseBarType} alt="" />
+                            </div>
+                            <p style={{ color:  typeFontStyle}}>出席率</p>
+                          </div>
+                          <div className="info">
+                            <div
+                              className="userInfo"
+                              
+                            >
+                              <p style={{ backgroundColor: typeStyle }}>B</p>
+                            </div>
+                            <p style={{ color: typeFontStyle }}>自評等級</p>
+                          </div>
                         </div>
-                        <div className="selfState-title">
-                          <p>Roy</p>
-                          <p>出席率</p>
-                          <p>自評等級</p>
-                        </div>
-                      </div>
                       <div className="info-remark">
                         <h5>備註（僅限自己可看）：</h5>
                         <p>這個人很愛放鴿子</p>
                       </div>
                       <div className="notice-container">
-                        <div className="notice-ballType">
-                          <p>{type}</p>
+                        <div className="notice-ballType" style={{ backgroundColor: typeStyle }}>
+                          <p >{type}</p>
                         </div>
                         <div className="notice-info">
                           <div>
-                            <p>
+                            <p style={{ color: typeFontStyle }}>
                               {day} {startTime}
                             </p>
                           </div>
-                          <p>{arena}</p>
+                          <p style={{ color: typeFontStyle }}>{arena}</p>
                           <div className="audit-state">
                             <p>{state}</p>
                           </div>
