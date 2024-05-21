@@ -46,62 +46,7 @@
         const { bm_today_postData } = postData[2];
         const { bm_week_postData } = postData[3];
 
-        /* 建立元件 header元件 */
-        const TopBar = (props) => {
-          return (
-            <>
-              <div className="mobile-TopBar">
-                <img
-                  src="./images/mobile-both-topbanner.png"
-                  alt="不分類的手機版banner"
-                />
-              </div>
-              <header id="topBar">
-                <nav id="top-nav">
-                  <ul id="menu">
-                    <li>
-                      <a href="./index.html">
-                        <img
-                          className="icon"
-                          src="./images/magnifier.png"
-                          alt=""
-                        />
-                        探索
-                      </a>
-                    </li>
-                    <li>
-                      <a href="./publicationForm.html">
-                        <img className="icon" src="./images/post.png" alt="" />
-                        找人
-                      </a>
-                    </li>
-                    <li>
-                      <a href="notice.html">
-                        <img className="icon" src="./images/bell3.png" alt="" />
-                        行程
-                      </a>
-                    </li>
-                    <li>
-                      <a href="personal.html">
-                        <img className="icon" src="./images/cat.png" alt="" />
-                        個人
-                      </a>
-                    </li>
-                  </ul>
-                </nav>
-                <div className="form-title">
-                  <div className="hugTitle noto-sans-tc">
-                    <img src="./images/vbtitle.svg" alt="" />
-                    <h1 className="title-L" value="我的行程">
-                      我的行程
-                    </h1>
-                    <img src="./images/bmtitle.svg" alt="" />
-                  </div>
-                </div>
-              </header>
-            </>
-          );
-        };
+        
         /* 建立元件 footer元件 */
         const Footer = (props) => {
           return (
@@ -136,6 +81,7 @@
           const [decorateSearch, setDecorateSearch] = useState(
             'url("/images/index-searchCat.png")'
           );
+          const[mobileTopBar,setMobileTopBar] = useState('url("./images/mobiletopbm.png")');
           /* 要map的資料 */
           const [todayType, setTodayType] = useState("vb_today_postData");
           const [weekType, setWeekType] = useState("vb_week_postData");
@@ -169,6 +115,7 @@
             let inputColor = "";
             let newBorder = "";
             let decorate = "";
+            let topBanner="";
             /* 更多的連結 */
             let hrefTodayMore = "./VBtodayMore-postsArea.html";
             let hrefWeekMore = "./VBweekMore-postsArea.html";
@@ -187,6 +134,7 @@
               inputColor = "#B6DBAA";
               newBorder = 'url("../images/dogstroke.svg")';
               decorate = 'url("/images/index-searchDog.png")';
+              topBanner = './images/mobiletopbm.png';
               // 新增class改變背景
               //bodyStyle.classList.add("background-Bm");
               //bodyStyle.classList.remove("background-Vb");
@@ -211,6 +159,7 @@
               inputColor = "#B1C3E8";
               newBorder = "url('../images/catsroke.svg')";
               decorate = 'url("/images/index-searchCat.png")';
+              topBanner = "./images/mobiletopvb.png";
               //
               //bodyStyle.classList.remove("background-Bm");
               //bodyStyle.classList.add("background-Vb");
@@ -235,6 +184,7 @@
             setInputColor(inputColor);
             setPostBorder(newBorder);
             setDecorateSearch(decorate);
+            setMobileTopBar(topBanner);
 
             document.documentElement.style.setProperty(
               "--main-color",
@@ -612,9 +562,59 @@
           }
 
           // 元件
-          const Card = ({ name }) => {
-            // console.log(name);
-          };
+          /* 建立元件 header元件 */
+        const TopBar = (mobileTopBar) => {
+          return (
+            <>
+              <div className="mobile-TopBar">
+                
+              </div>
+              <header id="topBar">
+                <nav id="top-nav">
+                  <ul id="menu">
+                    <li>
+                      <a href="./index.html">
+                        <img
+                          className="icon"
+                          src="./images/magnifier.png"
+                          alt=""
+                        />
+                        探索
+                      </a>
+                    </li>
+                    <li>
+                      <a href="./publicationForm.html">
+                        <img className="icon" src="./images/post.png" alt="" />
+                        找人
+                      </a>
+                    </li>
+                    <li>
+                      <a href="notice.html">
+                        <img className="icon" src="./images/bell3.png" alt="" />
+                        行程
+                      </a>
+                    </li>
+                    <li>
+                      <a href="personal.html">
+                        <img className="icon" src="./images/cat.png" alt="" />
+                        個人
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+                <div className="form-title">
+                  <div className="hugTitle noto-sans-tc">
+                    <img src="./images/vbtitle.svg" alt="" />
+                    <h1 className="title-L" value="我的行程">
+                      我的行程
+                    </h1>
+                    <img src="./images/bmtitle.svg" alt="" />
+                  </div>
+                </div>
+              </header>
+            </>
+          );
+        };
           // 建立貼文元件
           const PostCard = ({
             id,
@@ -864,7 +864,7 @@
 
           return (
             <div className="body">
-              <TopBar/>
+              <TopBar mobileTopBar={mobileTopBar}/>
               <main className="index-Area">
                 {/*篩選區 */}
                 <section className="search">
