@@ -124,7 +124,6 @@
             const btnTypeVb = document.getElementById("btn-typeVb");
             const btnTypeBm = document.getElementById("btn-typeBm");
             const bodyStyle = document.getElementById("body");
-            console.log(bodyStyle);
 
             if (id === "btn-typeBm" || id === "btn-formBM") {
               // 如果是羽球:
@@ -225,6 +224,9 @@
                 return [];
             }
           };
+          useEffect(()=>{
+            console.log(`本日資料類型: ${todayType} , 本週資料類型: ${weekType}`)
+          },[weekType,todayType])
 
           /* tag篩選 */
           //取得tag對應資料屬性
@@ -442,7 +444,7 @@
             console.log("目前本日篩選: ", conditions);
             console.log("目前本週篩選: ", weekConditions);
           }, [conditions, weekConditions]);
-          /* 篩選資料 */
+          /* 篩選本日資料 */
           const filterPosts = useMemo(() => {
             // 沒有篩選時渲染全部貼文
             if (!filterDegree && !filterPrice && !filterTime) {
@@ -500,12 +502,11 @@
               // 如果所有条件都匹配，则返回 true
               return matchAllConditions;
             });
-          }, [filterTag, tagDataType, conditions]);
+          }, [todayType,filterTag, tagDataType, conditions]);
 
           const weekFilterPosts = useMemo(() => {
             // 沒有篩選時渲染全部貼文
             if (!weekfilterDegree && !weekfilterPrice && !weekfilterTime) {
-              console.log("顯示全部");
               return [...getPosts(weekType)];
             }
 
@@ -553,6 +554,7 @@
               return matchAllConditions;
             });
           }, [
+            weekType,
             weekfilterDegree,
             weekfilterPrice,
             weekfilterTime,
