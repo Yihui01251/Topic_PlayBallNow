@@ -33,8 +33,95 @@
         const { future_host_userData } = userData[3];
         const { future_appl_userData } = userData[4];
 
-        const { useState, useEffect, useRef, useMemo } = React;
+        const {
+          useState,
+          useEffect,
+          useRef,
+          useMemo,
+          createContext,
+          useContext,
+        } = React;
 
+        //1.建立共用環境區(用物件保存)
+        const postInfo = createContext({});
+
+        /* 建立元件 header元件 */
+        const TopBar = (props) => {
+          return (
+            <>
+              <div className="mobile-TopBar">
+                <img
+                  src="./images/mobile-both-topbanner.png"
+                  alt="不分類的手機版banner"
+                />
+              </div>
+              <header id="topBar">
+                <nav id="top-nav">
+                  <ul id="menu">
+                    <li>
+                      <a href="./index.html">
+                        <img
+                          className="icon"
+                          src="./images/magnifier.png"
+                          alt=""
+                        />
+                        探索
+                      </a>
+                    </li>
+                    <li>
+                      <a href="./publicationForm.html">
+                        <img className="icon" src="./images/post.png" alt="" />
+                        找人
+                      </a>
+                    </li>
+                    <li>
+                      <a href="notice.html">
+                        <img className="icon" src="./images/bell3.png" alt="" />
+                        行程
+                      </a>
+                    </li>
+                    <li>
+                      <a href="personal.html">
+                        <img className="icon" src="./images/cat.png" alt="" />
+                        個人
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+                <div className="form-title">
+                  <div className="hugTitle noto-sans-tc">
+                    <img src="./images/vbtitle.svg" alt="" />
+                    <h1 className="title-L" value="我的行程">
+                      我的行程
+                    </h1>
+                    <img src="./images/bmtitle.svg" alt="" />
+                  </div>
+                </div>
+              </header>
+            </>
+          );
+        };
+        /* 建立元件 footer元件 */
+        const Footer = (props) => {
+          return (
+            <>
+              <footer>
+                <figure className="footer-border"></figure>
+                <div>
+                  <figure>
+                    <img
+                      id="logo"
+                      src="./images/logo.png"
+                      alt="logo-PlayBallNow"
+                    />
+                  </figure>
+                  <p>Copyright© 2024 PlayBallNow. All Right Reserved. </p>
+                </div>
+              </footer>
+            </>
+          );
+        };
+        /* 建立元件 簡略行程元件 */
         const Notify = ({
           name,
           day,
@@ -55,13 +142,11 @@
           unspecified,
           equip,
           note,
-          like,
-          ballBrand
         }) => {
-          /* 主色 */
-          const [typeStyle, setTypeStyle] = useState("");
-          /* 文字色 */
-          const [typeFontStyle, setTypeFontStyle] = useState("");
+          //4.用useContext方法，從共用區解構出
+          const { typeStyle, setTypeStyle, typeFontStyle, setTypeFontStyle } =
+            useContext(postInfo);
+
           /* 狀態色 */
           const [stateStyle, setStateStyle] = useState("");
           /* 邊框樣式 */
@@ -74,10 +159,7 @@
           const [showApplicants, setShowApplicants] = useState("");
           /* 顯示取消列 */
           const [showCancel, setShowCancel] = useState("");
-          /* 元件副資訊 */
-          const [showBallBrand, setShowBallBrand] = useState("");
-          const [showVbInfo, setShowVbInfo] = useState("");
-         
+
           useEffect(() => {
             // 保存最新的 identity 值
             const currentIdentity = identity;
@@ -92,6 +174,8 @@
               setShowCancel("none");
               if (name === "所有過去貼文") {
                 newHref = "evaluateApplyPopup";
+              } else if (name === "所有未來取消貼文") {
+                newHref = "javascript:;";
               } else {
                 newHref = "auditApplyPopup";
               }
@@ -101,13 +185,10 @@
               setShowCancel("flex");
               if (name === "所有過去貼文") {
                 newHref = "evaluateSponsorPopup";
+              } else if (name === "所有未來取消貼文") {
+                newHref = "javascript:;";
               } else {
                 newHref = "auditApplyPopup";
-              }
-
-              if (name === "所有未來取消貼文") {
-                setShowApplicants("none");
-                setShowCancel("none");
               }
             }
             setIdentityStyle(borderStyle);
@@ -121,25 +202,15 @@
             let typeStyle = "";
             let typeFontStyle = "";
             let stateColor = "";
-            let ellipseBar = "";
             if (type === "羽") {
               typeStyle = "rgba(131, 185, 15, 0.9)";
               typeFontStyle = "#689607";
-              ellipseBar = "/images/ellipsebarbm.png";
-              //副資訊
-              setShowBallBrand("flex");
-              setShowVbInfo("none");
             } else if (type === "排") {
               typeStyle = "#14AAEB";
               typeFontStyle = "#147CB6";
-              ellipseBar = "/images/ellipsebarvb.png";
-              //副資訊
-              setShowBallBrand("none");
-              setShowVbInfo("flex");
             }
             setTypeFontStyle(typeFontStyle);
             setTypeStyle(typeStyle);
-            setEllipseBar(ellipseBar);
             // document.documentElement.style.setProperty(
             //   "--font-color",
             //   typeFontStyle
@@ -169,42 +240,28 @@
               default:
                 break;
             }
-           
+
             document.getElementsByClassName("notice-container");
           }, [type, state, identity, popupHref, name]);
 
           /* 查看貼文元件 */
           const [detailNotify, setDetailNotify] = useState(false);
-          /* 臨打評價元件 */
-          const [applicantEvaluateCard, setApplicantEvaluateCard] =
-            useState(false);
-          /* 團主評價元件 */
-          const [sponsorEvaluateCard, setSponsorEvaluateCard] = useState(false);
+          /* 評價元件 */
+          const [evaluateCard, setEvaluateCard] = useState(false);
           /* 是否呼叫元件 */
-          const establishDetailNotify = (href) => {
+          const establishDetailNotify = (popupHref) => {
             {
-              if (href === "auditApplyPopup") {
-                setDetailNotify(true);
-                setApplicantEvaluateCard(false);
-                setSponsorEvaluateCard(false);
-              } else if (href === "evaluateApplyPopup") {
-                setDetailNotify(false);
-                setApplicantEvaluateCard(false);
-                setSponsorEvaluateCard(true);
-              } else {
-                setDetailNotify(false);
-                setApplicantEvaluateCard(true);
-                setSponsorEvaluateCard(false);
-              }
+              popupHref == "auditApplyPopup"
+                ? setDetailNotify(true)
+                : setEvaluateCard(true);
             }
           };
-
           return (
             <>
               <a
                 className="container-component"
                 href={`#${popupHref}-${id}`}
-                onClick={() => establishDetailNotify(popupHref)}
+                onClick={establishDetailNotify(popupHref)}
               >
                 <div
                   className={"notice-container hoverNotice"}
@@ -248,24 +305,17 @@
                   tagPrice={tagPrice}
                   state={state}
                   id={id}
+                  role={role}
                   female={female}
                   male={male}
                   unspecified={unspecified}
-                  role={role}
                   equip={equip}
-                  ballBrand={ballBrand}
                   note={note}
-                  popUp={popupHref}
-                  typeStyle={typeStyle}
-                  typeFontStyle={typeFontStyle}
                   showApplicants={showApplicants}
                   showCancel={showCancel}
-                  ellipseBar={ellipseBar}
-                  showBmInfo={showBallBrand}
-                  showVbInfo={showVbInfo}
                 />
               )}
-              {applicantEvaluateCard && (
+              {evaluateCard && (
                 <EvaluateSponsorCard
                   day={day}
                   startTime={startTime}
@@ -277,34 +327,13 @@
                   tagDegree={tagDegree}
                   tagPrice={tagPrice}
                   id={id}
-                  typeStyle={typeStyle}
-                  typeFontStyle={typeFontStyle}
-                  popUp={popupHref}
-                  
-                />
-              )}
-              {sponsorEvaluateCard && (
-                <EvaluateApplicantsCard
-                  day={day}
-                  startTime={startTime}
-                  endTime={endTime}
-                  type={type}
-                  city={city}
-                  area={area}
-                  arena={arena}
-                  tagDegree={tagDegree}
-                  tagPrice={tagPrice}
-                  id={id}
-                  typeStyle={typeStyle}
-                  typeFontStyle={typeFontStyle}
-                  ellipseBarType={ellipseBar}
                   popUp={popupHref}
                 />
               )}
             </>
           );
         };
-        /* 建立元件 燈箱效果- 查看行程*/
+        /* 建立元件 燈箱效果-查看行程*/
         const DetailPostCard = ({
           day,
           startTime,
@@ -318,23 +347,19 @@
           state,
           identity,
           id,
+          role,
           female,
           male,
           unspecified,
-          role,
           equip,
-          ballBrand,
           note,
           popUp,
-          typeStyle,
-          typeFontStyle,
           showApplicants,
           showCancel,
-          showBmInfo,
-          showVbInfo,
-          ellipseBar,
-          
         }) => {
+          //4.用useContext方法，從共用區解構出
+          const { typeStyle, typeFontStyle } = useContext(postInfo);
+
           /* 生成審核報名元件 */
           const [auditApplyCard, setAuditApplyCard] = useState(false);
           const handleAuditApplyCard = () => {
@@ -381,6 +406,11 @@
                           >
                             <h3>{city}</h3>
                             <h3>{area}</h3>
+                          </div>
+                          <div
+                            className="arenaInfo"
+                            style={{ color: typeFontStyle }}
+                          >
                             <h3>{arena}</h3>
                           </div>
                           <div className="tag-style">
@@ -414,28 +444,11 @@
                               {unspecified}位
                             </p>
                           </div>
-                          <div className="ballInfo" style={{ display: showVbInfo }}>
+                          <div className="ballInfo">
                             <h4>類型</h4>
                             <p style={{ color: typeFontStyle }}>{role}</p>
                           </div>
-                          <div
-                            className="equipInfo" 
-                            style={{ display: showVbInfo }}
-                          >
-                            <h4>位置</h4>
-                            <p style={{ color: typeFontStyle }}>{equip}</p>
-                          </div>
-                          <div
-                            className="ballInfo"
-                            style={{ display: showBmInfo }}
-                          >
-                            <h4>用球</h4>
-                            <p style={{ color: typeFontStyle }}>{ballBrand}</p>
-                          </div>
-                          <div
-                            className="equipInfo"
-                            style={{ display: showBmInfo }}
-                          >
+                          <div className="equipInfo">
                             <h4>設備</h4>
                             <p style={{ color: typeFontStyle }}>{equip}</p>
                           </div>
@@ -545,9 +558,6 @@
                   arena={arena}
                   state={state}
                   id={id}
-                  typeStyle={typeStyle}
-                  typeFontStyle={typeFontStyle}
-                  ellipseBarType={ellipseBar}
                 />
               )}
               {auditCancelCard && (
@@ -558,8 +568,6 @@
                   arena={arena}
                   state={state}
                   id={id}
-                  typeStyle={typeStyle}
-                  typeFontStyle={typeFontStyle}
                 />
               )}
               {detailsNotifyCard && (
@@ -574,25 +582,13 @@
                   tagDegree={tagDegree}
                   tagPrice={tagPrice}
                   id={id}
-                  typeStyle={typeStyle}
-                  typeFontStyle={typeFontStyle}
                 />
               )}
             </>
           );
         };
-        /* 建立元件 燈箱效果-審核申請 */
-        const AuditApplyCard = ({
-          day,
-          startTime,
-          type,
-          arena,
-          state,
-          id,
-          typeStyle,
-          typeFontStyle,
-          ellipseBarType,
-        }) => {
+        /* 建立元件 燈箱效果-(審核申請) */
+        const AuditApplyCard = ({ day, startTime, type, arena, state, id }) => {
           const [btnDisplay, setBtnDisplay] = useState("flex");
           const [resultDisplay, setResultDisplay] = useState("none");
           const [resultText, setResultText] = useState("");
@@ -628,32 +624,23 @@
                       </a>
                     </div>
                     <div className="audit-info">
-                      <div className="selfState-userInfo">
-                        <div className="info">
+                      <div className="info-selfState">
+                        <div className="selfState-userInfo">
                           <img
                             className="applicantImg"
                             src="../images/player.png"
                             alt=""
                           />
-                          <p style={{ color: typeFontStyle }}>Roy</p>
-                        </div>
-                        <div className="info">
                           <div className="attendance">
-                            <p
-                              className="text-M"
-                              style={{ color: typeFontStyle }}
-                            >
-                              85%
-                            </p>
-                            <img src={ellipseBarType} alt="" />
+                            <p className="text-M">85%</p>
+                            <img src="../images/EllipseBar_vb.png" alt="" />
                           </div>
-                          <p style={{ color: typeFontStyle }}>出席率</p>
+                          <p className="userInfo">中上</p>
                         </div>
-                        <div className="info">
-                          <div className="userInfo">
-                            <p style={{ backgroundColor: typeStyle }}>B</p>
-                          </div>
-                          <p style={{ color: typeFontStyle }}>自評等級</p>
+                        <div className="selfState-title">
+                          <p>Roy</p>
+                          <p>出席率</p>
+                          <p>自評等級</p>
                         </div>
                       </div>
                       <div className="info-remark">
@@ -661,19 +648,16 @@
                         <p>這個人很愛放鴿子</p>
                       </div>
                       <div className="notice-container">
-                        <div
-                          className="notice-ballType"
-                          style={{ backgroundColor: typeStyle }}
-                        >
+                        <div className="notice-ballType">
                           <p>{type}</p>
                         </div>
                         <div className="notice-info">
                           <div>
-                            <p style={{ color: typeFontStyle }}>
+                            <p>
                               {day} {startTime}
                             </p>
                           </div>
-                          <p style={{ color: typeFontStyle }}>{arena}</p>
+                          <p>{arena}</p>
                           <div className="audit-state">
                             <p>{state}</p>
                           </div>
@@ -717,7 +701,7 @@
             </div>
           );
         };
-        /* 建立元件 燈箱效果-審核取消 */
+        /* 建立元件 燈箱效果-(審核取消) */
         const AuditCancelCard = ({
           day,
           startTime,
@@ -725,8 +709,6 @@
           arena,
           state,
           id,
-          typeFontStyle,
-          typeStyle,
         }) => {
           const [btnDisplay, setBtnDisplay] = useState("flex");
           const [resultDisplay, setResultDisplay] = useState("none");
@@ -784,19 +766,16 @@
                       </div>
 
                       <div className="notice-container">
-                        <div
-                          className="notice-ballType"
-                          style={{ backgroundColor: typeStyle }}
-                        >
+                        <div className="notice-ballType">
                           <p>{type}</p>
                         </div>
                         <div className="notice-info">
                           <div>
-                            <p style={{ color: typeFontStyle }}>
+                            <p>
                               {day} {startTime}
                             </p>
                           </div>
-                          <p style={{ color: typeFontStyle }}>{arena}</p>
+                          <p>{arena}</p>
                           <div className="audit-state">
                             <p>{state}</p>
                           </div>
@@ -836,7 +815,7 @@
             </div>
           );
         };
-        /* 建立元件 燈箱效果-確認取消 */
+        /* 建立元件 燈箱效果-(確認取消) */
         const DetailsNotifyCard = ({
           day,
           startTime,
@@ -849,9 +828,9 @@
           tagPrice,
           identity,
           id,
-          typeStyle,
-          typeFontStyle,
         }) => {
+          //4.用useContext方法，從共用區解構出
+          const { typeStyle, typeFontStyle } = useContext(postInfo);
           const [btnDisplay, setBtnDisplay] = useState("flex");
           const [resultDisplay, setResultDisplay] = useState("none");
           const [resultColor, setResultColor] = useState("#1A8D07");
@@ -893,6 +872,11 @@
                         >
                           <h3>{city}</h3>
                           <h3>{area}</h3>
+                        </div>
+                        <div
+                          className="arenaInfo"
+                          style={{ color: typeFontStyle }}
+                        >
                           <h3>{arena}</h3>
                         </div>
                         <div className="tag-style">
@@ -939,7 +923,7 @@
             </>
           );
         };
-        /* 建立元件 燈箱效果-臨打回饋 */
+        /* 建立元件 燈箱效果-(臨打回饋) */
         const EvaluateSponsorCard = ({
           day,
           startTime,
@@ -951,119 +935,17 @@
           tagDegree,
           tagPrice,
           id,
-          typeStyle,
-          typeFontStyle,
           popUp,
         }) => {
+          //4.用useContext方法，從共用區解構出
+          const { typeStyle, typeFontStyle } = useContext(postInfo);
           return (
-            <div className="popup" id={`${popUp}-${id}`}>
-              <div className="popup-inner">
-                <div className="popup__content">
-                  <div className="simplePostInfo">
-                    <div className="main-info">
-                      <div className="header" style={{ color: typeFontStyle }}>
-                        <p>
-                          {day} {startTime}~{endTime}
-                        </p>
-                        <div
-                          className="type-style"
-                          style={{ backgroundColor: typeStyle }}
-                        >
-                          {type}球
-                        </div>
-                        <a className="popup__close" href="#">
-                          <img src="../images/cancel.png" alt="" />
-                        </a>
-                      </div>
-                      <div
-                        className="areaInfo"
-                        style={{ color: typeFontStyle }}
-                      >
-                        <h3>{city}</h3>
-                        <h3>{area}</h3>
-                        <h3>{arena}</h3>
-                      </div>
-                      <div className="tag-style">
-                        <p style={{ backgroundColor: typeFontStyle }}>
-                          {tagDegree}
-                        </p>
-                        <p style={{ backgroundColor: typeFontStyle }}>
-                          ${tagPrice}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="line-hugTitle">
-                      <div className="titleLine"></div>
-                      <h3>球友臨打回饋</h3>
-                    </div>
-                    <div className="sub-info">
-                      <div className="tags">
-                        <h4 className="text-L">氣氛</h4>
-                        <button>有帥哥</button>
-                        <button>有妹子</button>
-                        <button>性別友善</button>
-                        <button>有指導家</button>
-                        <button>輕鬆歡樂</button>
-                        <button>新手友善</button>
-                      </div>
-                      <div className="tags">
-                        <h4 className="text-L">程度</h4>
-                        <button>有強者</button>
-                        <button>多拍/多來回</button>
-                        <button>符合徵求程度</button>
-                        <button>多新手/初階</button>
-                      </div>
-                      <div className="tags">
-                        <h4 className="text-L">團主</h4>
-                        <button>懂安排程度</button>
-                        <button>人數超收</button>
-                        <button>用球大方</button>
-                        <button>會告知設備/上場規則</button>
-                        <button>用心</button>
-                      </div>
-                    </div>
-                    <div className="BtnContainer">
-                      <a className="popup__close btn-close" href="#">
-                        關閉
-                      </a>
-                      <a
-                        href="#"
-                        className="button btn-yes"
-                        style={{ backgroundColor: typeFontStyle }}
-                      >
-                        送出
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          );
-        };
-        /* 建立元件 燈箱效果-團主評價 */
-        const EvaluateApplicantsCard = ({
-          day,
-          startTime,
-          endTime,
-          type,
-          city,
-          area,
-          arena,
-          tagDegree,
-          tagPrice,
-          id,
-          typeStyle,
-          typeFontStyle,
-          ellipseBarType,
-          popUp,
-        }) => {
-          return (
-            <>
-              <div className="popup" id={`${popUp}-${id}`}>
-                <div className="popup-inner">
-                  <div className="popup__content">
-                    <div className="simplePostInfo">
-                      <div className="main-info">
+            <div class="popup" id={`${popUp}-${id}`}>
+              <div class="popup-inner">
+                <div class="popup__content">
+                  <div class="simplePostInfo">
+                    <div class="main-info">
+                      <div class="header">
                         <div
                           className="header"
                           style={{ color: typeFontStyle }}
@@ -1087,119 +969,107 @@
                         >
                           <h3>{city}</h3>
                           <h3>{area}</h3>
+                        </div>
+                        <div
+                          className="arenaInfo"
+                          style={{ color: typeFontStyle }}
+                        >
                           <h3>{arena}</h3>
                         </div>
-
                         <div className="tag-style">
-                          <p style={{ backgroundColor: typeFontStyle }}>
+                          <p
+                            style={{
+                              backgroundColor: typeFontStyle,
+                              borderColor: typeFontStyle,
+                            }}
+                          >
                             {tagDegree}
                           </p>
-                          <p style={{ backgroundColor: typeFontStyle }}>
+                          <p
+                            style={{
+                              backgroundColor: typeFontStyle,
+                              borderColor: typeFontStyle,
+                            }}
+                          >
                             ${tagPrice}
                           </p>
                         </div>
                       </div>
-                      <div className="line-hugTitle">
-                        <div className="titleLine"></div>
-                        <h3>本場臨打球友</h3>
+                    </div>
+                    <div class="line-hugTitle">
+                      <div class="titleLine"></div>
+                      <h3>球友臨打回饋</h3>
+                    </div>
+                    <div class="sub-info">
+                      <div class="tags">
+                        <h4 class="text-L">氣氛</h4>
+                        <button>有帥哥</button>
+                        <button>有妹子</button>
+                        <button>性別友善</button>
+                        <button>有指導家</button>
+                        <button>輕鬆歡樂</button>
+                        <button>新手友善</button>
                       </div>
-                      <div className="evaluateContainer">
-                        <a href="#" className="evaluatePlayerList">
-                          <div className="playerName">
-                            <img
-                              className="applicantImg"
-                              src="../images/player.png"
-                              alt=""
-                            />
-                            <p>Geeeed</p>
-                          </div>
-
-                          <p className="evaluateState-no">未評價</p>
-                        </a>
-                        <a href="#" className="evaluatePlayerList">
-                          <div className="playerName">
-                            <img
-                              className="applicantImg"
-                              src="../images/player2.png"
-                              alt=""
-                            />
-                            <p>Roy</p>
-                          </div>
-                          <p
-                            className="evaluateState-yes"
-                            style={{ backgroundColor: typeStyle }}
-                          >
-                            已評價
-                          </p>
-                        </a>
+                      <div class="tags">
+                        <h4 class="text-L">程度</h4>
+                        <button>有強者</button>
+                        <button>多拍/多來回</button>
+                        <button>符合徵求程度</button>
+                        <button>多新手/初階</button>
                       </div>
-
-                      <div className="evaluateForm">
-                        <div className="selfState-userInfo">
-                          <div className="info">
-                            <img
-                              className="applicantImg"
-                              src="../images/player.png"
-                              alt=""
-                            />
-                            <p style={{ color: typeFontStyle }}>Roy</p>
-                          </div>
-                          <div className="info">
-                            <div className="attendance">
-                              <p
-                                className="text-M"
-                                style={{ color: typeFontStyle }}
-                              >
-                                85%
-                              </p>
-                              <img src={ellipseBarType} alt="" />
-                            </div>
-                            <p style={{ color: typeFontStyle }}>出席率</p>
-                          </div>
-                          <div className="info">
-                            <div className="userInfo">
-                              <p style={{ backgroundColor: typeStyle }}>B</p>
-                            </div>
-                            <p style={{ color: typeFontStyle }}>自評等級</p>
-                          </div>
-                        </div>
-
-                        <div className="component-writeBlock">
-                          <h5>備註（僅限自己可看）：</h5>
-                          <input type="text" placeholder="可在此輸入備註" />
-                        </div>
-                        <fieldset className="evaluateOption">
-                          <h5 style={{ color: typeFontStyle }}>出席</h5>
-                          <input type="radio" name="出席" id="attend" />
-                          <label htmlFor="正常出席">正常出席</label>
-                          <input type="radio" name="出席" id="absent" />
-                          <label htmlFor="無故出席">無故出席</label>
-                        </fieldset>
-                        <fieldset className="evaluateOption">
-                          <h5 style={{ color: typeFontStyle }}>程度</h5>
-                          <input type="radio" name="程度" id="comply" />
-                          <label htmlFor="符合自評">符合自評</label>
-
-                          <input type="radio" name="程度" id="uncertainty" />
-                          <label htmlFor="符合自評">不確定</label>
-                        </fieldset>
-                        <div className="BtnContainer">
-                          <a href="#" className="button btn-no">
-                            送出,並加入黑名單
-                          </a>
-                          <a className="button btn-yes" href="#">
-                            送出
-                          </a>
-                        </div>
+                      <div class="tags">
+                        <h4 class="text-L">團主</h4>
+                        <button>懂安排程度</button>
+                        <button>人數超收</button>
+                        <button>用球大方</button>
+                        <button>會告知設備/上場規則</button>
+                        <button>用心</button>
                       </div>
+                    </div>
+                    <div class="BtnContainer">
+                      <a class="popup__close btn-close" href="#">
+                        關閉
+                      </a>
+                      <a href="#" class="button btn-yes">
+                        送出
+                      </a>
                     </div>
                   </div>
                 </div>
               </div>
-            </>
+            </div>
           );
         };
-        const App = () => {
+        /* 建立元件 燈箱效果-(團主評價) */
+        const EvaluateApplicantsCard = ({}) => {
+          return <></>;
+        };
+        //1a.建立最外層的provider，目的是把元件的參數與return內容共同管理=>App無法直接讀取useContent=>建立新元件包useContent內容(在app下層 元件上層)
+        //1b.由於子曾內容會變化所以不適合直接寫在元件中
+        //1c.利用props=>children來帶入
+        const PostProvider = ({ children }) => {
+          //2.將useState搬到App內
+          /* 主色 */
+          const [typeStyle, setTypeStyle] = useState("");
+          /* 文字色 */
+          const [typeFontStyle, setTypeFontStyle] = useState("");
+
+          //3.加上共用區與value物件值,超過兩個變數用物件的方式{}起來 */
+
+          <postInfo.Provider
+            value={{
+              typeStyle,
+              setTypeStyle,
+              typeFontStyle,
+              setTypeFontStyle,
+            }}
+          >
+            {children}
+          </postInfo.Provider>;
+        };
+        const ShowData = (props) => {
+          const { typeStyle, setTypeStyle, typeFontStyle, setTypeFontStyle } =
+            useContext(postInfo);
           const [selectedButton, setSelectedButton] = useState("btn-itinerary");
           const [noticeType, setNoticeType] = useState("btn-itinerary");
           const itineraryBtn = document.getElementById("btn-itinerary");
@@ -1217,71 +1087,8 @@
               newType = "pastRecords";
             }
           };
-
-          const sponsorChange=()=>{
-            
-            const sponsorBtn=document.querySelector(".btn-sponsor");
-            if(sponsorBtn.classList.contains("selected")){
-              sponsorBtn.classList.remove('selected');
-              setCallData(future_All_userData);
-            }else{
-              sponsorBtn.classList.add('selected');
-              setCallData(future_host_userData);
-            }
-
-          }
-
           return (
-            <div className="body">
-              <div className="mobile-TopBar">
-                <img
-                  src="./images/mobile-both-topbanner.png"
-                  alt="不分類的手機版banner"
-                />
-              </div>
-              <header id="topBar">
-                <nav id="top-nav">
-                  <ul id="menu">
-                    <li>
-                      <a href="./index.html">
-                        <img
-                          className="icon"
-                          src="./images/magnifier.png"
-                          alt=""
-                        />
-                        探索
-                      </a>
-                    </li>
-                    <li>
-                      <a href="./publicationForm.html">
-                        <img className="icon" src="./images/post.png" alt="" />
-                        找人
-                      </a>
-                    </li>
-                    <li>
-                      <a href="notice.html">
-                        <img className="icon" src="./images/bell3.png" alt="" />
-                        行程
-                      </a>
-                    </li>
-                    <li>
-                      <a href="personal.html">
-                        <img className="icon" src="./images/cat.png" alt="" />
-                        個人
-                      </a>
-                    </li>
-                  </ul>
-                </nav>
-                <div className="form-title">
-                  <div className="hugTitle noto-sans-tc">
-                    <img src="./images/vbtitle.svg" alt="" />
-                    <h1 className="title-L" value="我的行程">
-                      我的行程
-                    </h1>
-                    <img src="./images/bmtitle.svg" alt="" />
-                  </div>
-                </div>
-              </header>
+            <>
               <main className="notice-Area">
                 <div className="notice-type">
                   <button
@@ -1318,7 +1125,7 @@
                     <button
                       className="btn-sponsor button"
                       onClick={() => {
-                        sponsorChange()
+                        setCallData(future_host_userData);
                       }}
                     >
                       <img src="./images/icon-sponsor.png" alt="" />
@@ -1349,7 +1156,6 @@
                           unspecified={post_data.reqCount[2].count}
                           equip={post_data.equip}
                           note={post_data.note}
-                          ballBrand={post_data.ballBrand}
                         />
                       );
                     })}
@@ -1419,27 +1225,29 @@
                           female={post_data.reqCount[0].count}
                           male={post_data.reqCount[1].count}
                           unspecified={post_data.reqCount[2].count}
+                          equip={post_data.equip}
+                          note={post_data.note}
                         />
                       );
                     })}
                   </section>
                 </div>
               </main>
+            </>
+          );
+        };
 
-              <footer>
-                <figure className="footer-border"></figure>
-                <div>
-                  <figure>
-                    <img
-                      id="logo"
-                      src="./images/logo.png"
-                      alt="logo-PlayBallNow"
-                    />
-                  </figure>
-                  <p>Copyright© 2024 PlayBallNow. All Right Reserved. </p>
-                </div>
-              </footer>
-            </div>
+        const App = () => {
+          return (
+            <>
+              <div className="body">
+                <TopBar />
+                <PostProvider>{
+                    <ShowData/>
+                }</PostProvider>
+                <Footer />
+              </div>
+            </>
           );
         };
         ReactDOM.createRoot(document.getElementById("root")).render(<App />);

@@ -33,10 +33,12 @@
   --font-color: #147cb6;
   //hover表單顏色
   --input-hover-color:#B1C3E8;
+  /* 路徑 */
   --border-image: url("/images/catframe.png");
-  --background-image: url("/images/CatBg.jpg");
+  --background-image: url("/images/bg.png");
   --search-decorate: url("/images/index-searchCat.png");
   --ellipseBar-image:url("/images/bmellipsebar.png");
+  --mobileTop-image:url("/images/mobiletopvb.svg");
   /* 行程 */
   --border-type: solid;
   --evaluate-color: #1a8d07;
@@ -163,12 +165,20 @@ h2 div {
   gap: 10px;
   justify-content: space-between;
 }
-/* 包標題的容器 */
+/* 包有線標題的容器 */
 .line-hugTitle {
   grid-column: 1/5;
   display: flex;
   flex-direction: row;
   align-items: center;
+  h2{
+    color: $second-color-white;
+    text-shadow:
+        1px -1px 0 #000000,
+        1px -1px 0 #000000,
+        -1px 1px 0 #000000,
+        1px 1px 0 #000000;
+  }
 }
 
 /* 標題前的直線 */
@@ -177,6 +187,7 @@ h2 div {
   height: 20px;
   background-color: $second-color-black;
   margin-right: 10px;
+  
 }
 
 /* 包左、右按鈕的容器 */
@@ -304,6 +315,7 @@ body {
 .body {
   width: 100vw;
   height: fit-content;
+  min-height: 100vh;
   position: relative;
   /* display: grid;
   grid-template-rows: 125px 1fr 100px; */
@@ -335,7 +347,12 @@ body {
 }
 
 .mobile-TopBar {
+  width: 100vw;
   display: none;
+  img{
+    width: 100%;
+    height: fit-content;
+  }
 }
 
 /*  */
@@ -495,7 +512,7 @@ footer {
     height: fit-content;
     width: fit-content;
     border-radius: 50px;
-    border: 1px solid var(--font-color);
+    //border: 1px solid var(--font-color);
     background-color: var(--font-color);
     color: $second-color-white;
 
@@ -539,10 +556,10 @@ footer {
     border: 2px solid var(--main-color);
     border-radius: $border-radius-50;
     margin: 0px 3px;
-    padding: 1px 10px;
-    background-color: transparent;
+    padding:10px 10px;
+    background-color: $background-color-lightwhite-s;
     color: var(--font-color);
-    opacity: 0.7;
+    opacity: 0.8;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -553,7 +570,7 @@ footer {
       opacity: 1;
     }
     &:active {
-      background-color: var(--main-color);
+      background-color: var(--font-color);
       color: $background-color-lightwhite-s;
     }
 
@@ -564,8 +581,9 @@ footer {
 
   }
   .active{
-      background-color: var(--main-color);
+      background-color: var(--font-color);
       color: $background-color-lightwhite-s;
+      opacity: 1;
     }
   .custom-checkbox {
     position: relative;
@@ -645,11 +663,10 @@ footer {
   /*  */
   text-decoration: none;
   text-transform: uppercase;
-  cursor: pointer;
-
   &:hover {
     margin-top: 0px;
     box-shadow: 0 2px $border-black;
+    cursor: pointer;
   }
   &:active {
     width: fit-content;
@@ -769,9 +786,9 @@ footer {
     right: -100vh;
     display: flex;
     align-items: center;
-    max-width: 800px;
-    max-height: 600px;
-    width: 60%;
+    max-width: 90vw;
+    max-height: 90vw;
+    width: 80%;
     height: 80%;
     background-color: #ffffff00;
     transform: rotate(32deg);
@@ -869,7 +886,10 @@ footer {
 /* 子元件 */
 .simplePostInfo {
   flex: 0 1 auto;
-  width: 300px;
+  /*  */
+  max-width: 20vw;
+  min-width: 300px;
+  min-height: 310px;
   max-height: 90vh;
   border-radius: 20px;
   background: $background-color-white;
@@ -892,34 +912,37 @@ footer {
 
     flex: 1 0 auto;
     display: grid;
-    grid-template-rows: repeat(4, fit-content);
+    grid-template-rows: repeat(3, minmax(25px,1fr));
     justify-content: space-between;
     align-items: center;
     row-gap: 5px ;
     //元件第一行
     .header {
+      /* self-layout */
       grid-column: 1/3;
       grid-row: 1;
-
+      /*  */
       width: 100%;
       height: fit-content;
       color: var(--font-color);
       font-size: $font-size-text-l;
-
+      /* layout */
+      display: grid;
+      grid-template-columns: repeat(9,auto);
+      gap: 10px;
       justify-content: space-between;
       align-items: center;
-
-      display: flex;
-      flex-direction: row;
-      gap: 10px;
-
-      .p {
+      p {
+        /*  */
+        grid-column: 1/7;
         flex: 1 0 auto;
         gap: 10px;
       }
       //羽球or排球
       .type-style {
-        flex: 0 1 auto;
+         /* self-layout */
+        grid-column: 8;
+        /*  */
         min-width: 30px;
         width: fit-content;
         height: fit-content;
@@ -935,6 +958,9 @@ footer {
         }
       }
       a {
+         /* self-layout */
+         grid-column: 9;
+        /*  */
         width: 8%;
         margin-right: 10px;
       }
@@ -946,32 +972,26 @@ footer {
     }
     //地區
     .areaInfo {
+      /* self-layout */
       grid-column: 3/1;
       grid-row: 2;
+      /* style */
       width: auto;
       height: auto;
       color: var(--font-color);
       font-size: $font-size-title-m;
+      /* layout */
       display: flex;
       flex-direction: row;
+      flex-wrap: wrap;
       gap: 10px;
     }
-    .arenaInfo {
-      grid-column: 3/1;
-      grid-row: 3;
-      width: auto;
-      height: auto;
-      color: var(--font-color);
-      font-size: $font-size-title-m;
-      display: flex;
-      flex-direction: row;
-      gap: 10px;
-    }
+    
     //tag布局
     .tag-style {
       /* tag布局 */
       grid-column: 1/3;
-      grid-row: 4;
+      grid-row: 3;
       p{
         margin-left: 0;
       }
@@ -1050,11 +1070,15 @@ footer {
 
     /* 備註/... >div(filter-simplePostInfo>div(sub-info>div(noteInfo*/
     .noteInfo {
-      width: auto;
+      width: 250px;
       height: fit-content;
       display: grid;
       grid-template-columns: 35px 1fr;
       gap: 6px;
+
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
   }
 
@@ -1660,6 +1684,7 @@ footer {
         justify-items: center;
         align-items: center;
         gap: 0px;
+        
         .applicantInfo {
           display: flex;
           flex-direction: column;
@@ -1675,13 +1700,7 @@ footer {
         .applicantImg {
           width: 60%;
         }
-        p {
-          color: var(--font-color);
-        }
-        .userInfo {
-          color: $background-color-lightwhite-s;
-          background-color: var(--main-color);
-        }
+
         .reason-cancel {
           grid-column: 2/4;
           width: 150px;
@@ -1695,6 +1714,7 @@ footer {
             color: $second-color-black;
           }
         }
+        
       }
 
       .selfState-title {

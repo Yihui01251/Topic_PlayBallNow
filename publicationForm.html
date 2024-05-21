@@ -154,6 +154,7 @@
         const [fontColor, setFontColor] = useState("#147CB6");
         const [btnColor, setBtnColor] = useState("#F1DB15");
         const [inputColor, setInputColor] = useState("#B1C3E8");
+        const[mobileTopBar,setMobileTopBar] = useState("/images/mobiletopvb.svg");
         const [selectedButton, setSelectedButton] = useState("btn-formVB");
         const [type, setType] = useState("排球");
         const [BMdisplay, setBMDisplay] = useState("none");
@@ -179,6 +180,7 @@
           let btnColor = "";
           let newBorder = "";
           let inputColor = "";
+          let topBanner="";
           let type = "";
           let option = [];
           let option_degree = [];
@@ -191,6 +193,7 @@
             colorFont = "#689607";
             btnColor = "#FF8D24";
             inputColor = "#B6DBAA";
+            topBanner = "/images/mobiletopbm.png";
             type = "羽球";
             option = ["雙打", "混雙", "女雙", "男雙", "單打"];
             option_degree = [
@@ -203,8 +206,8 @@
             ];
 
             // 新增class改變背景
-            bodyStyle.classList.add("background-Bm");
-            bodyStyle.classList.remove("background-Vb");
+            //bodyStyle.classList.add("background-Bm");
+            //bodyStyle.classList.remove("background-Vb");
             setSelectedButton("btn-formBM");
             // 物件顯示狀態
             setBMDisplay("flex");
@@ -217,11 +220,12 @@
             colorFont = "#147CB6";
             btnColor = "#F1DB15";
             inputColor = "#B1C3E8";
+            topBanner = "/images/mobiletopvb.svg";
             type = "排球";
             option = ["女網混排", "男網混排", "女網純女", "男網純男"];
             option_degree = ["C以下", "C-B", "A", "C", "B", "A"];
-            bodyStyle.classList.remove("background-Bm");
-            bodyStyle.classList.add("background-Vb");
+            //bodyStyle.classList.remove("background-Bm");
+            //bodyStyle.classList.add("background-Vb");
             setSelectedButton("btn-formVB");
             //
             setBMDisplay("none");
@@ -231,6 +235,7 @@
           setFontColor(colorFont);
           setBtnColor(btnColor);
           setInputColor(inputColor);
+          setMobileTopBar(topBanner);
           setType(type);
           setOptionType(option);
           setOptionDegree(option_degree);
@@ -276,7 +281,7 @@
         const handleChange = (name, value) => {
           setFormData({ ...formData, [name]: value });
         };
-
+        
         //預覽元件
         const PreviewSection = ({
           postDate,
@@ -327,8 +332,6 @@
                   <div className="areaInfo">
                     <h3>{postCity}</h3>
                     <h3>{postArea}</h3>
-                  </div>
-                  <div className="arenaInfo">
                     <h3>{postArena}</h3>
                   </div>
                   <div className="tag-style">
@@ -367,26 +370,18 @@
                   </div>
                 </div>
                 <div className="BtnContainer">
-                  <button className="button">報名</button>
+                  <p className="button">報名</p>
                 </div>
               </div>
               <a href="./react_postsArea.html" ><button type="submit" className="button" onClick={handleSubmit}>送出</button></a>
             </div>
           );
         };
-        return (
-          <div className="body">
-            <div className="mobile-TopBar">
-                <img
-                  src="./images/mobile-top.svg"
-                  alt="排球的手機版banner"
-                  style={{ display: VBdisplay }}
-                />
-                <img
-                  src="./images/mobile-bm-topbanner.png"
-                  alt="羽球的手機版banner"
-                  style={{ display: BMdisplay }}
-                />
+        
+        const TopBar = ({mobileTopBar}) => {
+          return(<>
+          <div className="mobile-TopBar">
+              <img src={mobileTopBar} alt=""/>
               </div>
             <header id="topBar">
               <nav id="top-nav">
@@ -444,9 +439,13 @@
 
               </div>
             </header>
-
+          </>)
+        }
+          
+        return (
+          <div className="body">
+            <TopBar mobileTopBar={mobileTopBar}/>
             <main className="form-formArea">
-
               <section className="form-container">
                 <div className="form-block">
                   <div className="form-type">

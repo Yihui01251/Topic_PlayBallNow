@@ -119,10 +119,12 @@ video {
   --btn-color: #f1db15;
   --font-color: #147cb6;
   --input-hover-color:#B1C3E8;
+  /* 路徑 */
   --border-image: url("/images/catframe.png");
-  --background-image: url("/images/CatBg.jpg");
+  --background-image: url("/images/bg.png");
   --search-decorate: url("/images/index-searchCat.png");
   --ellipseBar-image:url("/images/bmellipsebar.png");
+  --mobileTop-image:url("/images/mobiletopvb.svg");
   /* 行程 */
   --border-type: solid;
   --evaluate-color: #1a8d07;
@@ -244,12 +246,16 @@ h2 div {
   justify-content: space-between;
 }
 
-/* 包標題的容器 */
+/* 包有線標題的容器 */
 .line-hugTitle {
   grid-column: 1/5;
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+.line-hugTitle h2 {
+  color: #ffffff;
+  text-shadow: 1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
 }
 
 /* 標題前的直線 */
@@ -386,6 +392,7 @@ body {
 .body {
   width: 100vw;
   height: fit-content;
+  min-height: 100vh;
   position: relative;
   /* display: grid;
   grid-template-rows: 125px 1fr 100px; */
@@ -414,7 +421,12 @@ body {
 }
 
 .mobile-TopBar {
+  width: 100vw;
   display: none;
+}
+.mobile-TopBar img {
+  width: 100%;
+  height: fit-content;
 }
 
 /*  */
@@ -564,7 +576,6 @@ footer div p {
   height: fit-content;
   width: fit-content;
   border-radius: 50px;
-  border: 1px solid var(--font-color);
   background-color: var(--font-color);
   color: #ffffff;
   text-align: center;
@@ -606,10 +617,10 @@ footer div p {
   border: 2px solid var(--main-color);
   border-radius: 50px;
   margin: 0px 3px;
-  padding: 1px 10px;
-  background-color: transparent;
+  padding: 10px 10px;
+  background-color: rgba(247, 246, 245, 0.9);
   color: var(--font-color);
-  opacity: 0.7;
+  opacity: 0.8;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -620,12 +631,13 @@ footer div p {
   opacity: 1;
 }
 .tags a:active, .tags button:active {
-  background-color: var(--main-color);
+  background-color: var(--font-color);
   color: rgba(247, 246, 245, 0.9);
 }
 .tags .active {
-  background-color: var(--main-color);
+  background-color: var(--font-color);
   color: rgba(247, 246, 245, 0.9);
+  opacity: 1;
 }
 .tags .custom-checkbox {
   position: relative;
@@ -699,11 +711,11 @@ footer div p {
   /*  */
   text-decoration: none;
   text-transform: uppercase;
-  cursor: pointer;
 }
 #btn-filter:hover {
   margin-top: 0px;
   box-shadow: 0 2px black;
+  cursor: pointer;
 }
 #btn-filter:active {
   width: fit-content;
@@ -823,9 +835,9 @@ footer div p {
   right: -100vh;
   display: flex;
   align-items: center;
-  max-width: 800px;
-  max-height: 600px;
-  width: 60%;
+  max-width: 90vw;
+  max-height: 90vw;
+  width: 80%;
   height: 80%;
   background-color: rgba(255, 255, 255, 0);
   transform: rotate(32deg);
@@ -917,7 +929,10 @@ footer div p {
 /* 子元件 */
 .simplePostInfo {
   flex: 0 1 auto;
-  width: 300px;
+  /*  */
+  max-width: 20vw;
+  min-width: 300px;
+  min-height: 310px;
   max-height: 90vh;
   border-radius: 20px;
   background: #ffffff;
@@ -937,30 +952,37 @@ footer div p {
   max-height: 140px;
   flex: 1 0 auto;
   display: grid;
-  grid-template-rows: repeat(4, fit-content);
+  grid-template-rows: repeat(3, minmax(25px, 1fr));
   justify-content: space-between;
   align-items: center;
   row-gap: 5px;
 }
 .simplePostInfo .main-info .header {
+  /* self-layout */
   grid-column: 1/3;
   grid-row: 1;
+  /*  */
   width: 100%;
   height: fit-content;
   color: var(--font-color);
   font-size: 18px;
+  /* layout */
+  display: grid;
+  grid-template-columns: repeat(9, auto);
+  gap: 10px;
   justify-content: space-between;
   align-items: center;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
 }
-.simplePostInfo .main-info .header .p {
+.simplePostInfo .main-info .header p {
+  /*  */
+  grid-column: 1/7;
   flex: 1 0 auto;
   gap: 10px;
 }
 .simplePostInfo .main-info .header .type-style {
-  flex: 0 1 auto;
+  /* self-layout */
+  grid-column: 8;
+  /*  */
   min-width: 30px;
   width: fit-content;
   height: fit-content;
@@ -974,6 +996,9 @@ footer div p {
   font-size: 14px;
 }
 .simplePostInfo .main-info .header a {
+  /* self-layout */
+  grid-column: 9;
+  /*  */
   width: 8%;
   margin-right: 10px;
 }
@@ -983,31 +1008,24 @@ footer div p {
   min-width: 18px;
 }
 .simplePostInfo .main-info .areaInfo {
+  /* self-layout */
   grid-column: 3/1;
   grid-row: 2;
+  /* style */
   width: auto;
   height: auto;
   color: var(--font-color);
   font-size: 20px;
+  /* layout */
   display: flex;
   flex-direction: row;
-  gap: 10px;
-}
-.simplePostInfo .main-info .arenaInfo {
-  grid-column: 3/1;
-  grid-row: 3;
-  width: auto;
-  height: auto;
-  color: var(--font-color);
-  font-size: 20px;
-  display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
   gap: 10px;
 }
 .simplePostInfo .main-info .tag-style {
   /* tag布局 */
   grid-column: 1/3;
-  grid-row: 4;
+  grid-row: 3;
 }
 .simplePostInfo .main-info .tag-style p {
   margin-left: 0;
@@ -1076,11 +1094,14 @@ footer div p {
   gap: 6px;
 }
 .simplePostInfo .sub-info .noteInfo {
-  width: auto;
+  width: 250px;
   height: fit-content;
   display: grid;
   grid-template-columns: 35px 1fr;
   gap: 6px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .simplePostInfo .apply-info {
   width: 100%;
@@ -1655,13 +1676,6 @@ footer div p {
 .audit-apply .audit-info .info-selfState .selfState-userInfo .applicantImg {
   width: 60%;
 }
-.audit-apply .audit-info .info-selfState .selfState-userInfo p {
-  color: var(--font-color);
-}
-.audit-apply .audit-info .info-selfState .selfState-userInfo .userInfo {
-  color: rgba(247, 246, 245, 0.9);
-  background-color: var(--main-color);
-}
 .audit-apply .audit-info .info-selfState .selfState-userInfo .reason-cancel {
   grid-column: 2/4;
   width: 150px;
@@ -1780,6 +1794,8 @@ main:10
 /* 首頁main容器 */
 .index-Area {
   width: 100%;
+  /* 與header距離 */
+  margin-top: 50px;
   /* 和footer距離 */
   margin-bottom: 15vh;
   /* 控制子層 */
@@ -1839,7 +1855,7 @@ main:10
   /* background-size: cover; */
   z-index: 1;
   right: 145px;
-  top: -75px;
+  top: -70px;
 }
 @media (max-width:640px) {
   .search #search-Bar::before {
@@ -1872,11 +1888,14 @@ main:10
   box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.3);
   border-radius: 90px;
   margin-bottom: 30px;
-  opacity: 0.5;
+  opacity: 0.8;
   /* 子層 */
   display: flex;
   align-items: center;
   justify-content: center;
+}
+#btn-typeVb::before {
+  content: "打排球";
 }
 #btn-typeVb img {
   pointer-events: none;
@@ -1884,6 +1903,12 @@ main:10
   /*object-fit: cover;  裁剪圖片，使其填滿元素
   object-position: center; /* 圖片位置 */
   opacity: 0.7;
+}
+#btn-typeVb:hover {
+  opacity: 1;
+}
+#btn-typeVb:active {
+  box-shadow: none;
 }
 
 /* main > section(search > div(search-Type > button */
@@ -1895,16 +1920,25 @@ main:10
   background-color: #D9D9D9;
   box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.3);
   border-radius: 20px;
-  opacity: 0.7;
+  opacity: 0.8;
   /* 子層 */
   display: flex;
   align-items: center;
   justify-content: center;
 }
+#btn-typeBm::before {
+  content: "打羽球";
+}
 #btn-typeBm img {
   pointer-events: none;
   width: 30%;
   opacity: 0.7;
+}
+#btn-typeBm:hover {
+  opacity: 1;
+}
+#btn-typeBm:active {
+  box-shadow: none;
 }
 
 button#btn-typeBm.selected,
@@ -1923,6 +1957,10 @@ button#btn-typeVb.selected {
   align-items: center;
   justify-content: center;
 }
+button#btn-typeBm.selected::before,
+button#btn-typeVb.selected::before {
+  content: "";
+}
 button#btn-typeBm.selected img,
 button#btn-typeVb.selected img {
   opacity: 1;
@@ -1934,19 +1972,32 @@ button#btn-typeVb.selected img {
   /* 圖片位置 */
 }
 
+button#btn-typeVb.selected {
+  background-image: url(/images/vball.png);
+  background-position: center;
+  background-size: 80%;
+  background-repeat: no-repeat;
+}
+
+button#btn-typeBm.selected {
+  background-image: url(/images/bball.png);
+  background-position: center;
+  background-size: 80%;
+  background-repeat: no-repeat;
+}
+
 /* 手機 */
 @media (max-width:640px) {
   #btn-typeBm,
   #btn-typeVb {
     display: none;
   }
-  button#btn-typeBm.selected,
-  button#btn-typeVb.selected {
+  button#btn-typeVb.selected, button#btn-typeBm.selected {
     position: absolute;
     display: flex;
     border-radius: 90px;
     padding: 10px;
-    right: 1px;
+    right: -10px;
     top: 58px;
   }
 }
@@ -2091,7 +2142,7 @@ button#btn-typeVb.selected img {
   border: 3.5px solid black;
   border-bottom: 6px solid black;
   border-radius: 20px;
-  background-color: rgba(247, 246, 245, 0.9);
+  background-color: var(--main-color);
   /* 布局 */
   align-self: center;
   flex: 1 1 auto;
@@ -2116,10 +2167,11 @@ button#btn-typeVb.selected img {
   align-items: center;
 }
 .title-postArea h2 {
-  color: var(--font-color);
+  color: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
+  text-shadow: 1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
 }
 
 /* 更多按鈕 */
@@ -2206,7 +2258,7 @@ button#btn-typeVb.selected img {
   /* layout */
   width: 70%;
   height: 144px;
-  color: white;
+  color: var(--font-color);
   /* 子 */
   text-align: center;
   display: inline-flex;
@@ -2223,7 +2275,6 @@ button#btn-typeVb.selected img {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  text-shadow: 1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
 }
 
 .mainText {
@@ -2237,10 +2288,6 @@ button#btn-typeVb.selected img {
   gap: 20px;
   padding-left: 10px;
 }
-.mainText p {
-  text-shadow: 1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
-}
-
 /* ...> div(content > div(text >div(subtext*/
 .subtext {
   z-index: 1;
@@ -2250,7 +2297,6 @@ button#btn-typeVb.selected img {
 }
 .subtext p {
   margin-right: 10px;
-  text-shadow: 1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
 }
 
 /* 貼文區 */
@@ -2429,15 +2475,28 @@ button#btn-typeVb.selected img {
 
 /* main.filter-postArea > section.filter-containers >div.filter-postBlock */
 .filter-postBlock {
-  width: 80%;
+  width: 70%;
+  min-width: 345px;
   height: fit-content;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   overflow-wrap: normal;
   gap: 30px;
-  justify-content: center;
-  padding-left: 10px;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 15vw;
+}
+@media (max-width:640px) {
+  .filter-postBlock {
+    margin: 0;
+  }
+}
+@media (max-width:820px) {
+  .filter-postBlock {
+    margin: 0;
+    justify-content: center;
+  }
 }
 
 /*  */
@@ -2483,16 +2542,17 @@ button#btn-typeVb.selected img {
 }
 
 /* 類別按鈕+表單+預覽區 */
-section.form-container {
+.form-container {
   width: fit-content;
   height: fit-content;
   padding: 50px 0px;
   display: grid;
   grid-template-columns: 339px 378px;
-  gap: 20px;
+  column-gap: 50px;
+  align-items: end;
 }
 @media (max-width:820px) {
-  section.form-container {
+  .form-container {
     /* RWD 手機版換一行 */
     grid-template-columns: 1fr;
     justify-content: center;
@@ -2504,6 +2564,7 @@ section.form-container {
 
 /* 表單容器:稍微修改不要壓到表單 */
 .form-block {
+  height: fit-content;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2592,14 +2653,14 @@ button#btn-formVB.selected::before {
 /* 表單元素容器 */
 .form-edit {
   flex: 1 0 auto;
-  width: 339px;
+  min-width: 339px;
   height: max-content;
   border-radius: 20px;
   border: 1px solid black;
   padding: 20px 15px;
   display: grid;
-  grid-template-rows: 20px 330px 20px 1fr;
-  gap: 15px;
+  grid-template-rows: 20px 450px 20px 1fr;
+  row-gap: 15px;
   background-color: rgba(88, 88, 88, 0.85);
   color: #ffffff;
 }
@@ -2629,10 +2690,11 @@ button#btn-formVB.selected::before {
 /* 必填表單容器 */
 .form-options {
   width: 309px;
-  height: 317px;
+  height: auto;
   border-bottom: 1px solid black;
   margin-top: 10px;
   padding-left: 20px;
+  padding-bottom: 10px;
   /* child */
   display: grid;
   grid-template-rows: auto;
@@ -2643,11 +2705,12 @@ button#btn-formVB.selected::before {
   display: grid;
   grid-template-columns: 32px 1fr;
   gap: 10px;
+  align-items: center;
 }
 .form-options label input {
   /* 所有<label>下<input> */
   width: 20%;
-  height: 20px;
+  height: 25px;
   border-radius: 50px;
   border: 2.5px solid black;
   padding: 0px 15px;
@@ -2680,7 +2743,7 @@ button#btn-formVB.selected::before {
 .form-options label:nth-child(7) select,
 .form-options label:nth-child(10) select {
   width: 40%;
-  height: 25px;
+  height: 30px;
   padding-left: 10px;
   border-radius: 50px;
   border: 2.5px solid black;
@@ -2695,10 +2758,10 @@ button#btn-formVB.selected::before {
 .form-options label:nth-child(9) {
   display: grid;
   grid-template-columns: 32px 75px 75px 70px;
-  gap: 10px;
+  gap: 0px 10px;
 }
 .form-options label:nth-child(9) input {
-  width: 60%;
+  width: 50%;
   padding-left: 20%;
 }
 
@@ -2710,7 +2773,7 @@ button#btn-formVB.selected::before {
   padding-left: 20px;
   display: grid;
   grid-template-rows: auto;
-  gap: 1vh;
+  row-gap: 15px;
 }
 .form-subOptions label {
   width: 330px;
@@ -2720,7 +2783,7 @@ button#btn-formVB.selected::before {
 }
 .form-subOptions label input {
   width: 150px;
-  height: 20px;
+  height: 25px;
   border-radius: 50px;
   border: 2.5px solid black;
   padding: 0px 15px;
@@ -2728,7 +2791,7 @@ button#btn-formVB.selected::before {
 }
 .form-subOptions label select {
   width: 135px;
-  height: 25px;
+  height: 30px;
   padding-left: 10px;
   border-radius: 50px;
   border: 2.5px solid black;
@@ -2742,22 +2805,19 @@ button#btn-formVB.selected::before {
 /* 預覽容器*/
 .form-preview {
   width: 350px;
-  height: 610px;
+  height: 797px;
   border: 1px solid black;
   border-radius: 20px;
   margin-top: 35px;
-  margin-left: 30px;
   padding: 20px 15px;
   background-color: rgba(217, 217, 217, 0.9);
   display: grid;
-  grid-template-rows: 28px 324px 40px;
-  gap: 100px 0px;
+  grid-template-rows: repeat(10, 1fr);
 }
 @media (max-width:640px) {
   .form-preview {
     padding: 10px;
     margin: 20px 0 0 0;
-    gap: 50px 0px;
     height: fit-content;
     width: 60vw;
     min-width: 380px;
@@ -2769,14 +2829,20 @@ button#btn-formVB.selected::before {
   .form-preview {
     padding: 0;
     margin: 35px 0 0 0;
-    gap: 50px 0px;
     height: fit-content;
     width: 375px;
   }
 }
+.form-preview .line-hugTitle {
+  align-self: flex-start;
+}
+.form-preview .simplePostInfo {
+  grid-row: 3/8;
+  height: fit-content;
+}
 .form-preview a {
   margin: 0 auto;
-  grid-row: 3;
+  grid-row: 10;
   width: 100px;
   min-width: 100px;
   height: 50px;
@@ -2834,6 +2900,12 @@ button#btn-formVB.selected::before {
   color: rgba(247, 246, 245, 0.9);
   border: 2px solid black;
   box-shadow: 0px 4px 0px 0px #000000;
+  margin-top: 5px;
+}
+.notice-type button:hover {
+  cursor: pointer;
+  margin-top: 0px;
+  box-shadow: 0 6px black;
 }
 
 /* 按鈕選中 */
@@ -2882,6 +2954,23 @@ button#btn-pastRecords.selected {
   display: grid;
   grid-template-columns: 25px 40px;
   gap: 3px;
+}
+.btn-sponsor:hover {
+  cursor: pointer;
+  margin-top: 0px;
+  box-shadow: 0 6px black;
+}
+.btn-sponsor:active {
+  background-color: #353535;
+}
+
+.btn-sponsor.selected {
+  box-shadow: 0px -4px 0px 0px #000000;
+}
+.btn-sponsor.selected:hover {
+  cursor: pointer;
+  margin-top: 5px;
+  box-shadow: 0 -4px black;
 }
 
 /* 預定行程容器 */
@@ -3038,7 +3127,7 @@ button#btn-pastRecords.selected {
 .btn-logInLine {
   width: 112px;
   height: 36px;
-  background-color: #44C150;
+  background-color: #44c150;
   color: rgba(247, 246, 245, 0.9);
   border: 3px solid black;
   border-radius: 5px;
@@ -3101,7 +3190,7 @@ button#btn-pastRecords.selected {
   background-color: rgba(247, 246, 245, 0.9);
   padding: 20px;
   display: grid;
-  grid-template-rows: 2fr 0.5fr;
+  grid-template-rows: 2fr;
   gap: 20px;
   justify-content: center;
   align-items: center;
@@ -3110,36 +3199,59 @@ button#btn-pastRecords.selected {
 
 /* 登入後顯示的場次資料 */
 .selfState-userInfo {
+  max-width: 90%;
+  min-width: 200px;
   height: fit-content;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 35px;
   align-items: center;
+  padding: 20px;
 }
-.selfState-userInfo .userInfo {
+.selfState-userInfo .info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 10px;
+}
+.selfState-userInfo .info p {
+  color: var(--font-color);
+}
+.selfState-userInfo .info .applicantImg {
+  width: 75px;
+}
+.selfState-userInfo .info .userInfo {
   width: 53px;
-  height: 32px;
-  border-radius: 50px;
-  background-color: #83B90F;
+  height: 75px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+.selfState-userInfo .info .userInfo p {
   text-align: center;
-  line-height: 32px;
+  line-height: 30px;
+  border-radius: 50px;
+  background-color: var(--main-color);
   color: rgba(247, 246, 245, 0.9);
 }
-.selfState-userInfo .attendance {
+.selfState-userInfo .info .attendance {
   width: 60px;
-  height: 55px;
+  height: 75px;
   position: relative;
 }
-.selfState-userInfo .attendance p {
+.selfState-userInfo .info .attendance p {
   position: absolute;
-  top: 18px;
+  top: 25px;
   left: 13px;
-  color: #83B90F;
+  color: #0F6A9D;
 }
-.selfState-userInfo .attendance img {
+.selfState-userInfo .info .attendance img {
   position: absolute;
   width: 100%;
-  top: 0;
+  top: 5px;
+  left: 0;
 }
 
 /* 累積場次... */

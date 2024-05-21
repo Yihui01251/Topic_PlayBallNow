@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <script src="./javascripts/vendor.js"></script> -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.0/redux.min.js"
+      integrity="sha512-1/8Tj23BRrWnKZXeBruk6wTnsMJbi/lJsk9bsRgVwb6j5q39n0A00gFjbCTaDo5l5XrPVv4DZXftrJExhRF/Ug=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <title>我的收藏_現在想打球</title>
+    <link rel="stylesheet" href="./stylesheets/css/style-scss.css" />
+    <style>
+      .fileName {
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <small class="fileName">檔名：<code>react_postsArea.html</code></small>
+    <!-- 載入axios套件 -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <div id="root"></div>
+    <script type="text/babel">
+      (async () => {
+        //取得json資料
+        const data = await axios.get("./userData.json");
+        const { userData } = data.data;
+        console.log(userData);
+        const { past_ALL_userData } = userData[0];
+        const { future_All_userData } = userData[1];
+        const App = () => {
+          const { useState, useEffect, useRef } = React;
+
+          const length = past_ALL_userData.length;
+          const lengthValue = `共有${length}筆資料`;
+
+          // 元件
+          // 建立簡略貼文元件
+          const SimplePostCard = ({
+            id,
+            type,
+            postDate,
+            postStartTime,
+            postEndTime,
+            postCity,
+            postArea,
+            postArena,
+            primaryTag,
+            secondaryTag,
+            reqCount,
+            role,
+            pos,
+            equip,
+            ballBrand,
+            note,
+            href,
+            host,
+            like,
+          }) => {
+            const [isLike, setIsLike] = useState("");
+            const [showLike, setShowLike] = useState("none");
+            const [mainColor, setMainColor] = useState("#14AAEB");
+            const [fontColor, setFontColor] = useState("#147CB6");
+            const [btnColor, setBtnColor] = useState("#F1DB15");
+            //
+            const [showBallBrand, setShowBallBrand] = useState("flex");
+            const [showVbInfo, setShowVbInfo] = useState("none");
+            useEffect(() => {
+              if (like === "true") {
+                setIsLike("./images/heart-yes.svg");
+                setShowLike("flex");
+              } else {
+                setIsLike("./images/heart-no.svg");
+                setShowLike("none");
+              }
+              if (type == "羽") {
+                setMainColor("#83B90F");
+                setFontColor("#689607");
+                setBtnColor("#FF8D24");
+                //
+                setShowBallBrand("flex");
+                setShowVbInfo("none");
+              } else {
+                setMainColor("#14AAEB");
+                setFontColor("#147CB6");
+                setBtnColor("#F1DB15");
+                //
+                setShowBallBrand("none");
+                setShowVbInfo("flex");
+              }
+            }, [like, type]);
+            return (
+              <>
+                <div
+                  className="simplePostInfo hoverPost"
+                  style={{ display: showLike }}
+                >
+                  <div className="main-info">
+                    <div className="header" style={{ color: fontColor }}>
+                      <p >
+                        {postDate} {postStartTime}~{postEndTime}
+                      </p>
+                      <div className="type-style" style={{ backgroundColor: mainColor }}>{type}球</div>
+                      <button className="collect">
+                        <img src={isLike} alt="收藏" />
+                      </button>
+                    </div>
+                    <div className="areaInfo" style={{ color: fontColor }}>
+                      <h3>{postCity}</h3>
+                      <h3>{postArea}</h3>
+                      <h3>{postArena}</h3>
+                    </div>
+
+                    <div className="tag-style" >
+                      <p style={{ backgroundColor: mainColor }}>{primaryTag}</p>
+                      <p style={{ backgroundColor: mainColor }}>${secondaryTag}</p>
+                    </div>
+                  </div>
+                  <div className="sub-info">
+                    <div className="vacancyInfo" >
+                      <h4>缺額</h4>
+                      <div>女</div>
+                      <p style={{ color: fontColor }}>{reqCount[0].count}位</p>
+                      <div>男</div>
+                      <p style={{ color: fontColor }}>{reqCount[1].count}位</p>
+                      <div>不限</div> 
+                      <p style={{ color: fontColor }}>{reqCount[2].count}位</p>
+                    </div>
+                    <div className="ballInfo" style={{ display: showVbInfo }}>
+                      <h4>類型</h4>
+                      <p style={{ color: fontColor }}>{role}</p>
+                    </div>
+
+                    <div className="equipInfo" style={{ display: showVbInfo }}>
+                      <h4>位置</h4>
+                      <p style={{ color: fontColor }}>{pos}</p>
+                    </div>
+                    <div
+                      className="ballInfo"
+                      style={{ display: showBallBrand }}
+                    >
+                      <h4>用球</h4>
+                      <p style={{ color: fontColor }}>{ballBrand}</p>
+                    </div>
+                    <div
+                      className="equipInfo"
+                      style={{ display: showBallBrand }}
+                    >
+                      <h4>設備</h4>
+                      <p style={{ color: fontColor }}>{equip}</p>
+                    </div>
+                    <div className="noteInfo">
+                      <h4>備註</h4>
+                      <p style={{ color: fontColor }}>{note}</p>
+                    </div>
+                  </div>
+                  <div className="BtnContainer">
+                    <a className="button" href={`#${href}`} style={{backgroundColor:btnColor}}>
+                      報名
+                    </a>
+                  </div>
+                </div>
+                <ApplyCard
+                  href={href}
+                  type={type}
+                  postDate={postDate}
+                  postStartTime={postStartTime}
+                  postEndTime={postEndTime}
+                  postCity={postCity}
+                  postArea={postArea}
+                  postArena={postArena}
+                  primaryTag={primaryTag}
+                  secondaryTag={secondaryTag}
+                  female={reqCount[0].count}
+                  male={reqCount[1].count}
+                  unspecified={reqCount[2].count}
+                  role={role}
+                  pos={pos}
+                  note={note}
+                  host={host}
+                  equip={equip}
+                  ballBrand={ballBrand}
+                  like={isLike}
+                  showBmInfo={showBallBrand}
+                  showVbInfo={showVbInfo}
+                  typeStyle={mainColor}
+                  typeFontStyle={fontColor}
+                />
+              </>
+            );
+          };
+          //建立報名元件
+          const ApplyCard = ({
+            href,
+            type,
+            postDate,
+            postStartTime,
+            postEndTime,
+            postCity,
+            postArea,
+            postArena,
+            primaryTag,
+            secondaryTag,
+            female,
+            male,
+            unspecified,
+            role,
+            pos,
+            equip,
+            ballBrand,
+            note,
+            host,
+            like,
+            showBmInfo,
+            showVbInfo,
+            typeStyle,
+            typeFontStyle,
+          }) => {
+            const hostType = "vb";
+            if (type == "羽球") {
+              hostType = "bm";
+            }
+            return (
+              <div className="popup" id={href}>
+                <div className="popup-inner">
+                  <div className="popup__content">
+                    <div className="detailPostInfo">
+                      <div className="simplePostInfo">
+                        <div className="main-info">
+                          <div
+                            className="header"
+                            style={{ color: typeFontStyle }}
+                          >
+                            <p>
+                              {postDate} {postStartTime}~{postEndTime}
+                            </p>
+                            <div
+                              className="type-style"
+                              style={{ backgroundColor: typeStyle }}
+                            >
+                              {type}球
+                            </div>
+                            <button className="collect">
+                              <img src={like} alt="收藏" />
+                            </button>
+                          </div>
+                          <div className="areaInfo" style={{ color: typeFontStyle }}>
+                            <h3>{postCity}</h3>
+                            <h3>{postArea}</h3>
+                            <h3>{postArena}</h3>
+                          </div>
+                          <div className="tag-style">
+                            <p style={{ backgroundColor: typeFontStyle }}>
+                              {primaryTag}
+                            </p>
+                            <p style={{ backgroundColor: typeFontStyle }}>
+                              ${secondaryTag}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="sub-info">
+                          <div className="vacancyInfo">
+                            <h4>缺額</h4>
+                            <div >女</div>
+                            <p style={{ color: typeFontStyle }}>{female}位</p>
+                            <div>男</div>
+                            <p style={{ color: typeFontStyle }}>{male}位</p>
+                            <div>不限</div> 
+                            <p style={{ color: typeFontStyle }}>{unspecified}位</p>
+                          </div>
+                          <div className="ballInfo" >
+                            <h4>類型</h4>
+                            <p style={{ color: typeFontStyle }}>{role}</p>
+                          </div>
+
+                          <div
+                            className="equipInfo"
+                            style={{ display: showVbInfo }}
+                          >
+                            <h4>位置</h4>
+                            <p style={{ color: typeFontStyle }}>{pos}</p>
+                          </div>
+                          <div
+                            className="ballInfo"
+                            style={{ display: showBmInfo }}
+                          >
+                            <h4>用球</h4>
+                            <p style={{ color: typeFontStyle }}>{ballBrand}</p>
+                          </div>
+                          <div
+                            className="equipInfo"
+                            style={{ display: showBmInfo }}
+                          >
+                            <h4>設備</h4>
+                            <p style={{ color: typeFontStyle }}>{equip}</p>
+                          </div>
+                          <div className="noteInfo">
+                            <h4>備註</h4>
+                            <p style={{ color: typeFontStyle }}>{note}</p>
+                          </div>
+                        </div>
+
+                        <div className="apply-info">
+                          <hr />
+                          <img
+                            src={`./images/host-${hostType}.png`}
+                            alt="團主頭貼"
+                          />
+                          <p>
+                            團主<span>{host}</span>
+                          </p>
+                          <div className="component-writeBlock">
+                            <p>報名備註</p>
+                            <input
+                              type="text"
+                              placeholder="輸入對團主的話..."
+                            />
+                          </div>
+                        </div>
+
+                        <div className="BtnContainer">
+                          <a className="btn-close popup__close" href="#">
+                            關閉
+                          </a>
+                          <a className="button" href="#noticeApplyPopup">
+                            確認報名
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          };
+          return (
+            <div className="body">
+              <div className="mobile-TopBar">
+                <img
+                  src="./images/mobile-both-topbanner.png"
+                  alt="不分類的手機版banner"
+                />
+              </div>
+              <header id="topBar">
+                <nav id="top-nav">
+                  <ul id="menu">
+                    <li>
+                      <a href="./index.html">
+                        <img
+                          className="icon"
+                          src="./images/magnifier.png"
+                          alt=""
+                        />
+                        探索
+                      </a>
+                    </li>
+                    <li>
+                      <a href="./publicationForm.html">
+                        <img className="icon" src="./images/post.png" alt="" />
+                        找人
+                      </a>
+                    </li>
+                    <li>
+                      <a href="notice.html">
+                        <img className="icon" src="./images/bell3.png" alt="" />
+                        行程
+                      </a>
+                    </li>
+                    <li>
+                      <a href="personal.html">
+                        <img className="icon" src="./images/cat.png" alt="" />
+                        個人
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+                <div className="title">
+                  <div className="hugTitle noto-sans-tc">
+                    <img src="./images/vbtitle.svg" alt="" />
+                    <h1 className="title-L" value="我的收藏">
+                      我的收藏
+                    </h1>
+                    <img src="./images/bmtitle.svg" alt="" />
+                  </div>
+                </div>
+              </header>
+
+              <main className="filter-postArea">
+                <hr />
+                {/* 貼文 */}
+                <section className="filter-containers">
+                  <div className="filter-postBlock">
+                    {future_All_userData.map((post_data) => {
+                      return (
+                        <SimplePostCard
+                          key={post_data.id}
+                          id={post_data.id}
+                          type={post_data.typeAbbr}
+                          postDate={post_data.date}
+                          postStartTime={post_data.startTime}
+                          postEndTime={post_data.endTime}
+                          postCity={post_data.city}
+                          postArea={post_data.area}
+                          postArena={post_data.arena}
+                          primaryTag={post_data.tagDegree}
+                          secondaryTag={post_data.tagPrice}
+                          reqCount={post_data.reqCount}
+                          role={post_data.role}
+                          pos={post_data.pos}
+                          note={post_data.note}
+                          href={`ApplyPopUp-${post_data.id}`}
+                          host={post_data.host}
+                          like={post_data.like}
+                          ballBrand={post_data.ballBrand}
+                          equip={post_data.equip}
+                        />
+                      );
+                    })}
+                    {past_ALL_userData.map((post_data) => {
+                      return (
+                        <SimplePostCard
+                          key={post_data.id}
+                          id={post_data.id}
+                          type={post_data.typeAbbr}
+                          postDate={post_data.date}
+                          postStartTime={post_data.startTime}
+                          postEndTime={post_data.endTime}
+                          postCity={post_data.city}
+                          postArea={post_data.area}
+                          postArena={post_data.arena}
+                          primaryTag={post_data.tagDegree}
+                          secondaryTag={post_data.tagPrice}
+                          reqCount={post_data.reqCount}
+                          role={post_data.role}
+                          pos={post_data.pos}
+                          note={post_data.note}
+                          href={`ApplyPopUp-${post_data.id}`}
+                          host={post_data.host}
+                          like={post_data.like}
+                          ballBrand={post_data.ballBrand}
+                          equip={post_data.equip}
+                        />
+                      );
+                    })}
+                  </div>
+                </section>
+              </main>
+              <footer>
+                <figure className="footer-border"></figure>
+                <div>
+                  <figure>
+                    <img
+                      id="logo"
+                      src="./images/logo.png"
+                      alt="logo-PlayBallNow"
+                    />
+                  </figure>
+                  <p>Copyright© 2024 PlayBallNow. All Right Reserved. </p>
+                </div>
+              </footer>
+              {/*燈箱效果-報名審核中通知 */}
+              <div className="popup" id="noticeApplyPopup">
+                <div className="popup-inner">
+                  <div className="popup__content">
+                    {/* 報名審核中通知元件 */}
+                    <div className="notice-apply">
+                      <p>已送出報名，團主審核中</p>
+                      <a className="popup__close" href="#">
+                        <img src="../images/cancel.png" alt="關閉按鈕" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        };
+        ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+      })();
+    </script>
+  </body>
+</html>

@@ -46,6 +46,27 @@
         const { bm_today_postData } = postData[2];
         const { bm_week_postData } = postData[3];
 
+        
+        /* 建立元件 footer元件 */
+        const Footer = (props) => {
+          return (
+            <>
+              <footer>
+                <figure className="footer-border"></figure>
+                <div>
+                  <figure>
+                    <img
+                      id="logo"
+                      src="./images/logo.png"
+                      alt="logo-PlayBallNow"
+                    />
+                  </figure>
+                  <p>Copyright© 2024 PlayBallNow. All Right Reserved. </p>
+                </div>
+              </footer>
+            </>
+          );
+        };
         const App = () => {
           const { useState, useEffect, useRef, useMemo } = React;
 
@@ -60,6 +81,7 @@
           const [decorateSearch, setDecorateSearch] = useState(
             'url("/images/index-searchCat.png")'
           );
+          const[mobileTopBar,setMobileTopBar] = useState("/images/mobiletopvb.svg");
           /* 要map的資料 */
           const [todayType, setTodayType] = useState("vb_today_postData");
           const [weekType, setWeekType] = useState("vb_week_postData");
@@ -93,6 +115,7 @@
             let inputColor = "";
             let newBorder = "";
             let decorate = "";
+            let topBanner="";
             /* 更多的連結 */
             let hrefTodayMore = "./VBtodayMore-postsArea.html";
             let hrefWeekMore = "./VBweekMore-postsArea.html";
@@ -101,7 +124,6 @@
             const btnTypeVb = document.getElementById("btn-typeVb");
             const btnTypeBm = document.getElementById("btn-typeBm");
             const bodyStyle = document.getElementById("body");
-            console.log(bodyStyle);
 
             if (id === "btn-typeBm" || id === "btn-formBM") {
               // 如果是羽球:
@@ -111,9 +133,10 @@
               inputColor = "#B6DBAA";
               newBorder = 'url("../images/dogstroke.svg")';
               decorate = 'url("/images/index-searchDog.png")';
+              topBanner = "/images/mobiletopbm.png";
               // 新增class改變背景
-              bodyStyle.classList.add("background-Bm");
-              bodyStyle.classList.remove("background-Vb");
+              //bodyStyle.classList.add("background-Bm");
+              //bodyStyle.classList.remove("background-Vb");
               setSelectedButton(id);
               /* 改變要map的資料名稱 */
               setTodayType("bm_today_postData");
@@ -135,8 +158,10 @@
               inputColor = "#B1C3E8";
               newBorder = "url('../images/catsroke.svg')";
               decorate = 'url("/images/index-searchCat.png")';
-              bodyStyle.classList.remove("background-Bm");
-              bodyStyle.classList.add("background-Vb");
+              topBanner = "/images/mobiletopvb.svg";
+              //
+              //bodyStyle.classList.remove("background-Bm");
+              //bodyStyle.classList.add("background-Vb");
               setSelectedButton(id);
               //
               setTodayType("vb_today_postData");
@@ -158,6 +183,7 @@
             setInputColor(inputColor);
             setPostBorder(newBorder);
             setDecorateSearch(decorate);
+            setMobileTopBar(topBanner);
 
             document.documentElement.style.setProperty(
               "--main-color",
@@ -176,7 +202,10 @@
               "--input-hover-color",
               inputColor
             );
-
+            // document.documentElement.style.setProperty(
+            //   "--mobileTop-image",
+            //   topBanner
+            // );
             setHrefTodayMore(hrefTodayMore);
             setHrefWeekMore(hrefWeekMore);
           };
@@ -195,6 +224,9 @@
                 return [];
             }
           };
+          useEffect(()=>{
+            console.log(`本日資料類型: ${todayType} , 本週資料類型: ${weekType}`)
+          },[weekType,todayType])
 
           /* tag篩選 */
           //取得tag對應資料屬性
@@ -241,9 +273,7 @@
             if (filterTaipei !== "") {
               newConditions.city = filterTaipei;
             }
-            if (filterXinpei !== "") {
-              newConditions.city = filterXinpei;
-            }
+
             setConditions(newConditions);
             if (weekfilterDegree !== "") {
               newWeekConditions.tagDegree = weekfilterDegree;
@@ -293,7 +323,7 @@
                   default:
                     break;
                 }
-              } else if (time == "week") {
+              } else {
                 /* 如果沒有選中=>新增class="active" */
                 tagStyle.classList.add("active");
                 allBtn.classList.remove("active");
@@ -304,7 +334,6 @@
                     break;
                   case "tagPrice":
                     setFilterPrice(`${value}`);
-                    console.log("1本日改變價格:" + filterPrice);
                     break;
                   case "startTime":
                     setFilterTime(`${value}`);
@@ -415,7 +444,7 @@
             console.log("目前本日篩選: ", conditions);
             console.log("目前本週篩選: ", weekConditions);
           }, [conditions, weekConditions]);
-          /* 篩選資料 */
+          /* 篩選本日資料 */
           const filterPosts = useMemo(() => {
             // 沒有篩選時渲染全部貼文
             if (!filterDegree && !filterPrice && !filterTime) {
@@ -473,12 +502,11 @@
               // 如果所有条件都匹配，则返回 true
               return matchAllConditions;
             });
-          }, [filterTag, tagDataType, conditions]);
+          }, [todayType,filterTag, tagDataType, conditions]);
 
           const weekFilterPosts = useMemo(() => {
             // 沒有篩選時渲染全部貼文
             if (!weekfilterDegree && !weekfilterPrice && !weekfilterTime) {
-              console.log("顯示全部");
               return [...getPosts(weekType)];
             }
 
@@ -526,6 +554,7 @@
               return matchAllConditions;
             });
           }, [
+            weekType,
             weekfilterDegree,
             weekfilterPrice,
             weekfilterTime,
@@ -538,9 +567,63 @@
           }
 
           // 元件
-          const Card = ({ name }) => {
-            // console.log(name);
-          };
+          /* 建立元件 header元件 */
+          const TopBar = ({mobileTopBar}) => {
+          return (
+            <>
+              <div className="mobile-TopBar">
+                <img src={mobileTopBar} alt=""/>
+              </div>
+              <header id="topBar">
+                <nav id="top-nav">
+                  <ul id="menu">
+                    <li>
+                      <a href="./index.html">
+                        <img
+                          className="icon"
+                          src="./images/magnifier.png"
+                          alt=""
+                        />
+                        探索
+                      </a>
+                    </li>
+                    <li>
+                      <a href="./publicationForm.html">
+                        <img className="icon" src="./images/post.png" alt="" />
+                        找人
+                      </a>
+                    </li>
+                    <li>
+                      <a href="notice.html">
+                        <img className="icon" src="./images/bell3.png" alt="" />
+                        行程
+                      </a>
+                    </li>
+                    <li>
+                      <a href="personal.html">
+                        <img className="icon" src="./images/cat.png" alt="" />
+                        個人
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+                <div className="form-title">
+                  <div className="hugTitle noto-sans-tc">
+                    <img src="./images/vbtitle.svg" alt="" />
+                    <h1 className="title-L" value="我的行程">
+                      我的行程
+                    </h1>
+                    <img src="./images/bmtitle.svg" alt="" />
+                  </div>
+                  <a href="/myCollect.html" className="button btn-postManage">
+                  我的收藏
+                  <img src="./images/heart-yes.svg" alt="" />
+                </a>
+                </div>
+              </header>
+            </>
+          );
+        };
           // 建立貼文元件
           const PostCard = ({
             id,
@@ -635,10 +718,10 @@
             unspecified,
             role,
             pos,
-            equip,
+            equip,ballBrand,
             note,
             host,
-            ballBrand,
+            
             noticeHref,
           }) => {
             const [showBallBrand, setShowBallBrand] = useState("none");
@@ -673,10 +756,7 @@
                             </div>
                             <div className="areaInfo">
                               <h3>{postCity}</h3>
-                              <h3>{postArea}</h3>
-                            </div>
-                            <div className="arenaInfo">
-                              <h3>{postArena}</h3>
+                              <h3>{postArea}</h3> <h3>{postArena}</h3>
                             </div>
                             <div className="tag-style">
                               <p>{primaryTag}</p>
@@ -790,61 +870,7 @@
 
           return (
             <div className="body">
-              <div className="mobile-TopBar">
-                <img
-                  src="./images/mobile-top.svg"
-                  alt="排球的手機版banner"
-                  style={{ display: VBdisplay }}
-                />
-                <img
-                  src="./images/mobile-bm-topbanner.png"
-                  alt="羽球的手機版banner"
-                  style={{ display: BMdisplay }}
-                />
-              </div>
-              <header id="topBar">
-                <nav id="top-nav">
-                  <ul id="menu">
-                    <li>
-                      <a href="./index.html">
-                        <img
-                          className="icon"
-                          src="./images/magnifier.png"
-                          alt=""
-                        />
-                        探索
-                      </a>
-                    </li>
-                    <li>
-                      <a href="./publicationForm.html">
-                        <img className="icon" src="./images/post.png" alt="" />
-                        找人
-                      </a>
-                    </li>
-                    <li>
-                      <a href="notice.html">
-                        <img className="icon" src="./images/bell3.png" alt="" />
-                        行程
-                      </a>
-                    </li>
-                    <li>
-                      <a href="personal.html">
-                        <img className="icon" src="./images/cat.png" alt="" />
-                        個人
-                      </a>
-                    </li>
-                  </ul>
-                </nav>
-                <div className="title">
-                  <div className="hugTitle noto-sans-tc">
-                    <img src="./images/vbtitle.svg" alt="" />
-                    <h1 className="title-L" value="現在想打球">
-                      現在想打球
-                    </h1>
-                    <img src="./images/bmtitle.svg" alt="" />
-                  </div>
-                </div>
-              </header>
+              <TopBar mobileTopBar={mobileTopBar}/>
               <main className="index-Area">
                 {/*篩選區 */}
                 <section className="search">
@@ -882,7 +908,6 @@
                       ref={btnTypeVbRef}
                       onClick={() => changeType("btn-typeVb")}
                     >
-                      <img src="./images/vball.png" alt="排球" />
                     </button>
                     <button
                       id="btn-typeBm"
@@ -892,7 +917,7 @@
                       onClick={() => changeType("btn-typeBm")}
                       ref={btnTypeBmRef}
                     >
-                      打羽球
+                      
                     </button>
                   </div>
                   <div id="search-Bar" style={{ backgroundColor: mainColor }}>
@@ -968,7 +993,7 @@
                           ref={btnTypeVbRef}
                           onClick={() => changeType("btn-typeVb")}
                         >
-                          <img src="./images/vball.png" alt="排球" />
+                          
                         </button>
                         <button
                           id="btn-typeBm"
@@ -978,7 +1003,7 @@
                           onClick={() => changeType("btn-typeBm")}
                           ref={btnTypeBmRef}
                         >
-                          <img src="./images/bball.png" alt="羽球" />
+                         
                         </button>
                       </div>
                       <a href="./react_postsArea.html">
@@ -998,8 +1023,8 @@
                 {/* 本日臨打貼文 */}
                 <section className="post-containers">
                   <div className="title-postArea">
-                    <h2>
-                      <div></div>本日臨打貼文
+                    <h2><div className="titleLine"></div>
+                      本日臨打貼文
                     </h2>
                     <a href={hrefTodayMore}>
                       <div className="more button">更多</div>
@@ -1062,6 +1087,8 @@
                           href={`todayApplyPopUp-${post_data.id}`}
                           host={post_data.host}
                           ballBrand={post_data.ballBrand}
+                          equip={post_data.equip}
+                          like={post_data.like}
                         />
                       );
                     })}
@@ -1071,7 +1098,7 @@
                 <section className="post-containers">
                   <div className="title-postArea">
                     <h2>
-                      <div></div>本週臨打貼文
+                      <div className="titleLine"></div>本週臨打貼文
                     </h2>
                     <a href={hrefWeekMore}>
                       <div className="more button">更多</div>
@@ -1130,29 +1157,19 @@
                           reqCount={post_data.reqCount}
                           role={post_data.role}
                           pos={post_data.pos}
-                          equip={post_data.equip}
                           note={post_data.note}
                           href={`weekApplyPopUp-${post_data.id}`}
                           host={post_data.host}
+                          ballBrand={post_data.ballBrand}
+                          equip={post_data.equip}
+                          like={post_data.like}
                         />
                       );
                     })}
                   </div>
                 </section>
               </main>
-              <footer>
-                <figure className="footer-border"></figure>
-                <div>
-                  <figure>
-                    <img
-                      id="logo"
-                      src="./images/logo.png"
-                      alt="logo-PlayBallNow"
-                    />
-                  </figure>
-                  <p>Copyright© 2024 PlayBallNow. All Right Reserved. </p>
-                </div>
-              </footer>
+              <Footer/>
             </div>
           );
         };
