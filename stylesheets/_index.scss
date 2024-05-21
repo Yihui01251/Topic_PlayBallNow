@@ -175,7 +175,7 @@ button#btn-typeVb.selected {
     display: none;
   }
 
-  .selected {
+  button#btn-typeVb.selected,button#btn-typeBm.selected {
     position: absolute;
     display: flex;
     border-radius: $border-radius-90;

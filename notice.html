@@ -64,6 +64,8 @@
           const [stateStyle, setStateStyle] = useState("");
           /* 邊框樣式 */
           const [identityStyle, setIdentityStyle] = useState("3px solid black");
+          /* 出席率圖 */
+          const [ellipseBar, setEllipseBar] = useState("");
           /* 呼叫燈箱元件連結 */
           const [popupHref, setPopupHref] = useState("");
           /* 顯示報名列 */
@@ -109,15 +111,19 @@
             let typeStyle = "";
             let typeFontStyle = "";
             let stateColor = "";
+            let ellipseBar = "";
             if (type === "羽") {
               typeStyle = "rgba(131, 185, 15, 0.9)";
               typeFontStyle = "#689607";
+              ellipseBar = "/images/ellipsebarbm.png"
             } else if (type === "排") {
               typeStyle = "#14AAEB";
               typeFontStyle = "#147CB6";
+              ellipseBar = "/images/ellipsebarvb.png"
             }
             setTypeFontStyle(typeFontStyle);
             setTypeStyle(typeStyle);
+            setEllipseBar(ellipseBar);
             // document.documentElement.style.setProperty(
             //   "--font-color",
             //   typeFontStyle
@@ -251,6 +257,8 @@
                   tagDegree={tagDegree}
                   tagPrice={tagPrice}
                   id={id}
+                  typeStyle={typeStyle}
+                  typeFontStyle={typeFontStyle}
                   popUp={popupHref}
                 />
               )}
@@ -266,6 +274,9 @@
                   tagDegree={tagDegree}
                   tagPrice={tagPrice}
                   id={id}
+                  typeStyle={typeStyle}
+                  typeFontStyle={typeFontStyle}
+                  ellipseBarType = {ellipseBar}
                   popUp={popupHref}
                 />
               )}
@@ -344,11 +355,6 @@
                           >
                             <h3>{city}</h3>
                             <h3>{area}</h3>
-                          </div>
-                          <div
-                            className="arenaInfo"
-                            style={{ color: typeFontStyle }}
-                          >
                             <h3>{arena}</h3>
                           </div>
                           <div className="tag-style">
@@ -812,11 +818,6 @@
                         >
                           <h3>{city}</h3>
                           <h3>{area}</h3>
-                        </div>
-                        <div
-                          className="arenaInfo"
-                          style={{ color: typeFontStyle }}
-                        >
                           <h3>{arena}</h3>
                         </div>
                         <div className="tag-style">
@@ -880,7 +881,7 @@
           popUp
         }) => {
           return (
-            <div class="popup" id={`${popUp}-${id}`}>
+            <div className="popup" id={`${popUp}-${id}`}>
               <div className="popup-inner">
                 <div className="popup__content">
                   <div className="simplePostInfo">
@@ -908,11 +909,6 @@
                         >
                           <h3>{city}</h3>
                           <h3>{area}</h3>
-                        </div>
-                        <div
-                          className="arenaInfo"
-                          style={{ color: typeFontStyle }}
-                        >
                           <h3>{arena}</h3>
                         </div>
                         <div className="tag-style">
@@ -958,7 +954,7 @@
                       <a className="popup__close btn-close" href="#">
                         關閉
                       </a>
-                      <a href="#" className="button btn-yes">
+                      <a href="#" className="button btn-yes" style={{ backgroundColor: typeFontStyle }}>
                         送出
                       </a>
                     </div>
@@ -981,6 +977,7 @@
           id,
           typeStyle,
           typeFontStyle,
+          ellipseBarType,
           popUp}) => {
           return (
             <>
@@ -1012,13 +1009,9 @@
                         >
                           <h3>{city}</h3>
                           <h3>{area}</h3>
-                        </div>
-                        <div
-                          className="arenaInfo"
-                          style={{ color: typeFontStyle }}
-                        >
                           <h3>{arena}</h3>
                         </div>
+      
                         <div className="tag-style">
                           <p style={{ backgroundColor: typeFontStyle }}>
                             {tagDegree}
@@ -1054,7 +1047,7 @@
                             />
                             <p>Roy</p>
                           </div>
-                          <p className="evaluateState-yes">已評價</p>
+                          <p className="evaluateState-yes" style={{ backgroundColor: typeStyle }}>已評價</p>
                         </a>
                       </div>
 
@@ -1067,10 +1060,10 @@
                               alt=""
                             />
                             <div className="attendance">
-                              <p className="text-M">85%</p>
-                              <img src="../images/vbellipsebar.png" alt="" />
+                              <p className="text-M" style={{ color: typeFontStyle }}>85%</p>
+                              <img src={ellipseBarType} alt="" />
                             </div>
-                            <p className="userInfo">B</p>
+                            <p className="userInfo" style={{ backgroundColor: typeStyle }}>B</p>
                           </div>
                           <div className="selfState-title">
                             <p>Roy</p>
@@ -1083,19 +1076,19 @@
                           <input type="text" placeholder="可在此輸入備註" />
                         </div>
                         <fieldset className="evaluateOption">
-                          <h5>出席</h5>
+                          <h5 style={{ color: typeFontStyle }}>出席</h5>
                           <input type="radio" name="出席" id="attend" />
-                          <label for="正常出席">正常出席</label>
+                          <label htmlFor="正常出席">正常出席</label>
                           <input type="radio" name="出席" id="absent" />
-                          <label for="無故出席">無故出席</label>
+                          <label htmlFor="無故出席">無故出席</label>
                         </fieldset>
                         <fieldset className="evaluateOption">
-                          <h5>程度</h5>
+                          <h5 style={{ color: typeFontStyle }}>程度</h5>
                           <input type="radio" name="程度" id="comply" />
-                          <label for="符合自評">符合自評</label>
+                          <label htmlFor="符合自評">符合自評</label>
 
                           <input type="radio" name="程度" id="uncertainty" />
-                          <label for="符合自評">不確定</label>
+                          <label htmlFor="符合自評">不確定</label>
                         </fieldset>
                         <div className="BtnContainer">
                           <a href="#" className="button btn-no">
