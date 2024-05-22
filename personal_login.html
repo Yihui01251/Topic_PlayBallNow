@@ -21,25 +21,14 @@
     </style>
   </head>
   <body id="body">
-    <small class="fileName">檔名：<code>personal.html</code></small>
+    <small class="fileName">檔名：<code>personal_login.html</code></small>
     <!-- 根元素  -->
     <div id="root"></div>
     <script type="text/babel">
       (async () => {
-
-        const {useState} = React;
-
-        const App = () => {
-          const [loginBtn, setLoginBtn] =useState('none');
-          const [infoState,setInfoState] =useState('block');
-          const changeLogInState = (id)=>{
-          setLoginBtn("none");
-          setInfoState("block");
-        }
-
-          return (
-            <div className="body">
-              <div className = "mobile-TopBar"><img src="./images/mobile-both-topbanner.png" alt="不分類的手機版banner"/></div>
+        const Header =()=>{
+          return(<><div className = "mobile-TopBar">
+                <img src="./images/mobile-both-topbanner.png" alt="不分類的手機版banner"/></div>
               <header id="topBar">
                 <nav id="top-nav">
                   <ul id="menu">
@@ -89,7 +78,26 @@
                     />
                   </button>
                 </div>
-                </header>
+                </header></>)
+        }
+        const {useState,useEffect} = React;
+
+        const App = () => {
+          const [loginBtn, setLoginBtn] =useState('none');
+          const [infoState,setInfoState] =useState('block');
+          const changeLogInState = (id)=>{
+          setLoginBtn("none");
+          setInfoState("block");
+        }
+        const[userName,setUserName]=useState("十全大補");
+         useEffect(()=>{
+          setUserName(window.localStorage.userName);
+         },[])
+          
+
+          return (
+            <div className="body">
+              <Header/>
               <main className="personal-Area">
 
                 <div className="personalArea-infoContainer">
@@ -103,7 +111,7 @@
                         <img src="./images/player-border.png" alt="假頭像" />
                       </figure>
 
-                      <div style ={{display : infoState}}><div className ="userName" ><img src="./images/icon-male.png" alt=""/><p className ="hugTitle title-M" value="十全大補">十全大補</p></div></div>
+                      <div style ={{display : infoState}}><div className ="userName" ><img src="./images/icon-male.png" alt=""/><p className ="hugTitle title-M" value={userName}>{userName}</p></div></div>
                     </div>
                     <div className="biography-info">
                       <div className="info-introduction">

@@ -26,10 +26,10 @@
     <div id="root"></div>
     <script type="text/babel">
       (async () => {
-        const App = () => {
-          return (
-            <div className="body">
-              <div className="mobile-TopBar">
+        const {useState} =React;
+        const TopBar =()=>{
+          return(<>
+          <div className="mobile-TopBar">
                 <img
                   src="./images/mobile-both-topbanner.png"
                   alt="不分類的手機版banner"
@@ -78,8 +78,19 @@
                   </div>
                 </div>
             </header>
+          </>
+            
+          )
+        }
+        const App = () => {
+          const[userName,setUserName]=useState("十全大補");
+          const saveData =()=>{
+            window.localStorage.userName=userName;
+          }
+          return (
+            <div className="body">
+             <TopBar/>
               <main className="register-Area">
-
                 <section className = "register-section">
                   <div className="register-info">
                     <div className="title">
@@ -93,7 +104,7 @@
                     </div>
                     <div className="player-info">
                       <label htmlFor="name">稱呼</label>
-                      <input id="name" type="text" value ="十全大補" />
+                      <input id="name" type="text" value ={userName} onChange={(e)=>{setUserName(e.target.value);}} />
                       <label htmlFor="gender">性別</label>
                       <div>
                         <button  className="button">男性</button>
@@ -141,7 +152,7 @@
                   </div>
 
                   <div className="BtnContainer">
-                    <a className="button" href="/personal_login.html">註冊</a>
+                    <a className="button" href="/personal_login.html" onClick={()=>{saveData()}}>註冊</a>
                     </div>
                   </section>
               </main>
