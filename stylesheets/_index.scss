@@ -105,12 +105,12 @@ main:10
   margin-bottom: 30px;
 
   opacity: 0.8;
-  
+
   /* 子層 */
   display: flex;
   align-items: center;
   justify-content: center;
-  &::before{
+  &::before {
     content: "打排球";
   }
   img {
@@ -121,12 +121,11 @@ main:10
     object-position: center; /* 圖片位置 */
     opacity: 0.7;
   }
-  &:hover{
+  &:hover {
     opacity: 1;
-    
   }
-  &:active{
-    box-shadow:none
+  &:active {
+    box-shadow: none;
   }
 }
 
@@ -140,7 +139,7 @@ main:10
   box-shadow: 5px 5px 4px $box-shadow;
   border-radius: 20px;
   opacity: 0.8;
-  &::before{
+  &::before {
     content: "打羽球";
   }
   /* 子層 */
@@ -153,12 +152,11 @@ main:10
     width: 30%;
     opacity: 0.7;
   }
-  &:hover{
+  &:hover {
     opacity: 1;
-    
   }
-  &:active{
-    box-shadow:none
+  &:active {
+    box-shadow: none;
   }
 }
 
@@ -178,7 +176,7 @@ button#btn-typeVb.selected {
   display: flex;
   align-items: center;
   justify-content: center;
-  &::before{
+  &::before {
     content: "";
   }
   img {
@@ -191,13 +189,13 @@ button#btn-typeVb.selected {
     /* 圖片位置 */
   }
 }
-button#btn-typeVb.selected{
+button#btn-typeVb.selected {
   background-image: url(/images/vball.png);
   background-position: center;
   background-size: 80%;
   background-repeat: no-repeat;
 }
-button#btn-typeBm.selected{
+button#btn-typeBm.selected {
   background-image: url(/images/bball.png);
   background-position: center;
   background-size: 80%;
@@ -211,12 +209,13 @@ button#btn-typeBm.selected{
     display: none;
   }
 
-  button#btn-typeVb.selected,button#btn-typeBm.selected {
+  button#btn-typeVb.selected,
+  button#btn-typeBm.selected {
     position: absolute;
     display: flex;
     border-radius: $border-radius-90;
     padding: 10px;
-    
+
     top: 58px;
   }
 }
@@ -313,7 +312,7 @@ button#btn-typeBm.selected{
       /* 佈局 */
       flex: 1 1 auto;
       align-self: center;
-      &:hover{
+      &:hover {
         box-shadow: none;
       }
     }
@@ -333,7 +332,7 @@ button#btn-typeBm.selected{
       align-self: center;
       box-shadow: 5px 5px 4px $box-shadow;
       color: var(--main-color);
-      &:hover{
+      &:hover {
         box-shadow: none;
       }
     }
@@ -395,7 +394,7 @@ button#btn-typeBm.selected{
     display: flex;
     justify-content: center;
     align-items: center;
-     text-shadow:
+    text-shadow:
       1px -1px 0 #000000,
       1px -1px 0 #000000,
       -1px 1px 0 #000000,
@@ -415,7 +414,6 @@ button#btn-typeBm.selected{
 
 /* 首頁貼文容器tag */
 /* 首頁main > section(containers > ul(tags*/
-
 
 /* 首頁main > section(containers > ul.tags > li > #tags-degree*/
 #tags-degree {
@@ -442,8 +440,15 @@ button#btn-typeBm.selected{
   /* grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); */
   /* gap: 1vw; */
   justify-content: flex-start;
-  /* 水平居中 */
+  /*  */
   overflow: hidden;
+  //overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  scroll-snap-type: x mandatory;//水平滾動
+  -webkit-overflow-scrolling: touch;
+  cursor: grab;
+  position: relative;
 }
 
 /* 首頁小貼文元件 */
@@ -462,6 +467,9 @@ button#btn-typeBm.selected{
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  //scroll-snap-align: start;
+  //transition: transform 0.3s ease; /* 添加平滑过渡效果 */
+  user-select: none;
 
   .bg {
     position: absolute;
@@ -492,7 +500,7 @@ button#btn-typeBm.selected{
   /* layout */
   width: 70%;
   height: 144px;
-  color:var(--font-color);
+  color: var(--font-color);
   /* 子 */
   text-align: center;
   display: inline-flex;
@@ -506,16 +514,16 @@ button#btn-typeBm.selected{
     position: relative;
     max-width: 100%;
     min-height: 30px;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 
-      // text-shadow:
-      // 1px -1px 0 #000000,
-      // 1px -1px 0 #000000,
-      // -1px 1px 0 #000000,
-      // 1px 1px 0 #000000;
-  
+    // text-shadow:
+    // 1px -1px 0 #000000,
+    // 1px -1px 0 #000000,
+    // -1px 1px 0 #000000,
+    // 1px 1px 0 #000000;
+
     // &::before {
     //   /* 增加h3文字外框線 */
     //   content: attr(value);

@@ -27,16 +27,28 @@
         display: none;
       }
     </style>
+    <!-- 載入axios套件 -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- jQ -->
+    <!-- <script src="./javascripts/jquery-3.7.1.min.js"></script> -->
+    <!-- 輪播套件 -->
+    <!-- <link rel="stylesheet" type="text/css" charset="UTF-8" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-slick/0.28.1/react-slick.min.js"></script>
+    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-slick/0.28.1/react-slick.min.js"></script>
+    <script crossorigin src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script> -->
   </head>
 
   <body id="body">
     <small class="fileName">檔名：<code>index.html</code></small>
-    <!-- 載入axios套件 -->
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <div id="root"></div>
     <script type="text/babel">
       (async () => {
+        // const Slider = window["react-slick"];
+
+        const { useState, useEffect, useRef, useMemo } = React;
+
         //取得json資料
         const data = await axios.get("./postData_test.json");
         const { postData } = data.data;
@@ -46,7 +58,6 @@
         const { bm_today_postData } = postData[2];
         const { bm_week_postData } = postData[3];
 
-        
         /* 建立元件 footer元件 */
         const Footer = (props) => {
           return (
@@ -68,8 +79,6 @@
           );
         };
         const App = () => {
-          const { useState, useEffect, useRef, useMemo } = React;
-
           // const [backgroundImage, setBackgroundImage] = useState("url('../images/CatBg.jpg')");
           const [mainColor, setMainColor] = useState("#14AAEB");
           const [fontColor, setFontColor] = useState("#147CB6");
@@ -81,7 +90,9 @@
           const [decorateSearch, setDecorateSearch] = useState(
             'url("/images/index-searchCat.png")'
           );
-          const[mobileTopBar,setMobileTopBar] = useState("/images/mobiletopvb.svg");
+          const [mobileTopBar, setMobileTopBar] = useState(
+            "/images/mobiletopvb.svg"
+          );
           /* 要map的資料 */
           const [todayType, setTodayType] = useState("vb_today_postData");
           const [weekType, setWeekType] = useState("vb_week_postData");
@@ -115,7 +126,7 @@
             let inputColor = "";
             let newBorder = "";
             let decorate = "";
-            let topBanner="";
+            let topBanner = "";
             /* 更多的連結 */
             let hrefTodayMore = "./VBtodayMore-postsArea.html";
             let hrefWeekMore = "./VBweekMore-postsArea.html";
@@ -224,9 +235,12 @@
                 return [];
             }
           };
-          useEffect(()=>{
-            console.log(`本日資料類型: ${todayType} , 本週資料類型: ${weekType}`)
-          },[weekType,todayType])
+
+          useEffect(() => {
+            console.log(
+              `本日資料類型: ${todayType} , 本週資料類型: ${weekType}`
+            );
+          }, [weekType, todayType]);
 
           /* tag篩選 */
           //取得tag對應資料屬性
@@ -502,7 +516,7 @@
               // 如果所有条件都匹配，则返回 true
               return matchAllConditions;
             });
-          }, [todayType,filterTag, tagDataType, conditions]);
+          }, [todayType, filterTag, tagDataType, conditions]);
 
           const weekFilterPosts = useMemo(() => {
             // 沒有篩選時渲染全部貼文
@@ -562,68 +576,96 @@
           ]);
 
           const [showNotice, setShowNotice] = useState(false);
-          const handleNotice = ()=>{
+          const handleNotice = () => {
             setShowNotice(true);
-          }
+          };
+
+          // /* 拖拽輪播 */
+          const [dragStartX, setDragStartX] = useState(0);
+          const [dragging, setDragging] = useState(false);
+          const [containerRef, setContainerRef] = useState(null);
+          const handleDragStart = (event) => {
+            setDragging(true);
+            setDragStartX(event.clientX);
+          };
+
+          const handleDragMove = (event) => {
+            if (!dragging || !containerRef) return;
+                    const delta = event.clientX - dragStartX;
+                    containerRef.scrollLeft -= delta;
+                    setDragStartX(event.clientX);
+          };
+
+          const handleDragEnd = () => {
+            setDragging(false);
+          };
 
           // 元件
           /* 建立元件 header元件 */
-          const TopBar = ({mobileTopBar}) => {
-          return (
-            <>
-              <div className="mobile-TopBar">
-                <img src={mobileTopBar} alt=""/>
-              </div>
-              <header id="topBar">
-                <nav id="top-nav">
-                  <ul id="menu">
-                    <li>
-                      <a href="./index.html">
-                        <img
-                          className="icon"
-                          src="./images/magnifier.png"
-                          alt=""
-                        />
-                        探索
-                      </a>
-                    </li>
-                    <li>
-                      <a href="./publicationForm.html">
-                        <img className="icon" src="./images/post.png" alt="" />
-                        找人
-                      </a>
-                    </li>
-                    <li>
-                      <a href="notice.html">
-                        <img className="icon" src="./images/bell3.png" alt="" />
-                        行程
-                      </a>
-                    </li>
-                    <li>
-                      <a href="personal.html">
-                        <img className="icon" src="./images/cat.png" alt="" />
-                        個人
-                      </a>
-                    </li>
-                  </ul>
-                </nav>
-                <div className="form-title">
-                  <div className="hugTitle noto-sans-tc">
-                    <img src="./images/vbtitle.svg" alt="" />
-                    <h1 className="title-L" value="我的行程">
-                      我的行程
-                    </h1>
-                    <img src="./images/bmtitle.svg" alt="" />
-                  </div>
-                  <a href="/myCollect.html" className="button btn-postManage">
-                  我的收藏
-                  <img src="./images/heart-yes.svg" alt="" />
-                </a>
+          const TopBar = ({ mobileTopBar }) => {
+            return (
+              <>
+                <div className="mobile-TopBar">
+                  <img src={mobileTopBar} alt="" />
                 </div>
-              </header>
-            </>
-          );
-        };
+                <header id="topBar">
+                  <nav id="top-nav">
+                    <ul id="menu">
+                      <li>
+                        <a href="./index.html">
+                          <img
+                            className="icon"
+                            src="./images/magnifier.png"
+                            alt=""
+                          />
+                          探索
+                        </a>
+                      </li>
+                      <li>
+                        <a href="./publicationForm.html">
+                          <img
+                            className="icon"
+                            src="./images/post.png"
+                            alt=""
+                          />
+                          找人
+                        </a>
+                      </li>
+                      <li>
+                        <a href="notice.html">
+                          <img
+                            className="icon"
+                            src="./images/bell3.png"
+                            alt=""
+                          />
+                          行程
+                        </a>
+                      </li>
+                      <li>
+                        <a href="personal.html">
+                          <img className="icon" src="./images/cat.png" alt="" />
+                          個人
+                        </a>
+                      </li>
+                    </ul>
+                  </nav>
+                  <div className="form-title">
+                    <div className="hugTitle noto-sans-tc">
+                      <img src="./images/vbtitle.svg" alt="" />
+                      <h1 className="title-L" value="我的行程">
+                        我的行程
+                      </h1>
+                      <img src="./images/bmtitle.svg" alt="" />
+                    </div>
+                    <a href="/myCollect.html" className="button btn-postManage">
+                      我的收藏
+                      <img src="./images/heart-yes.svg" alt="" />
+                    </a>
+                  </div>
+                </header>
+              </>
+            );
+          };
           // 建立貼文元件
           const PostCard = ({
             id,
@@ -645,12 +687,14 @@
             host,
             ballBrand,
           }) => {
+            
             return (
               <>
                 <div
                   className="content"
                   id={id}
                   style={{ backgroundImage: postBorder }}
+                  
                 >
                   <div className="text">
                     <div className="mainText">
@@ -718,10 +762,11 @@
             unspecified,
             role,
             pos,
-            equip,ballBrand,
+            equip,
+            ballBrand,
             note,
             host,
-            
+
             noticeHref,
           }) => {
             const [showBallBrand, setShowBallBrand] = useState("none");
@@ -829,14 +874,10 @@
                               關閉
                             </a>
                             <a href={`#${noticeHref}`}>
-                              <button
-                                className="button"
-                                onClick={handleNotice}
-                              >
+                              <button className="button" onClick={handleNotice}>
                                 確認報名
                               </button>
                             </a>
-                            
                           </div>
                         </div>
                       </div>
@@ -844,7 +885,7 @@
                   </div>
                 </div>
                 {showNotice && <NoticeApply noticeHref={noticeHref} />}
-                </>
+              </>
             );
           };
           //建立通知報名元件
@@ -870,7 +911,7 @@
 
           return (
             <div className="body">
-              <TopBar mobileTopBar={mobileTopBar}/>
+              <TopBar mobileTopBar={mobileTopBar} />
               <main className="index-Area">
                 {/*篩選區 */}
                 <section className="search">
@@ -907,8 +948,7 @@
                       }
                       ref={btnTypeVbRef}
                       onClick={() => changeType("btn-typeVb")}
-                    >
-                    </button>
+                    ></button>
                     <button
                       id="btn-typeBm"
                       className={
@@ -916,9 +956,7 @@
                       }
                       onClick={() => changeType("btn-typeBm")}
                       ref={btnTypeBmRef}
-                    >
-                      
-                    </button>
+                    ></button>
                   </div>
                   <div id="search-Bar" style={{ backgroundColor: mainColor }}>
                     <div className="dropMenu">
@@ -992,9 +1030,7 @@
                           }
                           ref={btnTypeVbRef}
                           onClick={() => changeType("btn-typeVb")}
-                        >
-                          
-                        </button>
+                        ></button>
                         <button
                           id="btn-typeBm"
                           className={
@@ -1002,9 +1038,7 @@
                           }
                           onClick={() => changeType("btn-typeBm")}
                           ref={btnTypeBmRef}
-                        >
-                         
-                        </button>
+                        ></button>
                       </div>
                       <a href="./react_postsArea.html">
                         <button
@@ -1023,7 +1057,8 @@
                 {/* 本日臨打貼文 */}
                 <section className="post-containers">
                   <div className="title-postArea">
-                    <h2><div className="titleLine"></div>
+                    <h2>
+                      <div className="titleLine"></div>
                       本日臨打貼文
                     </h2>
                     <a href={hrefTodayMore}>
@@ -1065,7 +1100,16 @@
                       晚上
                     </button>
                   </ul>
-                  <div className="post-block">
+                  <div className="post-block" ref={(ref) => setContainerRef(ref)} onMouseDown={handleDragStart}
+                                onMouseMove={handleDragMove}
+                                onMouseUp={handleDragEnd}
+                                onMouseLeave={handleDragEnd}
+                                 onTouchStart={handleDragStart}
+                                onTouchMove={handleDragMove}
+                                onTouchEnd={handleDragEnd} 
+                                > 
+
+                    {/* <Slider {...settings}> */}
                     {filterPosts.map((post_data) => {
                       return (
                         <PostCard
@@ -1092,6 +1136,7 @@
                         />
                       );
                     })}
+                    {/* </Slider> */}
                   </div>
                 </section>
                 {/* 本週臨打貼文 */}
@@ -1169,7 +1214,7 @@
                   </div>
                 </section>
               </main>
-              <Footer/>
+              <Footer />
             </div>
           );
         };

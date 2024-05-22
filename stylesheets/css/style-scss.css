@@ -2019,7 +2019,8 @@ button#btn-typeBm.selected {
   #btn-typeVb {
     display: none;
   }
-  button#btn-typeVb.selected, button#btn-typeBm.selected {
+  button#btn-typeVb.selected,
+  button#btn-typeBm.selected {
     position: absolute;
     display: flex;
     border-radius: 90px;
@@ -2235,8 +2236,14 @@ button#btn-typeBm.selected {
   /* grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); */
   /* gap: 1vw; */
   justify-content: flex-start;
-  /* 水平居中 */
+  /*  */
   overflow: hidden;
+  overflow-y: hidden;
+  white-space: nowrap;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  cursor: grab;
+  position: relative;
 }
 
 /* 首頁小貼文元件 */
@@ -2254,6 +2261,7 @@ button#btn-typeBm.selected {
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  user-select: none;
 }
 .content .bg {
   position: absolute;
