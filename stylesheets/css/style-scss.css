@@ -2032,7 +2032,7 @@ button#btn-typeBm.selected {
 .btn-changeType {
   /* 640px以上不顯示 */
   display: none;
-  width: 80vw;
+  width: 50vw;
   height: fit-content;
   flex: 10 1 auto;
 }
@@ -2043,10 +2043,10 @@ button#btn-typeBm.selected {
   }
 }
 
-/* main > section(search > div(search-Bar */
+/*首頁篩選表單 */
 #search-Bar {
   /* 樣式 */
-  width: 80vw;
+  width: 50vw;
   min-width: 300px;
   height: 270px;
   border: 4px solid black;
