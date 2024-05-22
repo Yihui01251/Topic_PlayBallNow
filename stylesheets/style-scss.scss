@@ -398,7 +398,7 @@ body {
 #menu {
   /* 樣式 */
   width: 100%;
-  height: 40px;
+  height: 50px;
   border: 3px solid $second-color-black;
   border-bottom: 5px solid $second-color-black;
   border-radius: $border-radius-20;
@@ -410,7 +410,7 @@ body {
   align-items: center;
   padding: 5px 5vw;
 
-  @media ($breakpoint-moblie) {
+  @media ($breakpoint-md) {
     width: 90%;
   }
 
