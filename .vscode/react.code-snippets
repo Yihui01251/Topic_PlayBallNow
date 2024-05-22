@@ -140,5 +140,12 @@
 		"</div>",
 	],
 	"description":"套燈箱效果的報名審核中通知元件"	
-}
+},
+"header元件":{
+	"prefix": "header",
+	"body":[
+		
+	],
+	"description":"報名貼文元件"	
+},
 }

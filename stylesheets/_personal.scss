@@ -171,11 +171,69 @@
   background-color: $background-color-lightwhite-s;
   padding: 20px;
   display: grid;
-  grid-template-rows: 2fr;
-  gap: 20px;
+  grid-auto-rows: auto;
+  gap: 10px;
   justify-content: center;
   align-items: center;
   justify-items: center;
+  /* 登入後顯示的場次資料 */
+.selfState-userInfo {
+  max-width: 90%;
+  min-width: 200px;
+  height: fit-content;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 35px;
+  align-items: center;
+  padding: 0px;
+  
+    p{
+      color: $font-color-bm;
+    }
+
+    .applicantImg{
+      width: 75px;
+    }
+    .userInfo {
+      width: 53px;
+      height: 35px;
+      
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+   
+        
+        text-align: center;
+        line-height: 30px;
+        border-radius: $border-radius-50;
+        background-color: $main-color-bm;
+        color: $background-color-lightwhite-s;
+      
+    }
+  
+    .attendance {
+      width: 60px;
+      height: 75px;
+      position: relative;
+      p {
+        position: absolute;
+        top: 25px;
+        left: 13px;
+        color: $font-color-bm;
+  
+      }
+  
+      img {
+        position: absolute;
+        width: 100%;
+        top: 5px;
+        left: 0;
+  
+      }
+    
+  }
+}
 }
 
 /* 登入後顯示的場次資料 */

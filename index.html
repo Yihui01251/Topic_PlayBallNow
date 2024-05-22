@@ -27,16 +27,28 @@
         display: none;
       }
     </style>
+    <!-- 載入axios套件 -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- jQ -->
+    <!-- <script src="./javascripts/jquery-3.7.1.min.js"></script> -->
+    <!-- 輪播套件 -->
+    <!-- <link rel="stylesheet" type="text/css" charset="UTF-8" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-slick/0.28.1/react-slick.min.js"></script>
+    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-slick/0.28.1/react-slick.min.js"></script>
+    <script crossorigin src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script> -->
   </head>
 
   <body id="body">
     <small class="fileName">檔名：<code>index.html</code></small>
-    <!-- 載入axios套件 -->
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <div id="root"></div>
     <script type="text/babel">
       (async () => {
+        // const Slider = window["react-slick"];
+
+        const { useState, useEffect, useRef, useMemo } = React;
+
         //取得json資料
         const data = await axios.get("./postData_test.json");
         const { postData } = data.data;
@@ -46,7 +58,6 @@
         const { bm_today_postData } = postData[2];
         const { bm_week_postData } = postData[3];
 
-        
         /* 建立元件 footer元件 */
         const Footer = (props) => {
           return (
@@ -68,8 +79,6 @@
           );
         };
         const App = () => {
-          const { useState, useEffect, useRef, useMemo } = React;
-
           // const [backgroundImage, setBackgroundImage] = useState("url('../images/CatBg.jpg')");
           const [mainColor, setMainColor] = useState("#14AAEB");
           const [fontColor, setFontColor] = useState("#147CB6");
@@ -81,11 +90,13 @@
           const [decorateSearch, setDecorateSearch] = useState(
             'url("/images/index-searchCat.png")'
           );
-          const[mobileTopBar,setMobileTopBar] = useState("/images/mobiletopvb.svg");
+          const [mobileTopBar, setMobileTopBar] = useState(
+            "/images/mobiletopvb.svg"
+          );
           /* 要map的資料 */
           const [todayType, setTodayType] = useState("vb_today_postData");
           const [weekType, setWeekType] = useState("vb_week_postData");
-          /*  */
+          /* 選擇的類型對應要顯示的資料 */
           const [selectedButton, setSelectedButton] = useState("btn-typeVb");
           const [BMdisplay, setBMDisplay] = useState("none");
           const [VBdisplay, setVBDisplay] = useState("flex");
@@ -115,7 +126,7 @@
             let inputColor = "";
             let newBorder = "";
             let decorate = "";
-            let topBanner="";
+            let topBanner = "";
             /* 更多的連結 */
             let hrefTodayMore = "./VBtodayMore-postsArea.html";
             let hrefWeekMore = "./VBweekMore-postsArea.html";
@@ -224,9 +235,12 @@
                 return [];
             }
           };
-          useEffect(()=>{
-            console.log(`本日資料類型: ${todayType} , 本週資料類型: ${weekType}`)
-          },[weekType,todayType])
+
+          useEffect(() => {
+            console.log(
+              `本日資料類型: ${todayType} , 本週資料類型: ${weekType}`
+            );
+          }, [weekType, todayType]);
 
           /* tag篩選 */
           //取得tag對應資料屬性
@@ -502,7 +516,7 @@
               // 如果所有条件都匹配，则返回 true
               return matchAllConditions;
             });
-          }, [todayType,filterTag, tagDataType, conditions]);
+          }, [todayType, filterTag, tagDataType, conditions]);
 
           const weekFilterPosts = useMemo(() => {
             // 沒有篩選時渲染全部貼文
@@ -562,68 +576,242 @@
           ]);
 
           const [showNotice, setShowNotice] = useState(false);
-          const handleNotice = ()=>{
+          const handleNotice = () => {
             setShowNotice(true);
-          }
+          };
+
+          /* 拖拽輪播 */
+          // 今日
+          const [dragStartX, setDragStartX] = useState(0);
+          const [dragging, setDragging] = useState(false);
+          const [containerRef, setContainerRef] = useState(null);
+
+          const handleDragStart = (event) => {
+            setDragging(true);
+            setDragStartX(event.clientX);
+          };
+
+          const handleDragMove = (event) => {
+            if (!dragging || !containerRef) return;
+            const delta = event.clientX - dragStartX;
+            containerRef.scrollLeft -= delta;
+            setDragStartX(event.clientX);
+          };
+
+          const handleDragEnd = () => {
+            setDragging(false);
+          };
+
+          // 本周
+          const [week_dragStartX, setWeekDragStartX] = useState(0);
+          const [week_dragging, setWeekDragging] = useState(false);
+          const [week_containerRef, setWeekContainerRef] = useState(null);
+
+          const weekHandleDragStart = (event) => {
+            setWeekDragging(true);
+            setWeekDragStartX(event.clientX);
+          };
+
+          const weekHandleDragMove = (event) => {
+            if (!week_dragging || !week_containerRef) return;
+            const delta = event.clientX - week_dragStartX;
+            week_containerRef.scrollLeft -= delta;
+            setWeekDragStartX(event.clientX);
+          };
+
+          const weekHandleDragEnd = (event) => {
+            event.stopPropagation(); //阻止事件冒泡，就不會影響到貼文元件的按鈕事件
+            setWeekDragging(false);
+          };
+
+          /* 篩選表單更新選項 */
+          const [selectedCity, setSelectedCity] = useState("未選擇");
+          const [areaOption, setAreaOption] = useState(["地區"]);
+          const [showArea, setShoeArea] = useState("none");
+          let selectCity = document.getElementById("city");
+          let selectArea = document.getElementById("selectArea");
+          const changeArea = (value) => {
+            setSelectedCity(value);
+            var options = {
+              taipei: [
+                "全部",
+                "中正區",
+                "大同區",
+                "中山區",
+                "松山區",
+                "大安區",
+                "萬華區",
+                "信義區",
+                "士林區",
+                "北投區",
+                "內湖區",
+                "南港區",
+                "文山區",
+              ],
+              xinpei: [
+                "全部",
+                "板橋區",
+                "新莊區",
+                "中和區",
+                "永和區",
+                "土城區",
+                "樹林區",
+                "三重區",
+                "新店區",
+                "淡水區",
+                "汐止區",
+                "瑞芳區",
+                "八里區",
+                "林口區",
+                "芦洲區",
+                "五股區",
+                "泰山區",
+                "三峽區",
+                "鶯歌區",
+                "石碇區",
+                "深坑區",
+                "石門區",
+                "坪林區",
+                "平溪區",
+                "雙溪區",
+                "貢寮區",
+                "金山區",
+                "萬里區",
+                "烏來區",
+              ],
+              counties: [
+                "基隆市",
+                "新竹市",
+                "桃園市",
+                "臺中市",
+                "臺南市",
+                "高雄市",
+                "嘉義市",
+                "新竹縣",
+                "苗栗縣",
+                "彰化縣",
+                "南投縣",
+                "雲林縣",
+                "嘉義縣",
+                "屏東縣",
+                "宜蘭縣",
+                "花蓮縣",
+                "臺東縣",
+                "澎湖縣",
+              ],
+            };
+            if (value == "台北市") {
+              selectArea;
+              setAreaOption(options.taipei);
+              setShoeArea("flex");
+            } else if (value == "新北市") {
+              setAreaOption(options.xinpei);
+              setShoeArea("flex");
+            } else if (value == "其他") {
+              setAreaOption(options.counties);
+              setShoeArea("flex");
+            } else {
+              setShoeArea("none");
+            }
+          };
+
+          /* 儲存篩選條件 */
+          const [selectedDate, setSelectedDate] = useState("未選擇"); //日期
+          const [selectedArea, setSelectedArea] = useState(["未選擇"]); //地區
+          const [selectedCost, setSelectedCost] = useState("未選擇"); //費用
+          const [selectedDegree, setSelectedDegree] = useState("未選擇"); //程度
+          const [selectedRol, setSelectedRol] = useState("未選擇"); //排球類型
+          const [selectedEquip, setSelectedEquip] = useState(["未選擇"]); //羽球設備
+
+          const handleSelectChange = (event) => {
+            //转换为数组，并提取每个选项的值。
+            const selectedOptions = Array.from(
+              event.target.selectedOptions,
+              (option) => option.value
+            );
+            setSelectedArea(selectedOptions);
+          };
+
+          const SaveData = () => {
+            window.localStorage.filterDate = selectedDate;
+            window.localStorage.filterCity = selectedCity;
+            localStorage.setItem('filterArea', JSON.stringify(selectedArea));
+            window.localStorage.filterCost = selectedCost;
+            window.localStorage.filterDegree = selectedDegree;
+            window.localStorage.filterRol = selectedRol;
+            window.localStorage.filterEquip = selectedEquip;
+          };
+          useEffect(() => {
+            console.log(selectedArea);
+            console.log("程度: " + selectedDegree);
+          }, [selectedArea, selectedDegree]);
 
           // 元件
           /* 建立元件 header元件 */
-          const TopBar = ({mobileTopBar}) => {
-          return (
-            <>
-              <div className="mobile-TopBar">
-                <img src={mobileTopBar} alt=""/>
-              </div>
-              <header id="topBar">
-                <nav id="top-nav">
-                  <ul id="menu">
-                    <li>
-                      <a href="./index.html">
-                        <img
-                          className="icon"
-                          src="./images/magnifier.png"
-                          alt=""
-                        />
-                        探索
-                      </a>
-                    </li>
-                    <li>
-                      <a href="./publicationForm.html">
-                        <img className="icon" src="./images/post.png" alt="" />
-                        找人
-                      </a>
-                    </li>
-                    <li>
-                      <a href="notice.html">
-                        <img className="icon" src="./images/bell3.png" alt="" />
-                        行程
-                      </a>
-                    </li>
-                    <li>
-                      <a href="personal.html">
-                        <img className="icon" src="./images/cat.png" alt="" />
-                        個人
-                      </a>
-                    </li>
-                  </ul>
-                </nav>
-                <div className="form-title">
-                  <div className="hugTitle noto-sans-tc">
-                    <img src="./images/vbtitle.svg" alt="" />
-                    <h1 className="title-L" value="我的行程">
-                      我的行程
-                    </h1>
-                    <img src="./images/bmtitle.svg" alt="" />
-                  </div>
-                  <a href="/myCollect.html" className="button btn-postManage">
-                  我的收藏
-                  <img src="./images/heart-yes.svg" alt="" />
-                </a>
+          const TopBar = ({ mobileTopBar }) => {
+            return (
+              <>
+                <div className="mobile-TopBar">
+                  <img src={mobileTopBar} alt="" />
                 </div>
-              </header>
-            </>
-          );
-        };
+                <header id="topBar">
+                  <nav id="top-nav">
+                    <ul id="menu">
+                      <li>
+                        <a href="./index.html">
+                          <img
+                            className="icon"
+                            src="./images/magnifier.png"
+                            alt=""
+                          />
+                          探索
+                        </a>
+                      </li>
+                      <li>
+                        <a href="./publicationForm.html">
+                          <img
+                            className="icon"
+                            src="./images/post.png"
+                            alt=""
+                          />
+                          找人
+                        </a>
+                      </li>
+                      <li>
+                        <a href="notice.html">
+                          <img
+                            className="icon"
+                            src="./images/bell3.png"
+                            alt=""
+                          />
+                          行程
+                        </a>
+                      </li>
+                      <li>
+                        <a href="personal.html">
+                          <img className="icon" src="./images/cat.png" alt="" />
+                          個人
+                        </a>
+                      </li>
+                    </ul>
+                  </nav>
+                  <div className="form-title">
+                    <div className="hugTitle noto-sans-tc">
+                      <img src="./images/vbtitle.svg" alt="" />
+                      <h1 className="title-L" value="我的行程">
+                        我的行程
+                      </h1>
+                      <img src="./images/bmtitle.svg" alt="" />
+                    </div>
+                    <a href="/myCollect.html" className="button btn-postManage">
+                      我的收藏
+                      <img src="./images/heart-yes.svg" alt="" />
+                    </a>
+                  </div>
+                </header>
+              </>
+            );
+          };
           // 建立貼文元件
           const PostCard = ({
             id,
@@ -669,7 +857,12 @@
                       <p className="text-S tagMargin">${secondaryTag}</p>
                     </div>
                     <div className="BtnContainer">
-                      <a className="button" href={`#${href}`}>
+                      <a
+                        className="button"
+                        href={`#${href}`}
+                        onMouseDown={(e) => e.stopPropagation()}
+                      >
+                        {/* onMouseDown={(e) => e.stopPropagation()}為了阻止冒泡 使其不會跟托拽輪播衝突 */}
                         報名
                       </a>
                     </div>
@@ -718,10 +911,11 @@
             unspecified,
             role,
             pos,
-            equip,ballBrand,
+            equip,
+            ballBrand,
             note,
             host,
-            
+
             noticeHref,
           }) => {
             const [showBallBrand, setShowBallBrand] = useState("none");
@@ -739,7 +933,11 @@
             }
             return (
               <>
-                <div className="popup" id={href}>
+                <div
+                  className="popup"
+                  id={href}
+                  onMouseDown={(e) => e.stopPropagation()}
+                >
                   <div className="popup-inner">
                     <div className="popup__content">
                       <div className="detailPostInfo">
@@ -829,14 +1027,10 @@
                               關閉
                             </a>
                             <a href={`#${noticeHref}`}>
-                              <button
-                                className="button"
-                                onClick={handleNotice}
-                              >
+                              <button className="button" onClick={handleNotice}>
                                 確認報名
                               </button>
                             </a>
-                            
                           </div>
                         </div>
                       </div>
@@ -844,14 +1038,18 @@
                   </div>
                 </div>
                 {showNotice && <NoticeApply noticeHref={noticeHref} />}
-                </>
+              </>
             );
           };
           //建立通知報名元件
           const NoticeApply = ({ noticeHref }) => {
             return (
               /*燈箱效果-報名審核中通知 */
-              <div className="popup" id={noticeHref}>
+              <div
+                className="popup"
+                id={noticeHref}
+                onMouseDown={(e) => e.stopPropagation()}
+              >
                 <div className="popup-static">
                   <div className="popup__content">
                     {/* 報名審核中通知元件 */}
@@ -867,10 +1065,20 @@
             );
           };
           //建立篩選表單元件
+          const FilterForm = ({ areaOption }) => {
+            return <></>;
+          };
 
+          const Option = ({ option }) => {
+            return (
+              <>
+                <option value={option}>{option}</option>
+              </>
+            );
+          };
           return (
             <div className="body">
-              <TopBar mobileTopBar={mobileTopBar}/>
+              <TopBar mobileTopBar={mobileTopBar} />
               <main className="index-Area">
                 {/*篩選區 */}
                 <section className="search">
@@ -907,8 +1115,7 @@
                       }
                       ref={btnTypeVbRef}
                       onClick={() => changeType("btn-typeVb")}
-                    >
-                    </button>
+                    ></button>
                     <button
                       id="btn-typeBm"
                       className={
@@ -916,9 +1123,7 @@
                       }
                       onClick={() => changeType("btn-typeBm")}
                       ref={btnTypeBmRef}
-                    >
-                      
-                    </button>
+                    ></button>
                   </div>
                   <div id="search-Bar" style={{ backgroundColor: mainColor }}>
                     <div className="dropMenu">
@@ -930,55 +1135,120 @@
                           id="date"
                           title="打球日"
                           required
-                          style={{ color: fontColor }}
+                          onChange={(e) => {
+                            setSelectedDate(e.target.value);
+                          }}
                         />
-                        <select name="縣市" id="city" className="dpMenu-item">
+                        <select
+                          name="縣市"
+                          id="city"
+                          className="dpMenu-item"
+                          onChange={(e) => {
+                            changeArea(e.target.value);
+                          }}
+                        >
                           <option value="default">縣市</option>
-                          <option value="taipei">台北市</option>
-                          <option value="xinpei">新北市</option>
-                          <option value="counties">其他</option>
+                          <option value="台北市">台北市</option>
+                          <option value="新北市">新北市</option>
+                          <option value="其他">其他</option>
                         </select>
-                        <select name="地區" multiple id="selectArea">
-                          <option value="default">地區</option>
-                          <option value="taipei">台北市</option>
-                          <option value="xinpei">新北市</option>
-                          <option value="counties">其他</option>
+                        <select
+                          name="地區"
+                          multiple
+                          id="selectArea"
+                          className="dpMenu-item"
+                          style={{ display: showArea }}
+                          onChange={(e) => {
+                            handleSelectChange(e);
+                          }}
+                        >
+                          {areaOption.map((option, index) => {
+                            return (
+                              <Option key={index} option={option}></Option>
+                            );
+                          })}
                         </select>
-                        <select name="程度" id="degree" className="dpMenu-item">
+                        <select
+                          name="程度"
+                          id="degree"
+                          className="dpMenu-item"
+                          style={{ display: VBdisplay }}
+                          onChange={(e) => {
+                            setSelectedDegree(e.target.value);
+                          }}
+                        >
                           <option value="default">程度</option>
-                          <optgroup label="羽球">
-                            <option value="新手">新手</option>
-                            <option value="初階">初階</option>
-                            <option value="初上"> 初上</option>
-                            <option value="中下">中下</option>
-                            <option value="中階">中階</option>
-                            <option value="中上">中上</option>
-                          </optgroup>
-                          <optgroup label="排球">
-                            <option value="C以下">C以下</option>
-                            <option value="C">C</option>
-                            <option value="C~B">C~B</option>
-                            <option value="B">B</option>
-                            <option value="B~A">B~A</option>
-                            <option value="C">A</option>
-                            <option value="C">A~S</option>
-                          </optgroup>
+                          <option value="C以下">C以下</option>
+                          <option value="C">C</option>
+                          <option value="C~B">C~B</option>
+                          <option value="B">B</option>
+                          <option value="B~A">B~A</option>
+                          <option value="A">A</option>
+                          <option value="A~S">A~S</option>
+                        </select>
+                        <select
+                          name="程度"
+                          id="degree"
+                          className="dpMenu-item"
+                          style={{ display: BMdisplay }}
+                          onChange={(e) => {
+                            setSelectedDegree(e.target.value);
+                          }}
+                        >
+                          <option value="default">程度</option>
+                          <option value="新手">新手</option>
+                          <option value="初階">初階</option>
+                          <option value="初上"> 初上</option>
+                          <option value="中下">中下</option>
+                          <option value="中階">中階</option>
+                          <option value="中上">中上</option>
+                          <option value="中進階">中進階</option>
                         </select>
 
-                        <select name="費用" id="cost" className="dpMenu-item">
+                        <select
+                          name="費用"
+                          id="cost"
+                          className="dpMenu-item"
+                          onChange={(e) => {
+                            setSelectedCost(e.target.value);
+                          }}
+                        >
                           <option value="default">費用</option>
-                          <option value="150以下">150以下</option>
-                          <option value="default">200以下</option>
-                          <option value="default">250以下</option>
-                          <option value="default">250+</option>
+                          <option value="150-">150以下</option>
+                          <option value="200-">200以下</option>
+                          <option value="250-">250以下</option>
                         </select>
-                        <select name="類型" id="type" className="dpMenu-item">
+                        <select
+                          name="類型"
+                          id="type"
+                          className="dpMenu-item"
+                          style={{ display: VBdisplay }}
+                          onChange={(e) => {
+                            setSelectedRol(e.target.value);
+                          }}
+                        >
                           <option value="default">類型</option>
                           <option value="男網純男">男網純男</option>
+                          <option value="女網純女">女網純女</option>
+                          <option value="男網混排">男網混排</option>
+                          <option value="女網混排">女網混排</option>
                         </select>
-                        <select name="設備" id="equip" className="dpMenu-item">
+                        <select
+                          name="設備"
+                          id="equip"
+                          className="dpMenu-item"
+                          style={{ display: BMdisplay }}
+                          onChange={(e) => {
+                            setSelectedEquip(e.target.value);
+                          }}
+                        >
                           <option value="default">設備</option>
                           <option value="側燈">側燈</option>
+                          <option value="冷氣">冷氣</option>
+                          <option value="飲水機">飲水機</option>
+                          <option value="停車場">停車場</option>
+                          <option value="PVC地板">PVC地板</option>
+                          <option value="淋浴">淋浴</option>
                         </select>
                       </ul>
                       {/**/}
@@ -992,9 +1262,7 @@
                           }
                           ref={btnTypeVbRef}
                           onClick={() => changeType("btn-typeVb")}
-                        >
-                          
-                        </button>
+                        ></button>
                         <button
                           id="btn-typeBm"
                           className={
@@ -1002,16 +1270,14 @@
                           }
                           onClick={() => changeType("btn-typeBm")}
                           ref={btnTypeBmRef}
-                        >
-                         
-                        </button>
+                        ></button>
                       </div>
-                      <a href="./react_postsArea.html">
+                      <a href="./filterPosts.html">
                         <button
                           type="submit"
                           className="btn-send button"
                           onClick={() => {
-                            console.log();
+                            SaveData();
                           }}
                         >
                           送出
@@ -1023,7 +1289,8 @@
                 {/* 本日臨打貼文 */}
                 <section className="post-containers">
                   <div className="title-postArea">
-                    <h2><div className="titleLine"></div>
+                    <h2>
+                      <div className="titleLine"></div>
                       本日臨打貼文
                     </h2>
                     <a href={hrefTodayMore}>
@@ -1065,7 +1332,18 @@
                       晚上
                     </button>
                   </ul>
-                  <div className="post-block">
+                  <div
+                    className="post-block"
+                    ref={(ref) => setContainerRef(ref)}
+                    onMouseDown={handleDragStart}
+                    onMouseMove={handleDragMove}
+                    onMouseUp={handleDragEnd}
+                    onMouseLeave={handleDragEnd}
+                    onTouchStart={handleDragStart}
+                    onTouchMove={handleDragMove}
+                    onTouchEnd={handleDragEnd}
+                  >
+                    {/* <Slider {...settings}> */}
                     {filterPosts.map((post_data) => {
                       return (
                         <PostCard
@@ -1092,6 +1370,7 @@
                         />
                       );
                     })}
+                    {/* </Slider> */}
                   </div>
                 </section>
                 {/* 本週臨打貼文 */}
@@ -1139,7 +1418,17 @@
                       晚上
                     </button>
                   </ul>
-                  <div className="post-block">
+                  <div
+                    className="post-block"
+                    ref={(ref) => setWeekContainerRef(ref)}
+                    onMouseDown={weekHandleDragStart}
+                    onMouseMove={weekHandleDragMove}
+                    onMouseUp={weekHandleDragEnd}
+                    onMouseLeave={weekHandleDragEnd}
+                    onTouchStart={weekHandleDragStart}
+                    onTouchMove={weekHandleDragMove}
+                    onTouchEnd={weekHandleDragEnd}
+                  >
                     {weekFilterPosts.map((post_data) => {
                       return (
                         <PostCard
@@ -1169,7 +1458,7 @@
                   </div>
                 </section>
               </main>
-              <Footer/>
+              <Footer />
             </div>
           );
         };

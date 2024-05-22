@@ -161,7 +161,7 @@ h5,
   width: 60vw;
   max-width: 1000px;
   min-width: 340px;
-  height: fit-content;
+  height: 50px;
   margin: 0 auto;
   justify-content: center;
   /*標題前後圖片*/
@@ -175,12 +175,39 @@ h5,
   .title {
     /* layout */
     min-width: 300px;
-    height: fit-content;
     margin: 20px 0px;
     /* child */
     display: flex;
     flex-direction: row;
     gap: 5vw;
+    justify-content: space-around;
+    align-items: center;
+  }
+}
+
+/* 有包按鈕的標題 */
+.form-title {
+  /* layout */
+  width: 60%;
+  max-width: 700px;
+  min-width: 340px;
+  height: 50px; /* 這樣hover時才不會縮小 */
+  margin: 0 50px;
+  /* child */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+@media (max-width:640px) {
+  .form-title {
+    /* layout */
+    min-width: 375px;
+    margin: 20px 0px;
+    /* child */
+    display: flex;
+    flex-direction: row;
+    gap: 80px;
     justify-content: space-around;
     align-items: center;
   }
@@ -464,7 +491,7 @@ body {
 #menu {
   /* 樣式 */
   width: 100%;
-  height: 40px;
+  height: 50px;
   border: 3px solid #000000;
   border-bottom: 5px solid #000000;
   border-radius: 20px;
@@ -476,7 +503,7 @@ body {
   align-items: center;
   padding: 5px 5vw;
 }
-@media (max-width:640px) {
+@media (max-width:820px) {
   #menu {
     width: 90%;
   }
@@ -741,7 +768,7 @@ footer div p {
   padding: 5px 18px;
   border-radius: 50px;
   border: 2px solid black;
-  border-bottom: 5px solid black;
+  box-shadow: 0px 3px 0px 0px #000000;
   /* 布局 */
   display: flex;
   flex-direction: row;
@@ -754,7 +781,7 @@ footer div p {
 }
 .button:hover {
   margin-top: 0px;
-  box-shadow: 0 2px black;
+  box-shadow: 0 5px black;
 }
 .button:active {
   width: fit-content;
@@ -1992,12 +2019,12 @@ button#btn-typeBm.selected {
   #btn-typeVb {
     display: none;
   }
-  button#btn-typeVb.selected, button#btn-typeBm.selected {
+  button#btn-typeVb.selected,
+  button#btn-typeBm.selected {
     position: absolute;
     display: flex;
     border-radius: 90px;
     padding: 10px;
-    right: -10px;
     top: 58px;
   }
 }
@@ -2005,7 +2032,7 @@ button#btn-typeBm.selected {
 .btn-changeType {
   /* 640px以上不顯示 */
   display: none;
-  width: 80vw;
+  width: 50vw;
   height: fit-content;
   flex: 10 1 auto;
 }
@@ -2016,12 +2043,12 @@ button#btn-typeBm.selected {
   }
 }
 
-/* main > section(search > div(search-Bar */
+/*首頁篩選表單 */
 #search-Bar {
   /* 樣式 */
-  width: 80vw;
+  width: 50vw;
   min-width: 300px;
-  height: 270px;
+  height: fit-content;
   border: 4px solid black;
   border-bottom: 15px solid black;
   border-radius: 20px;
@@ -2034,7 +2061,17 @@ button#btn-typeBm.selected {
   flex-direction: row;
   position: relative;
 }
-#search-Bar div {
+#search-Bar .dropMenu {
+  height: auto;
+  /*控制子層 */
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+}
+#search-Bar .searchBtn-box {
   height: auto;
   /*控制子層 */
   flex: 1 0 auto;
@@ -2045,16 +2082,12 @@ button#btn-typeBm.selected {
   align-content: center;
 }
 
-#selectArea {
-  display: none;
-}
-
 .searchBtn-box #search-Type {
   display: none;
 }
 @media (max-width:640px) {
   .searchBtn-box #search-Type {
-    display: block;
+    display: flex;
     width: 25vw;
   }
 }
@@ -2098,6 +2131,19 @@ button#btn-typeBm.selected {
 .dropMenu ul input:hover {
   box-shadow: none;
 }
+.dropMenu ul #selectArea {
+  display: none;
+  width: 78%;
+  height: 100px;
+  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
+  white-space: nowrap;
+  scroll-snap-type: y mandatory;
+  -webkit-overflow-scrolling: touch;
+  cursor: pointer;
+  border-radius: 10px;
+}
 .dropMenu ul select {
   width: 90%;
   max-width: 250px;
@@ -2113,9 +2159,18 @@ button#btn-typeBm.selected {
   align-self: center;
   box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.3);
   color: var(--main-color);
+  /* 自定義下拉箭頭 */
 }
 .dropMenu ul select:hover {
   box-shadow: none;
+}
+.dropMenu ul select::after {
+  content: "▼"; /* Unicode 箭頭字符 */
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  pointer-events: none; /* 避免擋住點擊事件 */
 }
 
 /* 首頁篩選送出按鈕 */
@@ -2125,7 +2180,6 @@ button#btn-typeBm.selected {
   min-width: 100px;
   height: fit-content;
   border: 3px solid black;
-  border-bottom: 5px solid black;
   border-radius: 50px;
   padding: 5px 30px;
   margin-right: 5px;
@@ -2180,7 +2234,6 @@ button#btn-typeBm.selected {
   height: fit-content;
   border-radius: 20px;
   border: 1.5px solid black;
-  border-bottom: 4px solid black;
   background-color: var(--btn-color);
   padding: 3px 10px;
 }
@@ -2211,8 +2264,13 @@ button#btn-typeBm.selected {
   /* grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); */
   /* gap: 1vw; */
   justify-content: flex-start;
-  /* 水平居中 */
+  /*  */
   overflow: hidden;
+  overflow-y: hidden;
+  white-space: nowrap;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  cursor: grab;
 }
 
 /* 首頁小貼文元件 */
@@ -2230,6 +2288,7 @@ button#btn-typeBm.selected {
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  user-select: none;
 }
 .content .bg {
   position: absolute;
@@ -2318,7 +2377,7 @@ button#btn-typeBm.selected {
 
 /* main.filter-postArea  > section.filter-box*/
 .filter-box {
-  max-width: 400px;
+  max-width: 500px;
   width: 70vw;
   height: 96px;
   align-self: center;
@@ -2350,7 +2409,7 @@ button#btn-typeBm.selected {
   /* 子 */
   /* display: flex; */
   display: grid;
-  grid-template-columns: 75% 25%;
+  grid-template-columns: repeat(2.5, 1fr);
   grid-template-rows: minmax(20px, auto);
   flex-direction: column;
   align-items: center;
@@ -2358,7 +2417,7 @@ button#btn-typeBm.selected {
   padding: 5px 15px;
 }
 .filter-box .filter-info .info-top {
-  grid-column: 1;
+  grid-column: 1/5;
   grid-row: 1;
   margin: 2px 10px;
   margin-top: 5px;
@@ -2367,21 +2426,24 @@ button#btn-typeBm.selected {
   justify-content: flex-start;
 }
 .filter-box .filter-info .info-top p {
-  width: 55px;
+  width: fit-content;
+  text-align: center;
 }
 .filter-box .filter-info .info-top .dot {
   width: 15px;
 }
 .filter-box .filter-info img {
-  grid-column: 2;
+  grid-column: 4;
   grid-row: 1/3;
   width: 80%;
   margin: 7px;
+  margin-left: 20px;
 }
 .filter-box .filter-info .info-down {
   grid-column: 1/3;
   grid-row: 2;
   align-self: center;
+  margin-left: 10px;
 }
 @media (max-width:640px) {
   .filter-box .filter-info .info-down {
@@ -2512,35 +2574,6 @@ button#btn-typeBm.selected {
   align-items: center;
 }
 
-/* 發文表單標題 */
-.form-title {
-  /* layout */
-  width: 60%;
-  max-width: 700px;
-  min-width: 340px;
-  height: 50px; /* 這樣hover時才不會縮小 */
-  margin: 0 50px;
-  /* child */
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-@media (max-width:640px) {
-  .form-title {
-    /* layout */
-    min-width: 375px;
-    height: fit-content;
-    margin: 20px 0px;
-    /* child */
-    display: flex;
-    flex-direction: row;
-    gap: 80px;
-    justify-content: space-around;
-    align-items: center;
-  }
-}
-
 /* 類別按鈕+表單+預覽區 */
 .form-container {
   width: fit-content;
@@ -2582,7 +2615,6 @@ button#btn-typeBm.selected {
   border: 2px solid black;
   padding: 9px 18px;
   background-color: var(--btn-color);
-  box-shadow: 0px 4px 0px 0px #000000;
   /* child */
   display: grid;
   grid-template-columns: 64px 20px;
@@ -3190,11 +3222,58 @@ button#btn-pastRecords.selected {
   background-color: rgba(247, 246, 245, 0.9);
   padding: 20px;
   display: grid;
-  grid-template-rows: 2fr;
-  gap: 20px;
+  grid-auto-rows: auto;
+  gap: 10px;
   justify-content: center;
   align-items: center;
   justify-items: center;
+  /* 登入後顯示的場次資料 */
+}
+.info-selfState .selfState-userInfo {
+  max-width: 90%;
+  min-width: 200px;
+  height: fit-content;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 35px;
+  align-items: center;
+  padding: 0px;
+}
+.info-selfState .selfState-userInfo p {
+  color: #4A680A;
+}
+.info-selfState .selfState-userInfo .applicantImg {
+  width: 75px;
+}
+.info-selfState .selfState-userInfo .userInfo {
+  width: 53px;
+  height: 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  line-height: 30px;
+  border-radius: 50px;
+  background-color: #83B90F;
+  color: rgba(247, 246, 245, 0.9);
+}
+.info-selfState .selfState-userInfo .attendance {
+  width: 60px;
+  height: 75px;
+  position: relative;
+}
+.info-selfState .selfState-userInfo .attendance p {
+  position: absolute;
+  top: 25px;
+  left: 13px;
+  color: #4A680A;
+}
+.info-selfState .selfState-userInfo .attendance img {
+  position: absolute;
+  width: 100%;
+  top: 5px;
+  left: 0;
 }
 
 /* 登入後顯示的場次資料 */

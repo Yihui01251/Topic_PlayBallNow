@@ -29,7 +29,7 @@
   </head>
 
   <body>
-    <small class="fileName">檔名：<code>react_postsArea.html</code></small>
+    <small class="fileName">檔名：<code>filterPosts.html</code></small>
     <!-- 載入axios套件 -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <div id="root"></div>
@@ -48,11 +48,98 @@
         console.log(bm_today_postData);
         console.log(bm_week_postData);
 
+
+        const TopBar = (props)=>{
+          return(<>
+          <div className="mobile-TopBar">
+                <img
+                  src="./images/mobile-both-topbanner.png"
+                  alt="不分類的手機版banner"
+                />
+              </div>
+              <header id="topBar">
+                <nav id="top-nav">
+                  <ul id="menu">
+                    <li>
+                      <a href="./index.html">
+                        <img
+                          className="icon"
+                          src="./images/magnifier.png"
+                          alt=""
+                        />
+                        探索
+                      </a>
+                    </li>
+                    <li>
+                      <a href="./publicationForm.html">
+                        <img className="icon" src="./images/post.png" alt="" />
+                        找人
+                      </a>
+                    </li>
+                    <li>
+                      <a href="notice.html">
+                        <img className="icon" src="./images/bell3.png" alt="" />
+                        行程
+                      </a>
+                    </li>
+                    <li>
+                      <a href="personal.html">
+                        <img className="icon" src="./images/cat.png" alt="" />
+                        個人
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+                <div className="title">
+                  <div className="hugTitle noto-sans-tc">
+                  <img src="./images/vbtitle.svg" alt="" />
+                    <h1 className="title-L" value="篩選貼文">
+                      篩選貼文
+                    </h1>
+                    <img src="./images/bmtitle.svg" alt="" />
+                  </div>
+                </div>
+                </header></>)
+        }
+
         const App = () => {
-          const { useState, useEffect, useRef } = React;
+          const { useState, useEffect} = React;
 
           const length = postData.length;
           const lengthValue = `共有${length}筆資料`;
+
+          /* 取得篩選條件 */
+          const [selectedDate, setSelectedDate] = useState("未選擇");//日期
+          const [selectedCity, setSelectedCity] = useState("新北市");//縣市
+          const [selectedArea, setSelectedArea] = useState([""]);//地區
+          const [selectedCost, setSelectedCost] = useState("");//費用
+          const [selectedDegree, setSelectedDegree] = useState("");//程度
+          const [selectedRol, setSelectedRol] = useState("");//排球類型
+          const [selectedEquip, setSelectedEquip] = useState([""]);//羽球設備
+          
+          useEffect(()=>{
+            setSelectedDate(window.localStorage.filterDate);
+            setSelectedCity(window.localStorage.filterCity);
+            const storedSelectedArea = localStorage.getItem('filterArea');
+            const selectedAreaArray = storedSelectedArea ? JSON.parse(storedSelectedArea) : [];
+            setSelectedArea(selectedAreaArray);
+            setSelectedCost(window.localStorage.filterCost);
+            setSelectedDegree(window.localStorage.filterDegree);
+            setSelectedRol(window.localStorage.filterRol);
+            setSelectedEquip(window.localStorage.filterEquip);
+            console.log(selectedAreaArray);
+          },[])
+
+          /* 重新篩選 */
+          const SaveData =()=>{
+            window.localStorage.filterDate=selectedDate;
+            window.localStorage.filterCity=selectedCity;
+            window.localStorage.filterArea=selectedArea;
+            window.localStorage.filterCost=selectedCost;
+            window.localStorage.filterDegree=selectedDegree;
+            window.localStorage.filterRol=selectedRol;
+            window.localStorage.filterEquip=selectedEquip;
+          }
 
           // 元件
           // 建立簡略貼文元件
@@ -91,11 +178,8 @@
                     <div className="areaInfo">
                             <h3>{postCity}</h3>
                             <h3>{postArea}</h3>
-
-                          </div>
-                          <div className="arenaInfo">
                             <h3>{postArena}</h3>
-                            </div>
+                          </div>
                     <div className="tag-style">
                       <p>{primaryTag}</p>
                       <p>${secondaryTag}</p>
@@ -249,7 +333,7 @@
                           <a className="btn-close popup__close" href="#">
                             關閉
                           </a>
-                          <a class="button" href="#noticeApplyPopup">確認報名</a>
+                          <a className="button" href="#noticeApplyPopup">確認報名</a>
                         </div>
                       </div>
                     </div>
@@ -260,55 +344,7 @@
           };
           return (
             <div className="body">
-              <div className="mobile-TopBar">
-                <img
-                  src="./images/mobile-both-topbanner.png"
-                  alt="不分類的手機版banner"
-                />
-              </div>
-              <header id="topBar">
-                <nav id="top-nav">
-                  <ul id="menu">
-                    <li>
-                      <a href="./index.html">
-                        <img
-                          className="icon"
-                          src="./images/magnifier.png"
-                          alt=""
-                        />
-                        探索
-                      </a>
-                    </li>
-                    <li>
-                      <a href="./publicationForm.html">
-                        <img className="icon" src="./images/post.png" alt="" />
-                        找人
-                      </a>
-                    </li>
-                    <li>
-                      <a href="notice.html">
-                        <img className="icon" src="./images/bell3.png" alt="" />
-                        行程
-                      </a>
-                    </li>
-                    <li>
-                      <a href="personal.html">
-                        <img className="icon" src="./images/cat.png" alt="" />
-                        個人
-                      </a>
-                    </li>
-                  </ul>
-                </nav>
-                <div className="title">
-                  <div className="hugTitle noto-sans-tc">
-                  <img src="./images/vbtitle.svg" alt="" />
-                    <h1 className="title-L" value="篩選貼文">
-                      篩選貼文
-                    </h1>
-                    <img src="./images/bmtitle.svg" alt="" />
-                  </div>
-                </div>
-                </header>
+              <TopBar/>
 
               <main className="filter-postArea">
 
@@ -323,13 +359,13 @@
                   <a href="#">
                     <div className="filter-info">
                       <div className="info-top">
-                        <p className="title-M">6/24</p>
+                        <p className="title-M">{selectedDate}</p>
                         <p className="title-M dot">|</p>
-                        <p className="title-M">上午</p>
+                        <p className="title-M">{selectedDegree}</p>
                       </div>
 
                       <div className="info-down">
-                        <p className="text-M">新北市，與其他2個區域</p>
+                        <p className="text-M">{selectedCity}，與其他{selectedArea.length}個區域</p>
                       </div>
                       <img src="./images/filiter.png" alt="篩選icon" />
                     </div>
@@ -409,13 +445,13 @@
                 </div>
               </footer>
               {/*燈箱效果-報名審核中通知 */}
-              <div class="popup" id="noticeApplyPopup">
-              <div class="popup-inner">
-               <div class="popup__content">
+              <div className="popup" id="noticeApplyPopup">
+              <div className="popup-inner">
+               <div className="popup__content">
               {/* 報名審核中通知元件 */}
-              <div class="notice-apply">
+              <div className="notice-apply">
               <p>已送出報名，團主審核中</p>
-              <a class="popup__close" href="#">
+              <a className="popup__close" href="#">
               <img src="../images/cancel.png" alt="關閉按鈕" />
               </a>
               </div>

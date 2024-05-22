@@ -74,7 +74,7 @@ h5,
   width: 60vw;
   max-width: 1000px;
   min-width: 340px;
-  height: fit-content;
+  height: 50px;
   margin: 0 auto;
   justify-content: center;
 
@@ -89,12 +89,38 @@ h5,
   @media ($breakpoint-moblie) {
     /* layout */
     min-width: 300px;
-    height: fit-content;
     margin: 20px 0px;
     /* child */
     display: flex;
     flex-direction: row;
     gap: 5vw;
+    justify-content: space-around;
+    align-items: center;
+  }
+}
+/* 有包按鈕的標題 */
+.form-title {
+  /* layout */
+  width: 60%;
+  max-width: 700px;
+  min-width: 340px;
+  height: 50px;/* 這樣hover時才不會縮小 */
+  margin: 0 50px;
+
+  /* child */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  @media ($breakpoint-moblie) {
+    /* layout */
+    min-width: 375px;
+    margin: 20px 0px;
+    /* child */
+    display: flex;
+    flex-direction: row;
+    gap: 80px;
     justify-content: space-around;
     align-items: center;
   }
@@ -399,7 +425,7 @@ body {
 #menu {
   /* 樣式 */
   width: 100%;
-  height: 40px;
+  height: 50px;
   border: 3px solid $second-color-black;
   border-bottom: 5px solid $second-color-black;
   border-radius: $border-radius-20;
@@ -411,7 +437,7 @@ body {
   align-items: center;
   padding: 5px 5vw;
 
-  @media ($breakpoint-moblie) {
+  @media ($breakpoint-md) {
     width: 90%;
   }
 
@@ -692,7 +718,8 @@ footer {
   padding: 5px 18px;
   border-radius: $border-radius-btn;
   border: 2px solid $border-black;
-  border-bottom: 5px solid $border-black;
+  // border-bottom: 5px solid $border-black;
+  box-shadow: 0px 3px 0px 0px $second-color-black;
   /* 布局 */
   display: flex;
   flex-direction: row;
@@ -705,7 +732,7 @@ footer {
 
   &:hover {
     margin-top: 0px;
-    box-shadow: 0 2px $border-black;
+    box-shadow: 0 5px $border-black;
   }
   &:active {
     width: fit-content;
@@ -1818,7 +1845,7 @@ footer {
   }
 }
 @import "index";
-@import "postArea";
+@import "filterPosts";
 @import "publicationForm";
 @import "notice";
 @import "personal";

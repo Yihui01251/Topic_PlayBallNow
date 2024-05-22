@@ -295,6 +295,8 @@
             </div>
           );
         };
+        
+        
         const App = () => {
           const { useState, useEffect } = React;
           const [mainColor, setMainColor] = useState("#14AAEB");
@@ -344,11 +346,11 @@
             );
             document.documentElement.style.setProperty("--btn-color", btnColor);
           };
-
+          const [selectedCity,setSelectedCity]=useState("");
           const [areaOption, setAreaOption] = useState(["地區"]);
           const changeArea = (event) => {
             //縣市地區
-            let selectCity = document.getElementById("selectCity");
+            let selectCity = document.getElementById("city");
             let selectArea = document.getElementById("selectArea");
             const value = event.target.value;
             var options = {
@@ -433,18 +435,19 @@
           };
 
           const Option = (options) => {
-            return options.map((option) => {
+            return(<>
+             {/*  options.map((option) => {
               return (
                 <option key={option} value={option}>
                   {option}
                 </option>
               );
-            });
+            }) */}</>);
           };
-          return (
-            <div className="body">
-              <main>
-                <section className="filterFormBox">
+          //建立篩選元件
+        const FilterForm =({})=>{
+          return(<>
+          <section className="filterFormBox">
                   <div className="btn-changeFilter">
                     <div className="form-type">
                       <button
@@ -483,7 +486,7 @@
                         />
                         <select
                           name="縣市"
-                          id="selectCity"
+                          id="city"
                           className="dpMenu-item"
                           onChange={changeArea}
                         >
@@ -579,7 +582,12 @@
                       </a>
                     </div>
                   </div>
-                </section>
+                </section></>)
+        }
+          return (
+            <div className="body">
+              <main>
+               <FilterForm/>
                 {/* <PostCard
                   key={post_data.id}
                   id={post_data.id}
