@@ -239,7 +239,7 @@ button#btn-typeBm.selected {
   /* 樣式 */
   width: 50vw;
   min-width: 300px;
-  height: 270px;
+  height: fit-content;
   border: 4px solid $border-black;
   border-bottom: 15px solid $border-black;
   border-radius: $border-radius-20;
@@ -251,8 +251,17 @@ button#btn-typeBm.selected {
   display: flex;
   flex-direction: row;
   position: relative;
-
-  div {
+  .dropMenu{
+    height: auto;
+    /*控制子層 */
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+  }
+  .searchBtn-box{
     height: auto;
     /*控制子層 */
     flex: 1 0 auto;
@@ -263,9 +272,7 @@ button#btn-typeBm.selected {
     align-content: center;
   }
 }
-#selectArea {
-  display: none;
-}
+
 .searchBtn-box {
   #search-Type {
     display: none;
@@ -305,7 +312,7 @@ button#btn-typeBm.selected {
       height: auto;
       min-height: 20.5px;
       border: 3px solid $border-black;
-      border-radius: 50px;
+      border-radius: $border-radius-50;
       margin-bottom: 8px;
       box-shadow: 5px 5px 4px $box-shadow;
       color: $font-color-vb;
@@ -315,8 +322,23 @@ button#btn-typeBm.selected {
       &:hover {
         box-shadow: none;
       }
+      
     }
-
+    #selectArea {
+      display: none;//一開始不可視
+    
+      width:78%;
+      height: 100px;
+   
+      overflow: hidden;
+      overflow-x: hidden;
+      overflow-y: auto;
+      white-space: nowrap;
+      scroll-snap-type: y mandatory;//垂直滾動
+      -webkit-overflow-scrolling: touch;
+      cursor: pointer;
+      border-radius: $border-radius-10;
+    }
     select {
       width: 90%;
       max-width: 250px;

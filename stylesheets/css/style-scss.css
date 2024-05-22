@@ -2048,7 +2048,7 @@ button#btn-typeBm.selected {
   /* 樣式 */
   width: 50vw;
   min-width: 300px;
-  height: 270px;
+  height: fit-content;
   border: 4px solid black;
   border-bottom: 15px solid black;
   border-radius: 20px;
@@ -2061,7 +2061,17 @@ button#btn-typeBm.selected {
   flex-direction: row;
   position: relative;
 }
-#search-Bar div {
+#search-Bar .dropMenu {
+  height: auto;
+  /*控制子層 */
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+}
+#search-Bar .searchBtn-box {
   height: auto;
   /*控制子層 */
   flex: 1 0 auto;
@@ -2070,10 +2080,6 @@ button#btn-typeBm.selected {
   justify-content: flex-end;
   align-items: center;
   align-content: center;
-}
-
-#selectArea {
-  display: none;
 }
 
 .searchBtn-box #search-Type {
@@ -2124,6 +2130,19 @@ button#btn-typeBm.selected {
 }
 .dropMenu ul input:hover {
   box-shadow: none;
+}
+.dropMenu ul #selectArea {
+  display: none;
+  width: 78%;
+  height: 100px;
+  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
+  white-space: nowrap;
+  scroll-snap-type: y mandatory;
+  -webkit-overflow-scrolling: touch;
+  cursor: pointer;
+  border-radius: 10px;
 }
 .dropMenu ul select {
   width: 90%;
