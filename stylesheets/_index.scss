@@ -251,7 +251,7 @@ button#btn-typeBm.selected {
   display: flex;
   flex-direction: row;
   position: relative;
-  .dropMenu{
+  .dropMenu {
     height: auto;
     /*控制子層 */
     flex: 1 0 auto;
@@ -261,7 +261,7 @@ button#btn-typeBm.selected {
     align-items: center;
     align-content: center;
   }
-  .searchBtn-box{
+  .searchBtn-box {
     height: auto;
     /*控制子層 */
     flex: 1 0 auto;
@@ -322,19 +322,18 @@ button#btn-typeBm.selected {
       &:hover {
         box-shadow: none;
       }
-      
     }
     #selectArea {
-      display: none;//一開始不可視
-    
-      width:78%;
+      display: none; //一開始不可視
+
+      width: 78%;
       height: 100px;
-   
+
       overflow: hidden;
       overflow-x: hidden;
       overflow-y: auto;
       white-space: nowrap;
-      scroll-snap-type: y mandatory;//垂直滾動
+      scroll-snap-type: y mandatory; //垂直滾動
       -webkit-overflow-scrolling: touch;
       cursor: pointer;
       border-radius: $border-radius-10;
@@ -356,6 +355,15 @@ button#btn-typeBm.selected {
       color: var(--main-color);
       &:hover {
         box-shadow: none;
+      }
+      /* 自定義下拉箭頭 */
+      &::after{
+        content: "\25BC"; /* Unicode 箭頭字符 */
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%);
+        pointer-events: none; /* 避免擋住點擊事件 */
       }
     }
   }
@@ -467,11 +475,9 @@ button#btn-typeBm.selected {
   //overflow-x: auto;
   overflow-y: hidden;
   white-space: nowrap;
-  scroll-snap-type: x mandatory;//水平滾動
+  scroll-snap-type: x mandatory; //水平滾動
   -webkit-overflow-scrolling: touch;
   cursor: grab;
- 
-  
 }
 
 /* 首頁小貼文元件 */
@@ -493,7 +499,6 @@ button#btn-typeBm.selected {
   //scroll-snap-align: start;
   //transition: transform 0.3s ease; /* 添加平滑过渡效果 */
   user-select: none;
- 
 
   .bg {
     position: absolute;

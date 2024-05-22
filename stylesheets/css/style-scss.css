@@ -2159,9 +2159,18 @@ button#btn-typeBm.selected {
   align-self: center;
   box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.3);
   color: var(--main-color);
+  /* 自定義下拉箭頭 */
 }
 .dropMenu ul select:hover {
   box-shadow: none;
+}
+.dropMenu ul select::after {
+  content: "▼"; /* Unicode 箭頭字符 */
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  pointer-events: none; /* 避免擋住點擊事件 */
 }
 
 /* 首頁篩選送出按鈕 */

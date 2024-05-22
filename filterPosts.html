@@ -120,11 +120,14 @@
           useEffect(()=>{
             setSelectedDate(window.localStorage.filterDate);
             setSelectedCity(window.localStorage.filterCity);
-            setSelectedArea(window.localStorage.filterArea);
+            const storedSelectedArea = localStorage.getItem('filterArea');
+            const selectedAreaArray = storedSelectedArea ? JSON.parse(storedSelectedArea) : [];
+            setSelectedArea(selectedAreaArray);
             setSelectedCost(window.localStorage.filterCost);
             setSelectedDegree(window.localStorage.filterDegree);
             setSelectedRol(window.localStorage.filterRol);
             setSelectedEquip(window.localStorage.filterEquip);
+            console.log(selectedAreaArray);
           },[])
 
           /* 重新篩選 */
@@ -330,7 +333,7 @@
                           <a className="btn-close popup__close" href="#">
                             關閉
                           </a>
-                          <a class="button" href="#noticeApplyPopup">確認報名</a>
+                          <a className="button" href="#noticeApplyPopup">確認報名</a>
                         </div>
                       </div>
                     </div>
@@ -362,7 +365,7 @@
                       </div>
 
                       <div className="info-down">
-                        <p className="text-M">{selectedCity}，與其他2個區域</p>
+                        <p className="text-M">{selectedCity}，與其他{selectedArea.length}個區域</p>
                       </div>
                       <img src="./images/filiter.png" alt="篩選icon" />
                     </div>
@@ -442,13 +445,13 @@
                 </div>
               </footer>
               {/*燈箱效果-報名審核中通知 */}
-              <div class="popup" id="noticeApplyPopup">
-              <div class="popup-inner">
-               <div class="popup__content">
+              <div className="popup" id="noticeApplyPopup">
+              <div className="popup-inner">
+               <div className="popup__content">
               {/* 報名審核中通知元件 */}
-              <div class="notice-apply">
+              <div className="notice-apply">
               <p>已送出報名，團主審核中</p>
-              <a class="popup__close" href="#">
+              <a className="popup__close" href="#">
               <img src="../images/cancel.png" alt="關閉按鈕" />
               </a>
               </div>
