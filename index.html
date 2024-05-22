@@ -608,20 +608,20 @@
           const [week_containerRef, setWeekContainerRef] = useState(null);
 
           const weekHandleDragStart = (event) => {
-            setDragging(true);
-            setDragStartX(event.clientX);
+            setWeekDragging(true);
+            setWeekDragStartX(event.clientX);
           };
 
           const weekHandleDragMove = (event) => {
-            if (!dragging || !containerRef) return;
-            const delta = event.clientX - dragStartX;
-            containerRef.scrollLeft -= delta;
-            setDragStartX(event.clientX);
+            if (!week_dragging || !week_containerRef) return;
+            const delta = event.clientX - week_dragStartX;
+            week_containerRef.scrollLeft -= delta;
+            setWeekDragStartX(event.clientX);
           };
 
           const weekHandleDragEnd = (event) => {
             event.stopPropagation();//阻止事件冒泡，就不會影響到貼文元件的按鈕事件
-            setDragging(false);
+            setWeekDragging(false);
           };
           // 元件
           /* 建立元件 header元件 */
@@ -914,7 +914,7 @@
           const NoticeApply = ({ noticeHref }) => {
             return (
               /*燈箱效果-報名審核中通知 */
-              <div className="popup" id={noticeHref}>
+              <div className="popup" id={noticeHref} onMouseDown={(e) => e.stopPropagation()}>
                 <div className="popup-static">
                   <div className="popup__content">
                     {/* 報名審核中通知元件 */}
@@ -1208,7 +1208,14 @@
                       晚上
                     </button>
                   </ul>
-                  <div className="post-block">
+                  <div className="post-block" ref={(ref) => setWeekContainerRef(ref)}
+                    onMouseDown={weekHandleDragStart}
+                    onMouseMove={weekHandleDragMove}
+                    onMouseUp={weekHandleDragEnd}
+                    onMouseLeave={weekHandleDragEnd}
+                    onTouchStart={weekHandleDragStart}
+                    onTouchMove={weekHandleDragMove}
+                    onTouchEnd={weekHandleDragEnd}>
                     {weekFilterPosts.map((post_data) => {
                       return (
                         <PostCard
