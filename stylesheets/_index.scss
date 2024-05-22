@@ -216,7 +216,7 @@ button#btn-typeBm.selected{
     display: flex;
     border-radius: $border-radius-90;
     padding: 10px;
-    right: -10px;
+    
     top: 58px;
   }
 }
@@ -272,7 +272,7 @@ button#btn-typeBm.selected{
     display: none;
 
     @media ($breakpoint-moblie) {
-      display: block;
+      display: flex;
       width: 25vw;
     }
   }

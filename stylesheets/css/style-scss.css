@@ -2024,7 +2024,6 @@ button#btn-typeBm.selected {
     display: flex;
     border-radius: 90px;
     padding: 10px;
-    right: -10px;
     top: 58px;
   }
 }
@@ -2081,7 +2080,7 @@ button#btn-typeBm.selected {
 }
 @media (max-width:640px) {
   .searchBtn-box #search-Type {
-    display: block;
+    display: flex;
     width: 25vw;
   }
 }
