@@ -2243,7 +2243,6 @@ button#btn-typeBm.selected {
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   cursor: grab;
-  position: relative;
 }
 
 /* 首頁小貼文元件 */

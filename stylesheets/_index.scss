@@ -448,7 +448,8 @@ button#btn-typeBm.selected {
   scroll-snap-type: x mandatory;//水平滾動
   -webkit-overflow-scrolling: touch;
   cursor: grab;
-  position: relative;
+ 
+  
 }
 
 /* 首頁小貼文元件 */
@@ -470,6 +471,7 @@ button#btn-typeBm.selected {
   //scroll-snap-align: start;
   //transition: transform 0.3s ease; /* 添加平滑过渡效果 */
   user-select: none;
+ 
 
   .bg {
     position: absolute;

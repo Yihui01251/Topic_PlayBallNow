@@ -580,10 +580,12 @@
             setShowNotice(true);
           };
 
-          // /* 拖拽輪播 */
+          /* 拖拽輪播 */
+          // 今日
           const [dragStartX, setDragStartX] = useState(0);
           const [dragging, setDragging] = useState(false);
           const [containerRef, setContainerRef] = useState(null);
+
           const handleDragStart = (event) => {
             setDragging(true);
             setDragStartX(event.clientX);
@@ -591,15 +593,36 @@
 
           const handleDragMove = (event) => {
             if (!dragging || !containerRef) return;
-                    const delta = event.clientX - dragStartX;
-                    containerRef.scrollLeft -= delta;
-                    setDragStartX(event.clientX);
+            const delta = event.clientX - dragStartX;
+            containerRef.scrollLeft -= delta;
+            setDragStartX(event.clientX);
           };
 
           const handleDragEnd = () => {
             setDragging(false);
           };
 
+          // 本周
+          const [week_dragStartX, setWeekDragStartX] = useState(0);
+          const [week_dragging, setWeekDragging] = useState(false);
+          const [week_containerRef, setWeekContainerRef] = useState(null);
+
+          const weekHandleDragStart = (event) => {
+            setDragging(true);
+            setDragStartX(event.clientX);
+          };
+
+          const weekHandleDragMove = (event) => {
+            if (!dragging || !containerRef) return;
+            const delta = event.clientX - dragStartX;
+            containerRef.scrollLeft -= delta;
+            setDragStartX(event.clientX);
+          };
+
+          const weekHandleDragEnd = (event) => {
+            event.stopPropagation();//阻止事件冒泡，就不會影響到貼文元件的按鈕事件
+            setDragging(false);
+          };
           // 元件
           /* 建立元件 header元件 */
           const TopBar = ({ mobileTopBar }) => {
@@ -687,14 +710,12 @@
             host,
             ballBrand,
           }) => {
-            
             return (
               <>
                 <div
                   className="content"
                   id={id}
                   style={{ backgroundImage: postBorder }}
-                  
                 >
                   <div className="text">
                     <div className="mainText">
@@ -713,7 +734,8 @@
                       <p className="text-S tagMargin">${secondaryTag}</p>
                     </div>
                     <div className="BtnContainer">
-                      <a className="button" href={`#${href}`}>
+                      <a className="button" href={`#${href}`} onMouseDown={(e) => e.stopPropagation()}>
+                        {/* onMouseDown={(e) => e.stopPropagation()}為了阻止冒泡 使其不會跟托拽輪播衝突 */}
                         報名
                       </a>
                     </div>
@@ -784,7 +806,7 @@
             }
             return (
               <>
-                <div className="popup" id={href}>
+                <div className="popup" id={href} onMouseDown={(e) => e.stopPropagation()}>
                   <div className="popup-inner">
                     <div className="popup__content">
                       <div className="detailPostInfo">
@@ -1100,15 +1122,17 @@
                       晚上
                     </button>
                   </ul>
-                  <div className="post-block" ref={(ref) => setContainerRef(ref)} onMouseDown={handleDragStart}
-                                onMouseMove={handleDragMove}
-                                onMouseUp={handleDragEnd}
-                                onMouseLeave={handleDragEnd}
-                                 onTouchStart={handleDragStart}
-                                onTouchMove={handleDragMove}
-                                onTouchEnd={handleDragEnd} 
-                                > 
-
+                  <div
+                    className="post-block"
+                    ref={(ref) => setContainerRef(ref)}
+                    onMouseDown={handleDragStart}
+                    onMouseMove={handleDragMove}
+                    onMouseUp={handleDragEnd}
+                    onMouseLeave={handleDragEnd}
+                    onTouchStart={handleDragStart}
+                    onTouchMove={handleDragMove}
+                    onTouchEnd={handleDragEnd}
+                  >
                     {/* <Slider {...settings}> */}
                     {filterPosts.map((post_data) => {
                       return (
