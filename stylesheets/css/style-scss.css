@@ -161,7 +161,7 @@ h5,
   width: 60vw;
   max-width: 1000px;
   min-width: 340px;
-  height: fit-content;
+  height: 50px;
   margin: 0 auto;
   justify-content: center;
   /*標題前後圖片*/
@@ -175,7 +175,6 @@ h5,
   .title {
     /* layout */
     min-width: 300px;
-    height: fit-content;
     margin: 20px 0px;
     /* child */
     display: flex;
@@ -3190,11 +3189,58 @@ button#btn-pastRecords.selected {
   background-color: rgba(247, 246, 245, 0.9);
   padding: 20px;
   display: grid;
-  grid-template-rows: 2fr;
-  gap: 20px;
+  grid-auto-rows: auto;
+  gap: 10px;
   justify-content: center;
   align-items: center;
   justify-items: center;
+  /* 登入後顯示的場次資料 */
+}
+.info-selfState .selfState-userInfo {
+  max-width: 90%;
+  min-width: 200px;
+  height: fit-content;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 35px;
+  align-items: center;
+  padding: 0px;
+}
+.info-selfState .selfState-userInfo p {
+  color: #4A680A;
+}
+.info-selfState .selfState-userInfo .applicantImg {
+  width: 75px;
+}
+.info-selfState .selfState-userInfo .userInfo {
+  width: 53px;
+  height: 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  line-height: 30px;
+  border-radius: 50px;
+  background-color: #83B90F;
+  color: rgba(247, 246, 245, 0.9);
+}
+.info-selfState .selfState-userInfo .attendance {
+  width: 60px;
+  height: 75px;
+  position: relative;
+}
+.info-selfState .selfState-userInfo .attendance p {
+  position: absolute;
+  top: 25px;
+  left: 13px;
+  color: #4A680A;
+}
+.info-selfState .selfState-userInfo .attendance img {
+  position: absolute;
+  width: 100%;
+  top: 5px;
+  left: 0;
 }
 
 /* 登入後顯示的場次資料 */

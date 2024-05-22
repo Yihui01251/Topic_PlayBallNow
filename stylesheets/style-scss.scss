@@ -74,7 +74,7 @@ h5,
   width: 60vw;
   max-width: 1000px;
   min-width: 340px;
-  height: fit-content;
+  height: 50px;
   margin: 0 auto;
   justify-content: center;
 
@@ -89,7 +89,6 @@ h5,
   @media ($breakpoint-moblie) {
     /* layout */
     min-width: 300px;
-    height: fit-content;
     margin: 20px 0px;
     /* child */
     display: flex;
