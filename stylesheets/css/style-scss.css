@@ -185,6 +185,34 @@ h5,
   }
 }
 
+/* 有包按鈕的標題 */
+.form-title {
+  /* layout */
+  width: 60%;
+  max-width: 700px;
+  min-width: 340px;
+  height: 50px; /* 這樣hover時才不會縮小 */
+  margin: 0 50px;
+  /* child */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+@media (max-width:640px) {
+  .form-title {
+    /* layout */
+    min-width: 375px;
+    margin: 20px 0px;
+    /* child */
+    display: flex;
+    flex-direction: row;
+    gap: 80px;
+    justify-content: space-around;
+    align-items: center;
+  }
+}
+
 .hugTitle {
   width: 100%;
   text-align: center;
@@ -740,7 +768,7 @@ footer div p {
   padding: 5px 18px;
   border-radius: 50px;
   border: 2px solid black;
-  border-bottom: 5px solid black;
+  box-shadow: 0px 3px 0px 0px #000000;
   /* 布局 */
   display: flex;
   flex-direction: row;
@@ -753,7 +781,7 @@ footer div p {
 }
 .button:hover {
   margin-top: 0px;
-  box-shadow: 0 2px black;
+  box-shadow: 0 5px black;
 }
 .button:active {
   width: fit-content;
@@ -2124,7 +2152,6 @@ button#btn-typeBm.selected {
   min-width: 100px;
   height: fit-content;
   border: 3px solid black;
-  border-bottom: 5px solid black;
   border-radius: 50px;
   padding: 5px 30px;
   margin-right: 5px;
@@ -2179,7 +2206,6 @@ button#btn-typeBm.selected {
   height: fit-content;
   border-radius: 20px;
   border: 1.5px solid black;
-  border-bottom: 4px solid black;
   background-color: var(--btn-color);
   padding: 3px 10px;
 }
@@ -2511,35 +2537,6 @@ button#btn-typeBm.selected {
   align-items: center;
 }
 
-/* 發文表單標題 */
-.form-title {
-  /* layout */
-  width: 60%;
-  max-width: 700px;
-  min-width: 340px;
-  height: 50px; /* 這樣hover時才不會縮小 */
-  margin: 0 50px;
-  /* child */
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-@media (max-width:640px) {
-  .form-title {
-    /* layout */
-    min-width: 375px;
-    height: fit-content;
-    margin: 20px 0px;
-    /* child */
-    display: flex;
-    flex-direction: row;
-    gap: 80px;
-    justify-content: space-around;
-    align-items: center;
-  }
-}
-
 /* 類別按鈕+表單+預覽區 */
 .form-container {
   width: fit-content;
@@ -2581,7 +2578,6 @@ button#btn-typeBm.selected {
   border: 2px solid black;
   padding: 9px 18px;
   background-color: var(--btn-color);
-  box-shadow: 0px 4px 0px 0px #000000;
   /* child */
   display: grid;
   grid-template-columns: 64px 20px;
