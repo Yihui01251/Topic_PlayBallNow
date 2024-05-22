@@ -751,35 +751,80 @@
             ]
         },
         {
-          "collect_userData":[
-            {
-              "id": "1",
-              "state": "已評價",
-              "typeAbbr": "羽",
-              "dateAbbr": "05/01",
-              "startTime": "10:00",
-              "endTime": "13:00",
-              "city": "台北市",
-              "area": "文山區",
-              "arena": "武功國小",
-              "tagDegree": "新手友善",
-              "tagPrice": "150",
-              "like": "true"
-          },{
-            "id": "2",
-            "state": "未評價",
-            "typeAbbr": "羽",
-            "dateAbbr": "05/15",
-            "startTime": "19:00",
-            "endTime": "21:00",
-            "city": "台北市",
-            "area": "中正區",
-            "arena": "成功高中",
-            "tagDegree": "中進階",
-            "tagPrice": "110",
-            "like": "true"
-        }
-          ]
+          "past_host_userData": [
+                {
+                    "id": "1",
+                    "identity": "團主",
+                    "state": "已評價",
+                    "typeAbbr": "羽",
+                    "dateAbbr": "05/01",
+                    "startTime": "10:00",
+                    "endTime": "13:00",
+                    "city": "台北市",
+                    "area": "文山區",
+                    "arena": "武功國小",
+                    "tagDegree": "新手友善",
+                    "tagPrice": "150",
+                    "reqCount":  [
+                        {
+                          "gender": "female",
+                          "count": 5
+                        },
+                        {
+                          "gender": "male",
+                          "count": 1
+                        },
+                        {
+                          "gender": "unspecified",
+                          "count": 0
+                        }],
+                    "ballBrand": ",摩亞MS-85,",
+                    "role": "單打",
+                    "equip": "木質地板球場,停車場",
+                    "note": "若臨時有不可抗拒的因素,而無法出席時，也煩請儘早通知",
+                    "host": "陳曉成",
+                    "appl": "陳小明,陳曉成",
+                    "cancel": "",
+                    "like": "false"
+                },
+                {
+                    "id": "2",
+                    "identity": "團主",
+                    "state": "未評價",
+                    "typeAbbr": "羽",
+                    "dateAbbr": "05/15",
+                    "startTime": "19:00",
+                    "endTime": "21:00",
+                    "city": "台北市",
+                    "area": "中正區",
+                    "arena": "成功高中",
+                    "tagDegree": "中進階",
+                    "tagPrice": "110",
+                    "reqCount":  [
+                        {
+                          "gender": "female",
+                          "count": 1
+                        },
+                        {
+                          "gender": "male",
+                          "count": 2
+                        },
+                        {
+                          "gender": "unspecified",
+                          "count": 0
+                        }],
+                    "ballBrand": "久奈司AJ-40",
+                    "role": "雙打",
+                    "equip": "停車,冷熱水淋浴間,飲水機",
+                    "note": "交通方便",
+                    "host": "",
+                    "appl": "陳小明,陳曉成",
+                    "cancel": "",
+                    "like": "false"
+                }
+                
+            ]
+        
         }
     ]
 }
