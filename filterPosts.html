@@ -103,9 +103,6 @@
         const App = () => {
           const { useState, useEffect, useMemo } = React;
 
-          const length = postData.length;
-          const lengthValue = `共有${length}筆資料`;
-
           /* 取得篩選條件 */
           const [selectedDate, setSelectedDate] = useState(""); //日期
           const [selectedCity, setSelectedCity] = useState("");
@@ -114,7 +111,7 @@
           const [selectedDegree, setSelectedDegree] = useState(""); //程度
           const [selectedRol, setSelectedRol] = useState(""); //排球類型
           const [selectedEquip, setSelectedEquip] = useState([""]); //羽球設備
-          const [filterType, setFilterType] = useState("排球");
+          const [filterType, setFilterType] = useState("");
           /* 要map的資料 */
           const [todayType, setTodayType] = useState("vb_today_postData");
           const [weekType, setWeekType] = useState("vb_week_postData");
@@ -298,7 +295,8 @@
               }
             );
           }, [todayType, weekType, conditions]);
-
+          const length = filterPosts.length;
+          const lengthValue = `共有${length}筆資料符合`;
           // 元件
           // 建立簡略貼文元件
           const SimplePostCard = ({
@@ -533,7 +531,7 @@
 
                   <div className="filter-postQuantity">
                     <p className="text-M" value={lengthValue}>
-                      共有{length}筆資料
+                      {lengthValue}
                     </p>
                   </div>
                 </section>
