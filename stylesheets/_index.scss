@@ -89,6 +89,7 @@ main:10
   display: grid;
   grid-template-rows: 120px 120px;
   align-items: center;
+  justify-content: center;
   position: relative;
 
   @media ($breakpoint-moblie) {
@@ -230,8 +231,6 @@ button#btn-typeBm.selected {
     display: flex;
     border-radius: $border-radius-90;
     padding: 10px;
-
-    top: 58px;
   }
 }
 
@@ -494,7 +493,7 @@ button#btn-typeBm.selected {
   -webkit-overflow-scrolling: touch;
   cursor: grab;
 
-  @media ($breakpoint-md){
+  @media ($breakpoint-moblie){
     overflow-x: auto;
     scroll-snap-type: x mandatory; //水平滾動
     -webkit-overflow-scrolling: touch;
