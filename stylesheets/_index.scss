@@ -478,6 +478,12 @@ button#btn-typeBm.selected {
   scroll-snap-type: x mandatory; //水平滾動
   -webkit-overflow-scrolling: touch;
   cursor: grab;
+
+  @media ($breakpoint-md){
+    overflow-x: auto;
+    scroll-snap-type: x mandatory; //水平滾動
+    -webkit-overflow-scrolling: touch;
+}
 }
 
 /* 首頁小貼文元件 */
