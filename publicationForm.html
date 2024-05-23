@@ -139,7 +139,26 @@
           </>
         );
       };
-
+      /* 建立元件 footer元件 */
+      const Footer = (props) => {
+          return (
+            <>
+              <footer>
+                <figure className="footer-border"></figure>
+                <div>
+                  <figure>
+                    <img
+                      id="logo"
+                      src="../../images/logo.png"
+                      alt="logo-PlayBallNow"
+                    />
+                  </figure>
+                  <p>Copyright© 2024 PlayBallNow. All Right Reserved. </p>
+                </div>
+              </footer>
+            </>
+          );
+        };
       const App = () => {
         const { useState, useEffect, useRef } = React;
         const btnFormVbRef = useRef(null);
@@ -154,7 +173,7 @@
         const [fontColor, setFontColor] = useState("#147CB6");
         const [btnColor, setBtnColor] = useState("#F1DB15");
         const [inputColor, setInputColor] = useState("#B1C3E8");
-        const[mobileTopBar,setMobileTopBar] = useState("/images/mobiletopvb.svg");
+        const[mobileTopBar,setMobileTopBar] = useState("../../images/mobiletopvb.svg");
         const [selectedButton, setSelectedButton] = useState("btn-formVB");
         const [type, setType] = useState("排球");
         const [BMdisplay, setBMDisplay] = useState("none");
@@ -326,7 +345,7 @@
                     </p>
                     <div className="type-style">{type}</div>
                     <button className="collect">
-                      <img src="../images/heart-no.svg" alt="收藏" />
+                      <img src="../../images/heart-no.svg" alt="收藏" />
                     </button>
                   </div>
                   <div className="areaInfo">
@@ -373,7 +392,7 @@
                   <p className="button">報名</p>
                 </div>
               </div>
-              <a href="./react_postsArea.html" ><button type="submit" className="button" onClick={handleSubmit}>送出</button></a>
+              <a href="./filterPosts.html" ><button type="submit" className="button" onClick={handleSubmit}>送出</button></a>
             </div>
           );
         };
@@ -390,7 +409,7 @@
                     <a href="./index.html">
                       <img
                         className="icon"
-                        src="./images/magnifier.png"
+                        src="../../images/magnifier.png"
                         alt=""
                       />
                       探索
@@ -400,25 +419,25 @@
                     <a href="./publicationForm.html">
                       <img
                         className="icon"
-                        src="./images/post.png"
+                        src="../../images/post.png"
                         alt=""
                       />
                       找人
                     </a>
                   </li>
                   <li>
-                    <a href="notice.html">
+                    <a href="./notice.html">
                       <img
                         className="icon"
-                        src="./images/bell3.png"
+                        src="../../images/bell3.png"
                         alt=""
                       />
                       行程
                     </a>
                   </li>
                   <li>
-                    <a href="personal.html">
-                      <img className="icon" src="./images/cat.png" alt="" />
+                    <a href="./personal.html">
+                      <img className="icon" src="../../images/cat.png" alt="" />
                       個人
                     </a>
                   </li>
@@ -426,15 +445,15 @@
               </nav>
               <div className="form-title">
                 <div className="hugTitle noto-sans-tc">
-                  <img src="./images/vbtitle.svg" alt="" />
+                  <img src="../../images/vbtitle.svg" alt="" />
                   <h1 value="發文找人" className="title-L">
                     發文找人
                   </h1>
-                  <img src="./images/bmtitle.svg" alt="" />
+                  <img src="../../images/bmtitle.svg" alt="" />
                 </div>
-                <a href="/myPostList.html" className="button btn-postManage">
+                <a href="./myPostList.html" className="button btn-postManage">
                   我的貼文
-                  <img src="./images/Vector.png" alt="" />
+                  <img src="../../images/Vector.png" alt="" />
                 </a>
 
               </div>
@@ -637,19 +656,7 @@
                 )}
               </section>
             </main>
-            <footer>
-              <figure className="footer-border"></figure>
-              <div>
-                <figure>
-                  <img
-                    id="logo"
-                    src="./images/logo.png"
-                    alt="logo-PlayBallNow"
-                  />
-                </figure>
-                <p>Copyright© 2024 PlayBallNow. All Right Reserved. </p>
-              </div>
-            </footer>
+            <Footer/>
           </div>
         );
       };
