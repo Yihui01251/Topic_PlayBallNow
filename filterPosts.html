@@ -179,7 +179,7 @@
             if (selectedCity !== "未選擇") {
               newConditions.city = selectedCity;
             }
-            if (selectedArea !== "" || selectedArea !== "[]") {
+            if (selectedArea.length>0) {
               newConditions.area = selectedArea;
             }
             if (selectedRol !== "未選擇") {
@@ -209,8 +209,10 @@
             if (
               !selectedDegree &&
               !selectedCost &&
+              !selectedCity&&
               !selectedArea &&
               !selectedDate &&
+              !selectedRol&&
               !selectedEquip
             ) {
               return [...getPosts(todayType), ...getPosts(weekType)];
@@ -259,7 +261,7 @@
                               `匹配區域 ${conditions[key]} 在 ${posts[key]} 中: ${match}`
                             );
                             matchAllConditions = matchAllConditions && match;
-                          } else {
+                          } else{
                             matchAllConditions = false;
                           }
                           break;
