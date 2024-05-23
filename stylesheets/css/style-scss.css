@@ -241,7 +241,6 @@ div.hugTitle h1,
 div.hugTitle h2 {
   position: relative;
   color: #ffffff;
-  width: -moz-fit-content;
   width: fit-content;
   z-index: 0;
 }
@@ -266,7 +265,6 @@ h2 div {
 
 .sponsored-title {
   width: 95%;
-  height: -moz-fit-content;
   height: fit-content;
   justify-self: flex-start;
   display: grid;
@@ -420,7 +418,6 @@ body {
 /* 包渲染內容的容器 */
 .body {
   width: 100vw;
-  height: -moz-fit-content;
   height: fit-content;
   min-height: 100vh;
   position: relative;
@@ -456,7 +453,6 @@ body {
 }
 .mobile-TopBar img {
   width: 100%;
-  height: -moz-fit-content;
   height: fit-content;
 }
 
@@ -577,7 +573,7 @@ footer div p {
 .footer-border {
   width: auto;
   height: 21px;
-  background-image: url("/images/logo2.png");
+  background-image: url("../../images/logo2.png");
   background-size: 24px;
   background-repeat: repeat;
   background-position: center;
@@ -594,9 +590,7 @@ footer div p {
 /* 元件 */
 /* tag樣式 */
 .tag-style {
-  width: -moz-fit-content;
   width: fit-content;
-  height: -moz-fit-content;
   height: fit-content;
   /* layout */
   display: flex;
@@ -606,9 +600,7 @@ footer div p {
   flex-wrap: wrap;
 }
 .tag-style p {
-  height: -moz-fit-content;
   height: fit-content;
-  width: -moz-fit-content;
   width: fit-content;
   border-radius: 50px;
   background-color: var(--font-color);
@@ -628,7 +620,6 @@ footer div p {
 
 /* 按鈕tag樣式 */
 .tags {
-  height: -moz-max-content;
   height: max-content;
   width: 95%;
   /* 和貼文標題一樣 */
@@ -649,7 +640,6 @@ footer div p {
   /* 臨打貼文tag */
   /* flex: auto; */
   height: 23px;
-  width: -moz-fit-content;
   width: fit-content;
   border: 2px solid var(--main-color);
   border-radius: 50px;
@@ -686,7 +676,6 @@ footer div p {
   position: absolute;
   top: 0;
   left: 0;
-  width: -moz-max-content;
   width: max-content; /* 复选框的宽度 */
   height: 20px; /* 复选框的高度 */
   border-radius: 50px;
@@ -729,13 +718,11 @@ footer div p {
   grid-column: 1/auto;
 }
 .BtnContainer a {
-  width: -moz-fit-content;
   width: fit-content;
 }
 
 #btn-filter {
   background-color: var(--btn-color);
-  width: -moz-fit-content;
   width: fit-content;
   max-height: 50px;
   margin-top: 5px;
@@ -758,9 +745,7 @@ footer div p {
   cursor: pointer;
 }
 #btn-filter:active {
-  width: -moz-fit-content;
   width: fit-content;
-  height: -moz-fit-content;
   height: fit-content;
   border-radius: 50px;
   margin-top: 7px;
@@ -777,7 +762,6 @@ footer div p {
 
 .button {
   background-color: var(--btn-color);
-  width: -moz-fit-content;
   width: fit-content;
   max-height: 50px;
   margin-top: 5px;
@@ -800,9 +784,7 @@ footer div p {
   box-shadow: 0 5px black;
 }
 .button:active {
-  width: -moz-fit-content;
   width: fit-content;
-  height: -moz-fit-content;
   height: fit-content;
   border-radius: 50px;
   margin-top: 7px;
@@ -820,9 +802,7 @@ footer div p {
 /* 關閉按鈕 */
 .btn-close {
   background-color: #D9D9D9;
-  width: -moz-fit-content;
   width: fit-content;
-  height: -moz-fit-content;
   height: fit-content;
   margin-top: 5px;
   padding: 5px 18px;
@@ -832,9 +812,7 @@ footer div p {
 }
 .btn-close .selected,
 .btn-close :active {
-  width: -moz-fit-content;
   width: fit-content;
-  height: -moz-fit-content;
   height: fit-content;
   border-radius: 50px;
   padding-top: 3px;
@@ -1012,7 +990,6 @@ footer div p {
   grid-row: 1;
   /*  */
   width: 100%;
-  height: -moz-fit-content;
   height: fit-content;
   color: var(--font-color);
   font-size: 18px;
@@ -1034,9 +1011,7 @@ footer div p {
   grid-column: 8;
   /*  */
   min-width: 30px;
-  width: -moz-fit-content;
   width: fit-content;
-  height: -moz-fit-content;
   height: fit-content;
   background: var(--main-color);
   color: white;
@@ -1106,7 +1081,6 @@ footer div p {
 }
 .simplePostInfo .sub-info .vacancyInfo {
   width: auto;
-  height: -moz-fit-content;
   height: fit-content;
   /* 子 */
   display: grid;
@@ -1116,9 +1090,7 @@ footer div p {
   align-items: center;
 }
 .simplePostInfo .sub-info .vacancyInfo div {
-  width: -moz-fit-content;
   width: fit-content;
-  height: -moz-fit-content;
   height: fit-content;
   padding: 2px 5px;
   border-radius: 50px;
@@ -1130,7 +1102,6 @@ footer div p {
 }
 .simplePostInfo .sub-info .ballInfo {
   width: auto;
-  height: -moz-fit-content;
   height: fit-content;
   display: grid;
   grid-template-columns: 35px 1fr;
@@ -1138,14 +1109,12 @@ footer div p {
   align-items: center;
 }
 .simplePostInfo .sub-info .ballInfo h4 {
-  width: -moz-fit-content;
   width: fit-content;
   align-self: center;
 }
 .simplePostInfo .sub-info .equipInfo,
 .simplePostInfo .sub-info .posInfo {
   width: auto;
-  height: -moz-fit-content;
   height: fit-content;
   display: grid;
   grid-template-columns: 35px 1fr;
@@ -1153,7 +1122,6 @@ footer div p {
 }
 .simplePostInfo .sub-info .noteInfo {
   width: 250px;
-  height: -moz-fit-content;
   height: fit-content;
   display: grid;
   grid-template-columns: 35px 1fr;
@@ -1240,12 +1208,10 @@ footer div p {
 .simplePostInfo .evaluateContainer {
   /* 團主評價元件 */
   width: 90%;
-  height: -moz-fit-content;
   height: fit-content;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(65px, 75px));
-  -moz-column-gap: 10px;
-       column-gap: 10px;
+  column-gap: 10px;
   justify-content: start;
   align-items: center;
   justify-items: center;
@@ -1344,7 +1310,6 @@ footer div p {
 /* 行程元件 */
 .notice-container {
   width: 80%;
-  height: -moz-fit-content;
   height: fit-content;
   border-radius: 50px;
   border: 3px var(--border-type) black;
@@ -1390,7 +1355,6 @@ footer div p {
 /* 元件資訊 */
 .notice-info {
   width: 90%;
-  height: -moz-fit-content;
   height: fit-content;
   /* layout */
   display: grid;
@@ -1429,9 +1393,7 @@ footer div p {
 /* 評價狀態 */
 .notice-info > div:last-child,
 .audit-state {
-  width: -moz-fit-content;
   width: fit-content;
-  height: -moz-fit-content;
   height: fit-content;
   border-radius: 50px;
   border: 1px solid var(--evaluate-color);
@@ -1460,9 +1422,7 @@ footer div p {
 /* 通知報名審核中元件 */
 .notice-apply {
   /* style */
-  width: -moz-fit-content;
   width: fit-content;
-  height: -moz-fit-content;
   height: fit-content;
   border-radius: 20px;
   border: 2px solid black;
@@ -1478,17 +1438,13 @@ footer div p {
   color: var(--font-color);
 }
 .notice-apply a {
-  width: -moz-fit-content;
   width: fit-content;
-  height: -moz-fit-content;
   height: fit-content;
 }
 /* 通知註冊成功元件 */
 .notice-register {
   /* style */
-  width: -moz-fit-content;
   width: fit-content;
-  height: -moz-fit-content;
   height: fit-content;
   border-radius: 20px;
   border: 2px solid black;
@@ -1547,7 +1503,6 @@ footer div p {
   display: flex;
   max-width: 340px;
   min-width: 250px;
-  height: -moz-fit-content;
   height: fit-content;
 }
 @media (max-width:640px) {
@@ -1661,11 +1616,9 @@ footer div p {
   opacity: 1;
   width: 100%;
   pointer-events: none;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   /* 裁剪圖片，使其填滿元素 */
-  -o-object-position: center;
-     object-position: center;
+  object-position: center;
   /* 圖片位置 */
 }
 .filterFormBox #search-Bar .searchBtn-box #search-Type {
@@ -1682,7 +1635,6 @@ footer div p {
 .audit-apply {
   max-width: 360px;
   min-width: 300px;
-  height: -moz-fit-content;
   height: fit-content;
   border-radius: 20px;
   border: 2px solid black;
@@ -1710,7 +1662,6 @@ footer div p {
   margin-right: 10px;
 }
 .audit-apply .topBtn-container a {
-  width: -moz-fit-content;
   width: fit-content;
 }
 .audit-apply .audit-info {
@@ -1924,7 +1875,6 @@ main:10
 .search #search-Bar::before {
   position: absolute;
   width: 40px;
-  height: -moz-fit-content;
   height: fit-content;
   /* background-color: #d9d9d9; */
   height: fit-content;
@@ -2043,23 +1993,21 @@ button#btn-typeVb.selected img {
   opacity: 1;
   width: 80%;
   pointer-events: none;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   /* 裁剪圖片，使其填滿元素 */
-  -o-object-position: center;
-     object-position: center;
+  object-position: center;
   /* 圖片位置 */
 }
 
 button#btn-typeVb.selected {
-  background-image: url(./images/vball.png);
+  background-image: url(../../images/vball.png);
   background-position: center;
   background-size: 80%;
   background-repeat: no-repeat;
 }
 
 button#btn-typeBm.selected {
-  background-image: url(./images/bball.png);
+  background-image: url(../../images/bball.png);
   background-position: center;
   background-size: 80%;
   background-repeat: no-repeat;
@@ -2085,7 +2033,6 @@ button#btn-typeBm.selected {
   /* 640px以上不顯示 */
   display: none;
   width: 50vw;
-  height: -moz-fit-content;
   height: fit-content;
   flex: 10 1 auto;
 }
@@ -2101,7 +2048,6 @@ button#btn-typeBm.selected {
   /* 樣式 */
   width: 50vw;
   min-width: 300px;
-  height: -moz-fit-content;
   height: fit-content;
   border: 4px solid black;
   border-bottom: 15px solid black;
@@ -2230,10 +2176,8 @@ button#btn-typeBm.selected {
 /* 首頁篩選送出按鈕 */
 /* ...> div(search-Bar > div > button(btn-send*/
 .btn-send {
-  width: -moz-fit-content;
   width: fit-content;
   min-width: 100px;
-  height: -moz-fit-content;
   height: fit-content;
   border: 3px solid black;
   border-radius: 50px;
@@ -2248,7 +2192,6 @@ button#btn-typeBm.selected {
   /* 樣式 */
   width: 50vw;
   min-width: 300px;
-  height: -moz-fit-content;
   height: fit-content;
   border: 3.5px solid black;
   border-bottom: 6px solid black;
@@ -2287,9 +2230,7 @@ button#btn-typeBm.selected {
 
 /* 更多按鈕 */
 .more {
-  width: -moz-fit-content;
   width: fit-content;
-  height: -moz-fit-content;
   height: fit-content;
   border-radius: 20px;
   border: 1.5px solid black;
@@ -2347,9 +2288,7 @@ button#btn-typeBm.selected {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  user-select: none;
 }
 .content .bg {
   position: absolute;
@@ -2461,7 +2400,6 @@ button#btn-typeBm.selected {
   }
 }
 .filter-box .filter-info {
-  width: -moz-fit-content;
   width: fit-content;
   height: 59px;
   border-radius: 50px;
@@ -2488,7 +2426,6 @@ button#btn-typeBm.selected {
   justify-content: flex-start;
 }
 .filter-box .filter-info .info-top p {
-  width: -moz-fit-content;
   width: fit-content;
   text-align: center;
 }
@@ -2602,7 +2539,6 @@ button#btn-typeBm.selected {
 .filter-postBlock {
   width: 70%;
   min-width: 345px;
-  height: -moz-fit-content;
   height: fit-content;
   display: flex;
   flex-direction: row;
@@ -2630,7 +2566,6 @@ button#btn-typeBm.selected {
 /* 找人main(form-formArea */
 .form-formArea {
   width: 100vw;
-  height: -moz-max-content;
   height: max-content;
   /* margin-bottom: 10px; */
   /* 子 */
@@ -2641,15 +2576,12 @@ button#btn-typeBm.selected {
 
 /* 類別按鈕+表單+預覽區 */
 .form-container {
-  width: -moz-fit-content;
   width: fit-content;
-  height: -moz-fit-content;
   height: fit-content;
   padding: 50px 0px;
   display: grid;
   grid-template-columns: 339px 378px;
-  -moz-column-gap: 50px;
-       column-gap: 50px;
+  column-gap: 50px;
   align-items: end;
 }
 @media (max-width:820px) {
@@ -2665,7 +2597,6 @@ button#btn-typeBm.selected {
 
 /* 表單容器:稍微修改不要壓到表單 */
 .form-block {
-  height: -moz-fit-content;
   height: fit-content;
   display: flex;
   flex-direction: column;
@@ -2678,9 +2609,7 @@ button#btn-typeBm.selected {
 /* 貼文管理按鈕 */
 .btn-postManage {
   /* layout */
-  width: -moz-fit-content;
   width: fit-content;
-  height: -moz-fit-content;
   height: fit-content;
   border-radius: 50px;
   border: 2px solid black;
@@ -2696,7 +2625,6 @@ button#btn-typeBm.selected {
 .form-type {
   flex: auto;
   width: 100%;
-  height: -moz-fit-content;
   height: fit-content;
   align-self: flex-start;
   display: flex;
@@ -2705,9 +2633,7 @@ button#btn-typeBm.selected {
 
 /* 切換表單按鈕容器:打羽球 */
 #btn-formBM {
-  width: -moz-fit-content;
   width: fit-content;
-  height: -moz-fit-content;
   height: fit-content;
   border-radius: 50px;
   border: 2px solid black;
@@ -2719,9 +2645,7 @@ button#btn-typeBm.selected {
 
 /* 切換表單按鈕容器:打排球 */
 #btn-formVB {
-  width: -moz-fit-content;
   width: fit-content;
-  height: -moz-fit-content;
   height: fit-content;
   border-radius: 50px;
   border: 2px solid black;
@@ -2734,9 +2658,7 @@ button#btn-typeBm.selected {
 /* 按鈕被選中 */
 button#btn-formBM.selected,
 button#btn-formVB.selected {
-  width: -moz-fit-content;
   width: fit-content;
-  height: -moz-fit-content;
   height: fit-content;
   border-radius: 50px;
   padding-top: 3px;
@@ -2764,7 +2686,6 @@ button#btn-formVB.selected::before {
 .form-edit {
   flex: 1 0 auto;
   min-width: 339px;
-  height: -moz-max-content;
   height: max-content;
   border-radius: 20px;
   border: 1px solid black;
@@ -2929,7 +2850,6 @@ button#btn-formVB.selected::before {
   .form-preview {
     padding: 10px;
     margin: 20px 0 0 0;
-    height: -moz-fit-content;
     height: fit-content;
     width: 60vw;
     min-width: 380px;
@@ -2941,7 +2861,6 @@ button#btn-formVB.selected::before {
   .form-preview {
     padding: 0;
     margin: 35px 0 0 0;
-    height: -moz-fit-content;
     height: fit-content;
     width: 375px;
   }
@@ -2951,7 +2870,6 @@ button#btn-formVB.selected::before {
 }
 .form-preview .simplePostInfo {
   grid-row: 3/8;
-  height: -moz-fit-content;
   height: fit-content;
 }
 .form-preview a {
@@ -2963,7 +2881,6 @@ button#btn-formVB.selected::before {
 }
 .form-preview a button {
   width: 100%;
-  height: -moz-fit-content;
   height: fit-content;
 }
 
@@ -2980,7 +2897,6 @@ button#btn-formVB.selected::before {
   /*視窗寬比例70/100 */
   width: 70vw;
   /* 視窗高比例100 */
-  height: -moz-fit-content;
   height: fit-content;
   /* layout */
   display: grid;
@@ -2999,7 +2915,6 @@ button#btn-formVB.selected::before {
 /* 通知類別容器 */
 .notice-type {
   width: 60%;
-  height: -moz-fit-content;
   height: fit-content;
   /* layout */
   display: grid;
@@ -3009,9 +2924,7 @@ button#btn-formVB.selected::before {
   align-items: center;
 }
 .notice-type button {
-  width: -moz-fit-content;
   width: fit-content;
-  height: -moz-min-content;
   height: min-content;
   border-radius: 50px;
   padding: 5px 18px;
@@ -3062,7 +2975,6 @@ button#btn-pastRecords.selected {
 
 /* 主辦按鈕 */
 .btn-sponsor {
-  width: -moz-fit-content;
   width: fit-content;
   height: 30px;
   border-radius: 50px;
@@ -3143,7 +3055,6 @@ button#btn-pastRecords.selected {
 /* 個人檔案main */
 .personal-Area {
   width: 100%;
-  height: -moz-fit-content;
   height: fit-content;
   justify-items: center;
 }
@@ -3157,9 +3068,7 @@ button#btn-pastRecords.selected {
 #btn-editFile {
   flex: 0.1;
   justify-self: end;
-  width: -moz-fit-content;
   width: fit-content;
-  height: -moz-fit-content;
   height: fit-content;
   border-radius: 50px;
   padding: 9px 18px;
@@ -3176,7 +3085,6 @@ button#btn-pastRecords.selected {
 /* 個人資料容器 */
 .personalArea-infoContainer {
   width: 100%;
-  height: -moz-fit-content;
   height: fit-content;
   /* child */
   display: grid;
@@ -3196,7 +3104,6 @@ button#btn-pastRecords.selected {
 .infoContainer-biography {
   max-width: 100%;
   min-width: 315px;
-  height: -moz-fit-content;
   height: fit-content;
   /* display: flex;
     flex-direction: row;
@@ -3232,7 +3139,6 @@ button#btn-pastRecords.selected {
 }
 @media screen and (max-width:640px) {
   .biography-bust {
-    height: -moz-fit-content;
     height: fit-content;
     display: flex;
     flex-direction: column;
@@ -3284,7 +3190,6 @@ button#btn-pastRecords.selected {
 .biography-info {
   /* flex-grow:1; */
   width: 70%;
-  height: -moz-fit-content;
   height: fit-content;
   display: grid;
   grid-template-rows: 1fr 1fr;
@@ -3311,7 +3216,6 @@ button#btn-pastRecords.selected {
 .info-selfState {
   max-width: 100%;
   min-width: 315px;
-  height: -moz-fit-content;
   height: fit-content;
   border-radius: 20px;
   border: 4px solid black;
@@ -3328,7 +3232,6 @@ button#btn-pastRecords.selected {
 .info-selfState .selfState-userInfo {
   max-width: 90%;
   min-width: 200px;
-  height: -moz-fit-content;
   height: fit-content;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -3377,7 +3280,6 @@ button#btn-pastRecords.selected {
 .selfState-userInfo {
   max-width: 90%;
   min-width: 200px;
-  height: -moz-fit-content;
   height: fit-content;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -3434,7 +3336,6 @@ button#btn-pastRecords.selected {
 /* 累積場次... */
 .selfState-title {
   width: 242px;
-  height: -moz-fit-content;
   height: fit-content;
   display: grid;
   grid-template-columns: 67px 51px 67px;
@@ -3461,7 +3362,6 @@ button#btn-pastRecords.selected {
 }
 @media screen and (max-width:640px) {
   .infoContainer-records {
-    height: -moz-fit-content;
     height: fit-content;
     display: grid;
     grid-template-rows: 205px 1fr;
@@ -3473,7 +3373,6 @@ button#btn-pastRecords.selected {
 .records-sponsored {
   width: 315px;
   min-width: 215px;
-  height: -moz-fit-content;
   height: fit-content;
   padding: 20px;
   background-color: rgba(247, 246, 245, 0.9);
@@ -3504,7 +3403,6 @@ button#btn-pastRecords.selected {
 .records-participation {
   width: 315px;
   min-width: 215px;
-  height: -moz-fit-content;
   height: fit-content;
   padding: 20px;
   background-color: rgba(247, 246, 245, 0.9);
@@ -3520,7 +3418,6 @@ button#btn-pastRecords.selected {
 
 .info-time {
   width: 100px;
-  height: -moz-fit-content;
   height: fit-content;
   border-radius: 50px;
   border: 2px solid rgba(131, 185, 15, 0.9);
@@ -3608,7 +3505,6 @@ button#btn-pastRecords.selected {
   /* 頭像及上傳檔案按鈕 */
   /* layout */
   width: 100%;
-  height: -moz-fit-content;
   height: fit-content;
   /* 子 */
   display: flex;
@@ -3630,9 +3526,7 @@ button#btn-pastRecords.selected {
 .player-info {
   /* 表單容器 */
   /* layout */
-  width: -moz-fit-content;
   width: fit-content;
-  height: -moz-fit-content;
   height: fit-content;
   /* 子 */
   display: grid;
@@ -3657,7 +3551,6 @@ button#btn-pastRecords.selected {
   grid-column: 2;
   grid-row: 2;
   /* layout */
-  width: -moz-fit-content;
   width: fit-content;
 }
 .player-info div .button {
@@ -3688,7 +3581,6 @@ button#btn-pastRecords.selected {
   align-items: flex-end;
   /* layout */
   width: 275px;
-  height: -moz-fit-content;
   height: fit-content;
   /* child */
   display: flex;
@@ -3710,7 +3602,6 @@ button#btn-pastRecords.selected {
   align-items: flex-end;
   /* layout */
   width: 275px;
-  height: -moz-fit-content;
   height: fit-content;
   /* child */
   display: flex;

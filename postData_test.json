@@ -3,14 +3,14 @@
     {
       "vb_today_postData":[
         {
-            "id": "1",
+            "id": "vb_today_1",
             "type": "排球",
             "date": "06/26(三)",
-            "dateAbbr": "06/26",
+            "dateAbbr": "2024-06-26",
             "startTime": "18:00",
             "endTime": "22:00",
             "city": "新北市",
-            "area": "三重區",
+            "area": ["三重區"],
             "arena": "三重商工(四樓球場)",
             "tagDegree": "B",
             "tagPrice": "230",
@@ -28,7 +28,7 @@
                 "count": 3
               }
             ],
-            "role": "男網",
+            "role": "男網純男",
             "pos": "不拘",
             "note": "有穩定接發與防守觀念者、態度積極",
             "host": "王大明",
@@ -36,14 +36,14 @@
             "state": "default"
         },
         {
-            "id": "2",
+            "id": "vb_today_2",
             "type": "排球",
             "date": "06/26(三)",
             "dateAbbr": "06/26",
             "startTime": "9:00",
             "endTime": "12:00",
             "city": "新北市",
-            "area": "三重區",
+            "area": ["三重區"],
             "arena": "3.14排球館",
             "tagDegree": "C",
             "tagPrice": "120",
@@ -69,14 +69,14 @@
             "state": "default"
         },
         {
-            "id": "3",
+            "id": "vb_today_3",
             "type": "排球",
             "date": "06/26(三)",
             "dateAbbr": "06/26",
             "startTime": "10:00",
             "endTime": "11:00",
             "city": "台北市",
-            "area": "中正區",
+            "area": ["中正區"],
             "arena": "台北實踐大學體育館三樓排球場",
             "tagDegree": "B~A",
             "tagPrice": "200",
@@ -102,7 +102,7 @@
             "state": "default"
         },
         {
-            "id": "4",
+            "id": "vb_today_4",
             "type": "排球",
             "date": "06/26(三)",
             "dateAbbr": "06/26",
@@ -139,7 +139,7 @@
     {
       "vb_week_postData": [
         {
-            "id": "1",
+            "id": "vb_week_1",
             "type": "排球",
             "date": "06/28(五)",
             "dateAbbr": "06/28",
@@ -172,7 +172,7 @@
             "state": "default"
         },
         {
-            "id": "2",
+            "id": "vb_week_2",
             "type": "排球",
             "date": "06/29(三)",
             "dateAbbr": "06/29",
@@ -205,7 +205,7 @@
             "state": "default"
         },
         {
-            "id": "3",
+            "id": "vb_week_3",
             "type": "排球",
             "date": "06/27(四)",
             "dateAbbr": "06/27",
@@ -238,7 +238,7 @@
             "state": "host"
         },
         {
-            "id": "4",
+            "id": "vb_week_4",
             "type": "排球",
             "date": "06/30(日)",
             "dateAbbr": "06/30",
@@ -274,7 +274,7 @@
     {
       "bm_today_postData": [
         {
-            "id": "1",
+            "id": "bm_today_1",
             "type": "羽球",
             "date": "06/26(三)",
             "dateAbbr": "06/26",
@@ -307,7 +307,7 @@
             "state": "default"
         },
         {
-            "id": "2",
+            "id": "bm_today_2",
             "type": "羽球",
             "date": "06/26(三)",
             "dateAbbr": "06/26",
@@ -340,7 +340,7 @@
             "state": "appiled"
         },
         {
-            "id": "3",
+            "id": "bm_today_3",
             "type": "羽球",
             "date": "06/26(三)",
             "dateAbbr": "06/26",
@@ -373,7 +373,7 @@
             "state": "host"
         },
         {
-            "id": "4",
+            "id": "bm_today_4",
             "type": "羽球",
             "date": "06/26(三)",
             "dateAbbr": "06/26",
@@ -411,7 +411,7 @@
       "bm_week_postData": [
         {
           
-            "id": "1",
+            "id": "bm_week_1",
             "type": "羽球",
             "date": "06/28(五)",
             "dateAbbr": "06/28",
@@ -444,7 +444,7 @@
             "state": "appiled"
         },
         {
-            "id": "2",
+            "id": "bm_week_2",
             "type": "羽球",
             "date": "06/27(四)",
             "dateAbbr": "06/27",
@@ -477,7 +477,7 @@
             "state": "appiled"
         },
         {
-          "id": "3",
+          "id": "bm_week_3",
           "type": "羽球",
           "date": "06/28(四)",
           "dateAbbr": "06/28",
@@ -510,7 +510,7 @@
           "state": "appiled"
       },
         {
-            "id": "4",
+            "id": "bm_week_4",
             "type": "羽球",
             "date": "06/30(日)",
             "dateAbbr": "06/30",
