@@ -2136,7 +2136,7 @@ button#btn-typeBm.selected {
   border-radius: 50px;
   margin-bottom: 8px;
   box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.3);
-  color: #0F6A9D;
+  color: var(--font-color);
   /* 佈局 */
   flex: 1 1 auto;
   align-self: center;
@@ -2171,7 +2171,7 @@ button#btn-typeBm.selected {
   flex: 1 1 auto;
   align-self: center;
   box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.3);
-  color: var(--main-color);
+  color: var(--font-color);
   /* 自定義下拉箭頭 */
 }
 .dropMenu ul select:hover {
