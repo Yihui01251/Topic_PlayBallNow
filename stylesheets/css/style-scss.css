@@ -543,6 +543,11 @@ main {
   margin-bottom: 1vh;
   /* 保持與底部距離 */
 }
+@media (max-width:640px) {
+  main {
+    margin-bottom: 5vh;
+  }
+}
 
 /*  */
 /* 頁尾 */
@@ -1074,7 +1079,7 @@ footer div p {
   grid-auto-rows: auto;
   gap: 5px;
   /*  ...>div(filter-simplePostInfo > div(sub-info > div(solicitor-number */
-  /*  ...>div(filter-simplePostInfo > div(sub-info > div(ball-type */
+  /*  */
   /* 設備/... >div(filter-simplePostInfo >div(sub-info>div(equipInfo*/
   /* 備註/... >div(filter-simplePostInfo>div(sub-info>div(noteInfo*/
 }
@@ -1632,7 +1637,7 @@ footer div p {
 }
 .filterFormBox #search-Bar .searchBtn-box #search-Type {
   /* 羽排圖片 */
-  display: block;
+  display: flex;
 }
 @media (max-width:640px) {
   .filterFormBox #search-Bar .searchBtn-box #search-Type {

@@ -476,6 +476,9 @@ main {
   width: 100vw;
   margin-bottom: 1vh;
   /* 保持與底部距離 */
+  @media($breakpoint-moblie) {
+    margin-bottom: 5vh;
+  }
 }
 
 /*  */
@@ -1077,7 +1080,7 @@ footer {
       }
     }
 
-    /*  ...>div(filter-simplePostInfo > div(sub-info > div(ball-type */
+    /*  */
     .ballInfo {
       width: auto;
       height: fit-content;
@@ -1655,7 +1658,7 @@ footer {
       }
       #search-Type {
         /* 羽排圖片 */
-        display: block;
+        display: flex;
 
         @media ($breakpoint-moblie) {
           width: 100%;
