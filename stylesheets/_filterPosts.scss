@@ -206,9 +206,9 @@
 
   overflow-wrap: normal;
   gap: 30px;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
-  margin-left: 15vw;
+  //margin-left: 15vw;
   @media ($breakpoint-moblie) {
    margin: 0;
   }

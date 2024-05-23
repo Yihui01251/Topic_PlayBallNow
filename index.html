@@ -68,7 +68,7 @@
                   <figure>
                     <img
                       id="logo"
-                      src="./images/logo.png"
+                      src="../../images/logo.png"
                       alt="logo-PlayBallNow"
                     />
                   </figure>
@@ -88,10 +88,10 @@
             'url("./images/catsroke.svg")'
           );
           const [decorateSearch, setDecorateSearch] = useState(
-            'url("/images/index-searchCat.png")'
+            'url("../../images/index-searchCat.png")'
           );
           const [mobileTopBar, setMobileTopBar] = useState(
-            "/images/mobiletopvb.svg"
+            "../../images/mobiletopvb.svg"
           );
           /* 要map的資料 */
           const [todayType, setTodayType] = useState("vb_today_postData");
@@ -142,9 +142,9 @@
               colorFont = "#689607";
               btnColor = "#FF8D24";
               inputColor = "#B6DBAA";
-              newBorder = 'url("../images/dogstroke.svg")';
-              decorate = 'url("/images/index-searchDog.png")';
-              topBanner = "/images/mobiletopbm.png";
+              newBorder = 'url("../../images/dogstroke.svg")';
+              decorate = 'url("../../images/index-searchDog.png")';
+              topBanner = "../../images/mobiletopbm.png";
               // 新增class改變背景
               //bodyStyle.classList.add("background-Bm");
               //bodyStyle.classList.remove("background-Vb");
@@ -167,9 +167,9 @@
               colorFont = "#147CB6";
               btnColor = "#F1DB15";
               inputColor = "#B1C3E8";
-              newBorder = "url('../images/catsroke.svg')";
-              decorate = 'url("/images/index-searchCat.png")';
-              topBanner = "/images/mobiletopvb.svg";
+              newBorder = "url('../../images/catsroke.svg')";
+              decorate = 'url("../../images/index-searchCat.png")';
+              topBanner = "../../images/mobiletopvb.svg";
               //
               //bodyStyle.classList.remove("background-Bm");
               //bodyStyle.classList.add("background-Vb");
@@ -634,7 +634,6 @@
             setSelectedCity(value);
             var options = {
               taipei: [
-                "全部",
                 "中正區",
                 "大同區",
                 "中山區",
@@ -649,7 +648,6 @@
                 "文山區",
               ],
               xinpei: [
-                "全部",
                 "板橋區",
                 "新莊區",
                 "中和區",
@@ -717,7 +715,7 @@
 
           /* 儲存篩選條件 */
           const [selectedDate, setSelectedDate] = useState("未選擇"); //日期
-          const [selectedArea, setSelectedArea] = useState(["未選擇"]); //地區
+          const [selectedArea, setSelectedArea] = useState([]); //地區
           const [selectedCost, setSelectedCost] = useState("未選擇"); //費用
           const [selectedDegree, setSelectedDegree] = useState("未選擇"); //程度
           const [selectedRol, setSelectedRol] = useState("未選擇"); //排球類型
@@ -740,7 +738,9 @@
             window.localStorage.filterDegree = selectedDegree;
             window.localStorage.filterRol = selectedRol;
             window.localStorage.filterEquip = selectedEquip;
-          };
+            //
+            window.localStorage.filterType = filterTag;
+            };
           useEffect(() => {
             console.log(selectedArea);
             console.log("程度: " + selectedDegree);
@@ -761,7 +761,7 @@
                         <a href="./index.html">
                           <img
                             className="icon"
-                            src="./images/magnifier.png"
+                            src="../../images/magnifier.png"
                             alt=""
                           />
                           探索
@@ -803,7 +803,7 @@
                       </h1>
                       <img src="./images/bmtitle.svg" alt="" />
                     </div>
-                    <a href="/myCollect.html" className="button btn-postManage">
+                    <a href="./myCollect.html" className="button btn-postManage">
                       我的收藏
                       <img src="./images/heart-yes.svg" alt="" />
                     </a>
@@ -949,7 +949,7 @@
                               </p>
                               <div className="type-style">{type}</div>
                               <button className="collect">
-                                <img src="../images/heart-no.svg" alt="收藏" />
+                                <img src="./images/heart-no.svg" alt="收藏" />
                               </button>
                             </div>
                             <div className="areaInfo">
@@ -1214,9 +1214,9 @@
                           }}
                         >
                           <option value="default">費用</option>
-                          <option value="150-">150以下</option>
-                          <option value="200-">200以下</option>
-                          <option value="250-">250以下</option>
+                          <option value="150">150以下</option>
+                          <option value="200">200以下</option>
+                          <option value="250">250以下</option>
                         </select>
                         <select
                           name="類型"

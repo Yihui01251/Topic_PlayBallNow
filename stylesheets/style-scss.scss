@@ -34,11 +34,11 @@
   //hover表單顏色
   --input-hover-color:#B1C3E8;
   /* 路徑 */
-  --border-image: url("/images/catframe.png");
-  --background-image: url("/images/bg.png");
-  --search-decorate: url("/images/index-searchCat.png");
-  --ellipseBar-image:url("/images/bmellipsebar.png");
-  --mobileTop-image:url("/images/mobiletopvb.svg");
+  --border-image: url("../../images/catframe.png");
+  --background-image: url("../../images/bg.png");
+  --search-decorate: url("../../images/index-searchCat.png");
+  --ellipseBar-image:url("../../images/bmellipsebar.png");
+  --mobileTop-image:url("../../images/mobiletopvb.svg");
   /* 行程 */
   --border-type: solid;
   --evaluate-color: #1a8d07;
@@ -213,7 +213,7 @@ h2 div {
   height: 20px;
   background-color: $second-color-black;
   margin-right: 10px;
-  
+
 }
 
 /* 包左、右按鈕的容器 */
@@ -289,7 +289,7 @@ select {
   border: 2.5px solid $border-black;
   box-shadow: 0 4px 0 0 $box-shadow;
   padding: 4px 10px;
-  
+
   &:active,
   &:hover {
     box-shadow: none;
@@ -509,7 +509,7 @@ footer {
 .footer-border {
   width: auto;
   height: 21px;
-  background-image: url("/images/logo2.png");
+  background-image: url("../../images/logo2.png");
   background-size: 24px;
   background-repeat: repeat;
   background-position: center;
@@ -833,7 +833,7 @@ footer {
     width: 60%;
     height: 80%;
     background-color: #ffffff00;
-   
+
   }
   &__content {
     position: absolute;
@@ -844,7 +844,7 @@ footer {
     height: auto;
     overflow: visible;
 
-   
+
   }
   &__photo {
     display: flex;
@@ -885,8 +885,8 @@ footer {
       bottom: 0;
       right: 0;
       transform: rotate(0);
-    } 
-  } 
+    }
+  }
   &__close {
     cursor: pointer;
     opacity: 0.7;
@@ -1013,7 +1013,7 @@ footer {
       flex-wrap: wrap;
       gap: 10px;
     }
-    
+
     //tag布局
     .tag-style {
       /* tag布局 */
@@ -1210,7 +1210,7 @@ footer {
     //layout
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(65px,75px));
-    column-gap: 10px;  
+    column-gap: 10px;
     justify-content: start;
     align-items: center;
     justify-items: center;
@@ -1242,14 +1242,14 @@ footer {
         .evaluateState-yes{
           /* 已評價標籤 */
           border-radius: $border-radius-50;
-          background-color:var(--main-color); 
+          background-color:var(--main-color);
           color: $second-color-white;
           padding: 2px 8px;
           line-height: 25px;
         }
       }
     }
-  
+
   .evaluateForm{
     /* 審核容器 */
     width: 95%;
@@ -1288,9 +1288,9 @@ footer {
         color: $second-color-black;
       }
 
-     
 
-    }    
+
+    }
     .evaluateOption{
         /* 審查選項 */
         align-self: flex-start;
@@ -1308,8 +1308,8 @@ footer {
         input{
           box-shadow: none;
         }
-      } 
-    
+      }
+
     .BtnContainer{
       width: 90%;
       align-self: center;
@@ -1334,7 +1334,7 @@ footer {
   justify-content: start;
   align-items: center;
   justify-items: end;
-  
+
 
   @media ($breakpoint-moblie) {
     width: 88vw;
@@ -1449,7 +1449,7 @@ footer {
   justify-content: center;
   align-items: center;
   color: var(--font-color);
- 
+
 
   p {
   }
@@ -1711,7 +1711,7 @@ footer {
         justify-items: center;
         align-items: center;
         gap: 0px;
-        
+
         .applicantInfo {
           display: flex;
           flex-direction: column;
@@ -1741,7 +1741,7 @@ footer {
             color: $second-color-black;
           }
         }
-        
+
       }
 
       .selfState-title {
