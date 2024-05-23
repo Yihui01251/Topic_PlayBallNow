@@ -7,7 +7,7 @@
   height: fit-content;
 
   justify-items: center;
-
+  margin-bottom: 15vh;
   @media screen and ($breakpoint-moblie) {
     margin-bottom: 180px;
   }
@@ -125,13 +125,16 @@
 
 /* 登入後姓名 */
 .userName {
-  width: 150px;
+  width: fit-content;
+  color: white;
+  //layout
   display: flex;
   flex-direction: row;
-  color: white;
-
+  align-items: center;
+  
   img {
-    width: 20px;
+    width: 40px;
+    height: 40px;
   }
 }
 

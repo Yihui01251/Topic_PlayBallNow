@@ -128,6 +128,8 @@ video {
   /* 行程 */
   --border-type: solid;
   --evaluate-color: #1a8d07;
+  /* 篩選條件數 */
+  --filter-num:"0";
 }
 
 /* 共用區 */
@@ -399,6 +401,7 @@ body {
   background-position: center center;
   /* 讓背景圖片在容器中置中 */
   font-family: "Alata", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Helvetica, Arial, "jf-openhuninn-2.0", "蘋方-繁", "PingFang TC", "黑體-繁", "Heiti TC", "微軟正黑體", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+  overflow-x: hidden;
   z-index: -10;
 }
 
@@ -537,7 +540,7 @@ body {
 /* 主內容 */
 main {
   width: 100vw;
-  margin-bottom: 15vh;
+  margin-bottom: 1vh;
   /* 保持與底部距離 */
 }
 
@@ -799,6 +802,11 @@ footer div p {
   box-shadow: none;
 }
 
+/* 收藏按鈕 */
+.collect {
+  background-color: transparent;
+}
+
 /* 關閉按鈕 */
 .btn-close {
   background-color: #D9D9D9;
@@ -957,6 +965,7 @@ footer div p {
 .simplePostInfo {
   flex: 0 1 auto;
   /*  */
+  width: 20vw;
   max-width: 20vw;
   min-width: 300px;
   min-height: 310px;
@@ -1339,8 +1348,8 @@ footer div p {
 /* 羽or排 */
 .notice-ballType {
   width: 100%;
-  height: 100%;
-  border-radius: 50%;
+  height: 50px;
+  border-radius: 90px;
   background-color: var(--font-color);
   color: rgba(247, 246, 245, 0.9);
   /* layout */
@@ -1349,7 +1358,7 @@ footer div p {
   align-items: center;
 }
 .notice-ballType p {
-  font-size: 2vw;
+  font-size: 30px;
 }
 
 /* 元件資訊 */
@@ -1824,7 +1833,7 @@ main:10
   /* 與header距離 */
   margin-top: 50px;
   /* 和footer距離 */
-  margin-bottom: 15vh;
+  margin-bottom: 5vh;
   /* 控制子層 */
   display: flex;
   flex-direction: column;
@@ -2385,7 +2394,7 @@ button#btn-typeBm.selected {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 20vw;
+  margin-bottom: 1vh;
   gap: 40px;
 }
 .filter-postArea hr {
@@ -2426,6 +2435,7 @@ button#btn-typeBm.selected {
   background: rgb(247, 246, 245);
   border: 3.5px solid black;
   box-shadow: 0px 4px 0px 0px black;
+  margin-top: 4px;
   /* 子 */
   /* display: flex; */
   display: grid;
@@ -2435,6 +2445,10 @@ button#btn-typeBm.selected {
   align-items: center;
   overflow-wrap: normal;
   padding: 5px 15px;
+}
+.filter-box .filter-info:hover {
+  box-shadow: 0px 6px 0px 0px black;
+  margin-top: 0px;
 }
 .filter-box .filter-info .info-top {
   grid-column: 1/5;
@@ -2452,12 +2466,13 @@ button#btn-typeBm.selected {
 .filter-box .filter-info .info-top .dot {
   width: 15px;
 }
-.filter-box .filter-info img {
+.filter-box .filter-info .filterIcon {
   grid-column: 4;
   grid-row: 1/3;
-  width: 80%;
+  width: 70%;
   margin: 7px;
-  margin-left: 20px;
+  margin-right: 10px;
+  position: relative;
 }
 .filter-box .filter-info .info-down {
   grid-column: 1/3;
@@ -2478,7 +2493,7 @@ button#btn-typeBm.selected {
   position: relative;
 }
 
-/* 裝已選條件資料/... >div.fitter-info >div.filter-btnBox >button.#btn-filter */
+/* 裝已選條件資料*/
 #btn-filter {
   width: 58px;
   height: 58px;
@@ -2500,18 +2515,19 @@ button#btn-typeBm.selected {
 
 /* ...> section.filter-box > div.fitter-info > div > div.by-btn-filterNum */
 .by-btn-filterNum {
-  /* layout */
-  height: auto;
-  padding: 4px 7px 4px 7px;
+  /* style */
+  width: 25px;
+  height: 25px;
+  padding: 1px;
   border-radius: 90px;
-  /* color */
   background: #cb1b1b;
+  color: #ffffff;
   /* border */
   border: 1.5px solid black;
   /* 相對#btn-filter位置 */
   position: absolute;
-  top: 0;
-  right: 0;
+  top: -10px;
+  right: -5px;
   /* 子 */
   text-align: center;
 }
@@ -2599,7 +2615,7 @@ button#btn-typeBm.selected {
   height: fit-content;
   padding: 50px 0px;
   display: grid;
-  grid-template-columns: 339px 378px;
+  grid-template-columns: 370px 370px;
   column-gap: 50px;
   align-items: end;
 }
@@ -2622,7 +2638,8 @@ button#btn-typeBm.selected {
   align-items: center;
   /* display: grid;
     grid-template-rows: 30px 645px;
-    gap: 8px; */
+     */
+  gap: 15px;
 }
 
 /* 貼文管理按鈕 */
@@ -2855,7 +2872,7 @@ button#btn-formVB.selected::before {
 
 /* 預覽容器*/
 .form-preview {
-  width: 350px;
+  width: 370px;
   height: 797px;
   border: 1px solid black;
   border-radius: 20px;
@@ -2871,7 +2888,7 @@ button#btn-formVB.selected::before {
     margin: 20px 0 0 0;
     height: fit-content;
     width: 60vw;
-    min-width: 380px;
+    min-width: 360px;
     justify-content: center;
     align-items: center;
   }
@@ -2881,7 +2898,7 @@ button#btn-formVB.selected::before {
     padding: 0;
     margin: 35px 0 0 0;
     height: fit-content;
-    width: 375px;
+    min-width: 360px;
   }
 }
 .form-preview .line-hugTitle {
@@ -3067,7 +3084,7 @@ button#btn-pastRecords.selected {
 
 /* 過去紀錄 使footer置底 */
 .pastPostArea {
-  margin-bottom: 20vh;
+  margin-bottom: 36vh;
 }
 
 /* 個人 */
@@ -3076,6 +3093,7 @@ button#btn-pastRecords.selected {
   width: 100%;
   height: fit-content;
   justify-items: center;
+  margin-bottom: 15vh;
 }
 @media screen and (max-width:640px) {
   .personal-Area {
@@ -3196,13 +3214,15 @@ button#btn-pastRecords.selected {
 
 /* 登入後姓名 */
 .userName {
-  width: 150px;
+  width: fit-content;
+  color: white;
   display: flex;
   flex-direction: row;
-  color: white;
+  align-items: center;
 }
 .userName img {
-  width: 20px;
+  width: 40px;
+  height: 40px;
 }
 
 /* 包(狀態)容器 */
@@ -3486,6 +3506,7 @@ button#btn-pastRecords.selected {
   border-radius: 20px;
   border: 3px solid #000000;
   padding: 30px;
+  background-color: rgba(88, 88, 88, 0.75);
   /* child */
   gap: 15px;
 }

@@ -42,7 +42,9 @@
   /* 行程 */
   --border-type: solid;
   --evaluate-color: #1a8d07;
-}
+  /* 篩選條件數 */
+  --filter-num:"0"; 
+} 
 
 /* 共用區 */
 /* 標題文字 */
@@ -317,7 +319,7 @@ body {
   background-position: center center;
   /* 讓背景圖片在容器中置中 */
   font-family: $font-family-en, $font-family-tc;
-
+  overflow-x: hidden;
   z-index: -10;
 }
 
@@ -472,7 +474,7 @@ body {
 /* 主內容 */
 main {
   width: 100vw;
-  margin-bottom: 15vh;
+  margin-bottom: 1vh;
   /* 保持與底部距離 */
 }
 
@@ -750,6 +752,10 @@ footer {
     box-shadow: none;
   }
 }
+/* 收藏按鈕 */
+.collect{
+  background-color: transparent;
+}
 /* 關閉按鈕 */
 .btn-close {
   background-color: $background-color-lightgrey;
@@ -914,6 +920,7 @@ footer {
 .simplePostInfo {
   flex: 0 1 auto;
   /*  */
+  width: 20vw;
   max-width: 20vw;
   min-width: 300px;
   min-height: 310px;
@@ -1350,8 +1357,8 @@ footer {
 /* 羽or排 */
 .notice-ballType {
   width: 100%;
-  height: 100%;
-  border-radius: $border-radius-half;
+  height: 50px;
+  border-radius: $border-radius-90;
   background-color: var(--font-color);
   color: $background-color-lightwhite-s;
   /* layout */
@@ -1360,7 +1367,7 @@ footer {
   align-items: center;
 
   p {
-    font-size: 2vw;
+    font-size: 30px;
   }
 }
 
