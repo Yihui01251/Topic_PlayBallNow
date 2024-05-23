@@ -43,15 +43,11 @@
         const { vb_week_postData } = postData[1];
         const { bm_today_postData } = postData[2];
         const { bm_week_postData } = postData[3];
-        console.log(vb_today_postData);
-        console.log(vb_week_postData);
-        console.log(bm_today_postData);
-        console.log(bm_week_postData);
 
-
-        const TopBar = (props)=>{
-          return(<>
-          <div className="mobile-TopBar">
+        const TopBar = (props) => {
+          return (
+            <>
+              <div className="mobile-TopBar">
                 <img
                   src="./images/mobile-both-topbanner.png"
                   alt="不分類的手機版banner"
@@ -92,54 +88,216 @@
                 </nav>
                 <div className="title">
                   <div className="hugTitle noto-sans-tc">
-                  <img src="./images/vbtitle.svg" alt="" />
+                    <img src="./images/vbtitle.svg" alt="" />
                     <h1 className="title-L" value="篩選貼文">
                       篩選貼文
                     </h1>
                     <img src="./images/bmtitle.svg" alt="" />
                   </div>
                 </div>
-                </header></>)
-        }
+              </header>
+            </>
+          );
+        };
 
         const App = () => {
-          const { useState, useEffect} = React;
+          const { useState, useEffect, useMemo } = React;
 
           const length = postData.length;
           const lengthValue = `共有${length}筆資料`;
 
           /* 取得篩選條件 */
-          const [selectedDate, setSelectedDate] = useState("未選擇");//日期
-          const [selectedCity, setSelectedCity] = useState("新北市");//縣市
-          const [selectedArea, setSelectedArea] = useState([""]);//地區
-          const [selectedCost, setSelectedCost] = useState("");//費用
-          const [selectedDegree, setSelectedDegree] = useState("");//程度
-          const [selectedRol, setSelectedRol] = useState("");//排球類型
-          const [selectedEquip, setSelectedEquip] = useState([""]);//羽球設備
-          
-          useEffect(()=>{
+          const [selectedDate, setSelectedDate] = useState(""); //日期
+          const [selectedCity, setSelectedCity] = useState("");
+          const [selectedArea, setSelectedArea] = useState([""]); //地區
+          const [selectedCost, setSelectedCost] = useState(""); //費用
+          const [selectedDegree, setSelectedDegree] = useState(""); //程度
+          const [selectedRol, setSelectedRol] = useState(""); //排球類型
+          const [selectedEquip, setSelectedEquip] = useState([""]); //羽球設備
+          const [filterType, setFilterType] = useState("排球");
+          /* 要map的資料 */
+          const [todayType, setTodayType] = useState("vb_today_postData");
+          const [weekType, setWeekType] = useState("vb_week_postData");
+          //儲存篩選條件
+          const [conditions, setConditions] = useState({ type: filterType });
+          useEffect(() => {
             setSelectedDate(window.localStorage.filterDate);
             setSelectedCity(window.localStorage.filterCity);
-            const storedSelectedArea = localStorage.getItem('filterArea');
-            const selectedAreaArray = storedSelectedArea ? JSON.parse(storedSelectedArea) : [];
+            const storedSelectedArea = localStorage.getItem("filterArea");
+            const selectedAreaArray = storedSelectedArea
+              ? JSON.parse(storedSelectedArea)
+              : [];
             setSelectedArea(selectedAreaArray);
             setSelectedCost(window.localStorage.filterCost);
             setSelectedDegree(window.localStorage.filterDegree);
             setSelectedRol(window.localStorage.filterRol);
             setSelectedEquip(window.localStorage.filterEquip);
-            console.log(selectedAreaArray);
-          },[])
+            setFilterType(window.localStorage.filterType);
 
+            if (window.localStorage.filterType == "羽球") {
+              setTodayType("bm_today_postData");
+              setWeekType("bm_week_postData");
+            } else {
+              setTodayType("vb_today_postData");
+              setWeekType("vb_week_postData");
+            }
+          }, []);
+          // 更改資料類型
+          const getPosts = (type) => {
+            switch (type) {
+              case "vb_today_postData":
+                return vb_today_postData;
+              case "bm_today_postData":
+                return bm_today_postData;
+              case "vb_week_postData":
+                return vb_week_postData;
+              case "bm_week_postData":
+                return bm_week_postData;
+              default:
+                return [];
+            }
+          };
           /* 重新篩選 */
-          const SaveData =()=>{
-            window.localStorage.filterDate=selectedDate;
-            window.localStorage.filterCity=selectedCity;
-            window.localStorage.filterArea=selectedArea;
-            window.localStorage.filterCost=selectedCost;
-            window.localStorage.filterDegree=selectedDegree;
-            window.localStorage.filterRol=selectedRol;
-            window.localStorage.filterEquip=selectedEquip;
-          }
+          const SaveData = () => {
+            window.localStorage.filterDate = selectedDate;
+            window.localStorage.filterCity = selectedCity;
+            window.localStorage.filterArea = selectedArea;
+            window.localStorage.filterCost = selectedCost;
+            window.localStorage.filterDegree = selectedDegree;
+            window.localStorage.filterRol = selectedRol;
+            window.localStorage.filterEquip = selectedEquip;
+          };
+          //如果useState改變就加入進condition儲存(避免比對空值)
+          const newConditions = {};
+          useEffect(() => {
+            if (selectedDegree !== "未選擇") {
+              newConditions.tagDegree = selectedDegree;
+            }
+            if (selectedCost !== "未選擇") {
+              newConditions.tagPrice = selectedCost;
+            }
+            if (selectedDate !== "未選擇") {
+              newConditions.dateAbbr = selectedDate;
+            }
+            if (selectedCity !== "未選擇") {
+              newConditions.city = selectedCity;
+            }
+            if (selectedArea !== "" || selectedArea !== "[]") {
+              newConditions.area = selectedArea;
+            }
+            if (selectedRol !== "未選擇") {
+              newConditions.role = selectedRol;
+            }
+            if (selectedEquip !== "未選擇") {
+              newConditions.equip = selectedEquip;
+            }
+
+            setConditions(newConditions);
+            filterPosts;
+          }, [
+            selectedDate,
+            selectedCost,
+            selectedDate,
+            selectedCity,
+            selectedArea,
+            selectedRol,
+            selectedEquip,
+          ]);
+          useEffect(() => {
+            console.log("目前篩選: ", conditions);
+          }, [conditions]);
+          /* 篩選資料 */
+          const filterPosts = useMemo(() => {
+            // 沒有篩選時渲染全部貼文
+            if (
+              !selectedDegree &&
+              !selectedCost &&
+              !selectedArea &&
+              !selectedDate &&
+              !selectedEquip
+            ) {
+              return [...getPosts(todayType), ...getPosts(weekType)];
+            }
+            return [...getPosts(todayType), ...getPosts(weekType)].filter(
+              (posts) => {
+                let matchAllConditions = true;
+                console.log("篩選貼文：", posts);
+                for (const key in conditions) {
+                  if (
+                    // newConditions.hasOwnProperty(key) &&
+                    conditions[key] !== ""
+                  ) {
+                    if (posts.hasOwnProperty(key)) {
+                      switch (key) {
+                        case "tagDegree":
+                          matchAllConditions =
+                            matchAllConditions &&
+                            posts[key].includes(conditions[key]);
+                          break;
+                        case "tagPrice":
+                          //比較價格小於條件值
+                          matchAllConditions =
+                            matchAllConditions &&
+                            posts[key] <= parseInt(conditions[key]);
+                          break;
+                        case "dateAbbr":
+                          // 比較打球日是否等於條件
+                          matchAllConditions =
+                            matchAllConditions &&
+                            posts[key].match(conditions[key]);
+                          // parseInt(posts[key].split("-")[0]) >= conditions[key];
+
+                          break;
+                        case "city":
+                          matchAllConditions =
+                            matchAllConditions &&
+                            posts[key].match(conditions[key]);
+                          break;
+                        case "area":
+                          if (Array.isArray(posts[key])) {
+                            const match = posts[key].some((area) =>
+                              conditions[key].includes(area)
+                            );
+                            console.log(
+                              `匹配區域 ${conditions[key]} 在 ${posts[key]} 中: ${match}`
+                            );
+                            matchAllConditions = matchAllConditions && match;
+                          } else {
+                            matchAllConditions = false;
+                          }
+                          break;
+                        case "role":
+                          matchAllConditions =
+                            matchAllConditions &&
+                            posts[key].match(conditions[key]);
+                          break;
+                        case "equip":
+                          matchAllConditions =
+                            matchAllConditions &&
+                            posts[key].includes(conditions[key]);
+                          break;
+                        default:
+                          // 未知屬性
+                          matchAllConditions = false;
+                          break;
+                      }
+                    } else {
+                      //
+                      matchAllConditions = false;
+
+                      // 如果某个条件不匹配，则停止遍历并返回 false
+                      if (!matchAllConditions) {
+                        return false;
+                      }
+                    }
+                  }
+                }
+                console.log(`匹配結果：${matchAllConditions}`);
+                // 如果所有条件都匹配，则返回 true
+                return matchAllConditions;
+              }
+            );
+          }, [todayType, weekType, conditions]);
 
           // 元件
           // 建立簡略貼文元件
@@ -159,7 +317,7 @@
             pos,
             note,
             href,
-            host
+            host,
           }) => {
             // const {key,date,time,city,area,arena,tag1,tag2} = props;
             return (
@@ -176,10 +334,10 @@
                       </button>
                     </div>
                     <div className="areaInfo">
-                            <h3>{postCity}</h3>
-                            <h3>{postArea}</h3>
-                            <h3>{postArena}</h3>
-                          </div>
+                      <h3>{postCity}</h3>
+                      <h3>{postArea}</h3>
+                      <h3>{postArena}</h3>
+                    </div>
                     <div className="tag-style">
                       <p>{primaryTag}</p>
                       <p>${secondaryTag}</p>
@@ -253,11 +411,11 @@
             role,
             pos,
             note,
-            host
+            host,
           }) => {
-            const hostType ='vb';
-            if(type=="羽球"){
-              hostType="bm";
+            let hostType = "vb";
+            if (type == "羽球") {
+              hostType = "bm";
             }
             return (
               <div className="popup" id={href}>
@@ -278,11 +436,10 @@
                           <div className="areaInfo">
                             <h3>{postCity}</h3>
                             <h3>{postArea}</h3>
-
                           </div>
                           <div className="arenaInfo">
                             <h3>{postArena}</h3>
-                            </div>
+                          </div>
                           <div className="tag-style">
                             <p>{primaryTag}</p>
                             <p>${secondaryTag}</p>
@@ -333,7 +490,9 @@
                           <a className="btn-close popup__close" href="#">
                             關閉
                           </a>
-                          <a className="button" href="#noticeApplyPopup">確認報名</a>
+                          <a className="button" href="#noticeApplyPopup">
+                            確認報名
+                          </a>
                         </div>
                       </div>
                     </div>
@@ -344,10 +503,9 @@
           };
           return (
             <div className="body">
-              <TopBar/>
+              <TopBar />
 
               <main className="filter-postArea">
-
                 <section className="filter-box">
                   <a href="./index.html">
                     <div className="filter-btnBox">
@@ -365,7 +523,9 @@
                       </div>
 
                       <div className="info-down">
-                        <p className="text-M">{selectedCity}，與其他{selectedArea.length}個區域</p>
+                        <p className="text-M">
+                          {selectedCity}，與其他{selectedArea.length}個區域
+                        </p>
                       </div>
                       <img src="./images/filiter.png" alt="篩選icon" />
                     </div>
@@ -381,31 +541,7 @@
                 {/* 貼文 */}
                 <section className="filter-containers">
                   <div className="filter-postBlock">
-                    {/* // {postData.map((group,index)=>{
-                    //   group.map((post_data)=>{
-                    //     return(<ApplyCard
-                    //       key={post_data.id}
-                    //       id={post_data.id}
-                    //       type={post_data.type}
-                    //       postDate={post_data.date}
-                    //       postStartTime={post_data.startTime}
-                    //       postEndTime={post_data.endTime}
-                    //       postCity={post_data.city}
-                    //       postArea={post_data.area}
-                    //       postArena={post_data.arena}
-                    //       primaryTag={post_data.tagDegree}
-                    //       secondaryTag={post_data.tagPrice}
-                    //       reqCount={post_data.reqCount}
-                    //       role={post_data.role}
-                    //       pos={post_data.pos}
-                    //       note={post_data.note}
-                    //     />
-
-                    //     )
-                    //   })
-                    // })*/}
-
-                    {vb_week_postData.map((post_data) => {
+                    {filterPosts.map((post_data) => {
                       return (
                         <SimplePostCard
                           key={post_data.id}
@@ -446,17 +582,17 @@
               </footer>
               {/*燈箱效果-報名審核中通知 */}
               <div className="popup" id="noticeApplyPopup">
-              <div className="popup-inner">
-               <div className="popup__content">
-              {/* 報名審核中通知元件 */}
-              <div className="notice-apply">
-              <p>已送出報名，團主審核中</p>
-              <a className="popup__close" href="#">
-              <img src="../images/cancel.png" alt="關閉按鈕" />
-              </a>
-              </div>
-              </div>
-              </div>
+                <div className="popup-inner">
+                  <div className="popup__content">
+                    {/* 報名審核中通知元件 */}
+                    <div className="notice-apply">
+                      <p>已送出報名，團主審核中</p>
+                      <a className="popup__close" href="#">
+                        <img src="../images/cancel.png" alt="關閉按鈕" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           );
