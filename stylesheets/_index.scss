@@ -505,7 +505,7 @@ button#btn-typeBm.selected {
 .content {
   flex: 1 0 auto;
   max-width: 235px;
-  width: 235px;
+  width: 225px;//235px=>225px筆電也能看到第三個
   height: 245px;
   background-image: var(--border-image);
   background-size: cover;
