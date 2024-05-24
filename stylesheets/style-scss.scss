@@ -678,7 +678,6 @@ footer {
   }
 }
 %button,%a{
-  background-color: var(--btn-color);
   width: fit-content;
   max-height: 50px;
   margin-top: 5px;
@@ -696,7 +695,7 @@ footer {
   text-transform: uppercase;
   &:hover {
     margin-top: 0px;
-    box-shadow: 0 2px $border-black;
+    box-shadow: 0 6px $border-black;
     cursor: pointer;
   }
   &:active {

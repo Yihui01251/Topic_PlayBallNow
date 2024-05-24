@@ -299,6 +299,7 @@
             console.log("目前篩選: ", conditions);
             updateFilterNum(3);
           }, [conditions]);
+          /* 篩選條件數目 */
           const [filterNum, setFilterNum] = useState("");
           const updateFilterNum = (num) => {
             document.documentElement.style.setProperty("--filter-num", num);

@@ -730,7 +730,6 @@ footer div p {
 }
 
 #btn-filter {
-  background-color: var(--btn-color);
   width: fit-content;
   max-height: 50px;
   margin-top: 5px;
@@ -749,7 +748,7 @@ footer div p {
 }
 #btn-filter:hover {
   margin-top: 0px;
-  box-shadow: 0 2px black;
+  box-shadow: 0 6px black;
   cursor: pointer;
 }
 #btn-filter:active {
@@ -2498,7 +2497,7 @@ button#btn-typeBm.selected {
   position: relative;
 }
 
-/* 裝已選條件資料*/
+/* 返回首頁*/
 #btn-filter {
   width: 58px;
   height: 58px;
