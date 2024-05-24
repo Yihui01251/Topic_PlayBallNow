@@ -68,7 +68,7 @@
                   <figure>
                     <img
                       id="logo"
-                      src="../../images/logo.png"
+                      src="./images/logo.png"
                       alt="logo-PlayBallNow"
                     />
                   </figure>
@@ -88,10 +88,10 @@
             'url("./images/catsroke.svg")'
           );
           const [decorateSearch, setDecorateSearch] = useState(
-            'url("../../images/index-searchCat.png")'
+            'url("./images/index-searchCat.png")'
           );
           const [mobileTopBar, setMobileTopBar] = useState(
-            "../../images/mobiletopvb.svg"
+            "./images/mobiletopvb.svg"
           );
           /* 要map的資料 */
           const [todayType, setTodayType] = useState("vb_today_postData");
@@ -142,9 +142,9 @@
               colorFont = "#689607";
               btnColor = "#FF8D24";
               inputColor = "#B6DBAA";
-              newBorder = 'url("../../images/dogstroke.svg")';
-              decorate = 'url("../../images/index-searchDog.png")';
-              topBanner = "../../images/mobiletopbm.png";
+              newBorder = 'url("./images/dogstroke.svg")';
+              decorate = 'url("./images/index-searchDog.png")';
+              topBanner = "./images/mobiletopbm.png";
               // 新增class改變背景
               //bodyStyle.classList.add("background-Bm");
               //bodyStyle.classList.remove("background-Vb");
@@ -167,9 +167,9 @@
               colorFont = "#147CB6";
               btnColor = "#F1DB15";
               inputColor = "#B1C3E8";
-              newBorder = "url('../../images/catsroke.svg')";
-              decorate = 'url("../../images/index-searchCat.png")';
-              topBanner = "../../images/mobiletopvb.svg";
+              newBorder = "url('./images/catsroke.svg')";
+              decorate = 'url("./images/index-searchCat.png")';
+              topBanner = "./images/mobiletopvb.svg";
               //
               //bodyStyle.classList.remove("background-Bm");
               //bodyStyle.classList.add("background-Vb");
@@ -1058,7 +1058,7 @@
                     <div className="notice-apply">
                       <p>已送出報名，團主審核中</p>
                       <a className="popup__close" href="#">
-                        <img src="../images/cancel.png" alt="關閉按鈕" />
+                        <img src="./images/cancel.png" alt="關閉按鈕" />
                       </a>
                     </div>
                   </div>
@@ -1070,7 +1070,7 @@
           const FilterForm = ({ areaOption }) => {
             return <></>;
           };
-          
+
           const Option = ({ option }) => {
             return (
               <>

@@ -104,9 +104,9 @@
           const [loginBtn, setLoginBtn] = useState("");
           const [infoState, setInfoState] = useState("none");
           const [userName, setUserName] = useState("十全大補");
-          const [userPhoto, setUserPhoto] = useState("../../images/player.png");
+          const [userPhoto, setUserPhoto] = useState("./images/player.png");
           const [userSex, setUserSex] = useState("未知");
-          const[sexIcon,setSexIcon]=useState("../../images/icon-male.png")
+          const[sexIcon,setSexIcon]=useState("./images/icon-male.png")
           const [userIntro, setUserIntro] = useState("很高興認識大家!");
           const [userBmDegree, setUserBmDegree] = useState("");
           const [userVbDegree, setUserVbDegree] = useState("");
@@ -129,7 +129,7 @@
               setInfoState("none");
             }
             if(userSex=="女"){
-              setSexIcon("../../images/icon-female.png");
+              setSexIcon("./images/icon-female.png");
             }
           }, [registerState, setRegisterState,userSex]);
 
@@ -169,7 +169,7 @@
                       <a href="/register.html" style={{ display: loginBtn }}>
                         <button
                           className="btn-logInLine"
-                          
+
                         >
                           Line登入
                           <img src="./images/icon-LINE.png" alt="" />

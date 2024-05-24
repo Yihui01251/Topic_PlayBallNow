@@ -43,8 +43,8 @@
   --border-type: solid;
   --evaluate-color: #1a8d07;
   /* 篩選條件數 */
-  --filter-num:"0"; 
-} 
+  --filter-num:"0";
+}
 
 /* 共用區 */
 /* 標題文字 */
@@ -1107,7 +1107,7 @@ footer {
       display: grid;
       grid-template-columns: 35px 1fr;
       gap: 6px;
-      
+
       align-items: center;
       h4 {
         width: fit-content;
