@@ -426,7 +426,6 @@ body {
   position: relative;
   /* display: grid;
   grid-template-rows: 125px 1fr 100px; */
-  display: flex;
   flex-direction: column;
   gap: 10px;
   justify-items: center;
@@ -453,6 +452,7 @@ body {
 .mobile-TopBar {
   width: 100vw;
   display: none;
+  top: 0;
 }
 .mobile-TopBar img {
   width: 100%;
@@ -557,8 +557,9 @@ footer {
   background-color: rgba(3, 9, 40, 0.6);
   background-size: cover;
   padding-bottom: 10px;
-  position: static;
+  position: absolute;
   bottom: 0;
+  /* logo */
 }
 @media (max-width: 640px) {
   footer {
@@ -577,8 +578,7 @@ footer div p {
   margin-left: 10px;
   text-align: center;
 }
-
-.footer-border {
+footer .footer-border {
   width: auto;
   height: 21px;
   background-image: url("../../images/logo2.png");
@@ -586,13 +586,15 @@ footer div p {
   background-repeat: repeat;
   background-position: center;
 }
-
-/* logo */
-#logo {
+footer #logo {
   width: 35px;
   height: 33px;
   margin-left: 10px;
   flex: 1 0 auto;
+}
+
+.hiFooter footer {
+  bottom: -120px;
 }
 
 /* 元件 */
@@ -974,11 +976,11 @@ footer div p {
   animation: cube-rotate 0.5s ease-in-out;
 }
 
-/* 子元件 */
+/* 簡略貼文資訊元件 */
 .simplePostInfo {
   flex: 0 1 auto;
   /*  */
-  width: 20vw;
+  width: 90%;
   max-width: 20vw;
   min-width: 300px;
   min-height: 310px;
@@ -1096,6 +1098,7 @@ footer div p {
   align-self: center;
 }
 .simplePostInfo .sub-info div {
+  width: 90%;
   color: white;
 }
 .simplePostInfo .sub-info div p {
@@ -1105,7 +1108,6 @@ footer div p {
   text-overflow: ellipsis;
 }
 .simplePostInfo .sub-info .vacancyInfo {
-  width: 90%;
   height: fit-content;
   /* 子 */
   display: grid;
@@ -1126,7 +1128,6 @@ footer div p {
   align-items: center;
 }
 .simplePostInfo .sub-info .ballInfo {
-  width: 90%;
   height: fit-content;
   display: grid;
   grid-template-columns: 35px 1fr;
@@ -1139,28 +1140,18 @@ footer div p {
 }
 .simplePostInfo .sub-info .equipInfo,
 .simplePostInfo .sub-info .posInfo {
-  width: 90%;
   height: fit-content;
   display: grid;
   grid-template-columns: 35px 1fr;
   gap: 6px;
 }
 .simplePostInfo .sub-info .noteInfo {
-  width: 90%;
   height: fit-content;
   display: grid;
   grid-template-columns: 35px 1fr;
   gap: 6px;
 }
-
-.detailPostInfo .simplePostInfo .sub-info div p {
-  width: 90%;
-  color: var(--font-color);
-  overflow: hidden;
-  white-space: wrap;
-  text-overflow: ellipsis;
-}
-.detailPostInfo .apply-info {
+.simplePostInfo .apply-info {
   width: 100%;
   display: grid;
   grid-template-columns: 0.2fr 1fr;
@@ -1169,33 +1160,33 @@ footer div p {
   justify-content: center;
   align-items: center;
 }
-.detailPostInfo .apply-info hr {
+.simplePostInfo .apply-info hr {
   grid-column: 3/1;
   grid-row: 1;
   width: 100%;
   border: 1px solid black;
   align-self: flex-end;
 }
-.detailPostInfo .apply-info img {
+.simplePostInfo .apply-info img {
   grid-column: 1;
   grid-row: 2;
   width: 100%;
 }
-.detailPostInfo .apply-info p {
+.simplePostInfo .apply-info p {
   grid-column: 2;
   grid-row: 2;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-.detailPostInfo .apply-info div {
+.simplePostInfo .apply-info div {
   grid-column: 1/3;
   grid-row: 3;
   min-height: 50px;
   border-radius: 10px;
   padding: 10px;
 }
-.detailPostInfo .auditList {
+.simplePostInfo .auditList {
   /* 團主查看貼文元件 */
   width: 100%;
   height: 90px;
@@ -1205,7 +1196,7 @@ footer div p {
   align-items: flex-start;
   gap: 10px;
 }
-.detailPostInfo .auditList .applicant-container {
+.simplePostInfo .auditList .applicant-container {
   width: 100%;
   height: 72px;
   display: grid;
@@ -1214,17 +1205,17 @@ footer div p {
   align-items: center;
   align-content: center;
 }
-.detailPostInfo .auditList .applicant-container a {
+.simplePostInfo .auditList .applicant-container a {
   width: 100%;
   height: 100%;
   flex: auto;
   position: relative;
 }
-.detailPostInfo .auditList .applicant-container a img {
+.simplePostInfo .auditList .applicant-container a img {
   width: 50%;
   margin: 0 auto;
 }
-.detailPostInfo .auditList .applicant-container a .notice-new {
+.simplePostInfo .auditList .applicant-container a .notice-new {
   position: absolute;
   top: -5px;
   right: 0px;
@@ -1235,7 +1226,7 @@ footer div p {
   color: #ffffff;
   font-size: 14px;
 }
-.detailPostInfo .evaluateContainer {
+.simplePostInfo .evaluateContainer {
   /* 團主評價元件 */
   width: 90%;
   height: fit-content;
@@ -1246,7 +1237,7 @@ footer div p {
   align-items: center;
   justify-items: center;
 }
-.detailPostInfo .evaluateContainer .evaluatePlayerList {
+.simplePostInfo .evaluateContainer .evaluatePlayerList {
   /* 臨打者列表 */
   width: 90%;
   display: flex;
@@ -1255,16 +1246,16 @@ footer div p {
   align-items: center;
   row-gap: 1vh;
 }
-.detailPostInfo .evaluateContainer .evaluatePlayerList .playerName {
+.simplePostInfo .evaluateContainer .evaluatePlayerList .playerName {
   /* 包頭像和姓名 */
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.detailPostInfo .evaluateContainer .evaluatePlayerList .playerName img {
+.simplePostInfo .evaluateContainer .evaluatePlayerList .playerName img {
   width: 60px;
 }
-.detailPostInfo .evaluateContainer .evaluatePlayerList .evaluateState-no {
+.simplePostInfo .evaluateContainer .evaluatePlayerList .evaluateState-no {
   /* 未評價標籤 */
   border-radius: 50px;
   background-color: #cb1b1b;
@@ -1272,7 +1263,7 @@ footer div p {
   padding: 2px 8px;
   line-height: 25px;
 }
-.detailPostInfo .evaluateContainer .evaluatePlayerList .evaluateState-yes {
+.simplePostInfo .evaluateContainer .evaluatePlayerList .evaluateState-yes {
   /* 已評價標籤 */
   border-radius: 50px;
   background-color: var(--main-color);
@@ -1280,7 +1271,7 @@ footer div p {
   padding: 2px 8px;
   line-height: 25px;
 }
-.detailPostInfo .evaluateForm {
+.simplePostInfo .evaluateForm {
   /* 審核容器 */
   width: 95%;
   height: 60%;
@@ -1297,7 +1288,7 @@ footer div p {
   row-gap: 1vh;
   align-items: center;
 }
-.detailPostInfo .evaluateForm .info-selfState {
+.simplePostInfo .evaluateForm .info-selfState {
   /* 被審核者資訊 */
   width: 80%;
   min-width: 200px;
@@ -1307,15 +1298,15 @@ footer div p {
   padding: 5%;
   gap: 1.5vh;
 }
-.detailPostInfo .evaluateForm .component-writeBlock {
+.simplePostInfo .evaluateForm .component-writeBlock {
   /* 備註輸入框 */
   width: 80%;
   border: 1px dashed black;
 }
-.detailPostInfo .evaluateForm .component-writeBlock h5 {
+.simplePostInfo .evaluateForm .component-writeBlock h5 {
   color: #000000;
 }
-.detailPostInfo .evaluateForm .evaluateOption {
+.simplePostInfo .evaluateForm .evaluateOption {
   /* 審查選項 */
   align-self: flex-start;
   margin-left: 20px;
@@ -1325,16 +1316,23 @@ footer div p {
   align-items: center;
   justify-content: center;
 }
-.detailPostInfo .evaluateForm .evaluateOption h5 {
+.simplePostInfo .evaluateForm .evaluateOption h5 {
   font-size: 20px;
   color: var(--font-color);
 }
-.detailPostInfo .evaluateForm .evaluateOption input {
+.simplePostInfo .evaluateForm .evaluateOption input {
   box-shadow: none;
 }
-.detailPostInfo .evaluateForm .BtnContainer {
+.simplePostInfo .evaluateForm .BtnContainer {
   width: 90%;
   align-self: center;
+}
+
+/* 詳細貼文資訊 */
+.detailPostInfo .sub-info div p {
+  color: var(--font-color);
+  overflow: visible;
+  white-space: wrap;
 }
 
 /* 行程元件 */
@@ -1805,7 +1803,7 @@ footer div p {
 
 /* 元件內輸入框樣式 */
 .component-writeBlock {
-  width: 275px;
+  width: 95%;
   height: 6vh;
   min-height: 30px;
   max-height: 56px;
@@ -2419,9 +2417,10 @@ button#btn-typeBm.selected {
   height: 0px;
   align-self: center;
   border: 1px solid #000000;
+  margin-top: 5px;
 }
 
-/* main.filter-postArea  > section.filter-box*/
+/* 裝返回按鈕、篩選資訊按鈕和符合資料的數目的容器*/
 .filter-box {
   max-width: 500px;
   width: 70vw;
@@ -2446,6 +2445,8 @@ button#btn-typeBm.selected {
   }
 }
 .filter-box .filter-info {
+  /* 裝篩選資訊的容器 */
+  min-width: 250px;
   width: fit-content;
   height: 59px;
   border-radius: 50px;
@@ -2530,7 +2531,7 @@ button#btn-typeBm.selected {
   left: 2px;
 }
 
-/* ...> section.filter-box > div.fitter-info > div > div.by-btn-filterNum */
+/*顯示篩選條件數的div*/
 .by-btn-filterNum {
   /* style */
   width: 25px;
@@ -2538,15 +2539,17 @@ button#btn-typeBm.selected {
   padding: 1px;
   border-radius: 90px;
   background: #cb1b1b;
+  opacity: 0.8;
   color: #ffffff;
   /* border */
   border: 1.5px solid black;
   /* 相對#btn-filter位置 */
   position: absolute;
   top: -10px;
-  right: -5px;
+  right: -15px;
   /* 子 */
   text-align: center;
+  line-height: 25px;
 }
 .by-btn-filterNum p {
   color: #ffffff;
@@ -2952,6 +2955,7 @@ button#btn-formVB.selected::before {
   /* 視窗高比例100 */
   height: fit-content;
   /* layout */
+  margin: 0 auto;
   display: grid;
   grid-template-rows: repeat(auto-fit, minmax(50px, 1fr));
   gap: 25px;

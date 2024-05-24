@@ -9,6 +9,7 @@
   /* 視窗高比例100 */
   height: fit-content;
   /* layout */
+  margin: 0 auto;
   display: grid;
   grid-template-rows: repeat(auto-fit, minmax(50px, 1fr));
   gap: 25px;

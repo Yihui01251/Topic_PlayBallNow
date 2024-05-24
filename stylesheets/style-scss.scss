@@ -347,7 +347,7 @@ body {
   position: relative;
   /* display: grid;
   grid-template-rows: 125px 1fr 100px; */
-  display: flex;
+  //display: flex;
   flex-direction: column;
   gap: 10px;
   justify-items: center;
@@ -377,6 +377,8 @@ body {
 .mobile-TopBar {
   width: 100vw;
   display: none;
+  //position: absolute;
+  top: 0;
   img{
     width: 100%;
     height: fit-content;
@@ -489,7 +491,7 @@ footer {
   background-color: $background-color-gray;
   background-size: cover;
   padding-bottom: 10px;
-  position: static;
+  position: absolute;
   bottom: 0;
 
   @media (max-width: 640px) {
@@ -509,24 +511,29 @@ footer {
       text-align: center;
     }
   }
-}
 
-.footer-border {
-  width: auto;
-  height: 21px;
-  background-image: url("../../images/logo2.png");
-  background-size: 24px;
-  background-repeat: repeat;
-  background-position: center;
+  .footer-border {
+    width: auto;
+    height: 21px;
+    background-image: url("../../images/logo2.png");
+    background-size: 24px;
+    background-repeat: repeat;
+    background-position: center;
+  }
+  /* logo */
+  #logo {
+    width: 35px;
+    height: 33px;
+    margin-left: 10px;
+    flex: 1 0 auto;
+  }
 }
-/* logo */
-#logo {
-  width: 35px;
-  height: 33px;
-  margin-left: 10px;
-  flex: 1 0 auto;
+// 當超過視窗高度超過1080px時
+.hiFooter{
+  footer{
+    bottom: -120px;
+  }
 }
-
 /* 元件 */
 /* tag樣式 */
 .tag-style {
@@ -928,11 +935,11 @@ footer {
 }
 
 
-/* 子元件 */
+/* 簡略貼文資訊元件 */
 .simplePostInfo {
   flex: 0 1 auto;
   /*  */
-  width: 20vw;
+  width: 90%;
   max-width: 20vw;
   min-width: 300px;
   min-height: 310px;
@@ -1058,6 +1065,7 @@ footer {
       align-self: center;
     }
     div {
+      width: 90%;
       color: white;
     }
     div p {
@@ -1068,7 +1076,7 @@ footer {
     }
     /*  ...>div(filter-simplePostInfo > div(sub-info > div(solicitor-number */
     .vacancyInfo {
-      width: 90%;
+      // width: auto;
       height: fit-content;
 
       /* 子 */
@@ -1094,7 +1102,7 @@ footer {
 
     /*  */
     .ballInfo {
-      width: 90%;
+      // width: auto;
       height: fit-content;
       display: grid;
       grid-template-columns: 35px 1fr;
@@ -1109,7 +1117,7 @@ footer {
     /* 設備/... >div(filter-simplePostInfo >div(sub-info>div(equipInfo*/
     .equipInfo,
     .posInfo {
-      width: 90%;
+      // width: auto;
       height: fit-content;
       display: grid;
       grid-template-columns: 35px 1fr;
@@ -1118,30 +1126,16 @@ footer {
 
     /* 備註/... >div(filter-simplePostInfo>div(sub-info>div(noteInfo*/
     .noteInfo {
-      width: 90%;
+      // width: 100%;
       height: fit-content;
       display: grid;
       grid-template-columns: 35px 1fr;
       gap: 6px;
 
+
     }
   }
-}
 
-.detailPostInfo{
-  .simplePostInfo{
-
-    .sub-info{
-  
-      div p {
-        width: 90%;
-        color: var(--font-color);
-        overflow: hidden;
-        white-space: wrap;
-        text-overflow: ellipsis;
-      }
-    }
-  }
   //貼文元件-報名資訊
   .apply-info {
     width: 100%;
@@ -1282,7 +1276,7 @@ footer {
         }
       }
     }
-  
+
   .evaluateForm{
     /* 審核容器 */
     width: 95%;
@@ -1321,8 +1315,6 @@ footer {
         color: $second-color-black;
       }
 
-
-
     }
     .evaluateOption{
         /* 審查選項 */
@@ -1349,7 +1341,16 @@ footer {
     }
   }
 }
-
+/* 詳細貼文資訊 */
+.detailPostInfo{
+  .sub-info{
+    div p {
+      color: var(--font-color);
+      overflow:visible;
+      white-space: wrap;
+    }
+  }
+}
 
 /* 行程元件 */
 .notice-container {
@@ -1844,7 +1845,7 @@ footer {
 }
 /* 元件內輸入框樣式 */
 .component-writeBlock {
-  width: 275px;
+  width: 95%;
   height: 6vh;
   min-height: 30px;
   max-height: 56px;

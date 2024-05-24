@@ -1077,7 +1077,7 @@
             );
           };
           return (
-            <div className="body">
+            <div className="body hiFooter">
               <TopBar mobileTopBar={mobileTopBar} />
               <main className="index-Area">
                 {/*篩選區 */}
@@ -1422,9 +1422,6 @@
                     onMouseMove={weekHandleDragMove}
                     onMouseUp={weekHandleDragEnd}
                     onMouseLeave={weekHandleDragEnd}
-                    onTouchStart={weekHandleDragStart}
-                    onTouchMove={weekHandleDragMove}
-                    onTouchEnd={weekHandleDragEnd}
                   >
                     {weekFilterPosts.map((post_data) => {
                       return (
