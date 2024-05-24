@@ -91,10 +91,6 @@ main:10
   align-items: center;
   justify-content: center;
   position: relative;
-
-  @media ($breakpoint-moblie) {
-    display: none;
-  }
 }
 
 #btn-typeVb {
@@ -287,16 +283,7 @@ button#btn-typeBm.selected {
   }
 }
 
-.searchBtn-box {
-  #search-Type {
-    display: none;
 
-    @media ($breakpoint-moblie) {
-      display: flex;
-      width: 25vw;
-    }
-  }
-}
 
 /* main > section(search > div(search-Bar > div(dropMenu */
 .dropMenu {

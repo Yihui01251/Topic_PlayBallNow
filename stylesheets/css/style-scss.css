@@ -1543,8 +1543,8 @@ footer #logo {
   /* 裝篩選表單+按鈕的容器 */
   /* 樣式 */
   max-width: 340px;
-  min-width: 250px;
-  height: 270px;
+  min-width: 320px;
+  height: fit-content;
   border: 4px solid black;
   border-bottom: 15px solid black;
   border-radius: 20px;
@@ -1558,7 +1558,7 @@ footer #logo {
   position: relative;
 }
 .filterFormBox #search-Bar div {
-  height: auto;
+  height: 100%;
   /*控制子層 */
   flex: 1 0 auto;
   display: flex;
@@ -1579,6 +1579,8 @@ footer #logo {
   }
 }
 .filterFormBox #search-Bar .searchBtn-box {
+  display: grid;
+  grid-template-rows: 170px 40px;
   /* main > section(search > div(search-Type > button */
 }
 .filterFormBox #search-Bar .searchBtn-box #btn-typeVb {
@@ -1925,11 +1927,6 @@ main:10
   justify-content: center;
   position: relative;
 }
-@media (max-width:640px) {
-  #search-Type {
-    display: none;
-  }
-}
 
 #btn-typeVb {
   /* 樣式 */
@@ -2117,16 +2114,6 @@ button#btn-typeBm.selected {
   justify-content: flex-end;
   align-items: center;
   align-content: center;
-}
-
-.searchBtn-box #search-Type {
-  display: none;
-}
-@media (max-width:640px) {
-  .searchBtn-box #search-Type {
-    display: flex;
-    width: 25vw;
-  }
 }
 
 /* main > section(search > div(search-Bar > div(dropMenu */
