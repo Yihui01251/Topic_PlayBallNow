@@ -547,7 +547,7 @@
             "city": "台北市",
             "area": "文山區",
             "arena": "武功國小",
-            "tagDegree": "新手友善",
+            "tagDegree": "新手",
             "tagPrice": "200",
             "reqCount":  [
               {
@@ -581,7 +581,7 @@
             "city": "新北市",
             "area": "樹林區",
             "arena": "楓育羽球館",
-            "tagDegree": "初階",
+            "tagDegree": "初階~中下",
             "tagPrice": "150",
             "reqCount":  [
               {
@@ -614,7 +614,7 @@
             "city": "台北市",
             "area": "中正區",
             "arena": "成功高中",
-            "tagDegree": "新手友善",
+            "tagDegree": "新手~初上",
             "tagPrice": "200",
             "reqCount":  [
               {
@@ -680,7 +680,7 @@
             "city": "台北市",
             "area": "松山區",
             "arena": "中崙高中",
-            "tagDegree": "中上",
+            "tagDegree": "中上~中進階",
             "tagPrice": "250",
             "reqCount": [
               {
@@ -746,7 +746,7 @@
             "city": "台北市",
             "area": "南港區",
             "arena": "成德國小活動中心",
-            "tagDegree": "進階",
+            "tagDegree": "中階~中上",
             "tagPrice": "100",
             "reqCount":  [
               {
@@ -779,7 +779,7 @@
             "city": "台北市",
             "area": "中正區",
             "arena": "螢橋國小",
-            "tagDegree": "新手友善",
+            "tagDegree": "初上~中上",
             "tagPrice": "120",
             "reqCount":[
               {
@@ -816,7 +816,7 @@
             "city": "台北市",
             "area": "大安區",
             "arena": "大安運動中心",
-            "tagDegree": "新手友善",
+            "tagDegree": "中下~中階",
             "tagPrice": "300",
             "reqCount": [
               {
@@ -849,7 +849,7 @@
             "city": "台北市",
             "area": "中正區",
             "arena": "螢橋國小",
-            "tagDegree": "中上",
+            "tagDegree": "中階~中進階",
             "tagPrice": "125",
             "reqCount": [
               {
@@ -882,7 +882,7 @@
             "city": "台北市",
             "area": "中正區",
             "arena": "成功高中",
-            "tagDegree": "中進階",
+            "tagDegree": "新手~初階",
             "tagPrice": "110",
             "reqCount": [
               {
@@ -981,7 +981,7 @@
             "city": "台北市",
             "area": "中正區",
             "arena": "中正國中活動中心二樓",
-            "tagDegree": "中進階",
+            "tagDegree": "中下",
             "tagPrice": "300",
             "reqCount": [
               {
@@ -1014,7 +1014,7 @@
             "city": "台北市",
             "area": "文山區",
             "arena": "武功國小",
-            "tagDegree": "新手友善",
+            "tagDegree": "初上",
             "tagPrice": "200",
             "reqCount": [
               {
@@ -1047,7 +1047,7 @@
             "city": "台北市",
             "area": "樹林區",
             "arena": "楓育羽球館",
-            "tagDegree": "初階",
+            "tagDegree": "初階~中下",
             "tagPrice": "150",
             "reqCount":[
               {
