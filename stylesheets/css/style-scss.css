@@ -875,7 +875,7 @@ footer div p {
   display: flex;
   align-items: center;
   max-width: 90vw;
-  max-height: 90vw;
+  max-height: 90vh;
   width: 80%;
   height: 80%;
   background-color: rgba(255, 255, 255, 0);
@@ -941,6 +941,15 @@ footer div p {
   opacity: 1;
 }
 .popup:target .popup-inner {
+  bottom: 0;
+  right: 0;
+  transform: rotate(0);
+}
+.popup.visible {
+  visibility: visible;
+  opacity: 1;
+}
+.popup.visible .popup-inner {
   bottom: 0;
   right: 0;
   transform: rotate(0);
@@ -1091,9 +1100,12 @@ footer div p {
 }
 .simplePostInfo .sub-info div p {
   color: var(--font-color);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .simplePostInfo .sub-info .vacancyInfo {
-  width: auto;
+  width: 90%;
   height: fit-content;
   /* 子 */
   display: grid;
@@ -1114,7 +1126,7 @@ footer div p {
   align-items: center;
 }
 .simplePostInfo .sub-info .ballInfo {
-  width: auto;
+  width: 90%;
   height: fit-content;
   display: grid;
   grid-template-columns: 35px 1fr;
@@ -1127,23 +1139,28 @@ footer div p {
 }
 .simplePostInfo .sub-info .equipInfo,
 .simplePostInfo .sub-info .posInfo {
-  width: auto;
+  width: 90%;
   height: fit-content;
   display: grid;
   grid-template-columns: 35px 1fr;
   gap: 6px;
 }
 .simplePostInfo .sub-info .noteInfo {
-  width: 250px;
+  width: 90%;
   height: fit-content;
   display: grid;
   grid-template-columns: 35px 1fr;
   gap: 6px;
+}
+
+.detailPostInfo .simplePostInfo .sub-info div p {
+  width: 90%;
+  color: var(--font-color);
   overflow: hidden;
-  white-space: nowrap;
+  white-space: wrap;
   text-overflow: ellipsis;
 }
-.simplePostInfo .apply-info {
+.detailPostInfo .apply-info {
   width: 100%;
   display: grid;
   grid-template-columns: 0.2fr 1fr;
@@ -1152,33 +1169,33 @@ footer div p {
   justify-content: center;
   align-items: center;
 }
-.simplePostInfo .apply-info hr {
+.detailPostInfo .apply-info hr {
   grid-column: 3/1;
   grid-row: 1;
-  width: 80%;
+  width: 100%;
   border: 1px solid black;
   align-self: flex-end;
 }
-.simplePostInfo .apply-info img {
+.detailPostInfo .apply-info img {
   grid-column: 1;
   grid-row: 2;
   width: 100%;
 }
-.simplePostInfo .apply-info p {
+.detailPostInfo .apply-info p {
   grid-column: 2;
   grid-row: 2;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-.simplePostInfo .apply-info div {
+.detailPostInfo .apply-info div {
   grid-column: 1/3;
   grid-row: 3;
   min-height: 50px;
   border-radius: 10px;
   padding: 10px;
 }
-.simplePostInfo .auditList {
+.detailPostInfo .auditList {
   /* 團主查看貼文元件 */
   width: 100%;
   height: 90px;
@@ -1188,7 +1205,7 @@ footer div p {
   align-items: flex-start;
   gap: 10px;
 }
-.simplePostInfo .auditList .applicant-container {
+.detailPostInfo .auditList .applicant-container {
   width: 100%;
   height: 72px;
   display: grid;
@@ -1197,17 +1214,17 @@ footer div p {
   align-items: center;
   align-content: center;
 }
-.simplePostInfo .auditList .applicant-container a {
+.detailPostInfo .auditList .applicant-container a {
   width: 100%;
   height: 100%;
   flex: auto;
   position: relative;
 }
-.simplePostInfo .auditList .applicant-container a img {
+.detailPostInfo .auditList .applicant-container a img {
   width: 50%;
   margin: 0 auto;
 }
-.simplePostInfo .auditList .applicant-container a .notice-new {
+.detailPostInfo .auditList .applicant-container a .notice-new {
   position: absolute;
   top: -5px;
   right: 0px;
@@ -1218,7 +1235,7 @@ footer div p {
   color: #ffffff;
   font-size: 14px;
 }
-.simplePostInfo .evaluateContainer {
+.detailPostInfo .evaluateContainer {
   /* 團主評價元件 */
   width: 90%;
   height: fit-content;
@@ -1229,7 +1246,7 @@ footer div p {
   align-items: center;
   justify-items: center;
 }
-.simplePostInfo .evaluateContainer .evaluatePlayerList {
+.detailPostInfo .evaluateContainer .evaluatePlayerList {
   /* 臨打者列表 */
   width: 90%;
   display: flex;
@@ -1238,16 +1255,16 @@ footer div p {
   align-items: center;
   row-gap: 1vh;
 }
-.simplePostInfo .evaluateContainer .evaluatePlayerList .playerName {
+.detailPostInfo .evaluateContainer .evaluatePlayerList .playerName {
   /* 包頭像和姓名 */
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.simplePostInfo .evaluateContainer .evaluatePlayerList .playerName img {
+.detailPostInfo .evaluateContainer .evaluatePlayerList .playerName img {
   width: 60px;
 }
-.simplePostInfo .evaluateContainer .evaluatePlayerList .evaluateState-no {
+.detailPostInfo .evaluateContainer .evaluatePlayerList .evaluateState-no {
   /* 未評價標籤 */
   border-radius: 50px;
   background-color: #cb1b1b;
@@ -1255,7 +1272,7 @@ footer div p {
   padding: 2px 8px;
   line-height: 25px;
 }
-.simplePostInfo .evaluateContainer .evaluatePlayerList .evaluateState-yes {
+.detailPostInfo .evaluateContainer .evaluatePlayerList .evaluateState-yes {
   /* 已評價標籤 */
   border-radius: 50px;
   background-color: var(--main-color);
@@ -1263,7 +1280,7 @@ footer div p {
   padding: 2px 8px;
   line-height: 25px;
 }
-.simplePostInfo .evaluateForm {
+.detailPostInfo .evaluateForm {
   /* 審核容器 */
   width: 95%;
   height: 60%;
@@ -1280,7 +1297,7 @@ footer div p {
   row-gap: 1vh;
   align-items: center;
 }
-.simplePostInfo .evaluateForm .info-selfState {
+.detailPostInfo .evaluateForm .info-selfState {
   /* 被審核者資訊 */
   width: 80%;
   min-width: 200px;
@@ -1290,15 +1307,15 @@ footer div p {
   padding: 5%;
   gap: 1.5vh;
 }
-.simplePostInfo .evaluateForm .component-writeBlock {
+.detailPostInfo .evaluateForm .component-writeBlock {
   /* 備註輸入框 */
   width: 80%;
   border: 1px dashed black;
 }
-.simplePostInfo .evaluateForm .component-writeBlock h5 {
+.detailPostInfo .evaluateForm .component-writeBlock h5 {
   color: #000000;
 }
-.simplePostInfo .evaluateForm .evaluateOption {
+.detailPostInfo .evaluateForm .evaluateOption {
   /* 審查選項 */
   align-self: flex-start;
   margin-left: 20px;
@@ -1308,14 +1325,14 @@ footer div p {
   align-items: center;
   justify-content: center;
 }
-.simplePostInfo .evaluateForm .evaluateOption h5 {
+.detailPostInfo .evaluateForm .evaluateOption h5 {
   font-size: 20px;
   color: var(--font-color);
 }
-.simplePostInfo .evaluateForm .evaluateOption input {
+.detailPostInfo .evaluateForm .evaluateOption input {
   box-shadow: none;
 }
-.simplePostInfo .evaluateForm .BtnContainer {
+.detailPostInfo .evaluateForm .BtnContainer {
   width: 90%;
   align-self: center;
 }
@@ -1811,10 +1828,6 @@ footer div p {
 }
 
 /* hover區 */
-.hoverPost:hover {
-  border: 3.5px solid rgb(253, 66, 66);
-}
-
 .hoverNotice:hover {
   background-color: #D9D9D9;
   color: #ffffff;

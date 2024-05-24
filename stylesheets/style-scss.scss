@@ -822,7 +822,7 @@ footer {
     display: flex;
     align-items: center;
     max-width: 90vw;
-    max-height: 90vw;
+    max-height: 90vh;
     width: 80%;
     height: 80%;
     background-color: #ffffff00;
@@ -889,6 +889,16 @@ footer {
   &:target {
     visibility: visible;
     opacity: 1;
+    .popup-inner {
+      bottom: 0;
+      right: 0;
+      transform: rotate(0);
+    }
+  }
+  &.visible {
+    visibility: visible;
+    opacity: 1;
+
     .popup-inner {
       bottom: 0;
       right: 0;
@@ -1052,10 +1062,13 @@ footer {
     }
     div p {
       color: var(--font-color);
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
     /*  ...>div(filter-simplePostInfo > div(sub-info > div(solicitor-number */
     .vacancyInfo {
-      width: auto;
+      width: 90%;
       height: fit-content;
 
       /* 子 */
@@ -1081,14 +1094,13 @@ footer {
 
     /*  */
     .ballInfo {
-      width: auto;
+      width: 90%;
       height: fit-content;
       display: grid;
       grid-template-columns: 35px 1fr;
       gap: 6px;
-
+      
       align-items: center;
-
       h4 {
         width: fit-content;
         align-self: center;
@@ -1097,7 +1109,7 @@ footer {
     /* 設備/... >div(filter-simplePostInfo >div(sub-info>div(equipInfo*/
     .equipInfo,
     .posInfo {
-      width: auto;
+      width: 90%;
       height: fit-content;
       display: grid;
       grid-template-columns: 35px 1fr;
@@ -1106,18 +1118,30 @@ footer {
 
     /* 備註/... >div(filter-simplePostInfo>div(sub-info>div(noteInfo*/
     .noteInfo {
-      width: 250px;
+      width: 90%;
       height: fit-content;
       display: grid;
       grid-template-columns: 35px 1fr;
       gap: 6px;
 
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
     }
   }
+}
 
+.detailPostInfo{
+  .simplePostInfo{
+
+    .sub-info{
+  
+      div p {
+        width: 90%;
+        color: var(--font-color);
+        overflow: hidden;
+        white-space: wrap;
+        text-overflow: ellipsis;
+      }
+    }
+  }
   //貼文元件-報名資訊
   .apply-info {
     width: 100%;
@@ -1133,7 +1157,7 @@ footer {
     hr {
       grid-column: 3/1;
       grid-row: 1;
-      width: 80%;
+      width: 100%;
       border: 1px solid black;
       //
       align-self: flex-end;
@@ -1258,7 +1282,7 @@ footer {
         }
       }
     }
-
+  
   .evaluateForm{
     /* 審核容器 */
     width: 95%;
@@ -1843,9 +1867,9 @@ footer {
 }
 /* hover區 */
 .hoverPost{
-  &:hover{
-    border:3.5px solid rgb(253, 66, 66); ;
-  }
+  // &:hover{
+  //   border:3.5px solid rgb(253, 66, 66); ;
+  // }
 }
 .hoverNotice{
   &:hover{
