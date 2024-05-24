@@ -1644,15 +1644,9 @@ footer #logo {
   /* 包羽球or排球圖案的容器 */
   width: 100%;
   /* 羽排圖片 */
-  display: none;
+  display: flex;
   /* 控制子層 */
   text-align: center;
-}
-@media (max-width:640px) {
-  .filterFormBox #search-Bar .searchBtn-box #search-Type {
-    display: none;
-    width: 100%;
-  }
 }
 
 /* 團主審核報名元件 */

@@ -127,6 +127,8 @@
           const [conditions, setConditions] = useState({ type: filterType });
           //是否顯示重新篩選表單元件
           const [showFilterForm, setShowFilterForm] = useState(false);
+          //是否篩選貼文
+          const [changeFilter, setChangeFilter] = useState(false);
 
           /* 載入網頁時取得localStorage資料 */
           useEffect(() => {
@@ -266,9 +268,7 @@
             );
             setSelectedArea(selectedOptions);
           };
-          const handleShowFilterForm =()=>{
-            setShowFilterForm(true);
-          }
+
           /* 清除篩選條件 */
           const handleResetFilter = () => {
             setSelectedDate("全部");
@@ -282,7 +282,6 @@
           };
 
           /* 重新篩選 */
-          const [changeFilter, setChangeFilter] = useState(false);
           const SaveData = () => {
             window.localStorage.filterType = filterType;
             window.localStorage.filterDate = selectedDate;
@@ -295,11 +294,12 @@
             setChangeFilter(true);
             setShowFilterForm(false);
           };
-          //載入時先changeFilter=true然後設false
-          //如果按下重新篩選就changeFilter=true 加入進condition儲存(避免比對空值)
-
+          
+          /* 更新儲存條件的容器，並呼叫篩選貼文的函式 */
           useEffect(() => {
+            //如果changeFilter=true 更新condition儲存(避免比對空值)
             if (changeFilter) {
+              setChangeFilter(false);
               const newConditions = {};
               if (selectedDegree !== "全部" && selectedDegree !== "") {
                 newConditions.tagDegree = selectedDegree;
@@ -322,8 +322,7 @@
               if (selectedEquip !== "全部") {
                 newConditions.equip = selectedEquip;
               }
-              setConditions(newConditions);
-              setChangeFilter(false);
+              setConditions(newConditions); 
               filterPosts;
             }
           }, [
@@ -447,67 +446,8 @@
           }, [todayType, weekType, conditions]);
           const length = filterPosts.length;
           const lengthValue = `共有${length}筆資料符合`;
-
-          /* 改變類型(羽/排) */
-          useEffect(() => {
-            let colorMain = "";
-            let colorFont = "";
-            let btnColor = "";
-            let inputColor = "";
-            // 取消其他按鈕的選擇
-            const btnTypeVb = document.getElementById("btn-typeVb");
-            const btnTypeBm = document.getElementById("btn-typeBm");
-            if (filterType == "羽球") {
-              // 如果是羽球:
-              colorMain = "#83B90F";
-              colorFont = "#689607";
-              btnColor = "#FF8D24";
-              inputColor = "#B6DBAA";
-              /* 改變要map的資料名稱 */
-              setTodayType("bm_today_postData");
-              setWeekType("bm_week_postData");
-              setFilterType("羽球");
-              // 顯示狀態
-              setBMDisplay("grid");
-              setVBDisplay("none");
-            } else if (filterType == "排球") {
-              // 如果是排球
-              colorMain = "#14AAEB";
-              colorFont = "#147CB6";
-              btnColor = "#F1DB15";
-              inputColor = "#B1C3E8";
-              //
-              setTodayType("vb_today_postData");
-              setWeekType("vb_week_postData");
-              setFilterType("排球");
-              //
-              setBMDisplay("none");
-              setVBDisplay("grid");
-            }
-
-            setMainColor(colorMain);
-            setFontColor(colorFont);
-            setBtnColor(btnColor);
-            setInputColor(inputColor);
-            setSelectedButton(filterType);
-
-            document.documentElement.style.setProperty(
-              "--main-color",
-              colorMain
-            );
-            document.documentElement.style.setProperty(
-              "--font-color",
-              colorFont
-            );
-            document.documentElement.style.setProperty("--btn-color", btnColor);
-            document.documentElement.style.setProperty(
-              "--input-hover-color",
-              inputColor
-            );
-            console.log(selectedButton);
-          }, [filterType, selectedButton]);
+         
           const changeType = (id) => {
-            // let newBackground = "";
             let colorMain = "";
             let colorFont = "";
             let btnColor = "";
@@ -554,7 +494,7 @@
               inputColor
             );
             handleResetFilter();
-          };
+          }
 
           // 元件
           // 建立簡略貼文元件
@@ -1038,7 +978,7 @@
                   <a
                     href="#filterForm"
                     onClick={() => {
-                      handleShowFilterForm();
+                      setShowFilterForm(true);
                     }}
                   >
                     <div className="filter-info">
