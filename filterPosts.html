@@ -266,8 +266,19 @@
             );
             setSelectedArea(selectedOptions);
           };
-          const handleResetFilter = () => {
+          const handleShowFilterForm =()=>{
             setShowFilterForm(true);
+          }
+          /* 清除篩選條件 */
+          const handleResetFilter = () => {
+            setSelectedDate("全部");
+            setSelectedCity("全部");
+            setSelectedArea("");
+            setSelectedDegree("全部");
+            setSelectedCost("全部");
+            setSelectedEquip("全部");
+            setSelectedRol("全部")
+
           };
 
           /* 重新篩選 */
@@ -542,6 +553,7 @@
               "--input-hover-color",
               inputColor
             );
+            handleResetFilter();
           };
 
           // 元件
@@ -1026,7 +1038,7 @@
                   <a
                     href="#filterForm"
                     onClick={() => {
-                      handleResetFilter();
+                      handleShowFilterForm();
                     }}
                   >
                     <div className="filter-info">
