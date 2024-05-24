@@ -1592,17 +1592,6 @@ footer {
       align-items: center;
       align-content: center;
     }
-
-    #search-Type {
-      /* 包羽球or排球圖案的容器 */
-      width: 100%;
-      /* 控制子層 */
-      text-align: center;
-
-      @media ($breakpoint-moblie) {
-        display: none;
-      }
-    }
     .searchBtn-box {
       display: grid;
       grid-template-rows: 170px 40px;
@@ -1683,10 +1672,15 @@ footer {
         }
       }
       #search-Type {
+        /* 包羽球or排球圖案的容器 */
+        width: 100%;
         /* 羽排圖片 */
-        display: flex;
-
+        display: none;
+        /* 控制子層 */
+        text-align: center;
+  
         @media ($breakpoint-moblie) {
+          display: none;
           width: 100%;
         }
       }

@@ -60,8 +60,8 @@ main:10
     /* justify-content: center;
     align-items: center; */
   }
-  /* 首頁篩選區裝飾動物 */
-  #search-Bar::before {
+ 
+  #search-Bar::before { /* 首頁篩選區裝飾動物 */
     position: absolute;
     width: 40px;
     height: fit-content;
@@ -79,8 +79,8 @@ main:10
   }
 }
 
-/* main > section(search > div#search-Type */
-#search-Type {
+
+#search-Type {/* 表單內顯示羽排的圖 */
   /* 布局 */
   flex: 1 1 auto;
   /* 控制子層 */
@@ -91,6 +91,9 @@ main:10
   align-items: center;
   justify-content: center;
   position: relative;
+  @media ($breakpoint-moblie){
+    display: none;
+  }
 }
 
 #btn-typeVb {
@@ -275,11 +278,28 @@ button#btn-typeBm.selected {
     height: auto;
     /*控制子層 */
     flex: 1 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+    display: grid;
+    justify-items: center;
+    grid-template-rows: 170px 40px;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: flex-end;
     align-items: center;
     align-content: center;
+    #search-Type {
+      /* 包羽球or排球圖案的容器 */
+      width: 100%;
+      /* 羽排圖片 */
+      display: none;
+      /* 控制子層 */
+      text-align: center;
+
+      @media ($breakpoint-moblie) {
+        display: grid;
+        width: 100%;
+        justify-items: center;
+      }
+    }
   }
 }
 
