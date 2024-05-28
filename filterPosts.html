@@ -446,7 +446,67 @@
           }, [todayType, weekType, conditions]);
           const length = filterPosts.length;
           const lengthValue = `共有${length}筆資料符合`;
-         
+
+          /* 如果filterType, selectedButton狀態改變 */
+          useEffect(() => {
+            let colorMain = "";
+            let colorFont = "";
+            let btnColor = "";
+            let inputColor = "";
+            // 取消其他按鈕的選擇
+            const btnTypeVb = document.getElementById("btn-typeVb");
+            const btnTypeBm = document.getElementById("btn-typeBm");
+            if (filterType == "羽球") {
+              // 如果是羽球:
+              colorMain = "#83B90F";
+              colorFont = "#689607";
+              btnColor = "#FF8D24";
+              inputColor = "#B6DBAA";
+              /* 改變要map的資料名稱 */
+              setTodayType("bm_today_postData");
+              setWeekType("bm_week_postData");
+              setFilterType("羽球");
+              // 顯示狀態
+              setBMDisplay("grid");
+              setVBDisplay("none");
+            } else if (filterType == "排球") {
+              // 如果是排球
+              colorMain = "#14AAEB";
+              colorFont = "#147CB6";
+              btnColor = "#F1DB15";
+              inputColor = "#B1C3E8";
+              //
+              setTodayType("vb_today_postData");
+              setWeekType("vb_week_postData");
+              setFilterType("排球");
+              //
+              setBMDisplay("none");
+              setVBDisplay("grid");
+            }
+
+            setMainColor(colorMain);
+            setFontColor(colorFont);
+            setBtnColor(btnColor);
+            setInputColor(inputColor);
+            setSelectedButton(filterType);
+
+            document.documentElement.style.setProperty(
+              "--main-color",
+              colorMain
+            );
+            document.documentElement.style.setProperty(
+              "--font-color",
+              colorFont
+            );
+            document.documentElement.style.setProperty("--btn-color", btnColor);
+            document.documentElement.style.setProperty(
+              "--input-hover-color",
+              inputColor
+            );
+            console.log(selectedButton);
+          }, [filterType, selectedButton]);
+
+          /* 處理元件樣式及重設篩選條件 */
           const changeType = (id) => {
             let colorMain = "";
             let colorFont = "";

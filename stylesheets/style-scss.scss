@@ -1277,68 +1277,68 @@ footer {
       }
     }
 
-  .evaluateForm{
-    /* 審核容器 */
-    width: 95%;
-    height: 60%;
-    border-radius: $border-radius-20;
-    border: 1px solid $border-black;
-    background-color: $background-color-lightgrey;
-    //layout
-    align-self: center;//自己置中
-    padding: 5px;
-    padding-bottom: 10px;
-    margin: 0 auto;
-    grid-row: 4;
-    display: flex;
-    flex-direction: column;
-    row-gap: 1vh;
-    align-items: center;
+  
+}
+.evaluateForm{
+  /* 審核容器 */
+  width: 55%;
+  height: fit-content;
+  border-radius: $border-radius-20;
+  border: 1px solid $border-black;
+  background-color:$background-color-white;
+  //layout
+  align-self: center;//自己置中
+  padding: 20px;
+  margin: 0 auto;
+  grid-row: 4;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1vh;
+  align-items: center;
 
-    .info-selfState{
-      /* 被審核者資訊 */
-      width: 80%;
-      min-width: 200px;
-      max-width: 100%;
-      border: none;
-      background-color: inherit;
-      padding: 5%;
-      gap: 1.5vh;
+  .info-selfState{
+    /* 被審核者資訊 */
+    width: 80%;
+    min-width: 200px;
+    max-width: 100%;
+    border: none;
+    background-color: inherit;
+    padding: 5%;
+    gap: 1.5vh;
+  }
+
+  .component-writeBlock{
+    /* 備註輸入框 */
+    width: 80%;
+    //團主樣式
+    border: 1px dashed $border-black;
+    h5{
+      color: $second-color-black;
     }
 
-    .component-writeBlock{
-      /* 備註輸入框 */
-      width: 80%;
-      //團主樣式
-      border: 1px dashed $border-black;
+  }
+  .evaluateOption{
+      /* 審查選項 */
+      align-self: flex-start;
+      margin-left: 20px;
+      //
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
       h5{
-        color: $second-color-black;
+        font-size: $font-size-title-m;
+        color: var(--font-color);
       }
-
-    }
-    .evaluateOption{
-        /* 審查選項 */
-        align-self: flex-start;
-        margin-left: 20px;
-        //
-        display: flex;
-        flex-direction: row;
-        gap: 10px;
-        align-items: center;
-        justify-content: center;
-        h5{
-          font-size: $font-size-title-m;
-          color: var(--font-color);
-        }
-        input{
-          box-shadow: none;
-        }
+      input{
+        box-shadow: none;
       }
-
-    .BtnContainer{
-      width: 90%;
-      align-self: center;
     }
+
+  .BtnContainer{
+    width: 90%;
+    align-self: center;
   }
 }
 /* 詳細貼文資訊 */
@@ -1834,6 +1834,7 @@ footer {
     padding-bottom: 10px;
   }
 }
+
 /* 元件內輸入框樣式 */
 .component-writeBlock {
   width: 95%;

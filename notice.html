@@ -56,7 +56,7 @@
           equip,
           note,
           like,
-          ballBrand
+          ballBrand,
         }) => {
           /* 主色 */
           const [typeStyle, setTypeStyle] = useState("");
@@ -77,7 +77,7 @@
           /* 元件副資訊 */
           const [showBallBrand, setShowBallBrand] = useState("");
           const [showVbInfo, setShowVbInfo] = useState("");
-         
+
           useEffect(() => {
             // 保存最新的 identity 值
             const currentIdentity = identity;
@@ -169,7 +169,7 @@
               default:
                 break;
             }
-           
+
             document.getElementsByClassName("notice-container");
           }, [type, state, identity, popupHref, name]);
 
@@ -280,7 +280,6 @@
                   typeStyle={typeStyle}
                   typeFontStyle={typeFontStyle}
                   popUp={popupHref}
-                  
                 />
               )}
               {sponsorEvaluateCard && (
@@ -333,7 +332,6 @@
           showBmInfo,
           showVbInfo,
           ellipseBar,
-          
         }) => {
           /* 生成審核報名元件 */
           const [auditApplyCard, setAuditApplyCard] = useState(false);
@@ -414,12 +412,15 @@
                               {unspecified}位
                             </p>
                           </div>
-                          <div className="ballInfo" style={{ display: showVbInfo }}>
+                          <div
+                            className="ballInfo"
+                            style={{ display: showVbInfo }}
+                          >
                             <h4>類型</h4>
                             <p style={{ color: typeFontStyle }}>{role}</p>
                           </div>
                           <div
-                            className="equipInfo" 
+                            className="equipInfo"
                             style={{ display: showVbInfo }}
                           >
                             <h4>位置</h4>
@@ -1104,7 +1105,7 @@
                         <h3>本場臨打球友</h3>
                       </div>
                       <div className="evaluateContainer">
-                        <a href="#" className="evaluatePlayerList">
+                        <a href="#evaluateApplicantsForm" className="evaluatePlayerList">
                           <div className="playerName">
                             <img
                               className="applicantImg"
@@ -1133,64 +1134,79 @@
                           </p>
                         </a>
                       </div>
-
-                      <div className="evaluateForm">
-                        <div className="selfState-userInfo">
-                          <div className="info">
-                            <img
-                              className="applicantImg"
-                              src="../images/player.png"
-                              alt=""
-                            />
-                            <p style={{ color: typeFontStyle }}>Roy</p>
-                          </div>
-                          <div className="info">
-                            <div className="attendance">
-                              <p
-                                className="text-M"
-                                style={{ color: typeFontStyle }}
-                              >
-                                85%
-                              </p>
-                              <img src={ellipseBarType} alt="" />
-                            </div>
-                            <p style={{ color: typeFontStyle }}>出席率</p>
-                          </div>
-                          <div className="info">
-                            <div className="userInfo">
-                              <p style={{ backgroundColor: typeStyle }}>B</p>
-                            </div>
-                            <p style={{ color: typeFontStyle }}>自評等級</p>
-                          </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <EvaluateApplicantsForm typeStyle={typeStyle} typeFontStyle={typeFontStyle} ellipseBarType={ellipseBarType}/>
+              </>
+          );
+        };
+        /* 建立元件 燈箱效果-團主評價表單 */
+        const EvaluateApplicantsForm = ({typeStyle,
+          typeFontStyle,
+          ellipseBarType,}) => {
+          return (
+            <>
+              <div class="popup" id="evaluateApplicantsForm">
+                <div class="popup-inner">
+                  <div class="popup__content">
+                    <div className="evaluateForm" >
+                      <div className="selfState-userInfo">
+                        <div className="info">
+                          <img
+                            className="applicantImg"
+                            src="../images/player.png"
+                            alt=""
+                          />
+                          <p style={{ color: typeFontStyle }}>Roy</p>
                         </div>
-
-                        <div className="component-writeBlock">
-                          <h5>備註（僅限自己可看）：</h5>
-                          <input type="text" placeholder="可在此輸入備註" />
+                        <div className="info">
+                          <div className="attendance">
+                            <p
+                              className="text-M"
+                              style={{ color: typeFontStyle }}
+                            >
+                              85%
+                            </p>
+                            <img src={ellipseBarType} alt="" />
+                          </div>
+                          <p style={{ color: typeFontStyle }}>出席率</p>
                         </div>
-                        <fieldset className="evaluateOption">
-                          <h5 style={{ color: typeFontStyle }}>出席</h5>
-                          <input type="radio" name="出席" id="attend" />
-                          <label htmlFor="正常出席">正常出席</label>
-                          <input type="radio" name="出席" id="absent" />
-                          <label htmlFor="無故出席">無故出席</label>
-                        </fieldset>
-                        <fieldset className="evaluateOption">
-                          <h5 style={{ color: typeFontStyle }}>程度</h5>
-                          <input type="radio" name="程度" id="comply" />
-                          <label htmlFor="符合自評">符合自評</label>
-
-                          <input type="radio" name="程度" id="uncertainty" />
-                          <label htmlFor="符合自評">不確定</label>
-                        </fieldset>
-                        <div className="BtnContainer">
-                          <a href="#" className="button btn-no">
-                            送出,並加入黑名單
-                          </a>
-                          <a className="button btn-yes" href="#">
-                            送出
-                          </a>
+                        <div className="info">
+                          <div className="userInfo">
+                            <p style={{ backgroundColor: typeStyle }}>B</p>
+                          </div>
+                          <p style={{ color: typeFontStyle }}>自評等級</p>
                         </div>
+                      </div>
+
+                      <div className="component-writeBlock">
+                        <h5>備註（僅限自己可看）：</h5>
+                        <input type="text" placeholder="可在此輸入備註" />
+                      </div>
+                      <fieldset className="evaluateOption">
+                        <h5 style={{ color: typeFontStyle }}>出席</h5>
+                        <input type="radio" name="出席" id="attend" />
+                        <label htmlFor="正常出席">正常出席</label>
+                        <input type="radio" name="出席" id="absent" />
+                        <label htmlFor="無故出席">無故出席</label>
+                      </fieldset>
+                      <fieldset className="evaluateOption">
+                        <h5 style={{ color: typeFontStyle }}>程度</h5>
+                        <input type="radio" name="程度" id="comply" />
+                        <label htmlFor="符合自評">符合自評</label>
+
+                        <input type="radio" name="程度" id="uncertainty" />
+                        <label htmlFor="符合自評">不確定</label>
+                      </fieldset>
+                      <div className="BtnContainer">
+                        <a href="#" className="button btn-no">
+                          送出,並加入黑名單
+                        </a>
+                        <a className="button btn-yes" href="#">
+                          送出
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -1199,6 +1215,7 @@
             </>
           );
         };
+
         const App = () => {
           const [selectedButton, setSelectedButton] = useState("btn-itinerary");
           const [noticeType, setNoticeType] = useState("btn-itinerary");
@@ -1218,18 +1235,16 @@
             }
           };
 
-          const sponsorChange=()=>{
-            
-            const sponsorBtn=document.querySelector(".btn-sponsor");
-            if(sponsorBtn.classList.contains("selected")){
-              sponsorBtn.classList.remove('selected');
+          const sponsorChange = () => {
+            const sponsorBtn = document.querySelector(".btn-sponsor");
+            if (sponsorBtn.classList.contains("selected")) {
+              sponsorBtn.classList.remove("selected");
               setCallData(future_All_userData);
-            }else{
-              sponsorBtn.classList.add('selected');
+            } else {
+              sponsorBtn.classList.add("selected");
               setCallData(future_host_userData);
             }
-
-          }
+          };
 
           return (
             <div className="body">
@@ -1318,7 +1333,7 @@
                     <button
                       className="btn-sponsor button"
                       onClick={() => {
-                        sponsorChange()
+                        sponsorChange();
                       }}
                     >
                       <img src="./images/icon-sponsor.png" alt="" />
