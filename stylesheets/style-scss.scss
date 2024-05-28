@@ -1296,6 +1296,14 @@ footer {
   row-gap: 1vh;
   align-items: center;
 
+  .topBtn-container{
+    width: 100%;
+    position: relative;
+    a{
+      position: absolute;
+      right: 0;
+    }
+  }
   .info-selfState{
     /* 被審核者資訊 */
     width: 80%;

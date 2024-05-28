@@ -79,6 +79,8 @@
           /* 元件副資訊 */
           const [showBallBrand, setShowBallBrand] = useState("");
           const [showVbInfo, setShowVbInfo] = useState("");
+          /* 狀態 */
+          const [newNotifyState, setNewNotifyState] = useState("");
 
           useEffect(() => {
             // 保存最新的 identity 值
@@ -154,26 +156,27 @@
             // 狀態顏色
             switch (state) {
               case "報名成功":
-                return setStateStyle("#1A8D07");
+                return setStateStyle("#1A8D07"),setNewNotifyState(state);
               case "報名失敗":
-                return setStateStyle("#777777");
+                return setStateStyle("#777777"),setNewNotifyState(state);
               case "候補中":
-                return setStateStyle("#2D2AE6");
+                return setStateStyle("#2D2AE6"),setNewNotifyState(state);
               case "已取消":
-                return setStateStyle("#777777");
+                return setStateStyle("#777777"),setNewNotifyState(state);
               case "申請中":
-                return setStateStyle("#FF4F03");
+                return setStateStyle("#FF4F03"),setNewNotifyState(state);
               case "未評價":
-                return setStateStyle("#FF4F03");
+                return setStateStyle("#FF4F03"),setNewNotifyState(state);
               case "取消ing":
-                return setStateStyle("#FF4F03");
-
-              default:
+                return setStateStyle("#FF4F03"),setNewNotifyState(state);
+              case "已評價" :
+                return setStateStyle("#1a8d07"),setNewNotifyState(state);
+              default: setNewNotifyState(state);
                 break;
             }
 
             document.getElementsByClassName("notice-container");
-          }, [type, state, identity, popupHref, name]);
+          }, [type, state, identity, popupHref, name,setNewNotifyState]);
 
           /* 查看貼文元件 */
           const [detailNotify, setDetailNotify] = useState(false);
@@ -232,7 +235,7 @@
                         stateStyle,
                       }}
                     >
-                      <p>{state}</p>
+                      <p>{newNotifyState}</p>
                     </div>
                   </div>
                 </div>
@@ -281,9 +284,12 @@
                   tagDegree={tagDegree}
                   tagPrice={tagPrice}
                   id={id}
+                  state={state}
                   typeStyle={typeStyle}
                   typeFontStyle={typeFontStyle}
                   popUp={popupHref}
+                  setNewNotifyState={setNewNotifyState}
+                  setStateStyle={setStateStyle}
                 />
               )}
               {sponsorEvaluateCard && (
@@ -297,7 +303,9 @@
                   arena={arena}
                   tagDegree={tagDegree}
                   tagPrice={tagPrice}
+                  appl={appl}
                   id={id}
+                  state={state}
                   typeStyle={typeStyle}
                   typeFontStyle={typeFontStyle}
                   ellipseBarType={ellipseBar}
@@ -362,20 +370,22 @@
           /* 是否生成審核報名元件 */
           const [auditApplyCard, setAuditApplyCard] = useState("");
           const [isNew, setIsNew] = useState("block");
-          const [popupId,setPopupId] = useState('') ;
-          const handleAuditApplyCard = (type,index) => {
+          const [popupId, setPopupId] = useState("");
+          const handleAuditApplyCard = (type, index) => {
             setIsNew("none");
             setAuditApplyCard(type);
             setPopupId(`${index}`);
             console.log(type);
           };
-          /* 申請者元件 */   
+          /* 申請者元件 */
           const ApplicantsCard = ({ appl, id, index }) => {
             return (
               <>
                 <a
                   href={`#detailApplyPopup-${id}-${index}`}
-                  onClick={() => {handleAuditApplyCard("apply",index)}}
+                  onClick={() => {
+                    handleAuditApplyCard("apply", index);
+                  }}
                 >
                   <img
                     className="img-border"
@@ -386,8 +396,6 @@
                     New
                   </div>
                 </a>
-
-                
               </>
             );
           };
@@ -581,40 +589,39 @@
                   </div>
                 </div>
               </div>
-              {auditApplyCard === "apply" &&(
-                  <AuditApplyCard
-                    day={day}
-                    startTime={startTime}
-                    type={type}
-                    arena={arena}
-                    state={state}
-                    id={id}
-                    index={popupId}
-                    appl={appl}
-                    typeStyle={typeStyle}
-                    typeFontStyle={typeFontStyle}
-                    ellipseBarType={ellipseBar}
-                    isApply={"false"}
-                    
-                  />
-                )}
+              {auditApplyCard === "apply" && (
+                <AuditApplyCard
+                  day={day}
+                  startTime={startTime}
+                  type={type}
+                  arena={arena}
+                  state={state}
+                  id={id}
+                  index={popupId}
+                  appl={appl}
+                  typeStyle={typeStyle}
+                  typeFontStyle={typeFontStyle}
+                  ellipseBarType={ellipseBar}
+                  isApply={"false"}
+                />
+              )}
 
-                {auditApplyCard === "yes" &&  (
-                  <AuditApplyCard
-                    day={day}
-                    startTime={startTime}
-                    type={type}
-                    arena={arena}
-                    state={state}
-                    appl={appl}
-                    id={"yes"}
-                    typeStyle={typeStyle}
-                    typeFontStyle={typeFontStyle}
-                    ellipseBarType={ellipseBar}
-                    isApply={"true"}
-                    onClose={() => handleAuditApplyCard(false)}
-                  />
-                )}
+              {auditApplyCard === "yes" && (
+                <AuditApplyCard
+                  day={day}
+                  startTime={startTime}
+                  type={type}
+                  arena={arena}
+                  state={state}
+                  appl={appl}
+                  id={"yes"}
+                  typeStyle={typeStyle}
+                  typeFontStyle={typeFontStyle}
+                  ellipseBarType={ellipseBar}
+                  isApply={"true"}
+                  onClose={() => handleAuditApplyCard(false)}
+                />
+              )}
               {auditCancelCard && (
                 <AuditCancelCard
                   day={day}
@@ -665,13 +672,12 @@
           const [resultDisplay, setResultDisplay] = useState("none");
           const [resultText, setResultText] = useState("");
           const [resultColor, setResultColor] = useState("#1A8D07");
-          console.log("元件"+isApply+index)
+          console.log("元件" + isApply + index);
           useEffect(() => {
             if (isApply === "true") {
               setBtnDisplay("none");
               setResultDisplay("block");
               setResultText("接受申請");
-             
             }
           }, [isApply]);
           /* 審核結果標籤 */
@@ -691,7 +697,7 @@
 
           return (
             /* 燈箱效果-=團主審核報名元件 */
-            <div className="popup" id={`detailApplyPopup-${id}-${index}`} >
+            <div className="popup" id={`detailApplyPopup-${id}-${index}`}>
               <div className="popup-inner">
                 <div className="popup__content">
                   {/* 團主審核報名元件 */}
@@ -1029,10 +1035,33 @@
           tagDegree,
           tagPrice,
           id,
+          state,
           typeStyle,
           typeFontStyle,
           popUp,
+          setNewNotifyState,
+          setStateStyle
         }) => {
+          //團主評價狀態
+          const [newState, setNewState] = useState("");
+          const [stateColor, setStateColor] = useState(typeStyle);
+          const [btnDisplay, setBtnDisplay] = useState("flex");
+
+          useEffect(() => {
+            if (state === "已評價") {
+              setNewState("已評價");
+              setBtnDisplay("none");
+            }else {
+              setNewState("未評價");
+              setStateColor("#cb1b1b");
+            }
+            if (newState === "已評價") {
+              setBtnDisplay("none");
+              setNewNotifyState("已評價");
+              setStateStyle("#1a8d07");
+            }
+          }, [state, newState]);
+
           return (
             <div className="popup" id={`${popUp}-${id}`}>
               <div className="popup-inner">
@@ -1100,17 +1129,17 @@
                         <button>用心</button>
                       </div>
                     </div>
-                    <div className="BtnContainer">
+                    <div className="BtnContainer" >
                       <a className="popup__close btn-close" href="#">
                         關閉
                       </a>
-                      <a
-                        href="#"
+                      <button 
                         className="button btn-yes"
-                        style={{ backgroundColor: typeFontStyle }}
+                        style={{ display: btnDisplay ,backgroundColor: typeFontStyle }}
+                        onClick={()=>{setNewState("已評價");}}
                       >
                         送出
-                      </a>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -1118,6 +1147,7 @@
             </div>
           );
         };
+
         /* 建立元件 燈箱效果-團主評價 */
         const EvaluateApplicantsCard = ({
           day,
@@ -1129,12 +1159,43 @@
           arena,
           tagDegree,
           tagPrice,
+          appl = [],
           id,
+          state,
           typeStyle,
           typeFontStyle,
           ellipseBarType,
           popUp,
         }) => {
+          //團主評價狀態
+          const [newState, setNewState] = useState("");
+          const [stateColor, setStateColor] = useState(typeStyle);
+          const [newState2, setNewState2] = useState("");
+          const [stateColor2, setStateColor2] = useState(typeStyle);
+
+          useEffect(() => {
+            if (state === "已評價") {
+              setNewState("已評價");
+              setNewState2("已評價");
+            }else {
+              setNewState("未評價");
+              setNewState2("未評價");
+              setStateColor("#cb1b1b");
+              setStateColor2("#cb1b1b");
+            }
+            if (newState === "已評價") {
+              setNewState("已評價");
+              setStateColor(typeStyle);
+            }
+            if (newState2 === "已評價") {
+              setNewState2("已評價");
+              setStateColor2(typeStyle);
+            }
+          }, [state, newState, newState2]);
+
+          //
+          const [newIndex, setNewIndex] = useState("");
+
           return (
             <>
               <div className="popup" id={`${popUp}-${id}`}>
@@ -1183,8 +1244,9 @@
                       </div>
                       <div className="evaluateContainer">
                         <a
-                          href="#evaluateApplicantsForm"
+                          href={`#evaluateApplicantsForm-${id}-0`}
                           className="evaluatePlayerList"
+                          onClick={()=>{setNewIndex("0");}}
                         >
                           <div className="playerName">
                             <img
@@ -1192,25 +1254,35 @@
                               src="../images/player.png"
                               alt=""
                             />
-                            <p>Geeeed</p>
+                            <p>{appl[0]}</p>
                           </div>
 
-                          <p className="evaluateState-no">未評價</p>
+                          <p
+                            className="evaluateState-no"
+                            style={{ backgroundColor: stateColor }}
+                           
+                          >
+                            {newState}
+                          </p>
                         </a>
-                        <a href="#" className="evaluatePlayerList">
+                        <a
+                        href={`#evaluateApplicantsForm-${id}-1`}
+                          className="evaluatePlayerList"
+                          onClick={()=>{setNewIndex("1");}}
+                        >
                           <div className="playerName">
                             <img
                               className="applicantImg"
                               src="../images/player2.png"
                               alt=""
                             />
-                            <p>Roy</p>
+                            <p>{appl[1]}</p>
                           </div>
                           <p
                             className="evaluateState-yes"
-                            style={{ backgroundColor: typeStyle }}
+                            style={{ backgroundColor: stateColor2 }}
                           >
-                            已評價
+                            {newState2}
                           </p>
                         </a>
                       </div>
@@ -1219,25 +1291,85 @@
                 </div>
               </div>
               <EvaluateApplicantsForm
+                id={id}
+                appl={appl}
                 typeStyle={typeStyle}
                 typeFontStyle={typeFontStyle}
                 ellipseBarType={ellipseBarType}
+                newState0={newState}
+                newState1={newState2}
+                setNewState0={setNewState}
+                setNewState1={setNewState2}
+                index={newIndex}
               />
             </>
           );
         };
         /* 建立元件 燈箱效果-團主評價表單 */
         const EvaluateApplicantsForm = ({
+          id,
+          appl,
           typeStyle,
           typeFontStyle,
           ellipseBarType,
+          state,
+          newState0,newState1,
+          setNewState0,
+          setNewState1,
+          index
         }) => {
+          const [btnDisplay, setBtnDisplay] = useState("flex");
+          const [resultDisplay, setResultDisplay] = useState("none");
+          const [resultText, setResultText] = useState("");
+          const [resultColor, setResultColor] = useState("#1A8D07");
+          const [stateColor, setStateColor] = useState(typeStyle);
+
+          useEffect(() => {
+            if (index === "0" && newState0 === "已評價") {
+              auditResult("yes");
+              ;
+            }else{
+              setBtnDisplay("flex");
+              setResultDisplay("none");
+            }
+            if (index === "1" && newState1 === "已評價") {
+              auditResult("yes");
+            }else{
+              setBtnDisplay("flex");
+              setResultDisplay("none");
+            }
+          }, [index]);
+          /* 審核結果標籤 */
+          const auditResult = (type) => {
+            let text = "";
+
+            setBtnDisplay("none");
+            setResultDisplay("block");
+            if (type === "blackList") {
+              text = "已加入黑名單";
+              setResultColor("#FF4F03");
+            } else if (type === "yes") {
+              text = "已評價";
+            }
+            setResultText(text);
+            if(index === "0"){
+              setNewState0("已評價");
+              //console.log("回傳0 yes");
+            }else if(index === "1")
+              setNewState1("已評價");
+              //console.log("回傳1 yes");
+          };
           return (
             <>
-              <div class="popup" id="evaluateApplicantsForm">
+              <div class="popup" id={`evaluateApplicantsForm-${id}-${index}`}>
                 <div class="popup-inner">
                   <div class="popup__content">
                     <div className="evaluateForm">
+                      <div className="topBtn-container">
+                        <a className="popup__close" href="#">
+                          <img src="../images/cancel.png" alt="" />
+                        </a>
+                      </div>
                       <div className="selfState-userInfo">
                         <div className="info">
                           <img
@@ -1245,7 +1377,7 @@
                             src="../images/player.png"
                             alt=""
                           />
-                          <p style={{ color: typeFontStyle }}>Roy</p>
+                          <p style={{ color: typeFontStyle }}>{appl[index]}</p>
                         </div>
                         <div className="info">
                           <div className="attendance">
@@ -1286,13 +1418,33 @@
                         <input type="radio" name="程度" id="uncertainty" />
                         <label htmlFor="符合自評">不確定</label>
                       </fieldset>
-                      <div className="BtnContainer">
-                        <a href="#" className="button btn-no">
+                      <div
+                        className="BtnContainer"
+                        style={{ display: btnDisplay }}
+                      >
+                        <button
+                          href="#"
+                          className="button btn-no"
+                          onClick={() => auditResult("blackList")}
+                        >
                           送出,並加入黑名單
-                        </a>
-                        <a className="button btn-yes" href="#">
+                        </button>
+                        <button
+                          className="button btn-yes"
+                          onClick={() => auditResult("yes")}
+                        >
                           送出
-                        </a>
+                        </button>
+                      </div>
+                      <div
+                        className="audit-state audit-yes"
+                        style={{
+                          display: resultDisplay,
+                          color: resultColor,
+                          borderColor: resultColor,
+                        }}
+                      >
+                        <p>{resultText}</p>
                       </div>
                     </div>
                   </div>
@@ -1523,7 +1675,6 @@
                           male={post_data.reqCount[1].count}
                           unspecified={post_data.reqCount[2].count}
                           appl={post_data.appl}
-                          
                         />
                       );
                     })}
