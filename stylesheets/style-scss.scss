@@ -350,7 +350,7 @@ select {
     opacity: 0;
   }
   32%{opacity: 0;}
-  34%{
+  36%{
     opacity: 1;
   }
   98% {
@@ -392,7 +392,7 @@ body {
     background-repeat: no-repeat;
     z-index: -10;
     animation-name: cloud-float, FadeFloat;
-    animation-duration: 60s;
+    animation-duration: 100s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
   }
@@ -407,14 +407,14 @@ body {
     background-repeat: no-repeat;
     z-index: -10;
     animation-name:cloud-repeat,FadeRepeat;
-    animation-duration: 110s;
+    animation-duration: 180s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
   }
 }
 
 .background-Bm {
-  background-image: url(/images/DogBg\ .jpg);
+  background-image: url(/images/bgbm-phone.png);
 }
 
 .background-Vb {
@@ -500,6 +500,17 @@ body {
     background-image: url(/images/bg-phone.png);
     background-repeat: repeat;
     background-size: auto;
+    &::after{
+      content: "";
+      background-image: none;
+      animation: none;
+
+    }
+    &::before{
+      content: "";
+      background-image: none;
+      animation: none;
+    }
   }
   #top-nav {
     width: 60vw;
