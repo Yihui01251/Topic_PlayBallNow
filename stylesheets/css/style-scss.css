@@ -472,6 +472,11 @@ body {
 }
 
 @media (max-width:640px) {
+  body {
+    background-image: url(/images/bg-phone.png);
+    background-repeat: repeat;
+    background-size: auto;
+  }
   #top-nav {
     width: 60vw;
     align-self: center;
