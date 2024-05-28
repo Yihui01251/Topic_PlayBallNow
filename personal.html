@@ -79,7 +79,7 @@
                     </li>
                   </ul>
                 </nav>
-                <div className="title">
+                <div className="form-title">
                   <div className="hugTitle noto-sans-tc">
                     <img src="./images/vbtitle.svg" alt="" />
                     <h1 className="title-L" value="個人檔案">
@@ -90,7 +90,7 @@
                   <a href="register.html" className="button" id="btn-editFile">
                     資料編輯
                     <img
-                      src="../images/icon-editFile.png"
+                      src="./images/icon-editFile.png"
                       alt="資料編輯的icon公事包"
                     />
                   </a>
@@ -106,6 +106,7 @@
           const [userName, setUserName] = useState("十全大補");
           const [userPhoto, setUserPhoto] = useState("./images/player.png");
           const [userSex, setUserSex] = useState("未知");
+          const[sexIcon,setSexIcon]=useState("./images/icon-male.png")
           const [userIntro, setUserIntro] = useState("很高興認識大家!");
           const [userBmDegree, setUserBmDegree] = useState("");
           const [userVbDegree, setUserVbDegree] = useState("");
@@ -127,7 +128,10 @@
               setLoginBtn("flex");
               setInfoState("none");
             }
-          }, [registerState, setRegisterState]);
+            if(userSex=="女"){
+              setSexIcon("./images/icon-female.png");
+            }
+          }, [registerState, setRegisterState,userSex]);
 
           const Records = ({type, date, startTime}) => {
             // const [isSponsor,setIsSponsor]=useState("none");
@@ -150,7 +154,7 @@
             );
           };
           return (
-            <div className="body">
+            <div className="body hiFooter">
               <TopBar />
               <main className="personal-Area">
                 <div className="personalArea-infoContainer">
@@ -165,7 +169,7 @@
                       <a href="/register.html" style={{ display: loginBtn }}>
                         <button
                           className="btn-logInLine"
-                          
+
                         >
                           Line登入
                           <img src="./images/icon-LINE.png" alt="" />
@@ -173,7 +177,7 @@
                       </a>
                       <div style={{ display: infoState }}>
                         <div className="userName">
-                          <img src="./images/icon-male.png" alt="" />
+                          <img src={sexIcon} alt="" />
                           <p className="hugTitle title-M" value={userName}>
                             {userName}
                           </p>
@@ -200,7 +204,7 @@
                             <p className="userInfo">13</p>
                             <div className="attendance">
                               <p className="text-M">85%</p>
-                              <img src="/images/ellipsebarbm.png" alt="" />
+                              <img src="./images/ellipsebarbm.png" alt="" />
                             </div>
                             <p className="userInfo">
                               {userBmDegree == "" ? userVbDegree : userBmDegree}

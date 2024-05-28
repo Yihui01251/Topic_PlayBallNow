@@ -9,15 +9,17 @@
   /* 視窗高比例100 */
   height: fit-content;
   /* layout */
+  margin: 0 auto;
   display: grid;
-  grid-template-rows: repeat(auto-fit, minmax(50px, 1fr));
+  //grid-template-rows: repeat(auto-fit, minmax(50px, 1fr));
+  grid-template-rows: 50px 1fr;
   gap: 25px;
   justify-content: center;
   justify-items: center;
 
   @media ($breakpoint-moblie) {
     width: 90vw;
-    grid-template-rows: repeat(auto-fit, minmax(50px, 1fr));
+    grid-template-rows: 40px 1fr;
   }
 
 }
@@ -161,5 +163,5 @@ button#btn-pastRecords.selected {
 }
 /* 過去紀錄 使footer置底 */
 .pastPostArea{
-  margin-bottom: 20vh;
+  margin-bottom:36vh;
 } 

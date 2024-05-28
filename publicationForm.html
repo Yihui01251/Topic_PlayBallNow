@@ -139,7 +139,26 @@
           </>
         );
       };
-
+      /* 建立元件 footer元件 */
+      const Footer = (props) => {
+          return (
+            <>
+              <footer>
+                <figure className="footer-border"></figure>
+                <div>
+                  <figure>
+                    <img
+                      id="logo"
+                      src="./images/logo.png"
+                      alt="logo-PlayBallNow"
+                    />
+                  </figure>
+                  <p>Copyright© 2024 PlayBallNow. All Right Reserved. </p>
+                </div>
+              </footer>
+            </>
+          );
+        };
       const App = () => {
         const { useState, useEffect, useRef } = React;
         const btnFormVbRef = useRef(null);
@@ -154,7 +173,7 @@
         const [fontColor, setFontColor] = useState("#147CB6");
         const [btnColor, setBtnColor] = useState("#F1DB15");
         const [inputColor, setInputColor] = useState("#B1C3E8");
-        const[mobileTopBar,setMobileTopBar] = useState("/images/mobiletopvb.svg");
+        const[mobileTopBar,setMobileTopBar] = useState("./images/mobiletopvb.svg");
         const [selectedButton, setSelectedButton] = useState("btn-formVB");
         const [type, setType] = useState("排球");
         const [BMdisplay, setBMDisplay] = useState("none");
@@ -193,7 +212,7 @@
             colorFont = "#689607";
             btnColor = "#FF8D24";
             inputColor = "#B6DBAA";
-            topBanner = "/images/mobiletopbm.png";
+            topBanner = "./images/mobiletopbm.png";
             type = "羽球";
             option = ["雙打", "混雙", "女雙", "男雙", "單打"];
             option_degree = [
@@ -220,7 +239,7 @@
             colorFont = "#147CB6";
             btnColor = "#F1DB15";
             inputColor = "#B1C3E8";
-            topBanner = "/images/mobiletopvb.svg";
+            topBanner = "./images/mobiletopvb.svg";
             type = "排球";
             option = ["女網混排", "男網混排", "女網純女", "男網純男"];
             option_degree = ["C以下", "C-B", "A", "C", "B", "A"];
@@ -281,7 +300,7 @@
         const handleChange = (name, value) => {
           setFormData({ ...formData, [name]: value });
         };
-        
+
         //預覽元件
         const PreviewSection = ({
           postDate,
@@ -326,7 +345,7 @@
                     </p>
                     <div className="type-style">{type}</div>
                     <button className="collect">
-                      <img src="../images/heart-no.svg" alt="收藏" />
+                      <img src="./images/heart-no.svg" alt="收藏" />
                     </button>
                   </div>
                   <div className="areaInfo">
@@ -369,15 +388,13 @@
                     <p>{postNote}</p>
                   </div>
                 </div>
-                <div className="BtnContainer">
-                  <p className="button">報名</p>
-                </div>
+
               </div>
-              <a href="./react_postsArea.html" ><button type="submit" className="button" onClick={handleSubmit}>送出</button></a>
+              <a href="./filterPosts.html" ><button type="submit" className="button" onClick={handleSubmit}>送出</button></a>
             </div>
           );
         };
-        
+
         const TopBar = ({mobileTopBar}) => {
           return(<>
           <div className="mobile-TopBar">
@@ -407,7 +424,7 @@
                     </a>
                   </li>
                   <li>
-                    <a href="notice.html">
+                    <a href="./notice.html">
                       <img
                         className="icon"
                         src="./images/bell3.png"
@@ -417,7 +434,7 @@
                     </a>
                   </li>
                   <li>
-                    <a href="personal.html">
+                    <a href="./personal.html">
                       <img className="icon" src="./images/cat.png" alt="" />
                       個人
                     </a>
@@ -432,7 +449,7 @@
                   </h1>
                   <img src="./images/bmtitle.svg" alt="" />
                 </div>
-                <a href="/myPostList.html" className="button btn-postManage">
+                <a href="./myPostList.html" className="button btn-postManage">
                   我的貼文
                   <img src="./images/Vector.png" alt="" />
                 </a>
@@ -441,9 +458,9 @@
             </header>
           </>)
         }
-          
+
         return (
-          <div className="body">
+          <div className="body hiFooter">
             <TopBar mobileTopBar={mobileTopBar}/>
             <main className="form-formArea">
               <section className="form-container">
@@ -637,19 +654,7 @@
                 )}
               </section>
             </main>
-            <footer>
-              <figure className="footer-border"></figure>
-              <div>
-                <figure>
-                  <img
-                    id="logo"
-                    src="./images/logo.png"
-                    alt="logo-PlayBallNow"
-                  />
-                </figure>
-                <p>Copyright© 2024 PlayBallNow. All Right Reserved. </p>
-              </div>
-            </footer>
+            <Footer/>
           </div>
         );
       };

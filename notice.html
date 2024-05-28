@@ -56,7 +56,9 @@
           equip,
           note,
           like,
-          ballBrand
+          ballBrand,
+          appl = [], //確保為陣列，默認為空
+          cancel,
         }) => {
           /* 主色 */
           const [typeStyle, setTypeStyle] = useState("");
@@ -77,7 +79,9 @@
           /* 元件副資訊 */
           const [showBallBrand, setShowBallBrand] = useState("");
           const [showVbInfo, setShowVbInfo] = useState("");
-         
+          /* 狀態 */
+          const [newNotifyState, setNewNotifyState] = useState("");
+
           useEffect(() => {
             // 保存最新的 identity 值
             const currentIdentity = identity;
@@ -152,26 +156,28 @@
             // 狀態顏色
             switch (state) {
               case "報名成功":
-                return setStateStyle("#1A8D07");
+                return setStateStyle("#1A8D07"), setNewNotifyState(state);
               case "報名失敗":
-                return setStateStyle("#777777");
+                return setStateStyle("#777777"), setNewNotifyState(state);
               case "候補中":
-                return setStateStyle("#2D2AE6");
+                return setStateStyle("#2D2AE6"), setNewNotifyState(state);
               case "已取消":
-                return setStateStyle("#777777");
+                return setStateStyle("#777777"), setNewNotifyState(state);
               case "申請中":
-                return setStateStyle("#FF4F03");
+                return setStateStyle("#FF4F03"), setNewNotifyState(state);
               case "未評價":
-                return setStateStyle("#FF4F03");
+                return setStateStyle("#FF4F03"), setNewNotifyState(state);
               case "取消ing":
-                return setStateStyle("#FF4F03");
-
+                return setStateStyle("#FF4F03"), setNewNotifyState(state);
+              case "已評價":
+                return setStateStyle("#1a8d07"), setNewNotifyState(state);
               default:
+                setNewNotifyState(state);
                 break;
             }
-           
+
             document.getElementsByClassName("notice-container");
-          }, [type, state, identity, popupHref, name]);
+          }, [type, state, identity, popupHref, name, setNewNotifyState]);
 
           /* 查看貼文元件 */
           const [detailNotify, setDetailNotify] = useState(false);
@@ -230,7 +236,7 @@
                         stateStyle,
                       }}
                     >
-                      <p>{state}</p>
+                      <p>{newNotifyState}</p>
                     </div>
                   </div>
                 </div>
@@ -255,6 +261,8 @@
                   equip={equip}
                   ballBrand={ballBrand}
                   note={note}
+                  appl={appl}
+                  cancel={cancel}
                   popUp={popupHref}
                   typeStyle={typeStyle}
                   typeFontStyle={typeFontStyle}
@@ -277,10 +285,12 @@
                   tagDegree={tagDegree}
                   tagPrice={tagPrice}
                   id={id}
+                  state={state}
                   typeStyle={typeStyle}
                   typeFontStyle={typeFontStyle}
                   popUp={popupHref}
-                  
+                  setNewNotifyState={setNewNotifyState}
+                  setStateStyle={setStateStyle}
                 />
               )}
               {sponsorEvaluateCard && (
@@ -294,7 +304,9 @@
                   arena={arena}
                   tagDegree={tagDegree}
                   tagPrice={tagPrice}
+                  appl={appl}
                   id={id}
+                  state={state}
                   typeStyle={typeStyle}
                   typeFontStyle={typeFontStyle}
                   ellipseBarType={ellipseBar}
@@ -304,6 +316,7 @@
             </>
           );
         };
+
         /* 建立元件 燈箱效果- 查看行程*/
         const DetailPostCard = ({
           day,
@@ -325,6 +338,8 @@
           equip,
           ballBrand,
           note,
+          appl,
+          cancel,
           popUp,
           typeStyle,
           typeFontStyle,
@@ -333,22 +348,57 @@
           showBmInfo,
           showVbInfo,
           ellipseBar,
-          
         }) => {
-          /* 生成審核報名元件 */
-          const [auditApplyCard, setAuditApplyCard] = useState(false);
-          const handleAuditApplyCard = () => {
-            setAuditApplyCard(true);
+          const [popupState, setPopupState] = useState({});
+          //傳入id使其能對應元件
+          const handlePopup = (popupId) => {
+            //將useState設定成之前狀態(prevState)的相反
+            setPopupState((prevState) => ({
+              ...prevState,
+              [popupId]: !prevState[popupId],
+            }));
           };
-          /* 生成審核取消元件 */
+          /* 是否生成審核取消元件 */
           const [auditCancelCard, setAuditCancelCard] = useState(false);
           const handleAuditCancelCard = () => {
             setAuditCancelCard(true);
           };
-          /* 生成查看行程元件 */
+          /* 是否生成查看行程元件 */
           const [detailsNotifyCard, setDetailsNotifyCard] = useState(false);
           const handleDetailsNotifyCard = () => {
             setDetailsNotifyCard(true);
+          };
+          /* 是否生成審核報名元件 */
+          const [auditApplyCard, setAuditApplyCard] = useState("");
+          const [isNew, setIsNew] = useState("block");
+          const [popupId, setPopupId] = useState("");
+          const handleAuditApplyCard = (type, index) => {
+            setIsNew("none");
+            setAuditApplyCard(type);
+            setPopupId(`${index}`);
+            console.log(type);
+          };
+          /* 申請者元件 */
+          const ApplicantsCard = ({ appl, id, index }) => {
+            return (
+              <>
+                <a
+                  href={`#detailApplyPopup-${id}-${index}`}
+                  onClick={() => {
+                    handleAuditApplyCard("apply", index);
+                  }}
+                >
+                  <img
+                    className="img-border"
+                    src="../images/player.png"
+                    alt=""
+                  />
+                  <div className="notice-new" style={{ display: isNew }}>
+                    New
+                  </div>
+                </a>
+              </>
+            );
           };
           return (
             <>
@@ -414,12 +464,15 @@
                               {unspecified}位
                             </p>
                           </div>
-                          <div className="ballInfo" style={{ display: showVbInfo }}>
+                          <div
+                            className="ballInfo"
+                            style={{ display: showVbInfo }}
+                          >
                             <h4>類型</h4>
                             <p style={{ color: typeFontStyle }}>{role}</p>
                           </div>
                           <div
-                            className="equipInfo" 
+                            className="equipInfo"
                             style={{ display: showVbInfo }}
                           >
                             <h4>位置</h4>
@@ -471,19 +524,19 @@
                             </div>
                           </div>
                           <div className="applicant-container">
-                            <a
-                              href={`#detailApplyPopup-${id}`}
-                              onClick={handleAuditApplyCard}
-                            >
-                              <img
-                                className="img-border"
-                                src="../images/player.png"
-                                alt=""
+                            {appl.map((apply, index) => (
+                              <ApplicantsCard
+                                key={index}
+                                appl={apply}
+                                id={id}
+                                index={index}
                               />
-                              <div className="notice-new">New</div>
-                            </a>
+                            ))}
 
-                            <a href={`#detailApplyPopup-2`}>
+                            <a
+                              href={`#detailApplyPopup-yes-0`}
+                              onClick={() => handleAuditApplyCard("yes")}
+                            >
                               <img
                                 className="img-border"
                                 src="../images/player-agree.png"
@@ -537,7 +590,7 @@
                   </div>
                 </div>
               </div>
-              {auditApplyCard && (
+              {auditApplyCard === "apply" && (
                 <AuditApplyCard
                   day={day}
                   startTime={startTime}
@@ -545,9 +598,29 @@
                   arena={arena}
                   state={state}
                   id={id}
+                  index={popupId}
+                  appl={appl}
                   typeStyle={typeStyle}
                   typeFontStyle={typeFontStyle}
                   ellipseBarType={ellipseBar}
+                  isApply={"false"}
+                />
+              )}
+
+              {auditApplyCard === "yes" && (
+                <AuditApplyCard
+                  day={day}
+                  startTime={startTime}
+                  type={type}
+                  arena={arena}
+                  state={state}
+                  appl={appl}
+                  id={"yes"}
+                  typeStyle={typeStyle}
+                  typeFontStyle={typeFontStyle}
+                  ellipseBarType={ellipseBar}
+                  isApply={"true"}
+                  onClose={() => handleAuditApplyCard(false)}
                 />
               )}
               {auditCancelCard && (
@@ -589,14 +662,25 @@
           arena,
           state,
           id,
+          appl,
+          index,
           typeStyle,
           typeFontStyle,
           ellipseBarType,
+          isApply,
         }) => {
           const [btnDisplay, setBtnDisplay] = useState("flex");
           const [resultDisplay, setResultDisplay] = useState("none");
           const [resultText, setResultText] = useState("");
           const [resultColor, setResultColor] = useState("#1A8D07");
+          console.log("元件" + isApply + index);
+          useEffect(() => {
+            if (isApply === "true") {
+              setBtnDisplay("none");
+              setResultDisplay("block");
+              setResultText("接受申請");
+            }
+          }, [isApply]);
           /* 審核結果標籤 */
           const auditResult = (type) => {
             let text = "";
@@ -614,7 +698,7 @@
 
           return (
             /* 燈箱效果-=團主審核報名元件 */
-            <div className="popup" id={`detailApplyPopup-${id}`}>
+            <div className="popup" id={`detailApplyPopup-${id}-${index}`}>
               <div className="popup-inner">
                 <div className="popup__content">
                   {/* 團主審核報名元件 */}
@@ -635,7 +719,7 @@
                             src="../images/player.png"
                             alt=""
                           />
-                          <p style={{ color: typeFontStyle }}>Roy</p>
+                          <p style={{ color: typeFontStyle }}>{appl[index]}</p>
                         </div>
                         <div className="info">
                           <div className="attendance">
@@ -725,6 +809,7 @@
           arena,
           state,
           id,
+          index,
           typeFontStyle,
           typeStyle,
         }) => {
@@ -749,7 +834,7 @@
 
           return (
             /* 燈箱效果-=團主審核報名元件 */
-            <div className="popup" id={`auditCancelPopup-${id}`}>
+            <div className="popup" id={`auditCancelPopup-${id}-${index}`}>
               <div className="popup-inner">
                 <div className="popup__content">
                   {/* 團主審核報名元件 */}
@@ -951,10 +1036,43 @@
           tagDegree,
           tagPrice,
           id,
+          state,
           typeStyle,
           typeFontStyle,
           popUp,
+          setNewNotifyState,
+          setStateStyle,
         }) => {
+          //團主評價狀態
+          const [newState, setNewState] = useState("");
+          const [stateColor, setStateColor] = useState(typeStyle);
+          const [btnDisplay, setBtnDisplay] = useState("flex");
+          //裝選中的Tags
+          const [activeTags, setActiveTags] = useState([]);
+
+          useEffect(() => {
+            if (state === "已評價") {
+              setNewState("已評價");
+              setBtnDisplay("none");
+            } else {
+              setNewState("未評價");
+              setStateColor("#cb1b1b");
+            }
+            if (newState === "已評價") {
+              setBtnDisplay("none");
+              setNewNotifyState("已評價");
+              setStateStyle("#1a8d07");
+            }
+          }, [state, newState]);
+
+          const toggleTag = (id) => {
+            //放入容器紀錄
+            setActiveTags((prevTags) => ({
+              ...prevTags, // 展開之前的狀態，保留其他按鈕的狀態不變
+              [id]: !prevTags[id], // 只更新特定按鈕的狀態，照之前的狀態取反
+            }));
+          };
+
           return (
             <div className="popup" id={`${popUp}-${id}`}>
               <div className="popup-inner">
@@ -997,42 +1115,159 @@
                       <h3>球友臨打回饋</h3>
                     </div>
                     <div className="sub-info">
-                      <div className="tags">
+                      <div className="tags" id="vibe">
                         <h4 className="text-L">氣氛</h4>
-                        <button>有帥哥</button>
-                        <button>有妹子</button>
-                        <button>性別友善</button>
-                        <button>有指導家</button>
-                        <button>輕鬆歡樂</button>
-                        <button>新手友善</button>
+                        <button
+                          id="tags-handSome"
+                          className={
+                            activeTags["tags-handSome"] ? "active" : ""
+                          }
+                          onClick={() => toggleTag("tags-handSome")}
+                        >
+                          有帥哥
+                        </button>
+                        <button
+                          id="tags-prettyGirl"
+                          className={
+                            activeTags["tags-prettyGirl"] ? "active" : ""
+                          }
+                          onClick={() => toggleTag("tags-prettyGirl")}
+                        >
+                          有妹子
+                        </button>
+                        <button
+                          id="tags-friendly"
+                          className={
+                            activeTags["tags-friendly"] ? "active" : ""
+                          }
+                          onClick={() => toggleTag("tags-friendly")}
+                        >
+                          性別友善
+                        </button>
+                        <button
+                          id="tags-coach"
+                          className={activeTags["tags-coach"] ? "active" : ""}
+                          onClick={() => toggleTag("tags-coach")}
+                        >
+                          有指導家
+                        </button>
+                        <button
+                          id="tags-relax"
+                          className={activeTags["tags-relax"] ? "active" : ""}
+                          onClick={() => toggleTag("tags-relax")}
+                        >
+                          輕鬆歡樂
+                        </button>
+                        <button
+                          id="tags-beginnerFriendly"
+                          className={
+                            activeTags["tags-beginnerFriendly"] ? "active" : ""
+                          }
+                          onClick={() => toggleTag("tags-beginnerFriendly")}
+                        >
+                          新手友善
+                        </button>
                       </div>
                       <div className="tags">
                         <h4 className="text-L">程度</h4>
-                        <button>有強者</button>
-                        <button>多拍/多來回</button>
-                        <button>符合徵求程度</button>
-                        <button>多新手/初階</button>
+                        <button
+                          id="tags-strong"
+                          className={activeTags["tags-strong"] ? "active" : ""}
+                          onClick={() => toggleTag("tags-strong")}
+                        >
+                          有強者
+                        </button>
+                        <button
+                          id="tags-longRally"
+                          className={
+                            activeTags["tags-longRally"] ? "active" : ""
+                          }
+                          onClick={() => toggleTag("tags-longRally")}
+                        >
+                          多拍/多來回
+                        </button>
+                        <button
+                          id="tags-matchingLevel"
+                          className={
+                            activeTags["tags-matchingLevel"] ? "active" : ""
+                          }
+                          onClick={() => toggleTag("tags-matchingLevel")}
+                        >
+                          符合徵求程度
+                        </button>
+                        <button
+                          id="tags-beginner"
+                          className={
+                            activeTags["tags-beginner"] ? "active" : ""
+                          }
+                          onClick={() => toggleTag("tags-beginner")}
+                        >
+                          多新手/初階
+                        </button>
                       </div>
                       <div className="tags">
                         <h4 className="text-L">團主</h4>
-                        <button>懂安排程度</button>
-                        <button>人數超收</button>
-                        <button>用球大方</button>
-                        <button>會告知設備/上場規則</button>
-                        <button>用心</button>
+                        <button
+                          id="tags-organizer"
+                          className={
+                            activeTags["tags-organizer"] ? "active" : ""
+                          }
+                          onClick={() => toggleTag("tags-organizer")}
+                        >
+                          懂安排程度
+                        </button>
+                        <button
+                          id="tags-overCrowded"
+                          className={
+                            activeTags["tags-overCrowded"] ? "active" : ""
+                          }
+                          onClick={() => toggleTag("tags-overCrowded")}
+                        >
+                          人數超收
+                        </button>
+                        <button
+                          id="tags-generous"
+                          className={
+                            activeTags["tags-generous"] ? "active" : ""
+                          }
+                          onClick={() => toggleTag("tags-generous")}
+                        >
+                          用球大方
+                        </button>
+                        <button
+                          id="tags-rules"
+                          className={activeTags["tags-rules"] ? "active" : ""}
+                          onClick={() => toggleTag("tags-rules")}
+                        >
+                          會告知設備/上場規則
+                        </button>
+                        <button
+                          id="tags-dedicated"
+                          className={
+                            activeTags["tags-dedicated"] ? "active" : ""
+                          }
+                          onClick={() => toggleTag("tags-dedicated")}
+                        >
+                          用心
+                        </button>
                       </div>
                     </div>
                     <div className="BtnContainer">
                       <a className="popup__close btn-close" href="#">
                         關閉
                       </a>
-                      <a
-                        href="#"
+                      <button
                         className="button btn-yes"
-                        style={{ backgroundColor: typeFontStyle }}
+                        style={{
+                          display: btnDisplay,
+                          backgroundColor: typeFontStyle,
+                        }}
+                        onClick={() => {
+                          setNewState("已評價");
+                        }}
                       >
                         送出
-                      </a>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -1040,6 +1275,7 @@
             </div>
           );
         };
+
         /* 建立元件 燈箱效果-團主評價 */
         const EvaluateApplicantsCard = ({
           day,
@@ -1051,12 +1287,43 @@
           arena,
           tagDegree,
           tagPrice,
+          appl = [],
           id,
+          state,
           typeStyle,
           typeFontStyle,
           ellipseBarType,
           popUp,
         }) => {
+          //團主評價狀態
+          const [newState, setNewState] = useState("");
+          const [stateColor, setStateColor] = useState(typeStyle);
+          const [newState2, setNewState2] = useState("");
+          const [stateColor2, setStateColor2] = useState(typeStyle);
+
+          useEffect(() => {
+            if (state === "已評價") {
+              setNewState("已評價");
+              setNewState2("已評價");
+            } else {
+              setNewState("未評價");
+              setNewState2("未評價");
+              setStateColor("#cb1b1b");
+              setStateColor2("#cb1b1b");
+            }
+            if (newState === "已評價") {
+              setNewState("已評價");
+              setStateColor(typeStyle);
+            }
+            if (newState2 === "已評價") {
+              setNewState2("已評價");
+              setStateColor2(typeStyle);
+            }
+          }, [state, newState, newState2]);
+
+          //
+          const [newIndex, setNewIndex] = useState("");
+
           return (
             <>
               <div className="popup" id={`${popUp}-${id}`}>
@@ -1104,93 +1371,210 @@
                         <h3>本場臨打球友</h3>
                       </div>
                       <div className="evaluateContainer">
-                        <a href="#" className="evaluatePlayerList">
+                        <a
+                          href={`#evaluateApplicantsForm-${id}-0`}
+                          className="evaluatePlayerList"
+                          onClick={() => {
+                            setNewIndex("0");
+                          }}
+                        >
                           <div className="playerName">
                             <img
                               className="applicantImg"
                               src="../images/player.png"
                               alt=""
                             />
-                            <p>Geeeed</p>
+                            <p>{appl[0]}</p>
                           </div>
 
-                          <p className="evaluateState-no">未評價</p>
+                          <p
+                            className="evaluateState-no"
+                            style={{ backgroundColor: stateColor }}
+                          >
+                            {newState}
+                          </p>
                         </a>
-                        <a href="#" className="evaluatePlayerList">
+                        <a
+                          href={`#evaluateApplicantsForm-${id}-1`}
+                          className="evaluatePlayerList"
+                          onClick={() => {
+                            setNewIndex("1");
+                          }}
+                        >
                           <div className="playerName">
                             <img
                               className="applicantImg"
                               src="../images/player2.png"
                               alt=""
                             />
-                            <p>Roy</p>
+                            <p>{appl[1]}</p>
                           </div>
                           <p
                             className="evaluateState-yes"
-                            style={{ backgroundColor: typeStyle }}
+                            style={{ backgroundColor: stateColor2 }}
                           >
-                            已評價
+                            {newState2}
                           </p>
                         </a>
                       </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <EvaluateApplicantsForm
+                id={id}
+                appl={appl}
+                typeStyle={typeStyle}
+                typeFontStyle={typeFontStyle}
+                ellipseBarType={ellipseBarType}
+                newState0={newState}
+                newState1={newState2}
+                setNewState0={setNewState}
+                setNewState1={setNewState2}
+                index={newIndex}
+              />
+            </>
+          );
+        };
+        /* 建立元件 燈箱效果-團主評價表單 */
+        const EvaluateApplicantsForm = ({
+          id,
+          appl,
+          typeStyle,
+          typeFontStyle,
+          ellipseBarType,
+          state,
+          newState0,
+          newState1,
+          setNewState0,
+          setNewState1,
+          index,
+        }) => {
+          const [btnDisplay, setBtnDisplay] = useState("flex");
+          const [resultDisplay, setResultDisplay] = useState("none");
+          const [resultText, setResultText] = useState("");
+          const [resultColor, setResultColor] = useState("#1A8D07");
+          const [stateColor, setStateColor] = useState(typeStyle);
 
-                      <div className="evaluateForm">
-                        <div className="selfState-userInfo">
-                          <div className="info">
-                            <img
-                              className="applicantImg"
-                              src="../images/player.png"
-                              alt=""
-                            />
-                            <p style={{ color: typeFontStyle }}>Roy</p>
-                          </div>
-                          <div className="info">
-                            <div className="attendance">
-                              <p
-                                className="text-M"
-                                style={{ color: typeFontStyle }}
-                              >
-                                85%
-                              </p>
-                              <img src={ellipseBarType} alt="" />
-                            </div>
-                            <p style={{ color: typeFontStyle }}>出席率</p>
-                          </div>
-                          <div className="info">
-                            <div className="userInfo">
-                              <p style={{ backgroundColor: typeStyle }}>B</p>
-                            </div>
-                            <p style={{ color: typeFontStyle }}>自評等級</p>
-                          </div>
-                        </div>
+          useEffect(() => {
+            if (index === "0" && newState0 === "已評價") {
+              auditResult("yes");
+            } else {
+              setBtnDisplay("flex");
+              setResultDisplay("none");
+            }
+            if (index === "1" && newState1 === "已評價") {
+              auditResult("yes");
+            } else {
+              setBtnDisplay("flex");
+              setResultDisplay("none");
+            }
+          }, [index]);
+          /* 審核結果標籤 */
+          const auditResult = (type) => {
+            let text = "";
 
-                        <div className="component-writeBlock">
-                          <h5>備註（僅限自己可看）：</h5>
-                          <input type="text" placeholder="可在此輸入備註" />
+            setBtnDisplay("none");
+            setResultDisplay("block");
+            if (type === "blackList") {
+              text = "已加入黑名單";
+              setResultColor("#FF4F03");
+            } else if (type === "yes") {
+              text = "已評價";
+            }
+            setResultText(text);
+            if (index === "0") {
+              setNewState0("已評價");
+              //console.log("回傳0 yes");
+            } else if (index === "1") setNewState1("已評價");
+            //console.log("回傳1 yes");
+          };
+          return (
+            <>
+              <div class="popup" id={`evaluateApplicantsForm-${id}-${index}`}>
+                <div class="popup-inner">
+                  <div class="popup__content">
+                    <div className="evaluateForm">
+                      <div className="topBtn-container">
+                        <a className="popup__close" href="#">
+                          <img src="../images/cancel.png" alt="" />
+                        </a>
+                      </div>
+                      <div className="selfState-userInfo">
+                        <div className="info">
+                          <img
+                            className="applicantImg"
+                            src="../images/player.png"
+                            alt=""
+                          />
+                          <p style={{ color: typeFontStyle }}>{appl[index]}</p>
                         </div>
-                        <fieldset className="evaluateOption">
-                          <h5 style={{ color: typeFontStyle }}>出席</h5>
-                          <input type="radio" name="出席" id="attend" />
-                          <label htmlFor="正常出席">正常出席</label>
-                          <input type="radio" name="出席" id="absent" />
-                          <label htmlFor="無故出席">無故出席</label>
-                        </fieldset>
-                        <fieldset className="evaluateOption">
-                          <h5 style={{ color: typeFontStyle }}>程度</h5>
-                          <input type="radio" name="程度" id="comply" />
-                          <label htmlFor="符合自評">符合自評</label>
+                        <div className="info">
+                          <div className="attendance">
+                            <p
+                              className="text-M"
+                              style={{ color: typeFontStyle }}
+                            >
+                              85%
+                            </p>
+                            <img src={ellipseBarType} alt="" />
+                          </div>
+                          <p style={{ color: typeFontStyle }}>出席率</p>
+                        </div>
+                        <div className="info">
+                          <div className="userInfo">
+                            <p style={{ backgroundColor: typeStyle }}>B</p>
+                          </div>
+                          <p style={{ color: typeFontStyle }}>自評等級</p>
+                        </div>
+                      </div>
 
-                          <input type="radio" name="程度" id="uncertainty" />
-                          <label htmlFor="符合自評">不確定</label>
-                        </fieldset>
-                        <div className="BtnContainer">
-                          <a href="#" className="button btn-no">
-                            送出,並加入黑名單
-                          </a>
-                          <a className="button btn-yes" href="#">
-                            送出
-                          </a>
-                        </div>
+                      <div className="component-writeBlock">
+                        <h5>備註（僅限自己可看）：</h5>
+                        <input type="text" placeholder="可在此輸入備註" />
+                      </div>
+                      <fieldset className="evaluateOption">
+                        <h5 style={{ color: typeFontStyle }}>出席</h5>
+                        <input type="radio" name="出席" id="attend" />
+                        <label htmlFor="正常出席">正常出席</label>
+                        <input type="radio" name="出席" id="absent" />
+                        <label htmlFor="無故出席">無故出席</label>
+                      </fieldset>
+                      <fieldset className="evaluateOption">
+                        <h5 style={{ color: typeFontStyle }}>程度</h5>
+                        <input type="radio" name="程度" id="comply" />
+                        <label htmlFor="符合自評">符合自評</label>
+
+                        <input type="radio" name="程度" id="uncertainty" />
+                        <label htmlFor="符合自評">不確定</label>
+                      </fieldset>
+                      <div
+                        className="BtnContainer"
+                        style={{ display: btnDisplay }}
+                      >
+                        <button
+                          href="#"
+                          className="button btn-no"
+                          onClick={() => auditResult("blackList")}
+                        >
+                          送出,並加入黑名單
+                        </button>
+                        <button
+                          className="button btn-yes"
+                          onClick={() => auditResult("yes")}
+                        >
+                          送出
+                        </button>
+                      </div>
+                      <div
+                        className="audit-state audit-yes"
+                        style={{
+                          display: resultDisplay,
+                          color: resultColor,
+                          borderColor: resultColor,
+                        }}
+                      >
+                        <p>{resultText}</p>
                       </div>
                     </div>
                   </div>
@@ -1199,6 +1583,7 @@
             </>
           );
         };
+
         const App = () => {
           const [selectedButton, setSelectedButton] = useState("btn-itinerary");
           const [noticeType, setNoticeType] = useState("btn-itinerary");
@@ -1218,18 +1603,16 @@
             }
           };
 
-          const sponsorChange=()=>{
-            
-            const sponsorBtn=document.querySelector(".btn-sponsor");
-            if(sponsorBtn.classList.contains("selected")){
-              sponsorBtn.classList.remove('selected');
+          const sponsorChange = () => {
+            const sponsorBtn = document.querySelector(".btn-sponsor");
+            if (sponsorBtn.classList.contains("selected")) {
+              sponsorBtn.classList.remove("selected");
               setCallData(future_All_userData);
-            }else{
-              sponsorBtn.classList.add('selected');
+            } else {
+              sponsorBtn.classList.add("selected");
               setCallData(future_host_userData);
             }
-
-          }
+          };
 
           return (
             <div className="body">
@@ -1318,7 +1701,7 @@
                     <button
                       className="btn-sponsor button"
                       onClick={() => {
-                        sponsorChange()
+                        sponsorChange();
                       }}
                     >
                       <img src="./images/icon-sponsor.png" alt="" />
@@ -1350,6 +1733,8 @@
                           equip={post_data.equip}
                           note={post_data.note}
                           ballBrand={post_data.ballBrand}
+                          appl={post_data.appl}
+                          cancel={post_data.cancel}
                         />
                       );
                     })}
@@ -1397,7 +1782,7 @@
                       noticeType === "btn-pastRecords" ? "block" : "none",
                   }}
                 >
-                  <section className="notice-itineraryArea pastPostArea">
+                  <section className="notice-itineraryArea">
                     {past_ALL_userData.map((post_data) => {
                       return (
                         <Notify
@@ -1419,6 +1804,7 @@
                           female={post_data.reqCount[0].count}
                           male={post_data.reqCount[1].count}
                           unspecified={post_data.reqCount[2].count}
+                          appl={post_data.appl}
                         />
                       );
                     })}

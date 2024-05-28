@@ -88,10 +88,10 @@
             'url("./images/catsroke.svg")'
           );
           const [decorateSearch, setDecorateSearch] = useState(
-            'url("/images/index-searchCat.png")'
+            'url("../../images/index-searchCat.png")'
           );
           const [mobileTopBar, setMobileTopBar] = useState(
-            "/images/mobiletopvb.svg"
+            "./images/mobiletopvb.svg"
           );
           /* 要map的資料 */
           const [todayType, setTodayType] = useState("vb_today_postData");
@@ -142,9 +142,9 @@
               colorFont = "#689607";
               btnColor = "#FF8D24";
               inputColor = "#B6DBAA";
-              newBorder = 'url("../images/dogstroke.svg")';
-              decorate = 'url("/images/index-searchDog.png")';
-              topBanner = "/images/mobiletopbm.png";
+              newBorder = 'url("./images/dogstroke.svg")';
+              decorate = 'url("../../images/index-searchDog.png")';
+              topBanner = "./images/mobiletopbm.png";
               // 新增class改變背景
               //bodyStyle.classList.add("background-Bm");
               //bodyStyle.classList.remove("background-Vb");
@@ -167,9 +167,9 @@
               colorFont = "#147CB6";
               btnColor = "#F1DB15";
               inputColor = "#B1C3E8";
-              newBorder = "url('../images/catsroke.svg')";
-              decorate = 'url("/images/index-searchCat.png")';
-              topBanner = "../../images/mobiletopvb.svg";
+              newBorder = "url('./images/catsroke.svg')";
+              decorate = "url('../../images/index-searchCat.png')";
+              topBanner = "./images/mobiletopvb.svg";
               //
               //bodyStyle.classList.remove("background-Bm");
               //bodyStyle.classList.add("background-Vb");
@@ -625,7 +625,7 @@
           };
 
           /* 篩選表單更新選項 */
-          const [selectedCity, setSelectedCity] = useState("未選擇");
+          const [selectedCity, setSelectedCity] = useState("全部");
           const [areaOption, setAreaOption] = useState(["地區"]);
           const [showArea, setShoeArea] = useState("none");
           let selectCity = document.getElementById("city");
@@ -634,6 +634,7 @@
             setSelectedCity(value);
             var options = {
               taipei: [
+                "全部",
                 "中正區",
                 "大同區",
                 "中山區",
@@ -648,6 +649,7 @@
                 "文山區",
               ],
               xinpei: [
+                "全部",
                 "板橋區",
                 "新莊區",
                 "中和區",
@@ -714,12 +716,12 @@
           };
 
           /* 儲存篩選條件 */
-          const [selectedDate, setSelectedDate] = useState("未選擇"); //日期
+          const [selectedDate, setSelectedDate] = useState("全部"); //日期
           const [selectedArea, setSelectedArea] = useState([]); //地區
-          const [selectedCost, setSelectedCost] = useState("未選擇"); //費用
-          const [selectedDegree, setSelectedDegree] = useState("未選擇"); //程度
-          const [selectedRol, setSelectedRol] = useState("未選擇"); //排球類型
-          const [selectedEquip, setSelectedEquip] = useState(["未選擇"]); //羽球設備
+          const [selectedCost, setSelectedCost] = useState("全部"); //費用
+          const [selectedDegree, setSelectedDegree] = useState("全部"); //程度
+          const [selectedRol, setSelectedRol] = useState("全部"); //排球類型
+          const [selectedEquip, setSelectedEquip] = useState(["全部"]); //羽球設備
 
           const handleSelectChange = (event) => {
             //转换为数组，并提取每个选项的值。
@@ -733,14 +735,14 @@
           const SaveData = () => {
             window.localStorage.filterDate = selectedDate;
             window.localStorage.filterCity = selectedCity;
-            localStorage.setItem('filterArea', JSON.stringify(selectedArea));
+            localStorage.setItem("filterArea", JSON.stringify(selectedArea));
             window.localStorage.filterCost = selectedCost;
             window.localStorage.filterDegree = selectedDegree;
             window.localStorage.filterRol = selectedRol;
             window.localStorage.filterEquip = selectedEquip;
             //
             window.localStorage.filterType = filterTag;
-            };
+          };
           useEffect(() => {
             console.log(selectedArea);
             console.log("程度: " + selectedDegree);
@@ -803,7 +805,10 @@
                       </h1>
                       <img src="./images/bmtitle.svg" alt="" />
                     </div>
-                    <a href="/myCollect.html" className="button btn-postManage">
+                    <a
+                      href="./myCollect.html"
+                      className="button btn-postManage"
+                    >
                       我的收藏
                       <img src="./images/heart-yes.svg" alt="" />
                     </a>
@@ -1056,7 +1061,7 @@
                     <div className="notice-apply">
                       <p>已送出報名，團主審核中</p>
                       <a className="popup__close" href="#">
-                        <img src="../images/cancel.png" alt="關閉按鈕" />
+                        <img src="./images/cancel.png" alt="關閉按鈕" />
                       </a>
                     </div>
                   </div>
@@ -1079,6 +1084,7 @@
           return (
             <div className="body">
               <TopBar mobileTopBar={mobileTopBar} />
+              
               <main className="index-Area">
                 {/*篩選區 */}
                 <section className="search">
@@ -1147,7 +1153,7 @@
                             changeArea(e.target.value);
                           }}
                         >
-                          <option value="default">縣市</option>
+                          <option value="全部">縣市</option>
                           <option value="台北市">台北市</option>
                           <option value="新北市">新北市</option>
                           <option value="其他">其他</option>
@@ -1177,14 +1183,11 @@
                             setSelectedDegree(e.target.value);
                           }}
                         >
-                          <option value="default">程度</option>
-                          <option value="C以下">C以下</option>
+                          <option value="全部">程度</option>
                           <option value="C">C</option>
-                          <option value="C~B">C~B</option>
                           <option value="B">B</option>
-                          <option value="B~A">B~A</option>
                           <option value="A">A</option>
-                          <option value="A~S">A~S</option>
+                          <option value="S">S</option>
                         </select>
                         <select
                           name="程度"
@@ -1213,7 +1216,7 @@
                             setSelectedCost(e.target.value);
                           }}
                         >
-                          <option value="default">費用</option>
+                          <option value="全部">費用</option>
                           <option value="150">150以下</option>
                           <option value="200">200以下</option>
                           <option value="250">250以下</option>
@@ -1227,7 +1230,7 @@
                             setSelectedRol(e.target.value);
                           }}
                         >
-                          <option value="default">類型</option>
+                          <option value="全部">類型</option>
                           <option value="男網純男">男網純男</option>
                           <option value="女網純女">女網純女</option>
                           <option value="男網混排">男網混排</option>
@@ -1339,9 +1342,9 @@
                     onMouseMove={handleDragMove}
                     onMouseUp={handleDragEnd}
                     onMouseLeave={handleDragEnd}
-                    onTouchStart={handleDragStart}
-                    onTouchMove={handleDragMove}
-                    onTouchEnd={handleDragEnd}
+                    // onTouchStart={handleDragStart}
+                    // onTouchMove={handleDragMove}
+                    // onTouchEnd={handleDragEnd}
                   >
                     {/* <Slider {...settings}> */}
                     {filterPosts.map((post_data) => {
@@ -1425,9 +1428,6 @@
                     onMouseMove={weekHandleDragMove}
                     onMouseUp={weekHandleDragEnd}
                     onMouseLeave={weekHandleDragEnd}
-                    onTouchStart={weekHandleDragStart}
-                    onTouchMove={weekHandleDragMove}
-                    onTouchEnd={weekHandleDragEnd}
                   >
                     {weekFilterPosts.map((post_data) => {
                       return (

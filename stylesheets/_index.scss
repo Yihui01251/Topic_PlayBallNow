@@ -16,7 +16,7 @@ main:10
   /* 與header距離 */
   margin-top: 50px;
   /* 和footer距離 */
-  margin-bottom: 15vh;
+  margin-bottom: 5vh;
   /* 控制子層 */
   display: flex;
   flex-direction: column;
@@ -60,8 +60,8 @@ main:10
     /* justify-content: center;
     align-items: center; */
   }
-  /* 首頁篩選區裝飾動物 */
-  #search-Bar::before {
+ 
+  #search-Bar::before { /* 首頁篩選區裝飾動物 */
     position: absolute;
     width: 40px;
     height: fit-content;
@@ -79,17 +79,19 @@ main:10
   }
 }
 
-/* main > section(search > div#search-Type */
-#search-Type {
+
+#search-Type {/* 表單內顯示羽排的圖 */
   /* 布局 */
   flex: 1 1 auto;
   /* 控制子層 */
-  display: flex;
-  flex-direction: column;
+  // display: flex;
+  // flex-direction: column;
+  display: grid;
+  grid-template-rows: 120px 120px;
   align-items: center;
+  justify-content: center;
   position: relative;
-
-  @media ($breakpoint-moblie) {
+  @media ($breakpoint-moblie){
     display: none;
   }
 }
@@ -98,11 +100,10 @@ main:10
   /* 樣式 */
   width: 120px;
   height: 48px;
-  border: 4px solid $main-color-vb-light;
-  background-color: $background-color-lightgrey;
-  box-shadow: 5px 5px 4px $box-shadow;
-  border-radius: $border-radius-90;
-  margin-bottom: 30px;
+  border: 3px solid $border-black;
+  background-color: #F1DB15;
+  box-shadow: 0px 4px 0px $border-black;
+  border-radius: $border-radius-20;
 
   opacity: 0.8;
 
@@ -110,8 +111,9 @@ main:10
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 4px;
   &::before {
-    content: "打排球";
+    content: "改打排球";
   }
   img {
     pointer-events: none;
@@ -123,6 +125,9 @@ main:10
   }
   &:hover {
     opacity: 1;
+    box-shadow: 0px 6px 0px $border-black;
+    margin-top: 0px ;
+    cursor: pointer;
   }
   &:active {
     box-shadow: none;
@@ -134,18 +139,19 @@ main:10
   /* 樣式 */
   width: 120px;
   height: 48px;
-  border: 4px solid $main-color-bm;
-  background-color: $background-color-lightgrey;
-  box-shadow: 5px 5px 4px $box-shadow;
+  border: 3px solid $border-black;
+  background-color: #FF8D24;
+  box-shadow: 0px 4px 0px $border-black;
   border-radius: 20px;
   opacity: 0.8;
-  &::before {
-    content: "打羽球";
-  }
   /* 子層 */
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 4px ;
+  &::before {
+    content: "改打羽球";
+  }
 
   img {
     pointer-events: none;
@@ -154,6 +160,9 @@ main:10
   }
   &:hover {
     opacity: 1;
+    box-shadow: 0px 6px 0px $border-black;
+    margin-top: 0px ;
+    cursor: pointer;
   }
   &:active {
     box-shadow: none;
@@ -166,10 +175,10 @@ button#btn-typeVb.selected {
   width: 120px;
   height: 120px;
   background-color: $second-color-white;
+  box-shadow: none;
   border: 4px solid $border-black;
   border-radius: $border-radius-90;
-  box-shadow: 5px 5px 4px $box-shadow;
-  margin-bottom: 30px;
+  
   opacity: 1;
 
   /* 子層 */
@@ -187,6 +196,12 @@ button#btn-typeVb.selected {
     /* 裁剪圖片，使其填滿元素 */
     object-position: center;
     /* 圖片位置 */
+  }
+  &:hover {
+    opacity: 1;
+    box-shadow: none;
+    margin-top: 4px ;
+    cursor:default;
   }
 }
 button#btn-typeVb.selected {
@@ -215,8 +230,6 @@ button#btn-typeBm.selected {
     display: flex;
     border-radius: $border-radius-90;
     padding: 10px;
-
-    top: 58px;
   }
 }
 
@@ -265,24 +278,39 @@ button#btn-typeBm.selected {
     height: auto;
     /*控制子層 */
     flex: 1 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+    display: grid;
+    justify-items: center;
+    grid-template-rows: 170px 40px;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: flex-end;
     align-items: center;
     align-content: center;
-  }
-}
+    #search-Type {
+      /* 包羽球or排球圖案的容器 */
+      width: 100%;
+      /* 羽排圖片 */
+      display: none;
+      /*layout */
+      grid-row: 1;
+      text-align: center;
 
-.searchBtn-box {
-  #search-Type {
-    display: none;
-
-    @media ($breakpoint-moblie) {
-      display: flex;
-      width: 25vw;
+      @media ($breakpoint-moblie) {
+        display: grid;
+        width: 100%;
+        justify-items: center;
+      }
     }
+
+    a{
+      /* 送出按鈕 */
+      grid-row: 2;
+    }
+
   }
 }
+
+
 
 /* main > section(search > div(search-Bar > div(dropMenu */
 .dropMenu {
@@ -315,7 +343,7 @@ button#btn-typeBm.selected {
       border-radius: $border-radius-50;
       margin-bottom: 8px;
       box-shadow: 5px 5px 4px $box-shadow;
-      color: $font-color-vb;
+      color: var(--font-color);
       /* 佈局 */
       flex: 1 1 auto;
       align-self: center;
@@ -352,7 +380,7 @@ button#btn-typeBm.selected {
       flex: 1 1 auto;
       align-self: center;
       box-shadow: 5px 5px 4px $box-shadow;
-      color: var(--main-color);
+      color: var(--font-color);
       &:hover {
         box-shadow: none;
       }
@@ -478,6 +506,12 @@ button#btn-typeBm.selected {
   scroll-snap-type: x mandatory; //水平滾動
   -webkit-overflow-scrolling: touch;
   cursor: grab;
+
+  @media ($breakpoint-moblie){
+    overflow-x: auto;
+    scroll-snap-type: x mandatory; //水平滾動
+    -webkit-overflow-scrolling: touch;
+}
 }
 
 /* 首頁小貼文元件 */
@@ -485,7 +519,7 @@ button#btn-typeBm.selected {
 .content {
   flex: 1 0 auto;
   max-width: 235px;
-  width: 235px;
+  width: 225px;//235px=>225px筆電也能看到第三個
   height: 245px;
   background-image: var(--border-image);
   background-size: cover;
