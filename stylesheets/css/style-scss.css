@@ -1394,7 +1394,6 @@ footer #logo {
 
 .evaluateForm {
   /* 審核容器 */
-  width: 55%;
   height: fit-content;
   border-radius: 20px;
   border: 1px solid black;
@@ -3116,7 +3115,7 @@ button#btn-formVB.selected::before {
   /* layout */
   margin: 0 auto;
   display: grid;
-  grid-template-rows: repeat(auto-fit, minmax(50px, 1fr));
+  grid-template-rows: 50px 1fr;
   gap: 25px;
   justify-content: center;
   justify-items: center;
@@ -3124,7 +3123,7 @@ button#btn-formVB.selected::before {
 @media (max-width:640px) {
   .notice-Area {
     width: 90vw;
-    grid-template-rows: repeat(auto-fit, minmax(50px, 1fr));
+    grid-template-rows: 40px 1fr;
   }
 }
 
