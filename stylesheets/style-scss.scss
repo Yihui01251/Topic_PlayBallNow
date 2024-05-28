@@ -388,7 +388,7 @@ body {
     left: -15vw;
     width: 30%;
     height: 30%;
-    background-image: url("/images/cloud1.svg");
+    background-image: url("../../images/cloud1.svg");
     background-repeat: no-repeat;
     z-index: -10;
     animation-name: cloud-float, FadeFloat;
@@ -403,7 +403,7 @@ body {
     right: 10vw;
     width: 30%;
     height: 30%;
-    background-image: url("/images/cloud1.svg");
+    background-image: url("../../images/cloud1.svg");
     background-repeat: no-repeat;
     z-index: -10;
     animation-name:cloud-repeat,FadeRepeat;

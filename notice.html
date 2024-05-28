@@ -1459,23 +1459,28 @@
           useEffect(() => {
             if (index === "0" && newState0 === "已評價") {
               auditResult("yes");
+              setBtnDisplay("none");
+              setResultDisplay("block");
+              console.log("yse000");
             } else {
               setBtnDisplay("flex");
               setResultDisplay("none");
             }
             if (index === "1" && newState1 === "已評價") {
               auditResult("yes");
+              console.log("yse111");
             } else {
               setBtnDisplay("flex");
               setResultDisplay("none");
             }
           }, [index]);
           /* 審核結果標籤 */
-          const auditResult = (type) => {
+          const auditResult = (type,index) => {
             let text = "";
 
             setBtnDisplay("none");
             setResultDisplay("block");
+            console.log("setBtnDisplay(none);");
             if (type === "blackList") {
               text = "已加入黑名單";
               setResultColor("#FF4F03");
@@ -1486,7 +1491,7 @@
             if (index === "0") {
               setNewState0("已評價");
               //console.log("回傳0 yes");
-            } else if (index === "1") setNewState1("已評價");
+            } else if (index === "1") {setNewState1("已評價");}
             //console.log("回傳1 yes");
           };
           return (
