@@ -156,27 +156,28 @@
             // 狀態顏色
             switch (state) {
               case "報名成功":
-                return setStateStyle("#1A8D07"),setNewNotifyState(state);
+                return setStateStyle("#1A8D07"), setNewNotifyState(state);
               case "報名失敗":
-                return setStateStyle("#777777"),setNewNotifyState(state);
+                return setStateStyle("#777777"), setNewNotifyState(state);
               case "候補中":
-                return setStateStyle("#2D2AE6"),setNewNotifyState(state);
+                return setStateStyle("#2D2AE6"), setNewNotifyState(state);
               case "已取消":
-                return setStateStyle("#777777"),setNewNotifyState(state);
+                return setStateStyle("#777777"), setNewNotifyState(state);
               case "申請中":
-                return setStateStyle("#FF4F03"),setNewNotifyState(state);
+                return setStateStyle("#FF4F03"), setNewNotifyState(state);
               case "未評價":
-                return setStateStyle("#FF4F03"),setNewNotifyState(state);
+                return setStateStyle("#FF4F03"), setNewNotifyState(state);
               case "取消ing":
-                return setStateStyle("#FF4F03"),setNewNotifyState(state);
-              case "已評價" :
-                return setStateStyle("#1a8d07"),setNewNotifyState(state);
-              default: setNewNotifyState(state);
+                return setStateStyle("#FF4F03"), setNewNotifyState(state);
+              case "已評價":
+                return setStateStyle("#1a8d07"), setNewNotifyState(state);
+              default:
+                setNewNotifyState(state);
                 break;
             }
 
             document.getElementsByClassName("notice-container");
-          }, [type, state, identity, popupHref, name,setNewNotifyState]);
+          }, [type, state, identity, popupHref, name, setNewNotifyState]);
 
           /* 查看貼文元件 */
           const [detailNotify, setDetailNotify] = useState(false);
@@ -1040,18 +1041,20 @@
           typeFontStyle,
           popUp,
           setNewNotifyState,
-          setStateStyle
+          setStateStyle,
         }) => {
           //團主評價狀態
           const [newState, setNewState] = useState("");
           const [stateColor, setStateColor] = useState(typeStyle);
           const [btnDisplay, setBtnDisplay] = useState("flex");
+          //裝選中的Tags
+          const [activeTags, setActiveTags] = useState([]);
 
           useEffect(() => {
             if (state === "已評價") {
               setNewState("已評價");
               setBtnDisplay("none");
-            }else {
+            } else {
               setNewState("未評價");
               setStateColor("#cb1b1b");
             }
@@ -1061,6 +1064,14 @@
               setStateStyle("#1a8d07");
             }
           }, [state, newState]);
+
+          const toggleTag = (id) => {
+            //放入容器紀錄
+            setActiveTags((prevTags) => ({
+              ...prevTags, // 展開之前的狀態，保留其他按鈕的狀態不變
+              [id]: !prevTags[id], // 只更新特定按鈕的狀態，照之前的狀態取反
+            }));
+          };
 
           return (
             <div className="popup" id={`${popUp}-${id}`}>
@@ -1104,39 +1115,156 @@
                       <h3>球友臨打回饋</h3>
                     </div>
                     <div className="sub-info">
-                      <div className="tags">
+                      <div className="tags" id="vibe">
                         <h4 className="text-L">氣氛</h4>
-                        <button>有帥哥</button>
-                        <button>有妹子</button>
-                        <button>性別友善</button>
-                        <button>有指導家</button>
-                        <button>輕鬆歡樂</button>
-                        <button>新手友善</button>
+                        <button
+                          id="tags-handSome"
+                          className={
+                            activeTags["tags-handSome"] ? "active" : ""
+                          }
+                          onClick={() => toggleTag("tags-handSome")}
+                        >
+                          有帥哥
+                        </button>
+                        <button
+                          id="tags-prettyGirl"
+                          className={
+                            activeTags["tags-prettyGirl"] ? "active" : ""
+                          }
+                          onClick={() => toggleTag("tags-prettyGirl")}
+                        >
+                          有妹子
+                        </button>
+                        <button
+                          id="tags-friendly"
+                          className={
+                            activeTags["tags-friendly"] ? "active" : ""
+                          }
+                          onClick={() => toggleTag("tags-friendly")}
+                        >
+                          性別友善
+                        </button>
+                        <button
+                          id="tags-coach"
+                          className={activeTags["tags-coach"] ? "active" : ""}
+                          onClick={() => toggleTag("tags-coach")}
+                        >
+                          有指導家
+                        </button>
+                        <button
+                          id="tags-relax"
+                          className={activeTags["tags-relax"] ? "active" : ""}
+                          onClick={() => toggleTag("tags-relax")}
+                        >
+                          輕鬆歡樂
+                        </button>
+                        <button
+                          id="tags-beginnerFriendly"
+                          className={
+                            activeTags["tags-beginnerFriendly"] ? "active" : ""
+                          }
+                          onClick={() => toggleTag("tags-beginnerFriendly")}
+                        >
+                          新手友善
+                        </button>
                       </div>
                       <div className="tags">
                         <h4 className="text-L">程度</h4>
-                        <button>有強者</button>
-                        <button>多拍/多來回</button>
-                        <button>符合徵求程度</button>
-                        <button>多新手/初階</button>
+                        <button
+                          id="tags-strong"
+                          className={activeTags["tags-strong"] ? "active" : ""}
+                          onClick={() => toggleTag("tags-strong")}
+                        >
+                          有強者
+                        </button>
+                        <button
+                          id="tags-longRally"
+                          className={
+                            activeTags["tags-longRally"] ? "active" : ""
+                          }
+                          onClick={() => toggleTag("tags-longRally")}
+                        >
+                          多拍/多來回
+                        </button>
+                        <button
+                          id="tags-matchingLevel"
+                          className={
+                            activeTags["tags-matchingLevel"] ? "active" : ""
+                          }
+                          onClick={() => toggleTag("tags-matchingLevel")}
+                        >
+                          符合徵求程度
+                        </button>
+                        <button
+                          id="tags-beginner"
+                          className={
+                            activeTags["tags-beginner"] ? "active" : ""
+                          }
+                          onClick={() => toggleTag("tags-beginner")}
+                        >
+                          多新手/初階
+                        </button>
                       </div>
                       <div className="tags">
                         <h4 className="text-L">團主</h4>
-                        <button>懂安排程度</button>
-                        <button>人數超收</button>
-                        <button>用球大方</button>
-                        <button>會告知設備/上場規則</button>
-                        <button>用心</button>
+                        <button
+                          id="tags-organizer"
+                          className={
+                            activeTags["tags-organizer"] ? "active" : ""
+                          }
+                          onClick={() => toggleTag("tags-organizer")}
+                        >
+                          懂安排程度
+                        </button>
+                        <button
+                          id="tags-overCrowded"
+                          className={
+                            activeTags["tags-overCrowded"] ? "active" : ""
+                          }
+                          onClick={() => toggleTag("tags-overCrowded")}
+                        >
+                          人數超收
+                        </button>
+                        <button
+                          id="tags-generous"
+                          className={
+                            activeTags["tags-generous"] ? "active" : ""
+                          }
+                          onClick={() => toggleTag("tags-generous")}
+                        >
+                          用球大方
+                        </button>
+                        <button
+                          id="tags-rules"
+                          className={activeTags["tags-rules"] ? "active" : ""}
+                          onClick={() => toggleTag("tags-rules")}
+                        >
+                          會告知設備/上場規則
+                        </button>
+                        <button
+                          id="tags-dedicated"
+                          className={
+                            activeTags["tags-dedicated"] ? "active" : ""
+                          }
+                          onClick={() => toggleTag("tags-dedicated")}
+                        >
+                          用心
+                        </button>
                       </div>
                     </div>
-                    <div className="BtnContainer" >
+                    <div className="BtnContainer">
                       <a className="popup__close btn-close" href="#">
                         關閉
                       </a>
-                      <button 
+                      <button
                         className="button btn-yes"
-                        style={{ display: btnDisplay ,backgroundColor: typeFontStyle }}
-                        onClick={()=>{setNewState("已評價");}}
+                        style={{
+                          display: btnDisplay,
+                          backgroundColor: typeFontStyle,
+                        }}
+                        onClick={() => {
+                          setNewState("已評價");
+                        }}
                       >
                         送出
                       </button>
@@ -1177,7 +1305,7 @@
             if (state === "已評價") {
               setNewState("已評價");
               setNewState2("已評價");
-            }else {
+            } else {
               setNewState("未評價");
               setNewState2("未評價");
               setStateColor("#cb1b1b");
@@ -1246,7 +1374,9 @@
                         <a
                           href={`#evaluateApplicantsForm-${id}-0`}
                           className="evaluatePlayerList"
-                          onClick={()=>{setNewIndex("0");}}
+                          onClick={() => {
+                            setNewIndex("0");
+                          }}
                         >
                           <div className="playerName">
                             <img
@@ -1260,15 +1390,16 @@
                           <p
                             className="evaluateState-no"
                             style={{ backgroundColor: stateColor }}
-                           
                           >
                             {newState}
                           </p>
                         </a>
                         <a
-                        href={`#evaluateApplicantsForm-${id}-1`}
+                          href={`#evaluateApplicantsForm-${id}-1`}
                           className="evaluatePlayerList"
-                          onClick={()=>{setNewIndex("1");}}
+                          onClick={() => {
+                            setNewIndex("1");
+                          }}
                         >
                           <div className="playerName">
                             <img
@@ -1313,10 +1444,11 @@
           typeFontStyle,
           ellipseBarType,
           state,
-          newState0,newState1,
+          newState0,
+          newState1,
           setNewState0,
           setNewState1,
-          index
+          index,
         }) => {
           const [btnDisplay, setBtnDisplay] = useState("flex");
           const [resultDisplay, setResultDisplay] = useState("none");
@@ -1327,14 +1459,13 @@
           useEffect(() => {
             if (index === "0" && newState0 === "已評價") {
               auditResult("yes");
-              ;
-            }else{
+            } else {
               setBtnDisplay("flex");
               setResultDisplay("none");
             }
             if (index === "1" && newState1 === "已評價") {
               auditResult("yes");
-            }else{
+            } else {
               setBtnDisplay("flex");
               setResultDisplay("none");
             }
@@ -1352,12 +1483,11 @@
               text = "已評價";
             }
             setResultText(text);
-            if(index === "0"){
+            if (index === "0") {
               setNewState0("已評價");
               //console.log("回傳0 yes");
-            }else if(index === "1")
-              setNewState1("已評價");
-              //console.log("回傳1 yes");
+            } else if (index === "1") setNewState1("已評價");
+            //console.log("回傳1 yes");
           };
           return (
             <>
