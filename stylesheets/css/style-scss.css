@@ -1935,7 +1935,7 @@ main:10
   margin-top: 4px;
 }
 #btn-typeVb::before {
-  content: "打排球";
+  content: "改打排球";
 }
 #btn-typeVb img {
   pointer-events: none;
@@ -1971,7 +1971,7 @@ main:10
   margin-top: 4px;
 }
 #btn-typeBm::before {
-  content: "打羽球";
+  content: "改打羽球";
 }
 #btn-typeBm img {
   pointer-events: none;
