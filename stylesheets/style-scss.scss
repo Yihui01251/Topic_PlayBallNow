@@ -2,8 +2,7 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Alata&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap");
 
 @font-face {
   font-family: "jf open 粉圓 2.0";
@@ -24,26 +23,26 @@
   }
   100% {
     transform: rotateX(360deg);
-  }}
-
+  }
+}
 /* 變數區 */
 :root {
   --main-color: #14aaeb;
   --btn-color: #f1db15;
   --font-color: #147cb6;
   //hover表單顏色
-  --input-hover-color:#B1C3E8;
+  --input-hover-color: #b1c3e8;
   /* 路徑 */
   --border-image: url("../../images/catframe.png");
   --background-image: url("../../images/bg.png");
   --search-decorate: url("../../images/index-searchCat.png");
-  --ellipseBar-image:url("../../images/bmellipsebar.png");
-  --mobileTop-image:url("../../images/mobiletopvb.svg");
+  --ellipseBar-image: url("../../images/bmellipsebar.png");
+  --mobileTop-image: url("../../images/mobiletopvb.svg");
   /* 行程 */
   --border-type: solid;
   --evaluate-color: #1a8d07;
   /* 篩選條件數 */
-  --filter-num:"0";
+  --filter-num: "0";
 }
 
 /* 共用區 */
@@ -82,7 +81,6 @@ h5,
 
   /*標題前後圖片*/
 
-
   /* child */
   display: flex;
   flex-direction: row;
@@ -106,7 +104,7 @@ h5,
   width: 60%;
   max-width: 700px;
   min-width: 340px;
-  height: 50px;/* 這樣hover時才不會縮小 */
+  height: 50px; /* 這樣hover時才不會縮小 */
   margin: 0 50px;
 
   /* child */
@@ -136,7 +134,7 @@ h5,
   gap: 8px;
   letter-spacing: 5px;
 
-  img{
+  img {
     width: 34px;
     height: 34px;
   }
@@ -151,9 +149,6 @@ h5,
   }
 }
 
-
-
-
 /* 標題底線 */
 div.hugTitle h1,
 div.hugTitle h2 {
@@ -162,7 +157,6 @@ div.hugTitle h2 {
   width: fit-content;
   // border-bottom: 4px solid $border-black;
   z-index: 0;
-
 }
 /* 增加文字外框線 */
 .hugTitle h1::before,
@@ -173,7 +167,6 @@ div.hugTitle h2 {
   -webkit-text-stroke: 4px $second-color-black;
   z-index: -1;
 }
-
 
 /* 標題前的線 */
 h2 div {
@@ -199,13 +192,13 @@ h2 div {
   display: flex;
   flex-direction: row;
   align-items: center;
-  h2{
+  h2 {
     color: $second-color-white;
     text-shadow:
-        1px -1px 0 #000000,
-        1px -1px 0 #000000,
-        -1px 1px 0 #000000,
-        1px 1px 0 #000000;
+      1px -1px 0 #000000,
+      1px -1px 0 #000000,
+      -1px 1px 0 #000000,
+      1px 1px 0 #000000;
   }
 }
 
@@ -215,7 +208,6 @@ h2 div {
   height: 20px;
   background-color: $second-color-black;
   margin-right: 10px;
-
 }
 
 /* 包左、右按鈕的容器 */
@@ -299,7 +291,75 @@ select {
     color: $background-color-white !important;
   }
 }
-
+@keyframes cloud-float {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translate(100vw);
+  }
+}
+@keyframes FadeFloat {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+  5% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+  90%{
+    opacity: 1;
+  }
+  95% {
+    opacity: 0.8;
+  }
+}
+@keyframes cloud-repeat {
+  0% {
+    transform: translateX(0);
+  }
+  30% {
+    transform: translate(100vw);
+  }
+  31%{
+    transform: translate(-90vw); 
+  }
+  100%{
+    transform: translate(100vw);
+  }
+}
+@keyframes FadeRepeat {
+  0% {
+    opacity: 0;
+  }
+  3% {
+    opacity: 1;
+  }
+  10% {
+    opacity: 0.3;
+  }
+  15%{
+    opacity: 0;
+  }
+  30%{
+    opacity: 0;
+  }
+  32%{opacity: 0;}
+  34%{
+    opacity: 1;
+  }
+  98% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+  }
+}
 /* 全域 */
 * {
   margin: 0;
@@ -320,7 +380,37 @@ body {
   /* 讓背景圖片在容器中置中 */
   font-family: $font-family-en, $font-family-tc;
   overflow-x: hidden;
-  z-index: -10;
+  position: relative;
+  &::before {
+    content: "";
+    position: fixed;
+    top: 20vh;
+    left: -15vw;
+    width: 30%;
+    height: 30%;
+    background-image: url("/images/cloud1.svg");
+    background-repeat: no-repeat;
+    z-index: -10;
+    animation-name: cloud-float, FadeFloat;
+    animation-duration: 60s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+  &::after {
+    content: "";
+    position: fixed;
+    top: 40vh;
+    right: 10vw;
+    width: 30%;
+    height: 30%;
+    background-image: url("/images/cloud1.svg");
+    background-repeat: no-repeat;
+    z-index: -10;
+    animation-name:cloud-repeat,FadeRepeat;
+    animation-duration: 110s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
 }
 
 .background-Bm {
@@ -339,6 +429,8 @@ body {
 //   position: absolute;
 //   z-index: -21;
 // }
+
+
 /* 包渲染內容的容器 */
 .body {
   width: 100vw;
@@ -354,7 +446,7 @@ body {
   align-items: center;
   justify-content: center;
 
-  // z-index: -9;
+  
 }
 
 /*  */
@@ -379,7 +471,7 @@ body {
   display: none;
   //position: absolute;
   top: 0;
-  img{
+  img {
     width: 100%;
     height: fit-content;
   }
@@ -404,10 +496,10 @@ body {
 }
 //手機
 @media ($breakpoint-moblie) {
-  body{
+  body {
     background-image: url(/images/bg-phone.png);
-    background-repeat:repeat;
-    background-size:auto;
+    background-repeat: repeat;
+    background-size: auto;
   }
   #top-nav {
     width: 60vw;
@@ -474,7 +566,6 @@ body {
     /* 樣式*/
     width: 32px;
     height: 32px;
-
   }
 }
 /*  */
@@ -484,7 +575,7 @@ main {
   width: 100vw;
   margin-bottom: 1vh;
   /* 保持與底部距離 */
-  @media($breakpoint-moblie) {
+  @media ($breakpoint-moblie) {
     margin-bottom: 5vh;
   }
 }
@@ -536,8 +627,8 @@ footer {
   }
 }
 // 當超過視窗高度超過1080px時
-.hiFooter{
-  footer{
+.hiFooter {
+  footer {
     bottom: -140px;
   }
 }
@@ -553,7 +644,7 @@ footer {
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
-  p{
+  p {
     height: fit-content;
     width: fit-content;
     border-radius: 50px;
@@ -590,10 +681,11 @@ footer {
   align-items: center;
   flex-wrap: wrap;
   row-gap: 8px;
-  h4{
+  h4 {
     margin-right: 10px;
   }
-  a,button {
+  a,
+  button {
     /* 臨打貼文tag */
     /* flex: auto; */
     height: 23px;
@@ -601,7 +693,7 @@ footer {
     border: 2px solid var(--main-color);
     border-radius: $border-radius-50;
     margin: 0px 3px;
-    padding:10px 10px;
+    padding: 10px 10px;
     background-color: $background-color-lightwhite-s;
     color: var(--font-color);
     opacity: 0.8;
@@ -623,13 +715,12 @@ footer {
     //   /* text-align: center;
     //   padding-bottom: 10px; */
     // }
-
   }
-  .active{
-      background-color: var(--font-color);
-      color: $background-color-lightwhite-s;
-      opacity: 1;
-    }
+  .active {
+    background-color: var(--font-color);
+    color: $background-color-lightwhite-s;
+    opacity: 1;
+  }
   .custom-checkbox {
     position: relative;
     padding-left: 10px; /* 为复选框留出空间 */
@@ -691,7 +782,8 @@ footer {
     width: fit-content;
   }
 }
-%button,%a{
+%button,
+%a {
   width: fit-content;
   max-height: 50px;
   margin-top: 5px;
@@ -769,7 +861,7 @@ footer {
   }
 }
 /* 收藏按鈕 */
-.collect{
+.collect {
   background-color: transparent;
 }
 /* 關閉按鈕 */
@@ -855,7 +947,6 @@ footer {
     width: 60%;
     height: 80%;
     background-color: #ffffff00;
-
   }
   &__content {
     position: absolute;
@@ -865,8 +956,6 @@ footer {
     width: 100%;
     height: auto;
     overflow: visible;
-
-
   }
   &__photo {
     display: flex;
@@ -927,20 +1016,19 @@ footer {
       opacity: 1;
     }
   }
-  .ani{
+  .ani {
     transform: perspective(250px);
     transform-style: preserve-3d;
     animation: cube-rotate 1s ease-in-out;
-    animation-delay:3s;
+    animation-delay: 3s;
   }
-  .notice-apply{
+  .notice-apply {
     /* 動畫 */
     transform: perspective(250px);
     transform-style: preserve-3d;
-     animation: cube-rotate 0.5s  ease-in-out;
+    animation: cube-rotate 0.5s ease-in-out;
   }
 }
-
 
 /* 簡略貼文資訊元件 */
 .simplePostInfo {
@@ -963,7 +1051,6 @@ footer {
   justify-content: flex-start;
   align-items: flex-start;
 
-
   .main-info {
     /*貼文元件-主資訊*/
     width: 100%;
@@ -972,10 +1059,10 @@ footer {
 
     flex: 1 0 auto;
     display: grid;
-    grid-template-rows: repeat(3, minmax(25px,1fr));
+    grid-template-rows: repeat(3, minmax(25px, 1fr));
     justify-content: space-between;
     align-items: center;
-    row-gap: 5px ;
+    row-gap: 5px;
     //元件第一行
     .header {
       /* self-layout */
@@ -988,7 +1075,7 @@ footer {
       font-size: $font-size-text-l;
       /* layout */
       display: grid;
-      grid-template-columns: repeat(9,auto);
+      grid-template-columns: repeat(9, auto);
       gap: 10px;
       justify-content: space-between;
       align-items: center;
@@ -1000,7 +1087,7 @@ footer {
       }
       //羽球or排球
       .type-style {
-         /* self-layout */
+        /* self-layout */
         grid-column: 8;
         /*  */
         min-width: 30px;
@@ -1018,8 +1105,8 @@ footer {
         }
       }
       a {
-         /* self-layout */
-         grid-column: 9;
+        /* self-layout */
+        grid-column: 9;
         /*  */
         width: 8%;
         margin-right: 10px;
@@ -1052,7 +1139,7 @@ footer {
       /* tag布局 */
       grid-column: 1/3;
       grid-row: 3;
-      p{
+      p {
         margin-left: 0;
       }
     }
@@ -1138,8 +1225,6 @@ footer {
       display: grid;
       grid-template-columns: 35px 1fr;
       gap: 6px;
-
-
     }
   }
 
@@ -1237,64 +1322,62 @@ footer {
     }
   }
 
-  .evaluateContainer{
+  .evaluateContainer {
     /* 團主評價元件 */
     width: 90%;
     height: fit-content;
     //layout
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(65px,75px));
+    grid-template-columns: repeat(auto-fit, minmax(65px, 75px));
     column-gap: 10px;
     justify-content: start;
     align-items: center;
     justify-items: center;
-    .evaluatePlayerList{
+    .evaluatePlayerList {
       /* 臨打者列表 */
       width: 90%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      row-gap: 1vh;
+      .playerName {
+        /* 包頭像和姓名 */
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
-        row-gap: 1vh;
-        .playerName{
-          /* 包頭像和姓名 */
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          img{
-            width: 60px;
-          }
-        }
-        .evaluateState-no{
-          /* 未評價標籤 */
-          border-radius: $border-radius-50;
-          background-color: $btn-color-red;
-          color: $second-color-white;
-          padding: 2px 8px;
-          line-height: 25px;
-        }
-        .evaluateState-yes{
-          /* 已評價標籤 */
-          border-radius: $border-radius-50;
-          background-color:var(--main-color);
-          color: $second-color-white;
-          padding: 2px 8px;
-          line-height: 25px;
+        img {
+          width: 60px;
         }
       }
+      .evaluateState-no {
+        /* 未評價標籤 */
+        border-radius: $border-radius-50;
+        background-color: $btn-color-red;
+        color: $second-color-white;
+        padding: 2px 8px;
+        line-height: 25px;
+      }
+      .evaluateState-yes {
+        /* 已評價標籤 */
+        border-radius: $border-radius-50;
+        background-color: var(--main-color);
+        color: $second-color-white;
+        padding: 2px 8px;
+        line-height: 25px;
+      }
     }
-
-  
+  }
 }
-.evaluateForm{
+.evaluateForm {
   /* 審核容器 */
   width: 55%;
   height: fit-content;
   border-radius: $border-radius-20;
   border: 1px solid $border-black;
-  background-color:$background-color-white;
+  background-color: $background-color-white;
   //layout
-  align-self: center;//自己置中
+  align-self: center; //自己置中
   padding: 20px;
   margin: 0 auto;
   grid-row: 4;
@@ -1303,15 +1386,15 @@ footer {
   row-gap: 1vh;
   align-items: center;
 
-  .topBtn-container{
+  .topBtn-container {
     width: 100%;
     position: relative;
-    a{
+    a {
       position: absolute;
       right: 0;
     }
   }
-  .info-selfState{
+  .info-selfState {
     /* 被審核者資訊 */
     width: 80%;
     min-width: 200px;
@@ -1322,46 +1405,45 @@ footer {
     gap: 1.5vh;
   }
 
-  .component-writeBlock{
+  .component-writeBlock {
     /* 備註輸入框 */
     width: 80%;
     //團主樣式
     border: 1px dashed $border-black;
-    h5{
+    h5 {
       color: $second-color-black;
     }
-
   }
-  .evaluateOption{
-      /* 審查選項 */
-      align-self: flex-start;
-      margin-left: 20px;
-      //
-      display: flex;
-      flex-direction: row;
-      gap: 10px;
-      align-items: center;
-      justify-content: center;
-      h5{
-        font-size: $font-size-title-m;
-        color: var(--font-color);
-      }
-      input{
-        box-shadow: none;
-      }
+  .evaluateOption {
+    /* 審查選項 */
+    align-self: flex-start;
+    margin-left: 20px;
+    //
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    h5 {
+      font-size: $font-size-title-m;
+      color: var(--font-color);
     }
+    input {
+      box-shadow: none;
+    }
+  }
 
-  .BtnContainer{
+  .BtnContainer {
     width: 90%;
     align-self: center;
   }
 }
 /* 詳細貼文資訊 */
-.detailPostInfo{
-  .sub-info{
+.detailPostInfo {
+  .sub-info {
     div p {
       color: var(--font-color);
-      overflow:visible;
+      overflow: visible;
       white-space: wrap;
     }
   }
@@ -1383,7 +1465,6 @@ footer {
   justify-content: start;
   align-items: center;
   justify-items: end;
-
 
   @media ($breakpoint-moblie) {
     width: 88vw;
@@ -1498,7 +1579,6 @@ footer {
   justify-content: center;
   align-items: center;
   color: var(--font-color);
-
 
   p {
   }
@@ -1690,7 +1770,7 @@ footer {
         /* 包羽球or排球圖案的容器 */
         width: 100%;
         /* 羽排圖片 */
-        display: flex;;
+        display: flex;
         /* 控制子層 */
         text-align: center;
       }
@@ -1781,7 +1861,6 @@ footer {
             color: $second-color-black;
           }
         }
-
       }
 
       .selfState-title {
@@ -1874,16 +1953,48 @@ footer {
   }
 }
 /* hover區 */
-.hoverPost{
+.hoverPost {
   // &:hover{
   //   border:3.5px solid rgb(253, 66, 66); ;
   // }
 }
-.hoverNotice{
-  &:hover{
+.hoverNotice {
+  &:hover {
     background-color: $background-color-lightgrey;
     color: $background-color-white;
   }
+}
+//雲
+.svg-container {
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 10vw;
+}
+
+.svg-image {
+  width: 40%;
+  position: absolute;
+  top: 0;
+  left: -100px;
+  animation-name: cloud-float, FadeFloat;
+  animation-duration: 120s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+.svg-image2 {
+  width: 40%;
+  position: absolute;
+  top: 10px;
+  right: 0;
+  animation-name: cloud-float, FadeFloat;
+  animation-duration: 120s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 @import "index";
 @import "filterPosts";

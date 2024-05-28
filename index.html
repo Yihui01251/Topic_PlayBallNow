@@ -735,14 +735,14 @@
           const SaveData = () => {
             window.localStorage.filterDate = selectedDate;
             window.localStorage.filterCity = selectedCity;
-            localStorage.setItem('filterArea', JSON.stringify(selectedArea));
+            localStorage.setItem("filterArea", JSON.stringify(selectedArea));
             window.localStorage.filterCost = selectedCost;
             window.localStorage.filterDegree = selectedDegree;
             window.localStorage.filterRol = selectedRol;
             window.localStorage.filterEquip = selectedEquip;
             //
             window.localStorage.filterType = filterTag;
-            };
+          };
           useEffect(() => {
             console.log(selectedArea);
             console.log("程度: " + selectedDegree);
@@ -805,7 +805,10 @@
                       </h1>
                       <img src="./images/bmtitle.svg" alt="" />
                     </div>
-                    <a href="./myCollect.html" className="button btn-postManage">
+                    <a
+                      href="./myCollect.html"
+                      className="button btn-postManage"
+                    >
                       我的收藏
                       <img src="./images/heart-yes.svg" alt="" />
                     </a>
@@ -1079,8 +1082,9 @@
             );
           };
           return (
-            <div className="body hiFooter">
+            <div className="body">
               <TopBar mobileTopBar={mobileTopBar} />
+              
               <main className="index-Area">
                 {/*篩選區 */}
                 <section className="search">
