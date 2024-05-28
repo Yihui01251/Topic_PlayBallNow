@@ -347,7 +347,7 @@ body {
   position: relative;
   /* display: grid;
   grid-template-rows: 125px 1fr 100px; */
-  //display: flex;
+  display: flex;
   flex-direction: column;
   gap: 10px;
   justify-items: center;
@@ -475,6 +475,7 @@ body {
 /*  */
 /* 主內容 */
 main {
+  flex: 1;
   width: 100vw;
   margin-bottom: 1vh;
   /* 保持與底部距離 */
@@ -491,8 +492,8 @@ footer {
   background-color: $background-color-gray;
   background-size: cover;
   padding-bottom: 10px;
-  position: absolute;
-  bottom: 0;
+  //position: absolute;
+  //bottom: 0;
 
   @media (max-width: 640px) {
     display: none;
@@ -519,6 +520,7 @@ footer {
     background-size: 24px;
     background-repeat: repeat;
     background-position: center;
+    flex-shrink: 0;
   }
   /* logo */
   #logo {

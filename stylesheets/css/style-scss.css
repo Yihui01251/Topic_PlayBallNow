@@ -426,6 +426,7 @@ body {
   position: relative;
   /* display: grid;
   grid-template-rows: 125px 1fr 100px; */
+  display: flex;
   flex-direction: column;
   gap: 10px;
   justify-items: center;
@@ -539,6 +540,7 @@ body {
 /*  */
 /* 主內容 */
 main {
+  flex: 1;
   width: 100vw;
   margin-bottom: 1vh;
   /* 保持與底部距離 */
@@ -557,8 +559,6 @@ footer {
   background-color: rgba(3, 9, 40, 0.6);
   background-size: cover;
   padding-bottom: 10px;
-  position: absolute;
-  bottom: 0;
   /* logo */
 }
 @media (max-width: 640px) {
@@ -585,6 +585,7 @@ footer .footer-border {
   background-size: 24px;
   background-repeat: repeat;
   background-position: center;
+  flex-shrink: 0;
 }
 footer #logo {
   width: 35px;
