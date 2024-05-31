@@ -577,8 +577,20 @@
             note,
             href,
             host,
+            like,
           }) => {
             // const {key,date,time,city,area,arena,tag1,tag2} = props;
+            const [isLike, setIsLike] = useState("");
+            useEffect(() => {
+              if (like === "true") {
+                setIsLike("./images/heart-yes.svg");
+              } else {
+                setIsLike("./images/heart-no.svg");
+              }
+            }, [like]);
+            const handleLikeState=(like)=>{
+              like === "./images/heart-yes.svg"? setIsLike("./images/heart-no.svg") : setIsLike("./images/heart-yes.svg");
+            }
             return (
               <>
                 <div className="simplePostInfo hoverPost">
@@ -589,7 +601,7 @@
                       </p>
                       <div className="type-style">{type}</div>
                       <button className="collect">
-                        <img src="./images/heart-no.svg" alt="收藏" />
+                        <img src={isLike} alt="收藏" onClick={()=>{handleLikeState(isLike)}} />
                       </button>
                     </div>
                     <div className="areaInfo">
@@ -1092,6 +1104,7 @@
                           note={post_data.note}
                           href={`ApplyPopUp-${post_data.id}`}
                           host={post_data.host}
+                          like={post_data.like}
                         />
                       );
                     })}

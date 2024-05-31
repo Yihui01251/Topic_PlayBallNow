@@ -3125,6 +3125,12 @@ button#btn-formVB.selected::before {
   width: 100%;
   height: fit-content;
 }
+.form-preview .collect {
+  cursor: default;
+}
+.form-preview .collect:hover {
+  scale: 100%;
+}
 
 /* 預覽RWD 縮小邊界、置中 */
 @media (max-width:640px) {

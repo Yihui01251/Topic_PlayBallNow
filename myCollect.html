@@ -102,6 +102,9 @@
                 setShowVbInfo("flex");
               }
             }, [like, type]);
+            const handleLikeState=(like)=>{
+              like === "./images/heart-yes.svg"? setIsLike("./images/heart-no.svg") : setIsLike("./images/heart-yes.svg");
+            }
             return (
               <>
                 <div
@@ -114,7 +117,7 @@
                         {postDate} {postStartTime}~{postEndTime}
                       </p>
                       <div className="type-style" style={{ backgroundColor: mainColor }}>{type}球</div>
-                      <button className="collect">
+                      <button className="collect" onClick={()=>{handleLikeState(isLike)}}>
                         <img src={isLike} alt="收藏" />
                       </button>
                     </div>
