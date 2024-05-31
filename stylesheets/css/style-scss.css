@@ -2719,6 +2719,11 @@ button#btn-typeBm.selected {
   height: 19px;
   margin-top: 30px;
   text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  column-gap: 5px;
 }
 @media (max-width:640px) {
   .filter-postQuantity {
@@ -2728,10 +2733,24 @@ button#btn-typeBm.selected {
     grid-column: 1/3;
   }
 }
+.filter-postQuantity span {
+  position: relative;
+  z-index: auto;
+  background: linear-gradient(to bottom, #F1DB15, #FF4F03);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.filter-postQuantity span::before {
+  content: attr(value);
+  position: absolute;
+  z-index: -1;
+  -webkit-text-stroke: 4px #000000;
+}
 .filter-postQuantity p {
   position: relative;
-  z-index: 0;
-  color: #ffffff;
+  z-index: auto;
+  color: white;
 }
 .filter-postQuantity p::before {
   content: attr(value);

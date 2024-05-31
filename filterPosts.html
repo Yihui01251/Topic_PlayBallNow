@@ -445,7 +445,7 @@
             );
           }, [todayType, weekType, conditions]);
           const length = filterPosts.length;
-          const lengthValue = `共有${length}筆資料符合`;
+          const lengthValue = `${length}`;
 
           /* 如果filterType, selectedButton狀態改變 */
           useEffect(() => {
@@ -1061,8 +1061,7 @@
                   </a>
 
                   <div className="filter-postQuantity">
-                    <p className="text-M" value={lengthValue}>
-                      {lengthValue}
+                    <p value="共有">共有 <span value={lengthValue}>{lengthValue}</span></p><p value="筆資料符合">筆資料符合
                     </p>
                   </div>
                 </section>
