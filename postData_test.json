@@ -32,8 +32,10 @@
             "pos": "不拘",
             "note": "有穩定接發與防守觀念者、態度積極",
             "host": "王大明",
+            "appl": ["陳小明","陳曉成"],
+            "cancel": "朱力士",
             "like": "false",
-            "state": "default"
+            "state": "appiled"
         },
         {
             "id": "vb_today_2",
@@ -65,6 +67,8 @@
             "pos": "不拘",
             "note": "希望報名者有基本程度，懂攻防，會站位，非新手場",
             "host": "陳曉成",
+            "appl": ["陳小明","陳曉成"],
+            "cancel": "朱力士",
             "like": "false",
             "state": "default"
         },
@@ -98,6 +102,8 @@
             "pos": "不拘",
             "note": "冷氣錢另計",
             "host": "王大明",
+            "appl": ["陳小明","陳曉成"],
+            "cancel": "朱力士",
             "like": "false",
             "state": "default"
         },
@@ -131,6 +137,8 @@
             "pos": "不拘",
             "note": "具基本接發攻擊及站位觀念",
             "host": "尤利水",
+            "appl": ["陳小明","陳曉成"],
+            "cancel": "朱力士",
             "like": "false",
             "state": "default"
         },
@@ -164,6 +172,8 @@
             "pos": "中等發球,防守",
             "note": "-",
             "host": "王大明",
+            "appl": ["陳小明","陳曉成"],
+            "cancel": "朱力士",
             "like": "false",
             "state": "default"
         },
@@ -197,6 +207,8 @@
             "pos": "不拘",
             "note": "-",
             "host": "陳曉成",
+            "appl": ["陳小明","陳曉成"],
+            "cancel": "朱力士",
             "like": "false",
             "state": "default"
         },
@@ -230,6 +242,8 @@
             "pos": "舉球,攻擊",
             "note": "第一輪先到先打，第二輪開始抽籤分隊",
             "host": "王大明",
+            "appl": ["陳小明","陳曉成"],
+            "cancel": "朱力士",
             "like": "false",
             "state": "default"
         },
@@ -263,6 +277,8 @@
             "pos": "攻擊",
             "note": "當天視場地使用狀況決定幾號網",
             "host": "尤利水",
+            "appl": ["陳小明","陳曉成"],
+            "cancel": "朱力士",
             "like": "false",
             "state": "default"
         }
@@ -300,6 +316,8 @@
             "pos": "中等發球,防守,舉球,攻擊",
             "note": "常有重扣多來回，非新手場多半校隊跟成熟系隊",
             "host": "王鵬豪",
+            "appl": ["陳小明","陳曉成"],
+            "cancel": "朱力士",
             "like": "false",
             "state": "default"
         },
@@ -333,6 +351,8 @@
             "pos": "不拘",
             "note": "入口在哈密街59巷21弄 ，經過警衛室後左轉上四樓球場",
             "host": "陳曉成",
+            "appl": ["陳小明","陳曉成"],
+            "cancel": "朱力士",
             "like": "false",
             "state": "default"
         },
@@ -366,6 +386,8 @@
             "pos": "防守,舉球,攻擊",
             "note": "計分：21分制，場地及好，遮陽避雨～～",
             "host": "王大明",
+            "appl": ["陳小明","陳曉成"],
+            "cancel": "朱力士",
             "like": "false",
             "state": "host"
         },
@@ -399,6 +421,8 @@
             "pos": "攻擊",
             "note": "希望有基礎能力, 打起來比較順利.",
             "host": "王大明",
+            "appl": ["陳小明","陳曉成"],
+            "cancel": "朱力士",
             "like": "false",
             "state": "host"
         },
@@ -432,6 +456,8 @@
             "pos": "中等發球,防守",
             "note": "-",
             "host": "王大明",
+            "appl": ["陳小明","陳曉成"],
+            "cancel": "朱力士",
             "like": "false",
             "state": "default"
         },
@@ -465,6 +491,8 @@
             "pos": "不拘",
             "note": "希望報名者有基本程度，懂攻防，會站位，非新手場",
             "host": "陳曉成",
+            "appl": ["陳小明","陳曉成"],
+            "cancel": "朱力士",
             "like": "false",
             "state": "default"
         },
@@ -498,6 +526,8 @@
             "pos": "不拘",
             "note": "冷氣錢另計",
             "host": "王大明",
+            "appl": ["陳小明","陳曉成"],
+            "cancel": "朱力士",
             "like": "false",
             "state": "default"
         },
@@ -531,6 +561,8 @@
             "pos": "不拘",
             "note": "具基本接發攻擊及站位觀念",
             "host": "尤利水",
+            "appl": ["陳小明","陳曉成"],
+            "cancel": "朱力士",
             "like": "false",
             "state": "default"
         }
@@ -568,6 +600,8 @@
             "equip": "冷氣,冷熱水淋浴間,飲水機,木地板場",
             "note": "挑戰高手 (尋求刺激),如有興趣轉換成季打 也歡迎",
             "host": "尤利水",
+            "appl": ["陳小明","陳曉成"],
+            "cancel": "朱力士",
             "like": "true",
             "state": "default"
         },
@@ -601,6 +635,8 @@
             "equip": "停車,冷熱水淋浴間,飲水機",
             "note": "交通方便",
             "host": "陳曉成",
+            "appl": ["陳小明","陳曉成"],
+            "cancel": "朱力士",
             "like": "true",
             "state": "appiled"
         },
@@ -634,6 +670,8 @@
             "equip": "飲水機",
             "note": "專人排場不少打",
             "host": "王大明",
+            "appl": ["陳小明","陳曉成"],
+            "cancel": "朱力士",
             "like": "false",
             "state": "host"
         },
@@ -667,6 +705,8 @@
             "equip": "飲水機,風扇",
             "note": "進學校左轉上3樓，靠近講台兩面場，原則上打1休1",
             "host": "王大明",
+            "appl": ["陳小明","陳曉成"],
+            "cancel": "朱力士",
             "like": "false",
             "state": "host"
         },
@@ -700,6 +740,8 @@
             "equip": "風扇",
             "note": "非受迫長球可至中後場，具輪轉補位意識。",
             "host": "王鵬豪",
+            "appl": ["陳小明","陳曉成"],
+            "cancel": "朱力士",
             "like": "false",
             "state": "default"
         },
@@ -733,6 +775,8 @@
             "equip": "停車,冷熱水淋浴間",
             "note": "誠徵開心打球、流汗運動",
             "host": "陳曉成",
+            "appl": ["陳小明","陳曉成"],
+            "cancel": "朱力士",
             "like": "false",
             "state": "default"
         },
@@ -766,6 +810,8 @@
             "equip": "木質地板球場,停車場",
             "note": "本團屬歡樂團 謝絕臭臉碎念 以及臨時放鳥之人",
             "host": "陳猷明",
+            "appl": ["陳小明","陳曉成"],
+            "cancel": "朱力士",
             "like": "false",
             "state": "default"
         },
@@ -799,6 +845,8 @@
             "equip": "販賣部",
             "note": "-",
             "host": "黃筱原",
+            "appl": ["陳小明","陳曉成"],
+            "cancel": "朱力士",
             "like": "false",
             "state": "default"
         }
@@ -836,6 +884,8 @@
             "equip": "飲水機",
             "note": "入口在哈密街59巷21弄 ，經過警衛室後左轉上四樓球場",
             "host": "王鵬豪",
+            "appl": ["陳小明","陳曉成"],
+            "cancel": "朱力士",
             "like": "true",
             "state": "appiled"
         },
@@ -869,6 +919,8 @@
             "equip": "側光",
             "note": "專人排場不少打",
             "host": "陳曉成",
+            "appl": ["陳小明"],
+            "cancel": "朱力士",
             "like": "false",
             "state": "appiled"
         },
@@ -902,6 +954,7 @@
             "equip": "木質地板球場,停車場",
             "note": "若臨時有不可抗拒的因素,而無法出席時，也煩請儘早通知",
             "host": "陳猷明",
+            "cancel": "朱力士",
             "like": "false",
             "state": "appiled"
         },
@@ -935,6 +988,8 @@
             "equip": "飲水機",
             "note": "勝負心不強、友善的球友報名",
             "host": "黃筱原",
+            "appl": ["陳小明","陳曉成"],
+            "cancel": "朱力士",
             "like": "true",
             "state": "appiled"
         },
@@ -968,6 +1023,8 @@
             "equip": "風扇",
             "note": "非受迫長球可至中後場，具輪轉補位意識。",
             "host": "王鵬豪",
+            "appl": ["陳小明","陳曉成"],
+            "cancel": "朱力士",
             "like": "false",
             "state": "default"
         },
@@ -1001,6 +1058,8 @@
             "equip": "停車,冷熱水淋浴間",
             "note": "誠徵開心打球、流汗運動",
             "host": "陳曉成",
+            "appl": ["陳小明"],
+            "cancel": "朱力士",
             "like": "false",
             "state": "default"
         },
@@ -1034,6 +1093,8 @@
             "equip": "木質地板球場,停車場",
             "note": "本團屬歡樂團 謝絕臭臉碎念 以及臨時放鳥之人",
             "host": "陳猷明",
+            "appl": ["陳小明","陳曉成"],
+            "cancel": "朱力士",
             "like": "false",
             "state": "default"
         },
@@ -1067,6 +1128,8 @@
             "equip": "停車,冷熱水淋浴間,飲水機",
             "note": "交通方便",
             "host": "陳曉成",
+            "appl": ["陳小明"],
+            "cancel": "朱力士",
             "like": "false",
             "state": "default"
         }
