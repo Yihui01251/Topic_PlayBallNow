@@ -1490,18 +1490,18 @@
             setResultText(text);
             if (index === "0") {
               setNewState0("已評價");
-              //console.log("回傳0 yes");
+              console.log("回傳0 已評價");
             } else if (index === "1") {setNewState1("已評價");}
             //console.log("回傳1 yes");
           };
           return (
             <>
-              <div class="popup" id={`evaluateApplicantsForm-${id}-${index}`}>
-                <div class="popup-inner">
-                  <div class="popup__content">
+              <div className="popup" id={`evaluateApplicantsForm-${id}-${index}`}>
+                <div className="popup-inner">
+                  <div className="popup__content">
                     <div className="evaluateForm">
                       <div className="topBtn-container">
-                        <a className="popup__close" href="#">
+                        <a className="popup__close" href={`#evaluateApplyPopup-${id}`}>
                           <img src="../images/cancel.png" alt="" />
                         </a>
                       </div>
@@ -1560,13 +1560,13 @@
                         <button
                           href="#"
                           className="button btn-no"
-                          onClick={() => auditResult("blackList")}
+                          onClick={() => auditResult("blackList",index)}
                         >
                           送出,並加入黑名單
                         </button>
                         <button
                           className="button btn-yes"
-                          onClick={() => auditResult("yes")}
+                          onClick={() => auditResult("yes",index)}
                         >
                           送出
                         </button>
