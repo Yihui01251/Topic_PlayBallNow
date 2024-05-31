@@ -7,7 +7,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 20vw;
+  margin-bottom: 1vh;
   gap: 40px;
 
   hr {
@@ -15,10 +15,11 @@
     height: 0px;
     align-self: center;
     border: 1px solid $second-color-black;
+    margin-top: 5px;
   }
 }
 
-/* main.filter-postArea  > section.filter-box*/
+/* 裝返回按鈕、篩選資訊按鈕和符合資料的數目的容器*/
 .filter-box {
   max-width:500px;
   width: 70vw;
@@ -32,6 +33,9 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 10px;
+
+  
+
   @media ($breakpoint-moblie) {
     margin-top: 5vh;
     display: grid;
@@ -41,6 +45,8 @@
     justify-items: center;
   }
   .filter-info {
+    /* 裝篩選資訊的容器 */
+    min-width: 250px;//保證小視窗下不爆版
     width: fit-content;
     height: 59px;
     border-radius: $border-radius-50;
@@ -49,6 +55,7 @@
     border: 3.5px solid $border-black;
 
     box-shadow: 0px 4px 0px 0px $border-black;
+    margin-top: 4px;
     /* 子 */
     /* display: flex; */
     display: grid;
@@ -58,6 +65,11 @@
     align-items: center;
     overflow-wrap: normal;
     padding: 5px 15px;
+
+    &:hover{
+        box-shadow: 0px 6px 0px 0px $border-black;
+        margin-top: 0px;
+    }
 
     .info-top {
       grid-column: 1/5;
@@ -79,12 +91,15 @@
 
     }
 
-    img {
+    .filterIcon{
       grid-column: 4;
       grid-row: 1/3;
-      width: 80%;
+      width: 70%;
       margin: 7px;
-      margin-left: 20px;
+      margin-right: 10px;
+
+      position: relative;
+
     }
 
     .info-down {
@@ -109,7 +124,7 @@
 }
 
 
-/* 裝已選條件資料/... >div.fitter-info >div.filter-btnBox >button.#btn-filter */
+/* 返回首頁*/
 #btn-filter {
   @extend %button;
   width: 58px;
@@ -132,24 +147,27 @@
 
 }
 
-/* ...> section.filter-box > div.fitter-info > div > div.by-btn-filterNum */
+/*顯示篩選條件數的div*/
 .by-btn-filterNum {
-  /* layout */
-  height: auto;
-  padding: 4px 7px 4px 7px;
+  /* style */
+  width: 25px;
+  height: 25px;
+  padding: 1px;
   border-radius: $border-radius-90;
-  /* color */
   background: $btn-color-red;
+  opacity: 0.8;
+  color: $second-color-white;
   /* border */
   border: 1.5px solid $border-black;
 
   /* 相對#btn-filter位置 */
   position: absolute;
-  top: 0;
-  right: 0;
+  top: -10px;
+  right: -15px;
 
   /* 子 */
   text-align: center;
+  line-height: 25px;
 
   p {
     color: $second-color-white;
@@ -163,6 +181,11 @@
   height: 19px;
   margin-top: 30px;
   text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  column-gap: 5px;
   @media ($breakpoint-moblie) {
     margin-top: 10px;
     padding: 0 auto;
@@ -171,10 +194,28 @@
 
   }
 
-  p {
+  span {
     position: relative;
-    z-index: 0;
-    color: $second-color-white;
+    z-index: auto;
+    background: linear-gradient(to bottom,#F1DB15,#FF4F03);
+    //background: -webkit-linear-gradient(to bottom,#F1DB15,#FF4F03);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+    &::before {
+      content: attr(value);
+      position: absolute;
+      z-index: -1;
+      -webkit-text-stroke: 4px $second-color-black;
+    
+      
+    }
+  }
+  p{
+    position: relative;
+    z-index: auto;
+    color: white;
 
     &::before {
       content: attr(value);
@@ -182,6 +223,7 @@
       z-index: -1;
       -webkit-text-stroke: 4px $second-color-black;
     }
+
   }
 }
 

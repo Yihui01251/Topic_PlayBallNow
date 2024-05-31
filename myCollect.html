@@ -80,10 +80,10 @@
             const [showVbInfo, setShowVbInfo] = useState("none");
             useEffect(() => {
               if (like === "true") {
-                setIsLike("../../images/heart-yes.svg");
+                setIsLike("./images/heart-yes.svg");
                 setShowLike("flex");
               } else {
-                setIsLike("../../images/heart-no.svg");
+                setIsLike("./images/heart-no.svg");
                 setShowLike("none");
               }
               if (type == "羽") {
@@ -136,7 +136,7 @@
                       <p style={{ color: fontColor }}>{reqCount[0].count}位</p>
                       <div>男</div>
                       <p style={{ color: fontColor }}>{reqCount[1].count}位</p>
-                      <div>不限</div> 
+                      <div>不限</div>
                       <p style={{ color: fontColor }}>{reqCount[2].count}位</p>
                     </div>
                     <div className="ballInfo" style={{ display: showVbInfo }}>
@@ -278,7 +278,7 @@
                             <p style={{ color: typeFontStyle }}>{female}位</p>
                             <div>男</div>
                             <p style={{ color: typeFontStyle }}>{male}位</p>
-                            <div>不限</div> 
+                            <div>不限</div>
                             <p style={{ color: typeFontStyle }}>{unspecified}位</p>
                           </div>
                           <div className="ballInfo" >
@@ -347,7 +347,7 @@
             );
           };
           return (
-            <div className="body">
+            <div className="body hiFooter">
               <div className="mobile-TopBar">
                 <img
                   src="./images/mobile-both-topbanner.png"

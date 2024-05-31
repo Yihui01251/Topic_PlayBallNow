@@ -16,7 +16,7 @@ main:10
   /* 與header距離 */
   margin-top: 50px;
   /* 和footer距離 */
-  margin-bottom: 15vh;
+  margin-bottom: 5vh;
   /* 控制子層 */
   display: flex;
   flex-direction: column;
@@ -60,8 +60,8 @@ main:10
     /* justify-content: center;
     align-items: center; */
   }
-  /* 首頁篩選區裝飾動物 */
-  #search-Bar::before {
+ 
+  #search-Bar::before { /* 首頁篩選區裝飾動物 */
     position: absolute;
     width: 40px;
     height: fit-content;
@@ -79,8 +79,8 @@ main:10
   }
 }
 
-/* main > section(search > div#search-Type */
-#search-Type {
+
+#search-Type {/* 表單內顯示羽排的圖 */
   /* 布局 */
   flex: 1 1 auto;
   /* 控制子層 */
@@ -91,8 +91,7 @@ main:10
   align-items: center;
   justify-content: center;
   position: relative;
-
-  @media ($breakpoint-moblie) {
+  @media ($breakpoint-moblie){
     display: none;
   }
 }
@@ -114,7 +113,7 @@ main:10
   justify-content: center;
   margin-top: 4px;
   &::before {
-    content: "打排球";
+    content: "改打排球";
   }
   img {
     pointer-events: none;
@@ -151,7 +150,7 @@ main:10
   justify-content: center;
   margin-top: 4px ;
   &::before {
-    content: "打羽球";
+    content: "改打羽球";
   }
 
   img {
@@ -279,24 +278,39 @@ button#btn-typeBm.selected {
     height: auto;
     /*控制子層 */
     flex: 1 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+    display: grid;
+    justify-items: center;
+    grid-template-rows: 170px 40px;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: flex-end;
     align-items: center;
     align-content: center;
-  }
-}
+    #search-Type {
+      /* 包羽球or排球圖案的容器 */
+      width: 100%;
+      /* 羽排圖片 */
+      display: none;
+      /*layout */
+      grid-row: 1;
+      text-align: center;
 
-.searchBtn-box {
-  #search-Type {
-    display: none;
-
-    @media ($breakpoint-moblie) {
-      display: flex;
-      width: 25vw;
+      @media ($breakpoint-moblie) {
+        display: grid;
+        width: 100%;
+        justify-items: center;
+      }
     }
+
+    a{
+      /* 送出按鈕 */
+      grid-row: 2;
+    }
+
   }
 }
+
+
 
 /* main > section(search > div(search-Bar > div(dropMenu */
 .dropMenu {

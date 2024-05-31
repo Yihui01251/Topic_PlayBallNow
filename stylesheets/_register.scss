@@ -24,6 +24,7 @@
     border-radius: $border-radius-20;
     border: 3px solid $second-color-black;
     padding: 30px;
+    background-color: rgba(88, 88, 88, 0.75);
     /* child */
     gap:15px;
     @media ($breakpoint-moblie) {
