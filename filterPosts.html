@@ -114,11 +114,11 @@
           /* 取得篩選條件 */
           const [selectedDate, setSelectedDate] = useState(""); //日期
           const [selectedCity, setSelectedCity] = useState(""); //縣市
-          const [selectedArea, setSelectedArea] = useState([""]); //地區
+          const [selectedArea, setSelectedArea] = useState([]); //地區
           const [selectedCost, setSelectedCost] = useState(""); //費用
           const [selectedDegree, setSelectedDegree] = useState(""); //程度
           const [selectedRol, setSelectedRol] = useState(""); //排球類型
-          const [selectedEquip, setSelectedEquip] = useState([""]); //羽球設備
+          const [selectedEquip, setSelectedEquip] = useState(""); //羽球設備
           const [filterType, setFilterType] = useState(""); //羽球或排球
           /* 要map的資料 */
           const [todayType, setTodayType] = useState("vb_today_postData");
@@ -873,9 +873,10 @@
                               </select>
                               <select
                                 name="地區"
-                                multiple
+                                multiple={true}
                                 id="selectArea"
                                 className="dpMenu-item"
+                                value={selectedArea}
                                 style={{ display: showArea }}
                                 onChange={(e) => {
                                   handleSelectChange(e);
@@ -1114,6 +1115,7 @@
                 visible={showFilterForm}
                 selectedDate={selectedDate}
                 selectedCity={selectedCity}
+                selectedArea={selectedArea}
                 selectedCost={selectedCost}
                 selectedDegree={selectedDegree}
                 selectedEquip={selectedEquip}

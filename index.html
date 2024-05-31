@@ -721,7 +721,7 @@
           const [selectedCost, setSelectedCost] = useState("全部"); //費用
           const [selectedDegree, setSelectedDegree] = useState("全部"); //程度
           const [selectedRol, setSelectedRol] = useState("全部"); //排球類型
-          const [selectedEquip, setSelectedEquip] = useState(["全部"]); //羽球設備
+          const [selectedEquip, setSelectedEquip] = useState("全部"); //羽球設備
 
           const handleSelectChange = (event) => {
             //转换为数组，并提取每个选项的值。
@@ -745,8 +745,7 @@
           };
           useEffect(() => {
             console.log(selectedArea);
-            console.log("程度: " + selectedDegree);
-          }, [selectedArea, selectedDegree]);
+          }, [selectedArea]);
 
           // 元件
           /* 建立元件 header元件 */
@@ -1160,10 +1159,11 @@
                         </select>
                         <select
                           name="地區"
-                          multiple
+                          multiple={true}
                           id="selectArea"
                           className="dpMenu-item"
                           style={{ display: showArea }}
+                          value={selectedArea}
                           onChange={(e) => {
                             handleSelectChange(e);
                           }}
