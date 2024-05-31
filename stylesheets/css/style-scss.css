@@ -931,6 +931,13 @@ footer #logo {
 /* 收藏按鈕 */
 .collect {
   background-color: transparent;
+  cursor: pointer;
+}
+.collect:hover {
+  scale: 110%;
+}
+.collect:active {
+  scale: 90%;
 }
 
 /* 關閉按鈕 */
@@ -988,6 +995,7 @@ footer #logo {
   opacity: 0;
   overflow: hidden;
   transition: 0.64s ease-in-out;
+  cursor: default;
 }
 .popup-inner {
   position: relative;
@@ -1109,6 +1117,7 @@ footer #logo {
   background: #ffffff;
   border: 3.5px solid rgb(0, 0, 0);
   box-shadow: 0px 12px 0px 0px #000000;
+  cursor: default;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -1697,7 +1706,7 @@ footer #logo {
 .filterFormBox #search-Bar .searchBtn-box {
   display: grid;
   grid-template-rows: 170px 40px;
-  /* main > section(search > div(search-Type > button */
+  /* 羽球圖 */
 }
 .filterFormBox #search-Bar .searchBtn-box #btn-typeVb {
   /* 樣式 */

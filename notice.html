@@ -380,6 +380,7 @@
           };
           /* 申請者元件 */
           const ApplicantsCard = ({ appl, id, index }) => {
+            console.log(appl);
             return (
               <>
                 <a
@@ -390,7 +391,7 @@
                 >
                   <img
                     className="img-border"
-                    src="../images/player.png"
+                    src={`../images/player${index}.png`}
                     alt=""
                   />
                   <div className="notice-new" style={{ display: isNew }}>
@@ -535,7 +536,7 @@
 
                             <a
                               href={`#detailApplyPopup-yes-0`}
-                              onClick={() => handleAuditApplyCard("yes")}
+                              onClick={() => handleAuditApplyCard("yes",0)}
                             >
                               <img
                                 className="img-border"
@@ -616,6 +617,7 @@
                   state={state}
                   appl={appl}
                   id={"yes"}
+                  index={0}
                   typeStyle={typeStyle}
                   typeFontStyle={typeFontStyle}
                   ellipseBarType={ellipseBar}
@@ -716,7 +718,7 @@
                         <div className="info">
                           <img
                             className="applicantImg"
-                            src="../images/player.png"
+                            src={`../images/player${index}.png`}
                             alt=""
                           />
                           <p style={{ color: typeFontStyle }}>{appl[index]}</p>
