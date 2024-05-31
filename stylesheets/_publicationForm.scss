@@ -352,6 +352,13 @@ button#btn-formVB.selected {
       height: fit-content;
     }
   }
+
+  .collect{
+    cursor: default;
+    &:hover{
+      scale: 100%;
+    }
+  }
 }
 
 /* 預覽RWD 縮小邊界、置中 */

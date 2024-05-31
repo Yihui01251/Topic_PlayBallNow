@@ -380,6 +380,7 @@
           };
           /* 申請者元件 */
           const ApplicantsCard = ({ appl, id, index }) => {
+            console.log(appl);
             return (
               <>
                 <a
@@ -390,7 +391,7 @@
                 >
                   <img
                     className="img-border"
-                    src="../images/player.png"
+                    src={`../images/player${index}.png`}
                     alt=""
                   />
                   <div className="notice-new" style={{ display: isNew }}>
@@ -535,7 +536,7 @@
 
                             <a
                               href={`#detailApplyPopup-yes-0`}
-                              onClick={() => handleAuditApplyCard("yes")}
+                              onClick={() => handleAuditApplyCard("yes",0)}
                             >
                               <img
                                 className="img-border"
@@ -616,6 +617,7 @@
                   state={state}
                   appl={appl}
                   id={"yes"}
+                  index={0}
                   typeStyle={typeStyle}
                   typeFontStyle={typeFontStyle}
                   ellipseBarType={ellipseBar}
@@ -716,7 +718,7 @@
                         <div className="info">
                           <img
                             className="applicantImg"
-                            src="../images/player.png"
+                            src={`../images/player${index}.png`}
                             alt=""
                           />
                           <p style={{ color: typeFontStyle }}>{appl[index]}</p>
@@ -1275,7 +1277,6 @@
             </div>
           );
         };
-
         /* 建立元件 燈箱效果-團主評價 */
         const EvaluateApplicantsCard = ({
           day,
@@ -1459,23 +1460,28 @@
           useEffect(() => {
             if (index === "0" && newState0 === "已評價") {
               auditResult("yes");
+              setBtnDisplay("none");
+              setResultDisplay("block");
+              console.log("yse000");
             } else {
               setBtnDisplay("flex");
               setResultDisplay("none");
             }
             if (index === "1" && newState1 === "已評價") {
               auditResult("yes");
+              console.log("yse111");
             } else {
               setBtnDisplay("flex");
               setResultDisplay("none");
             }
           }, [index]);
           /* 審核結果標籤 */
-          const auditResult = (type) => {
+          const auditResult = (type,index) => {
             let text = "";
 
             setBtnDisplay("none");
             setResultDisplay("block");
+            console.log("setBtnDisplay(none);");
             if (type === "blackList") {
               text = "已加入黑名單";
               setResultColor("#FF4F03");
@@ -1485,18 +1491,18 @@
             setResultText(text);
             if (index === "0") {
               setNewState0("已評價");
-              //console.log("回傳0 yes");
-            } else if (index === "1") setNewState1("已評價");
+              console.log("回傳0 已評價");
+            } else if (index === "1") {setNewState1("已評價");}
             //console.log("回傳1 yes");
           };
           return (
             <>
-              <div class="popup" id={`evaluateApplicantsForm-${id}-${index}`}>
-                <div class="popup-inner">
-                  <div class="popup__content">
+              <div className="popup" id={`evaluateApplicantsForm-${id}-${index}`}>
+                <div className="popup-inner">
+                  <div className="popup__content">
                     <div className="evaluateForm">
                       <div className="topBtn-container">
-                        <a className="popup__close" href="#">
+                        <a className="popup__close" href={`#evaluateApplyPopup-${id}`}>
                           <img src="../images/cancel.png" alt="" />
                         </a>
                       </div>
@@ -1555,13 +1561,13 @@
                         <button
                           href="#"
                           className="button btn-no"
-                          onClick={() => auditResult("blackList")}
+                          onClick={() => auditResult("blackList",index)}
                         >
                           送出,並加入黑名單
                         </button>
                         <button
                           className="button btn-yes"
-                          onClick={() => auditResult("yes")}
+                          onClick={() => auditResult("yes",index)}
                         >
                           送出
                         </button>

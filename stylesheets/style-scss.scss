@@ -388,7 +388,7 @@ body {
     left: -15vw;
     width: 30%;
     height: 30%;
-    background-image: url("/images/cloud1.svg");
+    background-image: url("../../images/cloud1.svg");
     background-repeat: no-repeat;
     z-index: -10;
     animation-name: cloud-float, FadeFloat;
@@ -403,7 +403,7 @@ body {
     right: 10vw;
     width: 30%;
     height: 30%;
-    background-image: url("/images/cloud1.svg");
+    background-image: url("../../images/cloud1.svg");
     background-repeat: no-repeat;
     z-index: -10;
     animation-name:cloud-repeat,FadeRepeat;
@@ -497,7 +497,7 @@ body {
 //手機
 @media ($breakpoint-moblie) {
   body {
-    background-image: url(/images/bg-phone.png);
+    background-image: url("../../images/bg-phone.png");
     background-repeat: repeat;
     background-size: auto;
     &::after{
@@ -874,6 +874,13 @@ footer {
 /* 收藏按鈕 */
 .collect {
   background-color: transparent;
+  cursor: pointer;
+  &:hover{
+    scale: 110%;
+  }
+  &:active{
+    scale: 90%;
+  }
 }
 /* 關閉按鈕 */
 .btn-close {
@@ -931,6 +938,7 @@ footer {
   opacity: 0;
   overflow: hidden;
   transition: 0.64s ease-in-out;
+  cursor: default;
   &-inner {
     position: relative;
     z-index: 999;
@@ -1054,6 +1062,7 @@ footer {
   background: $background-color-white;
   border: 3.5px solid rgba(0, 0, 0, 1);
   box-shadow: 0px 12px 0px 0px #000000;
+  cursor: default;
 
   padding: 20px;
   display: flex;
@@ -1419,6 +1428,7 @@ footer {
   .component-writeBlock {
     /* 備註輸入框 */
     width: 80%;
+
     //團主樣式
     border: 1px dashed $border-black;
     h5 {
@@ -1680,7 +1690,7 @@ footer {
     border: 4px solid $border-black;
     border-bottom: 15px solid $border-black;
     border-radius: $border-radius-20;
-    background-color: $main-color-vb;
+    background-color: var(--main-color);
     /* 布局 */
     flex: 15 1 40px;
     padding: 15px;
@@ -1727,7 +1737,7 @@ footer {
         }
       }
 
-      /* main > section(search > div(search-Type > button */
+      /* 羽球圖 */
       #btn-typeBm {
         /* 樣式 */
         width: 120px;
@@ -1797,6 +1807,7 @@ footer {
   border: 2px solid $border-black;
   padding: 15px;
   background-color: $background-color-white;
+ 
   /* layout */
   display: flex;
   flex-direction: column;

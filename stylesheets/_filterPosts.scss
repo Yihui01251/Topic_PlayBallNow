@@ -181,6 +181,11 @@
   height: 19px;
   margin-top: 30px;
   text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  column-gap: 5px;
   @media ($breakpoint-moblie) {
     margin-top: 10px;
     padding: 0 auto;
@@ -189,10 +194,28 @@
 
   }
 
-  p {
+  span {
     position: relative;
-    z-index: 0;
-    color: $second-color-white;
+    z-index: auto;
+    background: linear-gradient(to bottom,#F1DB15,#FF4F03);
+    //background: -webkit-linear-gradient(to bottom,#F1DB15,#FF4F03);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+    &::before {
+      content: attr(value);
+      position: absolute;
+      z-index: -1;
+      -webkit-text-stroke: 4px $second-color-black;
+    
+      
+    }
+  }
+  p{
+    position: relative;
+    z-index: auto;
+    color: white;
 
     &::before {
       content: attr(value);
@@ -200,6 +223,7 @@
       z-index: -1;
       -webkit-text-stroke: 4px $second-color-black;
     }
+
   }
 }
 
