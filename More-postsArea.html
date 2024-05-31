@@ -51,14 +51,14 @@
         console.log(bm_week_postData);
 
         const App = () => {
-            const { useState, useEffect, useMemo } = React;
+          const { useState, useEffect, useMemo } = React;
 
           const [mainColor, setMainColor] = useState("");
           const [fontColor, setFontColor] = useState("");
           const [btnColor, setBtnColor] = useState("#F1DB15");
           const [inputColor, setInputColor] = useState("#B1C3E8");
-           /* 選擇打羽球或打排球按鈕對應要顯示的資料 */
-           const [selectedButton, setSelectedButton] = useState("btn-typeVb");
+          /* 選擇打羽球或打排球按鈕對應要顯示的資料 */
+          const [selectedButton, setSelectedButton] = useState("btn-typeVb");
           const [BMdisplay, setBMDisplay] = useState("none");
           const [VBdisplay, setVBDisplay] = useState("flex");
           /* 標題 */
@@ -79,13 +79,13 @@
           const [todayType, setTodayType] = useState("vb_today_postData");
           const [weekType, setWeekType] = useState("vb_week_postData");
           //儲存篩選條件
-          const [conditions, setConditions] = useState({type : filterType});
+          const [conditions, setConditions] = useState({ type: filterType });
           //是否顯示重新篩選表單元件
           const [showFilterForm, setShowFilterForm] = useState(false);
           //是否篩選貼文
           const [changeFilter, setChangeFilter] = useState(false);
 
-            //載入時
+          //載入時
           useEffect(() => {
             setTitle(window.localStorage.hrefType);
             let mapType = window.localStorage.hrefType;
@@ -145,8 +145,8 @@
             }
           };
 
-           /* 篩選表單更新地區選項 */
-           const [areaOption, setAreaOption] = useState(["地區"]);
+          /* 篩選表單更新地區選項 */
+          const [areaOption, setAreaOption] = useState(["地區"]);
           const [showArea, setShoeArea] = useState("none");
           let selectCity = document.getElementById("city");
           let selectArea = document.getElementById("selectArea");
@@ -244,8 +244,8 @@
             setSelectedArea(selectedOptions);
           };
 
-           /* 處理元件樣式及重設篩選條件 */
-           const changeType = (id) => {
+          /* 處理元件樣式及重設篩選條件 */
+          const changeType = (id) => {
             let colorMain = "";
             let colorFont = "";
             let btnColor = "";
@@ -259,8 +259,8 @@
               colorFont = "#689607";
               btnColor = "#FF8D24";
               inputColor = "#B6DBAA";
-               // 顯示狀態
-               setBMDisplay("grid");
+              // 顯示狀態
+              setBMDisplay("grid");
               setVBDisplay("none");
               //
               setFilterType("羽球");
@@ -283,7 +283,6 @@
             setFontColor(colorFont);
             setBtnColor(btnColor);
             setInputColor(inputColor);
-          
 
             document.documentElement.style.setProperty(
               "--main-color",
@@ -299,7 +298,7 @@
               inputColor
             );
             handleResetFilter();
-          }
+          };
 
           /* 清除篩選條件 */
           const handleResetFilter = () => {
@@ -309,8 +308,7 @@
             setSelectedDegree("全部");
             setSelectedCost("全部");
             setSelectedEquip("全部");
-            setSelectedRol("全部")
-
+            setSelectedRol("全部");
           };
 
           /* 重新篩選 */
@@ -324,8 +322,6 @@
             window.localStorage.filterRol = selectedRol;
             window.localStorage.filterEquip = selectedEquip;
           };
-          
-
 
           /* 篩選條件數目 */
           const [filterNum, setFilterNum] = useState("0");
@@ -334,16 +330,9 @@
             setFilterNum(num);
           };
 
-          /* 篩選資料 */  
+          /* 符合資料數 */
           const length = getPostType(mapType).length;
           const lengthValue = `${length}`;
-
-
-
-          const [showNotice, setShowNotice] = useState(false);
-          const handleNotice = () => {
-            setShowNotice(true);
-          };
 
           // 元件
           // 建立簡略貼文元件
@@ -394,6 +383,7 @@
             const [nowState, setNowState] = useState("default");
             const [btnDisplay, setBtnDisplay] = useState("flex");
             var hostType = "vb";
+
             useEffect(() => {
               if (type == "羽球") {
                 hostType = "bm";
@@ -627,6 +617,11 @@
               like === "./images/heart-yes.svg"
                 ? setIsLike("./images/heart-no.svg")
                 : setIsLike("./images/heart-yes.svg");
+            };
+
+            const [showNotice, setShowNotice] = useState(false);
+            const handleNotice = () => {
+              setShowNotice(true);
             };
             return (
               <>
@@ -1527,7 +1522,6 @@
             );
           };
 
-
           //建立篩選表單元件
           const FilterForm = ({
             visible,
@@ -1577,9 +1571,7 @@
                             </button>
                           </div>
                         </div>
-                        <div
-                          id="search-Bar"
-                        >
+                        <div id="search-Bar">
                           <div className="dropMenu">
                             <ul>
                               <input
@@ -1847,8 +1839,10 @@
                   </a>
 
                   <div className="filter-postQuantity">
-                    <p value="共有">共有 <span value={lengthValue}>{lengthValue}</span></p><p value="筆資料符合">筆資料符合
+                    <p value="共有">
+                      共有 <span value={lengthValue}>{lengthValue}</span>
                     </p>
+                    <p value="筆資料符合">筆資料符合</p>
                   </div>
                 </section>
                 <hr />

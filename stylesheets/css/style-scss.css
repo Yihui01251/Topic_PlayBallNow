@@ -2409,6 +2409,7 @@ button#btn-typeBm.selected {
   padding: 10px 15px;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 /* 首頁貼文容器標題(今日臨打...) */
@@ -2454,7 +2455,6 @@ button#btn-typeBm.selected {
 }
 
 /* 裝貼文元件的容器 */
-/* 首頁main > section(containers > div(post-block*/
 .post-block {
   /* 布局 */
   z-index: auto;
@@ -2474,7 +2474,28 @@ button#btn-typeBm.selected {
   white-space: nowrap;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
+}
+.post-block:hover {
   cursor: grab;
+}
+.post-block:hover::before {
+  content: url(../../images/hoverPostBlock.png);
+  position: absolute;
+  right: 10px;
+  bottom: 40px;
+  z-index: 2;
+  width: 50px;
+  height: 200px;
+  color: white;
+  text-align: center;
+  line-height: 50px;
+}
+.post-block:hover .notice {
+  z-index: 2;
+  width: 100px;
+  height: 50px;
+  content: "托拽可看更多貼文";
+  background-color: rgba(0, 0, 0, 0.3);
 }
 @media (max-width:640px) {
   .post-block {
@@ -2485,7 +2506,6 @@ button#btn-typeBm.selected {
 }
 
 /* 首頁小貼文元件 */
-/* 首頁main > section(containers > div(post-block> div(content*/
 .content {
   flex: 1 0 auto;
   max-width: 235px;
@@ -2519,7 +2539,6 @@ button#btn-typeBm.selected {
 }
 
 /* 文字 */
-/* ...> div(post-block > div(content > div(text*/
 .text {
   /* 布局 */
   z-index: 1;
