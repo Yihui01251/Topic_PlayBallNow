@@ -367,14 +367,16 @@
                 "name": "王鵬豪",
                 "bmLevel": "中上",
                 "vbLevel": "B",
-                "attnRate": "85"
+                "attnRate": "85",
+                "ps":""
             },
             {
                 "id": "player4",
                 "name": "尤利水",
                 "bmLevel": "新手",
                 "vbLevel": "B",
-                "attnRate": "82"
+                "attnRate": "82",
+                "ps":""
             }],
             "cancel": [{
               "id": "player5",
@@ -424,21 +426,26 @@
                 "name": "王鵬豪",
                 "bmLevel": "中上",
                 "vbLevel": "B",
-                "attnRate": "85"
+                "attnRate": "85",
+                "ps":"會遲到15分鐘左右",
+                "note":"基本上都會遲到"
             },
             {
                 "id": "player4",
                 "name": "尤利水",
                 "bmLevel": "新手",
                 "vbLevel": "B",
-                "attnRate": "82"
+                "attnRate": "82",
+                "ps":"",
+                "note":"態度積極"
             }],
             "cancel": [{
               "id": "player5",
               "name": "陳猷明",
               "bmLevel": "中階",
               "vbLevel": "B",
-              "attnRate": "88"
+              "attnRate": "88",
+              "reason":"小孩生病要回家照顧"
           }],
             "like": "false",
             "identity": "host"
@@ -451,7 +458,7 @@
             "date": "06/30(日)",
             "dateAbbr": "2024-06-30",
             "dateMD":"06/30",
-            "startTime": "10:00",
+            "startTime": "13:00",
             "endTime": "15:00",
             "city": "新北市",
             "area": ["板橋區"],
@@ -482,21 +489,27 @@
                 "name": "王鵬豪",
                 "bmLevel": "中上",
                 "vbLevel": "A",
-                "attnRate": "85"
+                "attnRate": "85",
+                "ps":"",
+                "note":"基本上都會遲到"
             },
             {
                 "id": "player4",
                 "name": "尤利水",
                 "bmLevel": "新手",
                 "vbLevel": "B",
-                "attnRate": "82"
+                "attnRate": "82",
+                "ps":"雖然還沒到A,但基本的能力都沒問題,想跟高手打打看",
+                "note":"態度積極"
             }],
             "cancel": [{
               "id": "player5",
               "name": "陳猷明",
               "bmLevel": "中階",
               "vbLevel": "B",
-              "attnRate": "88"
+              "attnRate": "88",
+              "reason":"家人臨時住院，要去醫院"
+              
           }],
             "like": "false",
             "identity": "host",
@@ -729,12 +742,12 @@
             "date": "06/26(三)",
             "dateAbbr": "2024-06-26",
             "dateMD":"06/26",
-            "startTime": "17:00",
-            "endTime": "21:00",
+            "startTime": "18:00",
+            "endTime": "20:00",
             "city": "台北市",
             "area": "中正區",
             "arena": "成功高中",
-            "tagDegree": "新手~初上",
+            "tagDegree": "中下~中階",
             "tagPrice": "200",
             "reqCount":  [
               {
@@ -758,23 +771,28 @@
               {
                 "id": "player1",
                 "name": "陳小明",
-                "bmLevel": "新手",
+                "bmLevel": "中階",
                 "vbLevel": "A",
-                "attnRate": "85"
+                "attnRate": "85",
+                "ps":"",
+                "note":"體力好"
             },
             {
                 "id": "player2",
                 "name": "陳曉成",
-                "bmLevel": "-",
+                "bmLevel": "中下",
                 "vbLevel": "C",
-                "attnRate": "80"
+                "attnRate": "80",
+                "ps":"",
+                "note":""
             }],
             "cancel": [{
               "id": "player5",
               "name": "陳猷明",
               "bmLevel": "中階",
               "vbLevel": "B",
-              "attnRate": "88"
+              "attnRate": "88",
+              "reason":"臨時被通知要加班開會"
           }],
             "like": "false",
             "identity": "host",
@@ -791,7 +809,7 @@
             "city": "台北市",
             "area": "中正區",
             "arena": "成功高中",
-            "tagDegree": "初階",
+            "tagDegree": "初階~中下",
             "tagPrice": "125",
             "reqCount": [
               {
@@ -815,23 +833,28 @@
               {
                 "id": "player1",
                 "name": "陳小明",
-                "bmLevel": "新手",
+                "bmLevel": "中階",
                 "vbLevel": "A",
-                "attnRate": "85"
+                "attnRate": "85",
+                "ps":"",
+                "note":"體力好"
             },
             {
                 "id": "player2",
                 "name": "陳曉成",
-                "bmLevel": "-",
+                "bmLevel": "中下",
                 "vbLevel": "C",
-                "attnRate": "80"
+                "attnRate": "80",
+                "ps":"可能會晚到",
+                "note":""
             }],
             "cancel": [{
               "id": "player5",
               "name": "陳猷明",
               "bmLevel": "中階",
               "vbLevel": "B",
-              "attnRate": "88"
+              "attnRate": "88",
+              "reason":"感冒發燒"
           }],
             "like": "false",
             "identity": "host",
