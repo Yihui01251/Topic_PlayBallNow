@@ -39,7 +39,7 @@
     <script crossorigin src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script> -->
   </head>
 
-  <body id="body">
+  <body id="body" class="background-Vb">
     <small class="fileName">檔名：<code>index.html</code></small>
 
     <div id="root"></div>
@@ -841,6 +841,7 @@
             note,
             href,
             host,
+            hostId,
             appl,
             cancel,
             ballBrand,
@@ -871,7 +872,18 @@
               } else {
                 setIsPopUp("報名元件");
               }
-            }, [identity]);
+            }, []);
+            //按確定報名後改變
+            const [nowState, setNowState] = useState("default");
+            useEffect(()=>{
+              //
+                if (nowState == "applied") {
+                setPostHref(`#auditApplyPopup-${id}`);
+                setShowApplicants("none");
+                setShowCancel("flex");
+                setIsPopUp("查看");
+              } 
+            },[nowState])
             /*  是否呼叫報名元件 */
             const [callApplyCard, setCallApplyCard] = useState(false);
             /* 是否呼叫查看貼文元件 */
@@ -946,10 +958,12 @@
                     pos={pos}
                     note={note}
                     host={host}
+                    hostId={hostId}
                     ballBrand={ballBrand}
                     noticeHref={`${href}-noticeApplyPopUp-${id}`}
                     like={like}
                     state={state}
+                    setNowState={setNowState}
                   />
                 )}
                 {detailNotify && (
@@ -1006,14 +1020,15 @@
             ballBrand,
             note,
             host,
+            hostId,
             noticeHref,
             like,
             state,
+            setNowState
           }) => {
             const [showBallBrand, setShowBallBrand] = useState("none");
             const [showVbInfo, setShowVbInfo] = useState("flex");
             const [isLike, setIsLike] = useState("");
-            const [nowState, setNowState] = useState("default");
             const [btnDisplay, setBtnDisplay] = useState("flex");
             useEffect(() => {
               if (type == "羽球") {
@@ -1038,6 +1053,7 @@
             const [showNotice, setShowNotice] = useState(false);
             const handleNotice = () => {
               setShowNotice(true);
+              setNowState("applied");
             };
             return (
               <>
@@ -1120,7 +1136,7 @@
                           <div className="apply-info">
                             <hr />
                             <img
-                              src={`./images/host-${hostType}.png`}
+                              src={`./images/${hostId}.png`}
                               alt="團主頭貼"
                             />
                             <p>
@@ -1280,7 +1296,7 @@
                     <img
                       className="img-border"
                       src={`./images/${applyId}.png`}
-                      alt=""
+                      alt="申請者頭像"
                     />
                     <div className="notice-new" style={{ display: isNew }}>
                       New
@@ -1401,7 +1417,7 @@
                               <div className="line-hugTitle">
                                 <div className="titleLine"></div>
                                 <h3>球友申請列表</h3>
-                                <small> (已徵{state})</small>
+                                <small> 已徵{state}</small>
                               </div>
                               <div className="titleArrowBtn">
                                 <button>
@@ -1439,7 +1455,7 @@
                                 <img
                                   className="img-border"
                                   src="./images/player-agree.png"
-                                  alt=""
+                                  alt="同意報名"
                                 />
                               </a>
                             </div>
@@ -1463,7 +1479,7 @@
                                 <img
                                   className="img-border"
                                   src={`./images/${cancel[0].id}.png`}
-                                  alt=""
+                                  alt="取消者頭像"
                                 />
                                 <div className="notice-new">New</div>
                               </a>
@@ -1514,7 +1530,7 @@
                     arena={arena}
                     state={state}
                     appl={appl}
-                    id={"yes"}
+                    id={id}
                     index={0}
                     typeStyle={typeStyle}
                     typeFontStyle={typeFontStyle}
@@ -1620,10 +1636,10 @@
                     <div className="audit-apply">
                       <div className="topBtn-container">
                         <a href="#">
-                          <img src="./images/waring.png" alt="" />
+                          <img src="./images/waring.png" alt="黑名單" />
                         </a>
                         <a className="popup__close" href={`#auditApplyPopup-${id}`}>
-                          <img src="./images/cancel.png" alt="" />
+                          <img src="./images/cancel.png" alt="關閉" />
                         </a>
                       </div>
                       <div className="audit-info">
@@ -1632,7 +1648,7 @@
                             <img
                               className="applicantImg"
                               src={`./images/${appl[index].id}.png`}
-                              alt=""
+                              alt="申請者頭像"
                             />
                             <p style={{ color: typeFontStyle }}>
                               {appl[index].name}
@@ -1646,7 +1662,7 @@
                               >
                               {appl[index].attnRate}%
                               </p>
-                              <img src={ellipseBarType} alt="" />
+                              <img src={ellipseBarType} alt="出席率圖" />
                             </div>
                             <p style={{ color: typeFontStyle }}>出席率</p>
                           </div>
@@ -1659,7 +1675,7 @@
                         </div>
                         <div className="info-remark">
                           <h5>備註（僅限自己可看）：</h5>
-                          <p>這個人很愛放鴿子</p>
+                          <p>{appl[index].note}</p>
                         </div>
                         <div className="notice-container">
                           <div
@@ -1685,7 +1701,7 @@
                         </div>
                         <div className="info-applicantNote">
                           <h5>報名備註：</h5>
-                          <p>下班若塞車可能會晚到15分鐘</p>
+                          <p>{appl[index].ps}</p>
                         </div>
                         <div
                           className="bottomBtn-container"
@@ -1775,10 +1791,10 @@
                     <div className="audit-apply">
                       <div className="topBtn-container">
                         <a href="#">
-                          <img src="./images/waring.png" alt="" />
+                          <img src="./images/waring.png" alt="黑名單" />
                         </a>
                         <a className="popup__close" href={`#auditApplyPopup-${id}`}>
-                          <img src="./images/cancel.png" alt="" />
+                          <img src="./images/cancel.png" alt="關閉" />
                         </a>
                       </div>
                       <div className="audit-info">
@@ -1788,13 +1804,13 @@
                               <img
                                 className="applicantImg"
                                 src={`./images/${cancel[0].id}.png`}
-                                alt=""
+                                alt="取消者頭像"
                               />
                               <p>{cancel[0].name}</p>
                             </div>
                             <div className="reason-cancel">
                               <h5>取消原因:</h5>
-                              <p>手受傷</p>
+                              <p>{cancel[0].reason}</p>
                             </div>
                           </div>
                           <div className="selfState-title">
@@ -2274,6 +2290,7 @@
                           note={post_data.note}
                           href={`todayApplyPopUp-${post_data.id}`}
                           host={post_data.host}
+                          hostId={post_data.hostId}
                           appl={post_data.appl}
                           cancel={post_data.cancel}
                           ballBrand={post_data.ballBrand}
@@ -2367,6 +2384,7 @@
                           note={post_data.note}
                           href={`weekApplyPopUp-${post_data.id}`}
                           host={post_data.host}
+                          hostId={post_data.hostId}
                           appl={post_data.appl}
                           cancel={post_data.cancel}
                           ballBrand={post_data.ballBrand}
