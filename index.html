@@ -827,6 +827,7 @@
             id,
             type,
             postDate,
+            dateMD,
             postStartTime,
             postEndTime,
             postCity,
@@ -846,6 +847,7 @@
             ballBrand,
             like,
             state,
+            identity
           }) => {
             /* 要彈出的元件連結 */
             const [postHref, setPostHref] = useState(`#${href}`);
@@ -857,12 +859,12 @@
             const [showCancel, setShowCancel] = useState("");
 
             useEffect(() => {
-              if (state == "host") {
+              if (identity == "host") {
                 setPostHref(`#auditApplyPopup-${id}`);
                 setShowApplicants("flex");
                 setShowCancel("none");
                 setIsPopUp("查看");
-              } else if (state == "appiled") {
+              } else if (identity == "appiled") {
                 setPostHref(`#auditApplyPopup-${id}`);
                 setShowApplicants("none");
                 setShowCancel("flex");
@@ -953,7 +955,7 @@
                 )}
                 {detailNotify && (
                   <DetailPostCard
-                    day={postDate}
+                    day={dateMD}
                     startTime={postStartTime}
                     endTime={postEndTime}
                     type={type}
@@ -978,6 +980,7 @@
                     typeFontStyle={fontColor}
                     showApplicants={showApplicants}
                     showCancel={showCancel}
+              
                   />
                 )}
               </>
@@ -1266,7 +1269,7 @@
               console.log(type);
             };
             /* 申請者元件 */
-            const ApplicantsCard = ({ appl, id, index }) => {
+            const ApplicantsCard = ({ applyId, index,appl,name,bmLevel,vbLevel,attnRate }) => {
               return (
                 <>
                   <a
@@ -1277,7 +1280,7 @@
                   >
                     <img
                       className="img-border"
-                      src={`../images/player${index}.png`}
+                      src={`./images/${applyId}.png`}
                       alt=""
                     />
                     <div className="notice-new" style={{ display: isNew }}>
@@ -1313,7 +1316,7 @@
                                 {type}
                               </div>
                               <a className="popup__close" href="#">
-                                <img src="../images/cancel.png" alt="" />
+                                <img src="./images/cancel.png" alt="" />
                               </a>
                             </div>
                             <div
@@ -1404,13 +1407,13 @@
                               <div className="titleArrowBtn">
                                 <button>
                                   <img
-                                    src="../images/btn-left.png"
+                                    src="./images/btn-left.png"
                                     alt="前一個"
                                   />
                                 </button>
                                 <button>
                                   <img
-                                    src="../images/btn-right.png"
+                                    src="./images/btn-right.png"
                                     alt="後一個"
                                   />
                                 </button>
@@ -1419,10 +1422,14 @@
                             <div className="applicant-container">
                               {appl.map((apply, index) => (
                                 <ApplicantsCard
-                                  key={index}
-                                  appl={apply}
-                                  id={id}
+                                  key={apply.id}
+                                  appl={appl}
+                                  applyId={apply.id}
                                   index={index}
+                                  name={apply.name}
+                                  bmLevel={apply.bmLevel}
+                                  vbLevel={apply.vbLevel}
+                                  attnRate={apply.attnRate}
                                 />
                               ))}
 
@@ -1432,7 +1439,7 @@
                               >
                                 <img
                                   className="img-border"
-                                  src="../images/player-agree.png"
+                                  src="./images/player-agree.png"
                                   alt=""
                                 />
                               </a>
@@ -1451,12 +1458,12 @@
                             </div>
                             <div className="applicant-container">
                               <a
-                                href={`#auditCancelPopup-${id}`}
+                                href={`#auditCancelPopup-${id}-0`}
                                 onClick={handleAuditCancelCard}
                               >
                                 <img
                                   className="img-border"
-                                  src="../images/bball.png"
+                                  src={`./images/${cancel[0].id}.png`}
                                   alt=""
                                 />
                                 <div className="notice-new">New</div>
@@ -1525,6 +1532,7 @@
                     arena={arena}
                     state={state}
                     id={id}
+                    cancel={cancel}
                     typeStyle={typeStyle}
                     typeFontStyle={typeFontStyle}
                   />
@@ -1567,6 +1575,9 @@
             const [resultDisplay, setResultDisplay] = useState("none");
             const [resultText, setResultText] = useState("");
             const [resultColor, setResultColor] = useState("#1A8D07");
+            const [degreeType, setDegreeType] = useState("");
+            const [thisType,setThisType]=useState("");
+            console.log(appl);
             console.log("元件" + isApply + index);
             useEffect(() => {
               if (isApply === "true") {
@@ -1574,7 +1585,14 @@
                 setResultDisplay("block");
                 setResultText("接受申請");
               }
-            }, [isApply]);
+              if(type === "羽球"){
+                setThisType("羽");
+                setDegreeType(appl[index].bmLevel);
+              }else{
+                setThisType("排");
+                setDegreeType(appl[index].vbLevel);
+              }
+            }, [isApply,type]);
             /* 審核結果標籤 */
             const auditResult = (type) => {
               let text = "";
@@ -1603,10 +1621,10 @@
                     <div className="audit-apply">
                       <div className="topBtn-container">
                         <a href="#">
-                          <img src="../images/waring.png" alt="" />
+                          <img src="./images/waring.png" alt="" />
                         </a>
                         <a className="popup__close" href="#">
-                          <img src="../images/cancel.png" alt="" />
+                          <img src="./images/cancel.png" alt="" />
                         </a>
                       </div>
                       <div className="audit-info">
@@ -1614,11 +1632,11 @@
                           <div className="info">
                             <img
                               className="applicantImg"
-                              src={`../images/player${index}.png`}
+                              src={`./images/${appl[index].id}.png`}
                               alt=""
                             />
                             <p style={{ color: typeFontStyle }}>
-                              {appl[index]}
+                              {appl[index].name}
                             </p>
                           </div>
                           <div className="info">
@@ -1627,7 +1645,7 @@
                                 className="text-M"
                                 style={{ color: typeFontStyle }}
                               >
-                                85%
+                              {appl[index].attnRate}%
                               </p>
                               <img src={ellipseBarType} alt="" />
                             </div>
@@ -1635,7 +1653,7 @@
                           </div>
                           <div className="info">
                             <div className="userInfo">
-                              <p style={{ backgroundColor: typeStyle }}>B</p>
+                              <p style={{ backgroundColor: typeStyle }}>{degreeType}</p>
                             </div>
                             <p style={{ color: typeFontStyle }}>自評等級</p>
                           </div>
@@ -1649,14 +1667,17 @@
                             className="notice-ballType"
                             style={{ backgroundColor: typeStyle }}
                           >
-                            <p>{type}</p>
+                            <p>{thisType}</p>
                           </div>
                           <div className="notice-info">
-                            <div>
-                              <p style={{ color: typeFontStyle }}>
-                                {day} {startTime}
-                              </p>
-                            </div>
+                            <div className="audit-time">
+                            <p style={{ color: typeFontStyle }}>
+                              {day}
+                            </p>
+                            <p style={{ color: typeFontStyle }}>
+                              {startTime}
+                            </p>
+                          </div>
                             <p style={{ color: typeFontStyle }}>{arena}</p>
                             <div className="audit-state">
                               <p>{state}</p>
@@ -1710,6 +1731,7 @@
             state,
             id,
             index,
+            cancel,
             typeFontStyle,
             typeStyle,
           }) => {
@@ -1717,6 +1739,15 @@
             const [resultDisplay, setResultDisplay] = useState("none");
             const [resultText, setResultText] = useState("");
             const [resultColor, setResultColor] = useState("#1A8D07");
+            const [thisType,setThisType]=useState("");
+
+            useEffect(()=>{
+              if(type === "羽球"){
+                setThisType("羽");
+              }else{
+                setThisType("排");
+              }
+            },[type])
             /* 審核結果標籤 */
             const auditResult = (type) => {
               let text = "";
@@ -1733,22 +1764,22 @@
             };
 
             return (
-              /* 燈箱效果-=團主審核報名元件 */
+              /* 燈箱效果-=團主審核取消元件 */
               <div
                 className="popup"
-                id={`auditCancelPopup-${id}-${index}`}
+                id={`auditCancelPopup-${id}-0`}
                 onMouseDown={(e) => e.stopPropagation()}
               >
                 <div className="popup-inner">
                   <div className="popup__content">
-                    {/* 團主審核報名元件 */}
+                    {/* 團主審核取消元件 */}
                     <div className="audit-apply">
                       <div className="topBtn-container">
                         <a href="#">
-                          <img src="../images/waring.png" alt="" />
+                          <img src="./images/waring.png" alt="" />
                         </a>
                         <a className="popup__close" href="#">
-                          <img src="../images/cancel.png" alt="" />
+                          <img src="./images/cancel.png" alt="" />
                         </a>
                       </div>
                       <div className="audit-info">
@@ -1757,10 +1788,10 @@
                             <div className="applicantInfo">
                               <img
                                 className="applicantImg"
-                                src="../images/player.png"
+                                src={`./images/${cancel[0].id}.png`}
                                 alt=""
                               />
-                              <p>Roy</p>
+                              <p>{cancel[0].name}</p>
                             </div>
                             <div className="reason-cancel">
                               <h5>取消原因:</h5>
@@ -1777,14 +1808,17 @@
                             className="notice-ballType"
                             style={{ backgroundColor: typeStyle }}
                           >
-                            <p>{type}</p>
+                            <p>{thisType}</p>
                           </div>
                           <div className="notice-info">
-                            <div>
-                              <p style={{ color: typeFontStyle }}>
-                                {day} {startTime}
-                              </p>
-                            </div>
+                            <div className="audit-time">
+                            <p style={{ color: typeFontStyle }}>
+                              {day}
+                            </p>
+                            <p style={{ color: typeFontStyle }}>
+                              {startTime}
+                            </p>
+                          </div>
                             <p style={{ color: typeFontStyle }}>{arena}</p>
                             <div className="audit-state">
                               <p>{state}</p>
@@ -1877,7 +1911,7 @@
                               {type}
                             </div>
                             <a className="popup__close" href="#">
-                              <img src="../images/cancel.png" alt="" />
+                              <img src="./images/cancel.png" alt="" />
                             </a>
                           </div>
                           <div
@@ -2226,6 +2260,7 @@
                           id={post_data.id}
                           type={post_data.type}
                           postDate={post_data.date}
+                          dateMD={post_data.dateMD}
                           postStartTime={post_data.startTime}
                           postEndTime={post_data.endTime}
                           postCity={post_data.city}
@@ -2245,6 +2280,7 @@
                           equip={post_data.equip}
                           like={post_data.like}
                           state={post_data.state}
+                          identity={post_data.identity}
                         />
                       );
                     })}
@@ -2317,6 +2353,7 @@
                           id={post_data.id}
                           type={post_data.type}
                           postDate={post_data.date}
+                          dateMD={post_data.dateMD}
                           postStartTime={post_data.startTime}
                           postEndTime={post_data.endTime}
                           postCity={post_data.city}
@@ -2336,6 +2373,7 @@
                           equip={post_data.equip}
                           like={post_data.like}
                           state={post_data.state}
+                          identity={post_data.identity}
                         />
                       );
                     })}

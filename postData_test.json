@@ -481,7 +481,7 @@
                 "id": "player3",
                 "name": "王鵬豪",
                 "bmLevel": "中上",
-                "vbLevel": "B",
+                "vbLevel": "A",
                 "attnRate": "85"
             },
             {
@@ -499,7 +499,8 @@
               "attnRate": "88"
           }],
             "like": "false",
-            "identity": "host"
+            "identity": "host",
+            "state":"3/4位"
         },
         {
             "id": "vb_week_5",
