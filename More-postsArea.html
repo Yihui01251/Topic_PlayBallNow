@@ -857,8 +857,10 @@
             }; */
             /* 是否生成審核取消元件 */
             const [auditCancelCard, setAuditCancelCard] = useState(false);
+            const [cancelIsNew, setCancelIsNew] = useState("block");
             const handleAuditCancelCard = () => {
               setAuditCancelCard(true);
+              setCancelIsNew("none");
             };
             /* 是否生成查看行程元件 */
             const [detailsNotifyCard, setDetailsNotifyCard] = useState(false);
@@ -971,7 +973,7 @@
                                   src={`./images/${cancel[0].id}.png`}
                                   alt="取消者頭像"
                                 />
-                                <div className="notice-new">New</div>
+                                <div className="notice-new" style={{ display: cancelIsNew }}>New</div>
                               </a>
                             </div>
                           </div>
@@ -1207,7 +1209,7 @@
             /* 審核結果標籤 */
             const auditResult = (type) => {
               let text = "";
-
+              
               setBtnDisplay("none");
               setResultDisplay("block");
               if (type === "no") {
