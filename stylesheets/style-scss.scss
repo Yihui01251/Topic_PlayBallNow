@@ -414,15 +414,24 @@ body {
 }
 
 .background-Bm {
-  background-image: url(/images/bgbm-phone.png);
+  @media ($breakpoint-moblie){
+     background-image: url(../../images/bgbm-phone.png);
+  }
+ 
 }
 
 .background-Vb {
-  background-image: url(/images/CatBg.jpg);
+  @media ($breakpoint-moblie){
+     background-image: url(../../images/bgvb-phone.png);
+  }
+ 
 }
 
 .background-both {
-  background-image: url(/images/BothBg.jpg);
+  @media ($breakpoint-moblie){
+    background-image: url(../../images/bg-phone.png);
+  }
+  
 }
 /* react下的root */
 // #root {
@@ -1056,7 +1065,7 @@ footer {
   width: 90%;
   max-width: 20vw;
   min-width: 300px;
-  min-height: 310px;
+  min-height: 260px;
   max-height: 90vh;
   border-radius: 20px;
   background: $background-color-white;
@@ -1568,6 +1577,7 @@ footer {
 }
 /* 確定取消狀態 */
 .audit-cancel {
+  align-self: flex-end;
   justify-self: flex-end;
 }
 .notice-pastRecordsArea {

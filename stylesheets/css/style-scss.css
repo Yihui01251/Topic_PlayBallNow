@@ -506,16 +506,22 @@ body::after {
   animation-iteration-count: infinite;
 }
 
-.background-Bm {
-  background-image: url(/images/bgbm-phone.png);
+@media (max-width:640px) {
+  .background-Bm {
+    background-image: url(../../images/bgbm-phone.png);
+  }
 }
 
-.background-Vb {
-  background-image: url(/images/CatBg.jpg);
+@media (max-width:640px) {
+  .background-Vb {
+    background-image: url(../../images/bgvb-phone.png);
+  }
 }
 
-.background-both {
-  background-image: url(/images/BothBg.jpg);
+@media (max-width:640px) {
+  .background-both {
+    background-image: url(../../images/bg-phone.png);
+  }
 }
 
 /* react下的root */
@@ -1111,7 +1117,7 @@ footer #logo {
   width: 90%;
   max-width: 20vw;
   min-width: 300px;
-  min-height: 310px;
+  min-height: 260px;
   max-height: 90vh;
   border-radius: 20px;
   background: #ffffff;
@@ -1567,6 +1573,7 @@ footer #logo {
 
 /* 確定取消狀態 */
 .audit-cancel {
+  align-self: flex-end;
   justify-self: flex-end;
 }
 

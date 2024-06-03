@@ -79,7 +79,7 @@
           );
         };
         const App = () => {
-          // const [backgroundImage, setBackgroundImage] = useState("url('../images/CatBg.jpg')");
+          const [backgroundImage, setBackgroundImage] = useState("url('./images/bg-phone.jpg')");
           const [mainColor, setMainColor] = useState("#14AAEB");
           const [fontColor, setFontColor] = useState("#147CB6");
           const [btnColor, setBtnColor] = useState("#F1DB15");
@@ -149,8 +149,8 @@
               decorate = 'url("../../images/index-searchDog.png")';
               topBanner = "./images/mobiletopbm.png";
               // 新增class改變背景
-              //bodyStyle.classList.add("background-Bm");
-              //bodyStyle.classList.remove("background-Vb");
+              bodyStyle.classList.add("background-Bm");
+              bodyStyle.classList.remove("background-Vb");
               setSelectedButton(id);
               /* 改變要map的資料名稱 */
               setTodayType("bm_today_postData");
@@ -162,8 +162,7 @@
               //更多的連結
               hrefTodayMore = "羽球-本日貼文";
               hrefWeekMore = "羽球-本週貼文";
-              // hrefTodayMore = "./BMtodayMore-postsArea.html";
-              // hrefWeekMore = "./BMweekMore-postsArea.html";
+
               //羽球程度
               setdegreeTag("初階");
             } else if (id === "btn-typeVb" || id === "btn-formVB") {
@@ -176,8 +175,8 @@
               decorate = "url('../../images/index-searchCat.png')";
               topBanner = "./images/mobiletopvb.svg";
               //
-              //bodyStyle.classList.remove("background-Bm");
-              //bodyStyle.classList.add("background-Vb");
+              bodyStyle.classList.remove("background-Bm");
+              bodyStyle.classList.add("background-Vb");
               setSelectedButton(id);
               //
               setTodayType("vb_today_postData");
@@ -872,7 +871,7 @@
               } else {
                 setIsPopUp("報名元件");
               }
-            }, [state]);
+            }, [identity]);
             /*  是否呼叫報名元件 */
             const [callApplyCard, setCallApplyCard] = useState(false);
             /* 是否呼叫查看貼文元件 */
@@ -1422,7 +1421,7 @@
                             <div className="applicant-container">
                               {appl.map((apply, index) => (
                                 <ApplicantsCard
-                                  key={apply.id}
+                                  key={index}
                                   appl={appl}
                                   applyId={apply.id}
                                   index={index}
@@ -1577,8 +1576,8 @@
             const [resultColor, setResultColor] = useState("#1A8D07");
             const [degreeType, setDegreeType] = useState("");
             const [thisType,setThisType]=useState("");
-            console.log(appl);
-            console.log("元件" + isApply + index);
+            //console.log(appl);
+            //console.log("元件" + isApply + index);
             useEffect(() => {
               if (isApply === "true") {
                 setBtnDisplay("none");
@@ -1623,7 +1622,7 @@
                         <a href="#">
                           <img src="./images/waring.png" alt="" />
                         </a>
-                        <a className="popup__close" href="#">
+                        <a className="popup__close" href={`#auditApplyPopup-${id}`}>
                           <img src="./images/cancel.png" alt="" />
                         </a>
                       </div>
@@ -1778,7 +1777,7 @@
                         <a href="#">
                           <img src="./images/waring.png" alt="" />
                         </a>
-                        <a className="popup__close" href="#">
+                        <a className="popup__close" href={`#auditApplyPopup-${id}`}>
                           <img src="./images/cancel.png" alt="" />
                         </a>
                       </div>
@@ -1881,7 +1880,7 @@
             /* 取消ing標籤 */
             const applicantResult = (type) => {
               setBtnDisplay("none");
-              setResultDisplay("block");
+              setResultDisplay("flex");
               if (type === "cancel") {
                 setResultColor("#FF4F03");
               }
@@ -1958,6 +1957,7 @@
                             display: resultDisplay,
                             color: resultColor,
                             borderColor: resultColor,
+                            
                           }}
                         >
                           <p>取消ing</p>
