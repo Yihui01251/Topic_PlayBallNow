@@ -7,6 +7,7 @@
             "type": "排球",
             "date": "06/26(三)",
             "dateAbbr": "2024-06-26",
+            "dateMD":"06/26",
             "startTime": "18:00",
             "endTime": "22:00",
             "city": "新北市",
@@ -32,15 +33,17 @@
             "pos": "不拘",
             "note": "有穩定接發與防守觀念者、態度積極",
             "host": "王大明",
+            "hostId":"player6",
             "appl": ["陳小明","陳曉成"],
             "cancel": "朱力士",
             "like": "false",
-            "state": "appiled"
+            "identity": "appiled"
         },
         {
             "id": "vb_today_2",
             "type": "排球",
             "date": "06/26(三)",
+            "dateMD":"06/26",
             "dateAbbr": "2024-06-26",
             "startTime": "9:00",
             "endTime": "12:00",
@@ -67,16 +70,18 @@
             "pos": "不拘",
             "note": "希望報名者有基本程度，懂攻防，會站位，非新手場",
             "host": "陳曉成",
+            "hostId":"player2",
             "appl": ["陳小明","陳曉成"],
             "cancel": "朱力士",
             "like": "false",
-            "state": "default"
+            "identity": "default"
         },
         {
             "id": "vb_today_3",
             "type": "排球",
             "date": "06/26(三)",
             "dateAbbr": "2024-06-26",
+            "dateMD":"06/26",
             "startTime": "10:00",
             "endTime": "11:00",
             "city": "台北市",
@@ -102,16 +107,18 @@
             "pos": "不拘",
             "note": "冷氣錢另計",
             "host": "王大明",
+            "hostId":"player6",
             "appl": ["陳小明","陳曉成"],
             "cancel": "朱力士",
             "like": "false",
-            "state": "default"
+            "identity": "default"
         },
         {
             "id": "vb_today_4",
             "type": "排球",
             "date": "06/26(三)",
             "dateAbbr": "2024-06-26",
+            "dateMD":"06/26",
             "startTime": "21:00",
             "endTime": "23:00",
             "city": "桃園市",
@@ -137,16 +144,18 @@
             "pos": "不拘",
             "note": "具基本接發攻擊及站位觀念",
             "host": "尤利水",
+            "hostId":"player4",
             "appl": ["陳小明","陳曉成"],
             "cancel": "朱力士",
             "like": "false",
-            "state": "default"
+            "identity": "default"
         },
         {
             "id": "vb_today_5",
             "type": "排球",
             "date": "06/26(三)",
             "dateAbbr": "2024-06-26",
+            "dateMD":"06/26",
             "startTime": "11:00",
             "endTime": "13:00",
             "city": "台北市",
@@ -172,16 +181,18 @@
             "pos": "中等發球,防守",
             "note": "-",
             "host": "王大明",
+            "hostId":"player6",
             "appl": ["陳小明","陳曉成"],
             "cancel": "朱力士",
             "like": "false",
-            "state": "default"
+            "identity": "default"
         },
         {
             "id": "vb_today_6",
             "type": "排球",
             "date": "06/26(三)",
             "dateAbbr": "2024-06-26",
+            "dateMD":"06/26",
             "startTime": "14:00",
             "endTime": "17:00",
             "city": "新北市",
@@ -207,16 +218,18 @@
             "pos": "不拘",
             "note": "-",
             "host": "陳曉成",
+            "hostId":"player2",
             "appl": ["陳小明","陳曉成"],
             "cancel": "朱力士",
             "like": "false",
-            "state": "default"
+            "identity": "default"
         },
         {
             "id": "vb_today_7",
             "type": "排球",
             "date": "06/26(三)",
             "dateAbbr": "2024-06-26",
+            "dateMD":"06/26",
             "startTime": "17:00",
             "endTime": "19:00",
             "city": "新北市",
@@ -242,16 +255,18 @@
             "pos": "舉球,攻擊",
             "note": "第一輪先到先打，第二輪開始抽籤分隊",
             "host": "王大明",
+            "hostId":"player6",
             "appl": ["陳小明","陳曉成"],
             "cancel": "朱力士",
             "like": "false",
-            "state": "default"
+            "identity": "default"
         },
         {
             "id": "vb_today_8",
             "type": "排球",
             "date": "06/26(三)",
             "dateAbbr": "2024-06-26",
+            "dateMD":"06/26",
             "startTime": "20:00",
             "endTime": "22:00",
             "city": "台北市",
@@ -277,10 +292,11 @@
             "pos": "攻擊",
             "note": "當天視場地使用狀況決定幾號網",
             "host": "尤利水",
+            "hostId":"player4",
             "appl": ["陳小明","陳曉成"],
             "cancel": "朱力士",
             "like": "false",
-            "state": "default"
+            "identity": "default"
         }
     ]
     },
@@ -291,6 +307,7 @@
             "type": "排球",
             "date": "06/28(五)",
             "dateAbbr": "2024-06-28",
+            "dateMD":"06/28",
             "startTime": "13:00",
             "endTime": "15:00",
             "city": "新北市",
@@ -316,16 +333,18 @@
             "pos": "中等發球,防守,舉球,攻擊",
             "note": "常有重扣多來回，非新手場多半校隊跟成熟系隊",
             "host": "王鵬豪",
+            "hostId":"player3",
             "appl": ["陳小明","陳曉成"],
             "cancel": "朱力士",
             "like": "false",
-            "state": "default"
+            "identity": "default"
         },
         {
             "id": "vb_week_2",
             "type": "排球",
             "date": "06/26(三)",
             "dateAbbr": "2024-06-26",
+            "dateMD":"06/26",
             "startTime": "13:00",
             "endTime": "15:00",
             "city": "新北市",
@@ -351,16 +370,41 @@
             "pos": "不拘",
             "note": "入口在哈密街59巷21弄 ，經過警衛室後左轉上四樓球場",
             "host": "陳曉成",
-            "appl": ["陳小明","陳曉成"],
-            "cancel": "朱力士",
+            "hostId":"player2",
+            "appl": [
+              {
+                "id": "player3",
+                "name": "王鵬豪",
+                "bmLevel": "中上",
+                "vbLevel": "B",
+                "attnRate": "85",
+                "ps":""
+            },
+            {
+                "id": "player4",
+                "name": "尤利水",
+                "bmLevel": "新手",
+                "vbLevel": "B",
+                "attnRate": "82",
+                "ps":""
+            }],
+            "cancel": [{
+              "id": "player5",
+              "name": "陳猷明",
+              "bmLevel": "中階",
+              "vbLevel": "B",
+              "attnRate": "88"
+          }],
             "like": "false",
-            "state": "default"
+            "identity": "default",
+            "state":"4/4位"
         },
         {
             "id": "vb_week_3",
             "type": "排球",
             "date": "06/27(四)",
             "dateAbbr": "2024-06-27",
+            "dateMD":"06/27",
             "startTime": "18:00",
             "endTime": "22:00",
             "city": "新北市",
@@ -386,17 +430,46 @@
             "pos": "防守,舉球,攻擊",
             "note": "計分：21分制，場地及好，遮陽避雨～～",
             "host": "王大明",
-            "appl": ["陳小明","陳曉成"],
-            "cancel": "朱力士",
+            "hostId":"player6",
+            "appl": [
+              {
+                "id": "player3",
+                "name": "王鵬豪",
+                "bmLevel": "中上",
+                "vbLevel": "B",
+                "attnRate": "85",
+                "ps":"會遲到15分鐘左右",
+                "note":"基本上都會遲到"
+            },
+            {
+                "id": "player4",
+                "name": "尤利水",
+                "bmLevel": "新手",
+                "vbLevel": "B",
+                "attnRate": "82",
+                "ps":"",
+                "note":"態度積極"
+            }],
+            "cancel": [{
+              "id": "player5",
+              "name": "陳猷明",
+              "bmLevel": "中階",
+              "vbLevel": "B",
+              "attnRate": "88",
+              "reason":"小孩生病要回家照顧"
+          }],
             "like": "false",
-            "state": "host"
+            "identity": "host"
+            ,
+            "state":"3/4位"
         },
         {
             "id": "vb_week_4",
             "type": "排球",
             "date": "06/30(日)",
             "dateAbbr": "2024-06-30",
-            "startTime": "10:00",
+            "dateMD":"06/30",
+            "startTime": "13:00",
             "endTime": "15:00",
             "city": "新北市",
             "area": ["板橋區"],
@@ -421,16 +494,45 @@
             "pos": "攻擊",
             "note": "希望有基礎能力, 打起來比較順利.",
             "host": "王大明",
-            "appl": ["陳小明","陳曉成"],
-            "cancel": "朱力士",
+            "hostId":"player6",
+            "appl": [
+              {
+                "id": "player3",
+                "name": "王鵬豪",
+                "bmLevel": "中上",
+                "vbLevel": "A",
+                "attnRate": "85",
+                "ps":"",
+                "note":"基本上都會遲到"
+            },
+            {
+                "id": "player4",
+                "name": "尤利水",
+                "bmLevel": "新手",
+                "vbLevel": "B",
+                "attnRate": "82",
+                "ps":"雖然還沒到A,但想跟高手打打看",
+                "note":"態度積極"
+            }],
+            "cancel": [{
+              "id": "player5",
+              "name": "陳猷明",
+              "bmLevel": "中階",
+              "vbLevel": "B",
+              "attnRate": "88",
+              "reason":"家人臨時住院，要去醫院"
+              
+          }],
             "like": "false",
-            "state": "host"
+            "identity": "host",
+            "state":"3/4位"
         },
         {
             "id": "vb_week_5",
             "type": "排球",
-            "date": "06/26(三)",
+            "date": "06/28(三)",
             "dateAbbr": "2024-06-28",
+            "dateMD":"06/28",
             "startTime": "11:00",
             "endTime": "13:00",
             "city": "台北市",
@@ -456,16 +558,18 @@
             "pos": "中等發球,防守",
             "note": "-",
             "host": "王大明",
+            "hostId":"player6",
             "appl": ["陳小明","陳曉成"],
             "cancel": "朱力士",
             "like": "false",
-            "state": "default"
+            "identity": "default"
         },
         {
             "id": "vb_week_6",
             "type": "排球",
-            "date": "06/26(三)",
+            "date": "06/28(三)",
             "dateAbbr": "2024-06-28",
+            "dateMD":"06/28",
             "startTime": "18:00",
             "endTime": "22:00",
             "city": "新北市",
@@ -491,16 +595,18 @@
             "pos": "不拘",
             "note": "希望報名者有基本程度，懂攻防，會站位，非新手場",
             "host": "陳曉成",
+            "hostId":"player2",
             "appl": ["陳小明","陳曉成"],
             "cancel": "朱力士",
             "like": "false",
-            "state": "default"
+            "identity": "default"
         },
         {
             "id": "vb_week_7",
             "type": "排球",
-            "date": "06/26(三)",
+            "date": "06/27(三)",
             "dateAbbr": "2024-06-27",
+            "dateMD":"06/27",
             "startTime": "9:00",
             "endTime": "12:00",
             "city": "台北市",
@@ -526,16 +632,18 @@
             "pos": "不拘",
             "note": "冷氣錢另計",
             "host": "王大明",
+            "hostId":"player6",
             "appl": ["陳小明","陳曉成"],
             "cancel": "朱力士",
             "like": "false",
-            "state": "default"
+            "identity": "default"
         },
         {
             "id": "vb_week_8",
             "type": "排球",
-            "date": "06/26(三)",
+            "date": "06/30(三)",
             "dateAbbr": "2024-06-30",
+            "dateMD":"06/30",
             "startTime": "10:00",
             "endTime": "11:00",
             "city": "桃園市",
@@ -561,10 +669,11 @@
             "pos": "不拘",
             "note": "具基本接發攻擊及站位觀念",
             "host": "尤利水",
+            "hostId":"player4",
             "appl": ["陳小明","陳曉成"],
             "cancel": "朱力士",
             "like": "false",
-            "state": "default"
+            "identity": "default"
         }
     ]},
     {
@@ -574,6 +683,7 @@
             "type": "羽球",
             "date": "06/26(三)",
             "dateAbbr": "2024-06-26",
+            "dateMD":"06/26",
             "startTime": "13:00",
             "endTime": "18:00",
             "city": "台北市",
@@ -600,16 +710,18 @@
             "equip": "冷氣,冷熱水淋浴間,飲水機,木地板場",
             "note": "挑戰高手 (尋求刺激),如有興趣轉換成季打 也歡迎",
             "host": "尤利水",
+            "hostId":"player4",
             "appl": ["陳小明","陳曉成"],
             "cancel": "朱力士",
             "like": "true",
-            "state": "default"
+            "identity": "default"
         },
         {
             "id": "bm_today_2",
             "type": "羽球",
             "date": "06/26(三)",
             "dateAbbr": "2024-06-26",
+            "dateMD":"06/26",
             "startTime": "10:00",
             "endTime": "15:00",
             "city": "新北市",
@@ -635,22 +747,25 @@
             "equip": "停車,冷熱水淋浴間,飲水機",
             "note": "交通方便",
             "host": "陳曉成",
+            "hostId":"player2",
             "appl": ["陳小明","陳曉成"],
             "cancel": "朱力士",
             "like": "true",
-            "state": "appiled"
+            "identity": "appiled",
+            "state":"申請中"
         },
         {
             "id": "bm_today_3",
             "type": "羽球",
             "date": "06/26(三)",
             "dateAbbr": "2024-06-26",
-            "startTime": "17:00",
-            "endTime": "21:00",
+            "dateMD":"06/26",
+            "startTime": "18:00",
+            "endTime": "20:00",
             "city": "台北市",
             "area": "中正區",
             "arena": "成功高中",
-            "tagDegree": "新手~初上",
+            "tagDegree": "中下~中階",
             "tagPrice": "200",
             "reqCount":  [
               {
@@ -670,22 +785,50 @@
             "equip": "飲水機",
             "note": "專人排場不少打",
             "host": "王大明",
-            "appl": ["陳小明","陳曉成"],
-            "cancel": "朱力士",
+            "hostId":"player6",
+            "appl": [
+              {
+                "id": "player1",
+                "name": "陳小明",
+                "bmLevel": "中階",
+                "vbLevel": "A",
+                "attnRate": "85",
+                "ps":"",
+                "note":"體力好"
+            },
+            {
+                "id": "player2",
+                "name": "陳曉成",
+                "bmLevel": "中下",
+                "vbLevel": "C",
+                "attnRate": "80",
+                "ps":"",
+                "note":""
+            }],
+            "cancel": [{
+              "id": "player5",
+              "name": "陳猷明",
+              "bmLevel": "中階",
+              "vbLevel": "B",
+              "attnRate": "88",
+              "reason":"臨時被通知要加班開會"
+          }],
             "like": "false",
-            "state": "host"
+            "identity": "host",
+            "state":"1/5位"
         },
         {
             "id": "bm_today_4",
             "type": "羽球",
             "date": "06/26(三)",
             "dateAbbr": "2024-06-26",
+            "dateMD":"06/26",
             "startTime": "10:00",
             "endTime": "15:00",
             "city": "台北市",
             "area": "中正區",
             "arena": "成功高中",
-            "tagDegree": "初階",
+            "tagDegree": "初階~中下",
             "tagPrice": "125",
             "reqCount": [
               {
@@ -705,16 +848,44 @@
             "equip": "飲水機,風扇",
             "note": "進學校左轉上3樓，靠近講台兩面場，原則上打1休1",
             "host": "王大明",
-            "appl": ["陳小明","陳曉成"],
-            "cancel": "朱力士",
+            "hostId":"player6",
+            "appl": [
+              {
+                "id": "player1",
+                "name": "陳小明",
+                "bmLevel": "中階",
+                "vbLevel": "A",
+                "attnRate": "85",
+                "ps":"",
+                "note":"體力好"
+            },
+            {
+                "id": "player2",
+                "name": "陳曉成",
+                "bmLevel": "中下",
+                "vbLevel": "C",
+                "attnRate": "80",
+                "ps":"可能會晚到",
+                "note":""
+            }],
+            "cancel": [{
+              "id": "player5",
+              "name": "陳猷明",
+              "bmLevel": "中階",
+              "vbLevel": "B",
+              "attnRate": "88",
+              "reason":"感冒發燒"
+          }],
             "like": "false",
-            "state": "host"
+            "identity": "host",
+            "state":"4/5位"
         },
         {
             "id": "bm_today_5",
             "type": "羽球",
             "date": "06/26(三)",
             "dateAbbr": "2024-06-26",
+            "dateMD":"06/26",
             "startTime": "11:00",
             "endTime": "13:00",
             "city": "台北市",
@@ -740,16 +911,18 @@
             "equip": "風扇",
             "note": "非受迫長球可至中後場，具輪轉補位意識。",
             "host": "王鵬豪",
+            "hostId":"player3",
             "appl": ["陳小明","陳曉成"],
             "cancel": "朱力士",
             "like": "false",
-            "state": "default"
+            "identity": "default"
         },
         {
             "id": "bm_today_6",
             "type": "羽球",
             "date": "06/26(三)",
             "dateAbbr": "2024-06-26",
+            "dateMD":"06/26",
             "startTime": "20:00",
             "endTime": "22:00",
             "city": "台北市",
@@ -775,16 +948,18 @@
             "equip": "停車,冷熱水淋浴間",
             "note": "誠徵開心打球、流汗運動",
             "host": "陳曉成",
+            "hostId":"player2",
             "appl": ["陳小明","陳曉成"],
             "cancel": "朱力士",
             "like": "false",
-            "state": "default"
+            "identity": "default"
         },
         {
             "id": "bm_today_7",
             "type": "羽球",
             "date": "06/26(三)",
             "dateAbbr": "2024-06-26",
+            "dateMD":"06/26",
             "startTime": "17:00",
             "endTime": "19:00",
             "city": "台北市",
@@ -810,16 +985,18 @@
             "equip": "木質地板球場,停車場",
             "note": "本團屬歡樂團 謝絕臭臉碎念 以及臨時放鳥之人",
             "host": "陳猷明",
+            "hostId":"player5",
             "appl": ["陳小明","陳曉成"],
             "cancel": "朱力士",
             "like": "false",
-            "state": "default"
+            "identity": "default"
         },
         {
             "id": "bm_today_8",
             "type": "羽球",
             "date": "06/26(三)",
             "dateAbbr": "2024-06-26",
+            "dateMD":"06/26",
             "startTime": "10:00",
             "endTime": "12:00",
             "city": "台北市",
@@ -845,10 +1022,11 @@
             "equip": "販賣部",
             "note": "-",
             "host": "黃筱原",
+            "hostId":"player8",
             "appl": ["陳小明","陳曉成"],
             "cancel": "朱力士",
             "like": "false",
-            "state": "default"
+            "identity": "default"
         }
     ]
     },
@@ -859,6 +1037,7 @@
             "type": "羽球",
             "date": "06/28(五)",
             "dateAbbr": "2024-06-28",
+            "dateMD":"06/28",
             "startTime": "10:00",
             "endTime": "13:00",
             "city": "台北市",
@@ -884,16 +1063,19 @@
             "equip": "飲水機",
             "note": "入口在哈密街59巷21弄 ，經過警衛室後左轉上四樓球場",
             "host": "王鵬豪",
+            "hostId":"player3",
             "appl": ["陳小明","陳曉成"],
             "cancel": "朱力士",
             "like": "true",
-            "state": "appiled"
+            "identity": "appiled",
+            "state":"申請中"
         },
         {
             "id": "bm_week_2",
             "type": "羽球",
             "date": "06/26(三)",
             "dateAbbr": "2024-06-26",
+            "dateMD":"06/26",
             "startTime": "10:00",
             "endTime": "15:00",
             "city": "台北市",
@@ -919,16 +1101,20 @@
             "equip": "側光",
             "note": "專人排場不少打",
             "host": "陳曉成",
+            "hostId":"player2",
             "appl": ["陳小明"],
             "cancel": "朱力士",
             "like": "false",
-            "state": "appiled"
+            "identity": "appiled"
+            ,
+            "state":"已取消"
         },
         {
             "id": "bm_week_3",
             "type": "羽球",
             "date": "06/27(四)",
             "dateAbbr": "2024-06-27",
+            "dateMD":"06/27",
             "startTime": "19:00",
             "endTime": "21:00",
             "city": "台北市",
@@ -954,15 +1140,19 @@
             "equip": "木質地板球場,停車場",
             "note": "若臨時有不可抗拒的因素,而無法出席時，也煩請儘早通知",
             "host": "陳猷明",
+            "hostId":"player5",
             "cancel": "朱力士",
             "like": "false",
-            "state": "appiled"
+            "identity": "appiled",
+            "state":"取消ing"
+
         },
         {
             "id": "bm_week_4",
             "type": "羽球",
             "date": "06/30(日)",
             "dateAbbr": "2024-06-30",
+            "dateMD":"06/30",
             "startTime": "10:00",
             "endTime": "15:00",
             "city": "台北市",
@@ -988,16 +1178,19 @@
             "equip": "飲水機",
             "note": "勝負心不強、友善的球友報名",
             "host": "黃筱原",
+            "hostId":"player7",
             "appl": ["陳小明","陳曉成"],
             "cancel": "朱力士",
             "like": "true",
-            "state": "appiled"
+            "identity": "appiled",
+            "state":"候補中"
         },
         {
             "id": "bm_week_5",
             "type": "羽球",
             "date": "06/26(三)",
             "dateAbbr": "2024-06-26",
+            "dateMD":"06/26",
             "startTime": "11:00",
             "endTime": "13:00",
             "city": "台北市",
@@ -1023,16 +1216,18 @@
             "equip": "風扇",
             "note": "非受迫長球可至中後場，具輪轉補位意識。",
             "host": "王鵬豪",
+            "hostId":"player3",
             "appl": ["陳小明","陳曉成"],
             "cancel": "朱力士",
             "like": "false",
-            "state": "default"
+            "identity": "default"
         },
         {
             "id": "bm_week_6",
             "type": "羽球",
             "date": "06/26(三)",
             "dateAbbr": "2024-06-26",
+            "dateMD":"06/26",
             "startTime": "20:00",
             "endTime": "22:00",
             "city": "台北市",
@@ -1058,15 +1253,17 @@
             "equip": "停車,冷熱水淋浴間",
             "note": "誠徵開心打球、流汗運動",
             "host": "陳曉成",
+            "hostId":"player2",
             "appl": ["陳小明"],
             "cancel": "朱力士",
             "like": "false",
-            "state": "default"
+            "identity": "default"
         },
         {
             "id": "bm_week_7",
             "type": "羽球",
             "date": "06/26(三)",
+            "dateMD":"06/26",
             "dateAbbr": "2024-06-26",
             "startTime": "17:00",
             "endTime": "19:00",
@@ -1093,16 +1290,18 @@
             "equip": "木質地板球場,停車場",
             "note": "本團屬歡樂團 謝絕臭臉碎念 以及臨時放鳥之人",
             "host": "陳猷明",
+            "hostId":"player5",
             "appl": ["陳小明","陳曉成"],
             "cancel": "朱力士",
             "like": "false",
-            "state": "default"
+            "identity": "default"
         },
         {
             "id": "bm_week_8",
             "type": "羽球",
             "date": "06/26(三)",
             "dateAbbr": "2024-06-26",
+            "dateMD":"06/26",
             "startTime": "10:00",
             "endTime": "12:00",
             "city": "台北市",
@@ -1128,10 +1327,11 @@
             "equip": "停車,冷熱水淋浴間,飲水機",
             "note": "交通方便",
             "host": "陳曉成",
+            "hostId":"player2",
             "appl": ["陳小明"],
             "cancel": "朱力士",
             "like": "false",
-            "state": "default"
+            "identity": "default"
         }
     ]
     }

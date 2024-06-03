@@ -39,7 +39,7 @@
     <script crossorigin src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script> -->
   </head>
 
-  <body id="body">
+  <body id="body" class="background-Vb">
     <small class="fileName">檔名：<code>index.html</code></small>
 
     <div id="root"></div>
@@ -79,7 +79,9 @@
           );
         };
         const App = () => {
-          // const [backgroundImage, setBackgroundImage] = useState("url('../images/CatBg.jpg')");
+          const [backgroundImage, setBackgroundImage] = useState(
+            "url('./images/bg-phone.jpg')"
+          );
           const [mainColor, setMainColor] = useState("#14AAEB");
           const [fontColor, setFontColor] = useState("#147CB6");
           const [btnColor, setBtnColor] = useState("#F1DB15");
@@ -149,8 +151,8 @@
               decorate = 'url("../../images/index-searchDog.png")';
               topBanner = "./images/mobiletopbm.png";
               // 新增class改變背景
-              //bodyStyle.classList.add("background-Bm");
-              //bodyStyle.classList.remove("background-Vb");
+              bodyStyle.classList.add("background-Bm");
+              bodyStyle.classList.remove("background-Vb");
               setSelectedButton(id);
               /* 改變要map的資料名稱 */
               setTodayType("bm_today_postData");
@@ -162,8 +164,7 @@
               //更多的連結
               hrefTodayMore = "羽球-本日貼文";
               hrefWeekMore = "羽球-本週貼文";
-              // hrefTodayMore = "./BMtodayMore-postsArea.html";
-              // hrefWeekMore = "./BMweekMore-postsArea.html";
+
               //羽球程度
               setdegreeTag("初階");
             } else if (id === "btn-typeVb" || id === "btn-formVB") {
@@ -176,8 +177,8 @@
               decorate = "url('../../images/index-searchCat.png')";
               topBanner = "./images/mobiletopvb.svg";
               //
-              //bodyStyle.classList.remove("background-Bm");
-              //bodyStyle.classList.add("background-Vb");
+              bodyStyle.classList.remove("background-Bm");
+              bodyStyle.classList.add("background-Vb");
               setSelectedButton(id);
               //
               setTodayType("vb_today_postData");
@@ -827,6 +828,7 @@
             id,
             type,
             postDate,
+            dateMD,
             postStartTime,
             postEndTime,
             postCity,
@@ -841,11 +843,13 @@
             note,
             href,
             host,
+            hostId,
             appl,
             cancel,
             ballBrand,
             like,
             state,
+            identity,
           }) => {
             /* 要彈出的元件連結 */
             const [postHref, setPostHref] = useState(`#${href}`);
@@ -855,22 +859,37 @@
             const [showApplicants, setShowApplicants] = useState("");
             /* 顯示取消列 */
             const [showCancel, setShowCancel] = useState("");
+            /* 是否顯示審核列表 */
+            const [mapAuditList, setMapAuditList] = useState(false);
 
             useEffect(() => {
-              if (state == "host") {
+              if (identity == "host") {
                 setPostHref(`#auditApplyPopup-${id}`);
                 setShowApplicants("flex");
                 setShowCancel("none");
                 setIsPopUp("查看");
-              } else if (state == "appiled") {
+                setMapAuditList(true);
+              } else if (identity == "appiled") {
                 setPostHref(`#auditApplyPopup-${id}`);
                 setShowApplicants("none");
                 setShowCancel("flex");
                 setIsPopUp("查看");
+                setMapAuditList(false);
               } else {
                 setIsPopUp("報名元件");
               }
-            }, [state]);
+            }, []);
+            //按確定報名後改變
+            const [nowState, setNowState] = useState("default");
+            useEffect(() => {
+              //
+              if (nowState == "applied") {
+                setPostHref(`#auditApplyPopup-${id}`);
+                setShowApplicants("none");
+                setShowCancel("flex");
+                setIsPopUp("查看");
+              }
+            }, [nowState]);
             /*  是否呼叫報名元件 */
             const [callApplyCard, setCallApplyCard] = useState(false);
             /* 是否呼叫查看貼文元件 */
@@ -945,15 +964,17 @@
                     pos={pos}
                     note={note}
                     host={host}
+                    hostId={hostId}
                     ballBrand={ballBrand}
                     noticeHref={`${href}-noticeApplyPopUp-${id}`}
                     like={like}
                     state={state}
+                    setNowState={setNowState}
                   />
                 )}
                 {detailNotify && (
                   <DetailPostCard
-                    day={postDate}
+                    day={dateMD}
                     startTime={postStartTime}
                     endTime={postEndTime}
                     type={type}
@@ -978,6 +999,7 @@
                     typeFontStyle={fontColor}
                     showApplicants={showApplicants}
                     showCancel={showCancel}
+                    mapAuditList={mapAuditList}
                   />
                 )}
               </>
@@ -1004,14 +1026,15 @@
             ballBrand,
             note,
             host,
+            hostId,
             noticeHref,
             like,
             state,
+            setNowState,
           }) => {
             const [showBallBrand, setShowBallBrand] = useState("none");
             const [showVbInfo, setShowVbInfo] = useState("flex");
             const [isLike, setIsLike] = useState("");
-            const [nowState, setNowState] = useState("default");
             const [btnDisplay, setBtnDisplay] = useState("flex");
             useEffect(() => {
               if (type == "羽球") {
@@ -1036,6 +1059,7 @@
             const [showNotice, setShowNotice] = useState(false);
             const handleNotice = () => {
               setShowNotice(true);
+              setNowState("applied");
             };
             return (
               <>
@@ -1118,7 +1142,7 @@
                           <div className="apply-info">
                             <hr />
                             <img
-                              src={`./images/host-${hostType}.png`}
+                              src={`./images/${hostId}.png`}
                               alt="團主頭貼"
                             />
                             <p>
@@ -1207,6 +1231,7 @@
             typeFontStyle,
             showApplicants,
             showCancel,
+            mapAuditList,
           }) => {
             /* 出席率圖 */
             const [ellipseBar, setEllipseBar] = useState("");
@@ -1222,51 +1247,55 @@
               if (type === "羽球") {
                 typeStyle = "rgba(131, 185, 15, 0.9)";
                 typeFontStyle = "#689607";
-                ellipseBar = "/images/ellipsebarbm.png";
+                ellipseBar = "./images/ellipsebarbm.png";
                 //副資訊
                 setShowBmInfo("flex");
                 setShowVbInfo("none");
               } else if (type === "排球") {
                 typeStyle = "#14AAEB";
                 typeFontStyle = "#147CB6";
-                ellipseBar = "/images/ellipsebarvb.png";
+                ellipseBar = "./images/ellipsebarvb.png";
                 //副資訊
                 setShowBmInfo("none");
                 setShowVbInfo("flex");
               }
               setEllipseBar(ellipseBar);
-            }, type);
+            }, [type]);
             const [popupState, setPopupState] = useState({});
             //傳入id使其能對應元件
-            const handlePopup = (popupId) => {
+            /*  const handlePopup = (popupId) => {
               //將useState設定成之前狀態(prevState)的相反
               setPopupState((prevState) => ({
                 ...prevState,
                 [popupId]: !prevState[popupId],
               }));
-            };
+            }; */
             /* 是否生成審核取消元件 */
             const [auditCancelCard, setAuditCancelCard] = useState(false);
+            const [cancelIsNew, setCancelIsNew] = useState("block");
             const handleAuditCancelCard = () => {
               setAuditCancelCard(true);
+              setCancelIsNew("none");
             };
             /* 是否生成查看行程元件 */
             const [detailsNotifyCard, setDetailsNotifyCard] = useState(false);
             const handleDetailsNotifyCard = () => {
               setDetailsNotifyCard(true);
             };
+
             /* 是否生成審核報名元件 */
             const [auditApplyCard, setAuditApplyCard] = useState("");
-            const [isNew, setIsNew] = useState("block");
             const [popupId, setPopupId] = useState("");
-            const handleAuditApplyCard = (type, index) => {
-              setIsNew("none");
-              setAuditApplyCard(type);
-              setPopupId(`${index}`);
-              console.log(type);
-            };
+
             /* 申請者元件 */
-            const ApplicantsCard = ({ appl, id, index }) => {
+            const ApplicantsCard = ({ applyId, index, appl}) => {
+              const [isNew, setIsNew] = useState("block");
+              const handleAuditApplyCard = (type, index) => {
+                setIsNew("none");
+                setAuditApplyCard(type);
+                setPopupId(`${index}`);
+                console.log(type);
+              };
               return (
                 <>
                   <a
@@ -1277,13 +1306,116 @@
                   >
                     <img
                       className="img-border"
-                      src={`../images/player${index}.png`}
-                      alt=""
+                      src={`./images/${applyId}.png`}
+                      alt="申請者頭像"
                     />
                     <div className="notice-new" style={{ display: isNew }}>
                       New
                     </div>
                   </a>
+                </>
+              );
+            };
+            /* 審核列表 */
+            const AuditList = ({ prop }) => {
+              /* const [applicantsState, setApplicantsState] = useState(
+                appl.map(() => ({ isNew: "block" }))
+              );
+
+              const handleAuditApplyCard = (type,index) => {
+                
+                // const newState = applicantsState.map((state, idx) =>
+                //   idx === index ? { isNew: "none" } : state
+                // );
+                // console.log(newState);
+                setApplicantsState((prevState)=>{
+                  prevState.map((state, idx)=>{
+                    idx === index ? { isNew: "none" } : state
+                  })
+                });
+                console.log(prevState);
+                setAuditApplyCard(type);
+                setPopupId(`${index}`);
+              }; */
+              return (
+                <>
+                  <div
+                    className="auditList"
+                    style={{ display: showApplicants }}
+                  >
+                    <div className="sponsored-title">
+                      <div className="line-hugTitle">
+                        <div className="titleLine"></div>
+                        <h3>球友申請列表</h3>
+                        <small> 已徵{state}</small>
+                      </div>
+                      <div className="titleArrowBtn">
+                        <button>
+                          <img src="./images/btn-left.png" alt="前一個" />
+                        </button>
+                        <button>
+                          <img src="./images/btn-right.png" alt="後一個" />
+                        </button>
+                      </div>
+                    </div>
+                    <div className="applicant-container">
+                      {appl.map((apply, index) => (
+                        <ApplicantsCard
+                          key={index}
+                          appl={appl}
+                          applyId={apply.id}
+                          index={index}
+                          name={apply.name}
+                          bmLevel={apply.bmLevel}
+                          vbLevel={apply.vbLevel}
+                          attnRate={apply.attnRate}
+                          // isNew={applicantsState[index].isNew}
+                          // handleAuditApplyCard={handleAuditApplyCard}
+                        />
+                      ))}
+
+                      <a
+                        href={`#detailApplyPopup-yes-0`}
+                        onClick={() => handleAuditApplyCard("yes", 0)}
+                      >
+                        <img
+                          className="img-border"
+                          src="./images/player-agree.png"
+                          alt="同意報名"
+                        />
+                      </a>
+                    </div>
+                  </div>
+
+                  <div
+                    className="auditList"
+                    style={{ display: showApplicants }}
+                  >
+                    <div className="sponsored-title">
+                      <div className="line-hugTitle">
+                        <div className="titleLine"></div>
+                        <h3>取消申請列表</h3>
+                      </div>
+                    </div>
+                    <div className="applicant-container">
+                      <a
+                        href={`#auditCancelPopup-${id}-0`}
+                        onClick={handleAuditCancelCard}
+                      >
+                        <img
+                          className="img-border"
+                          src={`./images/${cancel[0].id}.png`}
+                          alt="取消者頭像"
+                        />
+                        <div
+                          className="notice-new"
+                          style={{ display: cancelIsNew }}
+                        >
+                          New
+                        </div>
+                      </a>
+                    </div>
+                  </div>
                 </>
               );
             };
@@ -1313,7 +1445,7 @@
                                 {type}
                               </div>
                               <a className="popup__close" href="#">
-                                <img src="../images/cancel.png" alt="" />
+                                <img src="./images/cancel.png" alt="" />
                               </a>
                             </div>
                             <div
@@ -1391,78 +1523,8 @@
                             </div>
                           </div>
 
-                          <div
-                            className="auditList"
-                            style={{ display: showApplicants }}
-                          >
-                            <div className="sponsored-title">
-                              <div className="line-hugTitle">
-                                <div className="titleLine"></div>
-                                <h3>球友申請列表</h3>
-                                <small> (已徵{state})</small>
-                              </div>
-                              <div className="titleArrowBtn">
-                                <button>
-                                  <img
-                                    src="../images/btn-left.png"
-                                    alt="前一個"
-                                  />
-                                </button>
-                                <button>
-                                  <img
-                                    src="../images/btn-right.png"
-                                    alt="後一個"
-                                  />
-                                </button>
-                              </div>
-                            </div>
-                            <div className="applicant-container">
-                              {appl.map((apply, index) => (
-                                <ApplicantsCard
-                                  key={index}
-                                  appl={apply}
-                                  id={id}
-                                  index={index}
-                                />
-                              ))}
+                          {mapAuditList && <AuditList />}
 
-                              <a
-                                href={`#detailApplyPopup-yes-0`}
-                                onClick={() => handleAuditApplyCard("yes", 0)}
-                              >
-                                <img
-                                  className="img-border"
-                                  src="../images/player-agree.png"
-                                  alt=""
-                                />
-                              </a>
-                            </div>
-                          </div>
-
-                          <div
-                            className="auditList"
-                            style={{ display: showApplicants }}
-                          >
-                            <div className="sponsored-title">
-                              <div className="line-hugTitle">
-                                <div className="titleLine"></div>
-                                <h3>取消申請列表</h3>
-                              </div>
-                            </div>
-                            <div className="applicant-container">
-                              <a
-                                href={`#auditCancelPopup-${id}`}
-                                onClick={handleAuditCancelCard}
-                              >
-                                <img
-                                  className="img-border"
-                                  src="../images/bball.png"
-                                  alt=""
-                                />
-                                <div className="notice-new">New</div>
-                              </a>
-                            </div>
-                          </div>
                           <div
                             className="BtnContainer"
                             style={{ display: showCancel }}
@@ -1485,6 +1547,7 @@
                 </div>
                 {auditApplyCard === "apply" && (
                   <AuditApplyCard
+                    key={popupId}
                     day={day}
                     startTime={startTime}
                     type={type}
@@ -1499,16 +1562,18 @@
                     isApply={"false"}
                   />
                 )}
+                
 
                 {auditApplyCard === "yes" && (
                   <AuditApplyCard
+                    key={popupId}
                     day={day}
                     startTime={startTime}
                     type={type}
                     arena={arena}
                     state={state}
                     appl={appl}
-                    id={"yes"}
+                    id={id}
                     index={0}
                     typeStyle={typeStyle}
                     typeFontStyle={typeFontStyle}
@@ -1525,6 +1590,7 @@
                     arena={arena}
                     state={state}
                     id={id}
+                    cancel={cancel}
                     typeStyle={typeStyle}
                     typeFontStyle={typeFontStyle}
                   />
@@ -1567,20 +1633,34 @@
             const [resultDisplay, setResultDisplay] = useState("none");
             const [resultText, setResultText] = useState("");
             const [resultColor, setResultColor] = useState("#1A8D07");
-            console.log("元件" + isApply + index);
+            const [degreeType, setDegreeType] = useState("");
+            const [thisType, setThisType] = useState("");
+            //console.log(appl);
+            //console.log("元件" + isApply + index);
             useEffect(() => {
               if (isApply === "true") {
+                //如果已同意申請
                 setBtnDisplay("none");
                 setResultDisplay("block");
                 setResultText("接受申請");
               }
-            }, [isApply]);
+              if (type === "羽球") {
+                setThisType("羽");
+                setDegreeType(appl[index].bmLevel);
+              } else {
+                setThisType("排");
+                setDegreeType(appl[index].vbLevel);
+              }
+            }, [isApply, type]);
+
             /* 審核結果標籤 */
             const auditResult = (type) => {
               let text = "";
-
+              //關閉審核按鈕
               setBtnDisplay("none");
+              //顯示審核結果
               setResultDisplay("block");
+              //判斷顯示結果的文字和顏色
               if (type === "no") {
                 text = "已婉拒";
                 setResultColor("#FF4F03");
@@ -1603,10 +1683,13 @@
                     <div className="audit-apply">
                       <div className="topBtn-container">
                         <a href="#">
-                          <img src="../images/waring.png" alt="" />
+                          <img src="./images/waring.png" alt="黑名單" />
                         </a>
-                        <a className="popup__close" href="#">
-                          <img src="../images/cancel.png" alt="" />
+                        <a
+                          className="popup__close"
+                          href={`#auditApplyPopup-${id}`}
+                        >
+                          <img src="./images/cancel.png" alt="關閉" />
                         </a>
                       </div>
                       <div className="audit-info">
@@ -1614,11 +1697,11 @@
                           <div className="info">
                             <img
                               className="applicantImg"
-                              src={`../images/player${index}.png`}
-                              alt=""
+                              src={`./images/${appl[index].id}.png`}
+                              alt="申請者頭像"
                             />
                             <p style={{ color: typeFontStyle }}>
-                              {appl[index]}
+                              {appl[index].name}
                             </p>
                           </div>
                           <div className="info">
@@ -1627,34 +1710,37 @@
                                 className="text-M"
                                 style={{ color: typeFontStyle }}
                               >
-                                85%
+                                {appl[index].attnRate}%
                               </p>
-                              <img src={ellipseBarType} alt="" />
+                              <img src={ellipseBarType} alt="出席率圖" />
                             </div>
                             <p style={{ color: typeFontStyle }}>出席率</p>
                           </div>
                           <div className="info">
                             <div className="userInfo">
-                              <p style={{ backgroundColor: typeStyle }}>B</p>
+                              <p style={{ backgroundColor: typeStyle }}>
+                                {degreeType}
+                              </p>
                             </div>
                             <p style={{ color: typeFontStyle }}>自評等級</p>
                           </div>
                         </div>
                         <div className="info-remark">
                           <h5>備註（僅限自己可看）：</h5>
-                          <p>這個人很愛放鴿子</p>
+                          <p>{appl[index].note}</p>
                         </div>
                         <div className="notice-container">
                           <div
                             className="notice-ballType"
                             style={{ backgroundColor: typeStyle }}
                           >
-                            <p>{type}</p>
+                            <p>{thisType}</p>
                           </div>
                           <div className="notice-info">
-                            <div>
+                            <div className="audit-time">
+                              <p style={{ color: typeFontStyle }}>{day}</p>
                               <p style={{ color: typeFontStyle }}>
-                                {day} {startTime}
+                                {startTime}
                               </p>
                             </div>
                             <p style={{ color: typeFontStyle }}>{arena}</p>
@@ -1665,7 +1751,7 @@
                         </div>
                         <div className="info-applicantNote">
                           <h5>報名備註：</h5>
-                          <p>下班若塞車可能會晚到15分鐘</p>
+                          <p>{appl[index].ps}</p>
                         </div>
                         <div
                           className="bottomBtn-container"
@@ -1710,6 +1796,7 @@
             state,
             id,
             index,
+            cancel,
             typeFontStyle,
             typeStyle,
           }) => {
@@ -1717,6 +1804,15 @@
             const [resultDisplay, setResultDisplay] = useState("none");
             const [resultText, setResultText] = useState("");
             const [resultColor, setResultColor] = useState("#1A8D07");
+            const [thisType, setThisType] = useState("");
+
+            useEffect(() => {
+              if (type === "羽球") {
+                setThisType("羽");
+              } else {
+                setThisType("排");
+              }
+            }, [type]);
             /* 審核結果標籤 */
             const auditResult = (type) => {
               let text = "";
@@ -1733,22 +1829,25 @@
             };
 
             return (
-              /* 燈箱效果-=團主審核報名元件 */
+              /* 燈箱效果-=團主審核取消元件 */
               <div
                 className="popup"
-                id={`auditCancelPopup-${id}-${index}`}
+                id={`auditCancelPopup-${id}-0`}
                 onMouseDown={(e) => e.stopPropagation()}
               >
                 <div className="popup-inner">
                   <div className="popup__content">
-                    {/* 團主審核報名元件 */}
+                    {/* 團主審核取消元件 */}
                     <div className="audit-apply">
                       <div className="topBtn-container">
                         <a href="#">
-                          <img src="../images/waring.png" alt="" />
+                          <img src="./images/waring.png" alt="黑名單" />
                         </a>
-                        <a className="popup__close" href="#">
-                          <img src="../images/cancel.png" alt="" />
+                        <a
+                          className="popup__close"
+                          href={`#auditApplyPopup-${id}`}
+                        >
+                          <img src="./images/cancel.png" alt="關閉" />
                         </a>
                       </div>
                       <div className="audit-info">
@@ -1757,14 +1856,14 @@
                             <div className="applicantInfo">
                               <img
                                 className="applicantImg"
-                                src="../images/player.png"
-                                alt=""
+                                src={`./images/${cancel[0].id}.png`}
+                                alt="取消者頭像"
                               />
-                              <p>Roy</p>
+                              <p>{cancel[0].name}</p>
                             </div>
                             <div className="reason-cancel">
                               <h5>取消原因:</h5>
-                              <p>手受傷</p>
+                              <p>{cancel[0].reason}</p>
                             </div>
                           </div>
                           <div className="selfState-title">
@@ -1777,12 +1876,13 @@
                             className="notice-ballType"
                             style={{ backgroundColor: typeStyle }}
                           >
-                            <p>{type}</p>
+                            <p>{thisType}</p>
                           </div>
                           <div className="notice-info">
-                            <div>
+                            <div className="audit-time">
+                              <p style={{ color: typeFontStyle }}>{day}</p>
                               <p style={{ color: typeFontStyle }}>
-                                {day} {startTime}
+                                {startTime}
                               </p>
                             </div>
                             <p style={{ color: typeFontStyle }}>{arena}</p>
@@ -1847,7 +1947,7 @@
             /* 取消ing標籤 */
             const applicantResult = (type) => {
               setBtnDisplay("none");
-              setResultDisplay("block");
+              setResultDisplay("flex");
               if (type === "cancel") {
                 setResultColor("#FF4F03");
               }
@@ -1877,7 +1977,7 @@
                               {type}
                             </div>
                             <a className="popup__close" href="#">
-                              <img src="../images/cancel.png" alt="" />
+                              <img src="./images/cancel.png" alt="" />
                             </a>
                           </div>
                           <div
@@ -2226,6 +2326,7 @@
                           id={post_data.id}
                           type={post_data.type}
                           postDate={post_data.date}
+                          dateMD={post_data.dateMD}
                           postStartTime={post_data.startTime}
                           postEndTime={post_data.endTime}
                           postCity={post_data.city}
@@ -2239,12 +2340,14 @@
                           note={post_data.note}
                           href={`todayApplyPopUp-${post_data.id}`}
                           host={post_data.host}
+                          hostId={post_data.hostId}
                           appl={post_data.appl}
                           cancel={post_data.cancel}
                           ballBrand={post_data.ballBrand}
                           equip={post_data.equip}
                           like={post_data.like}
                           state={post_data.state}
+                          identity={post_data.identity}
                         />
                       );
                     })}
@@ -2309,7 +2412,6 @@
                     onMouseUp={weekHandleDragEnd}
                     onMouseLeave={weekHandleDragEnd}
                   >
-                 
                     {weekFilterPosts.map((post_data) => {
                       return (
                         <PostCard
@@ -2317,6 +2419,7 @@
                           id={post_data.id}
                           type={post_data.type}
                           postDate={post_data.date}
+                          dateMD={post_data.dateMD}
                           postStartTime={post_data.startTime}
                           postEndTime={post_data.endTime}
                           postCity={post_data.city}
@@ -2330,12 +2433,14 @@
                           note={post_data.note}
                           href={`weekApplyPopUp-${post_data.id}`}
                           host={post_data.host}
+                          hostId={post_data.hostId}
                           appl={post_data.appl}
                           cancel={post_data.cancel}
                           ballBrand={post_data.ballBrand}
                           equip={post_data.equip}
                           like={post_data.like}
                           state={post_data.state}
+                          identity={post_data.identity}
                         />
                       );
                     })}

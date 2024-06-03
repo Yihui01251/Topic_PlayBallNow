@@ -414,15 +414,24 @@ body {
 }
 
 .background-Bm {
-  background-image: url(/images/bgbm-phone.png);
+  @media ($breakpoint-moblie){
+     background-image: url(../../images/bgbm-phone.png);
+  }
+ 
 }
 
 .background-Vb {
-  background-image: url(/images/CatBg.jpg);
+  @media ($breakpoint-moblie){
+     background-image: url(../../images/bgvb-phone.png);
+  }
+ 
 }
 
 .background-both {
-  background-image: url(/images/BothBg.jpg);
+  @media ($breakpoint-moblie){
+    background-image: url(../../images/bg-phone.png);
+  }
+  
 }
 /* react下的root */
 // #root {
@@ -1056,7 +1065,7 @@ footer {
   width: 90%;
   max-width: 20vw;
   min-width: 300px;
-  min-height: 310px;
+  min-height: 260px;
   max-height: 90vh;
   border-radius: 20px;
   background: $background-color-white;
@@ -1568,6 +1577,7 @@ footer {
 }
 /* 確定取消狀態 */
 .audit-cancel {
+  align-self: flex-end;
   justify-self: flex-end;
 }
 .notice-pastRecordsArea {
@@ -1872,8 +1882,8 @@ footer {
 
         .reason-cancel {
           grid-column: 2/4;
-          width: 150px;
-          height: 50px;
+          min-width: 150px;
+          min-height: 50px;
           border-radius: $border-radius-10;
           border: 1px solid $border-black;
           background-color: $background-color-lightgrey;
@@ -1927,13 +1937,16 @@ footer {
     }
     .info-applicantNote {
       width: 275px;
-      height: 40px;
+      min-height: 40px;
       border-radius: $border-radius-10;
       border: 1px solid $border-black;
       background-color: $background-color-lightgrey;
       padding: 10px;
       p {
         line-height: 25px;
+        word-break: break-all;
+        word-wrap: break-word;
+        
       }
     }
   }
