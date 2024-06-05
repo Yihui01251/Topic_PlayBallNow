@@ -216,6 +216,7 @@ h5,
 }
 
 .hugTitle {
+  min-width: 50px;
   width: 100%;
   text-align: center;
   flex: auto;

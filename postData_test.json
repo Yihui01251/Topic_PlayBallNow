@@ -497,22 +497,22 @@
             "hostId":"player6",
             "appl": [
               {
-                "id": "player3",
-                "name": "王鵬豪",
-                "bmLevel": "中上",
+                "id": "player1",
+                "name": "陳小明",
+                "bmLevel": "中階",
                 "vbLevel": "A",
                 "attnRate": "85",
                 "ps":"",
-                "note":"基本上都會遲到"
+                "note":"體力好"
             },
             {
-                "id": "player4",
-                "name": "尤利水",
-                "bmLevel": "新手",
-                "vbLevel": "B",
-                "attnRate": "82",
-                "ps":"雖然還沒到A,但想跟高手打打看",
-                "note":"態度積極"
+                "id": "player2",
+                "name": "陳曉成",
+                "bmLevel": "中下",
+                "vbLevel": "C",
+                "attnRate": "80",
+                "ps":"可能會晚到",
+                "note":""
             }],
             "cancel": [{
               "id": "player5",
