@@ -1292,21 +1292,23 @@
                 console.log("呼叫"+type);
               }
 
+            //是否第一次點擊
+            let first = false; 
             /* 申請者元件 */
             const ApplicantsCard = ({ applyId, index }) => {
-
-              const [isNew, setIsNew] = useState("block"); //new提示狀態
+              //const [isNew, setIsNew] = useState("block"); //new提示狀態
+              let playerId= id.toString() + "中" +applyId.toString();
               //點擊事件
               function handleClick () {
                 //隱藏new提示
-                setIsNew("none");
-                console.log("set it display none");
-               
+                //setIsNew("none");
+                 if(first== false){
+                  first = true;
+                  window.localStorage.setItem(playerId,"none");
+                  console.log("set it display none");
+                  //console.log(window.localStorage.getItem(playerId));
+                }
               };
-              
-              useEffect(() => {
-                console.log(`${applyId}是 第${index}位 Applicant，isNew: ${isNew}`);
-              }, [isNew]);
               return (
                 <>
                   <a
@@ -1321,7 +1323,7 @@
                       src={`./images/${applyId}.png`}
                       alt="申請者頭像"
                     />
-                    <div className="notice-new" style={{ display: isNew }}>
+                    <div className="notice-new" style={{ display: window.localStorage.getItem(playerId) }}>
                       New
                     </div>
                   </a>
@@ -1330,6 +1332,7 @@
             };
             /* 審核列表 */
             const AuditList = ({ prop }) => {
+             
               return (
                 <>
                   <div
@@ -1357,6 +1360,8 @@
                           key={index}
                           applyId={apply.id}
                           index={index}
+                          //isNew={isNew}
+                         //setIsNew={setIsNew}
                           // isNew={applicantsState[index].isNew}
                           //handleAuditApplyCard={handleAuditApplyCard}
                         />
@@ -1548,6 +1553,7 @@
                     typeFontStyle={typeFontStyle}
                     ellipseBarType={ellipseBar}
                     isApply={"false"}
+                    //setIsNew={setIsNew}
                   />
                 )}
 
