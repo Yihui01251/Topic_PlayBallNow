@@ -303,6 +303,9 @@ h2 div {
   grid-template-columns: 10px 10px;
   gap: 41px;
 }
+.titleArrowBtn button {
+  background-color: transparent;
+}
 
 /*  */
 p,

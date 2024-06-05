@@ -217,6 +217,9 @@ h2 div {
   display: grid;
   grid-template-columns: 10px 10px;
   gap: 41px;
+  button{
+    background-color: transparent;
+  }
 }
 
 /*  */
