@@ -1286,21 +1286,35 @@
             /* 是否生成審核報名元件 */
             const [auditApplyCard, setAuditApplyCard] = useState("");
             const [popupId, setPopupId] = useState("");
-
-            /* 申請者元件 */
-            const ApplicantsCard = ({ applyId, index, appl}) => {
-              const [isNew, setIsNew] = useState("block");
-              const handleAuditApplyCard = (type, index) => {
-                setIsNew("none");
+            const handleAuditApplyCard = (type, index) => {
                 setAuditApplyCard(type);
                 setPopupId(`${index}`);
-                console.log(type);
+                console.log("呼叫"+type);
+              }
+
+            //是否第一次點擊
+            let first = false; 
+            /* 申請者元件 */
+            const ApplicantsCard = ({ applyId, index }) => {
+              //const [isNew, setIsNew] = useState("block"); //new提示狀態
+              let playerId= id.toString() + "中" +applyId.toString();
+              //點擊事件
+              function handleClick () {
+                //隱藏new提示
+                //setIsNew("none");
+                 if(first== false){
+                  first = true;
+                  window.localStorage.setItem(playerId,"none");
+                  console.log("set it display none");
+                  //console.log(window.localStorage.getItem(playerId));
+                }
               };
               return (
                 <>
                   <a
                     href={`#detailApplyPopup-${id}-${index}`}
                     onClick={() => {
+                      handleClick(); 
                       handleAuditApplyCard("apply", index);
                     }}
                   >
@@ -1309,7 +1323,7 @@
                       src={`./images/${applyId}.png`}
                       alt="申請者頭像"
                     />
-                    <div className="notice-new" style={{ display: isNew }}>
+                    <div className="notice-new" style={{ display: window.localStorage.getItem(playerId) }}>
                       New
                     </div>
                   </a>
@@ -1318,25 +1332,7 @@
             };
             /* 審核列表 */
             const AuditList = ({ prop }) => {
-              /* const [applicantsState, setApplicantsState] = useState(
-                appl.map(() => ({ isNew: "block" }))
-              );
-
-              const handleAuditApplyCard = (type,index) => {
-                
-                // const newState = applicantsState.map((state, idx) =>
-                //   idx === index ? { isNew: "none" } : state
-                // );
-                // console.log(newState);
-                setApplicantsState((prevState)=>{
-                  prevState.map((state, idx)=>{
-                    idx === index ? { isNew: "none" } : state
-                  })
-                });
-                console.log(prevState);
-                setAuditApplyCard(type);
-                setPopupId(`${index}`);
-              }; */
+             
               return (
                 <>
                   <div
@@ -1362,15 +1358,12 @@
                       {appl.map((apply, index) => (
                         <ApplicantsCard
                           key={index}
-                          appl={appl}
                           applyId={apply.id}
                           index={index}
-                          name={apply.name}
-                          bmLevel={apply.bmLevel}
-                          vbLevel={apply.vbLevel}
-                          attnRate={apply.attnRate}
+                          //isNew={isNew}
+                         //setIsNew={setIsNew}
                           // isNew={applicantsState[index].isNew}
-                          // handleAuditApplyCard={handleAuditApplyCard}
+                          //handleAuditApplyCard={handleAuditApplyCard}
                         />
                       ))}
 
@@ -1560,9 +1553,9 @@
                     typeFontStyle={typeFontStyle}
                     ellipseBarType={ellipseBar}
                     isApply={"false"}
+                    //setIsNew={setIsNew}
                   />
                 )}
-                
 
                 {auditApplyCard === "yes" && (
                   <AuditApplyCard
