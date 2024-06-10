@@ -91,9 +91,7 @@
           const[userBmDegree,setUserBmDegree]=useState("新手");
           const[userVbDegree,setUserVbDegree]=useState("C以下");
           const[registerState,setRegisterState]=useState(false);
-          useEffect(()=>{
-            window.localStorage.isRegister=registerState;
-          },[registerState])
+          
           const saveData =()=>{
             window.localStorage.userPhoto=userPhoto;
             window.localStorage.userName=userName;

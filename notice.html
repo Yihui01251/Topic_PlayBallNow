@@ -34,7 +34,7 @@
         const { future_appl_userData } = userData[4];
 
         const { useState, useEffect, useRef, useMemo } = React;
-
+        //建立行程元件
         const Notify = ({
           name,
           day,
@@ -349,15 +349,7 @@
           showVbInfo,
           ellipseBar,
         }) => {
-          const [popupState, setPopupState] = useState({});
-          //傳入id使其能對應元件
-          const handlePopup = (popupId) => {
-            //將useState設定成之前狀態(prevState)的相反
-            setPopupState((prevState) => ({
-              ...prevState,
-              [popupId]: !prevState[popupId],
-            }));
-          };
+          const [popupState, setPopupState] = useState({}); 
           /* 是否生成審核取消元件 */
           const [auditCancelCard, setAuditCancelCard] = useState(false);
           const handleAuditCancelCard = () => {
@@ -1599,17 +1591,12 @@
           /* 改變map的資料 */
           const [callData, setCallData] = useState(future_All_userData);
 
+          //處理未來行程/過去紀錄按鈕事件
           const changeNotifyType = (id) => {
-            let newType = "";
             setSelectedButton(id);
             setNoticeType(id);
-            if (id == "btn-itinerary") {
-              newType = "itinerary";
-            } else if (id == "btn-pastRecords") {
-              newType = "pastRecords";
-            }
           };
-
+          //處理主辦按鈕事件
           const sponsorChange = () => {
             const sponsorBtn = document.querySelector(".btn-sponsor");
             if (sponsorBtn.classList.contains("selected")) {

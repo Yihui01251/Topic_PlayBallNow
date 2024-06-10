@@ -106,34 +106,34 @@
           const [userName, setUserName] = useState("十全大補");
           const [userPhoto, setUserPhoto] = useState("./images/player.png");
           const [userSex, setUserSex] = useState("未知");
-          const[sexIcon,setSexIcon]=useState("./images/icon-male.png")
+          const [sexIcon, setSexIcon] = useState("./images/icon-male.png");
           const [userIntro, setUserIntro] = useState("很高興認識大家!");
           const [userBmDegree, setUserBmDegree] = useState("");
           const [userVbDegree, setUserVbDegree] = useState("");
           const [registerState, setRegisterState] = useState("false");
 
           useEffect(() => {
-            setUserName(window.localStorage.userName);
-            setUserPhoto(window.localStorage.userPhoto);
-            setUserSex(window.localStorage.userSex);
-            setUserIntro(window.localStorage.userIntro);
             setRegisterState(window.localStorage.isRegister);
-            setUserBmDegree(window.localStorage.BmDegree);
-            setUserVbDegree(window.localStorage.VbDegree);
             if (registerState == "true") {
               console.log("已註冊過");
               setLoginBtn("none");
               setInfoState("block");
+              setUserName(window.localStorage.userName);
+              setUserPhoto(window.localStorage.userPhoto);
+              setUserSex(window.localStorage.userSex);
+              setUserIntro(window.localStorage.userIntro); 
+              setUserBmDegree(window.localStorage.BmDegree);
+              setUserVbDegree(window.localStorage.VbDegree);
             } else {
               setLoginBtn("flex");
               setInfoState("none");
             }
-            if(userSex=="女"){
+            if (userSex == "女") {
               setSexIcon("./images/icon-female.png");
             }
-          }, [registerState, setRegisterState,userSex]);
+          }, [registerState, setRegisterState, userSex]);
 
-          const Records = ({type, date, startTime}) => {
+          const Records = ({ type, date, startTime }) => {
             // const [isSponsor,setIsSponsor]=useState("none");
             // useEffect(()=>{
             //   if(identity==="團主"){
@@ -167,10 +167,7 @@
                         <img src={userPhoto} alt="假頭像" />
                       </figure>
                       <a href="/register.html" style={{ display: loginBtn }}>
-                        <button
-                          className="btn-logInLine"
-
-                        >
+                        <button className="btn-logInLine">
                           Line登入
                           <img src="./images/icon-LINE.png" alt="" />
                         </button>
@@ -223,7 +220,6 @@
                     </div>
                   </div>
                   <div className="infoContainer-records">
-
                     <div className="records-sponsored">
                       <div className="sponsored-title">
                         <div className="line-hugTitle">
