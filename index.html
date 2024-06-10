@@ -33,10 +33,19 @@
         const { useState, useEffect, useRef, useMemo } = React;
 
         //取得json資料
-          const url = './postData_test.json';
-          let response = await fetch(url);
-          let data = await response.json();
-          const { postData } = data;
+          /* XMLHttpRequest */
+          const requestURL = './postData_test.json';
+          let request = new XMLHttpRequest();
+          request.open("GET",requestURL);
+          request.responseType="json";
+          request.send();
+          const postData = request.response;
+          /* fetch */
+          // const url = './postData_test.json';
+          // let response = await fetch(url);
+          // let data = await response.json();
+          // const {postDate} = data;
+          
           console.log(postData);
           const { vb_today_postData } = postData[0];
           const { vb_week_postData } = postData[1];

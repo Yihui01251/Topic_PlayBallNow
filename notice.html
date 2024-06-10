@@ -10,14 +10,8 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.0/redux.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <style>
-      .fileName {
-        display: none;
-      }
-    </style>
   </head>
   <body id="body">
-    <small class="fileName">檔名：<code>notice.html</code></small>
     <!-- 根元素  -->
     <div id="root"></div>
     <script type="text/babel">
@@ -27,14 +21,15 @@
         const { userData } = data.data;
         console.log(userData);
         const { past_ALL_userData } = userData[0];
-        const { past_appl_userData } = userData[5];
         const { future_All_userData } = userData[1];
         const { future_cancel_userData } = userData[2];
         const { future_host_userData } = userData[3];
         const { future_appl_userData } = userData[4];
+        const { past_appl_userData } = userData[5];
 
         const { useState, useEffect, useRef, useMemo } = React;
 
+        /* 建立行程元件*/
         const Notify = ({
           name,
           day,
@@ -86,7 +81,6 @@
             // 保存最新的 identity 值
             const currentIdentity = identity;
             // 身分樣式
-            // console.log("身分: " + currentIdentity);
             let borderStyle = "";
             let newHref = "";
 
@@ -120,7 +114,6 @@
               borderStyle
             );
             setPopupHref(newHref);
-            // console.log("目前連結" + popupHref);
             // 羽or排顏色
             let typeStyle = "";
             let typeFontStyle = "";
@@ -144,14 +137,6 @@
             setTypeFontStyle(typeFontStyle);
             setTypeStyle(typeStyle);
             setEllipseBar(ellipseBar);
-            // document.documentElement.style.setProperty(
-            //   "--font-color",
-            //   typeFontStyle
-            // );
-            // document.documentElement.style.setProperty(
-            //   "--main-color",
-            //   typeStyle
-            // );
 
             // 狀態顏色
             switch (state) {
