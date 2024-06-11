@@ -233,7 +233,6 @@ input {
   font-size: $font-size-text-m;
   font-style: normal;
 }
-
 small,
 .text-S {
   font-size: $font-size-text-s;
@@ -806,8 +805,7 @@ footer {
     width: fit-content;
   }
 }
-%button,
-%a {
+@mixin buttonStyle{
   width: fit-content;
   max-height: 50px;
   margin-top: 5px;
@@ -831,19 +829,19 @@ footer {
   &:active {
     width: fit-content;
     height: fit-content;
-    border-radius: 50px;
     margin-top: 7px;
-    padding-top: 3px;
-    padding-bottom: 0px;
+    padding-top: 0px;
+    padding-bottom: 3px;
     color: $background-color-lightwhite-s;
     background-color: $background-color-deepGrey;
-    border-bottom: -1px solid $second-color-black;
-    border-top: 1px solid black;
+    border-bottom: 1px solid $second-color-black;
+    border-top: 5px solid black;
     border-right: 1px solid black;
     border-left: 1px solid black;
     box-shadow: none;
   }
 }
+
 .button {
   background-color: var(--btn-color);
   width: fit-content;
