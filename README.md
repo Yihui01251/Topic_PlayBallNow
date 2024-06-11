@@ -99,8 +99,8 @@
   
 ## 聯繫方式
 如果有任何問題，可以通過以下方式聯繫：
-負責前端開發: *詹怡慧*
-- 電子郵件: ciuhyi@gmal.com
-- GitHub: [Yihui01251](https://github.com/Yihui01251)
-負責UI設計 : *吳華梵*
-負責UX設計和撰寫json、部分RWD : *黃靖雯*
+- 負責所有前端開發: *詹怡慧*
+   - 電子郵件: ciuhyi@gmal.com
+   - GitHub: [Yihui01251](https://github.com/Yihui01251)
+- 負責UI設計 : *吳華梵*
+- 負責UX設計和撰寫json資料內容、部分RWD : *黃靖雯*
