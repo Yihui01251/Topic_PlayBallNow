@@ -24,7 +24,7 @@
 
     <!-- 載入axios套件 -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="./javaScripts/postData.js"></script>
+    <script src="./javaScripts/component.js"></script>
   </head>
 
   <body id="body" class="background-Vb">
@@ -34,17 +34,18 @@
         const { useState, useEffect, useRef, useMemo } = React;
 
         //取得json資料
-          /* 遠端讀取加上網址 */
-          const data = await axios.get('https://yihui01251.github.io/Topic_PlayBallNow/postData_test.json');
-          
-          const {postData} = data.data;
-          console.log(postData);
-          const { vb_today_postData } = postData[0];
-          const { vb_week_postData } = postData[1];
-          const { bm_today_postData } = postData[2];
-          const { bm_week_postData } = postData[3];
-       
+        /* 遠端讀取加上網址 */
+        const data = await axios.get(
+          "https://yihui01251.github.io/Topic_PlayBallNow/postData_test.json"
+        );
 
+        const { postData } = data.data;
+        console.log(postData);
+        const { vb_today_postData } = postData[0];
+        const { vb_week_postData } = postData[1];
+        const { bm_today_postData } = postData[2];
+        const { bm_week_postData } = postData[3];
+        
         /* 建立元件 footer元件 */
         const Footer = (props) => {
           return (
@@ -65,6 +66,7 @@
             </>
           );
         };
+
         const App = () => {
           const [backgroundImage, setBackgroundImage] = useState(
             "url('./images/bg-phone.jpg')"
@@ -499,7 +501,7 @@
               return matchAllConditions;
             });
           }, [todayType, filterTag, tagDataType, conditions]);
-
+           /* 篩選本週資料 */
           const weekFilterPosts = useMemo(() => {
             // 沒有篩選時渲染全部貼文
             if (!weekfilterDegree && !weekfilterPrice && !weekfilterTime) {
@@ -575,7 +577,8 @@
             setDragStartX(event.clientX);
           };
 
-          const handleDragEnd = () => {
+          const handleDragEnd = (event) => {
+            event.stopPropagation();
             setDragging(false);
           };
 
@@ -1231,16 +1234,6 @@
               }
               setEllipseBar(ellipseBar);
             }, [type]);
-            const [popupState, setPopupState] = useState({});
-            //傳入id使其能對應元件
-            /*  const handlePopup = (popupId) => {
-              //將useState設定成之前狀態(prevState)的相反
-              setPopupState((prevState) => ({
-                ...prevState,
-                [popupId]: !prevState[popupId],
-              }));
-            }; */
-            /* 是否生成審核取消元件 */
             const [auditCancelCard, setAuditCancelCard] = useState(false);
             const [cancelIsNew, setCancelIsNew] = useState("block");
             const handleAuditCancelCard = () => {
@@ -1259,7 +1252,6 @@
             const handleAuditApplyCard = (type, index) => {
               setAuditApplyCard(type);
               setPopupId(`${index}`);
-              console.log("呼叫" + type);
             };
 
             //是否第一次點擊
@@ -1275,8 +1267,6 @@
                 if (first == false) {
                   first = true;
                   window.localStorage.setItem(playerId, "none");
-                  console.log("set it display none");
-                  //console.log(window.localStorage.getItem(playerId));
                 }
               }
               return (

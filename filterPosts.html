@@ -1069,14 +1069,7 @@
               setEllipseBar(ellipseBar);
             }, [type]);
             const [popupState, setPopupState] = useState({});
-            //傳入id使其能對應元件
-            /* const handlePopup = (popupId) => {
-              //將useState設定成之前狀態(prevState)的相反
-              setPopupState((prevState) => ({
-                ...prevState,
-                [popupId]: !prevState[popupId],
-              }));
-            }; */
+
             /* 是否生成審核取消元件 */
             const [auditCancelCard, setAuditCancelCard] = useState(false);
             const [cancelIsNew, setCancelIsNew] = useState("block");
@@ -1091,21 +1084,31 @@
             };
             /* 是否生成審核報名元件 */
             const [auditApplyCard, setAuditApplyCard] = useState("");
-            const [isNew, setIsNew] = useState("block");
             const [popupId, setPopupId] = useState("");
             const handleAuditApplyCard = (type, index) => {
-              setIsNew("none");
               setAuditApplyCard(type);
               setPopupId(`${index}`);
-              console.log(type);
             };
+
             /* 申請者元件 */
-            const ApplicantsCard = ({ applyId, index,appl }) => {
+            //是否第一次點擊
+            let first = false;
+            const ApplicantsCard = ({ applyId, index }) => {
+              let playerId = id.toString() + "中" + applyId.toString();
+              //點擊事件
+              function handleClick() {
+                //隱藏new提示
+                if (first == false) {
+                  first = true;
+                  window.localStorage.setItem(playerId, "none");
+                }
+              }
               return (
                 <>
                   <a
                     href={`#detailApplyPopup-${id}-${index}`}
                     onClick={() => {
+                      handleClick();
                       handleAuditApplyCard("apply", index);
                     }}
                   >
@@ -1114,7 +1117,7 @@
                       src={`./images/${applyId}.png`}
                       alt=""
                     />
-                    <div className="notice-new" style={{ display: isNew }}>
+                    <div className="notice-new" style={{ display: window.localStorage.getItem(playerId) }}>
                       New
                     </div>
                   </a>
@@ -2100,6 +2103,9 @@
                           tagDegree={post_data.tagDegree}
                           tagPrice={post_data.tagPrice}
                           reqCount={post_data.reqCount}
+                          female={post_data.reqCount[0].count}
+                          male={post_data.reqCount[1].count}
+                          unspecified={post_data.reqCount[2].count}
                           role={post_data.role}
                           pos={post_data.pos}
                           equip={post_data.equip}

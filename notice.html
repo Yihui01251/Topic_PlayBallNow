@@ -334,19 +334,13 @@
           showVbInfo,
           ellipseBar,
         }) => {
-          const [popupState, setPopupState] = useState({});
-          //傳入id使其能對應元件
-          const handlePopup = (popupId) => {
-            //將useState設定成之前狀態(prevState)的相反
-            setPopupState((prevState) => ({
-              ...prevState,
-              [popupId]: !prevState[popupId],
-            }));
-          };
           /* 是否生成審核取消元件 */
           const [auditCancelCard, setAuditCancelCard] = useState(false);
+          const [cancelIsNew,setCancelIsNew]=useState("block");
           const handleAuditCancelCard = () => {
             setAuditCancelCard(true);
+            setCancelIsNew("none");
+
           };
           /* 是否生成查看行程元件 */
           const [detailsNotifyCard, setDetailsNotifyCard] = useState(false);
@@ -356,21 +350,30 @@
           /* 是否生成審核報名元件 */
           const [auditApplyCard, setAuditApplyCard] = useState("");
           const [popupId, setPopupId] = useState("");
-          const [isNew, setIsNew] = useState("block");
           const handleAuditApplyCard = (type, index) => {
-            setIsNew("none");
             setAuditApplyCard(type);
             setPopupId(`${index}`);
             console.log(type);
           };
+
           /* 申請者元件 */
-          const ApplicantsCard = ({ appl, id, index }) => {
-            console.log(appl);
-            return (
+          //是否第一次點擊
+          let first = false;
+          const ApplicantsCard = ({index }) => {
+            let playerId = "detailApplyPopup-"+ id + "中player" + index  ;
+             //點擊事件
+             function handleClick() {
+                if (first == false) {
+                  first = true;
+                  window.localStorage.setItem(playerId, "none");
+                }
+              }
+            return ( 
               <>
                 <a
                   href={`#detailApplyPopup-${id}-${index}`}
                   onClick={() => {
+                    handleClick();
                     handleAuditApplyCard("apply", index);
                   }}
                 >
@@ -379,7 +382,7 @@
                     src={`./images/player${index}.png`}
                     alt=""
                   />
-                  <div className="notice-new" style={{ display: isNew }}>
+                  <div className="notice-new" style={{ display: window.localStorage.getItem(playerId) }}>
                     New
                   </div>
                 </a>
@@ -513,8 +516,6 @@
                             {appl.map((apply, index) => (
                               <ApplicantsCard
                                 key={index}
-                                appl={apply}
-                                id={id}
                                 index={index}
                               />
                             ))}
@@ -552,7 +553,7 @@
                                 src="./images/bball.png"
                                 alt=""
                               />
-                              <div className="notice-new">New</div>
+                              <div className="notice-new" style ={{display: cancelIsNew }}>New</div>
                             </a>
                           </div>
                         </div>
