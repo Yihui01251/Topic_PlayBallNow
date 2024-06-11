@@ -39,7 +39,7 @@
 
         const { useState, useEffect } = React;
 
-        const TopBar = () => {
+        const TopBar = ({editFile}) => {
           return (
             <>
               <div className="mobile-TopBar">
@@ -89,7 +89,7 @@
                     </h1>
                     <img src="./images/bmtitle.svg" alt="" />
                   </div>
-                  <a href="register.html" className="button" id="btn-editFile">
+                  <a href="register.html" className="button" id="btn-editFile" style={{pointerEvents: editFile}} >
                     資料編輯
                     <img
                       src="./images/icon-editFile.png"
@@ -113,7 +113,7 @@
           const [userBmDegree, setUserBmDegree] = useState("");
           const [userVbDegree, setUserVbDegree] = useState("");
           const [registerState, setRegisterState] = useState("未註冊");
-
+          const [editFile,setEditFile] = useState("none");
           useEffect(() => {
             setRegisterState(window.localStorage.isRegister);
             if (registerState == "已註冊") {
@@ -125,6 +125,7 @@
               setUserIntro(window.localStorage.userIntro);
               setUserBmDegree(window.localStorage.BmDegree);
               setUserVbDegree(window.localStorage.VbDegree);
+              setEditFile("auto");
 
               setLoginBtn("none");
               setInfoState("block");
@@ -153,7 +154,7 @@
           };
           return (
             <div className="body hiFooter">
-              <TopBar />
+              <TopBar  editFile={editFile}/>
               <main className="personal-Area">
                 <div className="personalArea-infoContainer">
                   <div className="infoContainer-biography">
