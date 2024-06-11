@@ -38,7 +38,8 @@
     <script type="text/babel">
       (async () => {
         //取得json資料
-        const data = await axios.get("./postData_test.json");
+        const data = await axios.get('https://yihui01251.github.io/Topic_PlayBallNow/postData_test.json');
+          
         const { postData } = data.data;
         console.log(postData);
         const { vb_today_postData } = postData[0];

@@ -29,7 +29,7 @@
     <div id="root"></div>
     <script type="text/babel">
       (async () => {
-        const data = await axios.get("./userData.json");
+        const data = await axios.get("https://yihui01251.github.io/Topic_PlayBallNow/userData.json");
         const { userData } = data.data;
         console.log(userData);
         const { past_appl_userData } = userData[5];

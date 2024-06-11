@@ -24,6 +24,7 @@
 
     <!-- 載入axios套件 -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./javaScripts/postData.js"></script>
   </head>
 
   <body id="body" class="background-Vb">
@@ -33,19 +34,10 @@
         const { useState, useEffect, useRef, useMemo } = React;
 
         //取得json資料
-          /* XMLHttpRequest */
-          const requestURL = './postData_test.json';
-          let request = new XMLHttpRequest();
-          request.open("GET",requestURL);
-          request.responseType="json";
-          request.send();
-          const postData = request.response;
-          /* fetch */
-          // const url = './postData_test.json';
-          // let response = await fetch(url);
-          // let data = await response.json();
-          // const {postDate} = data;
+          /* 遠端讀取加上網址 */
+          const data = await axios.get('https://yihui01251.github.io/Topic_PlayBallNow/postData_test.json');
           
+          const {postData} = data.data;
           console.log(postData);
           const { vb_today_postData } = postData[0];
           const { vb_week_postData } = postData[1];
