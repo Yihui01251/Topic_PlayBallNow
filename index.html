@@ -24,7 +24,6 @@
 
     <!-- 載入axios套件 -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="./javaScripts/component.js"></script>
   </head>
 
   <body id="body" class="background-Vb">
@@ -68,6 +67,7 @@
         };
 
         const App = () => {
+          /* 樣式 */
           const [backgroundImage, setBackgroundImage] = useState(
             "url('./images/bg-phone.jpg')"
           );
@@ -91,7 +91,7 @@
           const [selectedButton, setSelectedButton] = useState("btn-typeVb");
           const [BMdisplay, setBMDisplay] = useState("none");
           const [VBdisplay, setVBDisplay] = useState("flex");
-          /* 更多連結 */
+          /* 連結更多貼文頁 */
           const [hrefTodayMore, setHrefTodayMore] = useState("排球-本日貼文");
           const [hrefWeekMore, setHrefWeekMore] = useState("排球-本週貼文");
           //篩選的tag值
@@ -244,10 +244,6 @@
           const [filterTime, setFilterTime] = useState("");
           //篩選本週時段
           const [weekfilterTime, setweekFilterTime] = useState("");
-          //篩選台北
-          const [filterTaipei, setFilterTaipei] = useState("");
-          //篩選新北
-          const [filterXinpei, setFilterXinpei] = useState("");
 
           //儲存篩選條件
           const [conditions, setConditions] = useState({ type: filterTag });
@@ -270,9 +266,6 @@
             }
             if (filterTime !== "") {
               newConditions.startTime = filterTime;
-            }
-            if (filterTaipei !== "") {
-              newConditions.city = filterTaipei;
             }
 
             setConditions(newConditions);
