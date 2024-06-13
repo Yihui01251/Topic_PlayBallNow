@@ -118,7 +118,7 @@
               if (name === "所有過去貼文") {
                 newHref = "evaluateApplyPopup";
               } else {
-                newHref = "auditApplyPopup";
+                newHref = "detailPostPopup";
               }
             } else if (identity === "臨打") {
               borderStyle = "3px solid black";
@@ -127,7 +127,7 @@
               if (name === "所有過去貼文") {
                 newHref = "evaluateSponsorPopup";
               } else {
-                newHref = "auditApplyPopup";
+                newHref = "detailPostPopup";
               }
 
               if (name === "所有未來取消貼文") {
@@ -150,6 +150,7 @@
               typeStyle = "rgba(131, 185, 15, 0.9)";
               typeFontStyle = "#689607";
               ellipseBar = "./images/ellipsebarbm.png";
+              setEllipseBar("./images/ellipsebarbm.png");
               //副資訊
               setShowBallBrand("flex");
               setShowVbInfo("none");
@@ -157,13 +158,13 @@
               typeStyle = "#14AAEB";
               typeFontStyle = "#147CB6";
               ellipseBar = "./images/ellipsebarvb.png";
+              setEllipseBar("./images/ellipsebarvb.png");
               //副資訊
               setShowBallBrand("none");
               setShowVbInfo("flex");
             }
             setTypeFontStyle(typeFontStyle);
             setTypeStyle(typeStyle);
-            setEllipseBar(ellipseBar);
 
             // 狀態顏色
             switch (state) {
@@ -189,7 +190,7 @@
             }
 
             document.getElementsByClassName("notice-container");
-          }, [type, state, identity, popupHref, name, setNewNotifyState]);
+          }, [type, state, identity, name]);
 
           /* 查看貼文元件 */
           const [detailNotify, setDetailNotify] = useState(false);
@@ -200,20 +201,18 @@
           const [sponsorEvaluateCard, setSponsorEvaluateCard] = useState(false);
           /* 是否呼叫元件 */
           const establishDetailNotify = (href) => {
-            {
-              if (href === "auditApplyPopup") {
-                setDetailNotify(true);
-                setApplicantEvaluateCard(false);
-                setSponsorEvaluateCard(false);
-              } else if (href === "evaluateApplyPopup") {
-                setDetailNotify(false);
-                setApplicantEvaluateCard(false);
-                setSponsorEvaluateCard(true);
-              } else {
-                setDetailNotify(false);
-                setApplicantEvaluateCard(true);
-                setSponsorEvaluateCard(false);
-              }
+            if (href === "detailPostPopup") {
+              setDetailNotify(true);
+              setApplicantEvaluateCard(false);
+              setSponsorEvaluateCard(false);
+            } else if (href === "evaluateApplyPopup") {
+              setDetailNotify(false);
+              setApplicantEvaluateCard(false);
+              setSponsorEvaluateCard(true);
+            } else {
+              setDetailNotify(false);
+              setApplicantEvaluateCard(true);
+              setSponsorEvaluateCard(false);
             }
           };
 
@@ -350,7 +349,7 @@
           equip,
           ballBrand,
           note,
-          appl,
+          appl = [],
           cancel,
           popUp,
           typeStyle,
@@ -379,13 +378,12 @@
           const handleAuditApplyCard = (type, index) => {
             setAuditApplyCard(type);
             setPopupId(`${index}`);
-            console.log(type);
-          };
 
+          };
           /* 申請者元件 */
           //是否第一次點擊
           let first = false;
-          const ApplicantsCard = ({ index }) => {
+          const ApplicantsCard = ({ index, id }) => {
             let playerId = "detailApplyPopup-" + id + "中player" + index;
             //點擊事件
             function handleClick() {
@@ -418,9 +416,10 @@
               </>
             );
           };
+
           return (
             <>
-              <div className="popup" id={`auditApplyPopup-${id}`}>
+              <div className="popup" id={`detailPostPopup-${id}`}>
                 <div className="popup-inner">
                   <div className="popup__content">
                     <div className="detailItinerary">
@@ -540,7 +539,11 @@
                           </div>
                           <div className="applicant-container">
                             {appl.map((apply, index) => (
-                              <ApplicantsCard key={index} index={index} />
+                              <ApplicantsCard
+                                key={index}
+                                index={index}
+                                id={id}
+                              />
                             ))}
 
                             <a
@@ -569,7 +572,7 @@
                           <div className="applicant-container">
                             <a
                               href={`#auditCancelPopup-${id}`}
-                              onClick={handleAuditCancelCard()}
+                              onClick={handleAuditCancelCard}
                             >
                               <img
                                 className="img-border"
@@ -689,7 +692,7 @@
           const [resultDisplay, setResultDisplay] = useState("none");
           const [resultText, setResultText] = useState("");
           const [resultColor, setResultColor] = useState("#1A8D07");
-          console.log("元件" + isApply + index);
+
           useEffect(() => {
             if (isApply === "true") {
               setBtnDisplay("none");
@@ -1482,14 +1485,14 @@
               auditResult("yes");
               setBtnDisplay("none");
               setResultDisplay("block");
-              console.log("yse000");
+   
             } else {
               setBtnDisplay("flex");
               setResultDisplay("none");
             }
             if (index === "1" && newState1 === "已評價") {
               auditResult("yes");
-              console.log("yse111");
+  
             } else {
               setBtnDisplay("flex");
               setResultDisplay("none");
@@ -1501,7 +1504,7 @@
 
             setBtnDisplay("none");
             setResultDisplay("block");
-            console.log("setBtnDisplay(none);");
+   
             if (type === "blackList") {
               text = "已加入黑名單";
               setResultColor("#FF4F03");
@@ -1511,11 +1514,11 @@
             setResultText(text);
             if (index === "0") {
               setNewState0("已評價");
-              console.log("回傳0 已評價");
+     
             } else if (index === "1") {
               setNewState1("已評價");
             }
-            //console.log("回傳1 yes");
+
           };
           return (
             <>
@@ -1649,7 +1652,11 @@
 
           return (
             <div className="body">
-              <TopBar mobileTopBar={mobileTopBar} title={"我的行程"} isShow={"none"}/>
+              <TopBar
+                mobileTopBar={mobileTopBar}
+                title={"我的行程"}
+                isShow={"none"}
+              />
               <main className="notice-Area">
                 <div className="notice-type">
                   <button
