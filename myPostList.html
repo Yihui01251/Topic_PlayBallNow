@@ -2,6 +2,7 @@
 <html lang="zh-Hant-TW">
   <head>
     <title>我的貼文(現在想打球)</title>
+    <link rel="icon" href="./fav.ico" />
     <link rel="stylesheet" href="./stylesheets/css/style-scss.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="UTF-8" />
@@ -55,7 +56,7 @@
           equip,
           note,
           like,
-          ballBrand
+          ballBrand,
         }) => {
           const [typeStyle, setTypeStyle] = useState("");
           const [typeFontStyle, setTypeFontStyle] = useState("");
@@ -138,29 +139,29 @@
                 </div>
               </a>
               <DetailPostCard
-              day={day}
-                  startTime={startTime}
-                  endTime={endTime}
-                  type={type}
-                  city={city}
-                  area={area}
-                  arena={arena}
-                  tagDegree={tagDegree}
-                  tagPrice={tagPrice}
-                  state={state}
-                  id={id}
-                  female={female}
-                  male={male}
-                  unspecified={unspecified}
-                  role={role}
-                  equip={equip}
-                  ballBrand={ballBrand}
-                  note={note}
-                  typeStyle={typeStyle}
-                  typeFontStyle={typeFontStyle}
-                  ellipseBar={ellipseBar}
-                  showBmInfo={showBallBrand}
-                  showVbInfo={showVbInfo}
+                day={day}
+                startTime={startTime}
+                endTime={endTime}
+                type={type}
+                city={city}
+                area={area}
+                arena={arena}
+                tagDegree={tagDegree}
+                tagPrice={tagPrice}
+                state={state}
+                id={id}
+                female={female}
+                male={male}
+                unspecified={unspecified}
+                role={role}
+                equip={equip}
+                ballBrand={ballBrand}
+                note={note}
+                typeStyle={typeStyle}
+                typeFontStyle={typeFontStyle}
+                ellipseBar={ellipseBar}
+                showBmInfo={showBallBrand}
+                showVbInfo={showVbInfo}
               />
             </>
           );
@@ -249,12 +250,15 @@
                               {unspecified}位
                             </p>
                           </div>
-                          <div className="ballInfo" style={{ display: showVbInfo }}>
+                          <div
+                            className="ballInfo"
+                            style={{ display: showVbInfo }}
+                          >
                             <h4>類型</h4>
                             <p style={{ color: typeFontStyle }}>{role}</p>
                           </div>
                           <div
-                            className="equipInfo" 
+                            className="equipInfo"
                             style={{ display: showVbInfo }}
                           >
                             <h4>位置</h4>
@@ -280,7 +284,6 @@
                           </div>
                         </div>
 
-
                         <div className="auditList">
                           <div className="sponsored-title">
                             <div className="line-hugTitle">
@@ -290,10 +293,7 @@
                             </div>
                             <div className="titleArrowBtn">
                               <button>
-                                <img
-                                  src="./images/btn-left.png"
-                                  alt="前一個"
-                                />
+                                <img src="./images/btn-left.png" alt="前一個" />
                               </button>
                               <button>
                                 <img
@@ -364,7 +364,6 @@
                 arena={arena}
                 state={state}
                 id={id}
-
                 typeStyle={typeStyle}
                 typeFontStyle={typeFontStyle}
               />
@@ -513,7 +512,8 @@
           arena,
           state,
           id,
-          typeStyle,typeFontStyle
+          typeStyle,
+          typeFontStyle,
         }) => {
           const [btnDisplay, setBtnDisplay] = useState("flex");
           const [resultDisplay, setResultDisplay] = useState("none");
@@ -637,7 +637,7 @@
                         <a href="./index.html">
                           <img
                             className="icon"
-                            src="./images/magnifier.png"
+                            src="./images/magnifier.svg"
                             alt=""
                           />
                           探索
@@ -647,7 +647,7 @@
                         <a href="./publicationForm.html">
                           <img
                             className="icon"
-                            src="./images/post.png"
+                            src="./images/post.svg"
                             alt=""
                           />
                           找人
@@ -657,7 +657,7 @@
                         <a href="notice.html">
                           <img
                             className="icon"
-                            src="./images/bell3.png"
+                            src="./images/bell3.svg"
                             alt=""
                           />
                           行程
@@ -665,7 +665,7 @@
                       </li>
                       <li>
                         <a href="personal.html">
-                          <img className="icon" src="./images/cat.png" alt="" />
+                          <img className="icon" src="./images/cat.svg" alt="" />
                           個人
                         </a>
                       </li>

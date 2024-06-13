@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
   <head>
-    <title> </title>
+    <title>資料編輯_現在想打球</title>
+    <link rel="icon" href="./fav.ico" />
     <link rel="stylesheet" href="./stylesheets/css/style-scss.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="UTF-8" />
@@ -43,7 +44,7 @@
                       <a href="./index.html">
                         <img
                           className="icon"
-                          src="./images/magnifier.png"
+                          src="./images/magnifier.svg"
                           alt=""
                         />
                         探索
@@ -51,19 +52,19 @@
                     </li>
                     <li>
                       <a href="./publicationForm.html">
-                        <img className="icon" src="./images/post.png" alt="" />
+                        <img className="icon" src="./images/post.svg" alt="" />
                         找人
                       </a>
                     </li>
                     <li>
                       <a href="notice.html">
-                        <img className="icon" src="./images/bell3.png" alt="" />
+                        <img className="icon" src="./images/bell3.svg" alt="" />
                         行程
                       </a>
                     </li>
                     <li>
                       <a href="personal.html">
-                        <img className="icon" src="./images/cat.png" alt="" />
+                        <img className="icon" src="./images/cat.svg" alt="" />
                         個人
                       </a>
                     </li>
@@ -90,7 +91,8 @@
           const [userIntro, setUserIntro] = useState("很高興認識大家!");
           const [userBmDegree, setUserBmDegree] = useState("新手");
           const [userVbDegree, setUserVbDegree] = useState("C以下");
-          const [registerState, setRegisterState] = useState("未註冊");
+
+  
           useEffect(() => {
             setRegisterState(window.localStorage.isRegister);
             if (registerState == "已註冊") {
@@ -113,9 +115,9 @@
             window.localStorage.userSex = userSex;
             window.localStorage.BmDegree = userBmDegree;
             window.localStorage.VbDegree = userVbDegree;
+
             window.localStorage.isRegister = "已註冊";
           };
-
 
           return (
             <div className="body">
@@ -151,6 +153,7 @@
                       <label htmlFor="gender">性別</label>
                       <div>
                         <button
+
                           className={userSex == "男" ? "activeBtn" : ""}
                           onClick={() => {
                              setUserSex("男");
@@ -159,6 +162,7 @@
                           男性
                         </button>
                         <button
+
                           className={userSex == "女"? "activeBtn" : ""}
                           onClick={() => {
                              setUserSex("女");
@@ -185,6 +189,8 @@
                         <h2 value="自評程度">自評程度</h2>
                       </div>
                     </div>
+
+
                     <div className="degreeSelect">
                       <select
                         name="degree-bm"
@@ -192,9 +198,11 @@
                         onChange={(e) => {
                           setUserBmDegree(e.target.value);
                         }}
+
                         value={userBmDegree}
                       >
                         <option value="default">羽球</option>
+
                         <option value="新手">新手</option>
                         <option value="初階">初階</option>
                         <option value="初上">初上</option>
@@ -209,6 +217,7 @@
                         onChange={(e) => {
                           setUserVbDegree(e.target.value);
                         }}
+
                         value={userVbDegree}
                       >
                         <option value="default">排球</option>
