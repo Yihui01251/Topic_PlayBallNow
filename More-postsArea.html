@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <script src="./javascripts/vendor.js"></script> -->
+    <!-- 引入 React 和 ReactDOM -->
     <script
       crossorigin
       src="https://unpkg.com/react@18/umd/react.development.js"
@@ -12,13 +12,19 @@
       crossorigin
       src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
     ></script>
+    <!-- 引入 Babel 來轉譯 JSX -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Redux -->
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.0/redux.min.js"
       integrity="sha512-1/8Tj23BRrWnKZXeBruk6wTnsMJbi/lJsk9bsRgVwb6j5q39n0A00gFjbCTaDo5l5XrPVv4DZXftrJExhRF/Ug=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    <!-- 引入axios套件 -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- 使用模組化元件 -->
+    <script type="text/babel" src="./component.js"></script>
     <title>現在想打球</title>
     <link rel="icon" href="./fav.svg" />
     <link rel="stylesheet" href="./stylesheets/css/style-scss.css" />
@@ -30,17 +36,15 @@
   </head>
 
   <body>
-    <small class="fileName"
-      >檔名：<code>More-postsArea.html</code></small
-    >
-    <!-- 載入axios套件 -->
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <small class="fileName">檔名：<code>More-postsArea.html</code></small>
     <div id="root"></div>
     <script type="text/babel">
       (async () => {
         //取得json資料
-        const data = await axios.get('https://yihui01251.github.io/Topic_PlayBallNow/postData_test.json');
-          
+        const data = await axios.get(
+          "https://yihui01251.github.io/Topic_PlayBallNow/postData_test.json"
+        );
+
         const { postData } = data.data;
         console.log(postData);
         const { vb_today_postData } = postData[0];
@@ -64,6 +68,9 @@
           const [BMdisplay, setBMDisplay] = useState("none");
           const [VBdisplay, setVBDisplay] = useState("flex");
           /* 標題 */
+          const [mobileTopBar, setMobileTopBar] = useState(
+            "./images/mobile-both-topbanner.png"
+          );
           const [title, setTitle] = useState("");
           /* 要map的資料 */
           const [mapType, setMapType] = useState("");
@@ -905,7 +912,10 @@
                       src={`./images/${applyId}.png`}
                       alt="申請者頭像"
                     />
-                    <div className="notice-new" style={{ display: window.localStorage.getItem(playerId) }}>
+                    <div
+                      className="notice-new"
+                      style={{ display: window.localStorage.getItem(playerId) }}
+                    >
                       New
                     </div>
                   </a>
@@ -1830,55 +1840,7 @@
           };
           return (
             <div className="body">
-              <div className="mobile-TopBar">
-                <img
-                  src="./images/mobile-both-topbanner.png"
-                  alt="不分類的手機版banner"
-                />
-              </div>
-              <header id="topBar">
-                <nav id="top-nav">
-                  <ul id="menu">
-                    <li>
-                      <a href="./index.html">
-                        <img
-                          className="icon"
-                          src="./images/magnifier.svg"
-                          alt=""
-                        />
-                        探索
-                      </a>
-                    </li>
-                    <li>
-                      <a href="./publicationForm.html">
-                        <img className="icon" src="./images/post.svg" alt="" />
-                        找人
-                      </a>
-                    </li>
-                    <li>
-                      <a href="notice.html">
-                        <img className="icon" src="./images/bell3.svg" alt="" />
-                        行程
-                      </a>
-                    </li>
-                    <li>
-                      <a href="personal.html">
-                        <img className="icon" src="./images/cat.svg" alt="" />
-                        個人
-                      </a>
-                    </li>
-                  </ul>
-                </nav>
-                <div className="title">
-                  <div className="hugTitle noto-sans-tc">
-                    <img src="./images/vbtitle.svg" alt="" />
-                    <h1 className="title-L" value={title}>
-                      {title}
-                    </h1>
-                    <img src="./images/bmtitle.svg" alt="" />
-                  </div>
-                </div>
-              </header>
+              <TopBar mobileTopBar={mobileTopBar} title={title} isShow={"none"}/>
 
               <main className="filter-postArea">
                 <section className="filter-box">
@@ -1963,19 +1925,7 @@
                   </div>
                 </section>
               </main>
-              <footer>
-                <figure className="footer-border"></figure>
-                <div>
-                  <figure>
-                    <img
-                      id="logo"
-                      src="./images/logo.png"
-                      alt="logo-PlayBallNow"
-                    />
-                  </figure>
-                  <p>Copyright© 2024 PlayBallNow. All Right Reserved. </p>
-                </div>
-              </footer>
+              <Footer />
               <FilterForm
                 visible={showFilterForm}
                 selectedDate={selectedDate}
