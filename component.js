@@ -1,5 +1,17 @@
+//component.js
+const { useState, useEffect, useMemo } = React;
+
 /* 建立元件 header元件 */
-const TopBar = ({ mobileTopBar, title,isLogIn, href,btnName,btnImg,btnID,isShow}) => {
+const TopBar = ({
+  mobileTopBar,
+  title,
+  isLogIn,
+  href,
+  btnName,
+  btnImg,
+  btnID,
+  isShow,
+}) => {
   return (
     <>
       <div className="mobile-TopBar">
@@ -42,7 +54,12 @@ const TopBar = ({ mobileTopBar, title,isLogIn, href,btnName,btnImg,btnID,isShow}
             </h1>
             <img src="./images/bmtitle.svg" alt="" />
           </div>
-          <a href={`./${href}.html`} className="button btn-postManage" id={btnID} style={{ pointerEvents: isLogIn , display: isShow }}>
+          <a
+            href={`./${href}.html`}
+            className="button btn-postManage"
+            id={btnID}
+            style={{ pointerEvents: isLogIn, display: isShow }}
+          >
             {btnName}
             <img src={`./images/${btnImg}`} alt="按鈕icon" />
           </a>
@@ -67,3 +84,5 @@ const Footer = (props) => {
     </>
   );
 };
+
+
