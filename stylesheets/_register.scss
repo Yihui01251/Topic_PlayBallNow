@@ -1,4 +1,4 @@
-@import "_varible";
+
 /*  */
 /* 註冊頁 */
 /* main(register-Area)容器 */
@@ -114,20 +114,30 @@
         /* 布局 */
         grid-column: 2;
         grid-row: 2;
-        /* layout */
+        /*  */
         width: fit-content;
-        .button{
-            /* layout */
-            background-color: $background-color-white;
-           margin-right: 10px;
-           margin-top:5px;
-           &:hover{
-            margin-top:0 ;
-           }
+        display: flex;
+        align-items: center;
+        column-gap: 5px;
+        button{
+            /*  */
+            @include buttonStyle;
         }
     }
     
 
+}
+.activeBtn{
+    width: fit-content;
+    height: fit-content;
+    margin-top: 7px;
+    padding-top: 0px;
+    padding-bottom: 3px;
+    color: $background-color-lightwhite-s;
+    background-color: $background-color-deepGrey;
+    border-bottom: 1px solid $second-color-black;
+    border-top: 5px solid black;
+    box-shadow: none;
 }
 .register-degree {
     /* 程度容器 */

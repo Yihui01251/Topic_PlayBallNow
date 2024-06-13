@@ -126,7 +126,7 @@
 
 /* 返回首頁*/
 #btn-filter {
-  @extend %button;
+  @include buttonStyle;
   width: 58px;
   height: 58px;
   top: 4px;

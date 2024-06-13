@@ -861,44 +861,6 @@ footer #logo {
   width: fit-content;
 }
 
-#btn-filter {
-  width: fit-content;
-  max-height: 50px;
-  margin-top: 5px;
-  padding: 5px 18px;
-  border-radius: 50px;
-  border: 2px solid black;
-  border-bottom: 5px solid black;
-  /* 布局 */
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  /*  */
-  text-decoration: none;
-  text-transform: uppercase;
-}
-#btn-filter:hover {
-  margin-top: 0px;
-  box-shadow: 0 6px black;
-  cursor: pointer;
-}
-#btn-filter:active {
-  width: fit-content;
-  height: fit-content;
-  border-radius: 50px;
-  margin-top: 7px;
-  padding-top: 3px;
-  padding-bottom: 0px;
-  color: rgba(247, 246, 245, 0.9);
-  background-color: #353535;
-  border-bottom: -1px solid #000000;
-  border-top: 1px solid black;
-  border-right: 1px solid black;
-  border-left: 1px solid black;
-  box-shadow: none;
-}
-
 .button {
   background-color: var(--btn-color);
   width: fit-content;
@@ -2705,6 +2667,21 @@ button#btn-typeBm.selected {
 
 /* 返回首頁*/
 #btn-filter {
+  width: fit-content;
+  max-height: 50px;
+  margin-top: 5px;
+  padding: 5px 18px;
+  border-radius: 50px;
+  border: 2px solid black;
+  border-bottom: 5px solid black;
+  /* 布局 */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  /*  */
+  text-decoration: none;
+  text-transform: uppercase;
   width: 58px;
   height: 58px;
   top: 4px;
@@ -2715,6 +2692,25 @@ button#btn-typeBm.selected {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+#btn-filter:hover {
+  margin-top: 0px;
+  box-shadow: 0 6px black;
+  cursor: pointer;
+}
+#btn-filter:active {
+  width: fit-content;
+  height: fit-content;
+  margin-top: 7px;
+  padding-top: 0px;
+  padding-bottom: 3px;
+  color: rgba(247, 246, 245, 0.9);
+  background-color: #353535;
+  border-bottom: 1px solid #000000;
+  border-top: 5px solid black;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+  box-shadow: none;
 }
 #btn-filter img {
   width: 18px;
@@ -3828,17 +3824,61 @@ button#btn-pastRecords.selected {
   /* 布局 */
   grid-column: 2;
   grid-row: 2;
-  /* layout */
+  /*  */
   width: fit-content;
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
 }
-.player-info div .button {
-  /* layout */
-  background-color: #ffffff;
-  margin-right: 10px;
+.player-info div button {
+  /*  */
+  width: fit-content;
+  max-height: 50px;
   margin-top: 5px;
+  padding: 5px 18px;
+  border-radius: 50px;
+  border: 2px solid black;
+  border-bottom: 5px solid black;
+  /* 布局 */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  /*  */
+  text-decoration: none;
+  text-transform: uppercase;
 }
-.player-info div .button:hover {
-  margin-top: 0;
+.player-info div button:hover {
+  margin-top: 0px;
+  box-shadow: 0 6px black;
+  cursor: pointer;
+}
+.player-info div button:active {
+  width: fit-content;
+  height: fit-content;
+  margin-top: 7px;
+  padding-top: 0px;
+  padding-bottom: 3px;
+  color: rgba(247, 246, 245, 0.9);
+  background-color: #353535;
+  border-bottom: 1px solid #000000;
+  border-top: 5px solid black;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+  box-shadow: none;
+}
+
+.activeBtn {
+  width: fit-content;
+  height: fit-content;
+  margin-top: 7px;
+  padding-top: 0px;
+  padding-bottom: 3px;
+  color: rgba(247, 246, 245, 0.9);
+  background-color: #353535;
+  border-bottom: 1px solid #000000;
+  border-top: 5px solid black;
+  box-shadow: none;
 }
 
 .register-degree {

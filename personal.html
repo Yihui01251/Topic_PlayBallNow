@@ -30,7 +30,9 @@
     <div id="root"></div>
     <script type="text/babel">
       (async () => {
-        const data = await axios.get("./userData.json");
+        const data = await axios.get(
+          "https://yihui01251.github.io/Topic_PlayBallNow/userData.json"
+        );
         const { userData } = data.data;
         console.log(userData);
         const { past_appl_userData } = userData[5];
@@ -38,7 +40,7 @@
 
         const { useState, useEffect } = React;
 
-        const TopBar = () => {
+        const TopBar = ({editFile}) => {
           return (
             <>
               <div className="mobile-TopBar">
@@ -88,7 +90,7 @@
                     </h1>
                     <img src="./images/bmtitle.svg" alt="" />
                   </div>
-                  <a href="register.html" className="button" id="btn-editFile">
+                  <a href="register.html" className="button" id="btn-editFile" style={{pointerEvents: editFile}} >
                     資料編輯
                     <img
                       src="./images/icon-editFile.png"
@@ -111,12 +113,21 @@
           const [userIntro, setUserIntro] = useState("很高興認識大家!");
           const [userBmDegree, setUserBmDegree] = useState("");
           const [userVbDegree, setUserVbDegree] = useState("");
-          const [registerState, setRegisterState] = useState("false");
-
+          const [registerState, setRegisterState] = useState("未註冊");
+          const [editFile,setEditFile] = useState("none");
           useEffect(() => {
             setRegisterState(window.localStorage.isRegister);
-            if (registerState == "true") {
+
               console.log("已註冊過");
+              //取得使用者資料
+              setUserName(window.localStorage.userName);
+              setUserPhoto(window.localStorage.userPhoto);
+              setUserSex(window.localStorage.userSex);
+              setUserIntro(window.localStorage.userIntro);
+              setUserBmDegree(window.localStorage.BmDegree);
+              setUserVbDegree(window.localStorage.VbDegree);
+              setEditFile("auto");
+
               setLoginBtn("none");
               setInfoState("block");
               setUserName(window.localStorage.userName);
@@ -132,15 +143,9 @@
             if (userSex == "女") {
               setSexIcon("./images/icon-female.png");
             }
-          }, [registerState, setRegisterState, userSex]);
+          },[registerState]);
 
           const Records = ({ type, date, startTime }) => {
-            // const [isSponsor,setIsSponsor]=useState("none");
-            // useEffect(()=>{
-            //   if(identity==="團主"){
-            //     setIsSponsor("flex");
-            //   }
-            // })
             return (
               <>
                 <a style={{ display: infoState }} href="#">
@@ -156,7 +161,7 @@
           };
           return (
             <div className="body hiFooter">
-              <TopBar />
+              <TopBar  editFile={editFile}/>
               <main className="personal-Area">
                 <div className="personalArea-infoContainer">
                   <div className="infoContainer-biography">

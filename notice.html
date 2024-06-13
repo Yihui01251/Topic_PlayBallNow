@@ -11,31 +11,27 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.0/redux.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <style>
-      .fileName {
-        display: none;
-      }
-    </style>
   </head>
   <body id="body">
-    <small class="fileName">檔名：<code>notice.html</code></small>
     <!-- 根元素  -->
     <div id="root"></div>
     <script type="text/babel">
       (async () => {
         //取得json資料
-        const data = await axios.get("./userData.json");
+        const data = await axios.get("https://yihui01251.github.io/Topic_PlayBallNow/userData.json");
         const { userData } = data.data;
         console.log(userData);
         const { past_ALL_userData } = userData[0];
-        const { past_appl_userData } = userData[5];
         const { future_All_userData } = userData[1];
         const { future_cancel_userData } = userData[2];
         const { future_host_userData } = userData[3];
         const { future_appl_userData } = userData[4];
+        const { past_appl_userData } = userData[5];
 
         const { useState, useEffect, useRef, useMemo } = React;
-        //建立行程元件
+
+        /* 建立行程元件*/
+
         const Notify = ({
           name,
           day,
@@ -87,7 +83,6 @@
             // 保存最新的 identity 值
             const currentIdentity = identity;
             // 身分樣式
-            // console.log("身分: " + currentIdentity);
             let borderStyle = "";
             let newHref = "";
 
@@ -121,7 +116,6 @@
               borderStyle
             );
             setPopupHref(newHref);
-            // console.log("目前連結" + popupHref);
             // 羽or排顏色
             let typeStyle = "";
             let typeFontStyle = "";
@@ -145,14 +139,6 @@
             setTypeFontStyle(typeFontStyle);
             setTypeStyle(typeStyle);
             setEllipseBar(ellipseBar);
-            // document.documentElement.style.setProperty(
-            //   "--font-color",
-            //   typeFontStyle
-            // );
-            // document.documentElement.style.setProperty(
-            //   "--main-color",
-            //   typeStyle
-            // );
 
             // 狀態顏色
             switch (state) {
@@ -350,11 +336,14 @@
           showVbInfo,
           ellipseBar,
         }) => {
-          const [popupState, setPopupState] = useState({});
+
           /* 是否生成審核取消元件 */
           const [auditCancelCard, setAuditCancelCard] = useState(false);
+          const [cancelIsNew,setCancelIsNew]=useState("block");
           const handleAuditCancelCard = () => {
             setAuditCancelCard(true);
+            setCancelIsNew("none");
+
           };
           /* 是否生成查看行程元件 */
           const [detailsNotifyCard, setDetailsNotifyCard] = useState(false);
@@ -364,21 +353,30 @@
           /* 是否生成審核報名元件 */
           const [auditApplyCard, setAuditApplyCard] = useState("");
           const [popupId, setPopupId] = useState("");
-          const [isNew, setIsNew] = useState("block");
           const handleAuditApplyCard = (type, index) => {
-            setIsNew("none");
             setAuditApplyCard(type);
             setPopupId(`${index}`);
             console.log(type);
           };
+
           /* 申請者元件 */
-          const ApplicantsCard = ({ appl, id, index }) => {
-            console.log(appl);
-            return (
+          //是否第一次點擊
+          let first = false;
+          const ApplicantsCard = ({index }) => {
+            let playerId = "detailApplyPopup-"+ id + "中player" + index  ;
+             //點擊事件
+             function handleClick() {
+                if (first == false) {
+                  first = true;
+                  window.localStorage.setItem(playerId, "none");
+                }
+              }
+            return ( 
               <>
                 <a
                   href={`#detailApplyPopup-${id}-${index}`}
                   onClick={() => {
+                    handleClick();
                     handleAuditApplyCard("apply", index);
                   }}
                 >
@@ -387,7 +385,7 @@
                     src={`./images/player${index}.png`}
                     alt=""
                   />
-                  <div className="notice-new" style={{ display: isNew }}>
+                  <div className="notice-new" style={{ display: window.localStorage.getItem(playerId) }}>
                     New
                   </div>
                 </a>
@@ -518,8 +516,6 @@
                             {appl.map((apply, index) => (
                               <ApplicantsCard
                                 key={index}
-                                appl={apply}
-                                id={id}
                                 index={index}
                               />
                             ))}
@@ -550,14 +546,14 @@
                           <div className="applicant-container">
                             <a
                               href={`#auditCancelPopup-${id}`}
-                              onClick={handleAuditCancelCard}
+                              onClick={handleAuditCancelCard()}
                             >
                               <img
                                 className="img-border"
                                 src="./images/bball.png"
                                 alt=""
                               />
-                              <div className="notice-new">New</div>
+                              <div className="notice-new" style ={{display: cancelIsNew }}>New</div>
                             </a>
                           </div>
                         </div>

@@ -91,18 +91,34 @@
           const [userIntro, setUserIntro] = useState("很高興認識大家!");
           const [userBmDegree, setUserBmDegree] = useState("新手");
           const [userVbDegree, setUserVbDegree] = useState("C以下");
-          const [registerState, setRegisterState] = useState(false);
 
+  
+          useEffect(() => {
+            setRegisterState(window.localStorage.isRegister);
+            if (registerState == "已註冊") {
+              //取得使用者資料
+              setUserName(window.localStorage.userName);
+              setUserPhoto(window.localStorage.userPhoto);
+              setUserSex(window.localStorage.userSex);
+              setUserIntro(window.localStorage.userIntro);
+              setUserBmDegree(window.localStorage.BmDegree);
+              setUserVbDegree(window.localStorage.VbDegree);
+            }else{
+
+            }
+          }, [registerState]);
           const saveData = () => {
+            setRegisterState("已註冊");
             window.localStorage.userPhoto = userPhoto;
             window.localStorage.userName = userName;
             window.localStorage.userIntro = userIntro;
             window.localStorage.userSex = userSex;
             window.localStorage.BmDegree = userBmDegree;
             window.localStorage.VbDegree = userVbDegree;
-            setRegisterState(true);
-            window.localStorage.isRegister = registerState;
+
+            window.localStorage.isRegister = "已註冊";
           };
+
           return (
             <div className="body">
               <TopBar />
@@ -137,17 +153,19 @@
                       <label htmlFor="gender">性別</label>
                       <div>
                         <button
-                          className="button"
+
+                          className={userSex == "男" ? "activeBtn" : ""}
                           onClick={() => {
-                            setUserSex("男");
+                             setUserSex("男");
                           }}
                         >
                           男性
                         </button>
                         <button
-                          className="button"
+
+                          className={userSex == "女"? "activeBtn" : ""}
                           onClick={() => {
-                            setUserSex("女");
+                             setUserSex("女");
                           }}
                         >
                           女性
@@ -171,14 +189,8 @@
                         <h2 value="自評程度">自評程度</h2>
                       </div>
                     </div>
-                    <div className="degreeBtn">
-                      <label htmlFor="degree-bm" className="button bmBtn">
-                        羽球
-                      </label>
-                      <label htmlFor="degree-vb" className="button vbBtn">
-                        排球
-                      </label>
-                    </div>
+
+
                     <div className="degreeSelect">
                       <select
                         name="degree-bm"
@@ -186,7 +198,11 @@
                         onChange={(e) => {
                           setUserBmDegree(e.target.value);
                         }}
+
+                        value={userBmDegree}
                       >
+                        <option value="default">羽球</option>
+
                         <option value="新手">新手</option>
                         <option value="初階">初階</option>
                         <option value="初上">初上</option>
@@ -201,13 +217,13 @@
                         onChange={(e) => {
                           setUserVbDegree(e.target.value);
                         }}
+
+                        value={userVbDegree}
                       >
-                        <option value="C以下">C以下</option>
-                        <option value=" C-B"> C-B</option>
+                        <option value="default">排球</option>
+                        <option value="C">C</option>
                         <option value="B">B</option>
-                        <option value="B-A">B-A</option>
                         <option value="A">A</option>
-                        <option value="A-S">A-S</option>
                         <option value="S">S</option>
                       </select>
                     </div>

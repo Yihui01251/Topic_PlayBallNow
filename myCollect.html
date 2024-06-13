@@ -37,7 +37,7 @@
     <script type="text/babel">
       (async () => {
         //取得json資料
-        const data = await axios.get("./userData.json");
+        const data = await axios.get("https://yihui01251.github.io/Topic_PlayBallNow/userData.json");
         const { userData } = data.data;
         console.log(userData);
         const { past_ALL_userData } = userData[0];

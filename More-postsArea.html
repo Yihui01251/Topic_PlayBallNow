@@ -31,7 +31,7 @@
 
   <body>
     <small class="fileName"
-      >檔名：<code>VBtodayMore-postsArea.html</code></small
+      >檔名：<code>More-postsArea.html</code></small
     >
     <!-- 載入axios套件 -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -39,7 +39,8 @@
     <script type="text/babel">
       (async () => {
         //取得json資料
-        const data = await axios.get("./postData_test.json");
+        const data = await axios.get('https://yihui01251.github.io/Topic_PlayBallNow/postData_test.json');
+          
         const { postData } = data.data;
         console.log(postData);
         const { vb_today_postData } = postData[0];
@@ -873,18 +874,29 @@
             const [isNew, setIsNew] = useState("block");
             const [popupId, setPopupId] = useState("");
             const handleAuditApplyCard = (type, index) => {
-              setIsNew("none");
               setAuditApplyCard(type);
               setPopupId(`${index}`);
-              console.log(type);
             };
+            //是否第一次點擊
+            let first = false;
             /* 申請者元件 */
-            const ApplicantsCard = ({ applyId, index, appl }) => {
+
+            const ApplicantsCard = ({ applyId, index }) => {
+              let playerId = id.toString() + "中" + applyId.toString();
+              //點擊事件
+              function handleClick() {
+                //隱藏new提示
+                if (first == false) {
+                  first = true;
+                  window.localStorage.setItem(playerId, "none");
+                }
+              }
               return (
                 <>
                   <a
                     href={`#detailApplyPopup-${id}-${index}`}
                     onClick={() => {
+                      handleClick;
                       handleAuditApplyCard("apply", index);
                     }}
                   >
@@ -893,7 +905,7 @@
                       src={`./images/${applyId}.png`}
                       alt="申請者頭像"
                     />
-                    <div className="notice-new" style={{ display: isNew }}>
+                    <div className="notice-new" style={{ display: window.localStorage.getItem(playerId) }}>
                       New
                     </div>
                   </a>

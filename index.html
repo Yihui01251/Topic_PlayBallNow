@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <script src="./javascripts/vendor.js"></script> -->
     <script
       crossorigin
       src="https://unpkg.com/react@18/umd/react.development.js"
@@ -24,42 +23,29 @@
     <link rel="icon" href="./fav.ico" />
     <link rel="stylesheet" href="./stylesheets/css/style-scss.css" />
 
-    <style>
-      .fileName {
-        display: none;
-      }
-    </style>
     <!-- 載入axios套件 -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <!-- jQ -->
-    <!-- <script src="./javascripts/jquery-3.7.1.min.js"></script> -->
-    <!-- 輪播套件 -->
-    <!-- <link rel="stylesheet" type="text/css" charset="UTF-8" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" />
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-slick/0.28.1/react-slick.min.js"></script>
-    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-slick/0.28.1/react-slick.min.js"></script>
-    <script crossorigin src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script> -->
   </head>
 
   <body id="body" class="background-Vb">
-    <small class="fileName">檔名：<code>index.html</code></small>
-
     <div id="root"></div>
     <script type="text/babel">
       (async () => {
-        // const Slider = window["react-slick"];
-
         const { useState, useEffect, useRef, useMemo } = React;
 
         //取得json資料
-        const data = await axios.get("./postData_test.json");
+        /* 遠端讀取加上網址 */
+        const data = await axios.get(
+          "https://yihui01251.github.io/Topic_PlayBallNow/postData_test.json"
+        );
+
         const { postData } = data.data;
         console.log(postData);
         const { vb_today_postData } = postData[0];
         const { vb_week_postData } = postData[1];
         const { bm_today_postData } = postData[2];
         const { bm_week_postData } = postData[3];
-
+        
         /* 建立元件 footer元件 */
         const Footer = (props) => {
           return (
@@ -80,7 +66,9 @@
             </>
           );
         };
+
         const App = () => {
+          /* 樣式 */
           const [backgroundImage, setBackgroundImage] = useState(
             "url('./images/bg-phone.jpg')"
           );
@@ -104,16 +92,9 @@
           const [selectedButton, setSelectedButton] = useState("btn-typeVb");
           const [BMdisplay, setBMDisplay] = useState("none");
           const [VBdisplay, setVBDisplay] = useState("flex");
-          /* 更多連結 */
+          /* 連結更多貼文頁 */
           const [hrefTodayMore, setHrefTodayMore] = useState("排球-本日貼文");
           const [hrefWeekMore, setHrefWeekMore] = useState("排球-本週貼文");
-
-          // const [hrefTodayMore, setHrefTodayMore] = useState(
-          //   "./VBtodayMore-postsArea.html"
-          // );
-          // const [hrefWeekMore, setHrefWeekMore] = useState(
-          //   "./VBweekMore-postsArea.html"
-          // );
           //篩選的tag值
           const [filterTag, setFilterTag] = useState("排球");
           //程度tag
@@ -126,7 +107,6 @@
 
           /* 改變類型(羽/排) */
           const changeType = (id) => {
-            // let newBackground = "";
             let colorMain = "";
             let colorFont = "";
             let btnColor = "";
@@ -192,8 +172,6 @@
               //
               hrefTodayMore = "排球-本日貼文";
               hrefWeekMore = "排球-本週貼文";
-              // hrefTodayMore = "./VBtodayMore-postsArea.html";
-              // hrefWeekMore = "./VBweekMore-postsArea.html";
               //程度
               setdegreeTag("B");
             }
@@ -223,10 +201,6 @@
               "--input-hover-color",
               inputColor
             );
-            // document.documentElement.style.setProperty(
-            //   "--mobileTop-image",
-            //   topBanner
-            // );
             setHrefTodayMore(hrefTodayMore);
             setHrefWeekMore(hrefWeekMore);
           };
@@ -271,10 +245,6 @@
           const [filterTime, setFilterTime] = useState("");
           //篩選本週時段
           const [weekfilterTime, setweekFilterTime] = useState("");
-          //篩選台北
-          const [filterTaipei, setFilterTaipei] = useState("");
-          //篩選新北
-          const [filterXinpei, setFilterXinpei] = useState("");
 
           //儲存篩選條件
           const [conditions, setConditions] = useState({ type: filterTag });
@@ -297,9 +267,6 @@
             }
             if (filterTime !== "") {
               newConditions.startTime = filterTime;
-            }
-            if (filterTaipei !== "") {
-              newConditions.city = filterTaipei;
             }
 
             setConditions(newConditions);
@@ -481,10 +448,7 @@
             return [...getPosts(todayType)].filter((posts) => {
               let matchAllConditions = true;
               for (const key in conditions) {
-                if (
-                  // newConditions.hasOwnProperty(key) &&
-                  conditions[key] !== ""
-                ) {
+                if (conditions[key] !== "") {
                   if (posts.hasOwnProperty(key)) {
                     switch (key) {
                       case "tagDegree":
@@ -531,7 +495,7 @@
               return matchAllConditions;
             });
           }, [todayType, filterTag, tagDataType, conditions]);
-
+           /* 篩選本週資料 */
           const weekFilterPosts = useMemo(() => {
             // 沒有篩選時渲染全部貼文
             if (!weekfilterDegree && !weekfilterPrice && !weekfilterTime) {
@@ -607,7 +571,8 @@
             setDragStartX(event.clientX);
           };
 
-          const handleDragEnd = () => {
+          const handleDragEnd = (event) => {
+            event.stopPropagation();
             setDragging(false);
           };
 
@@ -1263,16 +1228,6 @@
               }
               setEllipseBar(ellipseBar);
             }, [type]);
-            const [popupState, setPopupState] = useState({});
-            //傳入id使其能對應元件
-            /*  const handlePopup = (popupId) => {
-              //將useState設定成之前狀態(prevState)的相反
-              setPopupState((prevState) => ({
-                ...prevState,
-                [popupId]: !prevState[popupId],
-              }));
-            }; */
-            /* 是否生成審核取消元件 */
             const [auditCancelCard, setAuditCancelCard] = useState(false);
             const [cancelIsNew, setCancelIsNew] = useState("block");
             const handleAuditCancelCard = () => {
@@ -1291,7 +1246,6 @@
             const handleAuditApplyCard = (type, index) => {
               setAuditApplyCard(type);
               setPopupId(`${index}`);
-              console.log("呼叫" + type);
             };
 
             //是否第一次點擊
@@ -1307,8 +1261,7 @@
                 if (first == false) {
                   first = true;
                   window.localStorage.setItem(playerId, "none");
-                  console.log("set it display none");
-                  //console.log(window.localStorage.getItem(playerId));
+
                 }
               }
               return (
