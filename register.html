@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
   <head>
-    <title> </title>
+    <title>資料編輯_現在想打球</title>
+    <link rel="icon" href="./fav.ico" />
     <link rel="stylesheet" href="./stylesheets/css/style-scss.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="UTF-8" />
@@ -26,10 +27,11 @@
     <div id="root"></div>
     <script type="text/babel">
       (async () => {
-        const {useState,useEffect} =React;
-        const TopBar =()=>{
-          return(<>
-          <div className="mobile-TopBar">
+        const { useState, useEffect } = React;
+        const TopBar = () => {
+          return (
+            <>
+              <div className="mobile-TopBar">
                 <img
                   src="./images/mobile-both-topbanner.png"
                   alt="不分類的手機版banner"
@@ -42,7 +44,7 @@
                       <a href="./index.html">
                         <img
                           className="icon"
-                          src="./images/magnifier.png"
+                          src="./images/magnifier.svg"
                           alt=""
                         />
                         探索
@@ -50,19 +52,19 @@
                     </li>
                     <li>
                       <a href="./publicationForm.html">
-                        <img className="icon" src="./images/post.png" alt="" />
+                        <img className="icon" src="./images/post.svg" alt="" />
                         找人
                       </a>
                     </li>
                     <li>
                       <a href="notice.html">
-                        <img className="icon" src="./images/bell3.png" alt="" />
+                        <img className="icon" src="./images/bell3.svg" alt="" />
                         行程
                       </a>
                     </li>
                     <li>
                       <a href="personal.html">
-                        <img className="icon" src="./images/cat.png" alt="" />
+                        <img className="icon" src="./images/cat.svg" alt="" />
                         個人
                       </a>
                     </li>
@@ -70,43 +72,42 @@
                 </nav>
                 <div className="title">
                   <div className="hugTitle noto-sans-tc">
-                  <img src="./images/vbtitle.svg" alt="" />
+                    <img src="./images/vbtitle.svg" alt="" />
                     <h1 className="title-L" value="編輯資料">
                       編輯資料
                     </h1>
                     <img src="./images/bmtitle.svg" alt="" />
                   </div>
                 </div>
-            </header>
-          </>
-            
-          )
-        }
-        
+              </header>
+            </>
+          );
+        };
+
         const App = () => {
-          const[userName,setUserName]=useState("十全大補");
-          const[userPhoto,setUserPhoto]=useState("./images/player.png");
-          const[userSex,setUserSex]=useState("未知");
-          const[userIntro,setUserIntro]=useState("很高興認識大家!");
-          const[userBmDegree,setUserBmDegree]=useState("新手");
-          const[userVbDegree,setUserVbDegree]=useState("C以下");
-          const[registerState,setRegisterState]=useState(false);
-          
-          const saveData =()=>{
-            window.localStorage.userPhoto=userPhoto;
-            window.localStorage.userName=userName;
-            window.localStorage.userIntro=userIntro;
-            window.localStorage.userSex=userSex;
-            window.localStorage.BmDegree=userBmDegree;
-            window.localStorage.VbDegree=userVbDegree;
+          const [userName, setUserName] = useState("十全大補");
+          const [userPhoto, setUserPhoto] = useState("./images/player.png");
+          const [userSex, setUserSex] = useState("未知");
+          const [userIntro, setUserIntro] = useState("很高興認識大家!");
+          const [userBmDegree, setUserBmDegree] = useState("新手");
+          const [userVbDegree, setUserVbDegree] = useState("C以下");
+          const [registerState, setRegisterState] = useState(false);
+
+          const saveData = () => {
+            window.localStorage.userPhoto = userPhoto;
+            window.localStorage.userName = userName;
+            window.localStorage.userIntro = userIntro;
+            window.localStorage.userSex = userSex;
+            window.localStorage.BmDegree = userBmDegree;
+            window.localStorage.VbDegree = userVbDegree;
             setRegisterState(true);
-            window.localStorage.isRegister=registerState;
-          }
+            window.localStorage.isRegister = registerState;
+          };
           return (
             <div className="body">
-             <TopBar/>
+              <TopBar />
               <main className="register-Area">
-                <section className = "register-section">
+                <section className="register-section">
                   <div className="register-info">
                     <div className="title">
                       <div className="hugTitle">
@@ -116,18 +117,51 @@
                     <div className="photo">
                       <img src={userPhoto} alt="頭像" />
                       {/* 尚未處理選擇檔案後取得的路徑如何正確顯示 */}
-                      <input type="file" onChange={(e)=>{setUserPhoto("images/"+ e.target.value);}}></input>
+                      <input
+                        type="file"
+                        onChange={(e) => {
+                          setUserPhoto("images/" + e.target.value);
+                        }}
+                      ></input>
                     </div>
                     <div className="player-info">
                       <label htmlFor="name">稱呼</label>
-                      <input id="name" type="text" value ={userName} onChange={(e)=>{setUserName(e.target.value);}} />
+                      <input
+                        id="name"
+                        type="text"
+                        value={userName}
+                        onChange={(e) => {
+                          setUserName(e.target.value);
+                        }}
+                      />
                       <label htmlFor="gender">性別</label>
                       <div>
-                        <button  className="button" onClick={()=>{setUserSex("男")}}>男性</button>
-                        <button className="button" onClick={()=>{setUserSex("女")}}>女性</button>
-                        </div>
+                        <button
+                          className="button"
+                          onClick={() => {
+                            setUserSex("男");
+                          }}
+                        >
+                          男性
+                        </button>
+                        <button
+                          className="button"
+                          onClick={() => {
+                            setUserSex("女");
+                          }}
+                        >
+                          女性
+                        </button>
+                      </div>
                       <label htmlFor="status">狀態</label>
-                      <input id="status" type="text"  value={userIntro} onChange={(e)=>{setUserIntro(e.target.value);}}/>
+                      <input
+                        id="status"
+                        type="text"
+                        value={userIntro}
+                        onChange={(e) => {
+                          setUserIntro(e.target.value);
+                        }}
+                      />
                     </div>
                   </div>
 
@@ -138,27 +172,39 @@
                       </div>
                     </div>
                     <div className="degreeBtn">
-                      <label htmlFor="degree-bm" className="button bmBtn">羽球</label>
-                      <label htmlFor="degree-vb" className="button vbBtn">排球</label>
+                      <label htmlFor="degree-bm" className="button bmBtn">
+                        羽球
+                      </label>
+                      <label htmlFor="degree-vb" className="button vbBtn">
+                        排球
+                      </label>
                     </div>
-                    <div className="degreeSelect" >
-                      <select name="degree-bm" id="degree-bm" onChange={(e)=>{setUserBmDegree(e.target.value);}}>
+                    <div className="degreeSelect">
+                      <select
+                        name="degree-bm"
+                        id="degree-bm"
+                        onChange={(e) => {
+                          setUserBmDegree(e.target.value);
+                        }}
+                      >
                         <option value="新手">新手</option>
                         <option value="初階">初階</option>
-                        <option value="初上">
-                          初上
-                        </option>
+                        <option value="初上">初上</option>
                         <option value="中下">中下</option>
                         <option value="中階">中階</option>
                         <option value="中上">中上</option>
                         <option value="中進階">中進階</option>
                       </select>
-                      <select name="degree-vb" id="degree-vb" onChange={(e)=>{setUserVbDegree(e.target.value);}}>
+                      <select
+                        name="degree-vb"
+                        id="degree-vb"
+                        onChange={(e) => {
+                          setUserVbDegree(e.target.value);
+                        }}
+                      >
                         <option value="C以下">C以下</option>
                         <option value=" C-B"> C-B</option>
-                        <option value="B">
-                          B
-                        </option>
+                        <option value="B">B</option>
                         <option value="B-A">B-A</option>
                         <option value="A">A</option>
                         <option value="A-S">A-S</option>
@@ -168,9 +214,17 @@
                   </div>
 
                   <div className="BtnContainer">
-                    <a className="button" href="/personal.html" onClick={()=>{saveData()}}>送出</a>
-                    </div>
-                  </section>
+                    <a
+                      className="button"
+                      href="/personal.html"
+                      onClick={() => {
+                        saveData();
+                      }}
+                    >
+                      送出
+                    </a>
+                  </div>
+                </section>
               </main>
               <footer>
                 <figure className="footer-border"></figure>
@@ -185,8 +239,7 @@
                   <p>Copyright© 2024 PlayBallNow. All Right Reserved. </p>
                 </div>
               </footer>
-
-              </div>
+            </div>
           );
         };
         ReactDOM.createRoot(document.getElementById("root")).render(<App />);

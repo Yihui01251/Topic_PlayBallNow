@@ -20,6 +20,7 @@
       referrerpolicy="no-referrer"
     ></script>
     <title>我的收藏_現在想打球</title>
+    <link rel="icon" href="./fav.ico" />
     <link rel="stylesheet" href="./stylesheets/css/style-scss.css" />
     <style>
       .fileName {
@@ -102,9 +103,11 @@
                 setShowVbInfo("flex");
               }
             }, [like, type]);
-            const handleLikeState=(like)=>{
-              like === "./images/heart-yes.svg"? setIsLike("./images/heart-no.svg") : setIsLike("./images/heart-yes.svg");
-            }
+            const handleLikeState = (like) => {
+              like === "./images/heart-yes.svg"
+                ? setIsLike("./images/heart-no.svg")
+                : setIsLike("./images/heart-yes.svg");
+            };
             return (
               <>
                 <div
@@ -113,11 +116,21 @@
                 >
                   <div className="main-info">
                     <div className="header" style={{ color: fontColor }}>
-                      <p >
+                      <p>
                         {postDate} {postStartTime}~{postEndTime}
                       </p>
-                      <div className="type-style" style={{ backgroundColor: mainColor }}>{type}球</div>
-                      <button className="collect" onClick={()=>{handleLikeState(isLike)}}>
+                      <div
+                        className="type-style"
+                        style={{ backgroundColor: mainColor }}
+                      >
+                        {type}球
+                      </div>
+                      <button
+                        className="collect"
+                        onClick={() => {
+                          handleLikeState(isLike);
+                        }}
+                      >
                         <img src={isLike} alt="收藏" />
                       </button>
                     </div>
@@ -127,13 +140,15 @@
                       <h3>{postArena}</h3>
                     </div>
 
-                    <div className="tag-style" >
+                    <div className="tag-style">
                       <p style={{ backgroundColor: mainColor }}>{primaryTag}</p>
-                      <p style={{ backgroundColor: mainColor }}>${secondaryTag}</p>
+                      <p style={{ backgroundColor: mainColor }}>
+                        ${secondaryTag}
+                      </p>
                     </div>
                   </div>
                   <div className="sub-info">
-                    <div className="vacancyInfo" >
+                    <div className="vacancyInfo">
                       <h4>缺額</h4>
                       <div>女</div>
                       <p style={{ color: fontColor }}>{reqCount[0].count}位</p>
@@ -171,7 +186,11 @@
                     </div>
                   </div>
                   <div className="BtnContainer">
-                    <a className="button" href={`#${href}`} style={{backgroundColor:btnColor}}>
+                    <a
+                      className="button"
+                      href={`#${href}`}
+                      style={{ backgroundColor: btnColor }}
+                    >
                       報名
                     </a>
                   </div>
@@ -260,7 +279,10 @@
                               <img src={like} alt="收藏" />
                             </button>
                           </div>
-                          <div className="areaInfo" style={{ color: typeFontStyle }}>
+                          <div
+                            className="areaInfo"
+                            style={{ color: typeFontStyle }}
+                          >
                             <h3>{postCity}</h3>
                             <h3>{postArea}</h3>
                             <h3>{postArena}</h3>
@@ -277,14 +299,16 @@
                         <div className="sub-info">
                           <div className="vacancyInfo">
                             <h4>缺額</h4>
-                            <div >女</div>
+                            <div>女</div>
                             <p style={{ color: typeFontStyle }}>{female}位</p>
                             <div>男</div>
                             <p style={{ color: typeFontStyle }}>{male}位</p>
                             <div>不限</div>
-                            <p style={{ color: typeFontStyle }}>{unspecified}位</p>
+                            <p style={{ color: typeFontStyle }}>
+                              {unspecified}位
+                            </p>
                           </div>
-                          <div className="ballInfo" >
+                          <div className="ballInfo">
                             <h4>類型</h4>
                             <p style={{ color: typeFontStyle }}>{role}</p>
                           </div>
@@ -364,7 +388,7 @@
                       <a href="./index.html">
                         <img
                           className="icon"
-                          src="./images/magnifier.png"
+                          src="./images/magnifier.svg"
                           alt=""
                         />
                         探索
@@ -372,19 +396,19 @@
                     </li>
                     <li>
                       <a href="./publicationForm.html">
-                        <img className="icon" src="./images/post.png" alt="" />
+                        <img className="icon" src="./images/post.svg" alt="" />
                         找人
                       </a>
                     </li>
                     <li>
                       <a href="notice.html">
-                        <img className="icon" src="./images/bell3.png" alt="" />
+                        <img className="icon" src="./images/bell3.svg" alt="" />
                         行程
                       </a>
                     </li>
                     <li>
                       <a href="personal.html">
-                        <img className="icon" src="./images/cat.png" alt="" />
+                        <img className="icon" src="./images/cat.svg" alt="" />
                         個人
                       </a>
                     </li>

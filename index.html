@@ -21,7 +21,9 @@
     ></script>
 
     <title>現在想打球</title>
+    <link rel="icon" href="./fav.ico" />
     <link rel="stylesheet" href="./stylesheets/css/style-scss.css" />
+
     <style>
       .fileName {
         display: none;
@@ -769,7 +771,7 @@
                         <a href="./index.html">
                           <img
                             className="icon"
-                            src="./images/magnifier.png"
+                            src="./images/magnifier.svg"
                             alt=""
                           />
                           探索
@@ -779,7 +781,7 @@
                         <a href="./publicationForm.html">
                           <img
                             className="icon"
-                            src="./images/post.png"
+                            src="./images/post.svg"
                             alt=""
                           />
                           找人
@@ -789,7 +791,7 @@
                         <a href="notice.html">
                           <img
                             className="icon"
-                            src="./images/bell3.png"
+                            src="./images/bell3.svg"
                             alt=""
                           />
                           行程
@@ -797,7 +799,7 @@
                       </li>
                       <li>
                         <a href="personal.html">
-                          <img className="icon" src="./images/cat.png" alt="" />
+                          <img className="icon" src="./images/cat.svg" alt="" />
                           個人
                         </a>
                       </li>
@@ -1287,34 +1289,34 @@
             const [auditApplyCard, setAuditApplyCard] = useState("");
             const [popupId, setPopupId] = useState("");
             const handleAuditApplyCard = (type, index) => {
-                setAuditApplyCard(type);
-                setPopupId(`${index}`);
-                console.log("呼叫"+type);
-              }
+              setAuditApplyCard(type);
+              setPopupId(`${index}`);
+              console.log("呼叫" + type);
+            };
 
             //是否第一次點擊
-            let first = false; 
+            let first = false;
             /* 申請者元件 */
             const ApplicantsCard = ({ applyId, index }) => {
               //const [isNew, setIsNew] = useState("block"); //new提示狀態
-              let playerId= id.toString() + "中" +applyId.toString();
+              let playerId = id.toString() + "中" + applyId.toString();
               //點擊事件
-              function handleClick () {
+              function handleClick() {
                 //隱藏new提示
                 //setIsNew("none");
-                 if(first== false){
+                if (first == false) {
                   first = true;
-                  window.localStorage.setItem(playerId,"none");
+                  window.localStorage.setItem(playerId, "none");
                   console.log("set it display none");
                   //console.log(window.localStorage.getItem(playerId));
                 }
-              };
+              }
               return (
                 <>
                   <a
                     href={`#detailApplyPopup-${id}-${index}`}
                     onClick={() => {
-                      handleClick(); 
+                      handleClick();
                       handleAuditApplyCard("apply", index);
                     }}
                   >
@@ -1323,7 +1325,10 @@
                       src={`./images/${applyId}.png`}
                       alt="申請者頭像"
                     />
-                    <div className="notice-new" style={{ display: window.localStorage.getItem(playerId) }}>
+                    <div
+                      className="notice-new"
+                      style={{ display: window.localStorage.getItem(playerId) }}
+                    >
                       New
                     </div>
                   </a>
@@ -1332,7 +1337,6 @@
             };
             /* 審核列表 */
             const AuditList = ({ prop }) => {
-             
               return (
                 <>
                   <div
@@ -1361,7 +1365,7 @@
                           applyId={apply.id}
                           index={index}
                           //isNew={isNew}
-                         //setIsNew={setIsNew}
+                          //setIsNew={setIsNew}
                           // isNew={applicantsState[index].isNew}
                           //handleAuditApplyCard={handleAuditApplyCard}
                         />

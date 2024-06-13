@@ -2,6 +2,7 @@
 <html lang="zh-Hant-TW">
   <head>
     <title>行程</title>
+    <link rel="icon" href="./fav.ico" />
     <link rel="stylesheet" href="./stylesheets/css/style-scss.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="UTF-8" />
@@ -349,7 +350,7 @@
           showVbInfo,
           ellipseBar,
         }) => {
-          const [popupState, setPopupState] = useState({}); 
+          const [popupState, setPopupState] = useState({});
           /* 是否生成審核取消元件 */
           const [auditCancelCard, setAuditCancelCard] = useState(false);
           const handleAuditCancelCard = () => {
@@ -503,10 +504,7 @@
                             </div>
                             <div className="titleArrowBtn">
                               <button>
-                                <img
-                                  src="./images/btn-left.png"
-                                  alt="前一個"
-                                />
+                                <img src="./images/btn-left.png" alt="前一個" />
                               </button>
                               <button>
                                 <img
@@ -528,7 +526,7 @@
 
                             <a
                               href={`#detailApplyPopup-yes-0`}
-                              onClick={() => handleAuditApplyCard("yes",0)}
+                              onClick={() => handleAuditApplyCard("yes", 0)}
                             >
                               <img
                                 className="img-border"
@@ -701,7 +699,10 @@
                       <a href="#">
                         <img src="./images/waring.png" alt="" />
                       </a>
-                      <a className="popup__close" href={`#auditApplyPopup-${id}`}>
+                      <a
+                        className="popup__close"
+                        href={`#auditApplyPopup-${id}`}
+                      >
                         <img src="./images/cancel.png" alt="" />
                       </a>
                     </div>
@@ -837,9 +838,11 @@
                       <a href="#">
                         <img src="./images/waring.png" alt="" />
                       </a>
-                      <a className="popup__close" href={`#auditApplyPopup-${id}`}>
+                      <a
+                        className="popup__close"
+                        href={`#auditApplyPopup-${id}`}
+                      >
                         <img src="./images/cancel.png" alt="" />
-                        
                       </a>
                     </div>
                     <div className="audit-info">
@@ -1469,7 +1472,7 @@
             }
           }, [index]);
           /* 審核結果標籤 */
-          const auditResult = (type,index) => {
+          const auditResult = (type, index) => {
             let text = "";
 
             setBtnDisplay("none");
@@ -1485,17 +1488,25 @@
             if (index === "0") {
               setNewState0("已評價");
               console.log("回傳0 已評價");
-            } else if (index === "1") {setNewState1("已評價");}
+            } else if (index === "1") {
+              setNewState1("已評價");
+            }
             //console.log("回傳1 yes");
           };
           return (
             <>
-              <div className="popup" id={`evaluateApplicantsForm-${id}-${index}`}>
+              <div
+                className="popup"
+                id={`evaluateApplicantsForm-${id}-${index}`}
+              >
                 <div className="popup-inner">
                   <div className="popup__content">
                     <div className="evaluateForm">
                       <div className="topBtn-container">
-                        <a className="popup__close" href={`#evaluateApplyPopup-${id}`}>
+                        <a
+                          className="popup__close"
+                          href={`#evaluateApplyPopup-${id}`}
+                        >
                           <img src="./images/cancel.png" alt="" />
                         </a>
                       </div>
@@ -1554,13 +1565,13 @@
                         <button
                           href="#"
                           className="button btn-no"
-                          onClick={() => auditResult("blackList",index)}
+                          onClick={() => auditResult("blackList", index)}
                         >
                           送出,並加入黑名單
                         </button>
                         <button
                           className="button btn-yes"
-                          onClick={() => auditResult("yes",index)}
+                          onClick={() => auditResult("yes", index)}
                         >
                           送出
                         </button>
@@ -1623,7 +1634,7 @@
                       <a href="./index.html">
                         <img
                           className="icon"
-                          src="./images/magnifier.png"
+                          src="./images/magnifier.svg"
                           alt=""
                         />
                         探索
@@ -1631,19 +1642,19 @@
                     </li>
                     <li>
                       <a href="./publicationForm.html">
-                        <img className="icon" src="./images/post.png" alt="" />
+                        <img className="icon" src="./images/post.svg" alt="" />
                         找人
                       </a>
                     </li>
                     <li>
                       <a href="notice.html">
-                        <img className="icon" src="./images/bell3.png" alt="" />
+                        <img className="icon" src="./images/bell3.svg" alt="" />
                         行程
                       </a>
                     </li>
                     <li>
                       <a href="personal.html">
-                        <img className="icon" src="./images/cat.png" alt="" />
+                        <img className="icon" src="./images/cat.svg" alt="" />
                         個人
                       </a>
                     </li>
