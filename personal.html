@@ -117,7 +117,7 @@
           const [editFile,setEditFile] = useState("none");
           useEffect(() => {
             setRegisterState(window.localStorage.isRegister);
-
+            if(registerState === "已註冊"){
               console.log("已註冊過");
               //取得使用者資料
               setUserName(window.localStorage.userName);
@@ -130,12 +130,6 @@
 
               setLoginBtn("none");
               setInfoState("block");
-              setUserName(window.localStorage.userName);
-              setUserPhoto(window.localStorage.userPhoto);
-              setUserSex(window.localStorage.userSex);
-              setUserIntro(window.localStorage.userIntro);
-              setUserBmDegree(window.localStorage.BmDegree);
-              setUserVbDegree(window.localStorage.VbDegree);
             } else {
               setLoginBtn("flex");
               setInfoState("none");
