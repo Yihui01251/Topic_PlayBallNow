@@ -91,7 +91,7 @@
           const [userIntro, setUserIntro] = useState("很高興認識大家!");
           const [userBmDegree, setUserBmDegree] = useState("新手");
           const [userVbDegree, setUserVbDegree] = useState("C以下");
-
+          const [registerState,setRegisterState] = useState("未註冊");
   
           useEffect(() => {
             setRegisterState(window.localStorage.isRegister);
