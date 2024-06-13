@@ -1,24 +1,49 @@
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <!-- 引入 React 和 ReactDOM -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <!-- 引入 Babel 來轉譯 JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Redux -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.0/redux.min.js"
+      integrity="sha512-1/8Tj23BRrWnKZXeBruk6wTnsMJbi/lJsk9bsRgVwb6j5q39n0A00gFjbCTaDo5l5XrPVv4DZXftrJExhRF/Ug=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <!-- 引入axios套件 -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- 使用模組化元件 -->
+    <script type="text/babel" src="./component.js"></script>
     <title>行程_現在想打球</title>
     <link rel="icon" href="./fav.svg" />
     <link rel="stylesheet" href="./stylesheets/css/style-scss.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta charset="UTF-8" />
-    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.0/redux.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+      .fileName {
+        display: none;
+      }
+    </style>
   </head>
   <body id="body">
+    <small class="fileName">檔名：<code>notice.html</code></small>
     <!-- 根元素  -->
     <div id="root"></div>
     <script type="text/babel">
       (async () => {
         //取得json資料
-        const data = await axios.get("https://yihui01251.github.io/Topic_PlayBallNow/userData.json");
+        const data = await axios.get(
+          "https://yihui01251.github.io/Topic_PlayBallNow/userData.json"
+        );
         const { userData } = data.data;
         console.log(userData);
         const { past_ALL_userData } = userData[0];
@@ -336,14 +361,12 @@
           showVbInfo,
           ellipseBar,
         }) => {
-
           /* 是否生成審核取消元件 */
           const [auditCancelCard, setAuditCancelCard] = useState(false);
-          const [cancelIsNew,setCancelIsNew]=useState("block");
+          const [cancelIsNew, setCancelIsNew] = useState("block");
           const handleAuditCancelCard = () => {
             setAuditCancelCard(true);
             setCancelIsNew("none");
-
           };
           /* 是否生成查看行程元件 */
           const [detailsNotifyCard, setDetailsNotifyCard] = useState(false);
@@ -362,16 +385,16 @@
           /* 申請者元件 */
           //是否第一次點擊
           let first = false;
-          const ApplicantsCard = ({index }) => {
-            let playerId = "detailApplyPopup-"+ id + "中player" + index  ;
-             //點擊事件
-             function handleClick() {
-                if (first == false) {
-                  first = true;
-                  window.localStorage.setItem(playerId, "none");
-                }
+          const ApplicantsCard = ({ index }) => {
+            let playerId = "detailApplyPopup-" + id + "中player" + index;
+            //點擊事件
+            function handleClick() {
+              if (first == false) {
+                first = true;
+                window.localStorage.setItem(playerId, "none");
               }
-            return ( 
+            }
+            return (
               <>
                 <a
                   href={`#detailApplyPopup-${id}-${index}`}
@@ -385,7 +408,10 @@
                     src={`./images/player${index}.png`}
                     alt=""
                   />
-                  <div className="notice-new" style={{ display: window.localStorage.getItem(playerId) }}>
+                  <div
+                    className="notice-new"
+                    style={{ display: window.localStorage.getItem(playerId) }}
+                  >
                     New
                   </div>
                 </a>
@@ -514,10 +540,7 @@
                           </div>
                           <div className="applicant-container">
                             {appl.map((apply, index) => (
-                              <ApplicantsCard
-                                key={index}
-                                index={index}
-                              />
+                              <ApplicantsCard key={index} index={index} />
                             ))}
 
                             <a
@@ -553,7 +576,12 @@
                                 src="./images/bball.png"
                                 alt=""
                               />
-                              <div className="notice-new" style ={{display: cancelIsNew }}>New</div>
+                              <div
+                                className="notice-new"
+                                style={{ display: cancelIsNew }}
+                              >
+                                New
+                              </div>
                             </a>
                           </div>
                         </div>
@@ -1595,6 +1623,10 @@
           const [noticeType, setNoticeType] = useState("btn-itinerary");
           const itineraryBtn = document.getElementById("btn-itinerary");
           const pastRecordsBtn = document.getElementById("btn-pastRecords");
+          //手機板banner
+          const [mobileTopBar, setMobileTopBar] = useState(
+            "./images/mobile-both-topbanner.png"
+          );
           /* 改變map的資料 */
           const [callData, setCallData] = useState(future_All_userData);
 
@@ -1617,55 +1649,7 @@
 
           return (
             <div className="body">
-              <div className="mobile-TopBar">
-                <img
-                  src="./images/mobile-both-topbanner.png"
-                  alt="不分類的手機版banner"
-                />
-              </div>
-              <header id="topBar">
-                <nav id="top-nav">
-                  <ul id="menu">
-                    <li>
-                      <a href="./index.html">
-                        <img
-                          className="icon"
-                          src="./images/magnifier.svg"
-                          alt=""
-                        />
-                        探索
-                      </a>
-                    </li>
-                    <li>
-                      <a href="./publicationForm.html">
-                        <img className="icon" src="./images/post.svg" alt="" />
-                        找人
-                      </a>
-                    </li>
-                    <li>
-                      <a href="notice.html">
-                        <img className="icon" src="./images/bell3.svg" alt="" />
-                        行程
-                      </a>
-                    </li>
-                    <li>
-                      <a href="personal.html">
-                        <img className="icon" src="./images/cat.svg" alt="" />
-                        個人
-                      </a>
-                    </li>
-                  </ul>
-                </nav>
-                <div className="form-title">
-                  <div className="hugTitle noto-sans-tc">
-                    <img src="./images/vbtitle.svg" alt="" />
-                    <h1 className="title-L" value="我的行程">
-                      我的行程
-                    </h1>
-                    <img src="./images/bmtitle.svg" alt="" />
-                  </div>
-                </div>
-              </header>
+              <TopBar mobileTopBar={mobileTopBar} title={"我的行程"} isShow={"none"}/>
               <main className="notice-Area">
                 <div className="notice-type">
                   <button
@@ -1813,19 +1797,7 @@
                 </div>
               </main>
 
-              <footer>
-                <figure className="footer-border"></figure>
-                <div>
-                  <figure>
-                    <img
-                      id="logo"
-                      src="./images/logo.png"
-                      alt="logo-PlayBallNow"
-                    />
-                  </figure>
-                  <p>Copyright© 2024 PlayBallNow. All Right Reserved. </p>
-                </div>
-              </footer>
+              <Footer />
             </div>
           );
         };

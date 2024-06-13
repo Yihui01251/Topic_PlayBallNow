@@ -1,524 +1,670 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- 引入 React 和 ReactDOM -->
-    <script
-      crossorigin
-      src="https://unpkg.com/react@18/umd/react.development.js"
-    ></script>
-    <script
-      crossorigin
-      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
-    ></script>
-    <!-- 引入 Babel 來轉譯 JSX -->
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <!-- Redux -->
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.0/redux.min.js"
-      integrity="sha512-1/8Tj23BRrWnKZXeBruk6wTnsMJbi/lJsk9bsRgVwb6j5q39n0A00gFjbCTaDo5l5XrPVv4DZXftrJExhRF/Ug=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <!-- 引入axios套件 -->
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <!-- 使用模組化元件 -->
-    <script type="text/babel" src="./component.js"></script>
-    <title>篩選_現在想打球</title>
-    <link rel="icon" href="./fav.svg" />
-    <link rel="stylesheet" href="./stylesheets/css/style-scss.css" />
-    <style>
-      .fileName {
-        display: none;
+// index.js
+const { useState, useEffect, useRef, useMemo } = React;
+const { createRoot } = ReactDOM;
+
+// 取得 json 資料
+const getData = async () => {
+  const data = await axios.get(
+    "https://yihui01251.github.io/Topic_PlayBallNow/postData_test.json"
+  );
+  return data.data.postData;
+};
+
+const App = ({ postData }) => {
+  const { vb_today_postData, vb_week_postData, bm_today_postData, bm_week_postData } = postData;
+
+  /* 樣式 */
+  const [backgroundImage, setBackgroundImage] = useState("url('./images/bg-phone.jpg')");
+  const [mainColor, setMainColor] = useState("#14AAEB");
+  const [fontColor, setFontColor] = useState("#147CB6");
+  const [btnColor, setBtnColor] = useState("#F1DB15");
+  const [inputColor, setInputColor] = useState("#B1C3E8");
+  const [postBorder, setPostBorder] = useState('url("./images/catsroke.svg")');
+  const [decorateSearch, setDecorateSearch] = useState('url("../../images/index-searchCat.png")');
+  const [mobileTopBar, setMobileTopBar] = useState("./images/mobiletopvb.svg");
+  /* 要 map 的資料 */
+  const [todayType, setTodayType] = useState("vb_today_postData");
+  const [weekType, setWeekType] = useState("vb_week_postData");
+  /* 選擇的類型對應要顯示的資料 */
+  const [selectedButton, setSelectedButton] = useState("btn-typeVb");
+  const [BMdisplay, setBMDisplay] = useState("none");
+  const [VBdisplay, setVBDisplay] = useState("flex");
+  /* 連結更多貼文頁 */
+  const [hrefTodayMore, setHrefTodayMore] = useState("排球-本日貼文");
+  const [hrefWeekMore, setHrefWeekMore] = useState("排球-本週貼文");
+  // 篩選的 tag 值
+  const [filterTag, setFilterTag] = useState("排球");
+  // 程度 tag
+  const [degreeTag, setdegreeTag] = useState("B");
+  // 篩選後 map 的資料
+  const [filterTagMap, setfilterTagMap] = useState("");
+
+  const btnTypeVbRef = useRef(null);
+  const btnTypeBmRef = useRef(null);
+
+  /* 改變類型(羽/排) */
+  const changeType = (id) => {
+    let colorMain = "";
+    let colorFont = "";
+    let btnColor = "";
+    let inputColor = "";
+    let newBorder = "";
+    let decorate = "";
+    let topBanner = "";
+    /* 更多的連結 */
+    let hrefTodayMore = "./VBtodayMore-postsArea.html";
+    let hrefWeekMore = "./VBweekMore-postsArea.html";
+
+    // 取消其他按鈕的選擇
+    const btnTypeVb = document.getElementById("btn-typeVb");
+    const btnTypeBm = document.getElementById("btn-typeBm");
+    const bodyStyle = document.getElementById("body");
+
+    if (id === "btn-typeBm" || id === "btn-formBM") {
+      // 如果是羽球:
+      colorMain = "#83B90F";
+      colorFont = "#689607";
+      btnColor = "#FF8D24";
+      inputColor = "#B6DBAA";
+      newBorder = 'url("./images/dogstroke.svg")';
+      decorate = 'url("../../images/index-searchDog.png")';
+      topBanner = "./images/mobiletopbm.png";
+      // 新增class改變背景
+      bodyStyle.classList.add("background-Bm");
+      bodyStyle.classList.remove("background-Vb");
+      setSelectedButton(id);
+      /* 改變要map的資料名稱 */
+      setTodayType("bm_today_postData");
+      setWeekType("bm_week_postData");
+      setFilterTag("羽球");
+      // banner顯示狀態
+      setBMDisplay("flex");
+      setVBDisplay("none");
+      //更多的連結
+      hrefTodayMore = "羽球-本日貼文";
+      hrefWeekMore = "羽球-本週貼文";
+
+      //羽球程度
+      setdegreeTag("初階");
+    } else if (id === "btn-typeVb" || id === "btn-formVB") {
+      // 如果是排球
+      colorMain = "#14AAEB";
+      colorFont = "#147CB6";
+      btnColor = "#F1DB15";
+      inputColor = "#B1C3E8";
+      newBorder = "url('./images/catsroke.svg')";
+      decorate = "url('../../images/index-searchCat.png')";
+      topBanner = "./images/mobiletopvb.svg";
+      //
+      bodyStyle.classList.remove("background-Bm");
+      bodyStyle.classList.add("background-Vb");
+      setSelectedButton(id);
+      //
+      setTodayType("vb_today_postData");
+      setWeekType("vb_week_postData");
+      setFilterTag("排球");
+      //
+      setBMDisplay("none");
+      setVBDisplay("block");
+      //
+      hrefTodayMore = "排球-本日貼文";
+      hrefWeekMore = "排球-本週貼文";
+      //程度
+      setdegreeTag("B");
+    }
+
+    setMainColor(colorMain);
+    setFontColor(colorFont);
+    setBtnColor(btnColor);
+    setInputColor(inputColor);
+    setPostBorder(newBorder);
+    setDecorateSearch(decorate);
+    setMobileTopBar(topBanner);
+
+    document.documentElement.style.setProperty(
+      "--main-color",
+      colorMain
+    );
+    document.documentElement.style.setProperty(
+      "--font-color",
+      colorFont
+    );
+    document.documentElement.style.setProperty("--btn-color", btnColor);
+    document.documentElement.style.setProperty(
+      "--search-decorate",
+      decorate
+    );
+    document.documentElement.style.setProperty(
+      "--input-hover-color",
+      inputColor
+    );
+    setHrefTodayMore(hrefTodayMore);
+    setHrefWeekMore(hrefWeekMore);
+  };
+
+  // 更改資料類型
+  const getPosts = (type) => {
+    switch (type) {
+      case "vb_today_postData":
+        return vb_today_postData;
+      case "bm_today_postData":
+        return bm_today_postData;
+      case "vb_week_postData":
+        return vb_week_postData;
+      case "bm_week_postData":
+        return bm_week_postData;
+      default:
+        return [];
+    }
+  };
+
+  // 儲存更多按鈕的連結
+  const storageHref = (type) => {
+    window.localStorage.hrefType = type;
+  };
+
+  useEffect(() => {
+    console.log(
+      `本日資料類型: ${todayType} , 本週資料類型: ${weekType}`
+    );
+  }, [weekType, todayType]);
+
+  /* tag篩選 */
+  //取得tag對應資料屬性
+  const [tagDataType, setTagDataType] = useState("type");
+  //篩選本日程度
+  const [filterDegree, setFilterDegree] = useState("");
+  //篩選本週程度
+  const [weekfilterDegree, setweekFilterDegree] = useState("");
+  //篩選本日價格
+  const [filterPrice, setFilterPrice] = useState("");
+  //篩選本週價格
+  const [weekfilterPrice, setweekFilterPrice] = useState("");
+  //篩選本日時段
+  const [filterTime, setFilterTime] = useState("");
+  //篩選本週時段
+  const [weekfilterTime, setweekFilterTime] = useState("");
+
+  //儲存篩選條件
+  const [conditions, setConditions] = useState({ type: filterTag });
+  //儲存週篩選條件
+  const [weekConditions, setweekConditions] = useState({
+    type: filterTag,
+  });
+
+  //如果useState改變就加入進condition儲存(避免比對空值)
+  const newConditions = {};
+  const newWeekConditions = {};
+  const allBtn = document.getElementById("tags-All");
+  const week_allBtn = document.getElementById("tags-weekAll");
+  useEffect(() => {
+    if (filterDegree !== "") {
+      newConditions.tagDegree = filterDegree;
+    }
+    if (filterPrice !== "") {
+      newConditions.tagPrice = filterPrice;
+    }
+    if (filterTime !== "") {
+      newConditions.startTime = filterTime;
+    }
+
+    setConditions(newConditions);
+    if (weekfilterDegree !== "") {
+      newWeekConditions.tagDegree = weekfilterDegree;
+    }
+    if (weekfilterPrice !== "") {
+      newWeekConditions.tagPrice = weekfilterPrice;
+    }
+    if (weekfilterTime !== "") {
+      newWeekConditions.startTime = weekfilterTime;
+    }
+    setweekConditions(newWeekConditions);
+  }, [
+    filterDegree,
+    weekfilterDegree,
+    filterPrice,
+    weekfilterPrice,
+    filterTime,
+    weekfilterTime,
+  ]);
+
+  const tagFilter = (id, value, name, time) => {
+    if (time == "today") {
+      //取得包本日tag的容器
+      const filterBox = document.getElementById("today_allfilterBtn");
+      const tagStyle = document.getElementById(id);
+
+      if (tagStyle.classList == "active") {
+        /* 如果已經選中=>移除class="active" */
+        tagStyle.classList.remove("active");
+
+        console.log("取消選取");
+        switch (name) {
+          case "tagDegree":
+            setFilterDegree("");
+            break;
+          case "tagPrice":
+            setFilterPrice("");
+            break;
+          case "startTime":
+            setFilterTime("");
+            break;
+          case "city":
+            setFilterTaipei("");
+            break;
+
+            break;
+          default:
+            break;
+        }
+      } else {
+        /* 如果沒有選中=>新增class="active" */
+        tagStyle.classList.add("active");
+        allBtn.classList.remove("active");
+        console.log(tagStyle);
+        switch (name) {
+          case "tagDegree":
+            setFilterDegree(`${value}`);
+            break;
+          case "tagPrice":
+            setFilterPrice(`${value}`);
+            break;
+          case "startTime":
+            setFilterTime(`${value}`);
+            break;
+          case "city":
+            setFilterTaipei(`${value}`);
+            break;
+
+            break;
+          default:
+            break;
+        }
+        console.log("本日類型: " + name);
+        console.log("本日篩選 : " + value);
+        filterPosts;
       }
-    </style>
-  </head>
+      if (id == "tags-All") {
+        //取得filterBox下所有的button
+        const filterButtons = filterBox.querySelectorAll("button");
+        filterButtons.forEach((button) => {
+          //移除所有button的active類
+          button.classList.remove("active");
+        });
+        setFilterDegree("");
+        setFilterPrice("");
+        setFilterTime("");
+        setFilterTaipei("");
+        setFilterXinpei("");
+        if (allBtn.classList == "active") {
+          allBtn.classList.remove("active");
+        } else {
+          allBtn.classList.add("active");
+        }
+      }
+    } else if (time == "week") {
+      //取得包本週tag的容器
+      const weekfilterBox =
+        document.getElementById("week_allfilterBtn");
+      const week_tagStyle = document.getElementById(id);
 
-  <body>
-    <small class="fileName">檔名：<code>filterPosts.html</code></small>
-    <!-- 載入axios套件 -->
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <div id="root"></div>
-    <script type="text/babel">
-      (async () => {
-        //取得json資料
-        const data = await axios.get(
-          "https://yihui01251.github.io/Topic_PlayBallNow/postData_test.json"
-        );
+      if (week_tagStyle.classList == "active") {
+        /* 如果已經選中=>移除class="active" */
+        week_tagStyle.classList.remove("active");
 
-        const { postData } = data.data;
-        console.log(postData);
-        const { vb_today_postData } = postData[0];
-        const { vb_week_postData } = postData[1];
-        const { bm_today_postData } = postData[2];
-        const { bm_week_postData } = postData[3];
+        console.log("取消選取");
+        switch (name) {
+          case "tagDegree":
+            setweekFilterDegree("");
+            break;
+          case "tagPrice":
+            setweekFilterPrice("");
+            console.log("改變價格:" + weekfilterPrice);
+            break;
+          case "startTime":
+            setweekFilterTime("");
+            break;
+          case "city":
+            setweekFilterTaipei("");
+            break;
+          default:
+            break;
+        }
+      } else {
+        /* 如果沒有選中=>新增class="active" */
+        week_tagStyle.classList.add("active");
+        week_allBtn.classList.remove("active");
+        console.log(week_tagStyle);
+        switch (name) {
+          case "tagDegree":
+            setweekFilterDegree(`${value}`);
+            break;
+          case "tagPrice":
+            setweekFilterPrice(`${value}`);
+            console.log("改變價格:" + weekfilterPrice);
+            break;
+          case "startTime":
+            setweekFilterTime(`${value}`);
+            break;
+          default:
+            break;
+        }
+        weekFilterPosts;
+        console.log("本週類型: " + name);
+        console.log("本週篩選 : " + value);
+      }
+      if (id == "tags-weekAll") {
+        //取得filterBox下所有的button
+        const weekfilterButtons =
+          weekfilterBox.querySelectorAll("button");
+        weekfilterButtons.forEach((button) => {
+          //移除所有button的active類
+          button.classList.remove("active");
+        });
+        setweekFilterDegree("");
+        setweekFilterPrice("");
+        setweekFilterTime("");
 
-        const App = () => {
-          const { useState, useEffect, useMemo } = React;
-          /* 顏色 */
-          const [mainColor, setMainColor] = useState("#14AAEB");
-          const [fontColor, setFontColor] = useState("#147CB6");
-          const [btnColor, setBtnColor] = useState("#F1DB15");
-          const [inputColor, setInputColor] = useState("#B1C3E8");
-          //手機板banner
-          const [mobileTopBar, setMobileTopBar] = useState(
-            "./images/mobile-both-topbanner.png"
-          );
-          /* 選擇打羽球或打排球按鈕對應要顯示的資料 */
-          const [selectedButton, setSelectedButton] = useState("btn-typeVb");
-          const [BMdisplay, setBMDisplay] = useState("none");
-          const [VBdisplay, setVBDisplay] = useState("flex");
+        if (week_allBtn.classList == "active") {
+          week_allBtn.classList.remove("active");
+        } else {
+          week_allBtn.classList.add("active");
+        }
+      }
+    }
+  };
 
-          /* 取得篩選條件 */
-          const [selectedDate, setSelectedDate] = useState("全部"); //日期
-          const [selectedCity, setSelectedCity] = useState(""); //縣市
-          const [selectedArea, setSelectedArea] = useState([]); //地區
-          const [selectedCost, setSelectedCost] = useState(""); //費用
-          const [selectedDegree, setSelectedDegree] = useState(""); //程度
-          const [selectedRol, setSelectedRol] = useState(""); //排球類型
-          const [selectedEquip, setSelectedEquip] = useState(""); //羽球設備
-          const [filterType, setFilterType] = useState(""); //羽球或排球
-          /* 要map的資料 */
-          const [todayType, setTodayType] = useState("vb_today_postData");
-          const [weekType, setWeekType] = useState("vb_week_postData");
-          //儲存篩選條件
-          const [conditions, setConditions] = useState({ type: filterType });
-          //是否顯示重新篩選表單元件
-          const [showFilterForm, setShowFilterForm] = useState(false);
-          //是否篩選貼文
-          const [changeFilter, setChangeFilter] = useState(false);
+  useEffect(() => {
+    console.log("目前本日篩選: ", conditions);
+    console.log("目前本週篩選: ", weekConditions);
+  }, [conditions, weekConditions]);
+  /* 篩選本日資料 */
+  const filterPosts = useMemo(() => {
+    // 沒有篩選時渲染全部貼文
+    if (!filterDegree && !filterPrice && !filterTime) {
+      return [...getPosts(todayType)];
+    }
+    return [...getPosts(todayType)].filter((posts) => {
+      let matchAllConditions = true;
+      for (const key in conditions) {
+        if (conditions[key] !== "") {
+          if (posts.hasOwnProperty(key)) {
+            switch (key) {
+              case "tagDegree":
+                matchAllConditions =
+                  matchAllConditions &&
+                  posts[key].includes(conditions[key]);
+                break;
+              case "tagPrice":
+                //比較價格小於條件值
+                matchAllConditions =
+                  matchAllConditions &&
+                  posts[key] <= parseInt(conditions[key]);
+                break;
+              case "startTime":
+                // 比較startTime 是否大于條件
 
-          /* 載入網頁時取得localStorage資料 */
-          useEffect(() => {
-            setSelectedDate(window.localStorage.filterDate);
-            setSelectedCity(window.localStorage.filterCity);
-            const storedSelectedArea = localStorage.getItem("filterArea");
-            const selectedAreaArray = storedSelectedArea
-              ? JSON.parse(storedSelectedArea)
-              : [];
-            setSelectedArea(selectedAreaArray);
-            setSelectedCost(window.localStorage.filterCost);
-            setSelectedDegree(window.localStorage.filterDegree);
-            setSelectedRol(window.localStorage.filterRol);
-            setSelectedEquip(window.localStorage.filterEquip);
-            setFilterType(window.localStorage.filterType);
+                matchAllConditions =
+                  matchAllConditions &&
+                  parseInt(posts[key].split(":")[0]) >= conditions[key];
 
-            if (window.localStorage.filterType == "羽球") {
-              setTodayType("bm_today_postData");
-              setWeekType("bm_week_postData");
-            } else {
-              setTodayType("vb_today_postData");
-              setWeekType("vb_week_postData");
-            }
-            setChangeFilter(true);
-          }, []);
-
-          // 更改資料類型
-          const getPosts = (type) => {
-            switch (type) {
-              case "vb_today_postData":
-                return vb_today_postData;
-              case "bm_today_postData":
-                return bm_today_postData;
-              case "vb_week_postData":
-                return vb_week_postData;
-              case "bm_week_postData":
-                return bm_week_postData;
+                break;
+              case "city":
+                matchAllConditions =
+                  matchAllConditions &&
+                  posts[key].match(conditions[key]);
+                break;
               default:
-                return [];
+                // 未知屬性
+                matchAllConditions = false;
+                break;
             }
-          };
-          /* 篩選表單更新選項 */
-          const [areaOption, setAreaOption] = useState(["地區"]);
-          const [showArea, setShoeArea] = useState("none");
-          let selectCity = document.getElementById("city");
-          let selectArea = document.getElementById("selectArea");
-          const changeArea = (value) => {
-            setSelectedCity(value);
-            var options = {
-              taipei: [
-                "全部",
-                "中正區",
-                "大同區",
-                "中山區",
-                "松山區",
-                "大安區",
-                "萬華區",
-                "信義區",
-                "士林區",
-                "北投區",
-                "內湖區",
-                "南港區",
-                "文山區",
-              ],
-              xinpei: [
-                "全部",
-                "板橋區",
-                "新莊區",
-                "中和區",
-                "永和區",
-                "土城區",
-                "樹林區",
-                "三重區",
-                "新店區",
-                "淡水區",
-                "汐止區",
-                "瑞芳區",
-                "八里區",
-                "林口區",
-                "芦洲區",
-                "五股區",
-                "泰山區",
-                "三峽區",
-                "鶯歌區",
-                "石碇區",
-                "深坑區",
-                "石門區",
-                "坪林區",
-                "平溪區",
-                "雙溪區",
-                "貢寮區",
-                "金山區",
-                "萬里區",
-                "烏來區",
-              ],
-              counties: [
-                "全部",
-                "基隆市",
-                "新竹市",
-                "桃園市",
-                "臺中市",
-                "臺南市",
-                "高雄市",
-                "嘉義市",
-                "新竹縣",
-                "苗栗縣",
-                "彰化縣",
-                "南投縣",
-                "雲林縣",
-                "嘉義縣",
-                "屏東縣",
-                "宜蘭縣",
-                "花蓮縣",
-                "臺東縣",
-                "澎湖縣",
-              ],
-            };
-            if (value == "台北市") {
-              selectArea;
-              setAreaOption(options.taipei);
-              setShoeArea("flex");
-            } else if (value == "新北市") {
-              setAreaOption(options.xinpei);
-              setShoeArea("flex");
-            } else if (value == "其他") {
-              setAreaOption(options.counties);
-              setShoeArea("flex");
-            } else {
-              setShoeArea("none");
+          } else {
+            //
+            matchAllConditions = false;
+
+            // 如果某个条件不匹配，则停止遍历并返回 false
+            if (!matchAllConditions) {
+              return false;
             }
-          };
-          const handleSelectChange = (event) => {
-            //转换为数组，并提取每个选项的值。
-            const selectedOptions = Array.from(
-              event.target.selectedOptions,
-              (option) => option.value
-            );
-            setSelectedArea(selectedOptions);
-          };
+          }
+        }
+      }
+      // 如果所有条件都匹配，则返回 true
+      return matchAllConditions;
+    });
+  }, [todayType, filterTag, tagDataType, conditions]);
+  /* 篩選本週資料 */
+  const weekFilterPosts = useMemo(() => {
+    // 沒有篩選時渲染全部貼文
+    if (!weekfilterDegree && !weekfilterPrice && !weekfilterTime) {
+      return [...getPosts(weekType)];
+    }
 
-          /* 清除篩選條件 */
-          const handleResetFilter = () => {
-            setSelectedDate("全部");
-            setSelectedCity("全部");
-            setSelectedArea([]);
-            setSelectedDegree("全部");
-            setSelectedCost("全部");
-            setSelectedEquip("全部");
-            setSelectedRol("全部");
-          };
-
-          /* 重新篩選 */
-          const SaveData = () => {
-            window.localStorage.filterType = filterType;
-            window.localStorage.filterDate = selectedDate;
-            window.localStorage.filterCity = selectedCity;
-            window.localStorage.filterArea = JSON.stringify(selectedArea);
-            window.localStorage.filterCost = selectedCost;
-            window.localStorage.filterDegree = selectedDegree;
-            window.localStorage.filterRol = selectedRol;
-            window.localStorage.filterEquip = selectedEquip;
-            setChangeFilter(true);
-            setShowFilterForm(false);
-          };
-
-          /* 更新儲存條件的容器，並呼叫篩選貼文的函式 */
-          useEffect(() => {
-            //如果changeFilter=true 更新condition儲存(避免比對空值)
-            if (changeFilter) {
-              setChangeFilter(false);
-              const newConditions = {};
-              if (selectedDegree !== "全部" && selectedDegree !== "") {
-                newConditions.tagDegree = selectedDegree;
-              }
-              if (selectedCost !== "全部") {
-                newConditions.tagPrice = selectedCost;
-              }
-              if (selectedDate !== "全部" && selectedDate !== "") {
-                newConditions.dateAbbr = selectedDate;
-              }
-              if (selectedCity !== "全部") {
-                newConditions.city = selectedCity;
-              }
-              if (selectedArea.length > 1) {
-                newConditions.area = selectedArea;
-              }
-              if (selectedRol !== "全部") {
-                newConditions.role = selectedRol;
-              }
-              if (selectedEquip !== "全部") {
-                newConditions.equip = selectedEquip;
-              }
-              setConditions(newConditions);
-              filterPosts;
+    return [...getPosts(weekType)].filter((posts) => {
+      let matchAllConditions = true;
+      for (const key in weekConditions) {
+        if (weekConditions[key] !== "") {
+          if (posts.hasOwnProperty(key)) {
+            switch (key) {
+              case "tagDegree":
+                matchAllConditions =
+                  matchAllConditions &&
+                  posts[key].includes(weekConditions[key]);
+                break;
+              case "tagPrice":
+                // 比較價格小於條件值
+                matchAllConditions =
+                  matchAllConditions &&
+                  posts[key] <= parseInt(weekConditions[key]);
+                break;
+              case "startTime":
+                // 比較 startTime 是否
+                const startTime = parseInt(posts[key].split(":")[0]);
+                const conditionTime = parseInt(weekConditions[key]);
+                matchAllConditions =
+                  matchAllConditions &&
+                  startTime >= conditionTime &&
+                  startTime < conditionTime + 4;
+                break;
+              default:
+                matchAllConditions = false;
+                break;
             }
-          }, [
-            changeFilter,
-            selectedDate,
-            selectedCost,
-            selectedDegree,
-            selectedCity,
-            selectedArea,
-            selectedRol,
-            selectedEquip,
-          ]);
+          } else {
+            matchAllConditions = false;
+          }
+        }
 
-          useEffect(() => {
-            // console.log("useState:", selectedDegree);
-            console.log("目前篩選: ", conditions);
-            //取得物件conditions的長度
-            updateFilterNum(Object.keys(conditions).length);
-          }, [conditions, selectedDegree]);
+        // 如果某个条件不匹配，则停止遍历并返回 false
+        if (!matchAllConditions) {
+          return false;
+        }
+      }
+      // 如果所有条件都匹配，则返回 true
+      return matchAllConditions;
+    });
+  }, [
+    weekType,
+    weekfilterDegree,
+    weekfilterPrice,
+    weekfilterTime,
+    weekConditions,
+  ]);
 
-          /* 篩選條件數目 */
-          const [filterNum, setFilterNum] = useState("");
-          const updateFilterNum = (num) => {
-            document.documentElement.style.setProperty("--filter-num", num);
-            setFilterNum(num);
-          };
+  /* 拖拽輪播 */
+  // 今日
+  const [dragStartX, setDragStartX] = useState(0);
+  const [dragging, setDragging] = useState(false);
+  const [containerRef, setContainerRef] = useState(null);
 
-          /* 篩選資料 */
-          const filterPosts = useMemo(() => {
-            // 沒有篩選時渲染全部貼文
-            if (
-              !selectedDegree &&
-              !selectedCost &&
-              !selectedCity &&
-              !selectedArea &&
-              !selectedDate &&
-              !selectedRol &&
-              !selectedEquip
-            ) {
-              return [...getPosts(todayType), ...getPosts(weekType)];
-            }
-            return [...getPosts(todayType), ...getPosts(weekType)].filter(
-              (posts) => {
-                let matchAllConditions = true;
-                console.log("篩選貼文：", posts);
-                for (const key in conditions) {
-                  if (
-                    // newConditions.hasOwnProperty(key) &&
-                    conditions[key] !== ""
-                  ) {
-                    if (posts.hasOwnProperty(key)) {
-                      switch (key) {
-                        case "tagDegree":
-                          matchAllConditions =
-                            matchAllConditions &&
-                            posts[key].includes(conditions[key]);
-                          break;
-                        case "tagPrice":
-                          //比較價格小於條件值
-                          matchAllConditions =
-                            matchAllConditions &&
-                            posts[key] <= parseInt(conditions[key]);
-                          break;
-                        case "dateAbbr":
-                          // 比較打球日是否等於條件
-                          matchAllConditions =
-                            matchAllConditions &&
-                            posts[key].match(conditions[key]);
-                          // parseInt(posts[key].split("-")[0]) >= conditions[key];
+  const handleDragStart = (event) => {
+    setDragging(true);
+    setDragStartX(event.clientX);
+  };
 
-                          break;
-                        case "city":
-                          matchAllConditions =
-                            matchAllConditions &&
-                            posts[key].match(conditions[key]);
-                          break;
-                        case "area":
-                          if (Array.isArray(posts[key])) {
-                            const match = posts[key].some((area) =>
-                              conditions[key].includes(area)
-                            );
-                            console.log(
-                              `匹配區域 ${conditions[key]} 在 ${posts[key]} 中: ${match}`
-                            );
-                            matchAllConditions = matchAllConditions && match;
-                          } else {
-                            matchAllConditions = false;
-                          }
-                          break;
-                        case "role":
-                          matchAllConditions =
-                            matchAllConditions &&
-                            posts[key].match(conditions[key]);
-                          break;
-                        case "equip":
-                          matchAllConditions =
-                            matchAllConditions &&
-                            posts[key].includes(conditions[key]);
-                          break;
-                        default:
-                          // 未知屬性
-                          matchAllConditions = false;
-                          break;
-                      }
-                    } else {
-                      //
-                      matchAllConditions = false;
+  const handleDragMove = (event) => {
+    if (!dragging || !containerRef) return;
+    const delta = event.clientX - dragStartX;
+    containerRef.scrollLeft -= delta;
+    setDragStartX(event.clientX);
+  };
 
-                      // 如果某个条件不匹配，则停止遍历并返回 false
-                      if (!matchAllConditions) {
-                        return false;
-                      }
-                    }
-                  }
-                }
-                console.log(`匹配結果：${matchAllConditions}`);
-                // 如果所有条件都匹配，则返回 true
-                return matchAllConditions;
-              }
-            );
-          }, [conditions]);
-          const length = filterPosts.length;
-          const lengthValue = `${length}`;
+  const handleDragEnd = (event) => {
+    event.stopPropagation();
+    setDragging(false);
+  };
 
-          /* 如果filterType, selectedButton狀態改變 */
-          useEffect(() => {
-            let colorMain = "";
-            let colorFont = "";
-            let btnColor = "";
-            let inputColor = "";
-            // 取消其他按鈕的選擇
-            const btnTypeVb = document.getElementById("btn-typeVb");
-            const btnTypeBm = document.getElementById("btn-typeBm");
-            if (filterType == "羽球") {
-              // 如果是羽球:
-              colorMain = "#83B90F";
-              colorFont = "#689607";
-              btnColor = "#FF8D24";
-              inputColor = "#B6DBAA";
-              /* 改變要map的資料名稱 */
-              setTodayType("bm_today_postData");
-              setWeekType("bm_week_postData");
-              setFilterType("羽球");
-              // 顯示狀態
-              setBMDisplay("grid");
-              setVBDisplay("none");
-            } else if (filterType == "排球") {
-              // 如果是排球
-              colorMain = "#14AAEB";
-              colorFont = "#147CB6";
-              btnColor = "#F1DB15";
-              inputColor = "#B1C3E8";
-              //
-              setTodayType("vb_today_postData");
-              setWeekType("vb_week_postData");
-              setFilterType("排球");
-              //
-              setBMDisplay("none");
-              setVBDisplay("grid");
-            }
+  // 本周
+  const [week_dragStartX, setWeekDragStartX] = useState(0);
+  const [week_dragging, setWeekDragging] = useState(false);
+  const [week_containerRef, setWeekContainerRef] = useState(null);
 
-            setMainColor(colorMain);
-            setFontColor(colorFont);
-            setBtnColor(btnColor);
-            setInputColor(inputColor);
-            setSelectedButton(filterType);
+  const weekHandleDragStart = (event) => {
+    setWeekDragging(true);
+    setWeekDragStartX(event.clientX);
+  };
 
-            document.documentElement.style.setProperty(
-              "--main-color",
-              colorMain
-            );
-            document.documentElement.style.setProperty(
-              "--font-color",
-              colorFont
-            );
-            document.documentElement.style.setProperty("--btn-color", btnColor);
-            document.documentElement.style.setProperty(
-              "--input-hover-color",
-              inputColor
-            );
-            console.log(selectedButton);
-          }, [filterType, selectedButton]);
+  const weekHandleDragMove = (event) => {
+    if (!week_dragging || !week_containerRef) return;
+    const delta = event.clientX - week_dragStartX;
+    week_containerRef.scrollLeft -= delta;
+    setWeekDragStartX(event.clientX);
+  };
 
-          /* 處理元件樣式及重設篩選條件 */
-          const changeType = (id) => {
-            let colorMain = "";
-            let colorFont = "";
-            let btnColor = "";
-            let inputColor = "";
-            // 取消其他按鈕的選擇
-            const btnTypeVb = document.getElementById("btn-typeVb");
-            const btnTypeBm = document.getElementById("btn-typeBm");
-            if (id === "btn-typeBm" || id === "btn-formBM") {
-              // 如果是羽球:
-              colorMain = "#83B90F";
-              colorFont = "#689607";
-              btnColor = "#FF8D24";
-              inputColor = "#B6DBAA";
-              // banner顯示狀態
-              setBMDisplay("flex");
-              setVBDisplay("none");
-            } else if (id === "btn-typeVb" || id === "btn-formVB") {
-              // 如果是排球
-              colorMain = "#14AAEB";
-              colorFont = "#147CB6";
-              btnColor = "#F1DB15";
-              inputColor = "#B1C3E8";
-              //
-              setBMDisplay("none");
-              setVBDisplay("block");
-            }
+  const weekHandleDragEnd = (event) => {
+    event.stopPropagation(); //阻止事件冒泡，就不會影響到貼文元件的按鈕事件
+    setWeekDragging(false);
+  };
 
-            setMainColor(colorMain);
-            setFontColor(colorFont);
-            setBtnColor(btnColor);
-            setInputColor(inputColor);
+  /* 篩選表單更新選項 */
+  const [selectedCity, setSelectedCity] = useState("全部");
+  const [areaOption, setAreaOption] = useState(["地區"]);
+  const [showArea, setShoeArea] = useState("none");
+  let selectCity = document.getElementById("city");
+  let selectArea = document.getElementById("selectArea");
+  const changeArea = (value) => {
+    setSelectedCity(value);
+    var options = {
+      taipei: [
+        "全部",
+        "中正區",
+        "大同區",
+        "中山區",
+        "松山區",
+        "大安區",
+        "萬華區",
+        "信義區",
+        "士林區",
+        "北投區",
+        "內湖區",
+        "南港區",
+        "文山區",
+      ],
+      xinpei: [
+        "全部",
+        "板橋區",
+        "新莊區",
+        "中和區",
+        "永和區",
+        "土城區",
+        "樹林區",
+        "三重區",
+        "新店區",
+        "淡水區",
+        "汐止區",
+        "瑞芳區",
+        "八里區",
+        "林口區",
+        "芦洲區",
+        "五股區",
+        "泰山區",
+        "三峽區",
+        "鶯歌區",
+        "石碇區",
+        "深坑區",
+        "石門區",
+        "坪林區",
+        "平溪區",
+        "雙溪區",
+        "貢寮區",
+        "金山區",
+        "萬里區",
+        "烏來區",
+      ],
+      counties: [
+        "基隆市",
+        "新竹市",
+        "桃園市",
+        "臺中市",
+        "臺南市",
+        "高雄市",
+        "嘉義市",
+        "新竹縣",
+        "苗栗縣",
+        "彰化縣",
+        "南投縣",
+        "雲林縣",
+        "嘉義縣",
+        "屏東縣",
+        "宜蘭縣",
+        "花蓮縣",
+        "臺東縣",
+        "澎湖縣",
+      ],
+    };
+    if (value == "台北市") {
+      selectArea;
+      setAreaOption(options.taipei);
+      setShoeArea("flex");
+    } else if (value == "新北市") {
+      setAreaOption(options.xinpei);
+      setShoeArea("flex");
+    } else if (value == "其他") {
+      setAreaOption(options.counties);
+      setShoeArea("flex");
+    } else {
+      setShoeArea("none");
+    }
+  };
 
-            document.documentElement.style.setProperty(
-              "--main-color",
-              colorMain
-            );
-            document.documentElement.style.setProperty(
-              "--font-color",
-              colorFont
-            );
-            document.documentElement.style.setProperty("--btn-color", btnColor);
-            document.documentElement.style.setProperty(
-              "--input-hover-color",
-              inputColor
-            );
-            handleResetFilter();
-          };
+  /* 儲存篩選條件 */
+  const [selectedDate, setSelectedDate] = useState("全部"); //日期
+  const [selectedArea, setSelectedArea] = useState([]); //地區
+  const [selectedCost, setSelectedCost] = useState("全部"); //費用
+  const [selectedDegree, setSelectedDegree] = useState("全部"); //程度
+  const [selectedRol, setSelectedRol] = useState("全部"); //排球類型
+  const [selectedEquip, setSelectedEquip] = useState("全部"); //羽球設備
 
-          // 元件
-          // 建立簡略貼文元件
-          const SimplePostCard = ({
+  const handleSelectChange = (event) => {
+    //转换为数组，并提取每个选项的值。
+    const selectedOptions = Array.from(
+      event.target.selectedOptions,
+      (option) => option.value
+    );
+    setSelectedArea(selectedOptions);
+  };
+
+  const SaveData = () => {
+    window.localStorage.filterDate = selectedDate;
+    window.localStorage.filterCity = selectedCity;
+    localStorage.setItem("filterArea", JSON.stringify(selectedArea));
+    window.localStorage.filterCost = selectedCost;
+    window.localStorage.filterDegree = selectedDegree;
+    window.localStorage.filterRol = selectedRol;
+    window.localStorage.filterEquip = selectedEquip;
+    //
+    window.localStorage.filterType = filterTag;
+  };
+  useEffect(() => {
+    console.log(selectedArea);
+  }, [selectedArea]);
+
+            // 元件
+
+          // 建立貼文元件
+          const PostCard = ({
             id,
-            href,
             type,
             postDate,
             dateMD,
@@ -530,13 +676,11 @@
             tagDegree,
             tagPrice,
             reqCount,
-            female,
-            male,
-            unspecified,
             role,
             pos,
             equip,
             note,
+            href,
             host,
             hostId,
             appl,
@@ -557,39 +701,7 @@
             /* 是否顯示審核列表 */
             const [mapAuditList, setMapAuditList] = useState(false);
 
-            const [showBallBrand, setShowBallBrand] = useState("none");
-            const [showVbInfo, setShowVbInfo] = useState("flex");
-            const [isLike, setIsLike] = useState("");
-            const handleLikeState = (like) => {
-              like === "./images/heart-yes.svg"
-                ? setIsLike("./images/heart-no.svg")
-                : setIsLike("./images/heart-yes.svg");
-            };
-
-            const [btnDisplay, setBtnDisplay] = useState("flex");
-            var hostType = "vb";
             useEffect(() => {
-              if (type == "羽球") {
-                hostType = "bm";
-                setShowBallBrand("flex");
-                setShowVbInfo("none");
-                setMainColor("#83B90F");
-                setFontColor("#689607");
-                setBtnColor("#FF8D24");
-              } else {
-                hostType = "vb";
-                setShowBallBrand("none");
-                setShowVbInfo("flex");
-                setMainColor("#14AAEB");
-                setFontColor("#147CB6");
-                setBtnColor("#F1DB15");
-              }
-
-              if (like === "true") {
-                setIsLike("./images/heart-yes.svg");
-              } else {
-                setIsLike("./images/heart-no.svg");
-              }
               if (identity == "host") {
                 setPostHref(`#auditApplyPopup-${id}`);
                 setShowApplicants("flex");
@@ -603,9 +715,9 @@
                 setIsPopUp("查看");
                 setMapAuditList(false);
               } else {
-                setIsPopUp("報名");
+                setIsPopUp("報名元件");
               }
-            }, [like]);
+            }, []);
             //按確定報名後改變
             const [nowState, setNowState] = useState("default");
             useEffect(() => {
@@ -621,6 +733,7 @@
             const [callApplyCard, setCallApplyCard] = useState(false);
             /* 是否呼叫查看貼文元件 */
             const [detailNotify, setDetailNotify] = useState(false);
+
             const handleCallComponent = (type) => {
               if (type == "查看") {
                 setCallApplyCard(false);
@@ -630,82 +743,46 @@
                 setDetailNotify(false);
               }
             };
+
             return (
               <>
-                <div className="simplePostInfo">
-                  <div className="main-info">
-                    <div className="header">
-                      <p>
-                        {postDate} {postStartTime}~{postEndTime}
-                      </p>
-                      <div className="type-style">{type}</div>
-                      <button
-                        className="collect"
-                        onClick={() => {
-                          handleLikeState(isLike);
-                        }}
-                      >
-                        <img src={isLike} alt="收藏" />
-                      </button>
+                <div
+                  className="content"
+                  id={id}
+                  style={{ backgroundImage: postBorder }}
+                >
+                  <div className="text">
+                    <div className="mainText">
+                      <p className="text-M">{postDate}</p>
+                      <p className="text-L">{postStartTime}</p>
                     </div>
-                    <div className="areaInfo">
-                      <h3>{postCity}</h3>
-                      <h3>{postArea}</h3> <h3>{postArena}</h3>
+                    <div className="subtext">
+                      <p className="text-S">{postCity}</p>
+                      <p className="text-S">{postArea}</p>
                     </div>
+                    <h3 className="text-L" value={`${postArena}`}>
+                      {postArena}
+                    </h3>
                     <div className="tag-style">
-                      <p>{tagDegree}</p>
-                      <p>${tagPrice}</p>
+                      <p className="text-S tagMargin">{tagDegree}</p>
+                      <p className="text-S tagMargin">${tagPrice}</p>
                     </div>
-                  </div>
-                  <div className="sub-info">
-                    <div className="vacancyInfo">
-                      <h4>缺額</h4>
-                      <div>女</div>
-                      <p>{female}位</p>
-                      <div>男</div>
-                      <p>{male}位</p>
-                      <div>不限</div> <p>{unspecified}位</p>
+                    <div className="BtnContainer">
+                      <a
+                        className="button"
+                        href={postHref}
+                        onClick={() => {
+                          handleCallComponent(isPopUp);
+                        }}
+                        onMouseDown={(e) => e.stopPropagation()}
+                      >
+                        {/* onMouseDown={(e) => e.stopPropagation()}為了阻止冒泡 使其不會跟托拽輪播衝突 */}
+                        報名
+                      </a>
                     </div>
-                    <div className="ballInfo" style={{ display: showVbInfo }}>
-                      <h4>類型</h4>
-                      <p>{role}</p>
-                    </div>
-                    <div
-                      className="ballInfo"
-                      style={{ display: showBallBrand }}
-                    >
-                      <h4>用球</h4>
-                      <p>{ballBrand}</p>
-                    </div>
-                    <div className="equipInfo" style={{ display: showVbInfo }}>
-                      <h4>位置</h4>
-                      <p>{pos}</p>
-                    </div>
-                    <div
-                      className="equipInfo"
-                      style={{ display: showBallBrand }}
-                    >
-                      <h4>設備</h4>
-                      <p>{equip}</p>
-                    </div>
-                    <div className="noteInfo">
-                      <h4>備註</h4>
-                      <p>{note}</p>
-                    </div>
-                  </div>
-
-                  <div className="BtnContainer">
-                    <a
-                      className="button"
-                      href={postHref}
-                      onClick={() => {
-                        handleCallComponent(isPopUp);
-                      }}
-                    >
-                      報名
-                    </a>
                   </div>
                 </div>
+
                 {callApplyCard && (
                   <ApplyCard
                     href={href}
@@ -718,9 +795,9 @@
                     postArena={postArena}
                     tagDegree={tagDegree}
                     tagPrice={tagPrice}
-                    female={female}
-                    male={male}
-                    unspecified={unspecified}
+                    female={reqCount[0].count}
+                    male={reqCount[1].count}
+                    unspecified={reqCount[2].count}
                     role={role}
                     equip={equip}
                     pos={pos}
@@ -797,7 +874,6 @@
             const [showBallBrand, setShowBallBrand] = useState("none");
             const [showVbInfo, setShowVbInfo] = useState("flex");
             const [isLike, setIsLike] = useState("");
-
             const [btnDisplay, setBtnDisplay] = useState("flex");
             useEffect(() => {
               if (type == "羽球") {
@@ -812,9 +888,7 @@
               }
             }, [type, like]);
             var hostType = "vb";
-            if (type == "羽球") {
-              hostType = "bm";
-            }
+
             const handleLikeState = (like) => {
               like === "./images/heart-yes.svg"
                 ? setIsLike("./images/heart-no.svg")
@@ -1026,9 +1100,6 @@
               }
               setEllipseBar(ellipseBar);
             }, [type]);
-            const [popupState, setPopupState] = useState({});
-
-            /* 是否生成審核取消元件 */
             const [auditCancelCard, setAuditCancelCard] = useState(false);
             const [cancelIsNew, setCancelIsNew] = useState("block");
             const handleAuditCancelCard = () => {
@@ -1040,6 +1111,7 @@
             const handleDetailsNotifyCard = () => {
               setDetailsNotifyCard(true);
             };
+
             /* 是否生成審核報名元件 */
             const [auditApplyCard, setAuditApplyCard] = useState("");
             const [popupId, setPopupId] = useState("");
@@ -1048,21 +1120,21 @@
               setPopupId(`${index}`);
             };
 
-            /* 申請者元件 */
-
             //是否第一次點擊
             let first = false;
+            /* 申請者元件 */
             const ApplicantsCard = ({ applyId, index }) => {
+              //const [isNew, setIsNew] = useState("block"); //new提示狀態
               let playerId = id.toString() + "中" + applyId.toString();
               //點擊事件
               function handleClick() {
                 //隱藏new提示
+                //setIsNew("none");
                 if (first == false) {
                   first = true;
                   window.localStorage.setItem(playerId, "none");
                 }
               }
-
               return (
                 <>
                   <a
@@ -1075,7 +1147,7 @@
                     <img
                       className="img-border"
                       src={`./images/${applyId}.png`}
-                      alt=""
+                      alt="申請者頭像"
                     />
                     <div
                       className="notice-new"
@@ -1088,7 +1160,7 @@
               );
             };
             /* 審核列表 */
-            const AuditList = ({ props }) => {
+            const AuditList = ({ prop }) => {
               return (
                 <>
                   <div
@@ -1099,7 +1171,7 @@
                       <div className="line-hugTitle">
                         <div className="titleLine"></div>
                         <h3>球友申請列表</h3>
-                        <small> (已徵{state})</small>
+                        <small> 已徵{state}</small>
                       </div>
                       <div className="titleArrowBtn">
                         <button>
@@ -1114,24 +1186,23 @@
                       {appl.map((apply, index) => (
                         <ApplicantsCard
                           key={index}
-                          appl={appl}
                           applyId={apply.id}
                           index={index}
-                          name={apply.name}
-                          bmLevel={apply.bmLevel}
-                          vbLevel={apply.vbLevel}
-                          attnRate={apply.attnRate}
+                          //isNew={isNew}
+                          //setIsNew={setIsNew}
+                          // isNew={applicantsState[index].isNew}
+                          //handleAuditApplyCard={handleAuditApplyCard}
                         />
                       ))}
 
                       <a
-                        href={`#detailApplyPopup-${id}`}
+                        href={`#detailApplyPopup-yes-0`}
                         onClick={() => handleAuditApplyCard("yes", 0)}
                       >
                         <img
                           className="img-border"
                           src="./images/player-agree.png"
-                          alt=""
+                          alt="同意報名"
                         />
                       </a>
                     </div>
@@ -1274,6 +1345,7 @@
                           </div>
 
                           {mapAuditList && <AuditList />}
+
                           <div
                             className="BtnContainer"
                             style={{ display: showCancel }}
@@ -1296,6 +1368,7 @@
                 </div>
                 {auditApplyCard === "apply" && (
                   <AuditApplyCard
+                    key={popupId}
                     day={day}
                     startTime={startTime}
                     type={type}
@@ -1308,11 +1381,13 @@
                     typeFontStyle={typeFontStyle}
                     ellipseBarType={ellipseBar}
                     isApply={"false"}
+                    //setIsNew={setIsNew}
                   />
                 )}
 
                 {auditApplyCard === "yes" && (
                   <AuditApplyCard
+                    key={popupId}
                     day={day}
                     startTime={startTime}
                     type={type}
@@ -1336,9 +1411,9 @@
                     arena={arena}
                     state={state}
                     id={id}
+                    cancel={cancel}
                     typeStyle={typeStyle}
                     typeFontStyle={typeFontStyle}
-                    cancel={cancel}
                   />
                 )}
                 {detailsNotifyCard && (
@@ -1381,9 +1456,11 @@
             const [resultColor, setResultColor] = useState("#1A8D07");
             const [degreeType, setDegreeType] = useState("");
             const [thisType, setThisType] = useState("");
+            //console.log(appl);
             //console.log("元件" + isApply + index);
             useEffect(() => {
               if (isApply === "true") {
+                //如果已同意申請
                 setBtnDisplay("none");
                 setResultDisplay("block");
                 setResultText("接受申請");
@@ -1396,12 +1473,15 @@
                 setDegreeType(appl[index].vbLevel);
               }
             }, [isApply, type]);
+
             /* 審核結果標籤 */
             const auditResult = (type) => {
               let text = "";
-
+              //關閉審核按鈕
               setBtnDisplay("none");
+              //顯示審核結果
               setResultDisplay("block");
+              //判斷顯示結果的文字和顏色
               if (type === "no") {
                 text = "已婉拒";
                 setResultColor("#FF4F03");
@@ -1453,7 +1533,7 @@
                               >
                                 {appl[index].attnRate}%
                               </p>
-                              <img src={ellipseBarType} alt="" />
+                              <img src={ellipseBarType} alt="出席率圖" />
                             </div>
                             <p style={{ color: typeFontStyle }}>出席率</p>
                           </div>
@@ -1537,15 +1617,16 @@
             state,
             id,
             index,
+            cancel,
             typeFontStyle,
             typeStyle,
-            cancel,
           }) => {
             const [btnDisplay, setBtnDisplay] = useState("flex");
             const [resultDisplay, setResultDisplay] = useState("none");
             const [resultText, setResultText] = useState("");
             const [resultColor, setResultColor] = useState("#1A8D07");
             const [thisType, setThisType] = useState("");
+
             useEffect(() => {
               if (type === "羽球") {
                 setThisType("羽");
@@ -1775,230 +1856,11 @@
               </>
             );
           };
-
           //建立篩選表單元件
-          const FilterForm = ({
-            visible,
-            selectedDate,
-            selectedCity,
-            selectedArea,
-            selectedCost,
-            selectedDegree,
-            selectedEquip,
-            selectedRole,
-          }) => {
-            return (
-              <>
-                <div
-                  className={`popup ${visible ? "visible" : ""}`}
-                  id="filterForm"
-                >
-                  <div className="popup-inner">
-                    <div className="popup__content">
-                      <section className="filterFormBox">
-                        <div className="btn-changeFilter">
-                          <div className="form-type">
-                            <button
-                              id="btn-formBM"
-                              // ref={btnFormBmRef}
-                              className={
-                                selectedButton === "羽球" ? "selected" : ""
-                              }
-                              onClick={() => {
-                                changeType("btn-typeBm"), setFilterType("羽球");
-                              }}
-                            >
-                              打羽球
-                            </button>
-
-                            <button
-                              id="btn-formVB"
-                              // ref={btnFormVbRef}
-                              className={
-                                selectedButton === "排球" ? "selected" : ""
-                              }
-                              onClick={() => {
-                                changeType("btn-typeVb"), setFilterType("排球");
-                              }}
-                            >
-                              打排球
-                            </button>
-                          </div>
-                        </div>
-                        <div id="search-Bar">
-                          <div className="dropMenu">
-                            <ul>
-                              <input
-                                className="dpMenu-item"
-                                type="date"
-                                name="日期"
-                                id="date"
-                                title="打球日"
-                                required
-                                value={selectedDate}
-                                onChange={(e) => {
-                                  setSelectedDate(e.target.value);
-                                }}
-                              />
-                              <select
-                                name="縣市"
-                                id="city"
-                                className="dpMenu-item"
-                                value={selectedCity}
-                                onChange={(e) => {
-                                  changeArea(e.target.value);
-                                }}
-                              >
-                                <option value="全部">縣市</option>
-                                <option value="台北市">台北市</option>
-                                <option value="新北市">新北市</option>
-                                <option value="其他">其他</option>
-                              </select>
-                              <select
-                                name="地區"
-                                multiple={true}
-                                id="selectArea"
-                                className="dpMenu-item"
-                                value={selectedArea}
-                                style={{ display: showArea }}
-                                onChange={(e) => {
-                                  handleSelectChange(e);
-                                }}
-                              >
-                                {areaOption.map((option, index) => {
-                                  return (
-                                    <Option
-                                      key={index}
-                                      option={option}
-                                    ></Option>
-                                  );
-                                })}
-                              </select>
-                              <select
-                                name="程度"
-                                id="degree"
-                                className="dpMenu-item"
-                                style={{ display: VBdisplay }}
-                                value={selectedDegree}
-                                onChange={(e) => {
-                                  setSelectedDegree(e.target.value);
-                                }}
-                              >
-                                <option value="全部">程度</option>
-                                <option value="C">C</option>
-                                <option value="B">B</option>
-                                <option value="A">A</option>
-                                <option value="S">S</option>
-                              </select>
-                              <select
-                                name="程度"
-                                id="degree"
-                                className="dpMenu-item"
-                                style={{ display: BMdisplay }}
-                                value={selectedDegree}
-                                onChange={(e) => {
-                                  setSelectedDegree(e.target.value);
-                                }}
-                              >
-                                <option value="全部">程度</option>
-                                <option value="新手">新手</option>
-                                <option value="初階">初階</option>
-                                <option value="初上"> 初上</option>
-                                <option value="中下">中下</option>
-                                <option value="中階">中階</option>
-                                <option value="中上">中上</option>
-                                <option value="中進階">中進階</option>
-                              </select>
-
-                              <select
-                                name="費用"
-                                id="cost"
-                                className="dpMenu-item"
-                                value={selectedCost}
-                                onChange={(e) => {
-                                  setSelectedCost(e.target.value);
-                                }}
-                              >
-                                <option value="全部">費用</option>
-                                <option value="150">150以下</option>
-                                <option value="200">200以下</option>
-                                <option value="250">250以下</option>
-                              </select>
-                              <select
-                                name="類型"
-                                id="type"
-                                className="dpMenu-item"
-                                style={{ display: VBdisplay }}
-                                value={selectedRole}
-                                onChange={(e) => {
-                                  setSelectedRol(e.target.value);
-                                }}
-                              >
-                                <option value="全部">類型</option>
-                                <option value="男網純男">男網純男</option>
-                                <option value="女網純女">女網純女</option>
-                                <option value="男網混排">男網混排</option>
-                                <option value="女網混排">女網混排</option>
-                              </select>
-                              <select
-                                name="設備"
-                                id="equip"
-                                className="dpMenu-item"
-                                style={{ display: BMdisplay }}
-                                value={selectedEquip}
-                                onChange={(e) => {
-                                  setSelectedEquip(e.target.value);
-                                }}
-                              >
-                                <option value="全部">設備</option>
-                                <option value="側燈">側燈</option>
-                                <option value="冷氣">冷氣</option>
-                                <option value="飲水機">飲水機</option>
-                                <option value="停車場">停車場</option>
-                                <option value="PVC地板">PVC地板</option>
-                                <option value="淋浴">淋浴</option>
-                              </select>
-                            </ul>
-                            {/**/}
-                          </div>
-                          <div className="searchBtn-box">
-                            <div id="search-Type">
-                              <button
-                                id="btn-typeVb"
-                                className={
-                                  selectedButton === "排球" ? "selected" : ""
-                                }
-                                onClick={() => changeType("btn-typeVb")}
-                              ></button>
-                              <button
-                                id="btn-typeBm"
-                                className={
-                                  selectedButton === "羽球" ? "selected" : ""
-                                }
-                                onClick={() => changeType("btn-typeBm")}
-                              ></button>
-                            </div>
-                            <a href="./filterPosts.html">
-                              <button
-                                type="submit"
-                                className="popup__close btn-send button"
-                                onClick={() => {
-                                  SaveData();
-                                }}
-                              >
-                                重新篩選
-                              </button>
-                            </a>
-                          </div>
-                        </div>
-                      </section>
-                    </div>
-                  </div>
-                </div>
-              </>
-            );
+          const FilterForm = ({ areaOption }) => {
+            return <></>;
           };
-          /* 地區選項元件 */
+          //地區選項元件
           const Option = ({ option }) => {
             return (
               <>
@@ -2006,58 +1868,278 @@
               </>
             );
           };
-          return (
-            <div className="body hiFooter">
-              <TopBar mobileTopBar={mobileTopBar} title={"篩選貼文"} isShow={"none"} />
+  return (
+    <main className="index-Area">
+                {/*篩選區 */}
+                <section className="search">
+                  <div className="btn-changeType">
+                    <div className="form-type">
+                      <button
+                        id="btn-formBM"
+                        // ref={btnFormBmRef}
+                        className={
+                          selectedButton === "btn-typeBm" ? "selected" : ""
+                        }
+                        onClick={() => changeType("btn-typeBm")}
+                      >
+                        打羽球
+                      </button>
 
-              <main className="filter-postArea">
-                <section className="filter-box">
-                  <a href="./index.html">
-                    <div className="filter-btnBox">
-                      <button id="btn-filter">
-                        <img src="./images/arrow-left.png" alt="" />
+                      <button
+                        id="btn-formVB"
+                        // ref={btnFormVbRef}
+                        className={
+                          selectedButton === "btn-typeVb" ? "selected" : ""
+                        }
+                        onClick={() => changeType("btn-typeVb")}
+                      >
+                        打排球
                       </button>
                     </div>
-                  </a>
-                  <a
-                    href="#filterForm"
-                    onClick={() => {
-                      setShowFilterForm(true);
-                    }}
-                  >
-                    <div className="filter-info">
-                      <div className="info-top">
-                        <p className="title-M">{selectedDate}</p>
-                        <p className="title-M dot">|</p>
-                        <p className="title-M">{selectedDegree}</p>
-                      </div>
+                  </div>
+                  <div id="search-Type">
+                    <button
+                      id="btn-typeVb"
+                      className={
+                        selectedButton === "btn-typeVb" ? "selected" : ""
+                      }
+                      ref={btnTypeVbRef}
+                      onClick={() => changeType("btn-typeVb")}
+                    ></button>
+                    <button
+                      id="btn-typeBm"
+                      className={
+                        selectedButton === "btn-typeBm" ? "selected" : ""
+                      }
+                      onClick={() => changeType("btn-typeBm")}
+                      ref={btnTypeBmRef}
+                    ></button>
+                  </div>
+                  <div id="search-Bar" style={{ backgroundColor: mainColor }}>
+                    <div className="dropMenu">
+                      <ul>
+                        <input
+                          className="dpMenu-item"
+                          type="date"
+                          name="日期"
+                          id="date"
+                          title="打球日"
+                          required
+                          onChange={(e) => {
+                            setSelectedDate(e.target.value);
+                          }}
+                        />
+                        <select
+                          name="縣市"
+                          id="city"
+                          className="dpMenu-item"
+                          onChange={(e) => {
+                            changeArea(e.target.value);
+                          }}
+                        >
+                          <option value="全部">縣市</option>
+                          <option value="台北市">台北市</option>
+                          <option value="新北市">新北市</option>
+                          <option value="其他">其他</option>
+                        </select>
+                        <select
+                          name="地區"
+                          multiple={true}
+                          id="selectArea"
+                          className="dpMenu-item"
+                          style={{ display: showArea }}
+                          value={selectedArea}
+                          onChange={(e) => {
+                            handleSelectChange(e);
+                          }}
+                        >
+                          {areaOption.map((option, index) => {
+                            return (
+                              <Option key={index} option={option}></Option>
+                            );
+                          })}
+                        </select>
+                        <select
+                          name="程度"
+                          id="degree"
+                          className="dpMenu-item"
+                          style={{ display: VBdisplay }}
+                          onChange={(e) => {
+                            setSelectedDegree(e.target.value);
+                          }}
+                        >
+                          <option value="全部">程度</option>
+                          <option value="C">C</option>
+                          <option value="B">B</option>
+                          <option value="A">A</option>
+                          <option value="S">S</option>
+                        </select>
+                        <select
+                          name="程度"
+                          id="degree"
+                          className="dpMenu-item"
+                          style={{ display: BMdisplay }}
+                          onChange={(e) => {
+                            setSelectedDegree(e.target.value);
+                          }}
+                        >
+                          <option value="default">程度</option>
+                          <option value="新手">新手</option>
+                          <option value="初階">初階</option>
+                          <option value="初上"> 初上</option>
+                          <option value="中下">中下</option>
+                          <option value="中階">中階</option>
+                          <option value="中上">中上</option>
+                          <option value="中進階">中進階</option>
+                        </select>
 
-                      <div className="info-down">
-                        <p className="text-M">
-                          {selectedCity}，與其他{selectedArea.length}個區域
-                        </p>
-                      </div>
-                      <div className="filterIcon">
-                        <img src="./images/filiter.png" alt="篩選icon" />
-                        <div className="by-btn-filterNum">{filterNum}</div>
-                      </div>
+                        <select
+                          name="費用"
+                          id="cost"
+                          className="dpMenu-item"
+                          onChange={(e) => {
+                            setSelectedCost(e.target.value);
+                          }}
+                        >
+                          <option value="全部">費用</option>
+                          <option value="150">150以下</option>
+                          <option value="200">200以下</option>
+                          <option value="250">250以下</option>
+                        </select>
+                        <select
+                          name="類型"
+                          id="type"
+                          className="dpMenu-item"
+                          style={{ display: VBdisplay }}
+                          onChange={(e) => {
+                            setSelectedRol(e.target.value);
+                          }}
+                        >
+                          <option value="全部">類型</option>
+                          <option value="男網純男">男網純男</option>
+                          <option value="女網純女">女網純女</option>
+                          <option value="男網混排">男網混排</option>
+                          <option value="女網混排">女網混排</option>
+                        </select>
+                        <select
+                          name="設備"
+                          id="equip"
+                          className="dpMenu-item"
+                          style={{ display: BMdisplay }}
+                          onChange={(e) => {
+                            setSelectedEquip(e.target.value);
+                          }}
+                        >
+                          <option value="default">設備</option>
+                          <option value="側燈">側燈</option>
+                          <option value="冷氣">冷氣</option>
+                          <option value="飲水機">飲水機</option>
+                          <option value="停車場">停車場</option>
+                          <option value="PVC地板">PVC地板</option>
+                          <option value="淋浴">淋浴</option>
+                        </select>
+                      </ul>
+                      {/**/}
                     </div>
-                  </a>
-
-                  <div className="filter-postQuantity">
-                    <p value="共有">
-                      共有 <span value={lengthValue}>{lengthValue}</span>
-                    </p>
-                    <p value="筆資料符合">筆資料符合</p>
+                    <div className="searchBtn-box">
+                      <div id="search-Type">
+                        <button
+                          id="btn-typeVb"
+                          className={
+                            selectedButton === "btn-typeVb" ? "selected" : ""
+                          }
+                          ref={btnTypeVbRef}
+                          onClick={() => changeType("btn-typeVb")}
+                        ></button>
+                        <button
+                          id="btn-typeBm"
+                          className={
+                            selectedButton === "btn-typeBm" ? "selected" : ""
+                          }
+                          onClick={() => changeType("btn-typeBm")}
+                          ref={btnTypeBmRef}
+                        ></button>
+                      </div>
+                      <a href="./filterPosts.html">
+                        <button
+                          type="submit"
+                          className="btn-send button"
+                          onClick={() => {
+                            SaveData();
+                          }}
+                        >
+                          送出
+                        </button>
+                      </a>
+                    </div>
                   </div>
                 </section>
-                <hr />
-                {/* 貼文 */}
-                <section className="filter-containers">
-                  <div className="filter-postBlock">
+                {/* 本日臨打貼文 */}
+                <section className="post-containers">
+                  <div className="title-postArea">
+                    <h2>
+                      <div className="titleLine"></div>
+                      本日臨打貼文
+                    </h2>
+                    <a
+                      href="./More-postsArea.html"
+                      onClick={() => {
+                        storageHref(hrefTodayMore);
+                      }}
+                    >
+                      <div className="more button">更多</div>
+                    </a>
+                  </div>
+                  <ul className="tags" id="today_allfilterBtn">
+                    <button
+                      id="tags-All"
+                      className="active"
+                      onClick={() =>
+                        tagFilter("tags-All", "排球", "type", "today")
+                      }
+                    >
+                      全部
+                    </button>
+                    <button
+                      id="tags-B"
+                      onClick={() =>
+                        tagFilter("tags-B", degreeTag, "tagDegree", "today")
+                      }
+                    >
+                      {degreeTag}
+                    </button>
+                    <button
+                      id="tags-200"
+                      onClick={() =>
+                        tagFilter("tags-200", "200", "tagPrice", "today")
+                      }
+                    >
+                      $200↓
+                    </button>
+                    <button
+                      id="tags-night"
+                      onClick={() =>
+                        tagFilter("tags-night", "18", "startTime", "today")
+                      }
+                    >
+                      晚上
+                    </button>
+                  </ul>
+                  <div
+                    className="post-block"
+                    ref={(ref) => setContainerRef(ref)}
+                    onMouseDown={handleDragStart}
+                    onMouseMove={handleDragMove}
+                    onMouseUp={handleDragEnd}
+                    onMouseLeave={handleDragEnd}
+                    // onTouchStart={handleDragStart}
+                    // onTouchMove={handleDragMove}
+                    // onTouchEnd={handleDragEnd}
+                  >
+                    {/* <Slider {...settings}> */}
                     {filterPosts.map((post_data) => {
                       return (
-                        <SimplePostCard
+                        <PostCard
                           key={post_data.id}
                           id={post_data.id}
                           type={post_data.type}
@@ -2071,19 +2153,109 @@
                           tagDegree={post_data.tagDegree}
                           tagPrice={post_data.tagPrice}
                           reqCount={post_data.reqCount}
-                          female={post_data.reqCount[0].count}
-                          male={post_data.reqCount[1].count}
-                          unspecified={post_data.reqCount[2].count}
                           role={post_data.role}
                           pos={post_data.pos}
-                          equip={post_data.equip}
-                          ballBrand={post_data.ballBrand}
                           note={post_data.note}
-                          href={`ApplyPopUp-${post_data.id}`}
+                          href={`todayApplyPopUp-${post_data.id}`}
                           host={post_data.host}
                           hostId={post_data.hostId}
                           appl={post_data.appl}
                           cancel={post_data.cancel}
+                          ballBrand={post_data.ballBrand}
+                          equip={post_data.equip}
+                          like={post_data.like}
+                          state={post_data.state}
+                          identity={post_data.identity}
+                        />
+                      );
+                    })}
+                    {/* </Slider> */}
+                  </div>
+                </section>
+                {/* 本週臨打貼文 */}
+                <section className="post-containers">
+                  <div className="title-postArea">
+                    <h2>
+                      <div className="titleLine"></div>本週臨打貼文
+                    </h2>
+                    <a
+                      href="./More-postsArea.html"
+                      onClick={() => {
+                        storageHref(hrefWeekMore);
+                      }}
+                    >
+                      <div className="more button">更多</div>
+                    </a>
+                  </div>
+                  <ul className="tags" id="week_allfilterBtn">
+                    <button
+                      id="tags-weekAll"
+                      className="active"
+                      onClick={() =>
+                        tagFilter("tags-weekAll", "排球", "type", "week")
+                      }
+                    >
+                      全部
+                    </button>
+                    <button
+                      id="tags-weekB"
+                      onClick={() =>
+                        tagFilter("tags-weekB", degreeTag, "tagDegree", "week")
+                      }
+                    >
+                      {degreeTag}
+                    </button>
+                    <button
+                      id="tags-week200"
+                      onClick={() =>
+                        tagFilter("tags-week200", "200", "tagPrice", "week")
+                      }
+                    >
+                      $200↓
+                    </button>
+                    <button
+                      id="tags-weeknight"
+                      onClick={() =>
+                        tagFilter("tags-weeknight", "18", "startTime", "week")
+                      }
+                    >
+                      晚上
+                    </button>
+                  </ul>
+                  <div
+                    className="post-block"
+                    ref={(ref) => setWeekContainerRef(ref)}
+                    onMouseDown={weekHandleDragStart}
+                    onMouseMove={weekHandleDragMove}
+                    onMouseUp={weekHandleDragEnd}
+                    onMouseLeave={weekHandleDragEnd}
+                  >
+                    {weekFilterPosts.map((post_data) => {
+                      return (
+                        <PostCard
+                          key={post_data.id}
+                          id={post_data.id}
+                          type={post_data.type}
+                          postDate={post_data.date}
+                          dateMD={post_data.dateMD}
+                          postStartTime={post_data.startTime}
+                          postEndTime={post_data.endTime}
+                          postCity={post_data.city}
+                          postArea={post_data.area}
+                          postArena={post_data.arena}
+                          tagDegree={post_data.tagDegree}
+                          tagPrice={post_data.tagPrice}
+                          reqCount={post_data.reqCount}
+                          role={post_data.role}
+                          pos={post_data.pos}
+                          note={post_data.note}
+                          href={`weekApplyPopUp-${post_data.id}`}
+                          host={post_data.host}
+                          hostId={post_data.hostId}
+                          appl={post_data.appl}
+                          cancel={post_data.cancel}
+                          ballBrand={post_data.ballBrand}
+                          equip={post_data.equip}
                           like={post_data.like}
                           state={post_data.state}
                           identity={post_data.identity}
@@ -2093,22 +2265,12 @@
                   </div>
                 </section>
               </main>
-              <Footer />
-              <FilterForm
-                visible={showFilterForm}
-                selectedDate={selectedDate}
-                selectedCity={selectedCity}
-                selectedArea={selectedArea}
-                selectedCost={selectedCost}
-                selectedDegree={selectedDegree}
-                selectedEquip={selectedEquip}
-                selectedRole={selectedRol}
-              />
-            </div>
-          );
-        };
-        ReactDOM.createRoot(document.getElementById("root")).render(<App />);
-      })();
-    </script>
-  </body>
-</html>
+  );
+};
+
+// 主程式
+(async () => {
+  const postData = await getData();
+  const root = createRoot(document.getElementById("root"));
+  root.render(<App postData={postData} />);
+})();

@@ -2,12 +2,9 @@
 <html lang="zh-Hant-TW">
   <html>
     <head>
-      <title>發文找人_現在想打球</title>
-      <link rel="icon" href="./fav.svg" />
-      <link rel="stylesheet" href="./stylesheets/css/style-scss.css" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta charset="UTF-8" />
-      <!-- <script src="./javascripts/vendor.js"></script> -->
+      <!-- 引入 React 和 ReactDOM -->
       <script
         crossorigin
         src="https://unpkg.com/react@18/umd/react.development.js"
@@ -16,13 +13,22 @@
         crossorigin
         src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
       ></script>
+      <!-- 引入 Babel 來轉譯 JSX -->
       <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+      <!-- Redux -->
       <script
         src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.0/redux.min.js"
         integrity="sha512-1/8Tj23BRrWnKZXeBruk6wTnsMJbi/lJsk9bsRgVwb6j5q39n0A00gFjbCTaDo5l5XrPVv4DZXftrJExhRF/Ug=="
         crossorigin="anonymous"
         referrerpolicy="no-referrer"
       ></script>
+      <!-- 引入axios套件 -->
+      <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+      <!-- 使用模組化元件 -->
+      <script type="text/babel" src="./component.js"></script>
+      <title>發文找人_現在想打球</title>
+      <link rel="icon" href="./fav.svg" />
+      <link rel="stylesheet" href="./stylesheets/css/style-scss.css" />
       <style>
         .fileName {
           display: none;
@@ -148,26 +154,7 @@
               </>
             );
           };
-          /* 建立元件 footer元件 */
-          const Footer = (props) => {
-            return (
-              <>
-                <footer>
-                  <figure className="footer-border"></figure>
-                  <div>
-                    <figure>
-                      <img
-                        id="logo"
-                        src="./images/logo.png"
-                        alt="logo-PlayBallNow"
-                      />
-                    </figure>
-                    <p>Copyright© 2024 PlayBallNow. All Right Reserved. </p>
-                  </div>
-                </footer>
-              </>
-            );
-          };
+
           const App = () => {
             const { useState, useEffect, useRef } = React;
             const btnFormVbRef = useRef(null);
@@ -412,81 +399,11 @@
               );
             };
 
-            const TopBar = ({ mobileTopBar }) => {
-              return (
-                <>
-                  <div className="mobile-TopBar">
-                    <img src={mobileTopBar} alt="" />
-                  </div>
-                  <header id="topBar">
-                    <nav id="top-nav">
-                      <ul id="menu">
-                        <li>
-                          <a href="./index.html">
-                            <img
-                              className="icon"
-                              src="./images/magnifier.svg"
-                              alt=""
-                            />
-                            探索
-                          </a>
-                        </li>
-                        <li>
-                          <a href="./publicationForm.html">
-                            <img
-                              className="icon"
-                              src="./images/post.svg"
-                              alt=""
-                            />
-                            找人
-                          </a>
-                        </li>
-                        <li>
-                          <a href="notice.html">
-                            <img
-                              className="icon"
-                              src="./images/bell3.svg"
-                              alt=""
-                            />
-                            行程
-                          </a>
-                        </li>
-                        <li>
-                          <a href="personal.html">
-                            <img
-                              className="icon"
-                              src="./images/cat.svg"
-                              alt=""
-                            />
-                            個人
-                          </a>
-                        </li>
-                      </ul>
-                    </nav>
-                    <div className="form-title">
-                      <div className="hugTitle noto-sans-tc">
-                        <img src="./images/vbtitle.svg" alt="" />
-                        <h1 value="發文找人" className="title-L">
-                          發文找人
-                        </h1>
-                        <img src="./images/bmtitle.svg" alt="" />
-                      </div>
-                      <a
-                        href="./myPostList.html"
-                        className="button btn-postManage"
-                      >
-                        我的貼文
-                        <img src="./images/Vector.png" alt="" />
-                      </a>
-                    </div>
-                  </header>
-                </>
-              );
-            };
+           
 
             return (
               <div className="body hiFooter">
-                <TopBar mobileTopBar={mobileTopBar} />
+                <TopBar mobileTopBar={mobileTopBar} title={"發文找人"} btnName={"我的貼文"} btnImg={"Vector.png"} href={"myPostList"}/>
                 <main className="form-formArea">
                   <section className="form-container">
                     <div className="form-block">

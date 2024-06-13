@@ -1,20 +1,33 @@
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
   <head>
-    <title>資料編輯_現在想打球</title>
-    <link rel="icon" href="./fav.svg" />
-    <link rel="stylesheet" href="./stylesheets/css/style-scss.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="UTF-8" />
-    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- 引入 React 和 ReactDOM -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <!-- 引入 Babel 來轉譯 JSX -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Redux -->
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.0/redux.min.js"
       integrity="sha512-1/8Tj23BRrWnKZXeBruk6wTnsMJbi/lJsk9bsRgVwb6j5q39n0A00gFjbCTaDo5l5XrPVv4DZXftrJExhRF/Ug=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    <!-- 引入axios套件 -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- 使用模組化元件 -->
+    <script type="text/babel" src="./component.js"></script>
+    <title>資料編輯_現在想打球</title>
+    <link rel="icon" href="./fav.svg" />
+    <link rel="stylesheet" href="./stylesheets/css/style-scss.css" />
     <style>
       .fileName {
         display: none;
@@ -28,71 +41,20 @@
     <script type="text/babel">
       (async () => {
         const { useState, useEffect } = React;
-        const TopBar = () => {
-          return (
-            <>
-              <div className="mobile-TopBar">
-                <img
-                  src="./images/mobile-both-topbanner.png"
-                  alt="不分類的手機版banner"
-                />
-              </div>
-              <header id="topBar">
-                <nav id="top-nav">
-                  <ul id="menu">
-                    <li>
-                      <a href="./index.html">
-                        <img
-                          className="icon"
-                          src="./images/magnifier.svg"
-                          alt=""
-                        />
-                        探索
-                      </a>
-                    </li>
-                    <li>
-                      <a href="./publicationForm.html">
-                        <img className="icon" src="./images/post.svg" alt="" />
-                        找人
-                      </a>
-                    </li>
-                    <li>
-                      <a href="notice.html">
-                        <img className="icon" src="./images/bell3.svg" alt="" />
-                        行程
-                      </a>
-                    </li>
-                    <li>
-                      <a href="personal.html">
-                        <img className="icon" src="./images/cat.svg" alt="" />
-                        個人
-                      </a>
-                    </li>
-                  </ul>
-                </nav>
-                <div className="title">
-                  <div className="hugTitle noto-sans-tc">
-                    <img src="./images/vbtitle.svg" alt="" />
-                    <h1 className="title-L" value="編輯資料">
-                      編輯資料
-                    </h1>
-                    <img src="./images/bmtitle.svg" alt="" />
-                  </div>
-                </div>
-              </header>
-            </>
-          );
-        };
 
         const App = () => {
+          //手機板banner
+          const [mobileTopBar, setMobileTopBar] = useState(
+            "./images/mobile-both-topbanner.png"
+          );
           const [userName, setUserName] = useState("十全大補");
           const [userPhoto, setUserPhoto] = useState("./images/player.png");
           const [userSex, setUserSex] = useState("未知");
           const [userIntro, setUserIntro] = useState("很高興認識大家!");
           const [userBmDegree, setUserBmDegree] = useState("新手");
           const [userVbDegree, setUserVbDegree] = useState("C以下");
-          const [registerState,setRegisterState] = useState("未註冊");
-  
+          const [registerState, setRegisterState] = useState("未註冊");
+
           useEffect(() => {
             setRegisterState(window.localStorage.isRegister);
             if (registerState == "已註冊") {
@@ -103,8 +65,7 @@
               setUserIntro(window.localStorage.userIntro);
               setUserBmDegree(window.localStorage.BmDegree);
               setUserVbDegree(window.localStorage.VbDegree);
-            }else{
-
+            } else {
             }
           }, [registerState]);
           const saveData = () => {
@@ -121,7 +82,7 @@
 
           return (
             <div className="body">
-              <TopBar />
+              <TopBar mobileTopBar={mobileTopBar} title={"編輯資料"} isShow={"none"}/>
               <main className="register-Area">
                 <section className="register-section">
                   <div className="register-info">
@@ -153,19 +114,17 @@
                       <label htmlFor="gender">性別</label>
                       <div>
                         <button
-
                           className={userSex == "男" ? "activeBtn" : ""}
                           onClick={() => {
-                             setUserSex("男");
+                            setUserSex("男");
                           }}
                         >
                           男性
                         </button>
                         <button
-
-                          className={userSex == "女"? "activeBtn" : ""}
+                          className={userSex == "女" ? "activeBtn" : ""}
                           onClick={() => {
-                             setUserSex("女");
+                            setUserSex("女");
                           }}
                         >
                           女性
@@ -190,7 +149,6 @@
                       </div>
                     </div>
 
-
                     <div className="degreeSelect">
                       <select
                         name="degree-bm"
@@ -198,7 +156,6 @@
                         onChange={(e) => {
                           setUserBmDegree(e.target.value);
                         }}
-
                         value={userBmDegree}
                       >
                         <option value="default">羽球</option>
@@ -217,7 +174,6 @@
                         onChange={(e) => {
                           setUserVbDegree(e.target.value);
                         }}
-
                         value={userVbDegree}
                       >
                         <option value="default">排球</option>
@@ -242,19 +198,7 @@
                   </div>
                 </section>
               </main>
-              <footer>
-                <figure className="footer-border"></figure>
-                <div>
-                  <figure>
-                    <img
-                      id="logo"
-                      src="./images/logo.png"
-                      alt="logo-PlayBallNow"
-                    />
-                  </figure>
-                  <p>Copyright© 2024 PlayBallNow. All Right Reserved. </p>
-                </div>
-              </footer>
+              <Footer/>
             </div>
           );
         };
