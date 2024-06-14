@@ -3480,6 +3480,7 @@ button#btn-pastRecords.selected {
 
 /* 登入後姓名 */
 .userName {
+  min-width: 150px;
   width: fit-content;
   color: white;
   display: flex;
