@@ -2111,7 +2111,6 @@ main:10
   background-color: #FF8D24;
   box-shadow: 0px 4px 0px black;
   border-radius: 20px;
-  opacity: 0.8;
   /* 子層 */
   display: flex;
   align-items: center;
@@ -2127,7 +2126,6 @@ main:10
   opacity: 0.7;
 }
 #btn-typeBm:hover {
-  opacity: 1;
   box-shadow: 0px 6px 0px black;
   margin-top: 0px;
   cursor: pointer;
@@ -2305,7 +2303,6 @@ button#btn-typeBm.selected {
   border: 3px solid black;
   border-radius: 50px;
   margin-bottom: 8px;
-  box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.3);
   color: var(--font-color);
   /* 佈局 */
   flex: 1 1 auto;
@@ -2340,7 +2337,6 @@ button#btn-typeBm.selected {
   padding: 5px 15px;
   flex: 1 1 auto;
   align-self: center;
-  box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.3);
   color: var(--font-color);
   /* 自定義下拉箭頭 */
 }
@@ -2731,7 +2727,6 @@ button#btn-typeBm.selected {
   padding: 1px;
   border-radius: 90px;
   background: #cb1b1b;
-  opacity: 0.8;
   color: #ffffff;
   /* border */
   border: 1.5px solid black;
