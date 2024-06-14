@@ -187,6 +187,10 @@ h5,
   }
 }
 
+p {
+  letter-spacing: 0.01rem;
+}
+
 /* 有包按鈕的標題 */
 .form-title {
   /* layout */
@@ -3410,7 +3414,7 @@ button#btn-pastRecords.selected {
 }
 @media screen and (max-width:640px) {
   .biography-bust {
-    height: fit-content;
+    height: 300px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -3425,6 +3429,11 @@ button#btn-pastRecords.selected {
   background-color: #ffffff;
   margin-bottom: 20px;
 }
+.biography-bust figure img {
+  width: 90%;
+  height: 90%;
+  margin: 0 auto;
+}
 
 /* Line登入按鈕 */
 .btn-logInLine {
@@ -3432,18 +3441,52 @@ button#btn-pastRecords.selected {
   height: 36px;
   background-color: #44c150;
   color: rgba(247, 246, 245, 0.9);
-  border: 3px solid black;
-  border-radius: 5px;
-  font-size: 12px;
-  padding: 6px 9px;
+  width: fit-content;
+  max-height: 50px;
+  margin-top: 5px;
+  padding: 5px 18px;
+  border-radius: 50px;
+  border: 2px solid black;
+  border-bottom: 5px solid black;
+  /* 布局 */
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  /*  */
+  text-decoration: none;
+  text-transform: uppercase;
+  border: 3px solid black;
+  border-radius: 5px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  padding: 6px 9px;
+}
+.btn-logInLine:hover {
+  margin-top: 0px;
+  box-shadow: 0 6px black;
+  cursor: pointer;
+}
+.btn-logInLine:active {
+  width: fit-content;
+  height: fit-content;
+  margin-top: 7px;
+  padding-top: 0px;
+  padding-bottom: 3px;
+  color: rgba(247, 246, 245, 0.9);
+  background-color: #353535;
+  border-bottom: 1px solid #000000;
+  border-top: 5px solid black;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+  box-shadow: none;
+}
+.btn-logInLine:hover {
+  cursor: pointer;
 }
 .btn-logInLine img {
   width: 20px;
-  margin-right: 12px;
+  margin-left: 12px;
 }
 
 /* 登入後姓名 */
@@ -3479,7 +3522,7 @@ button#btn-pastRecords.selected {
   border-radius: 50px;
   padding: 12px 18px;
   background-color: rgba(247, 246, 245, 0.9);
-  box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 0.3);
   color: #6D6D6D;
   text-align: center;
   line-height: 89px;
