@@ -143,7 +143,7 @@ main:10
   background-color: #FF8D24;
   box-shadow: 0px 4px 0px $border-black;
   border-radius: 20px;
-  opacity: 0.8;
+  
   /* 子層 */
   display: flex;
   align-items: center;
@@ -159,7 +159,6 @@ main:10
     opacity: 0.7;
   }
   &:hover {
-    opacity: 1;
     box-shadow: 0px 6px 0px $border-black;
     margin-top: 0px ;
     cursor: pointer;
