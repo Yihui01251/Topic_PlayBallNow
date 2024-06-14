@@ -2305,7 +2305,6 @@ button#btn-typeBm.selected {
   border: 3px solid black;
   border-radius: 50px;
   margin-bottom: 8px;
-  box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.3);
   color: var(--font-color);
   /* 佈局 */
   flex: 1 1 auto;
@@ -2340,7 +2339,6 @@ button#btn-typeBm.selected {
   padding: 5px 15px;
   flex: 1 1 auto;
   align-self: center;
-  box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.3);
   color: var(--font-color);
   /* 自定義下拉箭頭 */
 }
