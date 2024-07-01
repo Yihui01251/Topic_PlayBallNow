@@ -2279,7 +2279,7 @@ button#btn-typeBm.selected {
   /*控制子層 */
   justify-content: center;
 }
-.dropMenu ul {
+.dropMenu form {
   /* 樣式 */
   width: 100%;
   height: auto;
@@ -2289,7 +2289,7 @@ button#btn-typeBm.selected {
   justify-content: center;
   align-content: center;
 }
-.dropMenu ul input {
+.dropMenu form input {
   /* 樣式 */
   width: 78%;
   max-width: 250px;
@@ -2304,10 +2304,10 @@ button#btn-typeBm.selected {
   flex: 1 1 auto;
   align-self: center;
 }
-.dropMenu ul input:hover {
+.dropMenu form input:hover {
   box-shadow: none;
 }
-.dropMenu ul #selectArea {
+.dropMenu form #selectArea {
   display: none;
   width: 78%;
   height: 100px;
@@ -2320,7 +2320,7 @@ button#btn-typeBm.selected {
   cursor: pointer;
   border-radius: 10px;
 }
-.dropMenu ul select {
+.dropMenu form select {
   width: 90%;
   max-width: 250px;
   min-width: 130px;
@@ -2336,10 +2336,10 @@ button#btn-typeBm.selected {
   color: var(--font-color);
   /* 自定義下拉箭頭 */
 }
-.dropMenu ul select:hover {
+.dropMenu form select:hover {
   box-shadow: none;
 }
-.dropMenu ul select::after {
+.dropMenu form select::after {
   content: "▼"; /* Unicode 箭頭字符 */
   position: absolute;
   top: 50%;
